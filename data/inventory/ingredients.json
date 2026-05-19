@@ -798,5 +798,157 @@
     "allergens": [],
     "used_in": ["insalata_mista_classica"],
     "active": true
+  },
+  {
+    "id": "arrosticini_pecora",
+    "name_it": "Arrosticini di pecora",
+    "area": "food",
+    "category": "carne",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": ["arrosticini_abruzzesi"],
+    "active": true
+  },
+  {
+    "id": "peperone_arrosto",
+    "name_it": "Peperone arrosto",
+    "area": "food",
+    "category": "preparazioni_cucina",
+    "unit": "kg",
+    "supplier": "Produzione interna",
+    "allergens": [],
+    "used_in": ["arrosticini_abruzzesi"],
+    "active": true
+  },
+  {
+    "id": "braciola",
+    "name_it": "Braciola",
+    "area": "food",
+    "category": "carne",
+    "unit": "kg",
+    "supplier": "Macelleria Panzaburro",
+    "allergens": [],
+    "used_in": ["misto_carne_ragu_napoletano"],
+    "active": true
+  },
+  {
+    "id": "spuntata_maiale",
+    "name_it": "Spuntata di maiale",
+    "area": "food",
+    "category": "carne",
+    "unit": "kg",
+    "supplier": "Macelleria Panzaburro",
+    "allergens": [],
+    "used_in": ["misto_carne_ragu_napoletano"],
+    "active": true
+  },
+  {
+    "id": "corazza_vitello",
+    "name_it": "Corazza di vitello",
+    "area": "food",
+    "category": "carne",
+    "unit": "kg",
+    "supplier": "Macelleria Panzaburro",
+    "allergens": [],
+    "used_in": ["misto_carne_ragu_napoletano"],
+    "active": true
+  },
+  {
+    "id": "cotica",
+    "name_it": "Cotica",
+    "area": "food",
+    "category": "carne",
+    "unit": "kg",
+    "supplier": "Macelleria Panzaburro",
+    "allergens": [],
+    "used_in": [
+      "misto_carne_ragu_napoletano",
+      "fagioli_cotiche"
+    ],
+    "active": true
+  },
+  {
+    "id": "polpette_carne",
+    "name_it": "Polpette di carne",
+    "area": "food",
+    "category": "preparazioni_cucina",
+    "unit": "kg",
+    "supplier": "Produzione interna",
+    "allergens": ["glutine", "uova", "latte"],
+    "used_in": ["polpette_ragu"],
+    "notes": "Nel menu sorgente appare 'sasiccia'. Qui normalizzato come preparazione interna polpette di carne.",
+    "active": true
+  },
+  {
+    "id": "parmigiano_pecorino_mix",
+    "name_it": "Mix parmigiano e pecorino",
+    "area": "food",
+    "category": "formaggi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": ["latte"],
+    "used_in": ["polpette_ragu"],
+    "notes": "Nel file menu appare come 'parmigiano e pecorino'. In futuro potremo separarlo in due ingredienti in recipe.",
+    "active": true
+  },
+  {
+    "id": "peperone",
+    "name_it": "Peperone",
+    "area": "food",
+    "category": "verdure_fresche",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": ["peperone_mbuttunato"],
+    "active": true
+  },
+  {
+    "id": "ripieno_pane",
+    "name_it": "Ripieno di pane",
+    "area": "food",
+    "category": "preparazioni_cucina",
+    "unit": "kg",
+    "supplier": "Produzione interna",
+    "allergens": ["glutine"],
+    "used_in": ["peperone_mbuttunato"],
+    "notes": "Nel menu sorgente appare 'popetta pane' e un ingrediente vuoto. Da verificare ricetta finale del peperone mbuttunato.",
+    "active": true
+  },
+  {
+    "id": "porchetta",
+    "name_it": "Porchetta",
+    "area": "food",
+    "category": "carne",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": ["porchetta_pure_patate_arrosto"],
+    "active": true
+  },
+  {
+    "id": "pure_patate_arrosto",
+    "name_it": "Purè di patate arrosto",
+    "area": "food",
+    "category": "preparazioni_cucina",
+    "unit": "kg",
+    "supplier": "Produzione interna",
+    "allergens": ["latte"],
+    "used_in": [
+      "porchetta_pure_patate_arrosto",
+      "pure_patata_arrosto_radicchio"
+    ],
+    "active": true
+  },
+  {
+    "id": "fagioli",
+    "name_it": "Fagioli",
+    "area": "food",
+    "category": "legumi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": ["fagioli_cotiche"],
+    "active": true
   }
 ]
