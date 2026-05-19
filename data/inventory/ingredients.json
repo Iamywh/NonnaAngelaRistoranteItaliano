@@ -486,5 +486,317 @@
       "melanzana_funghetto"
     ],
     "active": true
+  },
+  {
+    "id": "tagliatelle",
+    "name_it": "Tagliatelle",
+    "area": "food",
+    "category": "pasta",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": ["glutine", "uova"],
+    "used_in": ["lasagna_mortadella_pistacchio_burrata"],
+    "notes": "L'id del piatto va corretto: attualmente il menu usa lasagna_mortadella_pistacchio_burrata ma il nome è Tagliatelle al ragù bolognese.",
+    "active": true
+  },
+  {
+    "id": "ragu_bolognese",
+    "name_it": "Ragù bolognese",
+    "area": "food",
+    "category": "preparazioni_cucina",
+    "unit": "kg",
+    "supplier": "Produzione interna",
+    "allergens": ["sedano"],
+    "used_in": ["lasagna_mortadella_pistacchio_burrata"],
+    "notes": "Preparazione interna. Da collegare in futuro a recipe con carne, pomodoro, soffritto, vino e aromi.",
+    "active": true
+  },
+  {
+    "id": "parmigiano",
+    "name_it": "Parmigiano",
+    "area": "food",
+    "category": "formaggi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": ["latte"],
+    "used_in": [
+      "lasagna_mortadella_pistacchio_burrata",
+      "pappardelle_cinghiale",
+      "gnocchi_sorrentina",
+      "paccheri_ragu_napoletano",
+      "rigatoni_pesto"
+    ],
+    "active": true
+  },
+  {
+    "id": "pappardelle",
+    "name_it": "Pappardelle",
+    "area": "food",
+    "category": "pasta",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": ["glutine", "uova"],
+    "used_in": ["pappardelle_cinghiale"],
+    "active": true
+  },
+  {
+    "id": "ragu_cinghiale",
+    "name_it": "Ragù di cinghiale",
+    "area": "food",
+    "category": "preparazioni_cucina",
+    "unit": "kg",
+    "supplier": "Produzione interna",
+    "allergens": ["sedano", "solfiti"],
+    "used_in": ["pappardelle_cinghiale"],
+    "notes": "Preparazione interna. Da verificare ricetta finale e costo reale del cinghiale.",
+    "active": true
+  },
+  {
+    "id": "vino_rosso_cucina",
+    "name_it": "Vino rosso da cucina",
+    "area": "food",
+    "category": "condimenti",
+    "unit": "l",
+    "supplier": "Fornitore barra",
+    "allergens": ["solfiti"],
+    "used_in": ["pappardelle_cinghiale"],
+    "active": true
+  },
+  {
+    "id": "gnocchi",
+    "name_it": "Gnocchi",
+    "area": "food",
+    "category": "pasta",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": ["glutine"],
+    "used_in": ["gnocchi_sorrentina"],
+    "active": true
+  },
+  {
+    "id": "fiordilatte",
+    "name_it": "Fiordilatte",
+    "area": "food",
+    "category": "formaggi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": ["latte"],
+    "used_in": ["gnocchi_sorrentina"],
+    "active": true
+  },
+  {
+    "id": "paccheri",
+    "name_it": "Paccheri",
+    "area": "food",
+    "category": "pasta",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": ["glutine"],
+    "used_in": ["paccheri_ragu_napoletano"],
+    "active": true
+  },
+  {
+    "id": "ragu_napoletano",
+    "name_it": "Ragù napoletano",
+    "area": "food",
+    "category": "preparazioni_cucina",
+    "unit": "kg",
+    "supplier": "Produzione interna",
+    "allergens": ["sedano"],
+    "used_in": ["paccheri_ragu_napoletano"],
+    "notes": "Preparazione bandiera. Da collegare a recipe con carni, pomodoro e lunga cottura.",
+    "active": true
+  },
+  {
+    "id": "pasta_chitarra",
+    "name_it": "Pasta alla chitarra",
+    "area": "food",
+    "category": "pasta",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": ["glutine", "uova"],
+    "used_in": ["cacio_pepe_chitarra"],
+    "active": true
+  },
+  {
+    "id": "pecorino_romano",
+    "name_it": "Pecorino romano",
+    "area": "food",
+    "category": "formaggi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": ["latte"],
+    "used_in": ["cacio_pepe_chitarra"],
+    "active": true
+  },
+  {
+    "id": "pepe_nero",
+    "name_it": "Pepe nero",
+    "area": "food",
+    "category": "spezie",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": ["cacio_pepe_chitarra"],
+    "active": true
+  },
+  {
+    "id": "rigatoni",
+    "name_it": "Rigatoni",
+    "area": "food",
+    "category": "pasta",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": ["glutine"],
+    "used_in": ["rigatoni_pesto"],
+    "active": true
+  },
+  {
+    "id": "pesto",
+    "name_it": "Pesto",
+    "area": "food",
+    "category": "salse",
+    "unit": "kg",
+    "supplier": "Produzione interna",
+    "allergens": ["latte", "frutta_a_guscio"],
+    "used_in": ["rigatoni_pesto"],
+    "notes": "Da verificare se sarà pesto classico fatto in casa o prodotto acquistato.",
+    "active": true
+  },
+  {
+    "id": "patata",
+    "name_it": "Patata",
+    "area": "food",
+    "category": "verdure_fresche",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": ["patata_combucchi"],
+    "active": true
+  },
+  {
+    "id": "patata_arrosto",
+    "name_it": "Patata arrosto",
+    "area": "food",
+    "category": "preparazioni_cucina",
+    "unit": "kg",
+    "supplier": "Produzione interna",
+    "allergens": [],
+    "used_in": ["pure_patata_arrosto_radicchio"],
+    "active": true
+  },
+  {
+    "id": "radicchio",
+    "name_it": "Radicchio",
+    "area": "food",
+    "category": "verdure_fresche",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": ["pure_patata_arrosto_radicchio"],
+    "active": true
+  },
+  {
+    "id": "verdure_miste_grigliate",
+    "name_it": "Verdure miste grigliate",
+    "area": "food",
+    "category": "preparazioni_cucina",
+    "unit": "kg",
+    "supplier": "Produzione interna",
+    "allergens": [],
+    "used_in": ["misto_verdure_griglia"],
+    "active": true
+  },
+  {
+    "id": "verdure_crude",
+    "name_it": "Verdure crude",
+    "area": "food",
+    "category": "verdure_fresche",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": ["pinzimonio"],
+    "active": true
+  },
+  {
+    "id": "sale",
+    "name_it": "Sale",
+    "area": "food",
+    "category": "condimenti",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": ["pinzimonio"],
+    "active": true
+  },
+  {
+    "id": "pomodoro_pachino",
+    "name_it": "Pomodoro pachino",
+    "area": "food",
+    "category": "verdure_fresche",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": [
+      "insalata_rucola_grana_pachino",
+      "insalata_mista_classica"
+    ],
+    "active": true
+  },
+  {
+    "id": "vinaigrette_balsamico",
+    "name_it": "Vinaigrette balsamico",
+    "area": "food",
+    "category": "salse",
+    "unit": "l",
+    "supplier": "Produzione interna",
+    "allergens": ["solfiti"],
+    "used_in": ["insalata_rucola_grana_pachino"],
+    "notes": "Preparazione interna basata su aceto balsamico/olio. Da definire ricetta esatta.",
+    "active": true
+  },
+  {
+    "id": "lattuga_mista",
+    "name_it": "Lattuga mista",
+    "area": "food",
+    "category": "verdure_fresche",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": ["insalata_mista_classica"],
+    "active": true
+  },
+  {
+    "id": "cipolla",
+    "name_it": "Cipolla",
+    "area": "food",
+    "category": "verdure_fresche",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": ["insalata_mista_classica"],
+    "active": true
+  },
+  {
+    "id": "carote",
+    "name_it": "Carote",
+    "area": "food",
+    "category": "verdure_fresche",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": ["insalata_mista_classica"],
+    "active": true
+  },
+  {
+    "id": "mais",
+    "name_it": "Mais",
+    "area": "food",
+    "category": "verdure_conservate",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": ["insalata_mista_classica"],
+    "active": true
   }
 ]
