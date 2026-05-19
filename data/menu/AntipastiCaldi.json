@@ -1,0 +1,197 @@
+[
+  {
+    "category": "antipasti_caldi",
+    "id": "crostone_taleggio_lardo_colonnata",
+    "name_it": "Crostone taleggio e lardo di Colonnata",
+    "sizes": [],
+    "ingredients": [
+      "pane crostone",
+      "taleggio",
+      "lardo di Colonnata"
+    ],
+    "notes": "Antipasto caldo intenso e premium.",
+    "allergens_to_verify": [
+      "glutine",
+      "latte"
+    ],
+    "source": "trascrizione manuale utente",
+
+    "fornitore": "Orthidal",
+
+    "coperto_da_ordine": false,
+
+    "food_cost_raw": 3.10,
+    "food_cost_operativo": 4.85,
+
+    "prezzo_consigliato": 11.50,
+
+    "margine_percentuale": 57.8,
+
+    "categoria_profitto": "media",
+
+    "warning_commerciale": "Il lardo di Colonnata aumenta il valore percepito ma ha rotazione più lenta."
+  },
+
+  {
+    "category": "antipasti_caldi",
+    "id": "crostone_stracchino_salsiccia",
+    "name_it": "Crostone stracchino e salsiccia",
+    "sizes": [],
+    "ingredients": [
+      "pane crostone",
+      "stracchino",
+      "salsiccia"
+    ],
+    "notes": "Comfort food italiano rustico.",
+    "allergens_to_verify": [
+      "glutine",
+      "latte"
+    ],
+    "source": "trascrizione manuale utente",
+
+    "fornitore": "Orthidal",
+
+    "coperto_da_ordine": true,
+
+    "food_cost_raw": 2.45,
+    "food_cost_operativo": 4.05,
+
+    "prezzo_consigliato": 9.50,
+
+    "margine_percentuale": 57.3,
+
+    "categoria_profitto": "alta",
+
+    "warning_commerciale": "Ottimo antipasto da aperitivo e upselling vino rosso."
+  },
+
+  {
+    "category": "antipasti_caldi",
+    "id": "mozzarella_carrozza_salame",
+    "name_it": "Mozzarella in carrozza con salame",
+    "sizes": [],
+    "ingredients": [
+      "mozzarella",
+      "pane",
+      "salame"
+    ],
+    "notes": "Versione salata classica.",
+    "allergens_to_verify": [
+      "glutine",
+      "latte",
+      "uova"
+    ],
+    "source": "trascrizione manuale utente",
+
+    "fornitore": "Orthidal",
+
+    "coperto_da_ordine": true,
+
+    "food_cost_raw": 1.95,
+    "food_cost_operativo": 3.60,
+
+    "prezzo_consigliato": 8.50,
+
+    "margine_percentuale": 57.6,
+
+    "categoria_profitto": "alta",
+
+    "warning_commerciale": "Piatto estremamente profittevole se servito con presentazione premium."
+  },
+
+  {
+    "category": "antipasti_caldi",
+    "id": "mozzarella_carrozza_alici",
+    "name_it": "Mozzarella in carrozza con alici",
+    "sizes": [],
+    "ingredients": [
+      "mozzarella",
+      "pane",
+      "alici"
+    ],
+    "notes": "Versione più mediterranea e sapida.",
+    "allergens_to_verify": [
+      "glutine",
+      "latte",
+      "pesce",
+      "uova"
+    ],
+    "source": "trascrizione manuale utente",
+
+    "fornitore": "Orthidal",
+
+    "coperto_da_ordine": false,
+
+    "food_cost_raw": 2.35,
+    "food_cost_operativo": 4.00,
+
+    "prezzo_consigliato": 9.50,
+
+    "margine_percentuale": 57.9,
+
+    "categoria_profitto": "media",
+
+    "warning_commerciale": "Le alici aumentano la personalità del piatto ma riducono il target clienti."
+  },
+
+  {
+    "category": "antipasti_caldi",
+    "id": "verdure_grigliate_stagione",
+    "name_it": "Verdure grigliate di stagione",
+    "sizes": [],
+    "ingredients": [
+      "verdure di stagione",
+      "olio extravergine"
+    ],
+    "notes": "Contorno/antipasto vegetale versatile.",
+    "allergens_to_verify": [],
+    "source": "trascrizione manuale utente",
+
+    "fornitore": "Orthidal",
+
+    "coperto_da_ordine": "parziale",
+
+    "food_cost_raw": 1.60,
+    "food_cost_operativo": 3.20,
+
+    "prezzo_consigliato": 7.50,
+
+    "margine_percentuale": 57.3,
+
+    "categoria_profitto": "alta",
+
+    "warning_commerciale": "Molto utile per vegetariani e tavoli misti. Alto margine."
+  },
+
+  {
+    "category": "antipasti_caldi",
+    "id": "melanzana_funghetto",
+    "name_it": "Melanzana a funghetto",
+    "sizes": [],
+    "ingredients": [
+      "melanzana",
+      "pomodoro",
+      "olio extravergine",
+      "aglio",
+      "basilico"
+    ],
+    "notes": "Preparazione tradizionale napoletana da verificare nella ricetta finale.",
+    "allergens_to_verify": [],
+    "source": "trascrizione manuale utente",
+
+    "fornitore": "Orthidal",
+
+    "coperto_da_ordine": true,
+
+    "food_cost_raw": 1.25,
+    "food_cost_operativo": 2.95,
+
+    "prezzo_consigliato": 6.90,
+
+    "margine_percentuale": 57.2,
+
+    "categoria_profitto": "molto alta",
+
+    "warning_commerciale": "Piatto povero tradizionale con margine eccellente e storytelling forte."
+  }
+]

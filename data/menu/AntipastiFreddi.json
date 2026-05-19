@@ -1,0 +1,123 @@
+[
+  {
+    "category": "antipasti_freddi",
+    "id": "tagliere_affettati",
+    "name_it": "Tagliere affettati",
+    "sizes": ["intero", "mezzo"],
+    "ingredients": [
+      "bresaola",
+      "coppa parma",
+      "castagno",
+      "finocchiona",
+      "salame Napoli",
+      "mortadella pistacchio",
+      "speck",
+      "guanciale",
+      "lardo di colonnata"
+    ],
+    "notes": "Disponibile intero o mezzo.",
+    "allergens_to_verify": ["pistacchio", "frutta a guscio"],
+    "source": "trascrizione manuale utente",
+    "fornitore": "Orthidal",
+    "coperto_da_ordine": true,
+    "food_cost_raw": {
+      "intero": 8.50,
+      "mezzo": 4.50
+    },
+    "food_cost_operativo": {
+      "intero": 12.20,
+      "mezzo": 6.80
+    },
+    "prezzo_consigliato": {
+      "intero": 24.00,
+      "mezzo": 14.00
+    },
+    "margine_percentuale": {
+      "intero": 49.2,
+      "mezzo": 51.4
+    },
+    "categoria_profitto": "media",
+    "warning_commerciale": "Piatto ad alto valore percepito, ma attenzione: i salumi premium mangiano margine. Va venduto bene, non regalato."
+  },
+  {
+    "category": "antipasti_freddi",
+    "id": "tagliere_formaggi",
+    "name_it": "Tagliere formaggi",
+    "sizes": ["intero", "mezzo"],
+    "ingredients": [
+      "fontina",
+      "taleggio",
+      "scaglie parmigiano",
+      "Kinara tartufo",
+      "formaggio al Barolo"
+    ],
+    "notes": "Disponibile intero o mezzo.",
+    "allergens_to_verify": ["latte"],
+    "source": "trascrizione manuale utente",
+    "fornitore": "Orthidal",
+    "coperto_da_ordine": true,
+    "food_cost_raw": {
+      "intero": 7.80,
+      "mezzo": 4.10
+    },
+    "food_cost_operativo": {
+      "intero": 11.40,
+      "mezzo": 6.30
+    },
+    "prezzo_consigliato": {
+      "intero": 23.00,
+      "mezzo": 13.50
+    },
+    "margine_percentuale": {
+      "intero": 50.4,
+      "mezzo": 53.3
+    },
+    "categoria_profitto": "media",
+    "warning_commerciale": "Buono per upselling vino. Il formaggio al tartufo e Barolo danno storytelling, ma vanno porzionati con precisione."
+  },
+  {
+    "category": "antipasti_freddi",
+    "id": "alici_cantabrico_burrata_pomodoro_secco",
+    "name_it": "Alici del Cantabrico con burrata e pomodoro secco",
+    "sizes": [],
+    "ingredients": [
+      "alici del Cantabrico",
+      "burrata",
+      "pomodoro secco"
+    ],
+    "notes": "Antipasto freddo premium, forte identità mediterranea.",
+    "allergens_to_verify": ["pesce", "latte"],
+    "source": "trascrizione manuale utente",
+    "fornitore": "Orthidal",
+    "coperto_da_ordine": false,
+    "food_cost_raw": 5.20,
+    "food_cost_operativo": 7.60,
+    "prezzo_consigliato": 16.50,
+    "margine_percentuale": 53.9,
+    "categoria_profitto": "media",
+    "warning_commerciale": "Piatto premium da non prezzare basso. Le alici del Cantabrico devono essere dichiarate bene nel menu perché giustificano il prezzo."
+  },
+  {
+    "category": "antipasti_freddi",
+    "id": "carpaccio_bresaola_rucola_grana_balsamico",
+    "name_it": "Carpaccio / bresaola",
+    "sizes": [],
+    "ingredients": [
+      "carpaccio o bresaola",
+      "rucola",
+      "grana",
+      "aceto balsamico"
+    ],
+    "notes": "Da verificare se il piatto finale sarà carpaccio, bresaola o doppia opzione.",
+    "allergens_to_verify": ["latte", "solfiti"],
+    "source": "trascrizione manuale utente",
+    "fornitore": "Orthidal",
+    "coperto_da_ordine": true,
+    "food_cost_raw": 4.80,
+    "food_cost_operativo": 7.10,
+    "prezzo_consigliato": 15.50,
+    "margine_percentuale": 54.2,
+    "categoria_profitto": "media-alta",
+    "warning_commerciale": "Meglio scegliere una sola identità: o bresaola o carpaccio. Se lasci doppia opzione, complichi stock e comunicazione."
+  }
+]

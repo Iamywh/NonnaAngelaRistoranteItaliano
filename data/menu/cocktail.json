@@ -1,0 +1,196 @@
+{
+  "cocktails": [
+    {
+      "id": "negroni",
+      "name": "Negroni",
+      "category": "Aperitivo Italiano",
+      "origin": "Firenze, Italia",
+      "glass": "Old Fashioned",
+      "served_with_ice": true,
+      "ingredients": [
+        "Gin",
+        "Bitter italiano",
+        "Vermouth rosso"
+      ],
+      "garnish": [
+        "Scorza d'arancia"
+      ],
+      "flavor_profile": [
+        "Amaro",
+        "Intenso",
+        "Erbaceo",
+        "Elegante"
+      ],
+      "alcohol_level": "High",
+      "recommended_price": 9.5,
+      "description": "L'aperitivo italiano iconico. Intenso, amaro ed elegante.",
+      "pairing": [
+        "Tagliere italiano",
+        "Mortadella",
+        "Formaggi stagionati"
+      ],
+      "available": true
+    },
+
+    {
+      "id": "americano",
+      "name": "Americano",
+      "category": "Aperitivo Italiano",
+      "origin": "Milano, Italia",
+      "glass": "Highball",
+      "served_with_ice": true,
+      "ingredients": [
+        "Bitter italiano",
+        "Vermouth rosso",
+        "Soda"
+      ],
+      "garnish": [
+        "Fetta d'arancia"
+      ],
+      "flavor_profile": [
+        "Fresco",
+        "Leggero",
+        "Amaro",
+        "Frizzante"
+      ],
+      "alcohol_level": "Medium",
+      "recommended_price": 8.5,
+      "description": "Il padre del Negroni. Più leggero, fresco e aperitivo-oriented.",
+      "pairing": [
+        "Olive",
+        "Bruschette",
+        "Antipasti"
+      ],
+      "available": true
+    },
+
+    {
+      "id": "aperol-spritz",
+      "name": "Aperol Spritz",
+      "category": "Spritz",
+      "origin": "Venezia, Italia",
+      "glass": "Wine Glass",
+      "served_with_ice": true,
+      "ingredients": [
+        "Aperol",
+        "Prosecco",
+        "Soda"
+      ],
+      "garnish": [
+        "Fetta d'arancia"
+      ],
+      "flavor_profile": [
+        "Agrumato",
+        "Frizzante",
+        "Leggero",
+        "Sociale"
+      ],
+      "alcohol_level": "Medium",
+      "recommended_price": 8,
+      "description": "Il classico aperitivo veneziano. Fresco, brillante e conviviale.",
+      "pairing": [
+        "Focaccia",
+        "Burrata",
+        "Aperitivo misto"
+      ],
+      "available": true
+    },
+
+    {
+      "id": "bellini",
+      "name": "Bellini",
+      "category": "Sparkling Cocktail",
+      "origin": "Venezia, Italia",
+      "glass": "Flute",
+      "served_with_ice": false,
+      "ingredients": [
+        "Purea di pesca bianca",
+        "Prosecco"
+      ],
+      "garnish": [
+        "Pesca"
+      ],
+      "flavor_profile": [
+        "Morbido",
+        "Elegante",
+        "Fruttato",
+        "Raffinato"
+      ],
+      "alcohol_level": "Low",
+      "recommended_price": 8.5,
+      "description": "Cocktail elegante nato all'Harry's Bar di Venezia.",
+      "pairing": [
+        "Brunch",
+        "Dolci leggeri",
+        "Antipasti delicati"
+      ],
+      "available": true
+    },
+
+    {
+      "id": "rossini",
+      "name": "Rossini",
+      "category": "Sparkling Cocktail",
+      "origin": "Italia",
+      "glass": "Flute",
+      "served_with_ice": false,
+      "ingredients": [
+        "Fragole fresche",
+        "Prosecco"
+      ],
+      "garnish": [
+        "Fragola"
+      ],
+      "flavor_profile": [
+        "Fruttato",
+        "Vivace",
+        "Fresco",
+        "Romantico"
+      ],
+      "alcohol_level": "Low",
+      "recommended_price": 8.5,
+      "description": "La variante intensa e romantica del Bellini.",
+      "pairing": [
+        "Dessert",
+        "Brunch",
+        "Aperitivo pomeridiano"
+      ],
+      "available": true
+    },
+
+    {
+      "id": "hugo-spritz",
+      "name": "Hugo Spritz",
+      "category": "Spritz",
+      "origin": "Nord Italia",
+      "glass": "Wine Glass",
+      "served_with_ice": true,
+      "ingredients": [
+        "Prosecco",
+        "Sambuco",
+        "Lime",
+        "Menta",
+        "Soda"
+      ],
+      "garnish": [
+        "Menta fresca",
+        "Lime"
+      ],
+      "flavor_profile": [
+        "Floreale",
+        "Fresco",
+        "Estivo",
+        "Leggero"
+      ],
+      "alcohol_level": "Medium",
+      "recommended_price": 8.5,
+      "description": "Aperitivo floreale e fresco diventato simbolo dell'estate italiana.",
+      "pairing": [
+        "Burrata",
+        "Crudité",
+        "Insalate premium"
+      ],
+      "available": true
+    }
+  ]
+}
