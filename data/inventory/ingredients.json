@@ -1,0 +1,490 @@
+[
+  {
+    "id": "bresaola",
+    "name_it": "Bresaola",
+    "area": "food",
+    "category": "salumi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": [
+      "tagliere_affettati",
+      "carpaccio_bresaola_rucola_grana_balsamico"
+    ],
+    "active": true
+  },
+  {
+    "id": "coppa_parma",
+    "name_it": "Coppa Parma",
+    "area": "food",
+    "category": "salumi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": [
+      "tagliere_affettati"
+    ],
+    "active": true
+  },
+  {
+    "id": "castagno",
+    "name_it": "Castagno",
+    "area": "food",
+    "category": "salumi_da_verificare",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": [
+      "tagliere_affettati"
+    ],
+    "notes": "Nome ingrediente da verificare: potrebbe riferirsi a un prodotto specifico, non a ingrediente generico.",
+    "active": true
+  },
+  {
+    "id": "finocchiona",
+    "name_it": "Finocchiona",
+    "area": "food",
+    "category": "salumi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": [
+      "tagliere_affettati"
+    ],
+    "active": true
+  },
+  {
+    "id": "salame_napoli",
+    "name_it": "Salame Napoli",
+    "area": "food",
+    "category": "salumi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": [
+      "tagliere_affettati",
+      "mozzarella_carrozza_salame"
+    ],
+    "active": true
+  },
+  {
+    "id": "mortadella_pistacchio",
+    "name_it": "Mortadella con pistacchio",
+    "area": "food",
+    "category": "salumi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [
+      "frutta_a_guscio",
+      "pistacchio"
+    ],
+    "used_in": [
+      "tagliere_affettati"
+    ],
+    "active": true
+  },
+  {
+    "id": "speck",
+    "name_it": "Speck",
+    "area": "food",
+    "category": "salumi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": [
+      "tagliere_affettati"
+    ],
+    "active": true
+  },
+  {
+    "id": "guanciale",
+    "name_it": "Guanciale",
+    "area": "food",
+    "category": "salumi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": [
+      "tagliere_affettati"
+    ],
+    "active": true
+  },
+  {
+    "id": "lardo_colonnata",
+    "name_it": "Lardo di Colonnata",
+    "area": "food",
+    "category": "salumi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": [
+      "tagliere_affettati",
+      "crostone_taleggio_lardo_colonnata"
+    ],
+    "active": true
+  },
+  {
+    "id": "fontina",
+    "name_it": "Fontina",
+    "area": "food",
+    "category": "formaggi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [
+      "latte"
+    ],
+    "used_in": [
+      "tagliere_formaggi"
+    ],
+    "active": true
+  },
+  {
+    "id": "taleggio",
+    "name_it": "Taleggio",
+    "area": "food",
+    "category": "formaggi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [
+      "latte"
+    ],
+    "used_in": [
+      "tagliere_formaggi",
+      "crostone_taleggio_lardo_colonnata"
+    ],
+    "active": true
+  },
+  {
+    "id": "parmigiano_scaglie",
+    "name_it": "Parmigiano in scaglie",
+    "area": "food",
+    "category": "formaggi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [
+      "latte"
+    ],
+    "used_in": [
+      "tagliere_formaggi"
+    ],
+    "active": true
+  },
+  {
+    "id": "kinara_tartufo",
+    "name_it": "Kinara al tartufo",
+    "area": "food",
+    "category": "formaggi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [
+      "latte"
+    ],
+    "used_in": [
+      "tagliere_formaggi"
+    ],
+    "active": true
+  },
+  {
+    "id": "formaggio_barolo",
+    "name_it": "Formaggio al Barolo",
+    "area": "food",
+    "category": "formaggi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [
+      "latte",
+      "solfiti_da_verificare"
+    ],
+    "used_in": [
+      "tagliere_formaggi"
+    ],
+    "active": true
+  },
+  {
+    "id": "alici_cantabrico",
+    "name_it": "Alici del Cantabrico",
+    "area": "food",
+    "category": "pesce_conservato",
+    "unit": "unit",
+    "supplier": "Orthidal",
+    "allergens": [
+      "pesce"
+    ],
+    "used_in": [
+      "alici_cantabrico_burrata_pomodoro_secco"
+    ],
+    "active": true
+  },
+  {
+    "id": "burrata",
+    "name_it": "Burrata",
+    "area": "food",
+    "category": "formaggi",
+    "unit": "unit",
+    "supplier": "Orthidal",
+    "allergens": [
+      "latte"
+    ],
+    "used_in": [
+      "alici_cantabrico_burrata_pomodoro_secco"
+    ],
+    "active": true
+  },
+  {
+    "id": "pomodoro_secco",
+    "name_it": "Pomodoro secco",
+    "area": "food",
+    "category": "verdure_conservate",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": [
+      "alici_cantabrico_burrata_pomodoro_secco"
+    ],
+    "active": true
+  },
+  {
+    "id": "carpaccio_manzo",
+    "name_it": "Carpaccio di manzo",
+    "area": "food",
+    "category": "carne",
+    "unit": "kg",
+    "supplier": "Macelleria Panzaburro",
+    "allergens": [],
+    "used_in": [
+      "carpaccio_bresaola_rucola_grana_balsamico"
+    ],
+    "notes": "Nel menu appare come 'carpaccio o bresaola': va deciso se sarà alternativa reale o piatto unico.",
+    "active": true
+  },
+  {
+    "id": "rucola",
+    "name_it": "Rucola",
+    "area": "food",
+    "category": "verdure_fresche",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": [
+      "carpaccio_bresaola_rucola_grana_balsamico"
+    ],
+    "active": true
+  },
+  {
+    "id": "grana",
+    "name_it": "Grana",
+    "area": "food",
+    "category": "formaggi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [
+      "latte"
+    ],
+    "used_in": [
+      "carpaccio_bresaola_rucola_grana_balsamico"
+    ],
+    "active": true
+  },
+  {
+    "id": "aceto_balsamico",
+    "name_it": "Aceto balsamico",
+    "area": "food",
+    "category": "condimenti",
+    "unit": "l",
+    "supplier": "Orthidal",
+    "allergens": [
+      "solfiti"
+    ],
+    "used_in": [
+      "carpaccio_bresaola_rucola_grana_balsamico"
+    ],
+    "active": true
+  },
+  {
+    "id": "pane_crostone",
+    "name_it": "Pane per crostone",
+    "area": "food",
+    "category": "pane_e_farinate",
+    "unit": "unit",
+    "supplier": "Orthidal",
+    "allergens": [
+      "glutine"
+    ],
+    "used_in": [
+      "crostone_taleggio_lardo_colonnata",
+      "crostone_stracchino_salsiccia"
+    ],
+    "active": true
+  },
+  {
+    "id": "stracchino",
+    "name_it": "Stracchino",
+    "area": "food",
+    "category": "formaggi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [
+      "latte"
+    ],
+    "used_in": [
+      "crostone_stracchino_salsiccia"
+    ],
+    "active": true
+  },
+  {
+    "id": "salsiccia",
+    "name_it": "Salsiccia",
+    "area": "food",
+    "category": "carne",
+    "unit": "kg",
+    "supplier": "Macelleria Panzaburro",
+    "allergens": [],
+    "used_in": [
+      "crostone_stracchino_salsiccia"
+    ],
+    "active": true
+  },
+  {
+    "id": "mozzarella",
+    "name_it": "Mozzarella",
+    "area": "food",
+    "category": "formaggi",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [
+      "latte"
+    ],
+    "used_in": [
+      "mozzarella_carrozza_salame",
+      "mozzarella_carrozza_alici"
+    ],
+    "active": true
+  },
+  {
+    "id": "pane",
+    "name_it": "Pane",
+    "area": "food",
+    "category": "pane_e_farinate",
+    "unit": "unit",
+    "supplier": "Orthidal",
+    "allergens": [
+      "glutine"
+    ],
+    "used_in": [
+      "mozzarella_carrozza_salame",
+      "mozzarella_carrozza_alici"
+    ],
+    "active": true
+  },
+  {
+    "id": "alici",
+    "name_it": "Alici",
+    "area": "food",
+    "category": "pesce_conservato",
+    "unit": "kg",
+    "supplier": "Orthidal",
+    "allergens": [
+      "pesce"
+    ],
+    "used_in": [
+      "mozzarella_carrozza_alici"
+    ],
+    "active": true
+  },
+  {
+    "id": "uova",
+    "name_it": "Uova",
+    "area": "food",
+    "category": "uova",
+    "unit": "unit",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [
+      "uova"
+    ],
+    "used_in": [
+      "mozzarella_carrozza_salame",
+      "mozzarella_carrozza_alici"
+    ],
+    "notes": "Ingrediente non esplicito negli array, ma necessario per mozzarella in carrozza e indicato negli allergeni.",
+    "active": true
+  },
+  {
+    "id": "verdure_stagione",
+    "name_it": "Verdure di stagione",
+    "area": "food",
+    "category": "verdure_fresche",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": [
+      "verdure_grigliate_stagione"
+    ],
+    "active": true
+  },
+  {
+    "id": "olio_extravergine",
+    "name_it": "Olio extravergine di oliva",
+    "area": "food",
+    "category": "condimenti",
+    "unit": "l",
+    "supplier": "Orthidal",
+    "allergens": [],
+    "used_in": [
+      "verdure_grigliate_stagione",
+      "melanzana_funghetto"
+    ],
+    "active": true
+  },
+  {
+    "id": "melanzana",
+    "name_it": "Melanzana",
+    "area": "food",
+    "category": "verdure_fresche",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": [
+      "melanzana_funghetto"
+    ],
+    "active": true
+  },
+  {
+    "id": "pomodoro",
+    "name_it": "Pomodoro",
+    "area": "food",
+    "category": "verdure_fresche",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": [
+      "melanzana_funghetto"
+    ],
+    "active": true
+  },
+  {
+    "id": "aglio",
+    "name_it": "Aglio",
+    "area": "food",
+    "category": "aromi",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": [
+      "melanzana_funghetto"
+    ],
+    "active": true
+  },
+  {
+    "id": "basilico",
+    "name_it": "Basilico",
+    "area": "food",
+    "category": "aromi",
+    "unit": "kg",
+    "supplier": "Fornitore frutta e verdura",
+    "allergens": [],
+    "used_in": [
+      "melanzana_funghetto"
+    ],
+    "active": true
+  }
+]
