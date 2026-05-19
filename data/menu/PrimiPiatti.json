@@ -1,10 +1,10 @@
 [
   {
     "category": "primi_piatti",
-    "id": "lasagna_mortadella_pistacchio_burrata",
-    "name_it": "Tagliatelle al ragù bolognese",
-    "sizes": [],
-    "ingredients": ["tagliatelle", "ragù bolognese", "parmigiano"],
+    "id": "lasagna_bolognese",
+    "name_it": "lasagne al ragù bolognese",
+    "sizes": ["250gr"],
+    "ingredients": ["lasagne", "ragù bolognese", "parmigiano", "besciamella"],
     "notes": "Classico identitario italiano.",
     "allergens_to_verify": ["glutine", "latte", "sedano", "uova"],
     "source": "trascrizione manuale utente",
@@ -92,9 +92,9 @@
   {
     "category": "primi_piatti",
     "id": "rigatoni_pesto",
-    "name_it": "Rigatoni al pesto",
+    "name_it": "Rigatoni al pesto genovese",
     "sizes": [],
-    "ingredients": ["rigatoni", "pesto", "parmigiano"],
+    "ingredients": ["rigatoni", "pesto genovese", "parmigiano"],
     "notes": "Da verificare se pesto classico genovese o reinterpretazione.",
     "allergens_to_verify": ["glutine", "latte", "frutta a guscio"],
     "source": "trascrizione manuale utente",
