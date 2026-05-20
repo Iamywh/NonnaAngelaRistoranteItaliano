@@ -5,7 +5,7 @@
     "area": "food",
     "category": "salumi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": [
       "tagliere_affettati",
@@ -19,7 +19,7 @@
     "area": "food",
     "category": "salumi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": [
       "tagliere_affettati"
@@ -32,7 +32,7 @@
     "area": "food",
     "category": "salumi_da_verificare",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": [
       "tagliere_affettati"
@@ -46,7 +46,7 @@
     "area": "food",
     "category": "salumi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": [
       "tagliere_affettati"
@@ -59,7 +59,7 @@
     "area": "food",
     "category": "salumi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": [
       "tagliere_affettati",
@@ -73,7 +73,7 @@
     "area": "food",
     "category": "salumi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "frutta_a_guscio",
       "pistacchio"
@@ -89,7 +89,7 @@
     "area": "food",
     "category": "salumi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": [
       "tagliere_affettati"
@@ -102,7 +102,7 @@
     "area": "food",
     "category": "salumi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": [
       "tagliere_affettati"
@@ -115,7 +115,7 @@
     "area": "food",
     "category": "salumi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": [
       "tagliere_affettati",
@@ -129,7 +129,7 @@
     "area": "food",
     "category": "formaggi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "latte"
     ],
@@ -144,7 +144,7 @@
     "area": "food",
     "category": "formaggi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "latte"
     ],
@@ -160,7 +160,7 @@
     "area": "food",
     "category": "formaggi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "latte"
     ],
@@ -175,7 +175,7 @@
     "area": "food",
     "category": "formaggi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "latte"
     ],
@@ -190,7 +190,7 @@
     "area": "food",
     "category": "formaggi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "latte",
       "solfiti_da_verificare"
@@ -206,7 +206,7 @@
     "area": "food",
     "category": "pesce_conservato",
     "unit": "unit",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "pesce"
     ],
@@ -221,7 +221,7 @@
     "area": "food",
     "category": "formaggi",
     "unit": "unit",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "latte"
     ],
@@ -236,7 +236,7 @@
     "area": "food",
     "category": "verdure_conservate",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": [
       "alici_cantabrico_burrata_pomodoro_secco"
@@ -276,7 +276,7 @@
     "area": "food",
     "category": "formaggi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "latte"
     ],
@@ -291,7 +291,7 @@
     "area": "food",
     "category": "condimenti",
     "unit": "l",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "solfiti"
     ],
@@ -306,7 +306,7 @@
     "area": "food",
     "category": "pane_e_farinate",
     "unit": "unit",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "glutine"
     ],
@@ -322,7 +322,7 @@
     "area": "food",
     "category": "formaggi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "latte"
     ],
@@ -350,7 +350,7 @@
     "area": "food",
     "category": "formaggi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "latte"
     ],
@@ -366,7 +366,7 @@
     "area": "food",
     "category": "pane_e_farinate",
     "unit": "unit",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "glutine"
     ],
@@ -382,7 +382,7 @@
     "area": "food",
     "category": "pesce_conservato",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [
       "pesce"
     ],
@@ -427,7 +427,7 @@
     "area": "food",
     "category": "condimenti",
     "unit": "l",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": [
       "verdure_grigliate_stagione",
@@ -493,7 +493,7 @@
     "area": "food",
     "category": "pasta",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["glutine", "uova"],
     "used_in": ["lasagna_mortadella_pistacchio_burrata"],
     "notes": "L'id del piatto va corretto: attualmente il menu usa lasagna_mortadella_pistacchio_burrata ma il nome è Tagliatelle al ragù bolognese.",
@@ -517,7 +517,7 @@
     "area": "food",
     "category": "formaggi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["latte"],
     "used_in": [
       "lasagna_mortadella_pistacchio_burrata",
@@ -534,7 +534,7 @@
     "area": "food",
     "category": "pasta",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["glutine", "uova"],
     "used_in": ["pappardelle_cinghiale"],
     "active": true
@@ -568,7 +568,7 @@
     "area": "food",
     "category": "pasta",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["glutine"],
     "used_in": ["gnocchi_sorrentina"],
     "active": true
@@ -579,7 +579,7 @@
     "area": "food",
     "category": "formaggi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["latte"],
     "used_in": ["gnocchi_sorrentina"],
     "active": true
@@ -590,7 +590,7 @@
     "area": "food",
     "category": "pasta",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["glutine"],
     "used_in": ["paccheri_ragu_napoletano"],
     "active": true
@@ -613,7 +613,7 @@
     "area": "food",
     "category": "pasta",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["glutine", "uova"],
     "used_in": ["cacio_pepe_chitarra"],
     "active": true
@@ -624,7 +624,7 @@
     "area": "food",
     "category": "formaggi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["latte"],
     "used_in": ["cacio_pepe_chitarra"],
     "active": true
@@ -635,7 +635,7 @@
     "area": "food",
     "category": "spezie",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": ["cacio_pepe_chitarra"],
     "active": true
@@ -646,7 +646,7 @@
     "area": "food",
     "category": "pasta",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["glutine"],
     "used_in": ["rigatoni_pesto"],
     "active": true
@@ -724,7 +724,7 @@
     "area": "food",
     "category": "condimenti",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": ["pinzimonio"],
     "active": true
@@ -794,7 +794,7 @@
     "area": "food",
     "category": "verdure_conservate",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": ["insalata_mista_classica"],
     "active": true
@@ -805,7 +805,7 @@
     "area": "food",
     "category": "carne",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": ["arrosticini_abruzzesi"],
     "active": true
@@ -886,7 +886,7 @@
     "area": "food",
     "category": "formaggi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["latte"],
     "used_in": ["polpette_ragu"],
     "notes": "Nel file menu appare come 'parmigiano e pecorino'. In futuro potremo separarlo in due ingredienti in recipe.",
@@ -921,7 +921,7 @@
     "area": "food",
     "category": "carne",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": ["porchetta_pure_patate_arrosto"],
     "active": true
@@ -946,7 +946,7 @@
     "area": "food",
     "category": "legumi",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": ["fagioli_cotiche"],
     "active": true
@@ -957,7 +957,7 @@
     "area": "food",
     "category": "dolci_base",
     "unit": "unit",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["glutine", "uova"],
     "used_in": ["tris_cannoli_siciliani"],
     "notes": "Prodotto ordinato. Controllare rotture, rotazione e quantità per porzione.",
@@ -969,7 +969,7 @@
     "area": "food",
     "category": "dolci_latticini",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["latte"],
     "used_in": ["tris_cannoli_siciliani"],
     "active": true
@@ -980,7 +980,7 @@
     "area": "food",
     "category": "dolci_frutta_conservata",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": ["tris_cannoli_siciliani"],
     "active": true
@@ -991,7 +991,7 @@
     "area": "food",
     "category": "frutta_a_guscio",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["frutta_a_guscio", "pistacchio"],
     "used_in": ["tris_cannoli_siciliani"],
     "active": true
@@ -1002,7 +1002,7 @@
     "area": "food",
     "category": "dolci_base",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": ["tris_cannoli_siciliani", "pere_ricotta"],
     "active": true
@@ -1013,7 +1013,7 @@
     "area": "food",
     "category": "dolci_base",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["glutine", "uova"],
     "used_in": ["tiramisu_limone"],
     "active": true
@@ -1035,7 +1035,7 @@
     "area": "food",
     "category": "dolci_latticini",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["latte"],
     "used_in": ["tiramisu_limone"],
     "active": true
@@ -1046,7 +1046,7 @@
     "area": "food",
     "category": "dolci_base",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": [],
     "used_in": ["tiramisu_limone", "pere_ricotta", "baba_napoletano"],
     "active": true
@@ -1057,7 +1057,7 @@
     "area": "food",
     "category": "dolci_latticini",
     "unit": "l",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["latte"],
     "used_in": ["tiramisu_limone", "pere_ricotta", "baba_napoletano"],
     "active": true
@@ -1079,7 +1079,7 @@
     "area": "food",
     "category": "dolci_latticini",
     "unit": "kg",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["latte"],
     "used_in": ["pere_ricotta"],
     "active": true
@@ -1113,7 +1113,7 @@
     "area": "food",
     "category": "dolci_base",
     "unit": "unit",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["glutine", "uova", "latte"],
     "used_in": ["baba_napoletano"],
     "notes": "Prodotto ordinato. Da verificare formato e porzione.",
