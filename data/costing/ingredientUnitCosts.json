@@ -145,6 +145,146 @@
       "source": "manual_estimate",
       "confidence": "medium",
       "notes": "Costo operativo stimato su fagioli cotti, condimento, energia e scarto. Non è costo secco del fagiolo crudo."
+    },
+    {
+      "ingredient_id": "lasagne",
+      "name_it": "Sfoglia per lasagne",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 4.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria per sfoglia lasagna. Da sostituire con prezzo reale Orthidal."
+    },
+    {
+      "ingredient_id": "ragu_bolognese",
+      "name_it": "Ragù bolognese",
+      "supplier": "internal_production",
+      "unit": "kg",
+      "unit_cost": 10.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima operativa per ragù bolognese con carne, pomodoro, soffritto, vino, energia e scarto."
+    },
+    {
+      "ingredient_id": "besciamella",
+      "name_it": "Besciamella",
+      "supplier": "internal_production",
+      "unit": "kg",
+      "unit_cost": 3.2,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima per latte, burro, farina, noce moscata e lavorazione."
+    },
+    {
+      "ingredient_id": "parmigiano",
+      "name_it": "Parmigiano",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 16.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria. Da sostituire con costo reale Orthidal."
+    },
+    {
+      "ingredient_id": "gnocchi",
+      "name_it": "Gnocchi",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 4.8,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria per gnocchi freschi."
+    },
+    {
+      "ingredient_id": "pomodoro",
+      "name_it": "Pomodoro / salsa base",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 2.2,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima operativa per pomodoro/salsa base fino a ordine GM reale."
+    },
+    {
+      "ingredient_id": "fiordilatte",
+      "name_it": "Fiordilatte",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 8.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria. Da verificare prezzo reale."
+    },
+    {
+      "ingredient_id": "basilico",
+      "name_it": "Basilico",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 12.0,
+      "source": "manual_estimate",
+      "confidence": "low",
+      "notes": "Costo al kg molto variabile. L'impatto per porzione è minimo."
+    },
+    {
+      "ingredient_id": "paccheri",
+      "name_it": "Paccheri",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 4.2,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria per pasta secca premium."
+    },
+    {
+      "ingredient_id": "pasta_chitarra",
+      "name_it": "Pasta alla chitarra",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 5.8,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria per pasta fresca alla chitarra."
+    },
+    {
+      "ingredient_id": "pecorino_romano",
+      "name_it": "Pecorino romano",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 14.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria. Da verificare prezzo reale Orthidal."
+    },
+    {
+      "ingredient_id": "pepe_nero",
+      "name_it": "Pepe nero",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 18.0,
+      "source": "manual_estimate",
+      "confidence": "low",
+      "notes": "Costo al kg alto ma uso per porzione minimo."
+    },
+    {
+      "ingredient_id": "rigatoni",
+      "name_it": "Rigatoni",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 3.8,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria per pasta secca."
+    },
+    {
+      "ingredient_id": "pesto",
+      "name_it": "Pesto genovese",
+      "supplier": "internal_production",
+      "unit": "kg",
+      "unit_cost": 12.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima operativa per pesto con basilico, olio, formaggio, frutta secca e lavorazione."
     }
   ]
 }

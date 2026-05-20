@@ -1,7 +1,7 @@
 {
   "currency": "EUR",
   "status": "generated",
-  "generated_at": "2026-05-20T23:55:25.467Z",
+  "generated_at": "2026-05-20T23:58:31.581Z",
   "notes": "Generated from recipesCosting.json, ingredientUnitCosts.json, ingredientCostAliases.json and manuPrices.json.",
   "items": [
     {
@@ -247,16 +247,11 @@
       "name_it": "Lasagne al ragù bolognese",
       "category": "primi_piatti",
       "sale_price": 22,
-      "estimated_cost": 0,
-      "food_cost_percent": null,
-      "gross_margin": null,
-      "costing_status": "partial",
-      "warnings": [
-        "Missing unit cost for lasagne",
-        "Missing unit cost for ragu_bolognese",
-        "Missing unit cost for besciamella",
-        "Missing unit cost for parmigiano"
-      ],
+      "estimated_cost": 1.9,
+      "food_cost_percent": 8.6,
+      "gross_margin": 20.1,
+      "costing_status": "complete",
+      "warnings": [],
       "ingredients": [
         {
           "ingredient_id": "lasagne",
@@ -264,9 +259,9 @@
           "unit": "kg",
           "notes": "Sfoglia lasagna stimata",
           "cost_ingredient_id": "lasagne",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 4.5,
+          "line_cost": 0.36,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "ragu_bolognese",
@@ -274,9 +269,9 @@
           "unit": "kg",
           "notes": "Ragù bolognese stimato",
           "cost_ingredient_id": "ragu_bolognese",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 10.5,
+          "line_cost": 1.05,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "besciamella",
@@ -284,9 +279,9 @@
           "unit": "kg",
           "notes": "Besciamella stimata",
           "cost_ingredient_id": "besciamella",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 3.2,
+          "line_cost": 0.16,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "parmigiano",
@@ -294,9 +289,9 @@
           "unit": "kg",
           "notes": "Parmigiano stimato",
           "cost_ingredient_id": "parmigiano",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 16.5,
+          "line_cost": 0.33,
+          "costing_status": "ok"
         }
       ]
     },
@@ -305,17 +300,11 @@
       "name_it": "Gnocchi alla sorrentina",
       "category": "primi_piatti",
       "sale_price": 20,
-      "estimated_cost": 0,
-      "food_cost_percent": null,
-      "gross_margin": null,
-      "costing_status": "partial",
-      "warnings": [
-        "Missing unit cost for gnocchi",
-        "Missing unit cost for pomodoro",
-        "Missing unit cost for fiordilatte",
-        "Missing unit cost for parmigiano",
-        "Missing unit cost for basilico"
-      ],
+      "estimated_cost": 1.57,
+      "food_cost_percent": 7.8,
+      "gross_margin": 18.43,
+      "costing_status": "complete",
+      "warnings": [],
       "ingredients": [
         {
           "ingredient_id": "gnocchi",
@@ -323,9 +312,9 @@
           "unit": "kg",
           "notes": "Gnocchi freschi stimati",
           "cost_ingredient_id": "gnocchi",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 4.8,
+          "line_cost": 0.67,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "pomodoro",
@@ -333,9 +322,9 @@
           "unit": "kg",
           "notes": "Salsa/pomodoro stimato",
           "cost_ingredient_id": "pomodoro",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 2.2,
+          "line_cost": 0.18,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "fiordilatte",
@@ -343,9 +332,9 @@
           "unit": "kg",
           "notes": "Fiordilatte stimato",
           "cost_ingredient_id": "fiordilatte",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 8.5,
+          "line_cost": 0.43,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "parmigiano",
@@ -353,9 +342,9 @@
           "unit": "kg",
           "notes": "Parmigiano stimato",
           "cost_ingredient_id": "parmigiano",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 16.5,
+          "line_cost": 0.25,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "basilico",
@@ -363,9 +352,9 @@
           "unit": "kg",
           "notes": "Basilico stimato",
           "cost_ingredient_id": "basilico",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 12,
+          "line_cost": 0.04,
+          "costing_status": "ok"
         }
       ]
     },
@@ -374,14 +363,11 @@
       "name_it": "Paccheri al ragù napoletano",
       "category": "primi_piatti",
       "sale_price": 24,
-      "estimated_cost": 1.44,
-      "food_cost_percent": 6,
-      "gross_margin": 22.56,
-      "costing_status": "partial",
-      "warnings": [
-        "Missing unit cost for paccheri",
-        "Missing unit cost for parmigiano"
-      ],
+      "estimated_cost": 2.11,
+      "food_cost_percent": 8.8,
+      "gross_margin": 21.89,
+      "costing_status": "complete",
+      "warnings": [],
       "ingredients": [
         {
           "ingredient_id": "paccheri",
@@ -389,9 +375,9 @@
           "unit": "kg",
           "notes": "Paccheri secchi stimati",
           "cost_ingredient_id": "paccheri",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 4.2,
+          "line_cost": 0.42,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "ragu_napoletano",
@@ -409,9 +395,9 @@
           "unit": "kg",
           "notes": "Parmigiano stimato",
           "cost_ingredient_id": "parmigiano",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 16.5,
+          "line_cost": 0.25,
+          "costing_status": "ok"
         }
       ]
     },
@@ -420,15 +406,11 @@
       "name_it": "Cacio e pepe alla chitarra",
       "category": "primi_piatti",
       "sale_price": 21.5,
-      "estimated_cost": 0,
-      "food_cost_percent": null,
-      "gross_margin": null,
-      "costing_status": "partial",
-      "warnings": [
-        "Missing unit cost for pasta_chitarra",
-        "Missing unit cost for pecorino_romano",
-        "Missing unit cost for pepe_nero"
-      ],
+      "estimated_cost": 1.15,
+      "food_cost_percent": 5.3,
+      "gross_margin": 20.35,
+      "costing_status": "complete",
+      "warnings": [],
       "ingredients": [
         {
           "ingredient_id": "pasta_chitarra",
@@ -436,9 +418,9 @@
           "unit": "kg",
           "notes": "Pasta fresca alla chitarra stimata",
           "cost_ingredient_id": "pasta_chitarra",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 5.8,
+          "line_cost": 0.52,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "pecorino_romano",
@@ -446,9 +428,9 @@
           "unit": "kg",
           "notes": "Pecorino romano stimato",
           "cost_ingredient_id": "pecorino_romano",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 14.5,
+          "line_cost": 0.58,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "pepe_nero",
@@ -456,9 +438,9 @@
           "unit": "kg",
           "notes": "Pepe nero stimato",
           "cost_ingredient_id": "pepe_nero",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 18,
+          "line_cost": 0.05,
+          "costing_status": "ok"
         }
       ]
     },
@@ -467,15 +449,11 @@
       "name_it": "Rigatoni al pesto genovese",
       "category": "primi_piatti",
       "sale_price": 22.5,
-      "estimated_cost": 0,
-      "food_cost_percent": null,
-      "gross_margin": null,
-      "costing_status": "partial",
-      "warnings": [
-        "Missing unit cost for rigatoni",
-        "Missing unit cost for pesto",
-        "Missing unit cost for parmigiano"
-      ],
+      "estimated_cost": 1.35,
+      "food_cost_percent": 6,
+      "gross_margin": 21.15,
+      "costing_status": "complete",
+      "warnings": [],
       "ingredients": [
         {
           "ingredient_id": "rigatoni",
@@ -483,9 +461,9 @@
           "unit": "kg",
           "notes": "Rigatoni secchi stimati",
           "cost_ingredient_id": "rigatoni",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 3.8,
+          "line_cost": 0.38,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "pesto",
@@ -493,9 +471,9 @@
           "unit": "kg",
           "notes": "Pesto stimato",
           "cost_ingredient_id": "pesto",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 12,
+          "line_cost": 0.72,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "parmigiano",
@@ -503,9 +481,9 @@
           "unit": "kg",
           "notes": "Parmigiano stimato",
           "cost_ingredient_id": "parmigiano",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 16.5,
+          "line_cost": 0.25,
+          "costing_status": "ok"
         }
       ]
     }
