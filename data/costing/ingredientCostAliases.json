@@ -1,0 +1,49 @@
+{
+  "currency": "EUR",
+  "status": "draft",
+  "notes": "Mappa tra ingredienti usati nelle ricette/menu e voci di costo reali da fornitori. Da validare con Manu/chef.",
+  "aliases": [
+    {
+      "ingredient_id": "cotica",
+      "cost_ingredient_id": "piel_cerdo",
+      "supplier": "pasto_y_bellota",
+      "confidence": "high",
+      "notes": "Cotica collegata alla voce Pasto y Bellota 'Piel de cerdo'."
+    },
+    {
+      "ingredient_id": "porchetta",
+      "cost_ingredient_id": "costillar_cerdo_deshuesado",
+      "supplier": "pasto_y_bellota",
+      "confidence": "medium",
+      "notes": "Da confermare: per ora colleghiamo porchetta al costillar de cerdo deshuesado come base carne."
+    },
+    {
+      "ingredient_id": "spuntata_maiale",
+      "cost_ingredient_id": "costilla_cerdo",
+      "supplier": "pasto_y_bellota",
+      "confidence": "medium",
+      "notes": "Spuntata di maiale collegata alla costilla de cerdo, da validare."
+    },
+    {
+      "ingredient_id": "corazza_vitello",
+      "cost_ingredient_id": "carne_con_hueso_pecho",
+      "supplier": "pasto_y_bellota",
+      "confidence": "low",
+      "notes": "Collegamento provvisorio. Serve conferma del taglio reale."
+    },
+    {
+      "ingredient_id": "polpette_carne",
+      "cost_ingredient_id": "carne_mixta_50_50",
+      "supplier": "pasto_y_bellota",
+      "confidence": "high",
+      "notes": "Polpette collegate alla carne mista 50/50."
+    },
+    {
+      "ingredient_id": "braciola",
+      "cost_ingredient_id": "costillar_cerdo_deshuesado",
+      "supplier": "pasto_y_bellota",
+      "confidence": "medium",
+      "notes": "Braciola collegata provvisoriamente al costillar de cerdo deshuesado. Da validare se il taglio finale è diverso."
+    }
+  ]
+}
