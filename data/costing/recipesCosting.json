@@ -62,6 +62,90 @@
           "notes": "Purè stimato"
         }
       ]
+    },
+    {
+      "menu_item_id": "misto_carne_ragu_napoletano",
+      "name_it": "Misto di carne al ragù napoletano",
+      "category": "secondi_piatti",
+      "portion_notes": "Porzione stimata 250g totali: carni miste + ragù napoletano",
+      "ingredients": [
+        {
+          "ingredient_id": "braciola",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Braciola stimata"
+        },
+        {
+          "ingredient_id": "salsiccia",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Salsiccia stimata"
+        },
+        {
+          "ingredient_id": "spuntata_maiale",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Spuntata di maiale stimata"
+        },
+        {
+          "ingredient_id": "corazza_vitello",
+          "quantity": 0.04,
+          "unit": "kg",
+          "notes": "Corazza di vitello stimata"
+        },
+        {
+          "ingredient_id": "cotica",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Cotica stimata"
+        },
+        {
+          "ingredient_id": "ragu_napoletano",
+          "quantity": 0.08,
+          "unit": "kg",
+          "notes": "Ragù di servizio stimato"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "peperone_mbuttunato",
+      "name_it": "Peperone mbuttunato",
+      "category": "secondi_piatti",
+      "portion_notes": "Porzione stimata 220g totali: peperone + ripieno di pane",
+      "ingredients": [
+        {
+          "ingredient_id": "peperone",
+          "quantity": 0.16,
+          "unit": "kg",
+          "notes": "Peperone fresco stimato"
+        },
+        {
+          "ingredient_id": "ripieno_pane",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Ripieno di pane stimato"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "fagioli_cotiche",
+      "name_it": "Fagioli con le cotiche",
+      "category": "secondi_piatti",
+      "portion_notes": "Porzione stimata 230g totali: fagioli + cotiche",
+      "ingredients": [
+        {
+          "ingredient_id": "fagioli",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Fagioli cotti/serviti stimati"
+        },
+        {
+          "ingredient_id": "cotica",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Cotica stimata"
+        }
+      ]
     }
   ]
 }

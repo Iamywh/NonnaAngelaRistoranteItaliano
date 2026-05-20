@@ -1,7 +1,7 @@
 {
   "currency": "EUR",
   "status": "generated",
-  "generated_at": "2026-05-20T23:34:34.978Z",
+  "generated_at": "2026-05-20T23:37:33.275Z",
   "notes": "Generated from recipesCosting.json, ingredientUnitCosts.json, ingredientCostAliases.json and manuPrices.json.",
   "items": [
     {
@@ -99,6 +99,152 @@
           "cost_ingredient_id": "pure_patate_arrosto",
           "unit_cost": 4.5,
           "line_cost": 0.54,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "misto_carne_ragu_napoletano",
+      "name_it": "Misto di carne al ragù napoletano",
+      "category": "secondi_piatti",
+      "sale_price": 29.5,
+      "estimated_cost": 2.64,
+      "food_cost_percent": 8.9,
+      "gross_margin": 26.86,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for salsiccia"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "braciola",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Braciola stimata",
+          "cost_ingredient_id": "costillar_cerdo_deshuesado",
+          "unit_cost": 8.95,
+          "line_cost": 0.54,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "salsiccia",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Salsiccia stimata",
+          "cost_ingredient_id": "salsiccia",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "spuntata_maiale",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Spuntata di maiale stimata",
+          "cost_ingredient_id": "costilla_cerdo",
+          "unit_cost": 8.3,
+          "line_cost": 0.42,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "corazza_vitello",
+          "quantity": 0.04,
+          "unit": "kg",
+          "notes": "Corazza di vitello stimata",
+          "cost_ingredient_id": "carne_con_hueso_pecho",
+          "unit_cost": 15.9,
+          "line_cost": 0.64,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "cotica",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Cotica stimata",
+          "cost_ingredient_id": "piel_cerdo",
+          "unit_cost": 3.99,
+          "line_cost": 0.08,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "ragu_napoletano",
+          "quantity": 0.08,
+          "unit": "kg",
+          "notes": "Ragù di servizio stimato",
+          "cost_ingredient_id": "ragu_napoletano",
+          "unit_cost": 12,
+          "line_cost": 0.96,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "peperone_mbuttunato",
+      "name_it": "Peperone mbuttunato",
+      "category": "secondi_piatti",
+      "sale_price": 18.5,
+      "estimated_cost": 0,
+      "food_cost_percent": null,
+      "gross_margin": null,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for peperone",
+        "Missing unit cost for ripieno_pane"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "peperone",
+          "quantity": 0.16,
+          "unit": "kg",
+          "notes": "Peperone fresco stimato",
+          "cost_ingredient_id": "peperone",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "ripieno_pane",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Ripieno di pane stimato",
+          "cost_ingredient_id": "ripieno_pane",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "fagioli_cotiche",
+      "name_it": "Fagioli con le cotiche",
+      "category": "secondi_piatti",
+      "sale_price": 19.5,
+      "estimated_cost": 0.2,
+      "food_cost_percent": 1,
+      "gross_margin": 19.3,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for fagioli"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "fagioli",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Fagioli cotti/serviti stimati",
+          "cost_ingredient_id": "fagioli",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "cotica",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Cotica stimata",
+          "cost_ingredient_id": "piel_cerdo",
+          "unit_cost": 3.99,
+          "line_cost": 0.2,
           "costing_status": "ok"
         }
       ]
