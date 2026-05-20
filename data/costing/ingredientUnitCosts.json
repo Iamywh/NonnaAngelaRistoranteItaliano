@@ -1,0 +1,6 @@
+{
+  "currency": "EUR",
+  "status": "draft",
+  "notes": "Costi unitari ingredienti ricavati da ordini/fatture reali o inseriti manualmente. Da aggiornare quando arrivano nuovi ordini.",
+  "unit_costs": []
+}
