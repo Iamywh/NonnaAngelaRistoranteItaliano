@@ -8,11 +8,24 @@
       "max": 250
     },
     "porchetta_total_weight_g": 300,
-    "primi_pasta_or_main_base_g": {
-      "min": 120,
-      "max": 150,
-      "note": "Da chiarire se peso crudo o peso della base principale prima della salsa."
-    },
+    "primi_portion_logic": {
+  "dry_pasta_g": {
+    "min": 90,
+    "max": 110,
+    "applies_to": ["rigatoni_pesto", "paccheri_ragu_napoletano"]
+  },
+  "fresh_pasta_g": {
+    "min": 80,
+    "max": 100,
+    "applies_to": ["tagliatelle_ragu_bolognese", "cacio_pepe_chitarra"]
+  },
+  "gnocchi_g": {
+    "min": 120,
+    "max": 150,
+    "applies_to": ["gnocchi_sorrentina"]
+  },
+  "note": "Il resto del peso del piatto viene da salsa, ragù, formaggi e condimenti."
+},
     "antipasti_main_component_g": 100,
     "tiramisu_portion_g": 80,
     "tris_cannoli_total_g": 90,
