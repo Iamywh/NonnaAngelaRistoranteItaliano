@@ -1,5 +1,114 @@
 {
   "currency": "EUR",
-  "status": "draft",
-  "items": []
+  "status": "generated",
+  "generated_at": "2026-05-20T23:30:30.185Z",
+  "notes": "Generated from recipesCosting.json, ingredientUnitCosts.json, ingredientCostAliases.json and manuPrices.json.",
+  "items": [
+    {
+      "menu_item_id": "arrosticini_abruzzesi",
+      "name_it": "Arrosticini abruzzesi",
+      "category": "secondi_piatti",
+      "sale_price": 24,
+      "estimated_cost": 0,
+      "food_cost_percent": null,
+      "gross_margin": null,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for arrosticini_pecora",
+        "Missing unit cost for peperone_arrosto"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "arrosticini_pecora",
+          "quantity": 0.24,
+          "unit": "kg",
+          "notes": "3 pezzi da 80g",
+          "cost_ingredient_id": "arrosticini_pecora",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "peperone_arrosto",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Guarnizione/contorno stimato",
+          "cost_ingredient_id": "peperone_arrosto",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "polpette_ragu",
+      "name_it": "Polpette al ragù",
+      "category": "secondi_piatti",
+      "sale_price": 22,
+      "estimated_cost": 2.12,
+      "food_cost_percent": 9.6,
+      "gross_margin": 19.88,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for ragu_napoletano"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "polpette_carne",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "3 polpette da 60g",
+          "cost_ingredient_id": "carne_mixta_50_50",
+          "unit_cost": 11.8,
+          "line_cost": 2.12,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "ragu_napoletano",
+          "quantity": 0.1,
+          "unit": "kg",
+          "notes": "Salsa/ragù di servizio stimato",
+          "cost_ingredient_id": "ragu_napoletano",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "porchetta_pure_patate_arrosto",
+      "name_it": "Porchetta con purè di patate arrosto",
+      "category": "secondi_piatti",
+      "sale_price": 35,
+      "estimated_cost": 1.61,
+      "food_cost_percent": 4.6,
+      "gross_margin": 33.39,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for pure_patate_arrosto"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "porchetta",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Porchetta stimata",
+          "cost_ingredient_id": "costillar_cerdo_deshuesado",
+          "unit_cost": 8.95,
+          "line_cost": 1.61,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pure_patate_arrosto",
+          "quantity": 0.12,
+          "unit": "kg",
+          "notes": "Purè stimato",
+          "cost_ingredient_id": "pure_patate_arrosto",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        }
+      ]
+    }
+  ]
 }
