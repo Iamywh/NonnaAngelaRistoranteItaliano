@@ -6,7 +6,7 @@
     "category": "soft_drinks",
     "unit": "unit",
     "format": "bottle_or_can",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -17,7 +17,7 @@
     "category": "soft_drinks",
     "unit": "unit",
     "format": "bottle_or_can",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -28,7 +28,7 @@
     "category": "soft_drinks",
     "unit": "unit",
     "format": "bottle_or_can",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -39,7 +39,7 @@
     "category": "soft_drinks",
     "unit": "unit",
     "format": "bottle_or_can",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -50,7 +50,7 @@
     "category": "iced_tea",
     "unit": "unit",
     "format": "bottle_or_can",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -61,7 +61,7 @@
     "category": "iced_tea",
     "unit": "unit",
     "format": "bottle_or_can",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -72,7 +72,7 @@
     "category": "soft_drinks",
     "unit": "unit",
     "format": "bottle_or_can",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -83,7 +83,7 @@
     "category": "soft_drinks",
     "unit": "unit",
     "format": "bottle_or_can",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -94,7 +94,7 @@
     "category": "isotonic_drinks",
     "unit": "unit",
     "format": "bottle_or_can",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -105,7 +105,7 @@
     "category": "isotonic_drinks",
     "unit": "unit",
     "format": "bottle_or_can",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -116,7 +116,7 @@
     "category": "cider",
     "unit": "unit",
     "format": "bottle",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": ["solfiti_da_verificare"],
     "active": true
   },
@@ -127,7 +127,7 @@
     "category": "liquori_crema",
     "unit": "bottle",
     "format": "70cl",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": ["latte"],
     "active": true
   },
@@ -138,7 +138,7 @@
     "category": "amari",
     "unit": "bottle",
     "format": "70cl",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -149,7 +149,7 @@
     "category": "amari",
     "unit": "bottle",
     "format": "70cl",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -160,7 +160,7 @@
     "category": "liquori",
     "unit": "bottle",
     "format": "70cl",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -171,7 +171,7 @@
     "category": "distillati",
     "unit": "bottle",
     "format": "70cl",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   },
@@ -182,7 +182,7 @@
     "category": "distillati_premium",
     "unit": "bottle",
     "format": "70cl",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": [],
     "active": true
   }
