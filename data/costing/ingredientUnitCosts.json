@@ -105,6 +105,46 @@
       "source": "manual_estimate",
       "confidence": "medium",
       "notes": "Stima operativa per patate, grassi/latticini, condimento, energia e scarto."
+    },
+    {
+      "ingredient_id": "salsiccia",
+      "name_it": "Salsiccia",
+      "supplier": "pasto_y_bellota",
+      "unit": "kg",
+      "unit_cost": 11.8,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stimata usando carne mixta 50/50 come riferimento. Da verificare prezzo reale salsiccia."
+    },
+    {
+      "ingredient_id": "peperone",
+      "name_it": "Peperone fresco",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 2.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria fino a ordine GM/frutta e verdura reale."
+    },
+    {
+      "ingredient_id": "ripieno_pane",
+      "name_it": "Ripieno di pane",
+      "supplier": "internal_production",
+      "unit": "kg",
+      "unit_cost": 3.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima per pane, condimenti, olio, aromi e lavorazione."
+    },
+    {
+      "ingredient_id": "fagioli",
+      "name_it": "Fagioli cotti/serviti",
+      "supplier": "internal_production",
+      "unit": "kg",
+      "unit_cost": 3.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Costo operativo stimato su fagioli cotti, condimento, energia e scarto. Non è costo secco del fagiolo crudo."
     }
   ]
 }

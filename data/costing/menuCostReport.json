@@ -1,7 +1,7 @@
 {
   "currency": "EUR",
   "status": "generated",
-  "generated_at": "2026-05-20T23:37:33.275Z",
+  "generated_at": "2026-05-20T23:43:42.066Z",
   "notes": "Generated from recipesCosting.json, ingredientUnitCosts.json, ingredientCostAliases.json and manuPrices.json.",
   "items": [
     {
@@ -108,13 +108,11 @@
       "name_it": "Misto di carne al ragù napoletano",
       "category": "secondi_piatti",
       "sale_price": 29.5,
-      "estimated_cost": 2.64,
-      "food_cost_percent": 8.9,
-      "gross_margin": 26.86,
-      "costing_status": "partial",
-      "warnings": [
-        "Missing unit cost for salsiccia"
-      ],
+      "estimated_cost": 3.23,
+      "food_cost_percent": 10.9,
+      "gross_margin": 26.27,
+      "costing_status": "complete",
+      "warnings": [],
       "ingredients": [
         {
           "ingredient_id": "braciola",
@@ -132,9 +130,9 @@
           "unit": "kg",
           "notes": "Salsiccia stimata",
           "cost_ingredient_id": "salsiccia",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 11.8,
+          "line_cost": 0.59,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "spuntata_maiale",
@@ -183,14 +181,11 @@
       "name_it": "Peperone mbuttunato",
       "category": "secondi_piatti",
       "sale_price": 18.5,
-      "estimated_cost": 0,
-      "food_cost_percent": null,
-      "gross_margin": null,
-      "costing_status": "partial",
-      "warnings": [
-        "Missing unit cost for peperone",
-        "Missing unit cost for ripieno_pane"
-      ],
+      "estimated_cost": 0.58,
+      "food_cost_percent": 3.1,
+      "gross_margin": 17.92,
+      "costing_status": "complete",
+      "warnings": [],
       "ingredients": [
         {
           "ingredient_id": "peperone",
@@ -198,9 +193,9 @@
           "unit": "kg",
           "notes": "Peperone fresco stimato",
           "cost_ingredient_id": "peperone",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 2.5,
+          "line_cost": 0.4,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "ripieno_pane",
@@ -208,9 +203,9 @@
           "unit": "kg",
           "notes": "Ripieno di pane stimato",
           "cost_ingredient_id": "ripieno_pane",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 3,
+          "line_cost": 0.18,
+          "costing_status": "ok"
         }
       ]
     },
@@ -219,13 +214,11 @@
       "name_it": "Fagioli con le cotiche",
       "category": "secondi_piatti",
       "sale_price": 19.5,
-      "estimated_cost": 0.2,
-      "food_cost_percent": 1,
-      "gross_margin": 19.3,
-      "costing_status": "partial",
-      "warnings": [
-        "Missing unit cost for fagioli"
-      ],
+      "estimated_cost": 0.83,
+      "food_cost_percent": 4.3,
+      "gross_margin": 18.67,
+      "costing_status": "complete",
+      "warnings": [],
       "ingredients": [
         {
           "ingredient_id": "fagioli",
@@ -233,9 +226,9 @@
           "unit": "kg",
           "notes": "Fagioli cotti/serviti stimati",
           "cost_ingredient_id": "fagioli",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 3.5,
+          "line_cost": 0.63,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "cotica",
