@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "id": "gin",
     "name_it": "Gin",
@@ -60,7 +60,7 @@
     "area": "bar",
     "category": "wine_sparkling",
     "unit": "bottle",
-    "supplier": "Orthidal",
+    "supplier": "orthidal",
     "allergens": ["solfiti"],
     "used_in": ["aperol-spritz", "bellini", "rossini", "hugo-spritz"],
     "notes": "Da collegare al vino reale scelto per mescita/cocktail.",
