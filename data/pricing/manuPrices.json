@@ -42,8 +42,8 @@
       "price": 19.5
     },
     {
-      "menu_item_id": "lasagna",
-      "name_it": "Lasagna",
+      "menu_item_id": "lasagna_bolognese",
+      "name_it": "Lasagne al ragù bolognese",
       "category": "primi_piatti",
       "price": 22.0,
       "notes": "Da verificare ID finale nel menu"
