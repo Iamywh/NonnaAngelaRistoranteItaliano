@@ -146,6 +146,154 @@
           "notes": "Cotica stimata"
         }
       ]
+    },
+    {
+      "menu_item_id": "lasagna_bolognese",
+      "name_it": "Lasagne al ragù bolognese",
+      "category": "primi_piatti",
+      "portion_notes": "Porzione stimata 250g: lasagne, ragù bolognese, besciamella, parmigiano",
+      "ingredients": [
+        {
+          "ingredient_id": "lasagne",
+          "quantity": 0.08,
+          "unit": "kg",
+          "notes": "Sfoglia lasagna stimata"
+        },
+        {
+          "ingredient_id": "ragu_bolognese",
+          "quantity": 0.1,
+          "unit": "kg",
+          "notes": "Ragù bolognese stimato"
+        },
+        {
+          "ingredient_id": "besciamella",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Besciamella stimata"
+        },
+        {
+          "ingredient_id": "parmigiano",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Parmigiano stimato"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "gnocchi_sorrentina",
+      "name_it": "Gnocchi alla sorrentina",
+      "category": "primi_piatti",
+      "portion_notes": "Porzione stimata: 140g gnocchi + pomodoro + fiordilatte + parmigiano",
+      "ingredients": [
+        {
+          "ingredient_id": "gnocchi",
+          "quantity": 0.14,
+          "unit": "kg",
+          "notes": "Gnocchi freschi stimati"
+        },
+        {
+          "ingredient_id": "pomodoro",
+          "quantity": 0.08,
+          "unit": "kg",
+          "notes": "Salsa/pomodoro stimato"
+        },
+        {
+          "ingredient_id": "fiordilatte",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Fiordilatte stimato"
+        },
+        {
+          "ingredient_id": "parmigiano",
+          "quantity": 0.015,
+          "unit": "kg",
+          "notes": "Parmigiano stimato"
+        },
+        {
+          "ingredient_id": "basilico",
+          "quantity": 0.003,
+          "unit": "kg",
+          "notes": "Basilico stimato"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "paccheri_ragu_napoletano",
+      "name_it": "Paccheri al ragù napoletano",
+      "category": "primi_piatti",
+      "portion_notes": "Porzione stimata: 100g paccheri secchi + ragù napoletano + parmigiano",
+      "ingredients": [
+        {
+          "ingredient_id": "paccheri",
+          "quantity": 0.1,
+          "unit": "kg",
+          "notes": "Paccheri secchi stimati"
+        },
+        {
+          "ingredient_id": "ragu_napoletano",
+          "quantity": 0.12,
+          "unit": "kg",
+          "notes": "Ragù napoletano stimato"
+        },
+        {
+          "ingredient_id": "parmigiano",
+          "quantity": 0.015,
+          "unit": "kg",
+          "notes": "Parmigiano stimato"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "cacio_pepe_chitarra",
+      "name_it": "Cacio e pepe alla chitarra",
+      "category": "primi_piatti",
+      "portion_notes": "Porzione stimata: 90g pasta fresca alla chitarra + pecorino + pepe",
+      "ingredients": [
+        {
+          "ingredient_id": "pasta_chitarra",
+          "quantity": 0.09,
+          "unit": "kg",
+          "notes": "Pasta fresca alla chitarra stimata"
+        },
+        {
+          "ingredient_id": "pecorino_romano",
+          "quantity": 0.04,
+          "unit": "kg",
+          "notes": "Pecorino romano stimato"
+        },
+        {
+          "ingredient_id": "pepe_nero",
+          "quantity": 0.003,
+          "unit": "kg",
+          "notes": "Pepe nero stimato"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "rigatoni_pesto",
+      "name_it": "Rigatoni al pesto genovese",
+      "category": "primi_piatti",
+      "portion_notes": "Porzione stimata: 100g rigatoni secchi + pesto + parmigiano",
+      "ingredients": [
+        {
+          "ingredient_id": "rigatoni",
+          "quantity": 0.1,
+          "unit": "kg",
+          "notes": "Rigatoni secchi stimati"
+        },
+        {
+          "ingredient_id": "pesto",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Pesto stimato"
+        },
+        {
+          "ingredient_id": "parmigiano",
+          "quantity": 0.015,
+          "unit": "kg",
+          "notes": "Parmigiano stimato"
+        }
+      ]
     }
   ]
 }
