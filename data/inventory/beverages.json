@@ -119,5 +119,71 @@
     "supplier": "Fornitore barra",
     "allergens": ["solfiti_da_verificare"],
     "active": true
+  },
+  {
+    "id": "baileys",
+    "name_it": "Baileys",
+    "area": "bar",
+    "category": "liquori_crema",
+    "unit": "bottle",
+    "format": "70cl",
+    "supplier": "Fornitore barra",
+    "allergens": ["latte"],
+    "active": true
+  },
+  {
+    "id": "averna",
+    "name_it": "Averna",
+    "area": "bar",
+    "category": "amari",
+    "unit": "bottle",
+    "format": "70cl",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "amaro_del_capo",
+    "name_it": "Amaro del Capo",
+    "area": "bar",
+    "category": "amari",
+    "unit": "bottle",
+    "format": "70cl",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "limoncello",
+    "name_it": "Limoncello",
+    "area": "bar",
+    "category": "liquori",
+    "unit": "bottle",
+    "format": "70cl",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "grappa",
+    "name_it": "Grappa",
+    "area": "bar",
+    "category": "distillati",
+    "unit": "bottle",
+    "format": "70cl",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "grappa_18_lune",
+    "name_it": "Grappa 18 Lune",
+    "area": "bar",
+    "category": "distillati_premium",
+    "unit": "bottle",
+    "format": "70cl",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
   }
 ]
