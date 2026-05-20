@@ -249,7 +249,7 @@
     "area": "food",
     "category": "carne",
     "unit": "kg",
-    "supplier": "Macelleria Panzaburro",
+    "supplier": "pasto_y_bellota",
     "allergens": [],
     "used_in": [
       "carpaccio_bresaola_rucola_grana_balsamico"
@@ -263,7 +263,7 @@
     "area": "food",
     "category": "verdure_fresche",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": [
       "carpaccio_bresaola_rucola_grana_balsamico"
@@ -337,7 +337,7 @@
     "area": "food",
     "category": "carne",
     "unit": "kg",
-    "supplier": "Macelleria Panzaburro",
+    "supplier": "pasto_y_bellota",
     "allergens": [],
     "used_in": [
       "crostone_stracchino_salsiccia"
@@ -397,7 +397,7 @@
     "area": "food",
     "category": "uova",
     "unit": "unit",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [
       "uova"
     ],
@@ -414,7 +414,7 @@
     "area": "food",
     "category": "verdure_fresche",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": [
       "verdure_grigliate_stagione"
@@ -441,7 +441,7 @@
     "area": "food",
     "category": "verdure_fresche",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": [
       "melanzana_funghetto"
@@ -454,7 +454,7 @@
     "area": "food",
     "category": "verdure_fresche",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": [
       "melanzana_funghetto"
@@ -467,7 +467,7 @@
     "area": "food",
     "category": "aromi",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": [
       "melanzana_funghetto"
@@ -480,7 +480,7 @@
     "area": "food",
     "category": "aromi",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": [
       "melanzana_funghetto"
@@ -505,7 +505,7 @@
     "area": "food",
     "category": "preparazioni_cucina",
     "unit": "kg",
-    "supplier": "Produzione interna",
+    "supplier": "internal_production",
     "allergens": ["sedano"],
     "used_in": ["lasagna_mortadella_pistacchio_burrata"],
     "notes": "Preparazione interna. Da collegare in futuro a recipe con carne, pomodoro, soffritto, vino e aromi.",
@@ -545,7 +545,7 @@
     "area": "food",
     "category": "preparazioni_cucina",
     "unit": "kg",
-    "supplier": "Produzione interna",
+    "supplier": "internal_production",
     "allergens": ["sedano", "solfiti"],
     "used_in": ["pappardelle_cinghiale"],
     "notes": "Preparazione interna. Da verificare ricetta finale e costo reale del cinghiale.",
@@ -557,7 +557,7 @@
     "area": "food",
     "category": "condimenti",
     "unit": "l",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": ["solfiti"],
     "used_in": ["pappardelle_cinghiale"],
     "active": true
@@ -601,7 +601,7 @@
     "area": "food",
     "category": "preparazioni_cucina",
     "unit": "kg",
-    "supplier": "Produzione interna",
+    "supplier": "internal_production",
     "allergens": ["sedano"],
     "used_in": ["paccheri_ragu_napoletano"],
     "notes": "Preparazione bandiera. Da collegare a recipe con carni, pomodoro e lunga cottura.",
@@ -657,7 +657,7 @@
     "area": "food",
     "category": "salse",
     "unit": "kg",
-    "supplier": "Produzione interna",
+    "supplier": "internal_production",
     "allergens": ["latte", "frutta_a_guscio"],
     "used_in": ["rigatoni_pesto"],
     "notes": "Da verificare se sarà pesto classico fatto in casa o prodotto acquistato.",
@@ -669,7 +669,7 @@
     "area": "food",
     "category": "verdure_fresche",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": ["patata_combucchi"],
     "active": true
@@ -680,7 +680,7 @@
     "area": "food",
     "category": "preparazioni_cucina",
     "unit": "kg",
-    "supplier": "Produzione interna",
+    "supplier": "internal_production",
     "allergens": [],
     "used_in": ["pure_patata_arrosto_radicchio"],
     "active": true
@@ -691,7 +691,7 @@
     "area": "food",
     "category": "verdure_fresche",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": ["pure_patata_arrosto_radicchio"],
     "active": true
@@ -702,7 +702,7 @@
     "area": "food",
     "category": "preparazioni_cucina",
     "unit": "kg",
-    "supplier": "Produzione interna",
+    "supplier": "internal_production",
     "allergens": [],
     "used_in": ["misto_verdure_griglia"],
     "active": true
@@ -713,7 +713,7 @@
     "area": "food",
     "category": "verdure_fresche",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": ["pinzimonio"],
     "active": true
@@ -735,7 +735,7 @@
     "area": "food",
     "category": "verdure_fresche",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": [
       "insalata_rucola_grana_pachino",
@@ -749,7 +749,7 @@
     "area": "food",
     "category": "salse",
     "unit": "l",
-    "supplier": "Produzione interna",
+    "supplier": "internal_production",
     "allergens": ["solfiti"],
     "used_in": ["insalata_rucola_grana_pachino"],
     "notes": "Preparazione interna basata su aceto balsamico/olio. Da definire ricetta esatta.",
@@ -761,7 +761,7 @@
     "area": "food",
     "category": "verdure_fresche",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": ["insalata_mista_classica"],
     "active": true
@@ -772,7 +772,7 @@
     "area": "food",
     "category": "verdure_fresche",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": ["insalata_mista_classica"],
     "active": true
@@ -783,7 +783,7 @@
     "area": "food",
     "category": "verdure_fresche",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": ["insalata_mista_classica"],
     "active": true
@@ -816,7 +816,7 @@
     "area": "food",
     "category": "preparazioni_cucina",
     "unit": "kg",
-    "supplier": "Produzione interna",
+    "supplier": "internal_production",
     "allergens": [],
     "used_in": ["arrosticini_abruzzesi"],
     "active": true
@@ -827,7 +827,7 @@
     "area": "food",
     "category": "carne",
     "unit": "kg",
-    "supplier": "Macelleria Panzaburro",
+    "supplier": "pasto_y_bellota",
     "allergens": [],
     "used_in": ["misto_carne_ragu_napoletano"],
     "active": true
@@ -838,7 +838,7 @@
     "area": "food",
     "category": "carne",
     "unit": "kg",
-    "supplier": "Macelleria Panzaburro",
+    "supplier": "pasto_y_bellota",
     "allergens": [],
     "used_in": ["misto_carne_ragu_napoletano"],
     "active": true
@@ -849,7 +849,7 @@
     "area": "food",
     "category": "carne",
     "unit": "kg",
-    "supplier": "Macelleria Panzaburro",
+    "supplier": "pasto_y_bellota",
     "allergens": [],
     "used_in": ["misto_carne_ragu_napoletano"],
     "active": true
@@ -860,7 +860,7 @@
     "area": "food",
     "category": "carne",
     "unit": "kg",
-    "supplier": "Macelleria Panzaburro",
+    "supplier": "pasto_y_bellota",
     "allergens": [],
     "used_in": [
       "misto_carne_ragu_napoletano",
@@ -874,7 +874,7 @@
     "area": "food",
     "category": "preparazioni_cucina",
     "unit": "kg",
-    "supplier": "Produzione interna",
+    "supplier": "internal_production",
     "allergens": ["glutine", "uova", "latte"],
     "used_in": ["polpette_ragu"],
     "notes": "Nel menu sorgente appare 'sasiccia'. Qui normalizzato come preparazione interna polpette di carne.",
@@ -898,7 +898,7 @@
     "area": "food",
     "category": "verdure_fresche",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": ["peperone_mbuttunato"],
     "active": true
@@ -909,7 +909,7 @@
     "area": "food",
     "category": "preparazioni_cucina",
     "unit": "kg",
-    "supplier": "Produzione interna",
+    "supplier": "internal_production",
     "allergens": ["glutine"],
     "used_in": ["peperone_mbuttunato"],
     "notes": "Nel menu sorgente appare 'popetta pane' e un ingrediente vuoto. Da verificare ricetta finale del peperone mbuttunato.",
@@ -932,7 +932,7 @@
     "area": "food",
     "category": "preparazioni_cucina",
     "unit": "kg",
-    "supplier": "Produzione interna",
+    "supplier": "internal_production",
     "allergens": ["latte"],
     "used_in": [
       "porchetta_pure_patate_arrosto",
@@ -1024,7 +1024,7 @@
     "area": "food",
     "category": "frutta_fresca",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": ["tiramisu_limone"],
     "active": true
@@ -1068,7 +1068,7 @@
     "area": "food",
     "category": "aromi",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": ["tiramisu_limone", "baba_napoletano"],
     "active": true
@@ -1090,7 +1090,7 @@
     "area": "food",
     "category": "frutta_fresca",
     "unit": "kg",
-    "supplier": "Fornitore frutta e verdura",
+    "supplier": "gm",
     "allergens": [],
     "used_in": ["pere_ricotta"],
     "active": true
@@ -1101,7 +1101,7 @@
     "area": "food",
     "category": "dolci_base",
     "unit": "kg",
-    "supplier": "Produzione interna",
+    "supplier": "internal_production",
     "allergens": ["glutine", "uova"],
     "used_in": ["pere_ricotta"],
     "notes": "Da verificare se sarà prodotto internamente o acquistato.",
@@ -1125,7 +1125,7 @@
     "area": "food",
     "category": "alcol_cucina",
     "unit": "l",
-    "supplier": "Fornitore barra",
+    "supplier": "gm",
     "allergens": ["solfiti_da_verificare"],
     "used_in": ["baba_napoletano"],
     "active": true
@@ -1136,7 +1136,7 @@
     "area": "food",
     "category": "base",
     "unit": "l",
-    "supplier": "Fornitore vari ed eventuali",
+    "supplier": "gm",
     "allergens": [],
     "used_in": ["baba_napoletano"],
     "active": true
