@@ -2,5 +2,69 @@
   "currency": "EUR",
   "status": "draft",
   "notes": "Costi unitari ingredienti ricavati da ordini/fatture reali o inseriti manualmente. Da aggiornare quando arrivano nuovi ordini.",
-  "unit_costs": []
+  "unit_costs": [
+    {
+      "ingredient_id": "costilla_cerdo",
+      "name_it": "Costilla di maiale",
+      "supplier": "pasto_y_bellota",
+      "unit": "kg",
+      "unit_cost": 8.3,
+      "source": "Pasto y Bellota preventivo",
+      "notes": "Voce originale: Costilla de cerdo cortada hueso a hueso."
+    },
+    {
+      "ingredient_id": "piel_cerdo",
+      "name_it": "Pelle di maiale",
+      "supplier": "pasto_y_bellota",
+      "unit": "kg",
+      "unit_cost": 3.99,
+      "source": "Pasto y Bellota preventivo",
+      "notes": "Voce originale: Piel de cerdo entera sin cortes. Collegabile a cotica/cotiche se confermato."
+    },
+    {
+      "ingredient_id": "costilla_res",
+      "name_it": "Costilla di manzo",
+      "supplier": "pasto_y_bellota",
+      "unit": "kg",
+      "unit_cost": 15.9,
+      "source": "Pasto y Bellota preventivo",
+      "notes": "Voce originale: Costilla de res palo cortada en trozos de 2 a 3 dedos."
+    },
+    {
+      "ingredient_id": "carne_con_hueso_pecho",
+      "name_it": "Carne con osso / petto",
+      "supplier": "pasto_y_bellota",
+      "unit": "kg",
+      "unit_cost": 15.9,
+      "source": "Pasto y Bellota preventivo",
+      "notes": "Voce originale: Carne con hueso (pecho)."
+    },
+    {
+      "ingredient_id": "carne_mixta_50_50",
+      "name_it": "Carne mista 50/50",
+      "supplier": "pasto_y_bellota",
+      "unit": "kg",
+      "unit_cost": 11.8,
+      "source": "Pasto y Bellota preventivo",
+      "notes": "Voce originale: Carne mixta 50/50 sin mucha grasa."
+    },
+    {
+      "ingredient_id": "bola_caballo",
+      "name_it": "Bola di cavallo",
+      "supplier": "pasto_y_bellota",
+      "unit": "kg",
+      "unit_cost": 19.95,
+      "source": "Pasto y Bellota preventivo",
+      "notes": "Voce originale: Bola de caballo."
+    },
+    {
+      "ingredient_id": "costillar_cerdo_deshuesado",
+      "name_it": "Costillar di maiale disossato",
+      "supplier": "pasto_y_bellota",
+      "unit": "kg",
+      "unit_cost": 8.95,
+      "source": "Pasto y Bellota preventivo",
+      "notes": "Voce originale: Costillar de cerdo deshuesado con solomillo y extendido."
+    }
+  ]
 }
