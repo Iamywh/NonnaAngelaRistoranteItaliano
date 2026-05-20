@@ -1,0 +1,67 @@
+{
+  "currency": "EUR",
+  "status": "draft",
+  "notes": "Ricette di costing con grammature stimate. Da validare con test cucina e ordini reali.",
+  "recipes": [
+    {
+      "menu_item_id": "arrosticini_abruzzesi",
+      "name_it": "Arrosticini abruzzesi",
+      "category": "secondi_piatti",
+      "portion_notes": "3 arrosticini da 80g + peperone arrosto",
+      "ingredients": [
+        {
+          "ingredient_id": "arrosticini_pecora",
+          "quantity": 0.24,
+          "unit": "kg",
+          "notes": "3 pezzi da 80g"
+        },
+        {
+          "ingredient_id": "peperone_arrosto",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Guarnizione/contorno stimato"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "polpette_ragu",
+      "name_it": "Polpette al ragù",
+      "category": "secondi_piatti",
+      "portion_notes": "3 polpette da 60g + ragù",
+      "ingredients": [
+        {
+          "ingredient_id": "polpette_carne",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "3 polpette da 60g"
+        },
+        {
+          "ingredient_id": "ragu_napoletano",
+          "quantity": 0.1,
+          "unit": "kg",
+          "notes": "Salsa/ragù di servizio stimato"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "porchetta_pure_patate_arrosto",
+      "name_it": "Porchetta con purè di patate arrosto",
+      "category": "secondi_piatti",
+      "portion_notes": "Porzione totale stimata 300g",
+      "ingredients": [
+        {
+          "ingredient_id": "porchetta",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Porchetta stimata"
+        },
+        {
+          "ingredient_id": "pure_patate_arrosto",
+          "quantity": 0.12,
+          "unit": "kg",
+          "notes": "Purè stimato"
+        }
+      ]
+    }
+  ]
+}
