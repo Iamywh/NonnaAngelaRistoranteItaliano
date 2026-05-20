@@ -1,0 +1,53 @@
+{
+  "currency": "EUR",
+  "status": "draft_assumptions",
+  "notes": "Assunzioni iniziali di porzionatura per calcolo food cost. Da validare con Manu/chef durante test cucina.",
+  "general_assumptions": {
+    "secondi_standard_total_weight_g": {
+      "min": 200,
+      "max": 250
+    },
+    "porchetta_total_weight_g": 300,
+    "primi_pasta_or_main_base_g": {
+      "min": 120,
+      "max": 150,
+      "note": "Da chiarire se peso crudo o peso della base principale prima della salsa."
+    },
+    "antipasti_main_component_g": 100,
+    "tiramisu_portion_g": 80,
+    "tris_cannoli_total_g": 90,
+    "baba_portion_g": 60
+  },
+  "specific_assumptions": [
+    {
+      "menu_item_id": "arrosticini_abruzzesi",
+      "portion_details": "3 arrosticini da 80g",
+      "total_main_weight_g": 240
+    },
+    {
+      "menu_item_id": "polpette_ragu",
+      "portion_details": "3 polpette da 60g",
+      "total_main_weight_g": 180
+    },
+    {
+      "menu_item_id": "porchetta_pure_patate_arrosto",
+      "portion_details": "Porzione totale stimata 300g",
+      "total_weight_g": 300
+    },
+    {
+      "menu_item_id": "tiramisu_limone",
+      "portion_details": "Porzione stimata 80g",
+      "total_weight_g": 80
+    },
+    {
+      "menu_item_id": "tris_cannoli_siciliani",
+      "portion_details": "Tris cannoli totale stimato 90g",
+      "total_weight_g": 90
+    },
+    {
+      "menu_item_id": "baba_napoletano",
+      "portion_details": "Porzione stimata 60g",
+      "total_weight_g": 60
+    }
+  ]
+}
