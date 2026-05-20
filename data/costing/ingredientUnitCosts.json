@@ -65,6 +65,46 @@
       "unit_cost": 8.95,
       "source": "Pasto y Bellota preventivo",
       "notes": "Voce originale: Costillar de cerdo deshuesado con solomillo y extendido."
+    },
+    {
+      "ingredient_id": "arrosticini_pecora",
+      "name_it": "Arrosticini di pecora",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 18.0,
+      "source": "manual_estimate",
+      "confidence": "low",
+      "notes": "Costo stimato provvisorio. Da sostituire con prezzo reale Orthidal appena disponibile."
+    },
+    {
+      "ingredient_id": "peperone_arrosto",
+      "name_it": "Peperone arrosto",
+      "supplier": "internal_production",
+      "unit": "kg",
+      "unit_cost": 4.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima operativa: peperone fresco, olio, cottura, scarto e condimento."
+    },
+    {
+      "ingredient_id": "ragu_napoletano",
+      "name_it": "Ragù napoletano",
+      "supplier": "internal_production",
+      "unit": "kg",
+      "unit_cost": 12.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima operativa provvisoria per ragù con carne, pomodoro, soffritto, vino, lunga cottura e scarto."
+    },
+    {
+      "ingredient_id": "pure_patate_arrosto",
+      "name_it": "Purè di patate arrosto",
+      "supplier": "internal_production",
+      "unit": "kg",
+      "unit_cost": 4.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima operativa per patate, grassi/latticini, condimento, energia e scarto."
     }
   ]
 }
