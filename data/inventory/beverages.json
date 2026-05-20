@@ -1,0 +1,123 @@
+[
+  {
+    "id": "coca_cola",
+    "name_it": "Coca-Cola",
+    "area": "bar",
+    "category": "soft_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "coca_cola_zero",
+    "name_it": "Coca-Cola Zero",
+    "area": "bar",
+    "category": "soft_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "fanta_naranja",
+    "name_it": "Fanta Naranja",
+    "area": "bar",
+    "category": "soft_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "fanta_limon",
+    "name_it": "Fanta Limón",
+    "area": "bar",
+    "category": "soft_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "nestea_mango_pina",
+    "name_it": "Nestea Mango Piña",
+    "area": "bar",
+    "category": "iced_tea",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "nestea_limone",
+    "name_it": "Nestea Limone",
+    "area": "bar",
+    "category": "iced_tea",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "sprite",
+    "name_it": "Sprite",
+    "area": "bar",
+    "category": "soft_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "appletiser",
+    "name_it": "Appletiser",
+    "area": "bar",
+    "category": "soft_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "aquarius_naranja",
+    "name_it": "Aquarius Naranja",
+    "area": "bar",
+    "category": "isotonic_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "aquarius_limon",
+    "name_it": "Aquarius Limón",
+    "area": "bar",
+    "category": "isotonic_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "Fornitore barra",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "kopparberg",
+    "name_it": "Kopparberg",
+    "area": "bar",
+    "category": "cider",
+    "unit": "unit",
+    "format": "bottle",
+    "supplier": "Fornitore barra",
+    "allergens": ["solfiti_da_verificare"],
+    "active": true
+  }
+]
