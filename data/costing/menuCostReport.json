@@ -1,7 +1,7 @@
 {
   "currency": "EUR",
   "status": "generated",
-  "generated_at": "2026-05-21T00:41:04.204Z",
+  "generated_at": "2026-05-21T00:46:58.057Z",
   "notes": "Generated from recipesCosting.json, ingredientUnitCosts.json, ingredientCostAliases.json and manuPrices.json.",
   "items": [
     {
@@ -1266,6 +1266,167 @@
           "unit_cost": 2,
           "line_cost": 0.01,
           "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "patate_novelle_buccia",
+      "name_it": "Patate novelle con buccia",
+      "category": "contorni",
+      "sale_price": null,
+      "raw_food_cost": 0.13,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0.15,
+      "food_cost_percent": null,
+      "gross_margin": null,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for patate_novelle",
+        "Missing unit cost for sale"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "patate_novelle",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Patate novelle stimate",
+          "cost_ingredient_id": "patate_novelle",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "olio_extravergine",
+          "quantity": 0.015,
+          "unit": "l",
+          "notes": "Olio EVO condimento/cottura",
+          "cost_ingredient_id": "olio_extravergine",
+          "unit_cost": 8.5,
+          "line_cost": 0.13,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "sale",
+          "quantity": 0.003,
+          "unit": "kg",
+          "notes": "Sale stimato",
+          "cost_ingredient_id": "sale",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "pure_patata_arrosto_radicchio",
+      "name_it": "Purè di patata arrosto e radicchio",
+      "category": "contorni",
+      "sale_price": null,
+      "raw_food_cost": 0,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0,
+      "food_cost_percent": null,
+      "gross_margin": null,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for patata_arrosto",
+        "Missing unit cost for radicchio"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "patata_arrosto",
+          "quantity": 0.14,
+          "unit": "kg",
+          "notes": "Base patata arrosto/purè",
+          "cost_ingredient_id": "patata_arrosto",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "radicchio",
+          "quantity": 0.04,
+          "unit": "kg",
+          "notes": "Radicchio stimato",
+          "cost_ingredient_id": "radicchio",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "misto_verdure_griglia",
+      "name_it": "Misto verdure alla griglia",
+      "category": "contorni",
+      "sale_price": null,
+      "raw_food_cost": 0,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0,
+      "food_cost_percent": null,
+      "gross_margin": null,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for verdure_miste_grigliate"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "verdure_miste_grigliate",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Verdure miste grigliate stimate",
+          "cost_ingredient_id": "verdure_miste_grigliate",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "pinzimonio",
+      "name_it": "Pinzimonio",
+      "category": "contorni",
+      "sale_price": null,
+      "raw_food_cost": 0.13,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0.15,
+      "food_cost_percent": null,
+      "gross_margin": null,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for verdure_crude",
+        "Missing unit cost for sale"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "verdure_crude",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Verdure crude stimate",
+          "cost_ingredient_id": "verdure_crude",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "olio_extravergine",
+          "quantity": 0.015,
+          "unit": "l",
+          "notes": "Olio EVO accompagnamento",
+          "cost_ingredient_id": "olio_extravergine",
+          "unit_cost": 8.5,
+          "line_cost": 0.13,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "sale",
+          "quantity": 0.003,
+          "unit": "kg",
+          "notes": "Sale stimato",
+          "cost_ingredient_id": "sale",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
         }
       ]
     }

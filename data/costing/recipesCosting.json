@@ -738,6 +738,92 @@
           "notes": "Spolvero"
         }
       ]
+    },
+    {
+      "menu_item_id": "patate_novelle_buccia",
+      "name_it": "Patate novelle con buccia",
+      "category": "contorni",
+      "portion_notes": "Porzione stimata 180g patate novelle con olio EVO e sale.",
+      "ingredients": [
+        {
+          "ingredient_id": "patate_novelle",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Patate novelle stimate"
+        },
+        {
+          "ingredient_id": "olio_extravergine",
+          "quantity": 0.015,
+          "unit": "l",
+          "notes": "Olio EVO condimento/cottura"
+        },
+        {
+          "ingredient_id": "sale",
+          "quantity": 0.003,
+          "unit": "kg",
+          "notes": "Sale stimato"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "pure_patata_arrosto_radicchio",
+      "name_it": "Purè di patata arrosto e radicchio",
+      "category": "contorni",
+      "portion_notes": "Porzione stimata 180g.",
+      "ingredients": [
+        {
+          "ingredient_id": "patata_arrosto",
+          "quantity": 0.14,
+          "unit": "kg",
+          "notes": "Base patata arrosto/purè"
+        },
+        {
+          "ingredient_id": "radicchio",
+          "quantity": 0.04,
+          "unit": "kg",
+          "notes": "Radicchio stimato"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "misto_verdure_griglia",
+      "name_it": "Misto verdure alla griglia",
+      "category": "contorni",
+      "portion_notes": "Porzione stimata 180g verdure miste.",
+      "ingredients": [
+        {
+          "ingredient_id": "verdure_miste_grigliate",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Verdure miste grigliate stimate"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "pinzimonio",
+      "name_it": "Pinzimonio",
+      "category": "contorni",
+      "portion_notes": "Porzione stimata 180g verdure crude + olio EVO + sale.",
+      "ingredients": [
+        {
+          "ingredient_id": "verdure_crude",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Verdure crude stimate"
+        },
+        {
+          "ingredient_id": "olio_extravergine",
+          "quantity": 0.015,
+          "unit": "l",
+          "notes": "Olio EVO accompagnamento"
+        },
+        {
+          "ingredient_id": "sale",
+          "quantity": 0.003,
+          "unit": "kg",
+          "notes": "Sale stimato"
+        }
+      ]
     }
   ]
 }
