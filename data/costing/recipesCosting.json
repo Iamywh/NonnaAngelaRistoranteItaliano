@@ -418,6 +418,198 @@
           "notes": "Garnish/insalata di accompagnamento"
         }
       ]
+    },
+    {
+      "menu_item_id": "carpaccio_bresaola_rucola_grana_balsamico",
+      "name_it": "Carpaccio con rucola, grana e balsamico",
+      "category": "antipasti_freddi",
+      "portion_notes": "Porzione stimata: carpaccio/bresaola + rucola + grana + balsamico",
+      "ingredients": [
+        {
+          "ingredient_id": "carpaccio_manzo",
+          "quantity": 0.09,
+          "unit": "kg",
+          "notes": "Carpaccio stimato"
+        },
+        {
+          "ingredient_id": "rucola",
+          "quantity": 0.025,
+          "unit": "kg",
+          "notes": "Rucola di accompagnamento"
+        },
+        {
+          "ingredient_id": "grana",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Scaglie di grana"
+        },
+        {
+          "ingredient_id": "aceto_balsamico",
+          "quantity": 0.01,
+          "unit": "l",
+          "notes": "Riduzione/condimento balsamico"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "crostone_taleggio_lardo_colonnata",
+      "name_it": "Crostone taleggio e lardo di Colonnata",
+      "category": "antipasti_caldi",
+      "portion_notes": "Porzione stimata: pane crostone, taleggio, lardo",
+      "ingredients": [
+        {
+          "ingredient_id": "pane_crostone",
+          "quantity": 0.08,
+          "unit": "kg",
+          "notes": "Pane per crostone"
+        },
+        {
+          "ingredient_id": "taleggio",
+          "quantity": 0.04,
+          "unit": "kg",
+          "notes": "Taleggio stimato"
+        },
+        {
+          "ingredient_id": "lardo_colonnata",
+          "quantity": 0.025,
+          "unit": "kg",
+          "notes": "Lardo di Colonnata stimato"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "mozzarella_carrozza_salame",
+      "name_it": "Mozzarella in carrozza con salame",
+      "category": "antipasti_caldi",
+      "portion_notes": "Porzione stimata: pane, mozzarella, salame, uovo/panatura",
+      "ingredients": [
+        {
+          "ingredient_id": "pane",
+          "quantity": 0.07,
+          "unit": "kg",
+          "notes": "Pane per mozzarella in carrozza"
+        },
+        {
+          "ingredient_id": "mozzarella",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Mozzarella stimata"
+        },
+        {
+          "ingredient_id": "salame_napoli",
+          "quantity": 0.025,
+          "unit": "kg",
+          "notes": "Salame stimato"
+        },
+        {
+          "ingredient_id": "uova",
+          "quantity": 0.5,
+          "unit": "unit",
+          "notes": "Mezzo uovo stimato per panatura"
+        },
+        {
+          "ingredient_id": "olio_frittura",
+          "quantity": 0.03,
+          "unit": "l",
+          "notes": "Quota operativa olio frittura"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "mozzarella_carrozza_alici",
+      "name_it": "Mozzarella in carrozza con alici",
+      "category": "antipasti_caldi",
+      "portion_notes": "Porzione stimata: pane, mozzarella, alici, uovo/panatura",
+      "ingredients": [
+        {
+          "ingredient_id": "pane",
+          "quantity": 0.07,
+          "unit": "kg",
+          "notes": "Pane per mozzarella in carrozza"
+        },
+        {
+          "ingredient_id": "mozzarella",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Mozzarella stimata"
+        },
+        {
+          "ingredient_id": "alici",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Alici stimate"
+        },
+        {
+          "ingredient_id": "uova",
+          "quantity": 0.5,
+          "unit": "unit",
+          "notes": "Mezzo uovo stimato per panatura"
+        },
+        {
+          "ingredient_id": "olio_frittura",
+          "quantity": 0.03,
+          "unit": "l",
+          "notes": "Quota operativa olio frittura"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "verdure_grigliate_stagione",
+      "name_it": "Verdure grigliate di stagione",
+      "category": "antipasti_caldi",
+      "portion_notes": "Porzione stimata: verdure grigliate + olio EVO",
+      "ingredients": [
+        {
+          "ingredient_id": "verdure_stagione",
+          "quantity": 0.16,
+          "unit": "kg",
+          "notes": "Verdure miste di stagione"
+        },
+        {
+          "ingredient_id": "olio_extravergine",
+          "quantity": 0.015,
+          "unit": "l",
+          "notes": "Olio EVO condimento"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "melanzana_funghetto",
+      "name_it": "Melanzana a funghetto",
+      "category": "antipasti_caldi",
+      "portion_notes": "Porzione stimata: melanzana, pomodoro, aglio, basilico, olio",
+      "ingredients": [
+        {
+          "ingredient_id": "melanzana",
+          "quantity": 0.14,
+          "unit": "kg",
+          "notes": "Melanzana stimata"
+        },
+        {
+          "ingredient_id": "pomodoro",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Pomodoro stimato"
+        },
+        {
+          "ingredient_id": "aglio",
+          "quantity": 0.005,
+          "unit": "kg",
+          "notes": "Aglio stimato"
+        },
+        {
+          "ingredient_id": "basilico",
+          "quantity": 0.003,
+          "unit": "kg",
+          "notes": "Basilico stimato"
+        },
+        {
+          "ingredient_id": "olio_extravergine",
+          "quantity": 0.02,
+          "unit": "l",
+          "notes": "Olio EVO cottura/condimento"
+        }
+      ]
     }
   ]
 }
