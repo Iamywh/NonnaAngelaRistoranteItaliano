@@ -5,180 +5,219 @@ import barIngredients from '../../data/barIngredients.json'
 import suppliers from '../../data/suppliers.json'
 
 function normalizeProduct(item, source, areaFallback) {
-  return {
-    id: item.id,
-    name: item.name_it || item.name || item.id,
-    supplier: item.supplier || 'to_define',
-    unit: item.unit || 'unit',
-    area: item.area || areaFallback,
-    category: item.category || 'general',
-    source
-  }
+    return {
+        id: item.id,
+        name: item.name_it || item.name || item.id,
+        supplier: item.supplier || 'to_define',
+        unit: item.unit || 'unit',
+        area: item.area || areaFallback,
+        category: item.category || 'general',
+        source
+    }
 }
 
 export default function Orders({ setCurrentPage }) {
-  const [orderType, setOrderType] = useState('food')
-  const [supplier, setSupplier] = useState('all')
-  const [productId, setProductId] = useState('')
-  const [quantity, setQuantity] = useState(1)
-  const [notes, setNotes] = useState('')
-  const [orders, setOrders] = useState([])
+    const [orderType, setOrderType] = useState('food')
+    const [supplier, setSupplier] = useState('all')
+    const [productId, setProductId] = useState('')
+    const [quantity, setQuantity] = useState(1)
+    const [notes, setNotes] = useState('')
+    const [orders, setOrders] = useState([])
+    const orderSummary = useMemo(() => {
+        const totalLines = orders.length
+        const foodLines = orders.filter((line) => line.orderType === 'food').length
+        const beverageLines = orders.filter((line) => line.orderType === 'beverage').length
+        const suppliersInvolved = [...new Set(orders.map((line) => line.supplier))]
 
-  const productList = useMemo(() => {
-    const foodProducts = ingredients
-      .filter((item) => item.active !== false)
-      .map((item) => normalizeProduct(item, 'ingredients', 'food'))
+        return {
+            totalLines,
+            foodLines,
+            beverageLines,
+            suppliersInvolved
+        }
+    }, [orders])
 
-    const beverageProducts = [
-      ...beverages.map((item) => normalizeProduct(item, 'beverages', 'bar')),
-      ...barIngredients.map((item) => normalizeProduct(item, 'barIngredients', 'bar'))
-    ].filter((item) => item.id)
+    const productList = useMemo(() => {
+        const foodProducts = ingredients
+            .filter((item) => item.active !== false)
+            .map((item) => normalizeProduct(item, 'ingredients', 'food'))
 
-    const baseProducts = orderType === 'food' ? foodProducts : beverageProducts
+        const beverageProducts = [
+            ...beverages.map((item) => normalizeProduct(item, 'beverages', 'bar')),
+            ...barIngredients.map((item) => normalizeProduct(item, 'barIngredients', 'bar'))
+        ].filter((item) => item.id)
 
-    return baseProducts
-      .filter((item) => supplier === 'all' || item.supplier === supplier)
-      .sort((a, b) => a.name.localeCompare(b.name))
-  }, [orderType, supplier])
+        const baseProducts = orderType === 'food' ? foodProducts : beverageProducts
 
-  const selectedProduct = productList.find((item) => item.id === productId) || productList[0]
+        return baseProducts
+            .filter((item) => supplier === 'all' || item.supplier === supplier)
+            .sort((a, b) => a.name.localeCompare(b.name))
+    }, [orderType, supplier])
 
-  const supplierOptions = [
-    { id: 'all', name: 'Tutti i fornitori' },
-    ...suppliers.map((item) => ({
-      id: item.id,
-      name: item.name
-    }))
-  ]
+    const selectedProduct = productList.find((item) => item.id === productId) || productList[0]
 
-  const addOrderLine = (event) => {
-    event.preventDefault()
+    const supplierOptions = [
+        { id: 'all', name: 'Tutti i fornitori' },
+        ...suppliers.map((item) => ({
+            id: item.id,
+            name: item.name
+        }))
+    ]
 
-    if (!selectedProduct) return
+    const addOrderLine = (event) => {
+        event.preventDefault()
 
-    const newLine = {
-      id: crypto.randomUUID(),
-      orderType,
-      supplier: selectedProduct.supplier,
-      productId: selectedProduct.id,
-      product: selectedProduct.name,
-      quantity: Number(quantity),
-      unit: selectedProduct.unit,
-      notes,
-      createdAt: new Date().toLocaleString()
+        if (!selectedProduct) return
+
+        const newLine = {
+            id: crypto.randomUUID(),
+            orderType,
+            supplier: selectedProduct.supplier,
+            productId: selectedProduct.id,
+            product: selectedProduct.name,
+            quantity: Number(quantity),
+            unit: selectedProduct.unit,
+            notes,
+            createdAt: new Date().toLocaleString()
+        }
+
+        setOrders((current) => [newLine, ...current])
+        setQuantity(1)
+        setNotes('')
     }
 
-    setOrders((current) => [newLine, ...current])
-    setQuantity(1)
-    setNotes('')
-  }
+    return (
+        <section className="admin-page">
+            <button className="back-button" onClick={() => setCurrentPage('admin')}>
+                ← Torna alla dashboard
+            </button>
 
-  return (
-    <section className="admin-page">
-      <button className="back-button" onClick={() => setCurrentPage('admin')}>
-        ← Torna alla dashboard
-      </button>
+            <p className="eyebrow">Orders</p>
+            <h2>Ordini cucina e barra</h2>
+            <p className="page-intro">
+                Formulario ordini collegato ai dati reali di ingredienti, beverage, bar inventory e fornitori.
+                Per ora le righe restano temporanee nella pagina; il salvataggio su Supabase arriva dopo.
+            </p>
 
-      <p className="eyebrow">Orders</p>
-      <h2>Ordini cucina e barra</h2>
-      <p className="page-intro">
-        Formulario ordini collegato ai dati reali di ingredienti, beverage, bar inventory e fornitori.
-        Per ora le righe restano temporanee nella pagina; il salvataggio su Supabase arriva dopo.
-      </p>
+            <form className="order-form" onSubmit={addOrderLine}>
+                <label>
+                    Tipo ordine
+                    <select
+                        value={orderType}
+                        onChange={(event) => {
+                            setOrderType(event.target.value)
+                            setSupplier('all')
+                            setProductId('')
+                        }}
+                    >
+                        <option value="food">Food</option>
+                        <option value="beverage">Beverage</option>
+                    </select>
+                </label>
 
-      <form className="order-form" onSubmit={addOrderLine}>
-        <label>
-          Tipo ordine
-          <select
-            value={orderType}
-            onChange={(event) => {
-              setOrderType(event.target.value)
-              setSupplier('all')
-              setProductId('')
-            }}
-          >
-            <option value="food">Food</option>
-            <option value="beverage">Beverage</option>
-          </select>
-        </label>
+                <label>
+                    Fornitore
+                    <select
+                        value={supplier}
+                        onChange={(event) => {
+                            setSupplier(event.target.value)
+                            setProductId('')
+                        }}
+                    >
+                        {supplierOptions.map((item) => (
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select>
+                </label>
 
-        <label>
-          Fornitore
-          <select
-            value={supplier}
-            onChange={(event) => {
-              setSupplier(event.target.value)
-              setProductId('')
-            }}
-          >
-            {supplierOptions.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.name}
-              </option>
-            ))}
-          </select>
-        </label>
+                <label>
+                    Prodotto
+                    <select
+                        value={productId || selectedProduct?.id || ''}
+                        onChange={(event) => setProductId(event.target.value)}
+                    >
+                        {productList.map((item) => (
+                            <option key={`${item.source}-${item.id}`} value={item.id}>
+                                {item.name} · {item.unit} · {item.supplier}
+                            </option>
+                        ))}
+                    </select>
+                </label>
 
-        <label>
-          Prodotto
-          <select
-            value={productId || selectedProduct?.id || ''}
-            onChange={(event) => setProductId(event.target.value)}
-          >
-            {productList.map((item) => (
-              <option key={`${item.source}-${item.id}`} value={item.id}>
-                {item.name} · {item.unit} · {item.supplier}
-              </option>
-            ))}
-          </select>
-        </label>
+                <label>
+                    Quantità
+                    <input
+                        type="number"
+                        min="0.01"
+                        step="0.01"
+                        value={quantity}
+                        onChange={(event) => setQuantity(event.target.value)}
+                    />
+                </label>
 
-        <label>
-          Quantità
-          <input
-            type="number"
-            min="0.01"
-            step="0.01"
-            value={quantity}
-            onChange={(event) => setQuantity(event.target.value)}
-          />
-        </label>
+                <label>
+                    Note
+                    <input
+                        type="text"
+                        value={notes}
+                        placeholder="Es. urgente, verificare prezzo..."
+                        onChange={(event) => setNotes(event.target.value)}
+                    />
+                </label>
 
-        <label>
-          Note
-          <input
-            type="text"
-            value={notes}
-            placeholder="Es. urgente, verificare prezzo..."
-            onChange={(event) => setNotes(event.target.value)}
-          />
-        </label>
+                <button className="primary-button" type="submit">
+                    Aggiungi riga ordine
+                </button>
+            </form>
 
-        <button className="primary-button" type="submit">
-          Aggiungi riga ordine
-        </button>
-      </form>
+            <div className="kpi-grid compact">
+                <article className="kpi-card">
+                    <p>Righe ordine</p>
+                    <strong>{orderSummary.totalLines}</strong>
+                    <span>Totale righe inserite</span>
+                </article>
 
-      <div className="dashboard-panel">
-        <h3>Righe ordine temporanee</h3>
+                <article className="kpi-card good">
+                    <p>Food</p>
+                    <strong>{orderSummary.foodLines}</strong>
+                    <span>Righe cucina</span>
+                </article>
 
-        <div className="risk-list">
-          {orders.map((line) => (
-            <article className="risk-item" key={line.id}>
-              <div>
-                <strong>{line.product}</strong>
-                <span>
-                  {line.orderType} · {line.supplier} · {line.quantity} {line.unit} · {line.createdAt}
-                  {line.notes ? ` · ${line.notes}` : ''}
-                </span>
-              </div>
-              <b>{line.quantity}</b>
-            </article>
-          ))}
+                <article className="kpi-card">
+                    <p>Beverage</p>
+                    <strong>{orderSummary.beverageLines}</strong>
+                    <span>Righe barra</span>
+                </article>
 
-          {!orders.length && <p>Nessuna riga ordine aggiunta.</p>}
-        </div>
-      </div>
-    </section>
-  )
+                <article className="kpi-card warning">
+                    <p>Fornitori</p>
+                    <strong>{orderSummary.suppliersInvolved.length}</strong>
+                    <span>{orderSummary.suppliersInvolved.join(', ') || 'Nessuno'}</span>
+                </article>
+            </div>
+
+            <div className="dashboard-panel">
+                <h3>Righe ordine temporanee</h3>
+
+                <div className="risk-list">
+                    {orders.map((line) => (
+                        <article className="risk-item" key={line.id}>
+                            <div>
+                                <strong>{line.product}</strong>
+                                <span>
+                                    {line.orderType} · {line.supplier} · {line.quantity} {line.unit} · {line.createdAt}
+                                    {line.notes ? ` · ${line.notes}` : ''}
+                                </span>
+                            </div>
+                            <b>{line.quantity}</b>
+                        </article>
+                    ))}
+
+                    {!orders.length && <p>Nessuna riga ordine aggiunta.</p>}
+                </div>
+            </div>
+        </section>
+    )
 }

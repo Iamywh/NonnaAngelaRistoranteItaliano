@@ -440,3 +440,8 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+.kpi-grid.compact {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
