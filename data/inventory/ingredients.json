@@ -1140,5 +1140,16 @@
     "allergens": [],
     "used_in": ["baba_napoletano"],
     "active": true
+  },
+  {
+    "id": "patate_novelle",
+    "name_it": "Patate novelle",
+    "area": "food",
+    "category": "verdure_fresche",
+    "unit": "kg",
+    "supplier": "gm",
+    "allergens": [],
+    "used_in": ["patate_novelle_buccia"],
+    "active": true
   }
 ]
