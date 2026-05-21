@@ -519,3 +519,31 @@ button {
   font-size: 14px;
   white-space: nowrap;
 }
+
+.invoice-upload-box {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.invoice-upload-box input[type="file"] {
+  padding: 16px;
+  border: 1px dashed var(--accent);
+  border-radius: 18px;
+  background: rgba(143, 29, 20, 0.04);
+}
+
+.ocr-textarea {
+  width: 100%;
+  min-height: 320px;
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: #fff;
+  color: var(--text);
+  font-family: Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  resize: vertical;
+}

@@ -113,6 +113,12 @@ export default function AdminDashboard({ setCurrentPage }) {
                     meta="Food / beverage / fornitori"
                     onClick={() => setCurrentPage('admin-orders')}
                 />
+                <AdminModuleCard
+                    title="Invoices"
+                    description="Carica fatture, OCR, storico prezzi prodotti"
+                    meta="Fornitori / prezzi / prossimo ordine"
+                    onClick={() => setCurrentPage('admin-invoices')}
+                />
             </div>
         </section>
     )

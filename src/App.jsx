@@ -8,6 +8,7 @@ import FoodDashboard from './pages/admin/FoodDashboard.jsx'
 import BeverageDashboard from './pages/admin/BeverageDashboard.jsx'
 import FBControl from './pages/admin/FBControl.jsx'
 import Orders from './pages/admin/Orders.jsx'
+import Invoices from './pages/admin/Invoices.jsx'
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home')
@@ -21,6 +22,7 @@ export default function App() {
     if (currentPage === 'admin-beverage') return <BeverageDashboard setCurrentPage={setCurrentPage} />
     if (currentPage === 'admin-fb') return <FBControl setCurrentPage={setCurrentPage} />
     if (currentPage === 'admin-orders') return <Orders setCurrentPage={setCurrentPage} />
+    if (currentPage === 'admin-invoices') return <Invoices setCurrentPage={setCurrentPage} />
     return <Home />
   }
 
