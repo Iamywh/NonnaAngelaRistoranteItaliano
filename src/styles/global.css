@@ -547,3 +547,65 @@ button {
   line-height: 1.6;
   resize: vertical;
 }
+
+.invoice-lines-table {
+  margin-top: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.invoice-line-row {
+  display: grid;
+  grid-template-columns: 50px 2.2fr 0.7fr 0.7fr 0.8fr 0.8fr 0.9fr;
+  gap: 8px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(143, 29, 20, 0.04);
+  border: 1px solid var(--border);
+}
+
+.invoice-line-row input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px;
+  background: #fff;
+  color: var(--text);
+}
+
+.confidence-badge {
+  display: inline-flex;
+  justify-content: center;
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.confidence-badge.high {
+  background: rgba(47, 125, 74, 0.12);
+  color: var(--green);
+}
+
+.confidence-badge.medium {
+  background: rgba(185, 107, 22, 0.12);
+  color: var(--orange);
+}
+
+.confidence-badge.low {
+  background: rgba(143, 29, 20, 0.12);
+  color: var(--accent);
+}
+
+.empty-state {
+  color: var(--muted);
+  padding: 16px;
+}
+
+@media (max-width: 1050px) {
+  .invoice-line-row {
+    grid-template-columns: 1fr;
+  }
+}
