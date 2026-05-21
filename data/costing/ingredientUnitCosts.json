@@ -285,6 +285,176 @@
       "source": "manual_estimate",
       "confidence": "medium",
       "notes": "Stima operativa per pesto con basilico, olio, formaggio, frutta secca e lavorazione."
+    },
+    {
+      "ingredient_id": "bresaola",
+      "name_it": "Bresaola",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 24.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima salume premium affettato. Da sostituire con prezzo reale Orthidal."
+    },
+    {
+      "ingredient_id": "coppa_parma",
+      "name_it": "Coppa Parma",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 22.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima salume premium affettato."
+    },
+    {
+      "ingredient_id": "finocchiona",
+      "name_it": "Finocchiona",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 18.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima salume affettato."
+    },
+    {
+      "ingredient_id": "salame_napoli",
+      "name_it": "Salame Napoli",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 17.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima salume affettato."
+    },
+    {
+      "ingredient_id": "mortadella_pistacchio",
+      "name_it": "Mortadella con pistacchio",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 16.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima mortadella premium con pistacchio."
+    },
+    {
+      "ingredient_id": "speck",
+      "name_it": "Speck",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 20.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima salume affettato."
+    },
+    {
+      "ingredient_id": "guanciale",
+      "name_it": "Guanciale",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 18.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima guanciale."
+    },
+    {
+      "ingredient_id": "lardo_colonnata",
+      "name_it": "Lardo di Colonnata",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 25.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima prodotto premium."
+    },
+    {
+      "ingredient_id": "focaccia",
+      "name_it": "Focaccia",
+      "supplier": "internal_production",
+      "unit": "kg",
+      "unit_cost": 3.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima operativa per focaccia di accompagnamento."
+    },
+    {
+      "ingredient_id": "rucola",
+      "name_it": "Rucola",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 8.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria fino a ordine reale."
+    },
+    {
+      "ingredient_id": "fontina",
+      "name_it": "Fontina",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 15.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima formaggio."
+    },
+    {
+      "ingredient_id": "taleggio",
+      "name_it": "Taleggio",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 16.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima formaggio."
+    },
+    {
+      "ingredient_id": "parmigiano_scaglie",
+      "name_it": "Parmigiano in scaglie",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 16.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Allineato alla stima parmigiano."
+    },
+    {
+      "ingredient_id": "kinara_tartufo",
+      "name_it": "Kinara al tartufo",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 24.0,
+      "source": "manual_estimate",
+      "confidence": "low",
+      "notes": "Formaggio premium al tartufo: prezzo da verificare."
+    },
+    {
+      "ingredient_id": "formaggio_barolo",
+      "name_it": "Formaggio al Barolo",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 22.0,
+      "source": "manual_estimate",
+      "confidence": "low",
+      "notes": "Formaggio premium: prezzo da verificare."
+    },
+    {
+      "ingredient_id": "frutta_secca",
+      "name_it": "Frutta secca",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 14.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Mix frutta secca accompagnamento formaggi."
+    },
+    {
+      "ingredient_id": "miele",
+      "name_it": "Miele",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 8.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Miele accompagnamento formaggi."
     }
   ]
 }
