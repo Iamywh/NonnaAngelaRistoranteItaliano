@@ -75,7 +75,7 @@ function calculateReport() {
         const rawCost = Number(totalCost.toFixed(2))
         const operationalCost = Number((rawCost * (1 + OPERATIONAL_BUFFER_PERCENT / 100)).toFixed(2))
 
-        const salePrice = priceData?.price ?? null
+        const salePrice = priceData?.price ?? priceData?.prices?.intero ?? null
 
         const foodCostPercent =
             salePrice && operationalCost > 0
