@@ -156,6 +156,20 @@
             "name_it": "Melanzana a funghetto",
             "category": "antipasti_caldi",
             "price": 13.5
-        }
+        },
+    {
+      "menu_item_id": "rigatoni_amatriciana",
+      "name_it": "Rigatoni all'amatriciana",
+      "category": "primi_piatti",
+      "price": 21.5,
+      "notes": "120g pasta + circa 50g condimento"
+    },
+    {
+      "menu_item_id": "paccheri_carbonara",
+      "name_it": "Paccheri alla carbonara",
+      "category": "primi_piatti",
+      "price": 21.5,
+      "notes": "120g pasta + circa 50g condimento"
+    }
     ]
 }
