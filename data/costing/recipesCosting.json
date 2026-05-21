@@ -900,6 +900,32 @@
           "notes": "Pepe nero stimato"
         }
       ]
+    },
+    {
+      "menu_item_id": "caprese",
+      "name_it": "Caprese",
+      "category": "antipasti_freddi",
+      "portion_notes": "Porzione stimata: 1 pomodoro, 1 mozzarella, basilico o olio al basilico.",
+      "ingredients": [
+        {
+          "ingredient_id": "pomodoro_caprese",
+          "quantity": 1,
+          "unit": "unit",
+          "notes": "Un pomodoro stimato a 0.70€"
+        },
+        {
+          "ingredient_id": "mozzarella_caprese",
+          "quantity": 1,
+          "unit": "unit",
+          "notes": "Una mozzarella stimata a 1.00€"
+        },
+        {
+          "ingredient_id": "basilico_o_olio_basilico",
+          "quantity": 1,
+          "unit": "unit",
+          "notes": "Quota basilico fresco o olio al basilico stimata"
+        }
+      ]
     }
   ]
 }

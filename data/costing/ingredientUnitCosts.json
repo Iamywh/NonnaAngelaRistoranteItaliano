@@ -715,6 +715,36 @@
       "source": "manual_estimate",
       "confidence": "medium",
       "notes": "Stima zucchero a velo."
+    },
+    {
+      "ingredient_id": "pomodoro_caprese",
+      "name_it": "Pomodoro per caprese",
+      "supplier": "gm",
+      "unit": "unit",
+      "unit_cost": 0.7,
+      "source": "manual_real_reference",
+      "confidence": "high",
+      "notes": "Prezzo indicato da Manu: circa 0.70€ per pomodoro."
+    },
+    {
+      "ingredient_id": "mozzarella_caprese",
+      "name_it": "Mozzarella per caprese",
+      "supplier": "orthidal",
+      "unit": "unit",
+      "unit_cost": 1.0,
+      "source": "manual_real_reference",
+      "confidence": "high",
+      "notes": "Prezzo indicato da Manu: circa 1.00€ per mozzarella."
+    },
+    {
+      "ingredient_id": "basilico_o_olio_basilico",
+      "name_it": "Basilico o olio al basilico",
+      "supplier": "gm",
+      "unit": "unit",
+      "unit_cost": 0.25,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Quota stimata per basilico fresco o olio al basilico. Decisione finale ancora aperta."
     }
   ]
 }

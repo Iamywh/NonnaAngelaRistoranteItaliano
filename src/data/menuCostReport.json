@@ -1,7 +1,7 @@
 {
   "currency": "EUR",
   "status": "generated",
-  "generated_at": "2026-05-21T15:33:40.623Z",
+  "generated_at": "2026-05-21T22:11:49.658Z",
   "notes": "Generated from recipesCosting.json, ingredientUnitCosts.json, ingredientCostAliases.json and manuPrices.json.",
   "items": [
     {
@@ -1556,6 +1556,51 @@
           "cost_ingredient_id": "pepe_nero",
           "unit_cost": 18,
           "line_cost": 0.04,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "caprese",
+      "name_it": "Caprese",
+      "category": "antipasti_freddi",
+      "sale_price": 15.5,
+      "raw_food_cost": 1.95,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 2.24,
+      "food_cost_percent": 14.5,
+      "gross_margin": 13.26,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "pomodoro_caprese",
+          "quantity": 1,
+          "unit": "unit",
+          "notes": "Un pomodoro stimato a 0.70€",
+          "cost_ingredient_id": "pomodoro_caprese",
+          "unit_cost": 0.7,
+          "line_cost": 0.7,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "mozzarella_caprese",
+          "quantity": 1,
+          "unit": "unit",
+          "notes": "Una mozzarella stimata a 1.00€",
+          "cost_ingredient_id": "mozzarella_caprese",
+          "unit_cost": 1,
+          "line_cost": 1,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "basilico_o_olio_basilico",
+          "quantity": 1,
+          "unit": "unit",
+          "notes": "Quota basilico fresco o olio al basilico stimata",
+          "cost_ingredient_id": "basilico_o_olio_basilico",
+          "unit_cost": 0.25,
+          "line_cost": 0.25,
           "costing_status": "ok"
         }
       ]

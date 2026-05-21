@@ -170,6 +170,13 @@
       "category": "primi_piatti",
       "price": 21.5,
       "notes": "120g pasta + circa 50g condimento"
+    },
+    {
+      "menu_item_id": "caprese",
+      "name_it": "Caprese",
+      "category": "antipasti_freddi",
+      "price": 15.5,
+      "notes": "Pomodoro, mozzarella, basilico o olio al basilico. Prezzo comunicato da Manu."
     }
     ]
 }
