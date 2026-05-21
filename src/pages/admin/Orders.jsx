@@ -271,7 +271,7 @@ export default function Orders({ setCurrentPage }) {
       </head>
       <body>
         <button onclick="window.print()" style="margin-bottom: 20px; padding: 10px 14px; border-radius: 8px; border: 0; background: #8f1d14; color: white; font-weight: 700; cursor: pointer;">
-          Stampa / Salva PDF
+          Riapri stampa / Salva PDF
         </button>
 
         <section class="header">
@@ -307,8 +307,15 @@ export default function Orders({ setCurrentPage }) {
         <p class="footer">
           Documento generato da Nonna Angela Admin Dashboard. I costi e lo storico saranno collegati a Supabase nelle prossime versioni.
         </p>
-      </body>
-    </html>
+      <script>
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+            window.print()
+            }, 500)
+        })
+        </script>
+        </body>
+        </html>
   `
 
         const blob = new Blob([html], { type: 'text/html' })
