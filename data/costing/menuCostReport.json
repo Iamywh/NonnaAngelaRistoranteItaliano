@@ -1,7 +1,7 @@
 {
   "currency": "EUR",
   "status": "generated",
-  "generated_at": "2026-05-21T00:36:41.107Z",
+  "generated_at": "2026-05-21T00:41:04.204Z",
   "notes": "Generated from recipesCosting.json, ingredientUnitCosts.json, ingredientCostAliases.json and manuPrices.json.",
   "items": [
     {
@@ -1053,12 +1053,12 @@
       "menu_item_id": "tiramisu_limone",
       "name_it": "Tiramisù al limone",
       "category": "dolci",
-      "sale_price": null,
+      "sale_price": 8.5,
       "raw_food_cost": 0.62,
       "operational_buffer_percent": 15,
       "estimated_cost": 0.71,
-      "food_cost_percent": null,
-      "gross_margin": null,
+      "food_cost_percent": 8.4,
+      "gross_margin": 7.79,
       "costing_status": "complete",
       "warnings": [],
       "ingredients": [
@@ -1118,12 +1118,12 @@
       "menu_item_id": "pere_ricotta",
       "name_it": "Pere e ricotta",
       "category": "dolci",
-      "sale_price": null,
+      "sale_price": 9.5,
       "raw_food_cost": 1.86,
       "operational_buffer_percent": 15,
       "estimated_cost": 2.14,
-      "food_cost_percent": null,
-      "gross_margin": null,
+      "food_cost_percent": 22.5,
+      "gross_margin": 7.36,
       "costing_status": "complete",
       "warnings": [],
       "ingredients": [

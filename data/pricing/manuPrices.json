@@ -83,15 +83,13 @@
             "menu_item_id": "pere_ricotta",
             "name_it": "Pere e ricotta",
             "category": "dolci",
-            "price": null,
-            "notes": "Prezzo non ancora comunicato"
+            "price": 9.5
         },
         {
             "menu_item_id": "tiramisu_limone",
             "name_it": "Tiramisù al limone",
             "category": "dolci",
-            "price": null,
-            "notes": "Prezzo non ancora comunicato"
+            "price": 8.5
         },
         {
             "menu_item_id": "baba_napoletano",
