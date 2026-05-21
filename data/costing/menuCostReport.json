@@ -1,7 +1,7 @@
 {
   "currency": "EUR",
   "status": "generated",
-  "generated_at": "2026-05-21T00:20:29.954Z",
+  "generated_at": "2026-05-21T00:22:28.530Z",
   "notes": "Generated from recipesCosting.json, ingredientUnitCosts.json, ingredientCostAliases.json and manuPrices.json.",
   "items": [
     {
@@ -513,12 +513,12 @@
       "menu_item_id": "tagliere_affettati",
       "name_it": "Tavolozza salumi",
       "category": "antipasti_freddi",
-      "sale_price": null,
+      "sale_price": 30,
       "raw_food_cost": 3.64,
       "operational_buffer_percent": 15,
       "estimated_cost": 4.19,
-      "food_cost_percent": null,
-      "gross_margin": null,
+      "food_cost_percent": 14,
+      "gross_margin": 25.81,
       "costing_status": "complete",
       "warnings": [],
       "ingredients": [
@@ -628,12 +628,12 @@
       "menu_item_id": "tagliere_formaggi",
       "name_it": "Tavolozza formaggi",
       "category": "antipasti_freddi",
-      "sale_price": null,
+      "sale_price": 28,
       "raw_food_cost": 3.47,
       "operational_buffer_percent": 15,
       "estimated_cost": 3.99,
-      "food_cost_percent": null,
-      "gross_margin": null,
+      "food_cost_percent": 14.3,
+      "gross_margin": 24.01,
       "costing_status": "complete",
       "warnings": [],
       "ingredients": [
