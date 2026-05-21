@@ -585,6 +585,136 @@
       "source": "manual_estimate",
       "confidence": "medium",
       "notes": "Stima provvisoria. Impatto minimo per porzione."
+    },
+    {
+      "ingredient_id": "savoiardi",
+      "name_it": "Savoiardi",
+      "supplier": "gm",
+      "unit": "pack",
+      "unit_cost": 3.0,
+      "source": "manual_real_reference",
+      "confidence": "high",
+      "notes": "Prezzo indicato: 3€ per pacco. Una teglia tiramisù usa circa 1 pacco."
+    },
+    {
+      "ingredient_id": "mascarpone",
+      "name_it": "Mascarpone",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 10.0,
+      "source": "manual_real_reference",
+      "confidence": "high",
+      "notes": "Stimato da 2.50€ per 250g."
+    },
+    {
+      "ingredient_id": "zucchero",
+      "name_it": "Zucchero",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 1.4,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima zucchero standard."
+    },
+    {
+      "ingredient_id": "limone",
+      "name_it": "Limone",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 2.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima limone fresco per crema/bagna."
+    },
+    {
+      "ingredient_id": "pere",
+      "name_it": "Pere",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 2.8,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima pere fresche."
+    },
+    {
+      "ingredient_id": "ricotta",
+      "name_it": "Ricotta",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 15.0,
+      "source": "manual_real_reference",
+      "confidence": "medium",
+      "notes": "Stimato da 2–2.5€ per 150g. Valore prudente."
+    },
+    {
+      "ingredient_id": "baba",
+      "name_it": "Babà monoporzione",
+      "supplier": "orthidal",
+      "unit": "unit",
+      "unit_cost": 1.2,
+      "source": "manual_estimate",
+      "confidence": "low",
+      "notes": "Costo stimato provvisorio. Da sostituire con prezzo reale Orthidal."
+    },
+    {
+      "ingredient_id": "rum",
+      "name_it": "Rum",
+      "supplier": "gm",
+      "unit": "l",
+      "unit_cost": 12.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Costo stimato per rum da bagna."
+    },
+    {
+      "ingredient_id": "scorze_cannolo",
+      "name_it": "Scorze cannolo",
+      "supplier": "orthidal",
+      "unit": "unit",
+      "unit_cost": 0.35,
+      "source": "manual_estimate",
+      "confidence": "low",
+      "notes": "Costo stimato per singola scorza. Da verificare prezzo reale Orthidal."
+    },
+    {
+      "ingredient_id": "ricotta_zuccherata",
+      "name_it": "Ricotta zuccherata",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 12.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima farcitura ricotta zuccherata per cannoli."
+    },
+    {
+      "ingredient_id": "amarena",
+      "name_it": "Amarena",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 10.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima amarena/farcitura."
+    },
+    {
+      "ingredient_id": "pistacchio",
+      "name_it": "Pistacchio",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 28.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima granella/crema pistacchio. Ingrediente caro, da validare."
+    },
+    {
+      "ingredient_id": "zucchero_velo",
+      "name_it": "Zucchero a velo",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 2.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima zucchero a velo."
     }
   ]
 }

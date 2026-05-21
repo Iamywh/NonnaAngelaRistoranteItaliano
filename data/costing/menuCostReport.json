@@ -1,7 +1,7 @@
 {
   "currency": "EUR",
   "status": "generated",
-  "generated_at": "2026-05-21T00:34:55.386Z",
+  "generated_at": "2026-05-21T00:36:41.107Z",
   "notes": "Generated from recipesCosting.json, ingredientUnitCosts.json, ingredientCostAliases.json and manuPrices.json.",
   "items": [
     {
@@ -1054,18 +1054,13 @@
       "name_it": "Tiramisù al limone",
       "category": "dolci",
       "sale_price": null,
-      "raw_food_cost": 0.08,
+      "raw_food_cost": 0.62,
       "operational_buffer_percent": 15,
-      "estimated_cost": 0.09,
+      "estimated_cost": 0.71,
       "food_cost_percent": null,
       "gross_margin": null,
-      "costing_status": "partial",
-      "warnings": [
-        "Missing unit cost for savoiardi",
-        "Missing unit cost for mascarpone",
-        "Missing unit cost for zucchero",
-        "Missing unit cost for limone"
-      ],
+      "costing_status": "complete",
+      "warnings": [],
       "ingredients": [
         {
           "ingredient_id": "savoiardi",
@@ -1073,9 +1068,9 @@
           "unit": "pack",
           "notes": "1 pacco diviso 12 porzioni circa",
           "cost_ingredient_id": "savoiardi",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 3,
+          "line_cost": 0.25,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "mascarpone",
@@ -1083,9 +1078,9 @@
           "unit": "kg",
           "notes": "250g divisi 12 porzioni circa",
           "cost_ingredient_id": "mascarpone",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 10,
+          "line_cost": 0.21,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "uova",
@@ -1103,9 +1098,9 @@
           "unit": "kg",
           "notes": "Zucchero stimato per porzione",
           "cost_ingredient_id": "zucchero",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 1.4,
+          "line_cost": 0.02,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "limone",
@@ -1113,9 +1108,9 @@
           "unit": "kg",
           "notes": "Bagna/scorza/crema al limone",
           "cost_ingredient_id": "limone",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 2.5,
+          "line_cost": 0.06,
+          "costing_status": "ok"
         }
       ]
     },
@@ -1124,17 +1119,13 @@
       "name_it": "Pere e ricotta",
       "category": "dolci",
       "sale_price": null,
-      "raw_food_cost": 0,
+      "raw_food_cost": 1.86,
       "operational_buffer_percent": 15,
-      "estimated_cost": 0,
+      "estimated_cost": 2.14,
       "food_cost_percent": null,
       "gross_margin": null,
-      "costing_status": "partial",
-      "warnings": [
-        "Missing unit cost for pere",
-        "Missing unit cost for ricotta",
-        "Missing unit cost for zucchero"
-      ],
+      "costing_status": "complete",
+      "warnings": [],
       "ingredients": [
         {
           "ingredient_id": "pere",
@@ -1142,9 +1133,9 @@
           "unit": "kg",
           "notes": "Circa una pera piccola/media pulita",
           "cost_ingredient_id": "pere",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 2.8,
+          "line_cost": 0.34,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "ricotta",
@@ -1152,9 +1143,9 @@
           "unit": "kg",
           "notes": "Mousse di ricotta stimata",
           "cost_ingredient_id": "ricotta",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 15,
+          "line_cost": 1.5,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "zucchero",
@@ -1162,9 +1153,9 @@
           "unit": "kg",
           "notes": "Zucchero/aromi",
           "cost_ingredient_id": "zucchero",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 1.4,
+          "line_cost": 0.02,
+          "costing_status": "ok"
         }
       ]
     },
@@ -1173,17 +1164,13 @@
       "name_it": "Babà napoletano",
       "category": "dolci",
       "sale_price": 8,
-      "raw_food_cost": 0,
+      "raw_food_cost": 1.39,
       "operational_buffer_percent": 15,
-      "estimated_cost": 0,
-      "food_cost_percent": null,
-      "gross_margin": null,
-      "costing_status": "partial",
-      "warnings": [
-        "Missing unit cost for baba",
-        "Missing unit cost for rum",
-        "Missing unit cost for zucchero"
-      ],
+      "estimated_cost": 1.6,
+      "food_cost_percent": 20,
+      "gross_margin": 6.4,
+      "costing_status": "complete",
+      "warnings": [],
       "ingredients": [
         {
           "ingredient_id": "baba",
@@ -1191,9 +1178,9 @@
           "unit": "unit",
           "notes": "Un babà monoporzione",
           "cost_ingredient_id": "baba",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 1.2,
+          "line_cost": 1.2,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "rum",
@@ -1201,9 +1188,9 @@
           "unit": "l",
           "notes": "Quota bagna al rum",
           "cost_ingredient_id": "rum",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 12,
+          "line_cost": 0.18,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "zucchero",
@@ -1211,9 +1198,9 @@
           "unit": "kg",
           "notes": "Quota zucchero bagna",
           "cost_ingredient_id": "zucchero",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 1.4,
+          "line_cost": 0.01,
+          "costing_status": "ok"
         }
       ]
     },
@@ -1222,19 +1209,13 @@
       "name_it": "Tris di cannolo tricolore",
       "category": "dolci",
       "sale_price": 11.5,
-      "raw_food_cost": 0,
+      "raw_food_cost": 2.16,
       "operational_buffer_percent": 15,
-      "estimated_cost": 0,
-      "food_cost_percent": null,
-      "gross_margin": null,
-      "costing_status": "partial",
-      "warnings": [
-        "Missing unit cost for scorze_cannolo",
-        "Missing unit cost for ricotta_zuccherata",
-        "Missing unit cost for amarena",
-        "Missing unit cost for pistacchio",
-        "Missing unit cost for zucchero_velo"
-      ],
+      "estimated_cost": 2.48,
+      "food_cost_percent": 21.6,
+      "gross_margin": 9.02,
+      "costing_status": "complete",
+      "warnings": [],
       "ingredients": [
         {
           "ingredient_id": "scorze_cannolo",
@@ -1242,9 +1223,9 @@
           "unit": "unit",
           "notes": "Tre scorze cannolo",
           "cost_ingredient_id": "scorze_cannolo",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 0.35,
+          "line_cost": 1.05,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "ricotta_zuccherata",
@@ -1252,9 +1233,9 @@
           "unit": "kg",
           "notes": "Farcitura totale stimata",
           "cost_ingredient_id": "ricotta_zuccherata",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 12,
+          "line_cost": 0.72,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "amarena",
@@ -1262,9 +1243,9 @@
           "unit": "kg",
           "notes": "Decorazione/farcitura amarena",
           "cost_ingredient_id": "amarena",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 10,
+          "line_cost": 0.1,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "pistacchio",
@@ -1272,9 +1253,9 @@
           "unit": "kg",
           "notes": "Pistacchio/granella",
           "cost_ingredient_id": "pistacchio",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 28,
+          "line_cost": 0.28,
+          "costing_status": "ok"
         },
         {
           "ingredient_id": "zucchero_velo",
@@ -1282,9 +1263,9 @@
           "unit": "kg",
           "notes": "Spolvero",
           "cost_ingredient_id": "zucchero_velo",
-          "unit_cost": null,
-          "line_cost": null,
-          "costing_status": "missing_unit_cost"
+          "unit_cost": 2,
+          "line_cost": 0.01,
+          "costing_status": "ok"
         }
       ]
     }
