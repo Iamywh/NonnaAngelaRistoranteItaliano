@@ -455,6 +455,136 @@
       "source": "manual_estimate",
       "confidence": "medium",
       "notes": "Miele accompagnamento formaggi."
+    },
+    {
+      "ingredient_id": "carpaccio_manzo",
+      "name_it": "Carpaccio di manzo",
+      "supplier": "pasto_y_bellota",
+      "unit": "kg",
+      "unit_cost": 19.95,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stimato usando bola de caballo/manzo premium come riferimento. Da validare taglio reale."
+    },
+    {
+      "ingredient_id": "grana",
+      "name_it": "Grana",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 16.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Allineato alla stima parmigiano."
+    },
+    {
+      "ingredient_id": "aceto_balsamico",
+      "name_it": "Aceto balsamico",
+      "supplier": "gm",
+      "unit": "l",
+      "unit_cost": 6.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria per condimento/riduzione."
+    },
+    {
+      "ingredient_id": "pane_crostone",
+      "name_it": "Pane per crostone",
+      "supplier": "internal_production",
+      "unit": "kg",
+      "unit_cost": 3.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Allineato al costo operativo focaccia/pane."
+    },
+    {
+      "ingredient_id": "pane",
+      "name_it": "Pane",
+      "supplier": "internal_production",
+      "unit": "kg",
+      "unit_cost": 3.2,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima pane per mozzarella in carrozza."
+    },
+    {
+      "ingredient_id": "mozzarella",
+      "name_it": "Mozzarella",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 7.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria. Da verificare prezzo reale."
+    },
+    {
+      "ingredient_id": "alici",
+      "name_it": "Alici",
+      "supplier": "orthidal",
+      "unit": "kg",
+      "unit_cost": 22.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria per alici conservate."
+    },
+    {
+      "ingredient_id": "uova",
+      "name_it": "Uova",
+      "supplier": "gm",
+      "unit": "unit",
+      "unit_cost": 0.25,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Costo stimato per unità."
+    },
+    {
+      "ingredient_id": "olio_frittura",
+      "name_it": "Olio per frittura",
+      "supplier": "gm",
+      "unit": "l",
+      "unit_cost": 2.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Quota operativa olio frittura. Da affinare con consumo reale."
+    },
+    {
+      "ingredient_id": "verdure_stagione",
+      "name_it": "Verdure di stagione",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 2.8,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima media verdure miste."
+    },
+    {
+      "ingredient_id": "olio_extravergine",
+      "name_it": "Olio extravergine di oliva",
+      "supplier": "orthidal",
+      "unit": "l",
+      "unit_cost": 8.5,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima olio EVO. Da sostituire con prezzo reale Orthidal/GM."
+    },
+    {
+      "ingredient_id": "melanzana",
+      "name_it": "Melanzana",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 2.2,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria."
+    },
+    {
+      "ingredient_id": "aglio",
+      "name_it": "Aglio",
+      "supplier": "gm",
+      "unit": "kg",
+      "unit_cost": 4.0,
+      "source": "manual_estimate",
+      "confidence": "medium",
+      "notes": "Stima provvisoria. Impatto minimo per porzione."
     }
   ]
 }
