@@ -1,7 +1,32 @@
 import React from 'react'
 import KpiCard from '../../components/KpiCard.jsx'
+import AdminModuleCard from '../../components/AdminModuleCard.jsx'
+import menuCostReport from '../../data/menuCostReport.json'
+
+function getAverage(items, field) {
+  const validItems = items.filter((item) => typeof item[field] === 'number')
+  if (!validItems.length) return 0
+
+  const total = validItems.reduce((sum, item) => sum + item[field], 0)
+  return total / validItems.length
+}
+
+function getRiskItems(items) {
+  return items
+    .filter((item) => item.food_cost_percent >= 20 || item.costing_status !== 'complete')
+    .sort((a, b) => (b.food_cost_percent || 0) - (a.food_cost_percent || 0))
+    .slice(0, 5)
+}
 
 export default function AdminDashboard() {
+  const items = menuCostReport.items || []
+
+  const completeItems = items.filter((item) => item.costing_status === 'complete')
+  const warningItems = items.filter((item) => item.costing_status !== 'complete')
+  const avgFoodCost = getAverage(completeItems, 'food_cost_percent')
+  const avgMargin = getAverage(completeItems, 'gross_margin')
+  const riskItems = getRiskItems(items)
+
   return (
     <section className="admin-page">
       <div className="admin-header">
@@ -10,38 +35,80 @@ export default function AdminDashboard() {
           <h2>Dashboard manageriale</h2>
           <p>
             Centro di controllo per food cost, beverage, ordini, menu engineering
-            e decisioni operative.
+            e decisioni operative. I dati sotto leggono il report food cost reale.
           </p>
         </div>
       </div>
 
       <div className="kpi-grid">
-        <KpiCard label="Food cost medio" value="~13%" detail="Stima attuale menu" tone="good" />
-        <KpiCard label="Piatti completi" value="22+" detail="Costing collegato" />
-        <KpiCard label="Alert attivi" value="4" detail="Da validare con Manu" tone="warning" />
-        <KpiCard label="Margine medio" value="Alto" detail="Prezzi Manu sostenibili" tone="good" />
+        <KpiCard
+          label="Food cost medio"
+          value={`${avgFoodCost.toFixed(1)}%`}
+          detail="Media sui piatti completi"
+          tone={avgFoodCost <= 25 ? 'good' : 'warning'}
+        />
+        <KpiCard
+          label="Piatti completi"
+          value={completeItems.length}
+          detail={`${items.length} piatti nel report`}
+        />
+        <KpiCard
+          label="Alert costing"
+          value={warningItems.length}
+          detail="Piatti da completare o verificare"
+          tone={warningItems.length ? 'warning' : 'good'}
+        />
+        <KpiCard
+          label="Margine medio"
+          value={`${avgMargin.toFixed(2)}€`}
+          detail="Margine medio per piatto"
+          tone="good"
+        />
+      </div>
+
+      <div className="dashboard-panel">
+        <div>
+          <p className="eyebrow">Controllo rapido</p>
+          <h3>Piatti da monitorare</h3>
+        </div>
+
+        <div className="risk-list">
+          {riskItems.map((item) => (
+            <article key={item.menu_item_id} className="risk-item">
+              <div>
+                <strong>{item.name_it}</strong>
+                <span>{item.category}</span>
+              </div>
+              <b>{item.food_cost_percent ? `${item.food_cost_percent}%` : 'Da completare'}</b>
+            </article>
+          ))}
+        </div>
       </div>
 
       <div className="admin-grid">
-        <button className="admin-module">
-          <span>Food</span>
-          <strong>Food cost, fornitori cucina, ordini food</strong>
-        </button>
+        <AdminModuleCard
+          title="Food"
+          description="Food cost, fornitori cucina, ordini food"
+          meta="Cucina / ingredienti / ricette"
+        />
 
-        <button className="admin-module">
-          <span>Beverage</span>
-          <strong>Vini, soft drink, liquori, ordini bar</strong>
-        </button>
+        <AdminModuleCard
+          title="Beverage"
+          description="Vini, soft drink, liquori, ordini bar"
+          meta="Bar / cantina / cocktail"
+        />
 
-        <button className="admin-module">
-          <span>F&amp;B Control</span>
-          <strong>Menu completo, margini, alert, riserve e takeaway futuri</strong>
-        </button>
+        <AdminModuleCard
+          title="F&B Control"
+          description="Menu completo, margini, alert, riserve e takeaway futuri"
+          meta="Controllo manageriale"
+        />
 
-        <button className="admin-module">
-          <span>Reports</span>
-          <strong>Trend, storico ordini, export e analisi manageriale</strong>
-        </button>
+        <AdminModuleCard
+          title="Reports"
+          description="Trend, storico ordini, export e analisi manageriale"
+          meta="Power BI style"
+        />
       </div>
     </section>
   )

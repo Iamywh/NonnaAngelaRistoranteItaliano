@@ -1,0 +1,1564 @@
+{
+  "currency": "EUR",
+  "status": "generated",
+  "generated_at": "2026-05-21T15:33:40.623Z",
+  "notes": "Generated from recipesCosting.json, ingredientUnitCosts.json, ingredientCostAliases.json and manuPrices.json.",
+  "items": [
+    {
+      "menu_item_id": "arrosticini_abruzzesi",
+      "name_it": "Arrosticini abruzzesi",
+      "category": "secondi_piatti",
+      "sale_price": 24,
+      "raw_food_cost": 4.56,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 5.24,
+      "food_cost_percent": 21.8,
+      "gross_margin": 18.76,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "arrosticini_pecora",
+          "quantity": 0.24,
+          "unit": "kg",
+          "notes": "3 pezzi da 80g",
+          "cost_ingredient_id": "arrosticini_pecora",
+          "unit_cost": 18,
+          "line_cost": 4.32,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "peperone_arrosto",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Guarnizione/contorno stimato",
+          "cost_ingredient_id": "peperone_arrosto",
+          "unit_cost": 4,
+          "line_cost": 0.24,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "polpette_ragu",
+      "name_it": "Polpette al ragù",
+      "category": "secondi_piatti",
+      "sale_price": 22,
+      "raw_food_cost": 3.32,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 3.82,
+      "food_cost_percent": 17.4,
+      "gross_margin": 18.18,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "polpette_carne",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "3 polpette da 60g",
+          "cost_ingredient_id": "carne_mixta_50_50",
+          "unit_cost": 11.8,
+          "line_cost": 2.12,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "ragu_napoletano",
+          "quantity": 0.1,
+          "unit": "kg",
+          "notes": "Salsa/ragù di servizio stimato",
+          "cost_ingredient_id": "ragu_napoletano",
+          "unit_cost": 12,
+          "line_cost": 1.2,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "porchetta_pure_patate_arrosto",
+      "name_it": "Porchetta con purè di patate arrosto",
+      "category": "secondi_piatti",
+      "sale_price": 35,
+      "raw_food_cost": 2.15,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 2.47,
+      "food_cost_percent": 7.1,
+      "gross_margin": 32.53,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "porchetta",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Porchetta stimata",
+          "cost_ingredient_id": "costillar_cerdo_deshuesado",
+          "unit_cost": 8.95,
+          "line_cost": 1.61,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pure_patate_arrosto",
+          "quantity": 0.12,
+          "unit": "kg",
+          "notes": "Purè stimato",
+          "cost_ingredient_id": "pure_patate_arrosto",
+          "unit_cost": 4.5,
+          "line_cost": 0.54,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "misto_carne_ragu_napoletano",
+      "name_it": "Misto di carne al ragù napoletano",
+      "category": "secondi_piatti",
+      "sale_price": 29.5,
+      "raw_food_cost": 3.23,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 3.71,
+      "food_cost_percent": 12.6,
+      "gross_margin": 25.79,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "braciola",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Braciola stimata",
+          "cost_ingredient_id": "costillar_cerdo_deshuesado",
+          "unit_cost": 8.95,
+          "line_cost": 0.54,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "salsiccia",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Salsiccia stimata",
+          "cost_ingredient_id": "salsiccia",
+          "unit_cost": 11.8,
+          "line_cost": 0.59,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "spuntata_maiale",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Spuntata di maiale stimata",
+          "cost_ingredient_id": "costilla_cerdo",
+          "unit_cost": 8.3,
+          "line_cost": 0.42,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "corazza_vitello",
+          "quantity": 0.04,
+          "unit": "kg",
+          "notes": "Corazza di vitello stimata",
+          "cost_ingredient_id": "carne_con_hueso_pecho",
+          "unit_cost": 15.9,
+          "line_cost": 0.64,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "cotica",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Cotica stimata",
+          "cost_ingredient_id": "piel_cerdo",
+          "unit_cost": 3.99,
+          "line_cost": 0.08,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "ragu_napoletano",
+          "quantity": 0.08,
+          "unit": "kg",
+          "notes": "Ragù di servizio stimato",
+          "cost_ingredient_id": "ragu_napoletano",
+          "unit_cost": 12,
+          "line_cost": 0.96,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "peperone_mbuttunato",
+      "name_it": "Peperone mbuttunato",
+      "category": "secondi_piatti",
+      "sale_price": 18.5,
+      "raw_food_cost": 0.58,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0.67,
+      "food_cost_percent": 3.6,
+      "gross_margin": 17.83,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "peperone",
+          "quantity": 0.16,
+          "unit": "kg",
+          "notes": "Peperone fresco stimato",
+          "cost_ingredient_id": "peperone",
+          "unit_cost": 2.5,
+          "line_cost": 0.4,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "ripieno_pane",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Ripieno di pane stimato",
+          "cost_ingredient_id": "ripieno_pane",
+          "unit_cost": 3,
+          "line_cost": 0.18,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "fagioli_cotiche",
+      "name_it": "Fagioli con le cotiche",
+      "category": "secondi_piatti",
+      "sale_price": 19.5,
+      "raw_food_cost": 0.83,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0.95,
+      "food_cost_percent": 4.9,
+      "gross_margin": 18.55,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "fagioli",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Fagioli cotti/serviti stimati",
+          "cost_ingredient_id": "fagioli",
+          "unit_cost": 3.5,
+          "line_cost": 0.63,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "cotica",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Cotica stimata",
+          "cost_ingredient_id": "piel_cerdo",
+          "unit_cost": 3.99,
+          "line_cost": 0.2,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "lasagna_bolognese",
+      "name_it": "Lasagne al ragù bolognese",
+      "category": "primi_piatti",
+      "sale_price": 22,
+      "raw_food_cost": 1.9,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 2.18,
+      "food_cost_percent": 9.9,
+      "gross_margin": 19.82,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "lasagne",
+          "quantity": 0.08,
+          "unit": "kg",
+          "notes": "Sfoglia lasagna stimata",
+          "cost_ingredient_id": "lasagne",
+          "unit_cost": 4.5,
+          "line_cost": 0.36,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "ragu_bolognese",
+          "quantity": 0.1,
+          "unit": "kg",
+          "notes": "Ragù bolognese stimato",
+          "cost_ingredient_id": "ragu_bolognese",
+          "unit_cost": 10.5,
+          "line_cost": 1.05,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "besciamella",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Besciamella stimata",
+          "cost_ingredient_id": "besciamella",
+          "unit_cost": 3.2,
+          "line_cost": 0.16,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "parmigiano",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Parmigiano stimato",
+          "cost_ingredient_id": "parmigiano",
+          "unit_cost": 16.5,
+          "line_cost": 0.33,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "gnocchi_sorrentina",
+      "name_it": "Gnocchi alla sorrentina",
+      "category": "primi_piatti",
+      "sale_price": 20,
+      "raw_food_cost": 1.57,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 1.81,
+      "food_cost_percent": 9,
+      "gross_margin": 18.19,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "gnocchi",
+          "quantity": 0.14,
+          "unit": "kg",
+          "notes": "Gnocchi freschi stimati",
+          "cost_ingredient_id": "gnocchi",
+          "unit_cost": 4.8,
+          "line_cost": 0.67,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pomodoro",
+          "quantity": 0.08,
+          "unit": "kg",
+          "notes": "Salsa/pomodoro stimato",
+          "cost_ingredient_id": "pomodoro",
+          "unit_cost": 2.2,
+          "line_cost": 0.18,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "fiordilatte",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Fiordilatte stimato",
+          "cost_ingredient_id": "fiordilatte",
+          "unit_cost": 8.5,
+          "line_cost": 0.43,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "parmigiano",
+          "quantity": 0.015,
+          "unit": "kg",
+          "notes": "Parmigiano stimato",
+          "cost_ingredient_id": "parmigiano",
+          "unit_cost": 16.5,
+          "line_cost": 0.25,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "basilico",
+          "quantity": 0.003,
+          "unit": "kg",
+          "notes": "Basilico stimato",
+          "cost_ingredient_id": "basilico",
+          "unit_cost": 12,
+          "line_cost": 0.04,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "paccheri_ragu_napoletano",
+      "name_it": "Paccheri al ragù napoletano",
+      "category": "primi_piatti",
+      "sale_price": 24,
+      "raw_food_cost": 2.11,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 2.43,
+      "food_cost_percent": 10.1,
+      "gross_margin": 21.57,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "paccheri",
+          "quantity": 0.1,
+          "unit": "kg",
+          "notes": "Paccheri secchi stimati",
+          "cost_ingredient_id": "paccheri",
+          "unit_cost": 4.2,
+          "line_cost": 0.42,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "ragu_napoletano",
+          "quantity": 0.12,
+          "unit": "kg",
+          "notes": "Ragù napoletano stimato",
+          "cost_ingredient_id": "ragu_napoletano",
+          "unit_cost": 12,
+          "line_cost": 1.44,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "parmigiano",
+          "quantity": 0.015,
+          "unit": "kg",
+          "notes": "Parmigiano stimato",
+          "cost_ingredient_id": "parmigiano",
+          "unit_cost": 16.5,
+          "line_cost": 0.25,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "cacio_pepe_chitarra",
+      "name_it": "Cacio e pepe alla chitarra",
+      "category": "primi_piatti",
+      "sale_price": 21.5,
+      "raw_food_cost": 1.15,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 1.32,
+      "food_cost_percent": 6.1,
+      "gross_margin": 20.18,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "pasta_chitarra",
+          "quantity": 0.09,
+          "unit": "kg",
+          "notes": "Pasta fresca alla chitarra stimata",
+          "cost_ingredient_id": "pasta_chitarra",
+          "unit_cost": 5.8,
+          "line_cost": 0.52,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pecorino_romano",
+          "quantity": 0.04,
+          "unit": "kg",
+          "notes": "Pecorino romano stimato",
+          "cost_ingredient_id": "pecorino_romano",
+          "unit_cost": 14.5,
+          "line_cost": 0.58,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pepe_nero",
+          "quantity": 0.003,
+          "unit": "kg",
+          "notes": "Pepe nero stimato",
+          "cost_ingredient_id": "pepe_nero",
+          "unit_cost": 18,
+          "line_cost": 0.05,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "rigatoni_pesto",
+      "name_it": "Rigatoni al pesto genovese",
+      "category": "primi_piatti",
+      "sale_price": 22.5,
+      "raw_food_cost": 1.35,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 1.55,
+      "food_cost_percent": 6.9,
+      "gross_margin": 20.95,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "rigatoni",
+          "quantity": 0.1,
+          "unit": "kg",
+          "notes": "Rigatoni secchi stimati",
+          "cost_ingredient_id": "rigatoni",
+          "unit_cost": 3.8,
+          "line_cost": 0.38,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pesto",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Pesto stimato",
+          "cost_ingredient_id": "pesto",
+          "unit_cost": 12,
+          "line_cost": 0.72,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "parmigiano",
+          "quantity": 0.015,
+          "unit": "kg",
+          "notes": "Parmigiano stimato",
+          "cost_ingredient_id": "parmigiano",
+          "unit_cost": 16.5,
+          "line_cost": 0.25,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "tagliere_affettati",
+      "name_it": "Tavolozza salumi",
+      "category": "antipasti_freddi",
+      "sale_price": 30,
+      "raw_food_cost": 3.64,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 4.19,
+      "food_cost_percent": 14,
+      "gross_margin": 25.81,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "bresaola",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "bresaola",
+          "unit_cost": 24,
+          "line_cost": 0.48,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "coppa_parma",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "coppa_parma",
+          "unit_cost": 22,
+          "line_cost": 0.44,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "finocchiona",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "finocchiona",
+          "unit_cost": 18,
+          "line_cost": 0.36,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "salame_napoli",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "salame_napoli",
+          "unit_cost": 17,
+          "line_cost": 0.34,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "mortadella_pistacchio",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "mortadella_pistacchio",
+          "unit_cost": 16,
+          "line_cost": 0.32,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "speck",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "speck",
+          "unit_cost": 20,
+          "line_cost": 0.4,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "guanciale",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "guanciale",
+          "unit_cost": 18,
+          "line_cost": 0.36,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "lardo_colonnata",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "lardo_colonnata",
+          "unit_cost": 25,
+          "line_cost": 0.5,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "focaccia",
+          "quantity": 0.08,
+          "unit": "kg",
+          "notes": "Accompagnamento focaccia",
+          "cost_ingredient_id": "focaccia",
+          "unit_cost": 3.5,
+          "line_cost": 0.28,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "rucola",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Garnish/insalata di accompagnamento",
+          "cost_ingredient_id": "rucola",
+          "unit_cost": 8,
+          "line_cost": 0.16,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "tagliere_formaggi",
+      "name_it": "Tavolozza formaggi",
+      "category": "antipasti_freddi",
+      "sale_price": 28,
+      "raw_food_cost": 3.47,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 3.99,
+      "food_cost_percent": 14.3,
+      "gross_margin": 24.01,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "fontina",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata",
+          "cost_ingredient_id": "fontina",
+          "unit_cost": 15,
+          "line_cost": 0.45,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "taleggio",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata",
+          "cost_ingredient_id": "taleggio",
+          "unit_cost": 16,
+          "line_cost": 0.48,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "parmigiano_scaglie",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata",
+          "cost_ingredient_id": "parmigiano_scaglie",
+          "unit_cost": 16.5,
+          "line_cost": 0.49,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "kinara_tartufo",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata",
+          "cost_ingredient_id": "kinara_tartufo",
+          "unit_cost": 24,
+          "line_cost": 0.72,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "formaggio_barolo",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata",
+          "cost_ingredient_id": "formaggio_barolo",
+          "unit_cost": 22,
+          "line_cost": 0.66,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "frutta_secca",
+          "quantity": 0.025,
+          "unit": "kg",
+          "notes": "Frutta secca di accompagnamento",
+          "cost_ingredient_id": "frutta_secca",
+          "unit_cost": 14,
+          "line_cost": 0.35,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "miele",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Miele di accompagnamento",
+          "cost_ingredient_id": "miele",
+          "unit_cost": 8,
+          "line_cost": 0.16,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "rucola",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Garnish/insalata di accompagnamento",
+          "cost_ingredient_id": "rucola",
+          "unit_cost": 8,
+          "line_cost": 0.16,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "carpaccio_bresaola_rucola_grana_balsamico",
+      "name_it": "Carpaccio con rucola, grana e balsamico",
+      "category": "antipasti_freddi",
+      "sale_price": 19.5,
+      "raw_food_cost": 2.39,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 2.75,
+      "food_cost_percent": 14.1,
+      "gross_margin": 16.75,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "carpaccio_manzo",
+          "quantity": 0.09,
+          "unit": "kg",
+          "notes": "Carpaccio stimato",
+          "cost_ingredient_id": "carpaccio_manzo",
+          "unit_cost": 19.95,
+          "line_cost": 1.8,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "rucola",
+          "quantity": 0.025,
+          "unit": "kg",
+          "notes": "Rucola di accompagnamento",
+          "cost_ingredient_id": "rucola",
+          "unit_cost": 8,
+          "line_cost": 0.2,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "grana",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Scaglie di grana",
+          "cost_ingredient_id": "grana",
+          "unit_cost": 16.5,
+          "line_cost": 0.33,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "aceto_balsamico",
+          "quantity": 0.01,
+          "unit": "l",
+          "notes": "Riduzione/condimento balsamico",
+          "cost_ingredient_id": "aceto_balsamico",
+          "unit_cost": 6,
+          "line_cost": 0.06,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "crostone_taleggio_lardo_colonnata",
+      "name_it": "Crostone taleggio e lardo di Colonnata",
+      "category": "antipasti_caldi",
+      "sale_price": 13.5,
+      "raw_food_cost": 1.55,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 1.78,
+      "food_cost_percent": 13.2,
+      "gross_margin": 11.72,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "pane_crostone",
+          "quantity": 0.08,
+          "unit": "kg",
+          "notes": "Pane per crostone",
+          "cost_ingredient_id": "pane_crostone",
+          "unit_cost": 3.5,
+          "line_cost": 0.28,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "taleggio",
+          "quantity": 0.04,
+          "unit": "kg",
+          "notes": "Taleggio stimato",
+          "cost_ingredient_id": "taleggio",
+          "unit_cost": 16,
+          "line_cost": 0.64,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "lardo_colonnata",
+          "quantity": 0.025,
+          "unit": "kg",
+          "notes": "Lardo di Colonnata stimato",
+          "cost_ingredient_id": "lardo_colonnata",
+          "unit_cost": 25,
+          "line_cost": 0.63,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "mozzarella_carrozza_salame",
+      "name_it": "Mozzarella in carrozza con salame",
+      "category": "antipasti_caldi",
+      "sale_price": 12.5,
+      "raw_food_cost": 1.3,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 1.49,
+      "food_cost_percent": 11.9,
+      "gross_margin": 11.01,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "pane",
+          "quantity": 0.07,
+          "unit": "kg",
+          "notes": "Pane per mozzarella in carrozza",
+          "cost_ingredient_id": "pane",
+          "unit_cost": 3.2,
+          "line_cost": 0.22,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "mozzarella",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Mozzarella stimata",
+          "cost_ingredient_id": "mozzarella",
+          "unit_cost": 7.5,
+          "line_cost": 0.45,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "salame_napoli",
+          "quantity": 0.025,
+          "unit": "kg",
+          "notes": "Salame stimato",
+          "cost_ingredient_id": "salame_napoli",
+          "unit_cost": 17,
+          "line_cost": 0.43,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "uova",
+          "quantity": 0.5,
+          "unit": "unit",
+          "notes": "Mezzo uovo stimato per panatura",
+          "cost_ingredient_id": "uova",
+          "unit_cost": 0.25,
+          "line_cost": 0.13,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "olio_frittura",
+          "quantity": 0.03,
+          "unit": "l",
+          "notes": "Quota operativa olio frittura",
+          "cost_ingredient_id": "olio_frittura",
+          "unit_cost": 2.5,
+          "line_cost": 0.07,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "mozzarella_carrozza_alici",
+      "name_it": "Mozzarella in carrozza con alici",
+      "category": "antipasti_caldi",
+      "sale_price": 12.5,
+      "raw_food_cost": 1.31,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 1.51,
+      "food_cost_percent": 12.1,
+      "gross_margin": 10.99,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "pane",
+          "quantity": 0.07,
+          "unit": "kg",
+          "notes": "Pane per mozzarella in carrozza",
+          "cost_ingredient_id": "pane",
+          "unit_cost": 3.2,
+          "line_cost": 0.22,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "mozzarella",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Mozzarella stimata",
+          "cost_ingredient_id": "mozzarella",
+          "unit_cost": 7.5,
+          "line_cost": 0.45,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "alici",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Alici stimate",
+          "cost_ingredient_id": "alici",
+          "unit_cost": 22,
+          "line_cost": 0.44,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "uova",
+          "quantity": 0.5,
+          "unit": "unit",
+          "notes": "Mezzo uovo stimato per panatura",
+          "cost_ingredient_id": "uova",
+          "unit_cost": 0.25,
+          "line_cost": 0.13,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "olio_frittura",
+          "quantity": 0.03,
+          "unit": "l",
+          "notes": "Quota operativa olio frittura",
+          "cost_ingredient_id": "olio_frittura",
+          "unit_cost": 2.5,
+          "line_cost": 0.07,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "verdure_grigliate_stagione",
+      "name_it": "Verdure grigliate di stagione",
+      "category": "antipasti_caldi",
+      "sale_price": 10.5,
+      "raw_food_cost": 0.58,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0.67,
+      "food_cost_percent": 6.4,
+      "gross_margin": 9.83,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "verdure_stagione",
+          "quantity": 0.16,
+          "unit": "kg",
+          "notes": "Verdure miste di stagione",
+          "cost_ingredient_id": "verdure_stagione",
+          "unit_cost": 2.8,
+          "line_cost": 0.45,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "olio_extravergine",
+          "quantity": 0.015,
+          "unit": "l",
+          "notes": "Olio EVO condimento",
+          "cost_ingredient_id": "olio_extravergine",
+          "unit_cost": 8.5,
+          "line_cost": 0.13,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "melanzana_funghetto",
+      "name_it": "Melanzana a funghetto",
+      "category": "antipasti_caldi",
+      "sale_price": 13.5,
+      "raw_food_cost": 0.67,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0.77,
+      "food_cost_percent": 5.7,
+      "gross_margin": 12.73,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "melanzana",
+          "quantity": 0.14,
+          "unit": "kg",
+          "notes": "Melanzana stimata",
+          "cost_ingredient_id": "melanzana",
+          "unit_cost": 2.2,
+          "line_cost": 0.31,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pomodoro",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Pomodoro stimato",
+          "cost_ingredient_id": "pomodoro",
+          "unit_cost": 2.2,
+          "line_cost": 0.13,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "aglio",
+          "quantity": 0.005,
+          "unit": "kg",
+          "notes": "Aglio stimato",
+          "cost_ingredient_id": "aglio",
+          "unit_cost": 4,
+          "line_cost": 0.02,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "basilico",
+          "quantity": 0.003,
+          "unit": "kg",
+          "notes": "Basilico stimato",
+          "cost_ingredient_id": "basilico",
+          "unit_cost": 12,
+          "line_cost": 0.04,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "olio_extravergine",
+          "quantity": 0.02,
+          "unit": "l",
+          "notes": "Olio EVO cottura/condimento",
+          "cost_ingredient_id": "olio_extravergine",
+          "unit_cost": 8.5,
+          "line_cost": 0.17,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "tiramisu_limone",
+      "name_it": "Tiramisù al limone",
+      "category": "dolci",
+      "sale_price": 8.5,
+      "raw_food_cost": 0.62,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0.71,
+      "food_cost_percent": 8.4,
+      "gross_margin": 7.79,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "savoiardi",
+          "quantity": 0.083,
+          "unit": "pack",
+          "notes": "1 pacco diviso 12 porzioni circa",
+          "cost_ingredient_id": "savoiardi",
+          "unit_cost": 3,
+          "line_cost": 0.25,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "mascarpone",
+          "quantity": 0.021,
+          "unit": "kg",
+          "notes": "250g divisi 12 porzioni circa",
+          "cost_ingredient_id": "mascarpone",
+          "unit_cost": 10,
+          "line_cost": 0.21,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "uova",
+          "quantity": 0.33,
+          "unit": "unit",
+          "notes": "4 uova divise 12 porzioni circa",
+          "cost_ingredient_id": "uova",
+          "unit_cost": 0.25,
+          "line_cost": 0.08,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "zucchero",
+          "quantity": 0.012,
+          "unit": "kg",
+          "notes": "Zucchero stimato per porzione",
+          "cost_ingredient_id": "zucchero",
+          "unit_cost": 1.4,
+          "line_cost": 0.02,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "limone",
+          "quantity": 0.025,
+          "unit": "kg",
+          "notes": "Bagna/scorza/crema al limone",
+          "cost_ingredient_id": "limone",
+          "unit_cost": 2.5,
+          "line_cost": 0.06,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "pere_ricotta",
+      "name_it": "Pere e ricotta",
+      "category": "dolci",
+      "sale_price": 9.5,
+      "raw_food_cost": 1.86,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 2.14,
+      "food_cost_percent": 22.5,
+      "gross_margin": 7.36,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "pere",
+          "quantity": 0.12,
+          "unit": "kg",
+          "notes": "Circa una pera piccola/media pulita",
+          "cost_ingredient_id": "pere",
+          "unit_cost": 2.8,
+          "line_cost": 0.34,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "ricotta",
+          "quantity": 0.1,
+          "unit": "kg",
+          "notes": "Mousse di ricotta stimata",
+          "cost_ingredient_id": "ricotta",
+          "unit_cost": 15,
+          "line_cost": 1.5,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "zucchero",
+          "quantity": 0.015,
+          "unit": "kg",
+          "notes": "Zucchero/aromi",
+          "cost_ingredient_id": "zucchero",
+          "unit_cost": 1.4,
+          "line_cost": 0.02,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "baba_napoletano",
+      "name_it": "Babà napoletano",
+      "category": "dolci",
+      "sale_price": 8,
+      "raw_food_cost": 1.39,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 1.6,
+      "food_cost_percent": 20,
+      "gross_margin": 6.4,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "baba",
+          "quantity": 1,
+          "unit": "unit",
+          "notes": "Un babà monoporzione",
+          "cost_ingredient_id": "baba",
+          "unit_cost": 1.2,
+          "line_cost": 1.2,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "rum",
+          "quantity": 0.015,
+          "unit": "l",
+          "notes": "Quota bagna al rum",
+          "cost_ingredient_id": "rum",
+          "unit_cost": 12,
+          "line_cost": 0.18,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "zucchero",
+          "quantity": 0.01,
+          "unit": "kg",
+          "notes": "Quota zucchero bagna",
+          "cost_ingredient_id": "zucchero",
+          "unit_cost": 1.4,
+          "line_cost": 0.01,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "tris_cannoli_siciliani",
+      "name_it": "Tris di cannolo tricolore",
+      "category": "dolci",
+      "sale_price": 11.5,
+      "raw_food_cost": 2.16,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 2.48,
+      "food_cost_percent": 21.6,
+      "gross_margin": 9.02,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "scorze_cannolo",
+          "quantity": 3,
+          "unit": "unit",
+          "notes": "Tre scorze cannolo",
+          "cost_ingredient_id": "scorze_cannolo",
+          "unit_cost": 0.35,
+          "line_cost": 1.05,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "ricotta_zuccherata",
+          "quantity": 0.06,
+          "unit": "kg",
+          "notes": "Farcitura totale stimata",
+          "cost_ingredient_id": "ricotta_zuccherata",
+          "unit_cost": 12,
+          "line_cost": 0.72,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "amarena",
+          "quantity": 0.01,
+          "unit": "kg",
+          "notes": "Decorazione/farcitura amarena",
+          "cost_ingredient_id": "amarena",
+          "unit_cost": 10,
+          "line_cost": 0.1,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pistacchio",
+          "quantity": 0.01,
+          "unit": "kg",
+          "notes": "Pistacchio/granella",
+          "cost_ingredient_id": "pistacchio",
+          "unit_cost": 28,
+          "line_cost": 0.28,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "zucchero_velo",
+          "quantity": 0.005,
+          "unit": "kg",
+          "notes": "Spolvero",
+          "cost_ingredient_id": "zucchero_velo",
+          "unit_cost": 2,
+          "line_cost": 0.01,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "patate_novelle_buccia",
+      "name_it": "Patate novelle con buccia",
+      "category": "contorni",
+      "sale_price": null,
+      "raw_food_cost": 0.13,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0.15,
+      "food_cost_percent": null,
+      "gross_margin": null,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for patate_novelle",
+        "Missing unit cost for sale"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "patate_novelle",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Patate novelle stimate",
+          "cost_ingredient_id": "patate_novelle",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "olio_extravergine",
+          "quantity": 0.015,
+          "unit": "l",
+          "notes": "Olio EVO condimento/cottura",
+          "cost_ingredient_id": "olio_extravergine",
+          "unit_cost": 8.5,
+          "line_cost": 0.13,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "sale",
+          "quantity": 0.003,
+          "unit": "kg",
+          "notes": "Sale stimato",
+          "cost_ingredient_id": "sale",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "pure_patata_arrosto_radicchio",
+      "name_it": "Purè di patata arrosto e radicchio",
+      "category": "contorni",
+      "sale_price": null,
+      "raw_food_cost": 0,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0,
+      "food_cost_percent": null,
+      "gross_margin": null,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for patata_arrosto",
+        "Missing unit cost for radicchio"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "patata_arrosto",
+          "quantity": 0.14,
+          "unit": "kg",
+          "notes": "Base patata arrosto/purè",
+          "cost_ingredient_id": "patata_arrosto",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "radicchio",
+          "quantity": 0.04,
+          "unit": "kg",
+          "notes": "Radicchio stimato",
+          "cost_ingredient_id": "radicchio",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "misto_verdure_griglia",
+      "name_it": "Misto verdure alla griglia",
+      "category": "contorni",
+      "sale_price": null,
+      "raw_food_cost": 0,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0,
+      "food_cost_percent": null,
+      "gross_margin": null,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for verdure_miste_grigliate"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "verdure_miste_grigliate",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Verdure miste grigliate stimate",
+          "cost_ingredient_id": "verdure_miste_grigliate",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "pinzimonio",
+      "name_it": "Pinzimonio",
+      "category": "contorni",
+      "sale_price": null,
+      "raw_food_cost": 0.13,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0.15,
+      "food_cost_percent": null,
+      "gross_margin": null,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for verdure_crude",
+        "Missing unit cost for sale"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "verdure_crude",
+          "quantity": 0.18,
+          "unit": "kg",
+          "notes": "Verdure crude stimate",
+          "cost_ingredient_id": "verdure_crude",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "olio_extravergine",
+          "quantity": 0.015,
+          "unit": "l",
+          "notes": "Olio EVO accompagnamento",
+          "cost_ingredient_id": "olio_extravergine",
+          "unit_cost": 8.5,
+          "line_cost": 0.13,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "sale",
+          "quantity": 0.003,
+          "unit": "kg",
+          "notes": "Sale stimato",
+          "cost_ingredient_id": "sale",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "rigatoni_amatriciana",
+      "name_it": "Rigatoni all'amatriciana",
+      "category": "primi_piatti",
+      "sale_price": 21.5,
+      "raw_food_cost": 1.46,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 1.68,
+      "food_cost_percent": 7.8,
+      "gross_margin": 19.82,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "rigatoni",
+          "quantity": 0.12,
+          "unit": "kg",
+          "notes": "Rigatoni secchi stimati",
+          "cost_ingredient_id": "rigatoni",
+          "unit_cost": 3.8,
+          "line_cost": 0.46,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "guanciale",
+          "quantity": 0.035,
+          "unit": "kg",
+          "notes": "Guanciale stimato per condimento",
+          "cost_ingredient_id": "guanciale",
+          "unit_cost": 18,
+          "line_cost": 0.63,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pomodoro",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Pomodoro/salsa per amatriciana",
+          "cost_ingredient_id": "pomodoro",
+          "unit_cost": 2.2,
+          "line_cost": 0.11,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pecorino_romano",
+          "quantity": 0.015,
+          "unit": "kg",
+          "notes": "Pecorino romano stimato",
+          "cost_ingredient_id": "pecorino_romano",
+          "unit_cost": 14.5,
+          "line_cost": 0.22,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pepe_nero",
+          "quantity": 0.002,
+          "unit": "kg",
+          "notes": "Pepe nero stimato",
+          "cost_ingredient_id": "pepe_nero",
+          "unit_cost": 18,
+          "line_cost": 0.04,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "paccheri_carbonara",
+      "name_it": "Paccheri alla carbonara",
+      "category": "primi_piatti",
+      "sale_price": 21.5,
+      "raw_food_cost": 1.73,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 1.99,
+      "food_cost_percent": 9.3,
+      "gross_margin": 19.51,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "paccheri",
+          "quantity": 0.12,
+          "unit": "kg",
+          "notes": "Paccheri secchi stimati",
+          "cost_ingredient_id": "paccheri",
+          "unit_cost": 4.2,
+          "line_cost": 0.5,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "guanciale",
+          "quantity": 0.035,
+          "unit": "kg",
+          "notes": "Guanciale stimato per condimento",
+          "cost_ingredient_id": "guanciale",
+          "unit_cost": 18,
+          "line_cost": 0.63,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "uova",
+          "quantity": 0.5,
+          "unit": "unit",
+          "notes": "Mezzo uovo stimato per crema carbonara",
+          "cost_ingredient_id": "uova",
+          "unit_cost": 0.25,
+          "line_cost": 0.13,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pecorino_romano",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Pecorino romano stimato",
+          "cost_ingredient_id": "pecorino_romano",
+          "unit_cost": 14.5,
+          "line_cost": 0.43,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pepe_nero",
+          "quantity": 0.002,
+          "unit": "kg",
+          "notes": "Pepe nero stimato",
+          "cost_ingredient_id": "pepe_nero",
+          "unit_cost": 18,
+          "line_cost": 0.04,
+          "costing_status": "ok"
+        }
+      ]
+    }
+  ]
+}
