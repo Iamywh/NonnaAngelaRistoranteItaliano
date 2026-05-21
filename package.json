@@ -8,10 +8,11 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.106.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.8",
     "lucide-react": "^0.468.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "vite": "^6.0.0"
-  },
-  "devDependencies": {}
+  }
 }

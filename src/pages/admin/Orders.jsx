@@ -3,6 +3,8 @@ import ingredients from '../../data/ingredients.json'
 import beverages from '../../data/beverages.json'
 import barIngredients from '../../data/barIngredients.json'
 import suppliers from '../../data/suppliers.json'
+import jsPDF from 'jspdf'
+import autoTable from 'jspdf-autotable'
 
 const ORDER_HISTORY_KEY = 'nonna_angela_order_history'
 
@@ -167,6 +169,54 @@ export default function Orders({ setCurrentPage }) {
         link.click()
 
         URL.revokeObjectURL(url)
+    }
+    const downloadOrderPdf = (order) => {
+        const doc = new jsPDF()
+        const orderDate = new Date(order.createdAt).toLocaleString()
+
+        doc.setFontSize(18)
+        doc.text('Nonna Angela Ristorante Italiano', 14, 18)
+
+        doc.setFontSize(11)
+        doc.text('Ordine fornitore', 14, 26)
+
+        doc.setFontSize(10)
+        doc.text(`Numero ordine: ${order.orderNumber}`, 14, 38)
+        doc.text(`Data: ${orderDate}`, 14, 45)
+        doc.text(`Tipo: ${order.orderType}`, 14, 52)
+        doc.text(`Fornitori: ${order.suppliers.join(', ')}`, 14, 59)
+        doc.text(`Stato: ${order.status}`, 14, 66)
+        doc.text(`Righe: ${order.lines.length}`, 14, 73)
+
+        autoTable(doc, {
+            startY: 84,
+            head: [['Prodotto', 'Quantità', 'Unità', 'Fornitore', 'Tipo', 'Note']],
+            body: order.lines.map((line) => [
+                line.product,
+                line.quantity,
+                line.unit,
+                line.supplier,
+                line.orderType,
+                line.notes || '-'
+            ]),
+            styles: {
+                fontSize: 9,
+                cellPadding: 3
+            },
+            headStyles: {
+                fillColor: [143, 29, 20],
+                textColor: [255, 255, 255]
+            }
+        })
+
+        doc.setFontSize(8)
+        doc.text(
+            'Documento generato da Nonna Angela Admin Dashboard.',
+            14,
+            doc.internal.pageSize.height - 12
+        )
+
+        doc.save(`${order.orderNumber}.pdf`)
     }
     const openPrintableOrder = (order) => {
         const orderDate = new Date(order.createdAt).toLocaleString()
@@ -540,12 +590,14 @@ export default function Orders({ setCurrentPage }) {
                                 </span>
                             </div>
                             <div className="history-actions">
-                                <button className="ghost-button small" onClick={() => downloadOrderJson(order)}>
-                                    JSON
-                                </button>
-                                <button className="primary-button small" onClick={() => openPrintableOrder(order)}>
-                                    Stampa/PDF
-                                </button>
+                                <div className="history-actions">
+                                    <button className="ghost-button small" onClick={() => downloadOrderJson(order)}>
+                                        JSON
+                                    </button>
+                                    <button className="primary-button small" onClick={() => downloadOrderPdf(order)}>
+                                        PDF
+                                    </button>
+                                </div>
                             </div>
                         </article>
                     ))}
