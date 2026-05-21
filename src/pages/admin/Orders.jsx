@@ -311,10 +311,20 @@ export default function Orders({ setCurrentPage }) {
     </html>
   `
 
-        const printWindow = window.open('', '_blank')
-        printWindow.document.open()
-        printWindow.document.write(html)
-        printWindow.document.close()
+        const blob = new Blob([html], { type: 'text/html' })
+        const url = URL.createObjectURL(blob)
+
+        const printWindow = window.open(url, '_blank')
+
+        if (!printWindow) {
+            alert('Il browser ha bloccato la finestra di stampa. Abilita i popup per questo sito.')
+            URL.revokeObjectURL(url)
+            return
+        }
+
+        setTimeout(() => {
+            URL.revokeObjectURL(url)
+        }, 10000)
     }
     return (
         <section className="admin-page">
