@@ -1,31 +1,26 @@
 [
   {
-    "category": "contorni",
-    "id": "patata_combucchi",
-    "name_it": "Patata combucchi",
-    "sizes": [],
-    "ingredients": [
-      "patata"
-    ],
-    "notes": "Nome da verificare.",
-    "allergens_to_verify": [],
-    "source": "trascrizione manuale utente",
-
-    "fornitore": "Orthidal",
-
-    "coperto_da_ordine": true,
-
-    "food_cost_raw": 0.85,
-    "food_cost_operativo": 2.20,
-
-    "prezzo_consigliato": 5.50,
-
-    "margine_percentuale": 60.0,
-
-    "categoria_profitto": "molto alta",
-
-    "warning_commerciale": "Contorno ad altissima marginalità. Va valorizzato nel naming e nell’impiattamento."
-  },
+  "category": "contorni",
+  "id": "patate_novelle_buccia",
+  "name_it": "Patate novelle con buccia",
+  "sizes": [],
+  "ingredients": [
+    "patate novelle",
+    "olio extravergine",
+    "sale"
+  ],
+  "notes": "Patate novelle con buccia, ideali come contorno rustico.",
+  "allergens_to_verify": [],
+  "source": "correzione manuale utente",
+  "fornitore": "gm",
+  "coperto_da_ordine": "parziale",
+  "food_cost_raw": 0.85,
+  "food_cost_operativo": 2.20,
+  "prezzo_consigliato": 5.50,
+  "margine_percentuale": 60.0,
+  "categoria_profitto": "molto alta",
+  "warning_commerciale": "Contorno semplice ma ad alta marginalità. Va valorizzato come patata novella rustica, non come semplice patata."
+},
 
   {
     "category": "contorni",
