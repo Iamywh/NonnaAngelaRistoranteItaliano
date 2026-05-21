@@ -1,0 +1,29 @@
+[
+  {
+    "id": "orthidal",
+    "name": "Orthidal",
+    "category": "mixed",
+    "areas": ["food", "bar", "wine"],
+    "supplier_type": ["italian_products", "wine", "liquors", "desserts"],
+    "status": "active",
+    "notes": "Fornitore principale per prodotti italiani, vini, liquori e parte dei dolci ordinati."
+  },
+  {
+    "id": "gm",
+    "name": "GM",
+    "category": "mixed",
+    "areas": ["food", "bar"],
+    "supplier_type": ["cash_and_carry", "general_supply"],
+    "status": "pending_data",
+    "notes": "Fornitore da usare per ordini generici futuri. Per ora non abbiamo dati perché non è stato ancora fatto ordine."
+  },
+  {
+    "id": "pasto_y_bellota",
+    "name": "Pasto y Bellota",
+    "category": "food",
+    "areas": ["food"],
+    "supplier_type": ["meat", "butcher"],
+    "status": "active",
+    "notes": "Fornitore carne. Collegato alla tabella/preventivo nudo con costilla de cerdo, piel de cerdo, costilla de res, carne con hueso, carne mixta, bola de caballo e costillar de cerdo."
+  }
+]

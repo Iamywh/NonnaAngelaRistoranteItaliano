@@ -1,0 +1,157 @@
+﻿[
+  {
+    "id": "gin",
+    "name_it": "Gin",
+    "area": "bar",
+    "category": "spirits",
+    "unit": "bottle",
+    "supplier": "gm",
+    "allergens": [],
+    "used_in": ["negroni"],
+    "active": true
+  },
+  {
+    "id": "bitter_italiano",
+    "name_it": "Bitter italiano",
+    "area": "bar",
+    "category": "aperitivi",
+    "unit": "bottle",
+    "supplier": "gm",
+    "allergens": [],
+    "used_in": ["negroni", "americano"],
+    "active": true
+  },
+  {
+    "id": "vermouth_rosso",
+    "name_it": "Vermouth rosso",
+    "area": "bar",
+    "category": "vermouth",
+    "unit": "bottle",
+    "supplier": "gm",
+    "allergens": ["solfiti"],
+    "used_in": ["negroni", "americano"],
+    "active": true
+  },
+  {
+    "id": "soda",
+    "name_it": "Soda",
+    "area": "bar",
+    "category": "soft_drinks",
+    "unit": "bottle",
+    "supplier": "gm",
+    "allergens": [],
+    "used_in": ["americano", "aperol-spritz", "hugo-spritz"],
+    "active": true
+  },
+  {
+    "id": "aperol",
+    "name_it": "Aperol",
+    "area": "bar",
+    "category": "aperitivi",
+    "unit": "bottle",
+    "supplier": "gm",
+    "allergens": [],
+    "used_in": ["aperol-spritz"],
+    "active": true
+  },
+  {
+    "id": "prosecco_bar",
+    "name_it": "Prosecco per cocktail",
+    "area": "bar",
+    "category": "wine_sparkling",
+    "unit": "bottle",
+    "supplier": "orthidal",
+    "allergens": ["solfiti"],
+    "used_in": ["aperol-spritz", "bellini", "rossini", "hugo-spritz"],
+    "notes": "Da collegare al vino reale scelto per mescita/cocktail.",
+    "active": true
+  },
+  {
+    "id": "purea_pesca_bianca",
+    "name_it": "Purea di pesca bianca",
+    "area": "bar",
+    "category": "fruit_puree",
+    "unit": "l",
+    "supplier": "gm",
+    "allergens": [],
+    "used_in": ["bellini"],
+    "active": true
+  },
+  {
+    "id": "fragole_fresche",
+    "name_it": "Fragole fresche",
+    "area": "bar",
+    "category": "fresh_fruit",
+    "unit": "kg",
+    "supplier": "gm",
+    "allergens": [],
+    "used_in": ["rossini"],
+    "active": true
+  },
+  {
+    "id": "sciroppo_sambuco",
+    "name_it": "Sciroppo di sambuco",
+    "area": "bar",
+    "category": "syrups",
+    "unit": "bottle",
+    "supplier": "gm",
+    "allergens": [],
+    "used_in": ["hugo-spritz"],
+    "active": true
+  },
+  {
+    "id": "lime",
+    "name_it": "Lime",
+    "area": "bar",
+    "category": "fresh_fruit",
+    "unit": "kg",
+    "supplier": "gm",
+    "allergens": [],
+    "used_in": ["hugo-spritz"],
+    "active": true
+  },
+  {
+    "id": "menta",
+    "name_it": "Menta",
+    "area": "bar",
+    "category": "fresh_herbs",
+    "unit": "unit",
+    "supplier": "gm",
+    "allergens": [],
+    "used_in": ["hugo-spritz"],
+    "active": true
+  },
+  {
+    "id": "arancia",
+    "name_it": "Arancia",
+    "area": "bar",
+    "category": "fresh_fruit",
+    "unit": "kg",
+    "supplier": "gm",
+    "allergens": [],
+    "used_in": ["negroni", "americano", "aperol-spritz"],
+    "active": true
+  },
+  {
+    "id": "pesca_fresca",
+    "name_it": "Pesca fresca",
+    "area": "bar",
+    "category": "fresh_fruit",
+    "unit": "kg",
+    "supplier": "gm",
+    "allergens": [],
+    "used_in": ["bellini"],
+    "active": true
+  },
+  {
+    "id": "fragola_decorazione",
+    "name_it": "Fragola per decorazione",
+    "area": "bar",
+    "category": "fresh_fruit",
+    "unit": "kg",
+    "supplier": "gm",
+    "allergens": [],
+    "used_in": ["rossini"],
+    "active": true
+  }
+]

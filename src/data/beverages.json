@@ -1,0 +1,189 @@
+[
+  {
+    "id": "coca_cola",
+    "name_it": "Coca-Cola",
+    "area": "bar",
+    "category": "soft_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "coca_cola_zero",
+    "name_it": "Coca-Cola Zero",
+    "area": "bar",
+    "category": "soft_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "fanta_naranja",
+    "name_it": "Fanta Naranja",
+    "area": "bar",
+    "category": "soft_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "fanta_limon",
+    "name_it": "Fanta Limón",
+    "area": "bar",
+    "category": "soft_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "nestea_mango_pina",
+    "name_it": "Nestea Mango Piña",
+    "area": "bar",
+    "category": "iced_tea",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "nestea_limone",
+    "name_it": "Nestea Limone",
+    "area": "bar",
+    "category": "iced_tea",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "sprite",
+    "name_it": "Sprite",
+    "area": "bar",
+    "category": "soft_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "appletiser",
+    "name_it": "Appletiser",
+    "area": "bar",
+    "category": "soft_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "aquarius_naranja",
+    "name_it": "Aquarius Naranja",
+    "area": "bar",
+    "category": "isotonic_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "aquarius_limon",
+    "name_it": "Aquarius Limón",
+    "area": "bar",
+    "category": "isotonic_drinks",
+    "unit": "unit",
+    "format": "bottle_or_can",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "kopparberg",
+    "name_it": "Kopparberg",
+    "area": "bar",
+    "category": "cider",
+    "unit": "unit",
+    "format": "bottle",
+    "supplier": "gm",
+    "allergens": ["solfiti_da_verificare"],
+    "active": true
+  },
+  {
+    "id": "baileys",
+    "name_it": "Baileys",
+    "area": "bar",
+    "category": "liquori_crema",
+    "unit": "bottle",
+    "format": "70cl",
+    "supplier": "gm",
+    "allergens": ["latte"],
+    "active": true
+  },
+  {
+    "id": "averna",
+    "name_it": "Averna",
+    "area": "bar",
+    "category": "amari",
+    "unit": "bottle",
+    "format": "70cl",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "amaro_del_capo",
+    "name_it": "Amaro del Capo",
+    "area": "bar",
+    "category": "amari",
+    "unit": "bottle",
+    "format": "70cl",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "limoncello",
+    "name_it": "Limoncello",
+    "area": "bar",
+    "category": "liquori",
+    "unit": "bottle",
+    "format": "70cl",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "grappa",
+    "name_it": "Grappa",
+    "area": "bar",
+    "category": "distillati",
+    "unit": "bottle",
+    "format": "70cl",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  },
+  {
+    "id": "grappa_18_lune",
+    "name_it": "Grappa 18 Lune",
+    "area": "bar",
+    "category": "distillati_premium",
+    "unit": "bottle",
+    "format": "70cl",
+    "supplier": "gm",
+    "allergens": [],
+    "active": true
+  }
+]
