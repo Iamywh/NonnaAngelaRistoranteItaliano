@@ -1,7 +1,7 @@
 {
   "currency": "EUR",
   "status": "generated",
-  "generated_at": "2026-05-21T00:46:58.057Z",
+  "generated_at": "2026-05-21T15:33:40.623Z",
   "notes": "Generated from recipesCosting.json, ingredientUnitCosts.json, ingredientCostAliases.json and manuPrices.json.",
   "items": [
     {
@@ -1427,6 +1427,136 @@
           "unit_cost": null,
           "line_cost": null,
           "costing_status": "missing_unit_cost"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "rigatoni_amatriciana",
+      "name_it": "Rigatoni all'amatriciana",
+      "category": "primi_piatti",
+      "sale_price": 21.5,
+      "raw_food_cost": 1.46,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 1.68,
+      "food_cost_percent": 7.8,
+      "gross_margin": 19.82,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "rigatoni",
+          "quantity": 0.12,
+          "unit": "kg",
+          "notes": "Rigatoni secchi stimati",
+          "cost_ingredient_id": "rigatoni",
+          "unit_cost": 3.8,
+          "line_cost": 0.46,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "guanciale",
+          "quantity": 0.035,
+          "unit": "kg",
+          "notes": "Guanciale stimato per condimento",
+          "cost_ingredient_id": "guanciale",
+          "unit_cost": 18,
+          "line_cost": 0.63,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pomodoro",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Pomodoro/salsa per amatriciana",
+          "cost_ingredient_id": "pomodoro",
+          "unit_cost": 2.2,
+          "line_cost": 0.11,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pecorino_romano",
+          "quantity": 0.015,
+          "unit": "kg",
+          "notes": "Pecorino romano stimato",
+          "cost_ingredient_id": "pecorino_romano",
+          "unit_cost": 14.5,
+          "line_cost": 0.22,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pepe_nero",
+          "quantity": 0.002,
+          "unit": "kg",
+          "notes": "Pepe nero stimato",
+          "cost_ingredient_id": "pepe_nero",
+          "unit_cost": 18,
+          "line_cost": 0.04,
+          "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "paccheri_carbonara",
+      "name_it": "Paccheri alla carbonara",
+      "category": "primi_piatti",
+      "sale_price": 21.5,
+      "raw_food_cost": 1.73,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 1.99,
+      "food_cost_percent": 9.3,
+      "gross_margin": 19.51,
+      "costing_status": "complete",
+      "warnings": [],
+      "ingredients": [
+        {
+          "ingredient_id": "paccheri",
+          "quantity": 0.12,
+          "unit": "kg",
+          "notes": "Paccheri secchi stimati",
+          "cost_ingredient_id": "paccheri",
+          "unit_cost": 4.2,
+          "line_cost": 0.5,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "guanciale",
+          "quantity": 0.035,
+          "unit": "kg",
+          "notes": "Guanciale stimato per condimento",
+          "cost_ingredient_id": "guanciale",
+          "unit_cost": 18,
+          "line_cost": 0.63,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "uova",
+          "quantity": 0.5,
+          "unit": "unit",
+          "notes": "Mezzo uovo stimato per crema carbonara",
+          "cost_ingredient_id": "uova",
+          "unit_cost": 0.25,
+          "line_cost": 0.13,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pecorino_romano",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Pecorino romano stimato",
+          "cost_ingredient_id": "pecorino_romano",
+          "unit_cost": 14.5,
+          "line_cost": 0.43,
+          "costing_status": "ok"
+        },
+        {
+          "ingredient_id": "pepe_nero",
+          "quantity": 0.002,
+          "unit": "kg",
+          "notes": "Pepe nero stimato",
+          "cost_ingredient_id": "pepe_nero",
+          "unit_cost": 18,
+          "line_cost": 0.04,
+          "costing_status": "ok"
         }
       ]
     }

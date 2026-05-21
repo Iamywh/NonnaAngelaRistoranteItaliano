@@ -824,6 +824,82 @@
           "notes": "Sale stimato"
         }
       ]
+    },
+    {
+      "menu_item_id": "rigatoni_amatriciana",
+      "name_it": "Rigatoni all'amatriciana",
+      "category": "primi_piatti",
+      "portion_notes": "Porzione stimata: 120g rigatoni + circa 50g condimento.",
+      "ingredients": [
+        {
+          "ingredient_id": "rigatoni",
+          "quantity": 0.12,
+          "unit": "kg",
+          "notes": "Rigatoni secchi stimati"
+        },
+        {
+          "ingredient_id": "guanciale",
+          "quantity": 0.035,
+          "unit": "kg",
+          "notes": "Guanciale stimato per condimento"
+        },
+        {
+          "ingredient_id": "pomodoro",
+          "quantity": 0.05,
+          "unit": "kg",
+          "notes": "Pomodoro/salsa per amatriciana"
+        },
+        {
+          "ingredient_id": "pecorino_romano",
+          "quantity": 0.015,
+          "unit": "kg",
+          "notes": "Pecorino romano stimato"
+        },
+        {
+          "ingredient_id": "pepe_nero",
+          "quantity": 0.002,
+          "unit": "kg",
+          "notes": "Pepe nero stimato"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "paccheri_carbonara",
+      "name_it": "Paccheri alla carbonara",
+      "category": "primi_piatti",
+      "portion_notes": "Porzione stimata: 120g paccheri + circa 50g condimento.",
+      "ingredients": [
+        {
+          "ingredient_id": "paccheri",
+          "quantity": 0.12,
+          "unit": "kg",
+          "notes": "Paccheri secchi stimati"
+        },
+        {
+          "ingredient_id": "guanciale",
+          "quantity": 0.035,
+          "unit": "kg",
+          "notes": "Guanciale stimato per condimento"
+        },
+        {
+          "ingredient_id": "uova",
+          "quantity": 0.5,
+          "unit": "unit",
+          "notes": "Mezzo uovo stimato per crema carbonara"
+        },
+        {
+          "ingredient_id": "pecorino_romano",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Pecorino romano stimato"
+        },
+        {
+          "ingredient_id": "pepe_nero",
+          "quantity": 0.002,
+          "unit": "kg",
+          "notes": "Pepe nero stimato"
+        }
+      ]
     }
   ]
 }
