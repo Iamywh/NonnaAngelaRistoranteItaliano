@@ -506,3 +506,16 @@ button {
     flex-direction: column;
   }
 }
+
+.history-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.primary-button.small,
+.ghost-button.small {
+  padding: 9px 12px;
+  font-size: 14px;
+  white-space: nowrap;
+}
