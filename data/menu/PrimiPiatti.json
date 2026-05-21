@@ -106,5 +106,41 @@
     "margine_percentuale": 63.6,
     "categoria_profitto": "alta",
     "warning_commerciale": "Se il pesto è fatto bene vende freschezza. Se è industriale, abbassa la percezione del brand."
+  },
+  {
+    "category": "primi_piatti",
+    "id": "rigatoni_amatriciana",
+    "name_it": "Rigatoni all'amatriciana",
+    "sizes": ["170gr"],
+    "ingredients": ["rigatoni", "guanciale", "pomodoro", "pecorino romano", "pepe nero"],
+    "notes": "Classico romano con guanciale, pomodoro e pecorino.",
+    "allergens_to_verify": ["glutine", "latte"],
+    "source": "aggiunta manuale utente",
+    "fornitore": "orthidal",
+    "coperto_da_ordine": "parziale",
+    "food_cost_raw": null,
+    "food_cost_operativo": null,
+    "prezzo_consigliato": 21.50,
+    "margine_percentuale": null,
+    "categoria_profitto": "da_calcolare",
+    "warning_commerciale": "Piatto molto vendibile. La qualità del guanciale e la gestione della sapidità sono decisive."
+  },
+  {
+    "category": "primi_piatti",
+    "id": "paccheri_carbonara",
+    "name_it": "Paccheri alla carbonara",
+    "sizes": ["170gr"],
+    "ingredients": ["paccheri", "guanciale", "uova", "pecorino romano", "pepe nero"],
+    "notes": "Carbonara cremosa con paccheri, guanciale, uova, pecorino e pepe.",
+    "allergens_to_verify": ["glutine", "latte", "uova"],
+    "source": "aggiunta manuale utente",
+    "fornitore": "orthidal",
+    "coperto_da_ordine": "parziale",
+    "food_cost_raw": null,
+    "food_cost_operativo": null,
+    "prezzo_consigliato": 21.50,
+    "margine_percentuale": null,
+    "categoria_profitto": "da_calcolare",
+    "warning_commerciale": "Piatto ad alta richiesta ma tecnicamente delicato: crema, temperatura e guanciale devono uscire perfetti."
   }
 ]
