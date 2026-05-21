@@ -1,7 +1,7 @@
 {
   "currency": "EUR",
   "status": "generated",
-  "generated_at": "2026-05-21T00:04:03.232Z",
+  "generated_at": "2026-05-21T00:10:56.904Z",
   "notes": "Generated from recipesCosting.json, ingredientUnitCosts.json, ingredientCostAliases.json and manuPrices.json.",
   "items": [
     {
@@ -506,6 +506,236 @@
           "unit_cost": 16.5,
           "line_cost": 0.25,
           "costing_status": "ok"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "tagliere_affettati",
+      "name_it": "Tavolozza salumi",
+      "category": "antipasti_freddi",
+      "sale_price": null,
+      "raw_food_cost": 0,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0,
+      "food_cost_percent": null,
+      "gross_margin": null,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for bresaola",
+        "Missing unit cost for coppa_parma",
+        "Missing unit cost for finocchiona",
+        "Missing unit cost for salame_napoli",
+        "Missing unit cost for mortadella_pistacchio",
+        "Missing unit cost for speck",
+        "Missing unit cost for guanciale",
+        "Missing unit cost for lardo_colonnata",
+        "Missing unit cost for focaccia",
+        "Missing unit cost for rucola"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "bresaola",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "bresaola",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "coppa_parma",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "coppa_parma",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "finocchiona",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "finocchiona",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "salame_napoli",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "salame_napoli",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "mortadella_pistacchio",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "mortadella_pistacchio",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "speck",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "speck",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "guanciale",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "guanciale",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "lardo_colonnata",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata",
+          "cost_ingredient_id": "lardo_colonnata",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "focaccia",
+          "quantity": 0.08,
+          "unit": "kg",
+          "notes": "Accompagnamento focaccia",
+          "cost_ingredient_id": "focaccia",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "rucola",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Garnish/insalata di accompagnamento",
+          "cost_ingredient_id": "rucola",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "tagliere_formaggi",
+      "name_it": "Tavolozza formaggi",
+      "category": "antipasti_freddi",
+      "sale_price": null,
+      "raw_food_cost": 0,
+      "operational_buffer_percent": 15,
+      "estimated_cost": 0,
+      "food_cost_percent": null,
+      "gross_margin": null,
+      "costing_status": "partial",
+      "warnings": [
+        "Missing unit cost for fontina",
+        "Missing unit cost for taleggio",
+        "Missing unit cost for parmigiano_scaglie",
+        "Missing unit cost for kinara_tartufo",
+        "Missing unit cost for formaggio_barolo",
+        "Missing unit cost for frutta_secca",
+        "Missing unit cost for miele",
+        "Missing unit cost for rucola"
+      ],
+      "ingredients": [
+        {
+          "ingredient_id": "fontina",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata",
+          "cost_ingredient_id": "fontina",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "taleggio",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata",
+          "cost_ingredient_id": "taleggio",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "parmigiano_scaglie",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata",
+          "cost_ingredient_id": "parmigiano_scaglie",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "kinara_tartufo",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata",
+          "cost_ingredient_id": "kinara_tartufo",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "formaggio_barolo",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata",
+          "cost_ingredient_id": "formaggio_barolo",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "frutta_secca",
+          "quantity": 0.025,
+          "unit": "kg",
+          "notes": "Frutta secca di accompagnamento",
+          "cost_ingredient_id": "frutta_secca",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "miele",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Miele di accompagnamento",
+          "cost_ingredient_id": "miele",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
+        },
+        {
+          "ingredient_id": "rucola",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Garnish/insalata di accompagnamento",
+          "cost_ingredient_id": "rucola",
+          "unit_cost": null,
+          "line_cost": null,
+          "costing_status": "missing_unit_cost"
         }
       ]
     }

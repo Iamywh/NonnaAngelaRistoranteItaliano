@@ -294,6 +294,130 @@
           "notes": "Parmigiano stimato"
         }
       ]
+    },
+    {
+      "menu_item_id": "tagliere_affettati",
+      "name_it": "Tavolozza salumi",
+      "category": "antipasti_freddi",
+      "portion_notes": "Tagliere intero: una fetta per salume + focaccia + rucola. Mezzo tagliere da gestire come variante futura.",
+      "ingredients": [
+        {
+          "ingredient_id": "bresaola",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata"
+        },
+        {
+          "ingredient_id": "coppa_parma",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata"
+        },
+        {
+          "ingredient_id": "finocchiona",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata"
+        },
+        {
+          "ingredient_id": "salame_napoli",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata"
+        },
+        {
+          "ingredient_id": "mortadella_pistacchio",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata"
+        },
+        {
+          "ingredient_id": "speck",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata"
+        },
+        {
+          "ingredient_id": "guanciale",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata"
+        },
+        {
+          "ingredient_id": "lardo_colonnata",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Una fetta stimata"
+        },
+        {
+          "ingredient_id": "focaccia",
+          "quantity": 0.08,
+          "unit": "kg",
+          "notes": "Accompagnamento focaccia"
+        },
+        {
+          "ingredient_id": "rucola",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Garnish/insalata di accompagnamento"
+        }
+      ]
+    },
+    {
+      "menu_item_id": "tagliere_formaggi",
+      "name_it": "Tavolozza formaggi",
+      "category": "antipasti_freddi",
+      "portion_notes": "Tagliere intero: cinque formaggi + frutta secca + miele + rucola. Mezzo tagliere da gestire come variante futura.",
+      "ingredients": [
+        {
+          "ingredient_id": "fontina",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata"
+        },
+        {
+          "ingredient_id": "taleggio",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata"
+        },
+        {
+          "ingredient_id": "parmigiano_scaglie",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata"
+        },
+        {
+          "ingredient_id": "kinara_tartufo",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata"
+        },
+        {
+          "ingredient_id": "formaggio_barolo",
+          "quantity": 0.03,
+          "unit": "kg",
+          "notes": "Porzione formaggio stimata"
+        },
+        {
+          "ingredient_id": "frutta_secca",
+          "quantity": 0.025,
+          "unit": "kg",
+          "notes": "Frutta secca di accompagnamento"
+        },
+        {
+          "ingredient_id": "miele",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Miele di accompagnamento"
+        },
+        {
+          "ingredient_id": "rucola",
+          "quantity": 0.02,
+          "unit": "kg",
+          "notes": "Garnish/insalata di accompagnamento"
+        }
+      ]
     }
   ]
 }
