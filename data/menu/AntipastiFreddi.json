@@ -119,5 +119,23 @@
     "margine_percentuale": 54.2,
     "categoria_profitto": "media-alta",
     "warning_commerciale": "Meglio scegliere una sola identità: o bresaola o carpaccio. Se lasci doppia opzione, complichi stock e comunicazione."
+  },
+  {
+    "category": "antipasti_freddi",
+    "id": "caprese",
+    "name_it": "Caprese",
+    "sizes": [],
+    "ingredients": ["pomodoro", "mozzarella", "basilico", "olio extravergine"],
+    "notes": "Classico italiano fresco con pomodoro, mozzarella e basilico o olio al basilico.",
+    "allergens_to_verify": ["latte"],
+    "source": "aggiunta manuale Manu",
+    "fornitore": "gm",
+    "coperto_da_ordine": "parziale",
+    "food_cost_raw": null,
+    "food_cost_operativo": null,
+    "prezzo_consigliato": 15.50,
+    "margine_percentuale": null,
+    "categoria_profitto": "da_calcolare",
+    "warning_commerciale": "Prezzo sostenibile solo se la presentazione è curata: pomodoro buono, mozzarella intera o ben valorizzata, basilico fresco/olio aromatico e impiattamento pulito."
   }
 ]
