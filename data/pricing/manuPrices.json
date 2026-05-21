@@ -1,158 +1,163 @@
 {
-  "currency": "EUR",
-  "source": "prezzi proposti da Manu",
-  "last_updated": "2026-05-21",
-  "prices": [
-    {
-      "menu_item_id": "arrosticini_abruzzesi",
-      "name_it": "Arrosticini abruzzesi",
-      "category": "secondi_piatti",
-      "price": 24.0,
-      "notes": "3 arrosticini da 80g"
-    },
-    {
-      "menu_item_id": "misto_carne_ragu_napoletano",
-      "name_it": "Misto di carne al ragù napoletano",
-      "category": "secondi_piatti",
-      "price": 29.5
-    },
-    {
-      "menu_item_id": "polpette_ragu",
-      "name_it": "Polpette al ragù",
-      "category": "secondi_piatti",
-      "price": 22.0,
-      "notes": "3 polpette da 60g ciascuna"
-    },
-    {
-      "menu_item_id": "peperone_mbuttunato",
-      "name_it": "Peperone mbuttunato",
-      "category": "secondi_piatti",
-      "price": 18.5
-    },
-    {
-      "menu_item_id": "porchetta_pure_patate_arrosto",
-      "name_it": "Porchetta con purè di patate arrosto",
-      "category": "secondi_piatti",
-      "price": 35.0
-    },
-    {
-      "menu_item_id": "fagioli_cotiche",
-      "name_it": "Fagioli con le cotiche",
-      "category": "secondi_piatti",
-      "price": 19.5
-    },
-    {
-      "menu_item_id": "lasagna_bolognese",
-      "name_it": "Lasagne al ragù bolognese",
-      "category": "primi_piatti",
-      "price": 22.0,
-      "notes": "Da verificare ID finale nel menu"
-    },
-    {
-      "menu_item_id": "gnocchi_sorrentina",
-      "name_it": "Gnocchi alla sorrentina",
-      "category": "primi_piatti",
-      "price": 20.0
-    },
-    {
-      "menu_item_id": "paccheri_ragu_napoletano",
-      "name_it": "Paccheri al ragù napoletano",
-      "category": "primi_piatti",
-      "price": 24.0,
-      "variants": [
+    "currency": "EUR",
+    "source": "prezzi proposti da Manu",
+    "last_updated": "2026-05-21",
+    "prices": [
         {
-          "id": "paccheri_ragu_napoletano_ricotta_fresca",
-          "name_it": "Paccheri al ragù napoletano con ricotta fresca",
-          "price": 27.0
+            "menu_item_id": "arrosticini_abruzzesi",
+            "name_it": "Arrosticini abruzzesi",
+            "category": "secondi_piatti",
+            "price": 24.0,
+            "notes": "3 arrosticini da 80g"
+        },
+        {
+            "menu_item_id": "misto_carne_ragu_napoletano",
+            "name_it": "Misto di carne al ragù napoletano",
+            "category": "secondi_piatti",
+            "price": 29.5
+        },
+        {
+            "menu_item_id": "polpette_ragu",
+            "name_it": "Polpette al ragù",
+            "category": "secondi_piatti",
+            "price": 22.0,
+            "notes": "3 polpette da 60g ciascuna"
+        },
+        {
+            "menu_item_id": "peperone_mbuttunato",
+            "name_it": "Peperone mbuttunato",
+            "category": "secondi_piatti",
+            "price": 18.5
+        },
+        {
+            "menu_item_id": "porchetta_pure_patate_arrosto",
+            "name_it": "Porchetta con purè di patate arrosto",
+            "category": "secondi_piatti",
+            "price": 35.0
+        },
+        {
+            "menu_item_id": "fagioli_cotiche",
+            "name_it": "Fagioli con le cotiche",
+            "category": "secondi_piatti",
+            "price": 19.5
+        },
+        {
+            "menu_item_id": "lasagna_bolognese",
+            "name_it": "Lasagne al ragù bolognese",
+            "category": "primi_piatti",
+            "price": 22.0,
+            "notes": "Da verificare ID finale nel menu"
+        },
+        {
+            "menu_item_id": "gnocchi_sorrentina",
+            "name_it": "Gnocchi alla sorrentina",
+            "category": "primi_piatti",
+            "price": 20.0
+        },
+        {
+            "menu_item_id": "paccheri_ragu_napoletano",
+            "name_it": "Paccheri al ragù napoletano",
+            "category": "primi_piatti",
+            "price": 24.0,
+            "variants": [
+                {
+                    "id": "paccheri_ragu_napoletano_ricotta_fresca",
+                    "name_it": "Paccheri al ragù napoletano con ricotta fresca",
+                    "price": 27.0
+                }
+            ]
+        },
+        {
+            "menu_item_id": "cacio_pepe_chitarra",
+            "name_it": "Cacio e pepe alla chitarra",
+            "category": "primi_piatti",
+            "price": 21.5
+        },
+        {
+            "menu_item_id": "rigatoni_pesto",
+            "name_it": "Rigatoni al pesto",
+            "category": "primi_piatti",
+            "price": 22.5
+        },
+        {
+            "menu_item_id": "pere_ricotta",
+            "name_it": "Pere e ricotta",
+            "category": "dolci",
+            "price": null,
+            "notes": "Prezzo non ancora comunicato"
+        },
+        {
+            "menu_item_id": "tiramisu_limone",
+            "name_it": "Tiramisù al limone",
+            "category": "dolci",
+            "price": null,
+            "notes": "Prezzo non ancora comunicato"
+        },
+        {
+            "menu_item_id": "baba_napoletano",
+            "name_it": "Babà napoletano",
+            "category": "dolci",
+            "price": 8.0
+        },
+        {
+            "menu_item_id": "tris_cannoli_siciliani",
+            "name_it": "Tris di cannolo tricolore",
+            "category": "dolci",
+            "price": 11.5
+        },
+        {
+            "menu_item_id": "crostone_taleggio_lardo_colonnata",
+            "name_it": "Crostone taleggio e lardo di Colonnata",
+            "category": "antipasti_caldi",
+            "price": 13.5
+        },
+        {
+            "menu_item_id": "mozzarella_carrozza_salame",
+            "name_it": "Mozzarella in carrozza con salame",
+            "category": "antipasti_caldi",
+            "price": 12.5
+        },
+        {
+            "menu_item_id": "mozzarella_carrozza_alici",
+            "name_it": "Mozzarella in carrozza con alici",
+            "category": "antipasti_caldi",
+            "price": 12.5
+        },
+        {
+            "menu_item_id": "verdure_grigliate_stagione",
+            "name_it": "Verdure grigliate",
+            "category": "antipasti_caldi",
+            "price": 10.5
+        },
+        {
+            "menu_item_id": "tagliere_affettati",
+            "name_it": "Tavolozza salumi",
+            "category": "antipasti_freddi",
+            "prices": {
+                "intero": 30.0,
+                "mezzo": 23.0
+            }
+        },
+        {
+            "menu_item_id": "tagliere_formaggi",
+            "name_it": "Tavolozza formaggi",
+            "category": "antipasti_freddi",
+            "prices": {
+                "intero": 28.0,
+                "mezzo": 21.5
+            }
+        },
+        {
+            "menu_item_id": "carpaccio_bresaola_rucola_grana_balsamico",
+            "name_it": "Carpaccio",
+            "category": "antipasti_freddi",
+            "price": 19.5
+        },
+        {
+            "menu_item_id": "melanzana_funghetto",
+            "name_it": "Melanzana a funghetto",
+            "category": "antipasti_caldi",
+            "price": 13.5
         }
-      ]
-    },
-    {
-      "menu_item_id": "cacio_pepe_chitarra",
-      "name_it": "Cacio e pepe alla chitarra",
-      "category": "primi_piatti",
-      "price": 21.5
-    },
-    {
-      "menu_item_id": "rigatoni_pesto",
-      "name_it": "Rigatoni al pesto",
-      "category": "primi_piatti",
-      "price": 22.5
-    },
-    {
-      "menu_item_id": "pere_ricotta",
-      "name_it": "Pere e ricotta",
-      "category": "dolci",
-      "price": null,
-      "notes": "Prezzo non ancora comunicato"
-    },
-    {
-      "menu_item_id": "tiramisu_limone",
-      "name_it": "Tiramisù al limone",
-      "category": "dolci",
-      "price": null,
-      "notes": "Prezzo non ancora comunicato"
-    },
-    {
-      "menu_item_id": "baba_napoletano",
-      "name_it": "Babà napoletano",
-      "category": "dolci",
-      "price": 8.0
-    },
-    {
-      "menu_item_id": "tris_cannoli_siciliani",
-      "name_it": "Tris di cannolo tricolore",
-      "category": "dolci",
-      "price": 11.5
-    },
-    {
-      "menu_item_id": "crostone_taleggio_lardo_colonnata",
-      "name_it": "Crostone taleggio e lardo di Colonnata",
-      "category": "antipasti_caldi",
-      "price": 13.5
-    },
-    {
-      "menu_item_id": "mozzarella_carrozza",
-      "name_it": "Mozzarella in carrozza",
-      "category": "antipasti_caldi",
-      "price": 12.5,
-      "notes": "Da verificare se vale per versione salame, alici o entrambe"
-    },
-    {
-      "menu_item_id": "verdure_grigliate_stagione",
-      "name_it": "Verdure grigliate",
-      "category": "antipasti_caldi",
-      "price": 10.5
-    },
-    {
-      "menu_item_id": "tagliere_affettati",
-      "name_it": "Tavolozza salumi",
-      "category": "antipasti_freddi",
-      "prices": {
-        "intero": 30.0,
-        "mezzo": 23.0
-      }
-    },
-    {
-      "menu_item_id": "tagliere_formaggi",
-      "name_it": "Tavolozza formaggi",
-      "category": "antipasti_freddi",
-      "prices": {
-        "intero": 28.0,
-        "mezzo": 21.5
-      }
-    },
-    {
-      "menu_item_id": "carpaccio_bresaola_rucola_grana_balsamico",
-      "name_it": "Carpaccio",
-      "category": "antipasti_freddi",
-      "price": 19.5
-    },
-    {
-      "menu_item_id": "melanzana_funghetto",
-      "name_it": "Melanzana a funghetto",
-      "category": "antipasti_caldi",
-      "price": 13.5
-    }
-  ]
+    ]
 }
