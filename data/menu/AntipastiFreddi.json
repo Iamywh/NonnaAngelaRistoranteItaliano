@@ -29,8 +29,8 @@
       "mezzo": 6.80
     },
     "prezzo_consigliato": {
-      "intero": 24.00,
-      "mezzo": 14.00
+      "intero": 30.00,
+      "mezzo": 23.00
     },
     "margine_percentuale": {
       "intero": 49.2,
@@ -65,8 +65,8 @@
       "mezzo": 6.30
     },
     "prezzo_consigliato": {
-      "intero": 23.00,
-      "mezzo": 13.50
+      "intero": 30.00,
+      "mezzo": 23.00
     },
     "margine_percentuale": {
       "intero": 50.4,
@@ -92,7 +92,7 @@
     "coperto_da_ordine": false,
     "food_cost_raw": 5.20,
     "food_cost_operativo": 7.60,
-    "prezzo_consigliato": 16.50,
+    "prezzo_consigliato": 18.50,
     "margine_percentuale": 53.9,
     "categoria_profitto": "media",
     "warning_commerciale": "Piatto premium da non prezzare basso. Le alici del Cantabrico devono essere dichiarate bene nel menu perché giustificano il prezzo."
@@ -115,7 +115,7 @@
     "coperto_da_ordine": true,
     "food_cost_raw": 4.80,
     "food_cost_operativo": 7.10,
-    "prezzo_consigliato": 15.50,
+    "prezzo_consigliato": 19.50,
     "margine_percentuale": 54.2,
     "categoria_profitto": "media-alta",
     "warning_commerciale": "Meglio scegliere una sola identità: o bresaola o carpaccio. Se lasci doppia opzione, complichi stock e comunicazione."

@@ -24,7 +24,7 @@
     "coperto_da_ordine": true,
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": null,
+    "prezzo_consigliato": 11.50,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
     "warning_commerciale": "Dolce ad alto valore percepito. I cannoli si ordinano, quindi controllare bene porzioni, rotture e rotazione."
@@ -53,7 +53,7 @@
     "fornitore": "Orthidal",
     "coperto_da_ordine": "parziale",
     "food_cost_raw": null,
-    "food_cost_operativo": null,
+    "food_cost_operativo": 8.00,
     "prezzo_consigliato": null,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
@@ -83,7 +83,7 @@
     "coperto_da_ordine": "parziale",
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": null,
+    "prezzo_consigliato": 8.00,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
     "warning_commerciale": "Dolce molto italiano e raffinato. Va presentato bene per non sembrare una semplice torta alla ricotta."
@@ -113,7 +113,7 @@
     "coperto_da_ordine": true,
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": null,
+    "prezzo_consigliato": 8.00,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
     "warning_commerciale": "Dolce identitario napoletano. Se il locale punta su Nonna Angela e cucina del sud, questo deve essere raccontato bene."

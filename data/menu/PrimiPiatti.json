@@ -12,7 +12,7 @@
     "coperto_da_ordine": true,
     "food_cost_raw": 2.65,
     "food_cost_operativo": 5.10,
-    "prezzo_consigliato": 13.50,
+    "prezzo_consigliato": 22.00,
     "margine_percentuale": 62.2,
     "categoria_profitto": "alta",
     "warning_commerciale": "Attenzione: l'id non corrisponde al nome. Qui va rinominato in tagliatelle_ragu_bolognese."
@@ -30,7 +30,7 @@
     "coperto_da_ordine": "parziale",
     "food_cost_raw": 4.20,
     "food_cost_operativo": 6.90,
-    "prezzo_consigliato": 16.50,
+    "prezzo_consigliato": 22.50,
     "margine_percentuale": 58.2,
     "categoria_profitto": "media-alta",
     "warning_commerciale": "Il cinghiale dà valore percepito alto, ma va porzionato con precisione. Non deve diventare una ciotola di ragù regalato."
@@ -48,7 +48,7 @@
     "coperto_da_ordine": true,
     "food_cost_raw": 2.30,
     "food_cost_operativo": 4.90,
-    "prezzo_consigliato": 12.90,
+    "prezzo_consigliato": 20.00,
     "margine_percentuale": 62.0,
     "categoria_profitto": "alta",
     "warning_commerciale": "Piatto molto vendibile e familiare. Ottimo comfort food, ma va gratinato/presentato bene per non sembrare economico."
@@ -66,7 +66,7 @@
     "coperto_da_ordine": true,
     "food_cost_raw": 3.10,
     "food_cost_operativo": 5.90,
-    "prezzo_consigliato": 15.50,
+    "prezzo_consigliato": 24.00,
     "margine_percentuale": 61.9,
     "categoria_profitto": "alta",
     "warning_commerciale": "Questo può diventare piatto bandiera. Il nome deve vendere emozione: ragù napoletano lento, casa, domenica, Nonna Angela."
@@ -84,7 +84,7 @@
     "coperto_da_ordine": true,
     "food_cost_raw": 1.85,
     "food_cost_operativo": 4.35,
-    "prezzo_consigliato": 12.50,
+    "prezzo_consigliato": 21.50,
     "margine_percentuale": 65.2,
     "categoria_profitto": "molto alta",
     "warning_commerciale": "Piatto ad altissimo margine, ma tecnicamente rischioso: se esce male sembra una pasta al formaggio. Serve esecuzione impeccabile."
@@ -102,7 +102,7 @@
     "coperto_da_ordine": "parziale",
     "food_cost_raw": 2.15,
     "food_cost_operativo": 4.70,
-    "prezzo_consigliato": 12.90,
+    "prezzo_consigliato": 22.50,
     "margine_percentuale": 63.6,
     "categoria_profitto": "alta",
     "warning_commerciale": "Se il pesto è fatto bene vende freschezza. Se è industriale, abbassa la percezione del brand."
