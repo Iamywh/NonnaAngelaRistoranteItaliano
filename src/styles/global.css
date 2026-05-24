@@ -800,3 +800,124 @@ button {
     align-items: flex-start;
   }
 }
+
+/* =========================
+   Dish Cards - Real Menu Data
+========================= */
+
+.menu-data-section {
+  margin-top: 44px;
+}
+
+.section-heading {
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-heading h3 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1;
+}
+
+.dish-card {
+  overflow: hidden;
+  padding: 0;
+  border-radius: 28px;
+  background: var(--panel-strong);
+  border: 1px solid var(--border);
+  box-shadow: 0 14px 36px rgba(42, 28, 20, 0.08);
+}
+
+.dish-image-placeholder {
+  display: grid;
+  place-items: center;
+  height: 130px;
+  background:
+    radial-gradient(circle at top right, rgba(200, 155, 60, 0.4), transparent 34%),
+    linear-gradient(135deg, rgba(143, 29, 20, 0.92), rgba(95, 19, 14, 0.98));
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.dish-card-body {
+  padding: 22px;
+}
+
+.dish-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.dish-card h3 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  line-height: 1.08;
+}
+
+.dish-note {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.dish-ingredients {
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.dish-allergens {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(185, 107, 22, 0.08);
+  color: var(--orange);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.profit-badge {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 6px 9px;
+  background: rgba(47, 125, 74, 0.1);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.dish-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-end;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.dish-footer strong {
+  color: var(--accent);
+  font-size: 22px;
+  white-space: nowrap;
+}
+
+.dish-footer span {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
