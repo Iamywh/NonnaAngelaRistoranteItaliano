@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Home() {
+export default function Home({ setCurrentPage }) {
   return (
     <section className="hero-page">
       <div className="hero-copy">
@@ -12,8 +12,21 @@ export default function Home() {
         </p>
 
         <div className="hero-actions">
-          <button className="primary-button">Vedi il menu</button>
-          <button className="ghost-button">Scopri il locale</button>
+          <button
+            className="primary-button"
+            type="button"
+            onClick={() => setCurrentPage('menu')}
+          >
+            Vedi il menu
+          </button>
+
+          <button
+            className="ghost-button"
+            type="button"
+            onClick={() => setCurrentPage('locale')}
+          >
+            Scopri il locale
+          </button>
         </div>
       </div>
 

@@ -24,7 +24,7 @@ export default function App() {
     if (currentPage === 'admin-fb') return <FBControl setCurrentPage={setCurrentPage} />
     if (currentPage === 'admin-orders') return <Orders setCurrentPage={setCurrentPage} />
     if (currentPage === 'admin-invoices') return <Invoices setCurrentPage={setCurrentPage} />
-    return <Home />
+    return <Home setCurrentPage={setCurrentPage} />
   }
 
   return (
