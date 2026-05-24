@@ -132,9 +132,31 @@ function DishCard({ item }) {
         )}
 
         <div className="dish-footer">
-          <strong>{formatPrice(item.prezzo_consigliato || item.price)}</strong>
-          <span>Wine pairing in arrivo</span>
+          <strong>
+            {formatPrice(
+              item.prezzo_consigliato ||
+              item.price ||
+              item.recommended_price ||
+              item.recommended_bottle_price
+            )}
+          </strong>
+
+          {item.prezzo_consigliato && <span>Wine pairing in arrivo</span>}
+
+          {item.recommended_bottle_price && <span>Piatti abbinati in arrivo</span>}
+
+          {item.recommended_price && <span>Food pairing</span>}
         </div>
+        {Array.isArray(item.pairing) && item.pairing.length > 0 && (
+          <div className="pairing-list">
+            <p>Consigliato con:</p>
+            <ul>
+              {item.pairing.map((pairingItem) => (
+                <li key={pairingItem}>{pairingItem}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </article>
   )
@@ -232,11 +254,11 @@ function CategoryPage({ category, onBack }) {
     }
 
     if (category.id === 'vini') {
-      return [{ title: 'Carta vini', subtitle: 'Selezione italiana', items: vini }]
+      return [{ title: 'Carta vini', subtitle: 'Selezione italiana', items: vini.wines || [] }]
     }
 
     if (category.id === 'cocktail') {
-      return [{ title: 'Cocktail', subtitle: 'Aperitivo e classici', items: cocktail }]
+      return [{ title: 'Cocktail', subtitle: 'Aperitivo e classici', items: cocktail.cocktails || [] }]
     }
 
     return []
