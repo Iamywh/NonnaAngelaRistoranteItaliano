@@ -4,11 +4,11 @@ export default function Home({ setCurrentPage }) {
   return (
     <section className="hero-page">
       <div className="hero-copy">
-        <p className="eyebrow">Cucina italiana autentica</p>
+        <p className="eyebrow">Cocina italiana auténtica</p>
         <h2>Nonna Angela</h2>
         <p>
-          Un ristorante italiano costruito intorno a ricette sincere, servizio curato
-          e piatti che raccontano casa, domenica e tradizione.
+          Un restaurante italiano creado alrededor de recetas sinceras,
+          servicio cuidado y platos que hablan de casa, domingo y tradición.
         </p>
 
         <div className="hero-actions">
@@ -17,7 +17,7 @@ export default function Home({ setCurrentPage }) {
             type="button"
             onClick={() => setCurrentPage('menu')}
           >
-            Vedi il menu
+            Ver el menú
           </button>
 
           <button
@@ -25,15 +25,15 @@ export default function Home({ setCurrentPage }) {
             type="button"
             onClick={() => setCurrentPage('locale')}
           >
-            Scopri il locale
+            Descubre el restaurante
           </button>
         </div>
       </div>
 
       <div className="hero-card">
-        <p>Signature</p>
+        <p>Plato signature</p>
         <h3>Paccheri al ragù napoletano</h3>
-        <span>Ragù lento, ricetta di casa, identità del Sud.</span>
+        <span>Ragú lento, receta de casa, identidad del sur de Italia.</span>
       </div>
     </section>
   )

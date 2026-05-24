@@ -2,9 +2,9 @@ import React from 'react'
 
 export default function Navbar({ currentPage, setCurrentPage }) {
   const publicLinks = [
-    { id: 'home', label: 'Home' },
-    { id: 'locale', label: 'Il locale' },
-    { id: 'menu', label: 'Menu' }
+    { id: 'home', label: 'Inicio' },
+    { id: 'locale', label: 'Restaurante' },
+    { id: 'menu', label: 'Menú' }
   ]
 
   return (
@@ -12,7 +12,7 @@ export default function Navbar({ currentPage, setCurrentPage }) {
       <div className="brand-block" onClick={() => setCurrentPage('home')}>
         <div className="brand-mark">NA</div>
         <div>
-          <p className="brand-kicker">Ristorante Italiano</p>
+          <p className="brand-kicker">Restaurante Italiano</p>
           <h1>Nonna Angela</h1>
         </div>
       </div>
