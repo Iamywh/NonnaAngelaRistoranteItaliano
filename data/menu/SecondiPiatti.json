@@ -3,7 +3,9 @@
     "category": "secondi_piatti",
     "id": "arrosticini_abruzzesi",
     "name_it": "Arrosticini abruzzesi",
-    "sizes": ["3x80gr"],
+    "sizes": [
+      "3x80gr"
+    ],
     "ingredients": [
       "arrosticini di pecora",
       "peperone arrosto"
@@ -11,23 +13,15 @@
     "notes": "Secondo/piatto sharing con forte identità regionale.",
     "allergens_to_verify": [],
     "source": "trascrizione manuale utente",
-
     "fornitore": "Orthidal",
-
     "coperto_da_ordine": "parziale",
-
-    "food_cost_raw": 5.80,
-    "food_cost_operativo": 8.60,
-
-    "prezzo_consigliato": 24.00,
-
-    "margine_percentuale": 53.5,
-
-    "categoria_profitto": "media",
-
+    "food_cost_raw": 5.8,
+    "food_cost_operativo": 8.6,
+    "prezzo_consigliato": 24,
+    "margine_percentuale": 64.2,
+    "categoria_profitto": "alta",
     "warning_commerciale": "Piatto identitario fortissimo. Va servito sizzling/rustico per aumentare percezione premium."
   },
-
   {
     "category": "secondi_piatti",
     "id": "misto_carne_ragu_napoletano",
@@ -42,25 +36,19 @@
       "ragù napoletano"
     ],
     "notes": "Piatto estremamente identitario e tradizionale.",
-    "allergens_to_verify": ["sedano"],
+    "allergens_to_verify": [
+      "sedano"
+    ],
     "source": "trascrizione manuale utente",
-
     "fornitore": "Orthidal",
-
     "coperto_da_ordine": true,
-
-    "food_cost_raw": 8.90,
-    "food_cost_operativo": 12.80,
-
-    "prezzo_consigliato": 29.50,
-
-    "margine_percentuale": 47.7,
-
-    "categoria_profitto": "media-bassa",
-
+    "food_cost_raw": 8.9,
+    "food_cost_operativo": 12.8,
+    "prezzo_consigliato": 29.5,
+    "margine_percentuale": 56.6,
+    "categoria_profitto": "media-alta",
     "warning_commerciale": "Questo non è un piatto da margine: è storytelling puro. Deve sembrare il pranzo della domenica italiana."
   },
-
   {
     "category": "secondi_piatti",
     "id": "polpette_ragu",
@@ -79,23 +67,15 @@
       "latte"
     ],
     "source": "trascrizione manuale utente",
-
     "fornitore": "Orthidal",
-
     "coperto_da_ordine": true,
-
-    "food_cost_raw": 3.10,
-    "food_cost_operativo": 5.70,
-
-    "prezzo_consigliato": 22.00,
-
-    "margine_percentuale": 60.6,
-
-    "categoria_profitto": "alta",
-
+    "food_cost_raw": 3.1,
+    "food_cost_operativo": 5.7,
+    "prezzo_consigliato": 22,
+    "margine_percentuale": 74.1,
+    "categoria_profitto": "molto alta",
     "warning_commerciale": "Piatto estremamente vendibile. Con pane buono e impiattamento rustico diventa comfort food perfetto."
   },
-
   {
     "category": "secondi_piatti",
     "id": "peperone_mbuttunato",
@@ -109,23 +89,15 @@
     "notes": "Piatto regionale tradizionale.",
     "allergens_to_verify": [],
     "source": "trascrizione manuale utente",
-
     "fornitore": "Orthidal",
-
     "coperto_da_ordine": false,
-
-    "food_cost_raw": 2.60,
-    "food_cost_operativo": 4.80,
-
-    "prezzo_consigliato": 18.50,
-
-    "margine_percentuale": 61.6,
-
-    "categoria_profitto": "alta",
-
+    "food_cost_raw": 2.6,
+    "food_cost_operativo": 4.8,
+    "prezzo_consigliato": 18.5,
+    "margine_percentuale": 74.1,
+    "categoria_profitto": "molto alta",
     "warning_commerciale": "Piatto molto interessante per differenziarsi dai soliti italiani turistici."
   },
-
   {
     "category": "secondi_piatti",
     "id": "porchetta_pure_patate_arrosto",
@@ -136,25 +108,19 @@
       "purè di patate arrosto"
     ],
     "notes": "Secondo rustico premium.",
-    "allergens_to_verify": ["latte"],
+    "allergens_to_verify": [
+      "latte"
+    ],
     "source": "trascrizione manuale utente",
-
     "fornitore": "Orthidal",
-
     "coperto_da_ordine": true,
-
-    "food_cost_raw": 5.40,
-    "food_cost_operativo": 8.20,
-
-    "prezzo_consigliato": 35.00,
-
-    "margine_percentuale": 56.6,
-
-    "categoria_profitto": "media-alta",
-
+    "food_cost_raw": 5.4,
+    "food_cost_operativo": 8.2,
+    "prezzo_consigliato": 35,
+    "margine_percentuale": 76.6,
+    "categoria_profitto": "molto alta",
     "warning_commerciale": "La porchetta vende tantissimo a livello emotivo e olfattivo. Ottima anche per contenuti social."
   },
-
   {
     "category": "secondi_piatti",
     "id": "fagioli_cotiche",
@@ -167,20 +133,13 @@
     "notes": "Piatto tradizionale comfort food.",
     "allergens_to_verify": [],
     "source": "trascrizione manuale utente",
-
     "fornitore": "Orthidal",
-
     "coperto_da_ordine": true,
-
-    "food_cost_raw": 2.20,
-    "food_cost_operativo": 4.50,
-
-    "prezzo_consigliato": 18.50,
-
-    "margine_percentuale": 62.1,
-
-    "categoria_profitto": "alta",
-
+    "food_cost_raw": 2.2,
+    "food_cost_operativo": 4.5,
+    "prezzo_consigliato": 18.5,
+    "margine_percentuale": 75.7,
+    "categoria_profitto": "molto alta",
     "warning_commerciale": "Piatto povero storico italiano. Margine ottimo se raccontato bene nel menu."
   }
 ]

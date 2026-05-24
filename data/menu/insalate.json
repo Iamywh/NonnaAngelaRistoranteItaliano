@@ -16,23 +16,15 @@
       "solfiti"
     ],
     "source": "trascrizione manuale utente",
-
     "fornitore": "Orthidal",
-
     "coperto_da_ordine": true,
-
     "food_cost_raw": 1.95,
-    "food_cost_operativo": 3.60,
-
-    "prezzo_consigliato": 8.50,
-
+    "food_cost_operativo": 3.6,
+    "prezzo_consigliato": 8.5,
     "margine_percentuale": 57.6,
-
-    "categoria_profitto": "alta",
-
+    "categoria_profitto": "media-alta",
     "warning_commerciale": "Insalata con forte percezione premium grazie a rucola e grana. Ottima per upselling vino bianco."
   },
-
   {
     "category": "insalate",
     "id": "insalata_mista_classica",
@@ -48,20 +40,13 @@
     "notes": "Insalata classica fresca.",
     "allergens_to_verify": [],
     "source": "trascrizione manuale utente",
-
     "fornitore": "Orthidal",
-
     "coperto_da_ordine": true,
-
     "food_cost_raw": 1.15,
-    "food_cost_operativo": 2.70,
-
-    "prezzo_consigliato": 6.50,
-
-    "margine_percentuale": 58.4,
-
-    "categoria_profitto": "molto alta",
-
+    "food_cost_operativo": 2.7,
+    "prezzo_consigliato": 6.5,
+    "margine_percentuale": 58.5,
+    "categoria_profitto": "media-alta",
     "warning_commerciale": "Piatto ad altissima marginalità. La qualità percepita dipenderà quasi totalmente dalla freschezza visiva."
   }
 ]

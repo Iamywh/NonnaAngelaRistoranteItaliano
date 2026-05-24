@@ -1,27 +1,26 @@
 [
   {
-  "category": "contorni",
-  "id": "patate_novelle_buccia",
-  "name_it": "Patate novelle con buccia",
-  "sizes": [],
-  "ingredients": [
-    "patate novelle",
-    "olio extravergine",
-    "sale"
-  ],
-  "notes": "Patate novelle con buccia, ideali come contorno rustico.",
-  "allergens_to_verify": [],
-  "source": "correzione manuale utente",
-  "fornitore": "gm",
-  "coperto_da_ordine": "parziale",
-  "food_cost_raw": 0.85,
-  "food_cost_operativo": 2.20,
-  "prezzo_consigliato": 5.50,
-  "margine_percentuale": 60.0,
-  "categoria_profitto": "molto alta",
-  "warning_commerciale": "Contorno semplice ma ad alta marginalità. Va valorizzato come patata novella rustica, non come semplice patata."
-},
-
+    "category": "contorni",
+    "id": "patate_novelle_buccia",
+    "name_it": "Patate novelle con buccia",
+    "sizes": [],
+    "ingredients": [
+      "patate novelle",
+      "olio extravergine",
+      "sale"
+    ],
+    "notes": "Patate novelle con buccia, ideali come contorno rustico.",
+    "allergens_to_verify": [],
+    "source": "correzione manuale utente",
+    "fornitore": "gm",
+    "coperto_da_ordine": "parziale",
+    "food_cost_raw": 0.85,
+    "food_cost_operativo": 2.2,
+    "prezzo_consigliato": 5.5,
+    "margine_percentuale": 60,
+    "categoria_profitto": "alta",
+    "warning_commerciale": "Contorno semplice ma ad alta marginalità. Va valorizzato come patata novella rustica, non come semplice patata."
+  },
   {
     "category": "contorni",
     "id": "pure_patata_arrosto_radicchio",
@@ -36,23 +35,15 @@
       "latte"
     ],
     "source": "trascrizione manuale utente",
-
     "fornitore": "Orthidal",
-
     "coperto_da_ordine": "parziale",
-
-    "food_cost_raw": 1.40,
+    "food_cost_raw": 1.4,
     "food_cost_operativo": 2.95,
-
-    "prezzo_consigliato": 6.90,
-
+    "prezzo_consigliato": 6.9,
     "margine_percentuale": 57.2,
-
-    "categoria_profitto": "alta",
-
+    "categoria_profitto": "media-alta",
     "warning_commerciale": "Contorno elegante e da bistrot. Ottimo abbinato a carni rosse e porchetta."
   },
-
   {
     "category": "contorni",
     "id": "misto_verdure_griglia",
@@ -64,23 +55,15 @@
     "notes": "Contorno versatile stagionale.",
     "allergens_to_verify": [],
     "source": "trascrizione manuale utente",
-
     "fornitore": "Orthidal",
-
     "coperto_da_ordine": true,
-
     "food_cost_raw": 1.55,
-    "food_cost_operativo": 3.10,
-
-    "prezzo_consigliato": 11.00,
-
-    "margine_percentuale": 58.6,
-
-    "categoria_profitto": "alta",
-
+    "food_cost_operativo": 3.1,
+    "prezzo_consigliato": 11,
+    "margine_percentuale": 71.8,
+    "categoria_profitto": "molto alta",
     "warning_commerciale": "Fondamentale per tavoli misti, vegetariani e clienti light. Margine molto buono."
   },
-
   {
     "category": "contorni",
     "id": "pinzimonio",
@@ -94,20 +77,13 @@
     "notes": "Contorno fresco e leggero.",
     "allergens_to_verify": [],
     "source": "trascrizione manuale utente",
-
     "fornitore": "Orthidal",
-
     "coperto_da_ordine": true,
-
-    "food_cost_raw": 1.20,
+    "food_cost_raw": 1.2,
     "food_cost_operativo": 2.75,
-
-    "prezzo_consigliato": 6.50,
-
+    "prezzo_consigliato": 6.5,
     "margine_percentuale": 57.7,
-
-    "categoria_profitto": "molto alta",
-
+    "categoria_profitto": "media-alta",
     "warning_commerciale": "Piatto semplice ma intelligente. Percezione healthy alta, costo basso."
   }
 ]
