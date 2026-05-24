@@ -178,7 +178,13 @@ function MenuLanding({ onSelectCategory }) {
             type="button"
           >
             <div className="premium-menu-image">
-              <img src={category.image} alt={category.title} />
+              <img
+                src={category.image}
+                alt={category.title}
+                onError={(event) => {
+                  event.currentTarget.style.display = 'none'
+                }}
+              />
             </div>
 
             <div className="premium-menu-content">
