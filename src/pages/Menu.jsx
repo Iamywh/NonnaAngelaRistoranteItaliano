@@ -13,64 +13,64 @@ import cocktail from '../../data/menu/cocktail.json'
 const menuCategories = [
   {
     id: 'antipasti',
-    title: 'Antipasti',
-    subtitle: 'Per iniziare con gusto italiano vero.',
+    title: 'Entrantes',
+    subtitle: 'Para empezar con auténtico sabor italiano.',
     image: '/images/menu/antipasti.jpg',
     type: 'food'
   },
   {
     id: 'primi',
-    title: 'Primi piatti',
-    subtitle: 'La pasta come centro dell’esperienza.',
+    title: 'Pastas y primeros',
+    subtitle: 'La pasta como centro de la experiencia.',
     image: '/images/menu/primi.jpg',
     type: 'food'
   },
   {
     id: 'secondi',
-    title: 'Secondi piatti',
-    subtitle: 'Carne, tradizione e cucina lenta.',
+    title: 'Segundos',
+    subtitle: 'Carne, tradición y cocina lenta.',
     image: '/images/menu/secondi.jpg',
     type: 'food'
   },
   {
     id: 'contorni',
-    title: 'Contorni e insalate',
-    subtitle: 'Verdure, patate e accompagnamenti.',
+    title: 'Guarniciones y ensaladas',
+    subtitle: 'Verduras, patatas y acompañamientos.',
     image: '/images/menu/contorni.jpg',
     type: 'food'
   },
   {
     id: 'dolci',
-    title: 'Dolci',
-    subtitle: 'Finale italiano, semplice e memorabile.',
+    title: 'Postres',
+    subtitle: 'Un final italiano, sencillo y memorable.',
     image: '/images/menu/dolci.jpg',
     type: 'food'
   },
   {
     id: 'vini',
-    title: 'Carta vini',
-    subtitle: 'Bianchi, rossi, rosati e bollicine italiane.',
+    title: 'Carta de vinos',
+    subtitle: 'Blancos, tintos, rosados y burbujas italianas.',
     image: '/images/menu/vini.jpg',
     type: 'wine'
   },
   {
     id: 'cocktail',
-    title: 'Cocktail',
-    subtitle: 'Aperitivo italiano e grandi classici.',
+    title: 'Cócteles',
+    subtitle: 'Aperitivo italiano y grandes clásicos.',
     image: '/images/menu/cocktail.jpg',
     type: 'drink'
   },
   {
     id: 'liquori',
-    title: 'Liquori e digestivi',
-    subtitle: 'Amari, grappe e fine pasto.',
+    title: 'Licores y digestivos',
+    subtitle: 'Amari, grappas y final de comida.',
     image: '/images/menu/liquori.jpg',
     type: 'drink'
   }
 ]
 
 function formatPrice(price) {
-  if (price === null || price === undefined) return 'Da definire'
+  if (price === null || price === undefined) return 'Por definir'
 
   if (typeof price === 'number') {
     return `${price.toFixed(2).replace('.', ',')}€`
@@ -92,7 +92,7 @@ function formatPrice(price) {
 
 function formatIngredients(ingredients = []) {
   if (!Array.isArray(ingredients) || ingredients.length === 0) {
-    return 'Ingredienti in aggiornamento.'
+    return 'Ingredientes en actualización.'
   }
 
   return ingredients.join(', ')
@@ -114,7 +114,7 @@ function DishCard({ item }) {
           {item.available === false && <span className="soldout-badge">Non disponibile</span>}
         </div>
 
-        <h3>{item.name_it || item.name || 'Piatto senza nome'}</h3>
+        <h3>{item.name_it || item.name || 'Plato sin nombre'}</h3>
 
         {item.notes && <p className="dish-note">{item.notes}</p>}
 
@@ -122,7 +122,7 @@ function DishCard({ item }) {
 
         {Array.isArray(item.allergens_to_verify) && item.allergens_to_verify.length > 0 && (
           <p className="dish-allergens">
-            Allergeni: {item.allergens_to_verify.join(', ')}
+            Alérgenos: {item.allergens_to_verify.join(', ')}
           </p>
         )}
 
@@ -136,15 +136,15 @@ function DishCard({ item }) {
             )}
           </strong>
 
-          {item.prezzo_consigliato && <span>Abbinamento vino</span>}
+          {item.prezzo_consigliato && <span>Maridaje vino</span>}
 
-          {item.recommended_bottle_price && <span>Consigliato con</span>}
+          {item.recommended_bottle_price && <span>Recomendado con</span>}
 
-          {item.recommended_price && <span>Perfetto con</span>}
+          {item.recommended_price && <span>Perfecto con</span>}
         </div>
         {Array.isArray(item.pairing) && item.pairing.length > 0 && (
           <div className="pairing-list">
-            <p>Consigliato con:</p>
+            <p>Recomendado con:</p>
             <ul>
               {item.pairing.map((pairingItem) => (
                 <li key={pairingItem}>{pairingItem}</li>
@@ -161,11 +161,11 @@ function MenuLanding({ onSelectCategory }) {
   return (
     <>
       <div className="menu-hero">
-        <p className="eyebrow">Menu digitale</p>
-        <h2>La cucina di Nonna Angela, scelta con calma</h2>
+        <p className="eyebrow">Menú digital</p>
+        <h2>La cocina de Nonna Angela, elegida con calma</h2>
         <p>
-          Esplora i piatti, scopri gli abbinamenti vino e lasciati guidare tra
-          pasta, tradizione italiana, cocktail e digestivi.
+          Explora los platos, descubre los maridajes y déjate guiar entre
+          pasta, tradición italiana, cócteles y digestivos.
         </p>
       </div>
 
@@ -188,7 +188,7 @@ function MenuLanding({ onSelectCategory }) {
             </div>
 
             <div className="premium-menu-content">
-              <span>{category.type === 'food' ? 'Cucina' : 'Carta'}</span>
+              <span>{category.type === 'food' ? 'Cocina' : 'Carta'}</span>
               <h3>{category.title}</h3>
               <p>{category.subtitle}</p>
             </div>
@@ -223,43 +223,43 @@ function CategoryPage({ category, onBack }) {
     if (category.id === 'antipasti') {
       return [
         {
-          title: 'Antipasti freddi',
-          subtitle: 'Freschi, mediterranei, da condividere',
+          title: 'Entrantes fríos',
+          subtitle: 'Frescos, mediterráneos, para compartir',
           items: antipastiFreddi
         },
         {
-          title: 'Antipasti caldi',
-          subtitle: 'Croccanti, filanti, comfort italiano',
+          title: 'Entrantes calientes',
+          subtitle: 'Crujientes, fundentes, puro comfort italiano',
           items: antipastiCaldi
         }
       ]
     }
 
     if (category.id === 'primi') {
-      return [{ title: 'Primi piatti', subtitle: 'Pasta, ragù e tradizione', items: primiPiatti }]
+      return [{ title: 'Pastas y primeros', subtitle: 'Pasta, ragù y tradición', items: primiPiatti }]
     }
 
     if (category.id === 'secondi') {
-      return [{ title: 'Secondi piatti', subtitle: 'Carne e cucina lenta', items: secondiPiatti }]
+      return [{ title: 'Segundos', subtitle: 'Carne y cocina lenta', items: secondiPiatti }]
     }
 
     if (category.id === 'contorni') {
       return [
-        { title: 'Contorni', subtitle: 'Accompagnamenti caldi e verdure', items: contorni },
-        { title: 'Insalate', subtitle: 'Freschezza e semplicità', items: insalate }
+        { title: 'Guarniciones', subtitle: 'Acompañamientos calientes y verduras', items: contorni },
+        { title: 'Ensaladas', subtitle: 'Frescura y sencillez', items: insalate }
       ]
     }
 
     if (category.id === 'dolci') {
-      return [{ title: 'Dolci', subtitle: 'Fine pasto italiano', items: dolci }]
+      return [{ title: 'Postres', subtitle: 'Final italiano', items: dolci }]
     }
 
     if (category.id === 'vini') {
-      return [{ title: 'Carta vini', subtitle: 'Selezione italiana', items: vini.wines || [] }]
+      return [{ title: 'Carta de vinos', subtitle: 'Selección italiana', items: vini.wines || [] }]
     }
 
     if (category.id === 'cocktail') {
-      return [{ title: 'Cocktail', subtitle: 'Aperitivo e classici', items: cocktail.cocktails || [] }]
+      return [{ title: 'Cócteles', subtitle: 'Aperitivo y clásicos', items: cocktail.cocktails || [] }]
     }
 
     return []
@@ -268,11 +268,11 @@ function CategoryPage({ category, onBack }) {
   return (
     <section className="category-page">
       <button className="back-button" onClick={onBack} type="button">
-        ← Torna al menu
+        ← Volver al menú
       </button>
 
       <div className="category-header">
-        <p className="eyebrow">{category.type === 'food' ? 'Cucina' : 'Carta'}</p>
+        <p className="eyebrow">{category.type === 'food' ? 'Cocina' : 'Carta'}</p>
         <h2>{category.title}</h2>
         <p>{category.subtitle}</p>
       </div>
@@ -290,12 +290,12 @@ function CategoryPage({ category, onBack }) {
         <div className="dish-grid">
           <article className="dish-card placeholder-card">
             <div>
-              <p className="dish-kicker">In preparazione</p>
-              <h3>Sezione in arrivo</h3>
-              <p>Qui collegheremo liquori, amari e grappe.</p>
+              <p className="dish-kicker">En preparación</p>
+              <h3>Sección en camino</h3>
+              <p>Aquí conectaremos licores, amari y grappas.</p>
             </div>
 
-            <strong>Coming soon</strong>
+            <strong>Próximamente</strong>
           </article>
         </div>
       )}
