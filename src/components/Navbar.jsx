@@ -1,15 +1,11 @@
 import React from 'react'
 
-export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIsAdminMode }) {
+export default function Navbar({ currentPage, setCurrentPage }) {
   const publicLinks = [
     { id: 'home', label: 'Home' },
     { id: 'locale', label: 'Il locale' },
     { id: 'menu', label: 'Menu' }
   ]
-
-  const allLinks = isAdminMode
-    ? [...publicLinks, { id: 'admin', label: 'Admin dashboard' }]
-    : publicLinks
 
   return (
     <header className="navbar">
@@ -22,26 +18,17 @@ export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIs
       </div>
 
       <nav className="nav-links">
-        {allLinks.map((link) => (
+        {publicLinks.map((link) => (
           <button
             key={link.id}
             className={currentPage === link.id ? 'nav-link active' : 'nav-link'}
             onClick={() => setCurrentPage(link.id)}
+            type="button"
           >
             {link.label}
           </button>
         ))}
       </nav>
-
-      <button
-        className={isAdminMode ? 'admin-toggle active' : 'admin-toggle'}
-        onClick={() => {
-          setIsAdminMode((value) => !value)
-          setCurrentPage('home')
-        }}
-      >
-        {isAdminMode ? 'Admin ON' : 'Admin'}
-      </button>
     </header>
   )
 }
