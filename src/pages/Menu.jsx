@@ -98,14 +98,9 @@ function formatIngredients(ingredients = []) {
   return ingredients.join(', ')
 }
 
-function getProfitBadge(category) {
-  if (!category || category === 'da_calcolare') return null
-
-  return category
-}
 
 function DishCard({ item }) {
-  const profitBadge = getProfitBadge(item.categoria_profitto)
+
 
   return (
     <article className="dish-card">
@@ -116,7 +111,7 @@ function DishCard({ item }) {
       <div className="dish-card-body">
         <div className="dish-topline">
           <p className="dish-kicker">{item.category?.replaceAll('_', ' ')}</p>
-          {profitBadge && <span className="profit-badge">{profitBadge}</span>}
+          {item.available === false && <span className="soldout-badge">Non disponibile</span>}
         </div>
 
         <h3>{item.name_it || item.name || 'Piatto senza nome'}</h3>
@@ -127,7 +122,7 @@ function DishCard({ item }) {
 
         {Array.isArray(item.allergens_to_verify) && item.allergens_to_verify.length > 0 && (
           <p className="dish-allergens">
-            Allergeni da verificare: {item.allergens_to_verify.join(', ')}
+            Allergeni: {item.allergens_to_verify.join(', ')}
           </p>
         )}
 
@@ -141,11 +136,11 @@ function DishCard({ item }) {
             )}
           </strong>
 
-          {item.prezzo_consigliato && <span>Wine pairing in arrivo</span>}
+          {item.prezzo_consigliato && <span>Abbinamento vino</span>}
 
-          {item.recommended_bottle_price && <span>Piatti abbinati in arrivo</span>}
+          {item.recommended_bottle_price && <span>Consigliato con</span>}
 
-          {item.recommended_price && <span>Food pairing</span>}
+          {item.recommended_price && <span>Perfetto con</span>}
         </div>
         {Array.isArray(item.pairing) && item.pairing.length > 0 && (
           <div className="pairing-list">
