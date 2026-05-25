@@ -227,11 +227,12 @@ function SectionBlock({ title, subtitle, items }) {
         <h3>{title}</h3>
       </div>
 
-      <div className="dish-grid">
-        {items.map((item) => (
-          <DishCard key={item.id} item={item} />
-        ))}
-      </div>
+      {items.map((item, index) => (
+        <DishCard
+          key={item.id || item.code || item.name || `${title}-${index}`}
+          item={item}
+        />
+      ))}
     </div>
   )
 }
