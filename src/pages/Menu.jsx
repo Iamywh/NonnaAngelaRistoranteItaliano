@@ -101,6 +101,19 @@ function formatIngredients(ingredients = []) {
 
 function DishCard({ item }) {
 
+  function formatCategoryLabel(category) {
+    const labels = {
+      antipasti_freddi: 'Entrantes fríos',
+      antipasti_caldi: 'Entrantes calientes',
+      primi_piatti: 'Pastas y primeros',
+      secondi_piatti: 'Segundos',
+      contorni: 'Guarniciones',
+      insalate: 'Ensaladas',
+      dolci: 'Postres'
+    }
+
+    return labels[category] || category?.replaceAll('_', ' ') || 'Menú'
+  }
 
   return (
     <article className="dish-card">
@@ -110,7 +123,7 @@ function DishCard({ item }) {
 
       <div className="dish-card-body">
         <div className="dish-topline">
-          <p className="dish-kicker">{item.category?.replaceAll('_', ' ')}</p>
+          <p className="dish-kicker">{formatCategoryLabel(item.category)}</p>
           {item.available === false && <span className="soldout-badge">Non disponibile</span>}
         </div>
 
