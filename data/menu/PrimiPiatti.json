@@ -12,7 +12,7 @@
       "parmigiano",
       "besciamella"
     ],
-    "notes": "Classico identitario italiano.",
+    "notes": "Clásico italiano con mucha identidad.",
     "allergens_to_verify": [
       "glutine",
       "latte",
@@ -41,7 +41,7 @@
       "vino rosso",
       "parmigiano"
     ],
-    "notes": "Piatto premium rustico.",
+    "notes": "Plato rústico de carácter premium.",
     "allergens_to_verify": [
       "glutine",
       "latte",
@@ -71,7 +71,7 @@
       "parmigiano",
       "basilico"
     ],
-    "notes": "Comfort food classico campano.",
+    "notes": "Comfort food clásico de Campania.",
     "allergens_to_verify": [
       "glutine",
       "latte"
@@ -96,7 +96,7 @@
       "ragù napoletano",
       "parmigiano"
     ],
-    "notes": "Piatto signature potenziale del locale.",
+    "notes": "Posible plato signature de la casa.",
     "allergens_to_verify": [
       "glutine",
       "latte",
@@ -122,7 +122,7 @@
       "pecorino romano",
       "pepe nero"
     ],
-    "notes": "Minimalismo italiano puro.",
+    "notes": "Minimalismo italiano en estado puro.",
     "allergens_to_verify": [
       "glutine",
       "latte",
@@ -148,7 +148,7 @@
       "pesto genovese",
       "parmigiano"
     ],
-    "notes": "Da verificare se pesto classico genovese o reinterpretazione.",
+    "notes": "Por confirmar si será pesto genovés clásico o una reinterpretación.",
     "allergens_to_verify": [
       "glutine",
       "latte",
@@ -178,7 +178,7 @@
       "pecorino romano",
       "pepe nero"
     ],
-    "notes": "Classico romano con guanciale, pomodoro e pecorino.",
+    "notes": "Clásico romano con guanciale, tomate y pecorino.",
     "allergens_to_verify": [
       "glutine",
       "latte"
@@ -207,7 +207,7 @@
       "pecorino romano",
       "pepe nero"
     ],
-    "notes": "Carbonara cremosa con paccheri, guanciale, uova, pecorino e pepe.",
+    "notes": "Carbonara cremosa con paccheri, guanciale, huevos, pecorino y pimienta.",
     "allergens_to_verify": [
       "glutine",
       "latte",

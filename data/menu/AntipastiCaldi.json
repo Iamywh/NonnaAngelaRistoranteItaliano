@@ -9,7 +9,7 @@
       "taleggio",
       "lardo di Colonnata"
     ],
-    "notes": "Antipasto caldo intenso e premium.",
+    "notes": "Entrante caliente intenso y premium.",
     "allergens_to_verify": [
       "glutine",
       "latte"
@@ -34,7 +34,7 @@
       "stracchino",
       "salsiccia"
     ],
-    "notes": "Comfort food italiano rustico.",
+    "notes": "Comfort food italiano de estilo rústico.",
     "allergens_to_verify": [
       "glutine",
       "latte"
@@ -59,7 +59,7 @@
       "pane",
       "salame"
     ],
-    "notes": "Versione salata classica.",
+    "notes": "Versión salada clásica.",
     "allergens_to_verify": [
       "glutine",
       "latte",
@@ -85,7 +85,7 @@
       "pane",
       "alici"
     ],
-    "notes": "Versione più mediterranea e sapida.",
+    "notes": "Versión más mediterránea y sabrosa.",
     "allergens_to_verify": [
       "glutine",
       "latte",
@@ -111,7 +111,7 @@
       "verdure di stagione",
       "olio extravergine"
     ],
-    "notes": "Contorno/antipasto vegetale versatile.",
+    "notes": "Guarnición o entrante vegetal versátil.",
     "allergens_to_verify": [],
     "source": "trascrizione manuale utente",
     "fornitore": "Orthidal",
@@ -135,7 +135,7 @@
       "aglio",
       "basilico"
     ],
-    "notes": "Preparazione tradizionale napoletana da verificare nella ricetta finale.",
+    "notes": "Preparación tradicional napolitana, pendiente de confirmar en la receta final.",
     "allergens_to_verify": [],
     "source": "trascrizione manuale utente",
     "fornitore": "Orthidal",
