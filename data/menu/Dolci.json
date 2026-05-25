@@ -27,7 +27,20 @@
     "prezzo_consigliato": 11.5,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Dolce ad alto valore percepito. I cannoli si ordinano, quindi controllare bene porzioni, rotture e rotazione."
+    "warning_commerciale": "Dolce ad alto valore percepito. I cannoli si ordinano, quindi controllare bene porzioni, rotture e rotazione.",
+    "name_es": "Tris de cannoli sicilianos",
+    "description_es": "Tres cannoli con rellenos diferentes: ricotta clásica, ricotta y amarena, ricotta y pistacho.",
+    "ingredients_es": [
+      "cannoli",
+      "ricotta",
+      "amarena",
+      "pistacho"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche",
+      "frutos secos"
+    ]
   },
   {
     "category": "dolci",
@@ -57,7 +70,19 @@
     "prezzo_consigliato": null,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Dolce fresco e più elegante del tiramisù classico. Ottimo per differenziarsi, ma va bilanciato: se è troppo dolce o troppo acido perde."
+    "warning_commerciale": "Dolce fresco e più elegante del tiramisù classico. Ottimo per differenziarsi, ma va bilanciato: se è troppo dolce o troppo acido perde.",
+    "name_es": "Tiramisú de limón",
+    "description_es": "Savoiardi bañados en limón con crema de mascarpone al limón.",
+    "ingredients_es": [
+      "savoiardi",
+      "limón",
+      "mascarpone"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche",
+      "huevo"
+    ]
   },
   {
     "category": "dolci",
@@ -86,7 +111,16 @@
     "prezzo_consigliato": 8,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Dolce molto italiano e raffinato. Va presentato bene per non sembrare una semplice torta alla ricotta."
+    "warning_commerciale": "Dolce molto italiano e raffinato. Va presentato bene per non sembrare una semplice torta alla ricotta.",
+    "name_es": "Pera y ricotta",
+    "description_es": "Postre tradicional con ricotta y pera.",
+    "ingredients_es": [
+      "ricotta",
+      "pera"
+    ],
+    "allergens_es": [
+      "leche"
+    ]
   },
   {
     "category": "dolci",
@@ -116,6 +150,17 @@
     "prezzo_consigliato": 8,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Dolce identitario napoletano. Se il locale punta su Nonna Angela e cucina del sud, questo deve essere raccontato bene."
+    "warning_commerciale": "Dolce identitario napoletano. Se il locale punta su Nonna Angela e cucina del sud, questo deve essere raccontato bene.",
+    "name_es": "Babà napolitano",
+    "description_es": "Babà tradicional bañado al ron.",
+    "ingredients_es": [
+      "babà",
+      "ron"
+    ],
+    "allergens_es": [
+      "gluten",
+      "huevo",
+      "sulfitos"
+    ]
   }
 ]

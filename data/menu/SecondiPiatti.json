@@ -20,7 +20,14 @@
     "prezzo_consigliato": 24,
     "margine_percentuale": 64.2,
     "categoria_profitto": "alta",
-    "warning_commerciale": "Piatto identitario fortissimo. Va servito sizzling/rustico per aumentare percezione premium."
+    "warning_commerciale": "Piatto identitario fortissimo. Va servito sizzling/rustico per aumentare percezione premium.",
+    "name_es": "Arrosticini abruzzesi",
+    "description_es": "Brochetas tradicionales de cordero servidas con pimiento asado.",
+    "ingredients_es": [
+      "cordero",
+      "pimiento asado"
+    ],
+    "allergens_es": []
   },
   {
     "category": "secondi_piatti",
@@ -47,7 +54,22 @@
     "prezzo_consigliato": 29.5,
     "margine_percentuale": 56.6,
     "categoria_profitto": "media-alta",
-    "warning_commerciale": "Questo non è un piatto da margine: è storytelling puro. Deve sembrare il pranzo della domenica italiana."
+    "warning_commerciale": "Questo non è un piatto da margine: è storytelling puro. Deve sembrare il pranzo della domenica italiana.",
+    "name_es": "Mixto de carne al ragú napolitano",
+    "description_es": "Braciola, salchicha, costilla de cerdo, costilla de res, carne de ternera y piel de cerdo cocinadas en ragú napolitano.",
+    "ingredients_es": [
+      "braciola",
+      "salchicha",
+      "costilla de cerdo",
+      "costilla de res",
+      "carne de ternera",
+      "piel de cerdo",
+      "ragú napolitano"
+    ],
+    "allergens_es": [
+      "apio",
+      "sulfitos"
+    ]
   },
   {
     "category": "secondi_piatti",
@@ -74,7 +96,19 @@
     "prezzo_consigliato": 22,
     "margine_percentuale": 74.1,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto estremamente vendibile. Con pane buono e impiattamento rustico diventa comfort food perfetto."
+    "warning_commerciale": "Piatto estremamente vendibile. Con pane buono e impiattamento rustico diventa comfort food perfetto.",
+    "name_es": "Albóndigas al ragú",
+    "description_es": "Albóndigas de carne servidas con ragú napolitano.",
+    "ingredients_es": [
+      "albóndigas de carne",
+      "ragú napolitano"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche",
+      "huevo",
+      "apio"
+    ]
   },
   {
     "category": "secondi_piatti",
@@ -96,7 +130,13 @@
     "prezzo_consigliato": 18.5,
     "margine_percentuale": 74.1,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto molto interessante per differenziarsi dai soliti italiani turistici."
+    "warning_commerciale": "Piatto molto interessante per differenziarsi dai soliti italiani turistici.",
+    "name_es": "Pimiento mbuttunato",
+    "description_es": "Pimiento relleno según tradición.",
+    "ingredients_es": [
+      "pimiento relleno"
+    ],
+    "allergens_es": []
   },
   {
     "category": "secondi_piatti",
@@ -119,7 +159,16 @@
     "prezzo_consigliato": 35,
     "margine_percentuale": 76.6,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "La porchetta vende tantissimo a livello emotivo e olfattivo. Ottima anche per contenuti social."
+    "warning_commerciale": "La porchetta vende tantissimo a livello emotivo e olfattivo. Ottima anche per contenuti social.",
+    "name_es": "Porchetta con puré de patata asada",
+    "description_es": "Porchetta servida con puré de patata asada.",
+    "ingredients_es": [
+      "porchetta",
+      "puré de patata asada"
+    ],
+    "allergens_es": [
+      "leche"
+    ]
   },
   {
     "category": "secondi_piatti",
@@ -140,6 +189,13 @@
     "prezzo_consigliato": 18.5,
     "margine_percentuale": 75.7,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto povero storico italiano. Margine ottimo se raccontato bene nel menu."
+    "warning_commerciale": "Piatto povero storico italiano. Margine ottimo se raccontato bene nel menu.",
+    "name_es": "Fagioli con cotiche",
+    "description_es": "Alubias con piel de cerdo según tradición italiana.",
+    "ingredients_es": [
+      "alubias",
+      "piel de cerdo"
+    ],
+    "allergens_es": []
   }
 ]

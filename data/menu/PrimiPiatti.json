@@ -27,7 +27,20 @@
     "prezzo_consigliato": 22,
     "margine_percentuale": 76.8,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Attenzione: l'id non corrisponde al nome. Qui va rinominato in tagliatelle_ragu_bolognese."
+    "warning_commerciale": "Attenzione: l'id non corrisponde al nome. Qui va rinominato in tagliatelle_ragu_bolognese.",
+    "name_es": "Tagliatelle al ragú boloñés",
+    "description_es": "Tagliatelle con ragú boloñés y parmigiano.",
+    "ingredients_es": [
+      "tagliatelle",
+      "ragú boloñés",
+      "parmigiano"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche",
+      "huevo",
+      "apio"
+    ]
   },
   {
     "category": "primi_piatti",
@@ -57,7 +70,23 @@
     "prezzo_consigliato": 22.5,
     "margine_percentuale": 69.3,
     "categoria_profitto": "alta",
-    "warning_commerciale": "Il cinghiale dà valore percepito alto, ma va porzionato con precisione. Non deve diventare una ciotola di ragù regalato."
+    "warning_commerciale": "Il cinghiale dà valore percepito alto, ma va porzionato con precisione. Non deve diventare una ciotola di ragù regalato.",
+    "name_es": "Pappardelle con salsa de jabalí",
+    "description_es": "Pappardelle con ragú de jabalí, tomate, vino tinto y parmigiano.",
+    "ingredients_es": [
+      "pappardelle",
+      "ragú de jabalí",
+      "tomate",
+      "vino tinto",
+      "parmigiano"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche",
+      "huevo",
+      "apio",
+      "sulfitos"
+    ]
   },
   {
     "category": "primi_piatti",
@@ -84,7 +113,20 @@
     "prezzo_consigliato": 20,
     "margine_percentuale": 75.5,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto molto vendibile e familiare. Ottimo comfort food, ma va gratinato/presentato bene per non sembrare economico."
+    "warning_commerciale": "Piatto molto vendibile e familiare. Ottimo comfort food, ma va gratinato/presentato bene per non sembrare economico.",
+    "name_es": "Gnocchi alla sorrentina",
+    "description_es": "Gnocchi con tomate, fiordilatte, parmigiano y albahaca.",
+    "ingredients_es": [
+      "gnocchi",
+      "tomate",
+      "fiordilatte",
+      "parmigiano",
+      "albahaca"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche"
+    ]
   },
   {
     "category": "primi_piatti",
@@ -110,7 +152,19 @@
     "prezzo_consigliato": 24,
     "margine_percentuale": 75.4,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Questo può diventare piatto bandiera. Il nome deve vendere emozione: ragù napoletano lento, casa, domenica, Nonna Angela."
+    "warning_commerciale": "Questo può diventare piatto bandiera. Il nome deve vendere emozione: ragù napoletano lento, casa, domenica, Nonna Angela.",
+    "name_es": "Paccheri al ragú napolitano",
+    "description_es": "Paccheri con ragú napolitano y parmigiano.",
+    "ingredients_es": [
+      "paccheri",
+      "ragú napolitano",
+      "parmigiano"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche",
+      "apio"
+    ]
   },
   {
     "category": "primi_piatti",
@@ -136,7 +190,19 @@
     "prezzo_consigliato": 21.5,
     "margine_percentuale": 79.8,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto ad altissimo margine, ma tecnicamente rischioso: se esce male sembra una pasta al formaggio. Serve esecuzione impeccabile."
+    "warning_commerciale": "Piatto ad altissimo margine, ma tecnicamente rischioso: se esce male sembra una pasta al formaggio. Serve esecuzione impeccabile.",
+    "name_es": "Cacio e pepe alla chitarra",
+    "description_es": "Spaghetti alla chitarra con pecorino romano y pimienta negra.",
+    "ingredients_es": [
+      "spaghetti alla chitarra",
+      "pecorino romano",
+      "pimienta negra"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche",
+      "huevo"
+    ]
   },
   {
     "category": "primi_piatti",
@@ -162,7 +228,19 @@
     "prezzo_consigliato": 22.5,
     "margine_percentuale": 79.1,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Se il pesto è fatto bene vende freschezza. Se è industriale, abbassa la percezione del brand."
+    "warning_commerciale": "Se il pesto è fatto bene vende freschezza. Se è industriale, abbassa la percezione del brand.",
+    "name_es": "Rigatoni al pesto",
+    "description_es": "Rigatoni con pesto y parmigiano.",
+    "ingredients_es": [
+      "rigatoni",
+      "pesto",
+      "parmigiano"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche",
+      "frutos secos"
+    ]
   },
   {
     "category": "primi_piatti",
@@ -191,7 +269,20 @@
     "prezzo_consigliato": 21.5,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Piatto molto vendibile. La qualità del guanciale e la gestione della sapidità sono decisive."
+    "warning_commerciale": "Piatto molto vendibile. La qualità del guanciale e la gestione della sapidità sono decisive.",
+    "name_es": "Rigatoni all’amatriciana",
+    "description_es": "Rigatoni con tomate, guanciale, pecorino romano y un toque de pimienta.",
+    "ingredients_es": [
+      "rigatoni",
+      "tomate",
+      "guanciale",
+      "pecorino romano",
+      "pimienta"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche"
+    ]
   },
   {
     "category": "primi_piatti",
@@ -221,6 +312,20 @@
     "prezzo_consigliato": 21.5,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Piatto ad alta richiesta ma tecnicamente delicato: crema, temperatura e guanciale devono uscire perfetti."
+    "warning_commerciale": "Piatto ad alta richiesta ma tecnicamente delicato: crema, temperatura e guanciale devono uscire perfetti.",
+    "name_es": "Paccheri alla carbonara",
+    "description_es": "Paccheri con guanciale, pecorino romano, huevo y pimienta negra.",
+    "ingredients_es": [
+      "paccheri",
+      "guanciale",
+      "pecorino romano",
+      "huevo",
+      "pimienta negra"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche",
+      "huevo"
+    ]
   }
 ]

@@ -43,7 +43,21 @@
       "mezzo": 70.4
     },
     "categoria_profitto": "media-alta",
-    "warning_commerciale": "Piatto ad alto valore percepito, ma attenzione: i salumi premium mangiano margine. Va venduto bene, non regalato."
+    "warning_commerciale": "Piatto ad alto valore percepito, ma attenzione: i salumi premium mangiano margine. Va venduto bene, non regalato.",
+    "name_es": "Tabla de embutidos",
+    "description_es": "Selección de bresaola, coppa, finocchiona, salame Napoli, mortadela con pistacho y speck.",
+    "ingredients_es": [
+      "bresaola",
+      "coppa",
+      "finocchiona",
+      "salame Napoli",
+      "mortadela con pistacho",
+      "speck"
+    ],
+    "allergens_es": [
+      "pistacho",
+      "frutos secos"
+    ]
   },
   {
     "category": "antipasti_freddi",
@@ -84,7 +98,19 @@
       "mezzo": 72.6
     },
     "categoria_profitto": "alta",
-    "warning_commerciale": "Buono per upselling vino. Il formaggio al tartufo e Barolo danno storytelling, ma vanno porzionati con precisione."
+    "warning_commerciale": "Buono per upselling vino. Il formaggio al tartufo e Barolo danno storytelling, ma vanno porzionati con precisione.",
+    "name_es": "Tabla de quesos",
+    "description_es": "Selección de fontina, taleggio, parmigiano, queso al tartufo y queso al Barolo.",
+    "ingredients_es": [
+      "fontina",
+      "taleggio",
+      "parmigiano",
+      "queso al tartufo",
+      "queso al Barolo"
+    ],
+    "allergens_es": [
+      "leche"
+    ]
   },
   {
     "category": "antipasti_freddi",
@@ -109,7 +135,18 @@
     "prezzo_consigliato": 18.5,
     "margine_percentuale": 58.9,
     "categoria_profitto": "media-alta",
-    "warning_commerciale": "Piatto premium da non prezzare basso. Le alici del Cantabrico devono essere dichiarate bene nel menu perché giustificano il prezzo."
+    "warning_commerciale": "Piatto premium da non prezzare basso. Le alici del Cantabrico devono essere dichiarate bene nel menu perché giustificano il prezzo.",
+    "name_es": "Anchoas del Cantábrico con burrata y tomate seco",
+    "description_es": "Anchoas del Cantábrico servidas con burrata cremosa y tomate seco.",
+    "ingredients_es": [
+      "anchoas del Cantábrico",
+      "burrata",
+      "tomate seco"
+    ],
+    "allergens_es": [
+      "pescado",
+      "leche"
+    ]
   },
   {
     "category": "antipasti_freddi",
@@ -135,7 +172,19 @@
     "prezzo_consigliato": 19.5,
     "margine_percentuale": 63.6,
     "categoria_profitto": "alta",
-    "warning_commerciale": "Meglio scegliere una sola identità: o bresaola o carpaccio. Se lasci doppia opzione, complichi stock e comunicazione."
+    "warning_commerciale": "Meglio scegliere una sola identità: o bresaola o carpaccio. Se lasci doppia opzione, complichi stock e comunicazione.",
+    "name_es": "Carpaccio / Bresaola",
+    "description_es": "Carpaccio o bresaola con rúcula, grana y vinagre balsámico.",
+    "ingredients_es": [
+      "carpaccio o bresaola",
+      "rúcula",
+      "grana",
+      "vinagre balsámico"
+    ],
+    "allergens_es": [
+      "leche",
+      "sulfitos"
+    ]
   },
   {
     "category": "antipasti_freddi",
@@ -160,6 +209,17 @@
     "prezzo_consigliato": 15.5,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Prezzo sostenibile solo se la presentazione è curata: pomodoro buono, mozzarella intera o ben valorizzata, basilico fresco/olio aromatico e impiattamento pulito."
+    "warning_commerciale": "Prezzo sostenibile solo se la presentazione è curata: pomodoro buono, mozzarella intera o ben valorizzata, basilico fresco/olio aromatico e impiattamento pulito.",
+    "name_es": "Caprese",
+    "description_es": "Tomate, mozzarella fiordilatte, albahaca y aceite de oliva virgen extra.",
+    "ingredients_es": [
+      "tomate",
+      "mozzarella fiordilatte",
+      "albahaca",
+      "aceite de oliva virgen extra"
+    ],
+    "allergens_es": [
+      "leche"
+    ]
   }
 ]

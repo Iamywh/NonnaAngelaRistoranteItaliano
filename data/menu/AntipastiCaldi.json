@@ -22,7 +22,18 @@
     "prezzo_consigliato": 13.5,
     "margine_percentuale": 64.1,
     "categoria_profitto": "alta",
-    "warning_commerciale": "Il lardo di Colonnata aumenta il valore percepito ma ha rotazione più lenta."
+    "warning_commerciale": "Il lardo di Colonnata aumenta il valore percepito ma ha rotazione più lenta.",
+    "name_es": "Crostone de taleggio y lardo de Colonnata",
+    "description_es": "Pan tostado con taleggio fundido y lardo de Colonnata.",
+    "ingredients_es": [
+      "pan tostado",
+      "taleggio",
+      "lardo de Colonnata"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche"
+    ]
   },
   {
     "category": "antipasti_caldi",
@@ -47,7 +58,18 @@
     "prezzo_consigliato": 13.5,
     "margine_percentuale": 70,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Ottimo antipasto da aperitivo e upselling vino rosso."
+    "warning_commerciale": "Ottimo antipasto da aperitivo e upselling vino rosso.",
+    "name_es": "Crostone de stracchino y salchicha",
+    "description_es": "Pan tostado con stracchino cremoso y salchicha.",
+    "ingredients_es": [
+      "pan tostado",
+      "stracchino",
+      "salchicha"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche"
+    ]
   },
   {
     "category": "antipasti_caldi",
@@ -73,7 +95,19 @@
     "prezzo_consigliato": 12.5,
     "margine_percentuale": 71.2,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto estremamente profittevole se servito con presentazione premium."
+    "warning_commerciale": "Piatto estremamente profittevole se servito con presentazione premium.",
+    "name_es": "Mozzarella in carrozza con salame",
+    "description_es": "Mozzarella empanada y frita con salame.",
+    "ingredients_es": [
+      "mozzarella",
+      "pan rallado",
+      "salame"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche",
+      "huevo"
+    ]
   },
   {
     "category": "antipasti_caldi",
@@ -100,7 +134,20 @@
     "prezzo_consigliato": 12.5,
     "margine_percentuale": 68,
     "categoria_profitto": "alta",
-    "warning_commerciale": "Le alici aumentano la personalità del piatto ma riducono il target clienti."
+    "warning_commerciale": "Le alici aumentano la personalità del piatto ma riducono il target clienti.",
+    "name_es": "Mozzarella in carrozza con anchoas",
+    "description_es": "Mozzarella empanada y frita con anchoas.",
+    "ingredients_es": [
+      "mozzarella",
+      "pan rallado",
+      "anchoas"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche",
+      "huevo",
+      "pescado"
+    ]
   },
   {
     "category": "antipasti_caldi",
@@ -121,7 +168,14 @@
     "prezzo_consigliato": 11.5,
     "margine_percentuale": 72.2,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Molto utile per vegetariani e tavoli misti. Alto margine."
+    "warning_commerciale": "Molto utile per vegetariani e tavoli misti. Alto margine.",
+    "name_es": "Verduras de temporada a la parrilla",
+    "description_es": "Verduras de temporada a la parrilla con aceite de oliva virgen extra.",
+    "ingredients_es": [
+      "verduras de temporada",
+      "aceite de oliva virgen extra"
+    ],
+    "allergens_es": []
   },
   {
     "category": "antipasti_caldi",
@@ -145,6 +199,16 @@
     "prezzo_consigliato": 13.5,
     "margine_percentuale": 78.1,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto povero tradizionale con margine eccellente e storytelling forte."
+    "warning_commerciale": "Piatto povero tradizionale con margine eccellente e storytelling forte.",
+    "name_es": "Berenjena a funghetto",
+    "description_es": "Berenjena con tomate, ajo, albahaca y aceite de oliva virgen extra.",
+    "ingredients_es": [
+      "berenjena",
+      "tomate",
+      "ajo",
+      "albahaca",
+      "aceite de oliva virgen extra"
+    ],
+    "allergens_es": []
   }
 ]

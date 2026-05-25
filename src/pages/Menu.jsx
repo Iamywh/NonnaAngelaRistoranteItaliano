@@ -114,17 +114,22 @@ function DishCard({ item }) {
           {item.available === false && <span className="soldout-badge">Non disponibile</span>}
         </div>
 
-        <h3>{item.name_it || item.name || 'Plato sin nombre'}</h3>
+        <h3>{item.name_es || item.name_it || item.name || 'Plato sin nombre'}</h3>
 
-        {item.notes && <p className="dish-note">{item.notes}</p>}
-
-        <p className="dish-ingredients">{formatIngredients(item.ingredients)}</p>
-
-        {Array.isArray(item.allergens_to_verify) && item.allergens_to_verify.length > 0 && (
-          <p className="dish-allergens">
-            Alérgenos: {item.allergens_to_verify.join(', ')}
-          </p>
+        {(item.description_es || item.notes) && (
+          <p className="dish-note">{item.description_es || item.notes}</p>
         )}
+
+        <p className="dish-ingredients">
+          {formatIngredients(item.ingredients_es || item.ingredients)}
+        </p>
+
+        {Array.isArray(item.allergens_es || item.allergens_to_verify) &&
+          (item.allergens_es || item.allergens_to_verify).length > 0 && (
+            <p className="dish-allergens">
+              Alérgenos: {(item.allergens_es || item.allergens_to_verify).join(', ')}
+            </p>
+          )}
 
         <div className="dish-footer">
           <strong>

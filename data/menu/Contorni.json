@@ -19,7 +19,13 @@
     "prezzo_consigliato": 5.5,
     "margine_percentuale": 60,
     "categoria_profitto": "alta",
-    "warning_commerciale": "Contorno semplice ma ad alta marginalità. Va valorizzato come patata novella rustica, non come semplice patata."
+    "warning_commerciale": "Contorno semplice ma ad alta marginalità. Va valorizzato come patata novella rustica, non come semplice patata.",
+    "name_es": "Patata novela con piel",
+    "description_es": "Patata de la casa.",
+    "ingredients_es": [
+      "patata"
+    ],
+    "allergens_es": []
   },
   {
     "category": "contorni",
@@ -42,7 +48,16 @@
     "prezzo_consigliato": 6.9,
     "margine_percentuale": 57.2,
     "categoria_profitto": "media-alta",
-    "warning_commerciale": "Contorno elegante e da bistrot. Ottimo abbinato a carni rosse e porchetta."
+    "warning_commerciale": "Contorno elegante e da bistrot. Ottimo abbinato a carni rosse e porchetta.",
+    "name_es": "Puré de patata asada y radicchio",
+    "description_es": "Puré de patata asada con radicchio.",
+    "ingredients_es": [
+      "patata asada",
+      "radicchio"
+    ],
+    "allergens_es": [
+      "leche"
+    ]
   },
   {
     "category": "contorni",
@@ -62,7 +77,13 @@
     "prezzo_consigliato": 11,
     "margine_percentuale": 71.8,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Fondamentale per tavoli misti, vegetariani e clienti light. Margine molto buono."
+    "warning_commerciale": "Fondamentale per tavoli misti, vegetariani e clienti light. Margine molto buono.",
+    "name_es": "Verduras mixtas a la parrilla",
+    "description_es": "Selección de verduras a la parrilla.",
+    "ingredients_es": [
+      "verduras mixtas"
+    ],
+    "allergens_es": []
   },
   {
     "category": "contorni",
@@ -84,6 +105,14 @@
     "prezzo_consigliato": 6.5,
     "margine_percentuale": 57.7,
     "categoria_profitto": "media-alta",
-    "warning_commerciale": "Piatto semplice ma intelligente. Percezione healthy alta, costo basso."
+    "warning_commerciale": "Piatto semplice ma intelligente. Percezione healthy alta, costo basso.",
+    "name_es": "Pinzimonio",
+    "description_es": "Verduras crudas con aceite de oliva virgen extra y sal.",
+    "ingredients_es": [
+      "verduras crudas",
+      "aceite de oliva virgen extra",
+      "sal"
+    ],
+    "allergens_es": []
   }
 ]
