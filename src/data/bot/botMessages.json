@@ -1,0 +1,44 @@
+{
+  "language": "es",
+  "greeting": {
+    "id": "greeting_default",
+    "message": "Hola, soy el asistente virtual de Nonna Angela. Puedo ayudarte con platos, vinos, cócteles, alérgenos, información del restaurante o una solicitud de reserva."
+  },
+  "acknowledgements": {
+    "default": "Claro, puedo ayudarte con eso.",
+    "multipleTopics": "Puedo ayudarte con varias cosas relacionadas. Elige por dónde quieres empezar.",
+    "booking": "Perfecto, puedo ayudarte a preparar una solicitud de reserva.",
+    "allergens": "Claro, puedo orientarte sobre alérgenos, pero en caso de alergia o celiaquía es importante confirmarlo con el equipo de sala.",
+    "wine": "Claro, puedo ayudarte a elegir un vino según el plato o el estilo que prefieras.",
+    "cocktail": "Claro, puedo recomendarte un cóctel según el momento o el tipo de sabor que buscas.",
+    "food": "Claro, puedo ayudarte a elegir un plato según lo que te apetezca."
+  },
+  "topicSuggestion": {
+    "message": "¿Con qué tema quieres continuar?",
+    "defaultOptions": [
+      "Recomendación de platos",
+      "Vinos y maridajes",
+      "Cócteles",
+      "Alérgenos",
+      "Solicitud de reserva",
+      "Información del restaurante"
+    ]
+  },
+  "satisfactionCheck": {
+    "message": "¿He podido ayudarte con lo que necesitabas?",
+    "yesLabel": "Sí, gracias",
+    "noLabel": "No, necesito otra cosa"
+  },
+  "closing": {
+    "message": "Gracias por visitar Nonna Angela. Te esperamos pronto.",
+    "shortMessage": "Gracias. Te esperamos pronto en Nonna Angela."
+  },
+  "fallback": {
+    "unknown": "No tengo esa información confirmada. Para evitar errores, por favor consulta con el equipo de sala.",
+    "noIntentMatched": "No estoy seguro de haber entendido bien. Puedo ayudarte con platos, vinos, cócteles, alérgenos, reservas o información del restaurante.",
+    "humanEscalation": "Para esta consulta, lo mejor es consultarlo directamente con el personal de sala."
+  },
+  "bookingDisclaimer": {
+    "message": "La reserva solo será válida después de la confirmación del equipo."
+  }
+}

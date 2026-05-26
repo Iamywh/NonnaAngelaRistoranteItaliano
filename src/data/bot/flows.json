@@ -1,0 +1,262 @@
+{
+  "language": "es",
+  "version": "1.0.0",
+  "flows": [
+    {
+      "id": "dish_recommendation_flow",
+      "topicId": "dish_recommendation",
+      "steps": [
+        {
+          "id": "ask_food_style",
+          "type": "choice",
+          "message": "¿Qué tipo de plato te apetece?",
+          "options": [
+            {
+              "label": "Algo tradicional",
+              "nextStep": "traditional_food"
+            },
+            {
+              "label": "Algo contundente",
+              "nextStep": "strong_food"
+            },
+            {
+              "label": "Algo más ligero",
+              "nextStep": "light_food"
+            }
+          ]
+        },
+        {
+          "id": "traditional_food",
+          "type": "answer",
+          "message": "Si quieres algo tradicional, te recomendaría Lasagna al ragù bolognese, Gnocchi alla sorrentina o Paccheri al ragù napoletano. Son platos con identidad italiana y sabor de casa.",
+          "nextStep": "satisfaction_check"
+        },
+        {
+          "id": "strong_food",
+          "type": "answer",
+          "message": "Si buscas algo más contundente, una buena opción son los Paccheri al ragù napoletano, los Arrosticini abruzzesi o las carnes con ragù napolitano.",
+          "nextStep": "satisfaction_check"
+        },
+        {
+          "id": "light_food",
+          "type": "answer",
+          "message": "Si prefieres algo más ligero, puedes empezar con Caprese, verduras a la parrilla, una ensalada o algún entrante fresco. Consulta siempre con el equipo si tienes restricciones alimentarias.",
+          "nextStep": "satisfaction_check"
+        }
+      ]
+    },
+    {
+      "id": "vegetarian_options_flow",
+      "topicId": "vegetarian_options",
+      "steps": [
+        {
+          "id": "vegetarian_answer",
+          "type": "answer",
+          "message": "Entre las opciones vegetarianas más adecuadas están Gnocchi alla sorrentina, Cacio e pepe, Rigatoni al pesto, Caprese, verduras a la parrilla y algunas guarniciones. Si tienes alergias o intolerancias, es mejor confirmarlo con el equipo de sala.",
+          "nextStep": "satisfaction_check"
+        }
+      ]
+    },
+    {
+      "id": "allergen_info_flow",
+      "topicId": "allergen_info",
+      "steps": [
+        {
+          "id": "ask_allergen_type",
+          "type": "choice",
+          "message": "¿Sobre qué necesitas información?",
+          "options": [
+            {
+              "label": "Gluten o celiaquía",
+              "nextStep": "gluten_answer"
+            },
+            {
+              "label": "Lácteos",
+              "nextStep": "dairy_answer"
+            },
+            {
+              "label": "Frutos secos u otros alérgenos",
+              "nextStep": "general_allergen_answer"
+            }
+          ]
+        },
+        {
+          "id": "gluten_answer",
+          "type": "answer",
+          "message": "Muchos platos de pasta contienen gluten. En caso de celiaquía o alergia, es imprescindible confirmarlo con el equipo de sala antes de pedir, especialmente por posible contaminación cruzada.",
+          "nextStep": "satisfaction_check"
+        },
+        {
+          "id": "dairy_answer",
+          "type": "answer",
+          "message": "Varios platos pueden contener queso, mantequilla, nata o lácteos. Si tienes intolerancia o alergia, confirma siempre con el equipo antes de pedir.",
+          "nextStep": "satisfaction_check"
+        },
+        {
+          "id": "general_allergen_answer",
+          "type": "answer",
+          "message": "Puedo orientarte, pero para frutos secos, huevo, pescado, marisco u otros alérgenos, la confirmación final debe hacerla el equipo de sala para evitar errores.",
+          "nextStep": "satisfaction_check"
+        }
+      ]
+    },
+    {
+      "id": "wine_pairing_flow",
+      "topicId": "wine_pairing",
+      "steps": [
+        {
+          "id": "ask_wine_style",
+          "type": "choice",
+          "message": "¿Para qué plato o momento quieres el vino?",
+          "options": [
+            {
+              "label": "Pasta con ragù",
+              "nextStep": "wine_ragu"
+            },
+            {
+              "label": "Carne",
+              "nextStep": "wine_meat"
+            },
+            {
+              "label": "Aperitivo o algo fresco",
+              "nextStep": "wine_fresh"
+            }
+          ]
+        },
+        {
+          "id": "wine_ragu",
+          "type": "answer",
+          "message": "Para pasta con ragù elegiría un tinto italiano con estructura: Chianti, Mastro Rosso Campania, Primitivo o Nebbiolo, según prefieras algo más elegante o más intenso.",
+          "nextStep": "satisfaction_check"
+        },
+        {
+          "id": "wine_meat",
+          "type": "answer",
+          "message": "Para carne iría con un tinto con cuerpo: Primitivo di Manduria, Nero d'Avola Riserva, Valpolicella o Amarone si quieres una opción más especial.",
+          "nextStep": "satisfaction_check"
+        },
+        {
+          "id": "wine_fresh",
+          "type": "answer",
+          "message": "Para aperitivo o algo más fresco puedes elegir Prosecco, Prosecco Rosé, Pinot Grigio o Chardonnay. Son opciones fáciles de beber y muy versátiles.",
+          "nextStep": "satisfaction_check"
+        }
+      ]
+    },
+    {
+      "id": "cocktail_recommendation_flow",
+      "topicId": "cocktail_recommendation",
+      "steps": [
+        {
+          "id": "ask_cocktail_style",
+          "type": "choice",
+          "message": "¿Qué tipo de cóctel te apetece?",
+          "options": [
+            {
+              "label": "Fresco y ligero",
+              "nextStep": "cocktail_fresh"
+            },
+            {
+              "label": "Amargo e intenso",
+              "nextStep": "cocktail_bitter"
+            },
+            {
+              "label": "Suave y afrutado",
+              "nextStep": "cocktail_soft"
+            }
+          ]
+        },
+        {
+          "id": "cocktail_fresh",
+          "type": "answer",
+          "message": "Si quieres algo fresco, iría con un Aperol Spritz o un Hugo Spritz. Son perfectos para empezar con un aperitivo italiano.",
+          "nextStep": "satisfaction_check"
+        },
+        {
+          "id": "cocktail_bitter",
+          "type": "answer",
+          "message": "Si prefieres algo amargo e intenso, el clásico es el Negroni. Si quieres algo un poco más ligero, un Americano también funciona muy bien.",
+          "nextStep": "satisfaction_check"
+        },
+        {
+          "id": "cocktail_soft",
+          "type": "answer",
+          "message": "Si buscas algo suave y afrutado, Bellini o Rossini son buenas opciones: elegantes, fáciles de beber y muy italianos.",
+          "nextStep": "satisfaction_check"
+        }
+      ]
+    },
+    {
+      "id": "booking_request_flow",
+      "topicId": "booking_request",
+      "steps": [
+        {
+          "id": "booking_intro",
+          "type": "answer",
+          "message": "Puedo ayudarte a preparar una solicitud de reserva. Necesito nombre, fecha, hora, número de personas y teléfono. La reserva solo será válida después de la confirmación del equipo.",
+          "nextStep": "satisfaction_check"
+        }
+      ]
+    },
+    {
+      "id": "opening_hours_flow",
+      "topicId": "opening_hours",
+      "steps": [
+        {
+          "id": "opening_hours_answer",
+          "type": "answer",
+          "message": "Los horarios oficiales están en proceso de confirmación. Para evitar errores, consulta con el equipo o contacta por WhatsApp antes de venir.",
+          "nextStep": "satisfaction_check"
+        }
+      ]
+    },
+    {
+      "id": "location_contact_flow",
+      "topicId": "location_contact",
+      "steps": [
+        {
+          "id": "location_contact_answer",
+          "type": "answer",
+          "message": "Estamos en Calle Méndez Núñez 20, 38002 Santa Cruz de Tenerife. Puedes contactar por WhatsApp al +34 697 46 76 19. También estamos en Instagram como @nonnaangelaristorante.",
+          "nextStep": "satisfaction_check"
+        }
+      ]
+    },
+    {
+      "id": "restaurant_concept_flow",
+      "topicId": "restaurant_concept",
+      "steps": [
+        {
+          "id": "restaurant_concept_answer",
+          "type": "answer",
+          "message": "Nonna Angela es un restaurante italiano con alma familiar: cocina auténtica, platos reconocibles, servicio cuidado y una experiencia cálida, lejos del típico restaurante turístico sin identidad.",
+          "nextStep": "satisfaction_check"
+        }
+      ]
+    },
+    {
+      "id": "contact_staff_flow",
+      "topicId": "contact_staff",
+      "steps": [
+        {
+          "id": "contact_staff_answer",
+          "type": "answer",
+          "message": "Para esta consulta, lo mejor es confirmarlo directamente con el personal de sala o escribir por WhatsApp al +34 697 46 76 19.",
+          "nextStep": "closing"
+        }
+      ]
+    },
+    {
+      "id": "fallback_unknown_flow",
+      "topicId": "fallback_unknown",
+      "steps": [
+        {
+          "id": "fallback_answer",
+          "type": "answer",
+          "message": "No estoy seguro de haber entendido bien. Puedo ayudarte con platos, vinos, cócteles, alérgenos, reservas o información del restaurante.",
+          "nextStep": "topic_suggestion"
+        }
+      ]
+    }
+  ]
+}

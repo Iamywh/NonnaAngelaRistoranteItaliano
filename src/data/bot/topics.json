@@ -1,0 +1,138 @@
+{
+  "language": "es",
+  "version": "1.0.0",
+  "topics": [
+    {
+      "id": "dish_recommendation",
+      "title": "Recomendación de platos",
+      "description": "Ayuda al cliente a elegir platos según apetito, estilo o experiencia buscada.",
+      "entryMessage": "Claro, puedo ayudarte a elegir un plato según lo que te apetezca.",
+      "flowId": "dish_recommendation_flow",
+      "status": "active",
+      "requiresHumanConfirmation": false,
+      "allowedSources": ["menuKnowledge"],
+      "fallbackTopic": "contact_staff",
+      "closingBehavior": "satisfaction_check"
+    },
+    {
+      "id": "vegetarian_options",
+      "title": "Opciones vegetarianas",
+      "description": "Orienta al cliente sobre platos vegetarianos disponibles o más adecuados.",
+      "entryMessage": "Claro, puedo ayudarte con opciones vegetarianas o sin carne.",
+      "flowId": "vegetarian_options_flow",
+      "status": "active",
+      "requiresHumanConfirmation": false,
+      "allowedSources": ["menuKnowledge", "allergenKnowledge"],
+      "fallbackTopic": "contact_staff",
+      "closingBehavior": "satisfaction_check"
+    },
+    {
+      "id": "allergen_info",
+      "title": "Alérgenos",
+      "description": "Informa sobre alérgenos con aviso claro de confirmación con sala.",
+      "entryMessage": "Claro, puedo orientarte sobre alérgenos, pero en caso de alergia o celiaquía es importante confirmarlo con el equipo de sala.",
+      "flowId": "allergen_info_flow",
+      "status": "active",
+      "requiresHumanConfirmation": true,
+      "allowedSources": ["allergenKnowledge", "menuKnowledge"],
+      "fallbackTopic": "contact_staff",
+      "closingBehavior": "satisfaction_check"
+    },
+    {
+      "id": "wine_pairing",
+      "title": "Vinos y maridajes",
+      "description": "Ayuda al cliente a elegir vino según plato, intensidad o momento.",
+      "entryMessage": "Claro, puedo ayudarte a elegir un vino según el plato o el estilo que prefieras.",
+      "flowId": "wine_pairing_flow",
+      "status": "active",
+      "requiresHumanConfirmation": false,
+      "allowedSources": ["wineKnowledge", "menuKnowledge"],
+      "fallbackTopic": "contact_staff",
+      "closingBehavior": "satisfaction_check"
+    },
+    {
+      "id": "cocktail_recommendation",
+      "title": "Cócteles",
+      "description": "Recomienda cócteles según sabor, momento o estilo de aperitivo.",
+      "entryMessage": "Claro, puedo recomendarte un cóctel según el momento o el tipo de sabor que buscas.",
+      "flowId": "cocktail_recommendation_flow",
+      "status": "active",
+      "requiresHumanConfirmation": false,
+      "allowedSources": ["cocktailKnowledge"],
+      "fallbackTopic": "contact_staff",
+      "closingBehavior": "satisfaction_check"
+    },
+    {
+      "id": "booking_request",
+      "title": "Solicitud de reserva",
+      "description": "Recoge datos básicos para preparar una solicitud de reserva sin confirmarla automáticamente.",
+      "entryMessage": "Perfecto, puedo ayudarte a preparar una solicitud de reserva.",
+      "flowId": "booking_request_flow",
+      "status": "active",
+      "requiresHumanConfirmation": true,
+      "allowedSources": ["restaurantKnowledge"],
+      "fallbackTopic": "contact_staff",
+      "closingBehavior": "satisfaction_check"
+    },
+    {
+      "id": "opening_hours",
+      "title": "Horarios",
+      "description": "Informa sobre horarios cuando estén confirmados en la knowledge base.",
+      "entryMessage": "Claro, puedo ayudarte con la información de horarios disponible.",
+      "flowId": "opening_hours_flow",
+      "status": "active",
+      "requiresHumanConfirmation": false,
+      "allowedSources": ["restaurantKnowledge"],
+      "fallbackTopic": "contact_staff",
+      "closingBehavior": "satisfaction_check"
+    },
+    {
+      "id": "location_contact",
+      "title": "Ubicación y contacto",
+      "description": "Muestra dirección, WhatsApp y redes sociales oficiales.",
+      "entryMessage": "Claro, te comparto la información de contacto de Nonna Angela.",
+      "flowId": "location_contact_flow",
+      "status": "active",
+      "requiresHumanConfirmation": false,
+      "allowedSources": ["restaurantKnowledge"],
+      "fallbackTopic": "contact_staff",
+      "closingBehavior": "satisfaction_check"
+    },
+    {
+      "id": "restaurant_concept",
+      "title": "Concepto del restaurante",
+      "description": "Explica la identidad, estilo y propuesta de Nonna Angela.",
+      "entryMessage": "Claro, te cuento brevemente qué es Nonna Angela.",
+      "flowId": "restaurant_concept_flow",
+      "status": "active",
+      "requiresHumanConfirmation": false,
+      "allowedSources": ["restaurantKnowledge"],
+      "fallbackTopic": "contact_staff",
+      "closingBehavior": "satisfaction_check"
+    },
+    {
+      "id": "contact_staff",
+      "title": "Consultar con el equipo",
+      "description": "Escala la consulta al personal de sala cuando el bot no debe responder solo.",
+      "entryMessage": "Para esta consulta, lo mejor es confirmarlo directamente con el equipo de sala.",
+      "flowId": "contact_staff_flow",
+      "status": "active",
+      "requiresHumanConfirmation": true,
+      "allowedSources": ["restaurantKnowledge"],
+      "fallbackTopic": "fallback_unknown",
+      "closingBehavior": "closing"
+    },
+    {
+      "id": "fallback_unknown",
+      "title": "No entendido",
+      "description": "Fallback cuando no se reconoce la intención del cliente.",
+      "entryMessage": "No estoy seguro de haber entendido bien. Puedo ayudarte con platos, vinos, cócteles, alérgenos, reservas o información del restaurante.",
+      "flowId": "fallback_unknown_flow",
+      "status": "active",
+      "requiresHumanConfirmation": false,
+      "allowedSources": ["botMessages"],
+      "fallbackTopic": "contact_staff",
+      "closingBehavior": "topic_suggestion"
+    }
+  ]
+}

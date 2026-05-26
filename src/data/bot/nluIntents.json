@@ -1,0 +1,279 @@
+{
+  "language": "es",
+  "version": "1.0.0",
+  "intents": [
+    {
+      "id": "dish_recommendation",
+      "label": "Recomendación de platos",
+      "priority": 80,
+      "trainingPhrases": [
+        "qué me recomiendas",
+        "qué plato me recomiendas",
+        "quiero comer algo típico",
+        "cuál es el plato más recomendado",
+        "qué puedo pedir",
+        "no sé qué elegir",
+        "recomiéndame algo italiano",
+        "quiero algo tradicional",
+        "qué es lo más especial de la casa"
+      ],
+      "keywords": [
+        "recomiendas",
+        "recomendar",
+        "plato",
+        "típico",
+        "tradicional",
+        "especial",
+        "elegir",
+        "comer"
+      ],
+      "suggestedTopics": [
+        "dish_recommendation",
+        "wine_pairing",
+        "restaurant_concept"
+      ]
+    },
+    {
+      "id": "vegetarian_options",
+      "label": "Opciones vegetarianas",
+      "priority": 75,
+      "trainingPhrases": [
+        "tenéis platos vegetarianos",
+        "hay opciones vegetarianas",
+        "soy vegetariano",
+        "soy vegetariana",
+        "qué puedo comer sin carne",
+        "platos sin carne",
+        "opciones sin carne"
+      ],
+      "keywords": [
+        "vegetariano",
+        "vegetariana",
+        "vegetarianos",
+        "sin carne",
+        "verduras"
+      ],
+      "suggestedTopics": [
+        "vegetarian_options",
+        "allergen_info",
+        "dish_recommendation"
+      ]
+    },
+    {
+      "id": "allergen_info",
+      "label": "Alérgenos",
+      "priority": 95,
+      "trainingPhrases": [
+        "tengo alergia",
+        "soy celíaco",
+        "soy celiaco",
+        "tenéis sin gluten",
+        "hay platos sin gluten",
+        "alérgenos",
+        "alergenos",
+        "tengo intolerancia",
+        "sin lactosa",
+        "tiene frutos secos",
+        "tiene huevo",
+        "puedo comer si soy celíaco"
+      ],
+      "keywords": [
+        "alergia",
+        "alérgenos",
+        "alergenos",
+        "gluten",
+        "celíaco",
+        "celiaco",
+        "intolerancia",
+        "lactosa",
+        "frutos secos",
+        "huevo"
+      ],
+      "suggestedTopics": [
+        "allergen_info",
+        "contact_staff",
+        "dish_recommendation"
+      ]
+    },
+    {
+      "id": "wine_pairing",
+      "label": "Vinos y maridajes",
+      "priority": 70,
+      "trainingPhrases": [
+        "qué vino me recomiendas",
+        "vino para pasta",
+        "vino para carne",
+        "qué vino va con ragù",
+        "qué vino va con carbonara",
+        "maridaje",
+        "quiero un vino",
+        "vino tinto recomendado",
+        "vino blanco recomendado"
+      ],
+      "keywords": [
+        "vino",
+        "vinos",
+        "maridaje",
+        "tinto",
+        "blanco",
+        "rosado",
+        "prosecco",
+        "ragù",
+        "carne",
+        "pasta"
+      ],
+      "suggestedTopics": [
+        "wine_pairing",
+        "dish_recommendation",
+        "cocktail_recommendation"
+      ]
+    },
+    {
+      "id": "cocktail_recommendation",
+      "label": "Cócteles",
+      "priority": 65,
+      "trainingPhrases": [
+        "qué cóctel me recomiendas",
+        "quiero un cóctel",
+        "tenéis spritz",
+        "tenéis negroni",
+        "algo para aperitivo",
+        "cóctel fresco",
+        "cóctel italiano",
+        "aperitivo italiano"
+      ],
+      "keywords": [
+        "cóctel",
+        "cocktail",
+        "spritz",
+        "negroni",
+        "americano",
+        "aperitivo",
+        "bellini",
+        "rossini",
+        "hugo"
+      ],
+      "suggestedTopics": [
+        "cocktail_recommendation",
+        "wine_pairing",
+        "restaurant_concept"
+      ]
+    },
+    {
+      "id": "booking_request",
+      "label": "Solicitud de reserva",
+      "priority": 100,
+      "trainingPhrases": [
+        "quiero reservar",
+        "reservar mesa",
+        "tienen mesa para hoy",
+        "mesa para dos",
+        "mesa para cuatro",
+        "puedo reservar",
+        "quiero una reserva",
+        "hay mesa esta noche",
+        "reserva para cenar",
+        "reserva para comer"
+      ],
+      "keywords": [
+        "reservar",
+        "reserva",
+        "mesa",
+        "personas",
+        "hora",
+        "cenar",
+        "comer"
+      ],
+      "suggestedTopics": [
+        "booking_request",
+        "opening_hours",
+        "location_contact"
+      ]
+    },
+    {
+      "id": "opening_hours",
+      "label": "Horarios",
+      "priority": 60,
+      "trainingPhrases": [
+        "a qué hora abrís",
+        "a qué hora cerráis",
+        "horario",
+        "estáis abiertos",
+        "abrís hoy",
+        "cerráis hoy",
+        "horario de apertura"
+      ],
+      "keywords": [
+        "horario",
+        "abrís",
+        "abren",
+        "cerráis",
+        "cierran",
+        "abierto",
+        "cerrado"
+      ],
+      "suggestedTopics": [
+        "opening_hours",
+        "booking_request",
+        "location_contact"
+      ]
+    },
+    {
+      "id": "location_contact",
+      "label": "Ubicación y contacto",
+      "priority": 60,
+      "trainingPhrases": [
+        "dónde estáis",
+        "dirección",
+        "ubicación",
+        "cómo llegar",
+        "teléfono",
+        "whatsapp",
+        "instagram",
+        "facebook",
+        "contacto"
+      ],
+      "keywords": [
+        "dirección",
+        "ubicación",
+        "contacto",
+        "teléfono",
+        "whatsapp",
+        "instagram",
+        "facebook",
+        "dónde"
+      ],
+      "suggestedTopics": [
+        "location_contact",
+        "booking_request",
+        "opening_hours"
+      ]
+    },
+    {
+      "id": "restaurant_concept",
+      "label": "Concepto del restaurante",
+      "priority": 50,
+      "trainingPhrases": [
+        "qué tipo de restaurante sois",
+        "qué es Nonna Angela",
+        "cuál es el concepto",
+        "cocina italiana auténtica",
+        "qué significa Nonna Angela",
+        "qué os diferencia"
+      ],
+      "keywords": [
+        "concepto",
+        "restaurante",
+        "Nonna Angela",
+        "auténtica",
+        "diferencia",
+        "italiano"
+      ],
+      "suggestedTopics": [
+        "restaurant_concept",
+        "dish_recommendation",
+        "location_contact"
+      ]
+    }
+  ]
+}
