@@ -1,5 +1,42 @@
 import React, { useState } from 'react'
 import botMessages from '../data/bot/botMessages.json'
+import nluIntents from '../data/bot/nluIntents.json'
+
+function normalizeText(text) {
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .trim()
+}
+
+function detectIntents(userText) {
+  const normalizedUserText = normalizeText(userText)
+
+  const matches = nluIntents.intents
+    .map((intent) => {
+      const keywordScore = intent.keywords.reduce((score, keyword) => {
+        const normalizedKeyword = normalizeText(keyword)
+        return normalizedUserText.includes(normalizedKeyword) ? score + 2 : score
+      }, 0)
+
+      const phraseScore = intent.trainingPhrases.reduce((score, phrase) => {
+        const normalizedPhrase = normalizeText(phrase)
+        return normalizedUserText.includes(normalizedPhrase) ? score + 4 : score
+      }, 0)
+
+      const totalScore = keywordScore + phraseScore + intent.priority / 100
+
+      return {
+        ...intent,
+        score: totalScore
+      }
+    })
+    .filter((intent) => intent.score >= 2)
+    .sort((a, b) => b.score - a.score)
+
+  return matches.slice(0, 3)
+}
 
 const quickActions = [
   {
