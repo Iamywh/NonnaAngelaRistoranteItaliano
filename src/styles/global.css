@@ -1134,3 +1134,9 @@ button {
   font-weight: 900;
   text-transform: uppercase;
 }
+
+.agent-header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}

@@ -1,8 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import botMessages from '../data/bot/botMessages.json'
 import nluIntents from '../data/bot/nluIntents.json'
 import topicsData from '../data/bot/topics.json'
 import flowsData from '../data/bot/flows.json'
+
+const CHAT_STORAGE_KEY = 'nonna_angela_virtual_agent_messages'
+
+function getInitialMessages() {
+  const fallbackMessages = [
+    {
+      role: 'agent',
+      text: botMessages.greeting.message
+    }
+  ]
+
+  if (typeof window === 'undefined') return fallbackMessages
+
+  try {
+    const savedMessages = window.localStorage.getItem(CHAT_STORAGE_KEY)
+
+    if (!savedMessages) return fallbackMessages
+
+    const parsedMessages = JSON.parse(savedMessages)
+
+    return Array.isArray(parsedMessages) && parsedMessages.length > 0
+      ? parsedMessages
+      : fallbackMessages
+  } catch {
+    return fallbackMessages
+  }
+}
 
 function normalizeText(text) {
   return text
@@ -88,8 +115,17 @@ function buildTopicStartResponse(topicId) {
   }
 
   return {
-    text: firstStep.message,
-    options: []
+    text: `${firstStep.message}\n\n${botMessages.satisfactionCheck.message}`,
+    options: [
+      {
+        label: botMessages.satisfactionCheck.yesLabel,
+        action: 'satisfaction_yes'
+      },
+      {
+        label: botMessages.satisfactionCheck.noLabel,
+        action: 'satisfaction_no'
+      }
+    ]
   }
 }
 
@@ -117,8 +153,17 @@ function buildFlowStepResponse(topicId, stepId) {
   }
 
   return {
-    text: step.message,
-    options: []
+    text: `${step.message}\n\n${botMessages.satisfactionCheck.message}`,
+    options: [
+      {
+        label: botMessages.satisfactionCheck.yesLabel,
+        action: 'satisfaction_yes'
+      },
+      {
+        label: botMessages.satisfactionCheck.noLabel,
+        action: 'satisfaction_no'
+      }
+    ]
   }
 }
 
@@ -189,12 +234,7 @@ export default function VirtualAgent() {
   const [isOpen, setIsOpen] = useState(false)
   const [userInput, setUserInput] = useState('')
   const [activeOptions, setActiveOptions] = useState([])
-  const [messages, setMessages] = useState([
-    {
-      role: 'agent',
-      text: botMessages.greeting.message
-    }
-  ])
+  const [messages, setMessages] = useState(() => getInitialMessages())
 
   const [showBookingForm, setShowBookingForm] = useState(false)
   const [bookingForm, setBookingForm] = useState({
@@ -205,6 +245,34 @@ export default function VirtualAgent() {
     phone: '',
     notes: ''
   })
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(messages))
+    } catch {
+      // Local storage may be unavailable in some browsers.
+    }
+  }, [messages])
+
+  const handleResetChat = () => {
+    const initialMessages = [
+      {
+        role: 'agent',
+        text: botMessages.greeting.message
+      }
+    ]
+
+    setMessages(initialMessages)
+    setActiveOptions([])
+    setShowBookingForm(false)
+    setUserInput('')
+
+    try {
+      window.localStorage.removeItem(CHAT_STORAGE_KEY)
+    } catch {
+      // Local storage may be unavailable in some browsers.
+    }
+  }
 
   const handleUserMessageSubmit = (event) => {
     event.preventDefault()
@@ -241,6 +309,57 @@ export default function VirtualAgent() {
   }
 
   const handleOptionClick = (option) => {
+    if (option.action === 'satisfaction_yes') {
+      setMessages((current) => [
+        ...current,
+        { role: 'user', text: option.label },
+        { role: 'agent', text: botMessages.closing.shortMessage }
+      ])
+
+      setActiveOptions([])
+      setShowBookingForm(false)
+      setUserInput('')
+
+      setTimeout(() => {
+        setIsOpen(false)
+      }, 1200)
+
+      return
+    }
+
+    if (option.action === 'satisfaction_no') {
+      const defaultTopics = [
+        'dish_recommendation',
+        'wine_pairing',
+        'cocktail_recommendation',
+        'allergen_info',
+        'booking_request',
+        'contact_staff'
+      ]
+
+      const suggestedTopics = defaultTopics
+        .map((topicId) => getTopicById(topicId))
+        .filter(Boolean)
+
+      setMessages((current) => [
+        ...current,
+        { role: 'user', text: option.label },
+        {
+          role: 'agent',
+          text: `${botMessages.fallback.noIntentMatched}\n\n${botMessages.topicSuggestion.message}`
+        }
+      ])
+
+      setActiveOptions(
+        suggestedTopics.map((topic) => ({
+          label: topic.title,
+          topicId: topic.id
+        }))
+      )
+
+      return
+    }
+
     const response = option.stepId
       ? buildFlowStepResponse(option.topicId, option.stepId)
       : buildTopicStartResponse(option.topicId)
@@ -319,9 +438,25 @@ La reserva solo será válida después de la confirmación del equipo.`
               <h3>Nonna Angela</h3>
             </div>
 
-            <button type="button" onClick={() => setIsOpen(false)}>
-              ×
-            </button>
+            <div className="agent-header-actions">
+              <button
+                type="button"
+                onClick={handleResetChat}
+                aria-label="Reiniciar chat"
+                title="Reiniciar chat"
+              >
+                ↻
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                aria-label="Cerrar chat"
+                title="Cerrar chat"
+              >
+                ×
+              </button>
+            </div>
           </div>
 
           <div className="agent-messages">
