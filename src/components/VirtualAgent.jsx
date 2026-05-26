@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import botMessages from '../data/bot/botMessages.json'
 import nluIntents from '../data/bot/nluIntents.json'
 import topicsData from '../data/bot/topics.json'
+import flowsData from '../data/bot/flows.json'
 
 function normalizeText(text) {
   return text
@@ -46,6 +47,84 @@ function getTopicById(topicId) {
 function buildIntentResponse(matchedIntents) {
   if (!matchedIntents.length) {
     return botMessages.fallback.noIntentMatched
+  }
+
+  function getFlowById(flowId) {
+    return flowsData.flows.find((flow) => flow.id === flowId)
+  }
+
+  function getStepById(flow, stepId) {
+    return flow?.steps.find((step) => step.id === stepId)
+  }
+
+  function getFirstStep(flow) {
+    return flow?.steps?.[0]
+  }
+
+  function buildTopicStartResponse(topicId) {
+    const topic = getTopicById(topicId)
+
+    if (!topic) {
+      return {
+        text: botMessages.fallback.unknown,
+        options: []
+      }
+    }
+
+    const flow = getFlowById(topic.flowId)
+    const firstStep = getFirstStep(flow)
+
+    if (!flow || !firstStep) {
+      return {
+        text: topic.entryMessage || botMessages.fallback.unknown,
+        options: []
+      }
+    }
+
+    if (firstStep.type === 'choice') {
+      return {
+        text: `${topic.entryMessage}\n\n${firstStep.message}`,
+        options: firstStep.options.map((option) => ({
+          label: option.label,
+          topicId,
+          stepId: option.nextStep
+        }))
+      }
+    }
+
+    return {
+      text: firstStep.message,
+      options: []
+    }
+  }
+
+  function buildFlowStepResponse(topicId, stepId) {
+    const topic = getTopicById(topicId)
+    const flow = getFlowById(topic?.flowId)
+    const step = getStepById(flow, stepId)
+
+    if (!step) {
+      return {
+        text: botMessages.fallback.unknown,
+        options: []
+      }
+    }
+
+    if (step.type === 'choice') {
+      return {
+        text: step.message,
+        options: step.options.map((option) => ({
+          label: option.label,
+          topicId,
+          stepId: option.nextStep
+        }))
+      }
+    }
+
+    return {
+      text: step.message,
+      options: []
+    }
   }
 
   const suggestedTopicIds = [
@@ -109,6 +188,7 @@ const quickActions = [
 export default function VirtualAgent() {
   const [isOpen, setIsOpen] = useState(false)
   const [userInput, setUserInput] = useState('')
+  const [activeOptions, setActiveOptions] = useState([])
   const [messages, setMessages] = useState([
     {
       role: 'agent',
@@ -136,6 +216,21 @@ export default function VirtualAgent() {
     const matchedIntents = detectIntents(trimmedInput)
     const agentResponse = buildIntentResponse(matchedIntents)
 
+    const suggestedTopicIds = [
+      ...new Set(matchedIntents.flatMap((intent) => intent.suggestedTopics || []))
+    ].slice(0, 4)
+
+    const suggestedTopics = suggestedTopicIds
+      .map((topicId) => getTopicById(topicId))
+      .filter(Boolean)
+
+    setActiveOptions(
+      suggestedTopics.map((topic) => ({
+        label: topic.title,
+        topicId: topic.id
+      }))
+    )
+
     setMessages((current) => [
       ...current,
       { role: 'user', text: trimmedInput },
@@ -143,6 +238,20 @@ export default function VirtualAgent() {
     ])
 
     setUserInput('')
+  }
+
+  const handleOptionClick = (option) => {
+    const response = option.stepId
+      ? buildFlowStepResponse(option.topicId, option.stepId)
+      : buildTopicStartResponse(option.topicId)
+
+    setMessages((current) => [
+      ...current,
+      { role: 'user', text: option.label },
+      { role: 'agent', text: response.text }
+    ])
+
+    setActiveOptions(response.options || [])
   }
 
   const handleQuickAction = (action) => {
@@ -231,6 +340,20 @@ La reserva solo será válida después de la confirmación del equipo.`
             />
             <button type="submit">Enviar</button>
           </form>
+          
+          {activeOptions.length > 0 && (
+            <div className="agent-topic-options">
+              {activeOptions.map((option) => (
+                <button
+                  key={`${option.topicId}-${option.stepId || 'start'}`}
+                  type="button"
+                  onClick={() => handleOptionClick(option)}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
+          )}
 
           {showBookingForm && (
             <form className="booking-form" onSubmit={handleBookingSubmit}>
