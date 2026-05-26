@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import botMessages from '../data/bot/botMessages.json'
 import nluIntents from '../data/bot/nluIntents.json'
+import topicsData from '../data/bot/topics.json'
 
 function normalizeText(text) {
   return text
@@ -36,6 +37,34 @@ function detectIntents(userText) {
     .sort((a, b) => b.score - a.score)
 
   return matches.slice(0, 3)
+}
+
+function getTopicById(topicId) {
+  return topicsData.topics.find((topic) => topic.id === topicId)
+}
+
+function buildIntentResponse(matchedIntents) {
+  if (!matchedIntents.length) {
+    return botMessages.fallback.noIntentMatched
+  }
+
+  const suggestedTopicIds = [
+    ...new Set(matchedIntents.flatMap((intent) => intent.suggestedTopics || []))
+  ].slice(0, 4)
+
+  const suggestedTopics = suggestedTopicIds
+    .map((topicId) => getTopicById(topicId))
+    .filter(Boolean)
+
+  if (!suggestedTopics.length) {
+    return botMessages.acknowledgements.default
+  }
+
+  const topicList = suggestedTopics
+    .map((topic, index) => `${index + 1}. ${topic.title}`)
+    .join('\n')
+
+  return `${botMessages.acknowledgements.multipleTopics}\n\n${topicList}\n\n${botMessages.topicSuggestion.message}`
 }
 
 const quickActions = [
@@ -79,6 +108,7 @@ const quickActions = [
 
 export default function VirtualAgent() {
   const [isOpen, setIsOpen] = useState(false)
+  const [userInput, setUserInput] = useState('')
   const [messages, setMessages] = useState([
     {
       role: 'agent',
@@ -95,6 +125,25 @@ export default function VirtualAgent() {
     phone: '',
     notes: ''
   })
+
+  const handleUserMessageSubmit = (event) => {
+    event.preventDefault()
+
+    const trimmedInput = userInput.trim()
+
+    if (!trimmedInput) return
+
+    const matchedIntents = detectIntents(trimmedInput)
+    const agentResponse = buildIntentResponse(matchedIntents)
+
+    setMessages((current) => [
+      ...current,
+      { role: 'user', text: trimmedInput },
+      { role: 'agent', text: agentResponse }
+    ])
+
+    setUserInput('')
+  }
 
   const handleQuickAction = (action) => {
     if (action.id === 'booking') {
@@ -172,6 +221,16 @@ La reserva solo será válida después de la confirmación del equipo.`
               </div>
             ))}
           </div>
+
+          <form className="agent-input-form" onSubmit={handleUserMessageSubmit}>
+            <input
+              value={userInput}
+              onChange={(event) => setUserInput(event.target.value)}
+              placeholder="Escribe tu pregunta..."
+              aria-label="Escribe tu pregunta"
+            />
+            <button type="submit">Enviar</button>
+          </form>
 
           {showBookingForm && (
             <form className="booking-form" onSubmit={handleBookingSubmit}>
