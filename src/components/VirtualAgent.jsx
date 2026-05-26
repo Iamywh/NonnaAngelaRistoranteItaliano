@@ -3,6 +3,7 @@ import botMessages from '../data/bot/botMessages.json'
 import nluIntents from '../data/bot/nluIntents.json'
 import topicsData from '../data/bot/topics.json'
 import flowsData from '../data/bot/flows.json'
+import restaurantKnowledge from '../data/bot/restaurantKnowledge.json'
 
 const CHAT_STORAGE_KEY = 'nonna_angela_virtual_agent_messages'
 
@@ -86,6 +87,12 @@ function getFirstStep(flow) {
 function buildTopicStartResponse(topicId) {
   const topic = getTopicById(topicId)
 
+  const dynamicAnswer = buildDynamicTopicAnswer(topicId)
+
+  if (dynamicAnswer) {
+    return buildSatisfactionResponse(dynamicAnswer)
+  }
+
   if (!topic) {
     return {
       text: botMessages.fallback.unknown,
@@ -114,8 +121,43 @@ function buildTopicStartResponse(topicId) {
     }
   }
 
+  return buildSatisfactionResponse(firstStep.message)
+}
+
+function buildDynamicTopicAnswer(topicId) {
+  const restaurant = restaurantKnowledge.restaurant
+
+  if (topicId === 'opening_hours') {
+    return restaurant.openingHours.humanReadable
+  }
+
+  if (topicId === 'location_contact') {
+    return [
+      `Estamos en ${restaurant.address.fullAddress}.`,
+      `Puedes contactar por WhatsApp al ${restaurant.contact.mobile.value}.`,
+      `Instagram: ${restaurant.contact.instagram.handle}`,
+      `Facebook: ${restaurant.contact.facebook.name}`
+    ].join('\n')
+  }
+
+  if (topicId === 'restaurant_concept') {
+    return restaurant.concept
+  }
+
+  if (topicId === 'booking_request') {
+    return [
+      'Puedo ayudarte a preparar una solicitud de reserva.',
+      restaurant.reservationPolicy.message,
+      `Necesito: ${restaurant.reservationPolicy.requiredFields.join(', ')}.`
+    ].join('\n')
+  }
+
+  return null
+}
+
+function buildSatisfactionResponse(message) {
   return {
-    text: `${firstStep.message}\n\n${botMessages.satisfactionCheck.message}`,
+    text: `${message}\n\n${botMessages.satisfactionCheck.message}`,
     options: [
       {
         label: botMessages.satisfactionCheck.yesLabel,
@@ -152,19 +194,7 @@ function buildFlowStepResponse(topicId, stepId) {
     }
   }
 
-  return {
-    text: `${step.message}\n\n${botMessages.satisfactionCheck.message}`,
-    options: [
-      {
-        label: botMessages.satisfactionCheck.yesLabel,
-        action: 'satisfaction_yes'
-      },
-      {
-        label: botMessages.satisfactionCheck.noLabel,
-        action: 'satisfaction_no'
-      }
-    ]
-  }
+  return buildSatisfactionResponse(step.message)
 }
 
 function buildIntentResponse(matchedIntents) {
