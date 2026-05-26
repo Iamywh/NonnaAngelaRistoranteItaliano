@@ -1,0 +1,169 @@
+{
+  "language": "es",
+  "version": "1.0.0",
+  "restaurant": {
+    "name": "Nonna Angela",
+    "subtitle": "Ristorante Italiano",
+    "concept": "Nonna Angela es un restaurante italiano con alma familiar: cocina auténtica, platos reconocibles, servicio cuidado y una experiencia cálida, lejos del típico restaurante turístico sin identidad.",
+    "address": {
+      "street": "Calle Méndez Núñez 20",
+      "postalCode": "38002",
+      "city": "Santa Cruz de Tenerife",
+      "country": "España",
+      "fullAddress": "Calle Méndez Núñez 20, 38002 Santa Cruz de Tenerife"
+    },
+    "contact": {
+      "landline": {
+        "label": "Teléfono fijo",
+        "value": null,
+        "status": "pending_confirmation"
+      },
+      "mobile": {
+        "label": "Móvil / WhatsApp",
+        "value": "+34 697 46 76 19",
+        "whatsappUrl": "https://wa.me/34697467619"
+      },
+      "instagram": {
+        "label": "Instagram",
+        "handle": "@nonnaangelaristorante",
+        "url": "https://www.instagram.com/nonnaangelaristorante/"
+      },
+      "facebook": {
+        "label": "Facebook",
+        "name": "Nonna Angela Ristorante",
+        "url": "https://www.facebook.com/profile.php?id=61589714408634&locale=es_ES"
+      }
+    },
+    "openingHours": {
+      "status": "confirmed",
+      "timezone": "Atlantic/Canary",
+      "weeklySchedule": [
+        {
+          "day": "domingo",
+          "label": "Domingo",
+          "isClosed": false,
+          "shifts": [
+            {
+              "type": "almuerzo",
+              "opens": "12:30",
+              "closes": "15:30"
+            },
+            {
+              "type": "cena",
+              "opens": "19:30",
+              "closes": "22:45"
+            }
+          ]
+        },
+        {
+          "day": "lunes",
+          "label": "Lunes",
+          "isClosed": false,
+          "shifts": [
+            {
+              "type": "almuerzo",
+              "opens": "12:30",
+              "closes": "15:30"
+            },
+            {
+              "type": "cena",
+              "opens": "19:30",
+              "closes": "22:45"
+            }
+          ]
+        },
+        {
+          "day": "martes",
+          "label": "Martes",
+          "isClosed": false,
+          "shifts": [
+            {
+              "type": "almuerzo",
+              "opens": "12:30",
+              "closes": "15:30"
+            },
+            {
+              "type": "cena",
+              "opens": "19:30",
+              "closes": "22:45"
+            }
+          ]
+        },
+        {
+          "day": "miércoles",
+          "label": "Miércoles",
+          "isClosed": true,
+          "shifts": []
+        },
+        {
+          "day": "jueves",
+          "label": "Jueves",
+          "isClosed": false,
+          "shifts": [
+            {
+              "type": "almuerzo",
+              "opens": "12:30",
+              "closes": "15:30"
+            },
+            {
+              "type": "cena",
+              "opens": "19:30",
+              "closes": "22:45"
+            }
+          ]
+        },
+        {
+          "day": "viernes",
+          "label": "Viernes",
+          "isClosed": false,
+          "shifts": [
+            {
+              "type": "almuerzo",
+              "opens": "12:30",
+              "closes": "15:30"
+            },
+            {
+              "type": "cena",
+              "opens": "19:30",
+              "closes": "22:45"
+            }
+          ]
+        },
+        {
+          "day": "sábado",
+          "label": "Sábado",
+          "isClosed": false,
+          "shifts": [
+            {
+              "type": "almuerzo",
+              "opens": "12:30",
+              "closes": "15:30"
+            },
+            {
+              "type": "cena",
+              "opens": "19:30",
+              "closes": "22:45"
+            }
+          ]
+        }
+      ],
+      "humanReadable": "Abrimos de jueves a martes de 12:30 a 15:30 y de 19:30 a 22:45. Cerramos los miércoles."
+    },
+    "reservationPolicy": {
+      "status": "manual_confirmation_required",
+      "message": "La reserva solo será válida después de la confirmación del equipo.",
+      "requiredFields": [
+        "nombre",
+        "fecha",
+        "hora",
+        "número de personas",
+        "teléfono"
+      ]
+    },
+    "botRules": {
+      "doNotInvent": true,
+      "unknownInfoMessage": "No tengo esa información confirmada. Para evitar errores, por favor consulta con el equipo de sala.",
+      "allergyDisclaimer": "En caso de alergia, intolerancia o celiaquía, confirma siempre con el equipo de sala antes de pedir."
+    }
+  }
+}
