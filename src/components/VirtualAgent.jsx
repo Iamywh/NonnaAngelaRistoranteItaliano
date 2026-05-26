@@ -44,87 +44,87 @@ function getTopicById(topicId) {
   return topicsData.topics.find((topic) => topic.id === topicId)
 }
 
+function getFlowById(flowId) {
+  return flowsData.flows.find((flow) => flow.id === flowId)
+}
+
+function getStepById(flow, stepId) {
+  return flow?.steps.find((step) => step.id === stepId)
+}
+
+function getFirstStep(flow) {
+  return flow?.steps?.[0]
+}
+
+function buildTopicStartResponse(topicId) {
+  const topic = getTopicById(topicId)
+
+  if (!topic) {
+    return {
+      text: botMessages.fallback.unknown,
+      options: []
+    }
+  }
+
+  const flow = getFlowById(topic.flowId)
+  const firstStep = getFirstStep(flow)
+
+  if (!flow || !firstStep) {
+    return {
+      text: topic.entryMessage || botMessages.fallback.unknown,
+      options: []
+    }
+  }
+
+  if (firstStep.type === 'choice') {
+    return {
+      text: `${topic.entryMessage}\n\n${firstStep.message}`,
+      options: firstStep.options.map((option) => ({
+        label: option.label,
+        topicId,
+        stepId: option.nextStep
+      }))
+    }
+  }
+
+  return {
+    text: firstStep.message,
+    options: []
+  }
+}
+
+function buildFlowStepResponse(topicId, stepId) {
+  const topic = getTopicById(topicId)
+  const flow = getFlowById(topic?.flowId)
+  const step = getStepById(flow, stepId)
+
+  if (!step) {
+    return {
+      text: botMessages.fallback.unknown,
+      options: []
+    }
+  }
+
+  if (step.type === 'choice') {
+    return {
+      text: step.message,
+      options: step.options.map((option) => ({
+        label: option.label,
+        topicId,
+        stepId: option.nextStep
+      }))
+    }
+  }
+
+  return {
+    text: step.message,
+    options: []
+  }
+}
+
 function buildIntentResponse(matchedIntents) {
   if (!matchedIntents.length) {
     return botMessages.fallback.noIntentMatched
-  }
-
-  function getFlowById(flowId) {
-    return flowsData.flows.find((flow) => flow.id === flowId)
-  }
-
-  function getStepById(flow, stepId) {
-    return flow?.steps.find((step) => step.id === stepId)
-  }
-
-  function getFirstStep(flow) {
-    return flow?.steps?.[0]
-  }
-
-  function buildTopicStartResponse(topicId) {
-    const topic = getTopicById(topicId)
-
-    if (!topic) {
-      return {
-        text: botMessages.fallback.unknown,
-        options: []
-      }
-    }
-
-    const flow = getFlowById(topic.flowId)
-    const firstStep = getFirstStep(flow)
-
-    if (!flow || !firstStep) {
-      return {
-        text: topic.entryMessage || botMessages.fallback.unknown,
-        options: []
-      }
-    }
-
-    if (firstStep.type === 'choice') {
-      return {
-        text: `${topic.entryMessage}\n\n${firstStep.message}`,
-        options: firstStep.options.map((option) => ({
-          label: option.label,
-          topicId,
-          stepId: option.nextStep
-        }))
-      }
-    }
-
-    return {
-      text: firstStep.message,
-      options: []
-    }
-  }
-
-  function buildFlowStepResponse(topicId, stepId) {
-    const topic = getTopicById(topicId)
-    const flow = getFlowById(topic?.flowId)
-    const step = getStepById(flow, stepId)
-
-    if (!step) {
-      return {
-        text: botMessages.fallback.unknown,
-        options: []
-      }
-    }
-
-    if (step.type === 'choice') {
-      return {
-        text: step.message,
-        options: step.options.map((option) => ({
-          label: option.label,
-          topicId,
-          stepId: option.nextStep
-        }))
-      }
-    }
-
-    return {
-      text: step.message,
-      options: []
-    }
   }
 
   const suggestedTopicIds = [
@@ -340,7 +340,7 @@ La reserva solo será válida después de la confirmación del equipo.`
             />
             <button type="submit">Enviar</button>
           </form>
-          
+
           {activeOptions.length > 0 && (
             <div className="agent-topic-options">
               {activeOptions.map((option) => (
