@@ -1023,6 +1023,109 @@ button {
   background: linear-gradient(180deg, #fffaf3, #f8f1e7);
 }
 
+.agent-input-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px;
+  background: var(--panel-strong);
+  border-top: 1px solid var(--border);
+}
+
+.agent-input-form input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid rgba(143, 29, 20, 0.16);
+  border-radius: 999px;
+  padding: 12px 14px;
+  background: #fffaf3;
+  color: var(--text);
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.agent-input-form input::placeholder {
+  color: rgba(122, 102, 88, 0.72);
+}
+
+.agent-input-form input:focus {
+  border-color: rgba(143, 29, 20, 0.45);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(143, 29, 20, 0.08);
+}
+
+.agent-input-form button {
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 16px;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 900;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.agent-input-form button:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(143, 29, 20, 0.22);
+}
+
+.agent-topic-options {
+  display: grid;
+  gap: 8px;
+  padding: 10px 14px 14px;
+  background: var(--panel-strong);
+  border-top: 1px solid rgba(42, 28, 20, 0.06);
+}
+
+.agent-topic-options button {
+  width: 100%;
+  border: 1px solid rgba(143, 29, 20, 0.14);
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: rgba(255, 250, 243, 0.9);
+  color: var(--accent);
+  cursor: pointer;
+  font-weight: 900;
+  text-align: left;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.agent-topic-options button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(143, 29, 20, 0.34);
+  background: rgba(143, 29, 20, 0.06);
+}
+
+@media (max-width: 480px) {
+  .agent-input-form {
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .agent-input-form input {
+    padding: 11px 12px;
+    font-size: 13px;
+  }
+
+  .agent-input-form button {
+    padding: 0 12px;
+    font-size: 12px;
+  }
+}
+
 .agent-message {
   max-width: 86%;
   padding: 12px 14px;
