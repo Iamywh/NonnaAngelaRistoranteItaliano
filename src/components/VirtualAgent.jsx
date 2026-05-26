@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import botMessages from '../data/bot/botMessages.json'
 
 const quickActions = [
   {
@@ -44,7 +45,7 @@ export default function VirtualAgent() {
   const [messages, setMessages] = useState([
     {
       role: 'agent',
-      text: 'Hola, soy el asistente virtual de Nonna Angela. Puedo recomendarte platos, vinos, cócteles, opciones vegetarianas, alérgenos o ayudarte con una solicitud de reserva.'
+      text: botMessages.greeting.message
     }
   ])
 
