@@ -10,6 +10,7 @@ import FBControl from './pages/admin/FBControl.jsx'
 import Orders from './pages/admin/Orders.jsx'
 import Invoices from './pages/admin/Invoices.jsx'
 import VirtualAgent from './components/VirtualAgent.jsx'
+import Footer from './components/Footer.jsx'
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home')
@@ -38,6 +39,7 @@ export default function App() {
 
       <main className="main-content">{renderPage()}</main>
 
+      <Footer />
       <VirtualAgent />
     </div>
   )
