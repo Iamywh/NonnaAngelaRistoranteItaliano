@@ -245,6 +245,10 @@ export default function VirtualAgent() {
       ? buildFlowStepResponse(option.topicId, option.stepId)
       : buildTopicStartResponse(option.topicId)
 
+    if (option.topicId === 'booking_request') {
+      setShowBookingForm(true)
+    }
+
     setMessages((current) => [
       ...current,
       { role: 'user', text: option.label },
