@@ -328,6 +328,14 @@ export default function VirtualAgent() {
   const [isOpen, setIsOpen] = useState(false)
   const [userInput, setUserInput] = useState('')
   const [activeOptions, setActiveOptions] = useState([])
+  const promotedTopics = [
+    { label: 'Platos', topicId: 'dish_recommendation' },
+    { label: 'Vinos', topicId: 'wine_pairing' },
+    { label: 'Cócteles', topicId: 'cocktail_recommendation' },
+    { label: 'Alérgenos', topicId: 'allergen_info' },
+    { label: 'Reservas', topicId: 'booking_request' },
+    { label: 'Horarios', topicId: 'opening_hours' }
+  ]
   const [messages, setMessages] = useState(() => getInitialMessages())
 
   const [showBookingForm, setShowBookingForm] = useState(false)
@@ -583,18 +591,22 @@ La reserva solo será válida después de la confirmación del equipo.`
           <form className="agent-input-form" onSubmit={handleUserMessageSubmit}>
             <input
               value={userInput}
-              onChange={(event) => setUserInput(event.target.value)}
+              onFocus={() => setActiveOptions([])}
+              onChange={(event) => {
+                setUserInput(event.target.value)
+                setActiveOptions([])
+              }}
               placeholder="Escribe tu pregunta..."
               aria-label="Escribe tu pregunta"
             />
             <button type="submit">Enviar</button>
           </form>
 
-          {activeOptions.length > 0 && (
+          {activeOptions.length > 0 ? (
             <div className="agent-topic-options">
               {activeOptions.map((option) => (
                 <button
-                  key={`${option.topicId}-${option.stepId || 'start'}`}
+                  key={`${option.topicId}-${option.stepId || option.action || 'start'}`}
                   type="button"
                   onClick={() => handleOptionClick(option)}
                 >
@@ -602,6 +614,21 @@ La reserva solo será válida después de la confirmación del equipo.`
                 </button>
               ))}
             </div>
+          ) : (
+            messages.length === 1 &&
+            !userInput && (
+              <div className="agent-promoted-topics">
+                {promotedTopics.map((topic) => (
+                  <button
+                    key={topic.topicId}
+                    type="button"
+                    onClick={() => handleOptionClick(topic)}
+                  >
+                    {topic.label}
+                  </button>
+                ))}
+              </div>
+            )
           )}
 
           {showBookingForm && (
