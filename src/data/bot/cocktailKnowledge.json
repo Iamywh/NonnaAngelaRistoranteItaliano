@@ -1,0 +1,551 @@
+{
+  "language": "es",
+  "version": "1.0.0",
+  "domain": "italian_cocktails",
+  "category": "cocktails",
+  "knowledgePrinciples": {
+    "recipeModel": "Cada cóctel puede tener receta IBA, receta del creador o marca, receta común de servicio y variantes históricas.",
+    "botShouldDiscloseRecipeType": true,
+    "botShouldDiscloseUncertainty": true,
+    "botShouldNeverClaimAllergenFreeWithoutLabelCheck": true,
+    "allergenFramework": "EU_1169_2011",
+    "measureSystem": "ml",
+    "serviceConversion": {
+      "30_ml": "1 oz aproximadamente",
+      "60_ml": "2 oz aproximadamente",
+      "90_ml": "3 oz aproximadamente"
+    }
+  },
+  "cocktails": [
+    {
+      "id": "americano",
+      "name": "Americano",
+      "family": "aperitivo_italiano",
+      "style": ["amargo", "fresco", "ligero", "clásico", "aperitivo"],
+      "officialStatus": {
+        "ibaOfficial": true,
+        "confidence": "alta",
+        "note": "Cóctel clásico con codificación IBA."
+      },
+      "history": {
+        "short": "El Americano es uno de los primeros grandes aperitivos italianos, ligado históricamente al mundo del Milano-Torino, Campari y vermut rojo.",
+        "origin": "Italia, con fuerte vínculo histórico con Milán y Turín.",
+        "confidence": "media-alta"
+      },
+      "recipes": {
+        "primaryRecipe": "iba",
+        "officialRecipe": {
+          "name": "IBA",
+          "confidence": "alta",
+          "ingredients": [
+            { "name": "Campari", "amountMl": 30, "role": "bitter" },
+            { "name": "Vermut rojo dulce", "amountMl": 30, "role": "aromatized_wine" },
+            { "name": "Soda", "amountMl": null, "note": "splash", "role": "top" }
+          ],
+          "glassware": "Old fashioned",
+          "ice": "Hielo abundante",
+          "garnish": ["Media rodaja de naranja", "Zest de limón"],
+          "method": [
+            "Construir directamente en el vaso con hielo.",
+            "Añadir Campari y vermut rojo.",
+            "Completar con un toque de soda.",
+            "Mezclar suavemente y decorar."
+          ]
+        },
+        "variants": [
+          {
+            "name": "Milano-Torino",
+            "type": "family_variant",
+            "description": "Campari y vermut rojo en partes iguales, sin soda.",
+            "confidence": "media-alta"
+          }
+        ]
+      },
+      "service": {
+        "temperature": "Frío, servido inmediatamente.",
+        "tips": [
+          "Usar hielo abundante y frío.",
+          "No excederse con la soda para no diluir demasiado el amargor."
+        ]
+      },
+      "sensoryProfile": {
+        "aroma": ["naranja", "hierbas", "botánicos", "vermut"],
+        "taste": ["amargo-dulce", "refrescante", "menos intenso que un Negroni"],
+        "mouthfeel": ["ligero", "frizzante", "seco"]
+      },
+      "allergens": {
+        "euAllergensLikely": ["sulfitos posibles por el vermut"],
+        "notAutomaticAllergens": ["naranja", "limón"],
+        "crossContaminationRisks": ["jigger compartido", "bar spoon compartida", "tabla de garnish", "pinzas de hielo"],
+        "botSafetyNote": "Puede contener sulfitos por el vermut. En caso de alergia o intolerancia, confirma con el equipo de sala."
+      },
+      "pairings": ["olivas", "taralli", "salumi ligeros", "crostini", "snacks salados"],
+      "curiosities": [
+        "Es uno de los aperitivos italianos clásicos que preceden al Negroni."
+      ],
+      "botAnswers": {
+        "shortRecommendation": "Si quieres un aperitivo italiano clásico, fresco y amargo pero no demasiado fuerte, te recomendaría un Americano.",
+        "whenToSuggest": "Cuando el cliente quiere algo amargo, ligero, clásico o menos intenso que un Negroni."
+      }
+    },
+    {
+      "id": "negroni",
+      "name": "Negroni",
+      "family": "aperitivo_italiano",
+      "style": ["amargo", "intenso", "clásico", "seco", "elegante"],
+      "officialStatus": {
+        "ibaOfficial": true,
+        "confidence": "alta",
+        "note": "Cóctel clásico con codificación IBA."
+      },
+      "history": {
+        "short": "La historia más aceptada sitúa el nacimiento del Negroni en Florencia en 1919, como un Americano reforzado con gin en lugar de soda.",
+        "origin": "Florencia, Italia.",
+        "notablePeople": ["Camillo Negroni", "Fosco Scarselli"],
+        "confidence": "alta, aunque con prudencia histórica"
+      },
+      "recipes": {
+        "primaryRecipe": "iba",
+        "officialRecipe": {
+          "name": "IBA",
+          "confidence": "alta",
+          "ingredients": [
+            { "name": "Gin", "amountMl": 30, "role": "spirit" },
+            { "name": "Campari", "amountMl": 30, "role": "bitter" },
+            { "name": "Vermut rojo dulce", "amountMl": 30, "role": "aromatized_wine" }
+          ],
+          "glassware": "Old fashioned",
+          "ice": "Hielo abundante",
+          "garnish": ["Media rodaja de naranja"],
+          "method": [
+            "Construir directamente en el vaso con hielo.",
+            "Añadir gin, Campari y vermut rojo en partes iguales.",
+            "Mezclar con suavidad.",
+            "Decorar con naranja."
+          ]
+        },
+        "variants": [
+          {
+            "name": "Old Pal",
+            "type": "classic_variant",
+            "description": "Variante clásica con Campari, vermut seco y rye whiskey.",
+            "confidence": "media-alta"
+          }
+        ]
+      },
+      "service": {
+        "temperature": "Frío, servido sobre hielo.",
+        "tips": [
+          "La dilución es clave: demasiado poco hielo lo vuelve agresivo; demasiado agua lo apaga.",
+          "Usar hielo grande y vaso frío cuando sea posible."
+        ]
+      },
+      "sensoryProfile": {
+        "aroma": ["naranja", "hierbas", "especias", "vermut"],
+        "taste": ["amargo", "dulce-seco", "intenso", "botánico"],
+        "mouthfeel": ["pleno", "seco", "persistente"]
+      },
+      "allergens": {
+        "euAllergensLikely": ["sulfitos posibles por el vermut"],
+        "crossContaminationRisks": ["jigger compartido", "bar spoon compartida", "garnish station"],
+        "botSafetyNote": "El riesgo declarativo principal suele venir del vermut. En caso de alergia, confirma con el equipo de sala."
+      },
+      "pairings": ["salumi", "pecorino", "olivas", "focaccia", "crostini intensos"],
+      "curiosities": [
+        "Puede explicarse al cliente como un Americano más fuerte, porque cambia la soda por gin."
+      ],
+      "botAnswers": {
+        "shortRecommendation": "Si quieres un cóctel italiano intenso, amargo y con carácter, el Negroni es la elección más clásica.",
+        "whenToSuggest": "Cuando el cliente pide algo intenso, clásico, amargo o elegante antes de cenar."
+      }
+    },
+    {
+      "id": "aperol_spritz",
+      "name": "Aperol Spritz",
+      "family": "spritz",
+      "style": ["fresco", "ligero", "cítrico", "aperitivo", "popular"],
+      "officialStatus": {
+        "ibaOfficial": true,
+        "confidence": "alta",
+        "note": "IBA codifica Spritz con Aperol como referencia, pero Aperol tiene también su regla oficial 3-2-1."
+      },
+      "history": {
+        "short": "El Spritz tiene raíces venetas y austro-húngaras; Aperol nace en Padova en 1919 y la fórmula moderna del Aperol Spritz se consolida en los años cincuenta.",
+        "origin": "Veneto / Padova, Italia.",
+        "confidence": "alta"
+      },
+      "recipes": {
+        "primaryRecipe": "brand_recipe",
+        "officialRecipe": {
+          "name": "IBA Spritz",
+          "confidence": "alta",
+          "ingredients": [
+            { "name": "Prosecco", "amountMl": 90, "role": "sparkling_wine" },
+            { "name": "Aperol", "amountMl": 60, "role": "bitter_aperitivo" },
+            { "name": "Soda", "amountMl": null, "note": "splash", "role": "top" }
+          ],
+          "glassware": "Calice de vino grande",
+          "ice": "Hielo abundante",
+          "garnish": ["Rodaja de naranja"],
+          "method": [
+            "Llenar el calice con hielo.",
+            "Añadir Prosecco.",
+            "Añadir Aperol.",
+            "Completar con soda.",
+            "Mezclar suavemente y decorar con naranja."
+          ]
+        },
+        "brandRecipe": {
+          "name": "Aperol 3-2-1",
+          "confidence": "alta",
+          "ingredients": [
+            { "name": "Prosecco", "amountMl": 90 },
+            { "name": "Aperol", "amountMl": 60 },
+            { "name": "Soda", "amountMl": 30 }
+          ],
+          "note": "La diferencia principal con IBA está en la cantidad de soda."
+        },
+        "variants": [
+          {
+            "name": "Campari Spritz",
+            "type": "parallel_variant",
+            "description": "Misma lógica de Spritz, sustituyendo Aperol por Campari.",
+            "confidence": "media-alta"
+          },
+          {
+            "name": "Select Spritz",
+            "type": "parallel_variant",
+            "description": "Variante veneta con Select.",
+            "confidence": "media"
+          }
+        ]
+      },
+      "service": {
+        "temperature": "Muy frío. Prosecco idealmente a 6–8 °C.",
+        "tips": [
+          "Usar mucho hielo.",
+          "Añadir primero Prosecco, luego Aperol y al final soda.",
+          "Mezclar con delicadeza para no perder la burbuja."
+        ]
+      },
+      "sensoryProfile": {
+        "aroma": ["naranja", "cítricos", "hierbas suaves"],
+        "taste": ["fresco", "ligeramente amargo", "dulce-amargo", "fácil de beber"],
+        "mouthfeel": ["burbujeante", "ligero", "refrescante"]
+      },
+      "allergens": {
+        "euAllergensLikely": ["sulfitos posibles por el Prosecco"],
+        "brandNote": "Aperol declara no contener sulfitos, gluten o frutos secos, pero el cóctel final puede tener sulfitos por el Prosecco.",
+        "crossContaminationRisks": ["garnish station", "pinzas de hielo", "utensilios compartidos"],
+        "botSafetyNote": "Aperol puede no contener ciertos alérgenos, pero el Spritz puede contener sulfitos por el Prosecco. Confirmar siempre con sala."
+      },
+      "pairings": ["cicchetti", "caprese", "entrantes salados", "polpette", "baccalà", "snacks de aperitivo"],
+      "curiosities": [
+        "Es probablemente el aperitivo italiano más reconocible internacionalmente."
+      ],
+      "botAnswers": {
+        "shortRecommendation": "Si quieres algo fresco, ligero y muy italiano, te recomendaría un Aperol Spritz.",
+        "whenToSuggest": "Cuando el cliente quiere algo fácil, fresco, de aperitivo o poco intenso."
+      }
+    },
+    {
+      "id": "hugo_spritz",
+      "name": "Hugo Spritz",
+      "family": "spritz",
+      "style": ["fresco", "floral", "ligero", "aromático", "suave"],
+      "officialStatus": {
+        "ibaOfficial": false,
+        "confidence": "media",
+        "note": "No existe una ficha IBA dedicada; se trabaja con receta creator-linked y servicio común."
+      },
+      "history": {
+        "short": "El Hugo nace en 2005 en Alto Adige, creado por Roland Gruber como alternativa fresca al Spritz clásico.",
+        "origin": "Naturno / Alto Adige, Italia.",
+        "notablePeople": ["Roland Gruber"],
+        "confidence": "media-alta"
+      },
+      "recipes": {
+        "primaryRecipe": "creator_linked_common",
+        "creatorOrCommonRecipe": {
+          "name": "Hugo con melissa o sambuco",
+          "confidence": "media-alta",
+          "ingredients": [
+            { "name": "Prosecco", "amountMl": 150, "role": "sparkling_wine" },
+            { "name": "Sirope de melissa o sambuco", "amountMl": 20, "role": "floral_syrup" },
+            { "name": "Soda", "amountMl": null, "note": "splash", "role": "top" },
+            { "name": "Menta", "amountMl": null, "role": "herb_garnish" },
+            { "name": "Limón o lima", "amountMl": null, "role": "citrus_garnish" }
+          ],
+          "glassware": "Calice de vino grande",
+          "ice": "Hielo abundante",
+          "garnish": ["Menta", "Limón o lima"],
+          "method": [
+            "Llenar el calice con hielo.",
+            "Añadir Prosecco y sirope.",
+            "Completar con soda.",
+            "Añadir menta y cítrico.",
+            "Mezclar suavemente sin machacar la menta."
+          ]
+        },
+        "variants": [
+          {
+            "name": "Hugo con licor de flor de saúco",
+            "type": "modern_brand_variant",
+            "description": "Versión moderna con licor de flor de saúco, sparkling wine y agua con gas.",
+            "confidence": "media"
+          }
+        ]
+      },
+      "service": {
+        "temperature": "Muy frío, con hielo abundante.",
+        "tips": [
+          "No machacar agresivamente la menta.",
+          "Servir rápido para mantener frescura y burbuja."
+        ]
+      },
+      "sensoryProfile": {
+        "aroma": ["floral", "menta", "cítrico", "hierbas frescas"],
+        "taste": ["fresco", "suave", "floral", "ligeramente dulce"],
+        "mouthfeel": ["ligero", "burbujeante", "aromático"]
+      },
+      "allergens": {
+        "euAllergensLikely": ["sulfitos posibles por el Prosecco"],
+        "ingredientsToVerify": ["sirope de sambuco o melissa según marca"],
+        "crossContaminationRisks": ["garnish station", "utensilios de siropes", "hierbas frescas compartidas"],
+        "botSafetyNote": "Verificar siempre la marca del sirope y el Prosecco. Puede contener sulfitos por la parte vinícola."
+      },
+      "pairings": ["formaggi frescos", "crudités", "antipasti vegetales", "entrantes delicados"],
+      "curiosities": [
+        "La versión original se asocia a la melissa, aunque hoy la versión con sambuco es muy común."
+      ],
+      "botAnswers": {
+        "shortRecommendation": "Si buscas algo fresco, floral y suave, el Hugo Spritz es una gran opción.",
+        "whenToSuggest": "Cuando el cliente quiere algo más suave y floral que un Aperol Spritz."
+      }
+    },
+    {
+      "id": "rossini",
+      "name": "Rossini",
+      "family": "sparkling_fruit",
+      "style": ["afrutado", "suave", "fresco", "elegante"],
+      "officialStatus": {
+        "ibaOfficial": false,
+        "confidence": "media",
+        "note": "No tiene ficha IBA autónoma; aparece como variante del Bellini con purea de fresa."
+      },
+      "history": {
+        "short": "El Rossini se entiende como variante del Bellini, sustituyendo la pesca blanca por fresa. Su historia está menos fijada que la del Bellini.",
+        "origin": "Tradición de servicio italiana vinculada a la familia Bellini.",
+        "confidence": "media-baja"
+      },
+      "recipes": {
+        "primaryRecipe": "bellini_family_variant",
+        "commonRecipe": {
+          "name": "Rossini clásico",
+          "confidence": "media",
+          "ingredients": [
+            { "name": "Prosecco", "amountMl": 100, "role": "sparkling_wine" },
+            { "name": "Purea fresca de fresa", "amountMl": 50, "role": "fruit_puree" }
+          ],
+          "glassware": "Flute o calice estrecho",
+          "ice": "Sin hielo en el servicio final",
+          "garnish": ["Opcional: media fresa, si la casa lo usa"],
+          "method": [
+            "Usar ingredientes muy fríos.",
+            "Añadir purea fina de fresa.",
+            "Completar con Prosecco frío.",
+            "Mezclar con extrema suavidad."
+          ]
+        },
+        "variants": [
+          {
+            "name": "Rossini con champagne",
+            "type": "sparkling_wine_variant",
+            "description": "Sustituye Prosecco por champagne u otro espumoso.",
+            "confidence": "media"
+          },
+          {
+            "name": "Rossini sin alcohol",
+            "type": "non_alcoholic_variant",
+            "description": "Purea de fresa con agua con gas o espumoso sin alcohol.",
+            "confidence": "media"
+          }
+        ]
+      },
+      "service": {
+        "temperature": "Muy frío, servido de inmediato.",
+        "tips": [
+          "La purea debe ser fina y sin grumos.",
+          "No agitar fuerte para no perder la burbuja."
+        ]
+      },
+      "sensoryProfile": {
+        "aroma": ["fresa fresca", "fruta roja", "vino espumoso"],
+        "taste": ["afrutado", "suave", "ligeramente ácido", "fresco"],
+        "mouthfeel": ["cremoso por la purea", "burbujeante", "ligero"]
+      },
+      "allergens": {
+        "euAllergensLikely": ["sulfitos posibles por el Prosecco"],
+        "notAutomaticAllergens": ["fresa"],
+        "crossContaminationRisks": ["blender", "colador", "contenedores de purea", "tabla de fruta"],
+        "botSafetyNote": "La fresa no es uno de los 14 alérgenos UE obligatorios, pero puede haber sensibilidad individual. Confirmar siempre con sala."
+      },
+      "pairings": ["caprese", "bruschetta de tomate", "pizza Margherita", "pasta al pomodoro", "platos frescos"],
+      "curiosities": [
+        "El nombre remite a Gioachino Rossini."
+      ],
+      "botAnswers": {
+        "shortRecommendation": "Si quieres algo suave, fresco y afrutado, el Rossini es una opción muy agradable.",
+        "whenToSuggest": "Cuando el cliente quiere algo frutal, suave, ligero o de celebración."
+      }
+    },
+    {
+      "id": "bellini",
+      "name": "Bellini",
+      "family": "sparkling_fruit",
+      "style": ["elegante", "suave", "afrutado", "delicado", "veneciano"],
+      "officialStatus": {
+        "ibaOfficial": true,
+        "confidence": "alta",
+        "note": "Tiene codificación IBA y también receta creator-linked de Harry's Bar/Cipriani."
+      },
+      "history": {
+        "short": "El Bellini fue creado en Venecia en 1948 por Giuseppe Cipriani en Harry's Bar. El nombre se inspira en el color asociado al pintor Giovanni Bellini.",
+        "origin": "Venecia, Italia.",
+        "notablePeople": ["Giuseppe Cipriani", "Giovanni Bellini"],
+        "confidence": "alta"
+      },
+      "recipes": {
+        "primaryRecipe": "creator_linked",
+        "officialRecipe": {
+          "name": "IBA",
+          "confidence": "alta",
+          "ingredients": [
+            { "name": "Prosecco", "amountMl": 100, "role": "sparkling_wine" },
+            { "name": "Purea de pesca blanca", "amountMl": 50, "role": "fruit_puree" }
+          ],
+          "glassware": "Flute fría",
+          "ice": "Sin hielo en el servicio final",
+          "garnish": [],
+          "method": [
+            "Usar flute fría.",
+            "Añadir purea de pesca blanca.",
+            "Completar con Prosecco muy frío.",
+            "Mezclar con muchísima delicadeza."
+          ]
+        },
+        "creatorRecipe": {
+          "name": "Harry's Bar / Cipriani",
+          "confidence": "alta",
+          "ingredients": [
+            { "name": "Prosecco seco muy frío", "amountMl": 100 },
+            { "name": "Purea de pesca blanca", "amountMl": 30 }
+          ],
+          "note": "La versión creator-linked es más seca y centrada en el vino. El punto clave es usar pesca blanca, no amarilla."
+        },
+        "variants": [
+          {
+            "name": "Rossini",
+            "type": "family_variant",
+            "description": "Sustituye la pesca blanca por purea de fresa.",
+            "confidence": "media"
+          },
+          {
+            "name": "Puccini",
+            "type": "family_variant",
+            "description": "Sustituye la pesca por zumo fresco de mandarina.",
+            "confidence": "media-alta"
+          },
+          {
+            "name": "Tintoretto",
+            "type": "family_variant",
+            "description": "Sustituye la pesca por zumo de granada.",
+            "confidence": "media-alta"
+          }
+        ]
+      },
+      "service": {
+        "temperature": "Muy frío. Prosecco idealmente a 6–8 °C.",
+        "tips": [
+          "Usar pesca blanca.",
+          "No agitar fuerte.",
+          "No usar garnish creativo si se quiere mantener el estilo clásico."
+        ]
+      },
+      "sensoryProfile": {
+        "aroma": ["pesca blanca", "floral", "fruta delicada"],
+        "taste": ["suave", "elegante", "afrutado", "delicado"],
+        "mouthfeel": ["sedoso", "ligero", "burbujeante"]
+      },
+      "allergens": {
+        "euAllergensLikely": ["sulfitos posibles por el Prosecco"],
+        "notAutomaticAllergens": ["pesca"],
+        "crossContaminationRisks": ["blender", "pasapurés", "contenedores de purea", "flute compartidas"],
+        "botSafetyNote": "La pesca no es uno de los 14 alérgenos UE obligatorios, pero puede haber sensibilidad individual. Confirmar siempre con sala."
+      },
+      "pairings": ["antipasti finos", "brunch elegante", "finger food delicado", "pescado suave", "verduras delicadas"],
+      "curiosities": [
+        "El color del Bellini inspiró su nombre por el pintor Giovanni Bellini."
+      ],
+      "botAnswers": {
+        "shortRecommendation": "Si buscas algo elegante, suave y delicado, el Bellini es una opción perfecta.",
+        "whenToSuggest": "Cuando el cliente quiere algo afrutado, elegante, veneciano o menos amargo que un Spritz."
+      }
+    }
+  ],
+  "recommendationBranches": {
+    "fresh_light": {
+      "label": "Fresco y ligero",
+      "recommendedCocktailIds": ["aperol_spritz", "hugo_spritz"],
+      "botAnswer": "Si quieres algo fresco y ligero, te recomendaría un Aperol Spritz o un Hugo Spritz. El Aperol es más clásico y ligeramente amargo; el Hugo es más suave y floral."
+    },
+    "bitter_intense": {
+      "label": "Amargo e intenso",
+      "recommendedCocktailIds": ["negroni", "americano"],
+      "botAnswer": "Si buscas algo amargo, el Negroni es la opción más intensa y clásica. Si prefieres algo más ligero pero con perfil amargo italiano, elegiría un Americano."
+    },
+    "soft_fruity": {
+      "label": "Suave y afrutado",
+      "recommendedCocktailIds": ["bellini", "rossini"],
+      "botAnswer": "Si quieres algo suave y afrutado, Bellini o Rossini son las mejores opciones. El Bellini es más delicado y elegante; el Rossini es más frutal y directo."
+    },
+    "classic_italian_aperitivo": {
+      "label": "Aperitivo italiano clásico",
+      "recommendedCocktailIds": ["aperol_spritz", "negroni", "americano", "hugo_spritz"],
+      "botAnswer": "Para un aperitivo italiano clásico, puedes elegir Aperol Spritz si quieres algo fresco, Negroni si quieres intensidad, Americano si quieres amargo pero más ligero, o Hugo Spritz si prefieres algo floral."
+    }
+  },
+  "curiousQuestions": [
+    {
+      "question": "¿Cuál es la diferencia entre un Americano y un Negroni?",
+      "answer": "El Negroni puede entenderse como un Americano reforzado: el Americano lleva Campari, vermut rojo y soda; el Negroni cambia la soda por gin, por eso es más intenso, seco y alcohólico."
+    },
+    {
+      "question": "¿Cuál es la diferencia entre Bellini y Rossini?",
+      "answer": "Comparten la misma lógica de cóctel con vino espumoso y purea de fruta. El Bellini usa pesca blanca; el Rossini usa fresa."
+    },
+    {
+      "question": "¿El Aperol Spritz tiene sulfitos?",
+      "answer": "Aperol declara no contener sulfitos, pero el Aperol Spritz lleva Prosecco, y el Prosecco puede contener sulfitos. Por eso no se debe prometer que el cóctel final sea libre de sulfitos sin verificar etiquetas."
+    },
+    {
+      "question": "¿El Hugo Spritz es un cóctel italiano?",
+      "answer": "Sí, se considera un cóctel italiano moderno nacido en Alto Adige en 2005, aunque no tiene una ficha IBA dedicada como Negroni, Americano, Bellini o Spritz."
+    },
+    {
+      "question": "¿Cuál es el cóctel más fuerte?",
+      "answer": "Normalmente el Negroni es el más intenso del grupo, porque combina gin, Campari y vermut rojo sin soda ni zumo."
+    },
+    {
+      "question": "¿Cuál es el más suave?",
+      "answer": "Bellini, Rossini o Hugo Spritz suelen ser opciones más suaves y fáciles de beber, dependiendo del gusto del cliente."
+    }
+  ],
+  "botRules": {
+    "doNotInventIngredients": true,
+    "ifRecipeIsAsked": "Responder indicando si se usa receta IBA, receta del creador/marca o receta común de servicio.",
+    "ifAllergensAreAsked": "Separar siempre alérgenos declarativos, ingredientes a verificar y riesgo de contaminación cruzada.",
+    "ifOriginIsUncertain": "Declarar el nivel de certeza y evitar afirmaciones absolutas.",
+    "fallbackMessage": "Puedo recomendarte el estilo del cóctel, pero si necesitas ingredientes exactos, marca usada o información de alérgenos, confirma con el equipo de sala."
+  }
+}
