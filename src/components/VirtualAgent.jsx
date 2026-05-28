@@ -328,6 +328,7 @@ export default function VirtualAgent() {
   const [isOpen, setIsOpen] = useState(false)
   const [userInput, setUserInput] = useState('')
   const [activeOptions, setActiveOptions] = useState([])
+  const [showSuggestions, setShowSuggestions] = useState(true)
   const promotedTopics = [
     { label: 'Platos', topicId: 'dish_recommendation' },
     { label: 'Vinos', topicId: 'wine_pairing' },
@@ -368,6 +369,7 @@ export default function VirtualAgent() {
     setActiveOptions([])
     setShowBookingForm(false)
     setUserInput('')
+    setShowSuggestions(true)
 
     try {
       window.localStorage.removeItem(CHAT_STORAGE_KEY)
@@ -395,6 +397,7 @@ export default function VirtualAgent() {
       ])
 
       setActiveOptions(response.options || [])
+      setShowSuggestions(true)
       setUserInput('')
       return
     }
@@ -416,7 +419,7 @@ export default function VirtualAgent() {
         topicId: topic.id
       }))
     )
-
+    setShowSuggestions(true)
     setMessages((current) => [
       ...current,
       { role: 'user', text: trimmedInput },
@@ -433,7 +436,7 @@ export default function VirtualAgent() {
         { role: 'user', text: option.label },
         { role: 'agent', text: botMessages.closing.shortMessage }
       ])
-
+      setShowSuggestions(false)
       setActiveOptions([])
       setShowBookingForm(false)
       setUserInput('')
@@ -474,7 +477,7 @@ export default function VirtualAgent() {
           topicId: topic.id
         }))
       )
-
+      setShowSuggestions(true)
       return
     }
 
@@ -591,9 +594,13 @@ La reserva solo será válida después de la confirmación del equipo.`
           <form className="agent-input-form" onSubmit={handleUserMessageSubmit}>
             <input
               value={userInput}
-              onFocus={() => setActiveOptions([])}
+              onFocus={() => {
+                setShowSuggestions(false)
+                setActiveOptions([])
+              }}
               onChange={(event) => {
                 setUserInput(event.target.value)
+                setShowSuggestions(false)
                 setActiveOptions([])
               }}
               placeholder="Escribe tu pregunta..."
@@ -602,32 +609,34 @@ La reserva solo será válida después de la confirmación del equipo.`
             <button type="submit">Enviar</button>
           </form>
 
-          {activeOptions.length > 0 ? (
-            <div className="agent-topic-options">
-              {activeOptions.map((option) => (
-                <button
-                  key={`${option.topicId}-${option.stepId || option.action || 'start'}`}
-                  type="button"
-                  onClick={() => handleOptionClick(option)}
-                >
-                  {option.label}
-                </button>
-              ))}
-            </div>
-          ) : (
-            messages.length === 1 &&
-            !userInput && (
-              <div className="agent-promoted-topics">
-                {promotedTopics.map((topic) => (
+          {showSuggestions && (
+            activeOptions.length > 0 ? (
+              <div className="agent-topic-options">
+                {activeOptions.map((option) => (
                   <button
-                    key={topic.topicId}
+                    key={`${option.topicId || option.action}-${option.stepId || option.action || 'start'}`}
                     type="button"
-                    onClick={() => handleOptionClick(topic)}
+                    onClick={() => handleOptionClick(option)}
                   >
-                    {topic.label}
+                    {option.label}
                   </button>
                 ))}
               </div>
+            ) : (
+              messages.length === 1 &&
+              !userInput && (
+                <div className="agent-promoted-topics">
+                  {promotedTopics.map((topic) => (
+                    <button
+                      key={topic.topicId}
+                      type="button"
+                      onClick={() => handleOptionClick(topic)}
+                    >
+                      {topic.label}
+                    </button>
+                  ))}
+                </div>
+              )
             )
           )}
 
