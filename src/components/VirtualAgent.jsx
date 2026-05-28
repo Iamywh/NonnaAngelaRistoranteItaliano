@@ -4,6 +4,7 @@ import nluIntents from '../data/bot/nluIntents.json'
 import topicsData from '../data/bot/topics.json'
 import flowsData from '../data/bot/flows.json'
 import restaurantKnowledge from '../data/bot/restaurantKnowledge.json'
+import cocktailKnowledge from '../data/bot/cocktailKnowledge.json'
 
 const CHAT_STORAGE_KEY = 'nonna_angela_virtual_agent_messages'
 
@@ -124,6 +125,62 @@ function buildTopicStartResponse(topicId) {
   return buildSatisfactionResponse(firstStep.message)
 }
 
+function buildCocktailBranchAnswer(stepId) {
+  const branchMap = {
+    cocktail_fresh: 'fresh_light',
+    cocktail_bitter: 'bitter_intense',
+    cocktail_soft: 'soft_fruity'
+  }
+
+  const branchId = branchMap[stepId]
+  const branch = cocktailKnowledge.recommendationBranches?.[branchId]
+
+  return branch?.botAnswer || null
+}
+
+function buildCocktailCuriousAnswer(userText) {
+  const normalizedUserText = normalizeText(userText)
+
+  const curiousRules = [
+    {
+      tokens: ['americano', 'negroni'],
+      questionIncludes: 'Americano y un Negroni'
+    },
+    {
+      tokens: ['bellini', 'rossini'],
+      questionIncludes: 'Bellini y Rossini'
+    },
+    {
+      tokens: ['aperol', 'sulfit'],
+      questionIncludes: 'Aperol Spritz tiene sulfitos'
+    },
+    {
+      tokens: ['hugo', 'italiano'],
+      questionIncludes: 'Hugo Spritz es un cóctel italiano'
+    },
+    {
+      tokens: ['mas', 'fuerte'],
+      questionIncludes: 'cóctel más fuerte'
+    },
+    {
+      tokens: ['mas', 'suave'],
+      questionIncludes: 'más suave'
+    }
+  ]
+
+  const matchedRule = curiousRules.find((rule) =>
+    rule.tokens.every((token) => normalizedUserText.includes(token))
+  )
+
+  if (!matchedRule) return null
+
+  const matchedQuestion = cocktailKnowledge.curiousQuestions.find((item) =>
+    normalizeText(item.question).includes(normalizeText(matchedRule.questionIncludes))
+  )
+
+  return matchedQuestion?.answer || null
+}
+
 function buildDynamicTopicAnswer(topicId) {
   const restaurant = restaurantKnowledge.restaurant
 
@@ -172,6 +229,13 @@ function buildSatisfactionResponse(message) {
 }
 
 function buildFlowStepResponse(topicId, stepId) {
+  if (topicId === 'cocktail_recommendation') {
+    const cocktailAnswer = buildCocktailBranchAnswer(stepId)
+
+    if (cocktailAnswer) {
+      return buildSatisfactionResponse(cocktailAnswer)
+    }
+  }
   const topic = getTopicById(topicId)
   const flow = getFlowById(topic?.flowId)
   const step = getStepById(flow, stepId)
@@ -310,6 +374,22 @@ export default function VirtualAgent() {
     const trimmedInput = userInput.trim()
 
     if (!trimmedInput) return
+
+    const cocktailCuriousAnswer = buildCocktailCuriousAnswer(trimmedInput)
+
+    if (cocktailCuriousAnswer) {
+      const response = buildSatisfactionResponse(cocktailCuriousAnswer)
+
+      setMessages((current) => [
+        ...current,
+        { role: 'user', text: trimmedInput },
+        { role: 'agent', text: response.text }
+      ])
+
+      setActiveOptions(response.options || [])
+      setUserInput('')
+      return
+    }
 
     const matchedIntents = detectIntents(trimmedInput)
     const agentResponse = buildIntentResponse(matchedIntents)
