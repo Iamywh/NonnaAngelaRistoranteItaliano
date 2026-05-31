@@ -9,6 +9,7 @@ import insalate from '../../data/menu/insalate.json'
 import dolci from '../../data/menu/Dolci.json'
 import vini from '../../data/menu/vini.json'
 import cocktail from '../../data/menu/cocktail.json'
+import softdrinks from '../../data/menu/softdrinks.json'
 
 const menuCategories = [
   {
@@ -45,6 +46,13 @@ const menuCategories = [
     subtitle: 'Un final italiano, sencillo y memorable.',
     image: '/images/menu/dolci.jpg',
     type: 'food'
+  },
+  {
+    id: 'softdrinks',
+    title: 'Refrescos y aguas',
+    subtitle: 'Agua, refrescos, tónicas y bebidas sin alcohol.',
+    image: '/images/menu/softdrinks.jpg',
+    type: 'drink'
   },
   {
     id: 'vini',
@@ -146,6 +154,13 @@ function DishCard({ item }) {
           </p>
         )}
 
+        {!item.producer && item.format && (
+          <p className="wine-meta">
+            {item.category}
+            {item.format ? ` · ${item.format}` : ''}
+          </p>
+        )}
+
         {(item.description_es || item.description || item.notes) && (
           <p className="dish-note">
             {item.description_es || item.description || item.notes}
@@ -189,7 +204,9 @@ function DishCard({ item }) {
               </strong>
 
               {item.prezzo_consigliato && <span>Maridaje vino</span>}
-              {item.recommended_price && <span>Perfecto con</span>}
+              {item.recommended_price && (
+                <span>{item.format ? 'Unidad' : 'Perfecto con'}</span>
+              )}
             </>
           )}
         </div>
@@ -312,6 +329,10 @@ function CategoryPage({ category, onBack }) {
 
     if (category.id === 'cocktail') {
       return [{ title: 'Cócteles', subtitle: 'Aperitivo y clásicos', items: cocktail.cocktails || [] }]
+    }
+
+    if (category.id === 'softdrinks') {
+      return [{ title: 'Refrescos y aguas', subtitle: 'Bebidas frías sin alcohol', items: softdrinks.softdrinks || [] }]
     }
 
     return []
