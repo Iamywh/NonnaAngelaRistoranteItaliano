@@ -141,6 +141,15 @@ function buildCocktailBranchAnswer(stepId) {
 
 function buildCocktailCuriousAnswer(userText) {
   const normalizedUserText = normalizeText(userText)
+    if (
+    normalizedUserText.includes('vino') ||
+    normalizedUserText.includes('vinos') ||
+    normalizedUserText.includes('tinto') ||
+    normalizedUserText.includes('blanco') ||
+    normalizedUserText.includes('rosado')
+  ) {
+    return null
+  }
 
   const curiousRules = [
     {
@@ -485,140 +494,160 @@ export default function VirtualAgent() {
     if (!trimmedInput) return
 
 
-    const wineComparisonAnswer = buildWineComparisonAnswer(trimmedInput)
+    const wineTechnicalAnswer = buildWineTechnicalAnswer(trimmedInput)
 
-    if (wineComparisonAnswer) {
-      const response = buildSatisfactionResponse(wineComparisonAnswer)
+if (wineTechnicalAnswer) {
+  const response = buildSatisfactionResponse(wineTechnicalAnswer)
 
-      setMessages((current) => [
-        ...current,
-        { role: 'user', text: trimmedInput },
-        { role: 'agent', text: response.text }
-      ])
+  setMessages((current) => [
+    ...current,
+    { role: 'user', text: trimmedInput },
+    { role: 'agent', text: response.text }
+  ])
 
-      setActiveOptions(response.options || [])
-      setShowSuggestions(true)
-      setUserInput('')
-      return
-    }
+  setActiveOptions(response.options || [])
+  setShowSuggestions(true)
+  setUserInput('')
+  return
+}
 
+const wineByGlassAnswer = buildWineByGlassAnswer(trimmedInput)
 
+if (wineByGlassAnswer) {
+  const response = buildSatisfactionResponse(wineByGlassAnswer)
 
-    function buildWineByGlassAnswer(userText) {
-      const normalizedUserText = normalizeText(userText)
+  setMessages((current) => [
+    ...current,
+    { role: 'user', text: trimmedInput },
+    { role: 'agent', text: response.text }
+  ])
 
-      const asksByGlass =
-        normalizedUserText.includes('por copa') ||
-        normalizedUserText.includes('copa') ||
-        normalizedUserText.includes('copas') ||
-        normalizedUserText.includes('vino abierto')
+  setActiveOptions(response.options || [])
+  setShowSuggestions(true)
+  setUserInput('')
+  return
+}
 
-      if (!asksByGlass) return null
+const wineComparisonAnswer = buildWineComparisonAnswer(trimmedInput)
 
-      const wines = (wineKnowledge.wineKnowledge || []).filter((wine) => wine.by_glass)
+if (wineComparisonAnswer) {
+  const response = buildSatisfactionResponse(wineComparisonAnswer)
 
-      if (!wines.length) {
-        return 'Ahora mismo no tengo vinos marcados como disponibles por copa. Puedes consultar al equipo para confirmar las opciones abiertas del día.'
-      }
+  setMessages((current) => [
+    ...current,
+    { role: 'user', text: trimmedInput },
+    { role: 'agent', text: response.text }
+  ])
 
-      return [
-        'Tenemos estos vinos disponibles por copa:',
-        '',
-        ...wines.map((wine) =>
-          `• ${wine.name} (${wine.region}) — ${wine.category}. ${wine.sales_note || ''}`
-        ),
-        '',
-        'Si me dices si prefieres blanco, tinto, rosado o algo más suave, te recomiendo uno.'
-      ].join('\n')
-    }
+  setActiveOptions(response.options || [])
+  setShowSuggestions(true)
+  setUserInput('')
+  return
+}
 
-    function buildWineTechnicalAnswer(userText) {
-      const normalizedUserText = normalizeText(userText)
+const wineAnswer = buildWineAnswer(trimmedInput)
 
-      if (
-        normalizedUserText.includes('tanino') ||
-        normalizedUserText.includes('taninos') ||
-        normalizedUserText.includes('tannin')
-      ) {
-        return [
-          'Los taninos son una sensación de sequedad y estructura que notas sobre todo en las encías y en la lengua.',
-          '',
-          'En simple: si un vino “agarra” un poco la boca, tiene tanino.',
-          '',
-          'Los tintos como Barolo, Brunello, Ripasso o Cabernet suelen tener más tanino. Vinos más suaves como Valpolicella o algunos rosados suelen tener menos.',
-          '',
-          'Los taninos ayudan a que el vino combine bien con carne, ragù, quesos curados y platos más intensos.'
-        ].join('\n')
-      }
+if (wineAnswer) {
+  const response = buildSatisfactionResponse(wineAnswer)
 
-      if (normalizedUserText.includes('acidez') || normalizedUserText.includes('acido')) {
-        return [
-          'La acidez es la frescura del vino.',
-          '',
-          'Un vino con buena acidez limpia la boca, da sensación de vivacidad y combina muy bien con tomate, grasa, fritos, quesos y platos salinos.',
-          '',
-          'Ejemplo fácil: Pinot Grigio, Ribolla Gialla, Gavi o Greco suelen sentirse más frescos que un tinto cálido y redondo.'
-        ].join('\n')
-      }
+  setMessages((current) => [
+    ...current,
+    { role: 'user', text: trimmedInput },
+    { role: 'agent', text: response.text }
+  ])
 
-      if (normalizedUserText.includes('cuerpo')) {
-        return [
-          'El cuerpo es la sensación de peso del vino en boca.',
-          '',
-          'Un vino ligero se siente fácil y fresco. Un vino con cuerpo se siente más amplio, intenso y persistente.',
-          '',
-          'Ejemplo: un Pinot Grigio suele ser ligero; un Primitivo, Brunello o Barolo tienen más cuerpo.'
-        ].join('\n')
-      }
+  setActiveOptions(response.options || [])
+  setShowSuggestions(true)
+  setUserInput('')
+  return
+}
 
-      return null
-    }
+const cocktailCuriousAnswer = buildCocktailCuriousAnswer(trimmedInput)
 
-    const wineAnswer = buildWineAnswer(trimmedInput)
+if (cocktailCuriousAnswer) {
+  const response = buildSatisfactionResponse(cocktailCuriousAnswer)
 
-    if (wineAnswer) {
-      const response = buildSatisfactionResponse(wineAnswer)
+  setMessages((current) => [
+    ...current,
+    { role: 'user', text: trimmedInput },
+    { role: 'agent', text: response.text }
+  ])
 
-      setMessages((current) => [
-        ...current,
-        { role: 'user', text: trimmedInput },
-        { role: 'agent', text: response.text }
-      ])
+  setActiveOptions(response.options || [])
+  setShowSuggestions(true)
+  setUserInput('')
+  return
+}
 
-      setActiveOptions(response.options || [])
-      setShowSuggestions(true)
-      setUserInput('')
-      return
-    }
+function buildWineByGlassAnswer(userText) {
+  const normalizedUserText = normalizeText(userText)
 
-    const cocktailCuriousAnswer = buildCocktailCuriousAnswer(trimmedInput)
-    if (
-      normalizedUserText.includes('vino') ||
-      normalizedUserText.includes('vinos') ||
-      normalizedUserText.includes('tinto') ||
-      normalizedUserText.includes('blanco') ||
-      normalizedUserText.includes('rosado')
-    ) {
-      return null
-    }
+  const asksByGlass =
+    normalizedUserText.includes('por copa') ||
+    normalizedUserText.includes('copa') ||
+    normalizedUserText.includes('copas') ||
+    normalizedUserText.includes('vino abierto')
 
-    if (cocktailCuriousAnswer) {
-      const response = buildSatisfactionResponse(cocktailCuriousAnswer)
+  if (!asksByGlass) return null
 
-      setMessages((current) => [
-        ...current,
-        { role: 'user', text: trimmedInput },
-        { role: 'agent', text: response.text }
-      ])
+  const wines = (wineKnowledge.wineKnowledge || []).filter((wine) => wine.by_glass)
 
-      setActiveOptions(response.options || [])
-      setShowSuggestions(true)
-      setUserInput('')
-      return
-    }
+  if (!wines.length) {
+    return 'Ahora mismo no tengo vinos marcados como disponibles por copa. Puedes consultar al equipo para confirmar las opciones abiertas del día.'
+  }
 
+  return [
+    'Tenemos estos vinos disponibles por copa:',
+    '',
+    ...wines.map((wine) =>
+      `• ${wine.name} (${wine.region}) — ${wine.category}. ${wine.sales_note || ''}`
+    ),
+    '',
+    'Si me dices si prefieres blanco, tinto, rosado o algo más suave, te recomiendo uno.'
+  ].join('\n')
+}
 
+function buildWineTechnicalAnswer(userText) {
+  const normalizedUserText = normalizeText(userText)
 
+  if (
+    normalizedUserText.includes('tanino') ||
+    normalizedUserText.includes('taninos') ||
+    normalizedUserText.includes('tannin')
+  ) {
+    return [
+      'Los taninos son una sensación de sequedad y estructura que notas sobre todo en las encías y en la lengua.',
+      '',
+      'En simple: si un vino “agarra” un poco la boca, tiene tanino.',
+      '',
+      'Los tintos como Barolo, Brunello, Ripasso o Cabernet suelen tener más tanino. Vinos más suaves como Valpolicella o algunos rosados suelen tener menos.',
+      '',
+      'Los taninos ayudan a que el vino combine bien con carne, ragù, quesos curados y platos más intensos.'
+    ].join('\n')
+  }
+
+  if (normalizedUserText.includes('acidez') || normalizedUserText.includes('acido')) {
+    return [
+      'La acidez es la frescura del vino.',
+      '',
+      'Un vino con buena acidez limpia la boca, da sensación de vivacidad y combina muy bien con tomate, grasa, fritos, quesos y platos salinos.',
+      '',
+      'Ejemplo fácil: Pinot Grigio, Ribolla Gialla, Gavi o Greco suelen sentirse más frescos que un tinto cálido y redondo.'
+    ].join('\n')
+  }
+
+  if (normalizedUserText.includes('cuerpo')) {
+    return [
+      'El cuerpo es la sensación de peso del vino en boca.',
+      '',
+      'Un vino ligero se siente fácil y fresco. Un vino con cuerpo se siente más amplio, intenso y persistente.',
+      '',
+      'Ejemplo: un Pinot Grigio suele ser ligero; un Primitivo, Brunello o Barolo tienen más cuerpo.'
+    ].join('\n')
+  }
+
+  return null
+}
 
     const matchedIntents = detectIntents(trimmedInput)
     const agentResponse = buildIntentResponse(matchedIntents)
