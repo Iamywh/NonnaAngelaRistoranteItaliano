@@ -90,6 +90,13 @@ function formatPrice(price) {
   return String(price)
 }
 
+function calculateGlassPrice(bottlePrice) {
+  if (typeof bottlePrice !== 'number') return null
+
+  const rawGlassPrice = bottlePrice / 5
+  return Math.ceil(rawGlassPrice * 2) / 2
+}
+
 function formatIngredients(ingredients = []) {
   if (!Array.isArray(ingredients) || ingredients.length === 0) {
     return 'Ingredientes en actualización.'
@@ -114,7 +121,9 @@ function DishCard({ item }) {
 
     return labels[category] || category?.replaceAll('_', ' ') || 'Menú'
   }
-
+  const glassPrice = item.by_glass
+    ? item.recommended_glass_price || calculateGlassPrice(item.recommended_bottle_price)
+    : null
   return (
     <article className="dish-card">
       <div className="dish-image-placeholder">
@@ -127,7 +136,8 @@ function DishCard({ item }) {
           {item.available === false && <span className="soldout-badge">Non disponibile</span>}
         </div>
 
-        {item.recommended_bottle_price && <span>Botella</span>}
+        <h3>{item.name_es || item.name_it || item.name || 'Plato sin nombre'}</h3>
+
         {item.producer && (
           <p className="wine-meta">
             {item.producer}
@@ -156,10 +166,10 @@ function DishCard({ item }) {
         <div className="dish-footer">
           {item.recommended_bottle_price ? (
             <div className="wine-price-block">
-              {item.by_glass && item.recommended_glass_price && (
+              {glassPrice && (
                 <div>
-                  <span>Calice</span>
-                  <strong>{formatPrice(item.recommended_glass_price)}</strong>
+                  <span>Copa</span>
+                  <strong>{formatPrice(glassPrice)}</strong>
                 </div>
               )}
 
