@@ -72,7 +72,7 @@
       "purchase_units": 1,
       "cost_price": 8.4,
       "recommended_bottle_price": 33.6,
-      "by_glass": false,
+      "by_glass": true,
       "description": "Vino tinto de Abruzzo elaborado con 100% Montepulciano d’Abruzzo. Color rojo intenso con reflejos violáceos. En nariz muestra frutos rojos, violeta y un toque especiado. En boca aparecen sensaciones aromáticas, con tanino aterciopelado, cuerpo redondo, intensidad y persistencia."
     },
     {
@@ -117,7 +117,7 @@
       "purchase_units": 1,
       "cost_price": 6.8,
       "recommended_bottle_price": 27.2,
-      "by_glass": false,
+      "by_glass": true,
       "description": "Vino tinto de Veneto elaborado con 100% Cabernet Sauvignon. Color rojo rubí intenso con reflejos violáceos. En nariz muestra aromas intensos y complejos, con fruta roja, flores y especias. En boca es intenso, aterciopelado y salino, con estructura elegante, tanino presente y final de fruta y especias."
     },
     {
@@ -162,7 +162,7 @@
       "purchase_units": 1,
       "cost_price": 6.8,
       "recommended_bottle_price": 27.2,
-      "by_glass": false,
+      "by_glass": true,
       "description": "Vino blanco de Veneto elaborado con 100% Pinot Grigio. Color amarillo pajizo con brillantes reflejos anaranjados. En nariz es agradablemente frutal. En boca es seco, limpio, mineral, elegante y equilibrado, con final fresco y ordenado."
     },
     {
@@ -177,7 +177,7 @@
       "purchase_units": 1,
       "cost_price": 6.8,
       "recommended_bottle_price": 27.2,
-      "by_glass": false,
+      "by_glass": true,
       "description": "Vino blanco de Veneto elaborado con 100% Chardonnay. Color amarillo pajizo con brillantes reflejos verdosos. En nariz ofrece aroma limpio y versátil, de intensidad media. En boca es seco, limpio, suave y fresco, elegante y equilibrado."
     },
     {
@@ -312,7 +312,7 @@
       "purchase_units": 1,
       "cost_price": 8.0,
       "recommended_bottle_price": 32.0,
-      "by_glass": false,
+      "by_glass": true,
       "description": "Vino espumoso italiano elaborado principalmente con Glera. Color amarillo pajizo pálido, burbuja fina y perfil aromático fresco. En nariz recuerda manzana, pera, flores blancas y ligeros cítricos. En boca es fresco, suave y agradable, con estilo Extra Dry ideal para aperitivo, brindis y spritz."
     },
     {
@@ -387,7 +387,7 @@
       "purchase_units": 1,
       "cost_price": 16.2,
       "recommended_bottle_price": 64.8,
-      "by_glass": false,
+      "by_glass": true,
       "description": "Vino dulce siciliano elaborado con Grillo de vendimia tardía. Color ámbar dorado. En nariz ofrece aromas complejos de frutas maduras y pasas, vainilla y miel. En boca es envolvente, de gran estructura y con sensaciones dulces de bollería. Ideal para postres, ricotta, pastelería y final de comida."
     }
   ]

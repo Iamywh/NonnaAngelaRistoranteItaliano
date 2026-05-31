@@ -127,10 +127,19 @@ function DishCard({ item }) {
           {item.available === false && <span className="soldout-badge">Non disponibile</span>}
         </div>
 
-        <h3>{item.name_es || item.name_it || item.name || 'Plato sin nombre'}</h3>
+        {item.recommended_bottle_price && <span>Botella</span>}
+        {item.producer && (
+          <p className="wine-meta">
+            {item.producer}
+            {item.region ? ` · ${item.region}` : ''}
+            {item.denomination ? ` · ${item.denomination}` : ''}
+          </p>
+        )}
 
-        {(item.description_es || item.notes) && (
-          <p className="dish-note">{item.description_es || item.notes}</p>
+        {(item.description_es || item.description || item.notes) && (
+          <p className="dish-note">
+            {item.description_es || item.description || item.notes}
+          </p>
         )}
 
         <p className="dish-ingredients">
@@ -145,20 +154,34 @@ function DishCard({ item }) {
           )}
 
         <div className="dish-footer">
-          <strong>
-            {formatPrice(
-              item.prezzo_consigliato ||
-              item.price ||
-              item.recommended_price ||
-              item.recommended_bottle_price
-            )}
-          </strong>
+          {item.recommended_bottle_price ? (
+            <div className="wine-price-block">
+              {item.by_glass && item.recommended_glass_price && (
+                <div>
+                  <span>Calice</span>
+                  <strong>{formatPrice(item.recommended_glass_price)}</strong>
+                </div>
+              )}
 
-          {item.prezzo_consigliato && <span>Maridaje vino</span>}
+              <div>
+                <span>Botella</span>
+                <strong>{formatPrice(item.recommended_bottle_price)}</strong>
+              </div>
+            </div>
+          ) : (
+            <>
+              <strong>
+                {formatPrice(
+                  item.prezzo_consigliato ||
+                  item.price ||
+                  item.recommended_price
+                )}
+              </strong>
 
-          {item.recommended_bottle_price && <span>Recomendado con</span>}
-
-          {item.recommended_price && <span>Perfecto con</span>}
+              {item.prezzo_consigliato && <span>Maridaje vino</span>}
+              {item.recommended_price && <span>Perfecto con</span>}
+            </>
+          )}
         </div>
         {Array.isArray(item.pairing) && item.pairing.length > 0 && (
           <div className="pairing-list">
