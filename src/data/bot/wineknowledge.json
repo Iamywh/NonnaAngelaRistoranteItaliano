@@ -1,0 +1,1243 @@
+{
+  "metadata": {
+    "project": "Nonna Angela Ristorante Italiano",
+    "file_type": "wineknowledge",
+    "language": "es",
+    "purpose": "Base de conocimiento para el asistente virtual, recomendaciones de vino, maridajes y venta asistida.",
+    "source_reference": "data/menu/vini.json + Factura_2026-0690 + catálogo técnico Volto Vinos"
+  },
+  "wineKnowledge": [
+    {
+      "code": "NA-WIN-RED-001",
+      "name": "Fina Nero d’Avola",
+      "producer": "Fina",
+      "category": "Rosso",
+      "region": "Sicilia",
+      "denomination": "DOC",
+      "format": "75cl",
+      "grapes": [
+        "Nero d’Avola"
+      ],
+      "style": [
+        "tinto",
+        "seco",
+        "frutal",
+        "mediterráneo",
+        "estructurado"
+      ],
+      "body": "Medio-alto",
+      "acidity": "Media",
+      "tannins": "Medios",
+      "aromas": [
+        "cereza",
+        "mora",
+        "frambuesa",
+        "fruta roja madura"
+      ],
+      "pairings": [
+        "ragù napoletano",
+        "polpette al ragù",
+        "berenjena",
+        "carne roja",
+        "quesos curados"
+      ],
+      "service_temperature": "16-18°C",
+      "cost_price": 9.1,
+      "recommended_bottle_price": 36.4,
+      "by_glass": false,
+      "description": "Vino tinto siciliano elaborado con Nero d’Avola. Color rojo rubí intenso con reflejos violáceos. En nariz es intenso y envolvente, con notas de fruta roja, cereza, mora y frambuesa. En boca es amplio, seco, estructurado y persistente, con tanino presente pero agradable.",
+      "sales_note": "Recomiéndalo cuando el cliente quiera un tinto siciliano intenso, frutal y fácil de disfrutar.",
+      "keywords": [
+        "fina_nero_davola",
+        "fina",
+        "sicilia",
+        "nero_davola"
+      ]
+    },
+    {
+      "code": "NA-WIN-RED-002",
+      "name": "Feudi di San Gregorio Primitivo di Manduria",
+      "producer": "Feudi di San Gregorio",
+      "category": "Rosso",
+      "region": "Puglia",
+      "denomination": "DOP",
+      "format": "75cl",
+      "grapes": [
+        "Primitivo"
+      ],
+      "style": [
+        "tinto",
+        "cálido",
+        "frutal",
+        "suave",
+        "redondo"
+      ],
+      "body": "Alto",
+      "acidity": "Media-baja",
+      "tannins": "Medios-suaves",
+      "aromas": [
+        "cereza madura",
+        "fresa",
+        "ciruela",
+        "especias dulces",
+        "canela"
+      ],
+      "pairings": [
+        "carne al ragù",
+        "porchetta",
+        "arrosticini",
+        "salumi",
+        "quesos semicurados"
+      ],
+      "service_temperature": "16-18°C",
+      "cost_price": 10.7,
+      "recommended_bottle_price": 42.8,
+      "by_glass": false,
+      "description": "Vino tinto de Puglia elaborado con Primitivo. Color rojo rubí intenso. En nariz ofrece fruta roja madura, cereza y fresa, con especias dulces y notas elegantes. En boca entra con cuerpo, mineralidad y taninos finos, con final cálido y recuerdos de fruta y canela.",
+      "sales_note": "Buena opción para quien pide un tinto con cuerpo, suave y fácil de beber.",
+      "keywords": [
+        "feudi_di_san_gregorio_primitivo_di_manduria",
+        "feudi_di_san_gregorio",
+        "puglia",
+        "primitivo"
+      ]
+    },
+    {
+      "code": "NA-WIN-RED-003",
+      "name": "Col d’Orcia Chianti Gineprone",
+      "producer": "Col d’Orcia",
+      "category": "Rosso",
+      "region": "Toscana",
+      "denomination": "DOCG",
+      "format": "75cl",
+      "grapes": [
+        "Sangiovese"
+      ],
+      "style": [
+        "tinto",
+        "clásico",
+        "toscano",
+        "seco",
+        "gastronómico"
+      ],
+      "body": "Medio",
+      "acidity": "Media-alta",
+      "tannins": "Medios",
+      "aromas": [
+        "fruta roja",
+        "cereza",
+        "especias",
+        "notas de madera"
+      ],
+      "pairings": [
+        "lasagna al ragù",
+        "tagliatelle al ragù",
+        "salumi",
+        "carne",
+        "quesos"
+      ],
+      "service_temperature": "16-18°C",
+      "cost_price": 11.0,
+      "recommended_bottle_price": 44.0,
+      "by_glass": false,
+      "description": "Vino tinto toscano de estilo clásico, elaborado principalmente con Sangiovese y una pequeña parte de otras uvas autorizadas. Color rojo rubí intenso. En nariz es amplio y complejo, con fruta roja madura, especias y notas aportadas por la madera. En boca tiene buena estructura, taninos suaves y maduros, con final fresco, salino y agradablemente frutal.",
+      "sales_note": "El tinto toscano clásico para clientes que quieren algo reconocible y gastronómico.",
+      "keywords": [
+        "col_dorcia_chianti_gineprone",
+        "col_dorcia",
+        "toscana",
+        "sangiovese"
+      ]
+    },
+    {
+      "code": "NA-WIN-RED-004",
+      "name": "Col d’Orcia Rosso di Montalcino",
+      "producer": "Col d’Orcia",
+      "category": "Rosso",
+      "region": "Toscana",
+      "denomination": "DOC",
+      "format": "75cl",
+      "grapes": [
+        "Sangiovese"
+      ],
+      "style": [
+        "tinto",
+        "Montalcino",
+        "elegante",
+        "frutal",
+        "fresco"
+      ],
+      "body": "Medio-alto",
+      "acidity": "Media-alta",
+      "tannins": "Medios-suaves",
+      "aromas": [
+        "cereza",
+        "frutos del bosque",
+        "violeta",
+        "especias"
+      ],
+      "pairings": [
+        "pasta al ragù",
+        "carne de cerdo",
+        "arrosticini",
+        "quesos curados",
+        "platos de tomate"
+      ],
+      "service_temperature": "16-18°C",
+      "cost_price": 16.5,
+      "recommended_bottle_price": 66.0,
+      "by_glass": false,
+      "description": "Vino tinto de Montalcino elaborado con 100% Sangiovese. Color rojo rubí intenso con reflejos violáceos. En nariz es frutal y complejo, con sensaciones de especias y frutos del bosque. En boca ofrece buena estructura, taninos suaves, frescura agradable y final persistente.",
+      "sales_note": "Perfecto como paso superior al Chianti sin llegar al precio del Brunello.",
+      "keywords": [
+        "col_dorcia_rosso_di_montalcino",
+        "col_dorcia",
+        "toscana",
+        "sangiovese"
+      ]
+    },
+    {
+      "code": "NA-WIN-RED-005",
+      "name": "Frentana Montepulciano d’Abruzzo Torre Vinaria",
+      "producer": "Frentana",
+      "category": "Rosso",
+      "region": "Abruzzo",
+      "denomination": "DOC",
+      "format": "75cl",
+      "grapes": [
+        "Montepulciano d’Abruzzo"
+      ],
+      "style": [
+        "tinto",
+        "redondo",
+        "frutal",
+        "versátil"
+      ],
+      "body": "Medio",
+      "acidity": "Media",
+      "tannins": "Medios-suaves",
+      "aromas": [
+        "frutos rojos",
+        "violeta",
+        "especias suaves"
+      ],
+      "pairings": [
+        "polpette al ragù",
+        "rigatoni all’amatriciana",
+        "carne",
+        "embutidos",
+        "pizza-style dishes"
+      ],
+      "service_temperature": "16-18°C",
+      "cost_price": 8.4,
+      "recommended_bottle_price": 33.6,
+      "by_glass": false,
+      "description": "Vino tinto de Abruzzo elaborado con 100% Montepulciano d’Abruzzo. Color rojo intenso con reflejos violáceos. En nariz muestra frutos rojos, violeta y un toque especiado. En boca aparecen sensaciones aromáticas, con tanino aterciopelado, cuerpo redondo, intensidad y persistencia.",
+      "sales_note": "Tinto de batalla inteligente: fácil, redondo y muy útil para vender por copa.",
+      "keywords": [
+        "frentana_montepulciano_dabruzzo_torre_vinaria",
+        "frentana",
+        "abruzzo",
+        "montepulciano_dabruzzo"
+      ]
+    },
+    {
+      "code": "NA-WIN-RED-006",
+      "name": "Col d’Orcia Brunello di Montalcino",
+      "producer": "Col d’Orcia",
+      "category": "Rosso",
+      "region": "Toscana",
+      "denomination": "DOCG",
+      "format": "75cl",
+      "grapes": [
+        "Sangiovese"
+      ],
+      "style": [
+        "tinto premium",
+        "Montalcino",
+        "elegante",
+        "complejo",
+        "longevo"
+      ],
+      "body": "Alto",
+      "acidity": "Media-alta",
+      "tannins": "Altos",
+      "aromas": [
+        "cereza madura",
+        "frutos del bosque",
+        "balsámico",
+        "especias",
+        "notas de madera"
+      ],
+      "pairings": [
+        "carne roja",
+        "ragù napoletano",
+        "quesos curados",
+        "platos intensos",
+        "ocasiones especiales"
+      ],
+      "service_temperature": "18°C",
+      "cost_price": 33.0,
+      "recommended_bottle_price": 132.0,
+      "by_glass": false,
+      "description": "Gran vino tinto de Montalcino elaborado con 100% Sangiovese. Color rojo rubí con reflejos granate. En nariz presenta un bouquet amplio y complejo, con notas frutales, balsámicas y especiadas en perfecta armonía. En boca es estructurado, fresco y elegante, con taninos importantes, final largo y persistente.",
+      "sales_note": "Botella de prestigio. No la empujes a todos: propónla para celebraciones o clientes que buscan gran vino italiano.",
+      "keywords": [
+        "col_dorcia_brunello_di_montalcino",
+        "col_dorcia",
+        "toscana",
+        "sangiovese"
+      ]
+    },
+    {
+      "code": "NA-WIN-RED-007",
+      "name": "Fontanafredda Barolo Serralunga d’Alba",
+      "producer": "Fontanafredda",
+      "category": "Rosso",
+      "region": "Piemonte",
+      "denomination": "DOCG",
+      "format": "75cl",
+      "grapes": [
+        "Nebbiolo"
+      ],
+      "style": [
+        "tinto premium",
+        "Piemonte",
+        "seco",
+        "elegante",
+        "tánico"
+      ],
+      "body": "Alto",
+      "acidity": "Alta",
+      "tannins": "Altos",
+      "aromas": [
+        "rosa",
+        "frutos del bosque",
+        "vainilla",
+        "especias",
+        "regaliz"
+      ],
+      "pairings": [
+        "carne",
+        "ragù largo",
+        "quesos curados",
+        "platos con trufa",
+        "cocina intensa"
+      ],
+      "service_temperature": "18°C",
+      "cost_price": 33.0,
+      "recommended_bottle_price": 132.0,
+      "by_glass": false,
+      "description": "Vino tinto de Piemonte elaborado con 100% Nebbiolo. Color rojo rubí con reflejos granate. En nariz es complejo e intenso, con vainilla, especias, rosa y frutos del bosque. En boca es amplio, seco, aterciopelado, armónico y persistente, con gran estructura y elegancia.",
+      "sales_note": "Para clientes que conocen el vino o piden algo serio, estructurado y elegante.",
+      "keywords": [
+        "fontanafredda_barolo_serralunga_dalba",
+        "fontanafredda",
+        "piemonte",
+        "nebbiolo"
+      ]
+    },
+    {
+      "code": "NA-WIN-RED-008",
+      "name": "Casere Cabernet Sauvignon",
+      "producer": "Casere",
+      "category": "Rosso",
+      "region": "Veneto",
+      "denomination": "IGT",
+      "format": "75cl",
+      "grapes": [
+        "Cabernet Sauvignon"
+      ],
+      "style": [
+        "tinto",
+        "seco",
+        "intenso",
+        "especiado",
+        "estructurado"
+      ],
+      "body": "Medio-alto",
+      "acidity": "Media",
+      "tannins": "Medios-altos",
+      "aromas": [
+        "fruta roja",
+        "flores",
+        "especias",
+        "pimienta"
+      ],
+      "pairings": [
+        "carne roja",
+        "arrosticini",
+        "porchetta",
+        "quesos",
+        "platos intensos"
+      ],
+      "service_temperature": "16-18°C",
+      "cost_price": 6.8,
+      "recommended_bottle_price": 27.2,
+      "by_glass": false,
+      "description": "Vino tinto de Veneto elaborado con 100% Cabernet Sauvignon. Color rojo rubí intenso con reflejos violáceos. En nariz muestra aromas intensos y complejos, con fruta roja, flores y especias. En boca es intenso, aterciopelado y salino, con estructura elegante, tanino presente y final de fruta y especias.",
+      "sales_note": "Buena opción económica para quien quiere un tinto con más estructura.",
+      "keywords": [
+        "casere_cabernet_sauvignon",
+        "casere",
+        "veneto",
+        "cabernet_sauvignon"
+      ]
+    },
+    {
+      "code": "NA-WIN-RED-009",
+      "name": "Tenuta Sant’Antonio Ripasso Monti Garbi",
+      "producer": "Tenuta Sant’Antonio",
+      "category": "Rosso",
+      "region": "Veneto",
+      "denomination": "DOC",
+      "format": "75cl",
+      "grapes": [
+        "Corvina",
+        "Corvinone",
+        "Rondinella",
+        "Croatina",
+        "Oseleta"
+      ],
+      "style": [
+        "tinto",
+        "Valpolicella",
+        "Ripasso",
+        "concentrado",
+        "especiado"
+      ],
+      "body": "Alto",
+      "acidity": "Media",
+      "tannins": "Medios-altos",
+      "aromas": [
+        "cereza",
+        "fruta roja",
+        "especias",
+        "mermelada"
+      ],
+      "pairings": [
+        "ragù napoletano",
+        "carne",
+        "porchetta",
+        "quesos curados",
+        "platos de cocción lenta"
+      ],
+      "service_temperature": "16-18°C",
+      "cost_price": 14.5,
+      "recommended_bottle_price": 58.0,
+      "by_glass": false,
+      "description": "Vino tinto de Valpolicella elaborado con Corvina, Corvinone, Rondinella, Croatina y Oseleta. Color rojo rubí. En nariz aparecen fruta roja y cereza. En boca es envolvente y salino, agradablemente tánico, con final especiado. El método Ripasso aporta mayor concentración, profundidad y complejidad aromática.",
+      "sales_note": "Ideal si el cliente quiere algo más potente que un Valpolicella clásico pero más accesible que un Amarone.",
+      "keywords": [
+        "tenuta_santantonio_ripasso_monti_garbi",
+        "tenuta_santantonio",
+        "veneto",
+        "corvina",
+        "corvinone",
+        "rondinella",
+        "croatina",
+        "oseleta"
+      ]
+    },
+    {
+      "code": "NA-WIN-RED-010",
+      "name": "Tenuta Sant’Antonio Valpolicella Classico Nanfrè",
+      "producer": "Tenuta Sant’Antonio",
+      "category": "Rosso",
+      "region": "Veneto",
+      "denomination": "DOC",
+      "format": "75cl",
+      "grapes": [
+        "Corvina",
+        "Rondinella"
+      ],
+      "style": [
+        "tinto",
+        "Valpolicella",
+        "fresco",
+        "suave",
+        "frutal"
+      ],
+      "body": "Medio",
+      "acidity": "Media-alta",
+      "tannins": "Suaves",
+      "aromas": [
+        "cereza",
+        "fruta roja",
+        "flores",
+        "especias"
+      ],
+      "pairings": [
+        "antipasti",
+        "pasta con tomate",
+        "salumi",
+        "carnes blancas",
+        "quesos suaves"
+      ],
+      "service_temperature": "15-17°C",
+      "cost_price": 10.7,
+      "recommended_bottle_price": 42.8,
+      "by_glass": false,
+      "description": "Vino tinto de Valpolicella elaborado con Corvina y Rondinella. Color rojo rubí intenso. En nariz es frutal, con notas de cereza y fruta roja, además de un perfil floral y especiado. En boca es suave, fresco y salino, con taninos suaves y buena facilidad de bebida.",
+      "sales_note": "Tinto elegante y fácil; perfecto para quien no quiere un vino demasiado pesado.",
+      "keywords": [
+        "tenuta_santantonio_valpolicella_classico_nanfr",
+        "tenuta_santantonio",
+        "veneto",
+        "corvina",
+        "rondinella"
+      ]
+    },
+    {
+      "code": "NA-WIN-WHI-001",
+      "name": "Casere Pinot Grigio",
+      "producer": "Casere",
+      "category": "Bianco",
+      "region": "Veneto",
+      "denomination": "DOC Venezia",
+      "format": "75cl",
+      "grapes": [
+        "Pinot Grigio"
+      ],
+      "style": [
+        "blanco",
+        "seco",
+        "fresco",
+        "ligero",
+        "mineral"
+      ],
+      "body": "Ligero",
+      "acidity": "Media-alta",
+      "tannins": "Ningunos",
+      "aromas": [
+        "fruta blanca",
+        "cítricos suaves",
+        "notas minerales"
+      ],
+      "pairings": [
+        "caprese",
+        "verduras a la parrilla",
+        "ensaladas",
+        "entrantes fríos",
+        "platos ligeros"
+      ],
+      "service_temperature": "8-10°C",
+      "cost_price": 6.8,
+      "recommended_bottle_price": 27.2,
+      "by_glass": false,
+      "description": "Vino blanco de Veneto elaborado con 100% Pinot Grigio. Color amarillo pajizo con brillantes reflejos anaranjados. En nariz es agradablemente frutal. En boca es seco, limpio, mineral, elegante y equilibrado, con final fresco y ordenado.",
+      "sales_note": "Blanco fresco y sencillo, perfecto para recomendar por copa.",
+      "keywords": [
+        "casere_pinot_grigio",
+        "casere",
+        "veneto",
+        "pinot_grigio"
+      ]
+    },
+    {
+      "code": "NA-WIN-WHI-002",
+      "name": "Casere Chardonnay",
+      "producer": "Casere",
+      "category": "Bianco",
+      "region": "Veneto",
+      "denomination": "IGT",
+      "format": "75cl",
+      "grapes": [
+        "Chardonnay"
+      ],
+      "style": [
+        "blanco",
+        "seco",
+        "suave",
+        "fresco",
+        "equilibrado"
+      ],
+      "body": "Medio",
+      "acidity": "Media",
+      "tannins": "Ningunos",
+      "aromas": [
+        "fruta blanca",
+        "manzana",
+        "notas tropicales suaves"
+      ],
+      "pairings": [
+        "pasta con queso",
+        "gnocchi alla sorrentina",
+        "pollo",
+        "verduras",
+        "entrantes calientes"
+      ],
+      "service_temperature": "8-10°C",
+      "cost_price": 6.8,
+      "recommended_bottle_price": 27.2,
+      "by_glass": false,
+      "description": "Vino blanco de Veneto elaborado con 100% Chardonnay. Color amarillo pajizo con brillantes reflejos verdosos. En nariz ofrece aroma limpio y versátil, de intensidad media. En boca es seco, limpio, suave y fresco, elegante y equilibrado.",
+      "sales_note": "Blanco fácil y redondo para clientes que no quieren demasiada acidez.",
+      "keywords": [
+        "casere_chardonnay",
+        "casere",
+        "veneto",
+        "chardonnay"
+      ]
+    },
+    {
+      "code": "NA-WIN-WHI-003",
+      "name": "Zorzettig Ribolla Gialla",
+      "producer": "Zorzettig",
+      "category": "Bianco",
+      "region": "Friuli Venezia Giulia",
+      "denomination": "IGP Venezia Giulia",
+      "format": "75cl",
+      "grapes": [
+        "Ribolla Gialla"
+      ],
+      "style": [
+        "blanco",
+        "friulano",
+        "fresco",
+        "floral",
+        "mineral"
+      ],
+      "body": "Medio",
+      "acidity": "Alta",
+      "tannins": "Ningunos",
+      "aromas": [
+        "flores blancas",
+        "albaricoque",
+        "cítricos",
+        "mineralidad"
+      ],
+      "pairings": [
+        "entrantes fríos",
+        "mariscos",
+        "verduras",
+        "pasta ligera",
+        "quesos frescos"
+      ],
+      "service_temperature": "8-10°C",
+      "cost_price": 9.1,
+      "recommended_bottle_price": 36.4,
+      "by_glass": false,
+      "description": "Vino blanco friulano elaborado con 100% Ribolla Gialla. Color amarillo pajizo con reflejos verdosos. En nariz es floral y frutal, con recuerdos de albaricoque. En boca es seco y muy fresco, con acidez agradable y equilibrada. Ideal con ostras, entrantes fríos, pastas y arroces de pescado.",
+      "sales_note": "Blanco con más personalidad que Pinot Grigio. Recomiéndalo si el cliente busca frescura elegante.",
+      "keywords": [
+        "zorzettig_ribolla_gialla",
+        "zorzettig",
+        "friuli_venezia_giulia",
+        "ribolla_gialla"
+      ]
+    },
+    {
+      "code": "NA-WIN-WHI-004",
+      "name": "Feudi di San Gregorio Greco di Tufo",
+      "producer": "Feudi di San Gregorio",
+      "category": "Bianco",
+      "region": "Campania",
+      "denomination": "DOCG",
+      "format": "75cl",
+      "grapes": [
+        "Greco"
+      ],
+      "style": [
+        "blanco",
+        "Campania",
+        "mineral",
+        "gastronómico",
+        "intenso"
+      ],
+      "body": "Medio",
+      "acidity": "Alta",
+      "tannins": "Ningunos",
+      "aromas": [
+        "fruta amarilla",
+        "cítricos",
+        "hierbas",
+        "mineralidad"
+      ],
+      "pairings": [
+        "pasta con marisco",
+        "verduras",
+        "quesos frescos",
+        "entrantes",
+        "platos salinos"
+      ],
+      "service_temperature": "8-10°C",
+      "cost_price": 10.7,
+      "recommended_bottle_price": 42.8,
+      "by_glass": false,
+      "description": "Vino blanco de Campania elaborado con 100% Greco. Color amarillo pajizo brillante. En nariz es intenso y persistente, con sensaciones afrutadas. En boca presenta acidez evidente, mineralidad, final balsámico y una estructura limpia y gastronómica.",
+      "sales_note": "Blanco gastronómico para quien quiere algo con carácter y mineralidad.",
+      "keywords": [
+        "feudi_di_san_gregorio_greco_di_tufo",
+        "feudi_di_san_gregorio",
+        "campania",
+        "greco"
+      ]
+    },
+    {
+      "code": "NA-WIN-WHI-005",
+      "name": "Feudi di San Gregorio Falanghina del Sannio",
+      "producer": "Feudi di San Gregorio",
+      "category": "Bianco",
+      "region": "Campania",
+      "denomination": "DOC",
+      "format": "75cl",
+      "grapes": [
+        "Falanghina"
+      ],
+      "style": [
+        "blanco",
+        "Campania",
+        "fresco",
+        "floral",
+        "frutal"
+      ],
+      "body": "Ligero-medio",
+      "acidity": "Media-alta",
+      "tannins": "Ningunos",
+      "aromas": [
+        "flores blancas",
+        "fruta fresca",
+        "cítricos",
+        "manzana"
+      ],
+      "pairings": [
+        "caprese",
+        "ensaladas",
+        "pasta ligera",
+        "aperitivo",
+        "verduras"
+      ],
+      "service_temperature": "8-10°C",
+      "cost_price": 10.7,
+      "recommended_bottle_price": 42.8,
+      "by_glass": false,
+      "description": "Vino blanco de Campania elaborado con 100% Falanghina. Color amarillo pajizo con brillantes reflejos verdosos. En nariz es intenso, con pequeñas flores blancas y frutas. En boca es fresco y equilibrado, con final limpio y agradable.",
+      "sales_note": "Blanco fresco, amable y fácil de recomendar a casi cualquier mesa.",
+      "keywords": [
+        "feudi_di_san_gregorio_falanghina_del_sannio",
+        "feudi_di_san_gregorio",
+        "campania",
+        "falanghina"
+      ]
+    },
+    {
+      "code": "NA-WIN-WHI-006",
+      "name": "Petra Viognier Belvento",
+      "producer": "Petra",
+      "category": "Bianco",
+      "region": "Toscana",
+      "denomination": "IGT",
+      "format": "75cl",
+      "grapes": [
+        "Viognier"
+      ],
+      "style": [
+        "blanco",
+        "aromático",
+        "floral",
+        "suave",
+        "mediterráneo"
+      ],
+      "body": "Medio",
+      "acidity": "Media",
+      "tannins": "Ningunos",
+      "aromas": [
+        "flores",
+        "melocotón",
+        "albaricoque",
+        "fruta madura"
+      ],
+      "pairings": [
+        "quesos frescos",
+        "pasta cremosa",
+        "verduras",
+        "entrantes delicados"
+      ],
+      "service_temperature": "8-10°C",
+      "cost_price": 9.3,
+      "recommended_bottle_price": 37.2,
+      "by_glass": false,
+      "description": "Vino blanco toscano elaborado con 100% Viognier. Color amarillo pajizo intenso y brillante. En nariz muestra vivacidad de notas vegetales, balsámicas y florales, lavanda, saúco, melisa y salvia, con cítricos, melón y papaya. En boca entra suavemente y de forma sensual, con salinidad, frescura y cuerpo elegante.",
+      "sales_note": "Para clientes que quieren un blanco más aromático y suave.",
+      "keywords": [
+        "petra_viognier_belvento",
+        "petra",
+        "toscana",
+        "viognier"
+      ]
+    },
+    {
+      "code": "NA-WIN-WHI-007",
+      "name": "Zorzettig Myó Malvasia",
+      "producer": "Zorzettig",
+      "category": "Bianco",
+      "region": "Friuli Venezia Giulia",
+      "denomination": "DOC Friuli Colli Orientali",
+      "format": "75cl",
+      "grapes": [
+        "Malvasia"
+      ],
+      "style": [
+        "blanco premium",
+        "aromático",
+        "floral",
+        "elegante",
+        "complejo"
+      ],
+      "body": "Medio-alto",
+      "acidity": "Media",
+      "tannins": "Ningunos",
+      "aromas": [
+        "flores blancas",
+        "fruta madura",
+        "hierbas aromáticas",
+        "notas minerales"
+      ],
+      "pairings": [
+        "quesos",
+        "pasta cremosa",
+        "platos delicados",
+        "aperitivo premium"
+      ],
+      "service_temperature": "8-10°C",
+      "cost_price": 17.5,
+      "recommended_bottle_price": 70.0,
+      "by_glass": false,
+      "description": "Vino blanco friulano de perfil aromático y elegante, elaborado con Malvasia. En nariz combina flores, fruta blanca madura, hierbas aromáticas y una marcada sensación mineral. En boca es seco, fresco, envolvente y persistente, con una personalidad gastronómica ideal para platos de pescado, quesos frescos y preparaciones mediterráneas.",
+      "sales_note": "Blanco premium para quien busca algo aromático y especial.",
+      "keywords": [
+        "zorzettig_my_malvasia",
+        "zorzettig",
+        "friuli_venezia_giulia",
+        "malvasia"
+      ]
+    },
+    {
+      "code": "NA-WIN-WHI-008",
+      "name": "Fontanafredda Gavi di Gavi",
+      "producer": "Fontanafredda",
+      "category": "Bianco",
+      "region": "Piemonte",
+      "denomination": "DOCG",
+      "format": "75cl",
+      "grapes": [
+        "Cortese"
+      ],
+      "style": [
+        "blanco",
+        "Piemonte",
+        "elegante",
+        "seco",
+        "fresco"
+      ],
+      "body": "Medio",
+      "acidity": "Alta",
+      "tannins": "Ningunos",
+      "aromas": [
+        "flores blancas",
+        "fruta blanca",
+        "miel",
+        "cítricos"
+      ],
+      "pairings": [
+        "entrantes",
+        "verduras",
+        "quesos frescos",
+        "pasta ligera",
+        "aperitivo"
+      ],
+      "service_temperature": "8-10°C",
+      "cost_price": 14.5,
+      "recommended_bottle_price": 58.0,
+      "by_glass": false,
+      "description": "Vino blanco de Piemonte elaborado con 100% Cortese. Color amarillo pajizo con reflejos verdosos. En nariz es amplio, con intenso bouquet floral y cítrico. En boca es seco, lleno y sabroso, con perfil fresco y elegante.",
+      "sales_note": "Blanco elegante del Piemonte. Ideal para clientes que quieren frescura con clase.",
+      "keywords": [
+        "fontanafredda_gavi_di_gavi",
+        "fontanafredda",
+        "piemonte",
+        "cortese"
+      ]
+    },
+    {
+      "code": "NA-WIN-ROS-001",
+      "name": "Petra Velarosa Belvento",
+      "producer": "Petra",
+      "category": "Rosato",
+      "region": "Toscana",
+      "denomination": "IGT",
+      "format": "75cl",
+      "grapes": [
+        "Sangiovese",
+        "Merlot"
+      ],
+      "style": [
+        "rosado",
+        "fresco",
+        "mediterráneo",
+        "frutal"
+      ],
+      "body": "Ligero-medio",
+      "acidity": "Media-alta",
+      "tannins": "Bajos",
+      "aromas": [
+        "fresa",
+        "fruta roja fresca",
+        "flores",
+        "cítricos suaves"
+      ],
+      "pairings": [
+        "caprese",
+        "verduras",
+        "ensaladas",
+        "antipasti",
+        "platos de verano"
+      ],
+      "service_temperature": "8-10°C",
+      "cost_price": 9.3,
+      "recommended_bottle_price": 37.2,
+      "by_glass": false,
+      "description": "Vino rosado toscano elaborado con 100% Garnacha. Color rosado pálido, piel de cebolla. En nariz es elegante, con flores, frambuesa, naranja y sensaciones balsámicas. En boca es fresco y agradablemente afrutado, con notas dulces, balsámicas y final salino.",
+      "sales_note": "Rosado fresco y elegante para aperitivo o comidas ligeras.",
+      "keywords": [
+        "petra_velarosa_belvento",
+        "petra",
+        "toscana",
+        "sangiovese",
+        "merlot"
+      ]
+    },
+    {
+      "code": "NA-WIN-ROS-002",
+      "name": "Fina Hanami",
+      "producer": "Fina",
+      "category": "Rosato",
+      "region": "Sicilia",
+      "denomination": "IGT",
+      "format": "75cl",
+      "grapes": [
+        "Nero d’Avola"
+      ],
+      "style": [
+        "rosado",
+        "siciliano",
+        "floral",
+        "frutal",
+        "fresco"
+      ],
+      "body": "Ligero-medio",
+      "acidity": "Media-alta",
+      "tannins": "Bajos",
+      "aromas": [
+        "fruta roja",
+        "flores",
+        "cítricos",
+        "notas mediterráneas"
+      ],
+      "pairings": [
+        "aperitivo",
+        "caprese",
+        "antipasti",
+        "verduras",
+        "platos ligeros"
+      ],
+      "service_temperature": "8-10°C",
+      "cost_price": 9.75,
+      "recommended_bottle_price": 39.0,
+      "by_glass": false,
+      "description": "Vino rosado siciliano elaborado con Merlot y Cabernet Sauvignon. Color rosa pálido. En nariz ofrece fruta de melocotón, pequeños frutos del bosque y un toque floral. En boca es frutal, exótico y cítrico, con estilo fresco y muy agradable para aperitivo o platos ligeros.",
+      "sales_note": "Rosado muy vendible por nombre y estilo: fresco, bonito y fácil para turistas.",
+      "keywords": [
+        "fina_hanami",
+        "fina",
+        "sicilia",
+        "nero_davola"
+      ]
+    },
+    {
+      "code": "NA-WIN-SPA-001",
+      "name": "Terra Vizina Prosecco Extra Dry",
+      "producer": "Terra Vizina",
+      "category": "Spumante",
+      "region": "Veneto",
+      "denomination": "DOC",
+      "format": "75cl",
+      "grapes": [
+        "Glera"
+      ],
+      "style": [
+        "espumoso",
+        "Extra Dry",
+        "fresco",
+        "frutal",
+        "aperitivo"
+      ],
+      "body": "Ligero",
+      "acidity": "Media-alta",
+      "tannins": "Ningunos",
+      "aromas": [
+        "manzana",
+        "pera",
+        "flores blancas",
+        "cítricos"
+      ],
+      "pairings": [
+        "aperitivo",
+        "spritz",
+        "antipasti",
+        "fritti",
+        "brindis informal"
+      ],
+      "service_temperature": "6-8°C",
+      "cost_price": 8.0,
+      "recommended_bottle_price": 32.0,
+      "by_glass": false,
+      "description": "Vino espumoso italiano elaborado principalmente con Glera. Color amarillo pajizo pálido, burbuja fina y perfil aromático fresco. En nariz recuerda manzana, pera, flores blancas y ligeros cítricos. En boca es fresco, suave y agradable, con estilo Extra Dry ideal para aperitivo, brindis y spritz.",
+      "sales_note": "La burbuja base para aperitivo, brindis y cócteles con Prosecco.",
+      "keywords": [
+        "terra_vizina_prosecco_extra_dry",
+        "terra_vizina",
+        "veneto",
+        "glera"
+      ]
+    },
+    {
+      "code": "NA-WIN-SPA-002",
+      "name": "Bellavista Convento",
+      "producer": "Bellavista",
+      "category": "Spumante",
+      "region": "Lombardia",
+      "denomination": "Franciacorta",
+      "format": "75cl",
+      "grapes": [
+        "Chardonnay",
+        "Pinot Nero"
+      ],
+      "style": [
+        "Franciacorta",
+        "método clásico",
+        "elegante",
+        "premium"
+      ],
+      "body": "Medio",
+      "acidity": "Alta",
+      "tannins": "Ningunos",
+      "aromas": [
+        "pan brioche",
+        "manzana",
+        "flores blancas",
+        "frutos secos"
+      ],
+      "pairings": [
+        "aperitivo premium",
+        "quesos",
+        "entrantes elegantes",
+        "celebraciones"
+      ],
+      "service_temperature": "6-8°C",
+      "cost_price": 33.0,
+      "recommended_bottle_price": 132.0,
+      "by_glass": false,
+      "description": "Franciacorta de alta gama elaborado con método clásico. Color brillante, burbuja fina y persistente. En nariz muestra flores, fruta blanca, notas de pan, levadura fina y ligeros matices tostados. En boca es elegante, vertical y cremoso, con frescura, equilibrio y final persistente.",
+      "sales_note": "Burbuja premium para una mesa que quiere subir de nivel sin llegar a la Riserva.",
+      "keywords": [
+        "bellavista_convento",
+        "bellavista",
+        "lombardia",
+        "chardonnay",
+        "pinot_nero"
+      ]
+    },
+    {
+      "code": "NA-WIN-SPA-003",
+      "name": "Bellavista Satèn Millesimato",
+      "producer": "Bellavista",
+      "category": "Spumante",
+      "region": "Lombardia",
+      "denomination": "Franciacorta",
+      "format": "75cl",
+      "grapes": [
+        "Chardonnay"
+      ],
+      "style": [
+        "Franciacorta Satèn",
+        "método clásico",
+        "cremoso",
+        "elegante"
+      ],
+      "body": "Medio",
+      "acidity": "Alta",
+      "tannins": "Ningunos",
+      "aromas": [
+        "brioche",
+        "fruta blanca",
+        "flores",
+        "almendra"
+      ],
+      "pairings": [
+        "aperitivo elegante",
+        "pasta delicada",
+        "quesos frescos",
+        "celebraciones"
+      ],
+      "service_temperature": "6-8°C",
+      "cost_price": 36.0,
+      "recommended_bottle_price": 144.0,
+      "by_glass": false,
+      "description": "Franciacorta Satèn Millesimato de estilo elegante y cremoso, elaborado principalmente con Chardonnay. Color amarillo pajizo brillante, burbuja fina y persistente. En nariz aparecen flores blancas, pan, notas balsámicas, manzana, higos secos y cacahuete. En boca entra suave y cremoso, con estructura, complejidad y final largo.",
+      "sales_note": "Satèn es más cremoso y fino: ideal para vender como burbuja elegante.",
+      "keywords": [
+        "bellavista_sat_n_millesimato",
+        "bellavista",
+        "lombardia",
+        "chardonnay"
+      ]
+    },
+    {
+      "code": "NA-WIN-SPA-004",
+      "name": "Bellavista Rosè Millesimato",
+      "producer": "Bellavista",
+      "category": "Spumante",
+      "region": "Lombardia",
+      "denomination": "Franciacorta",
+      "format": "75cl",
+      "grapes": [
+        "Chardonnay",
+        "Pinot Nero"
+      ],
+      "style": [
+        "Franciacorta Rosé",
+        "método clásico",
+        "elegante",
+        "frutal"
+      ],
+      "body": "Medio",
+      "acidity": "Alta",
+      "tannins": "Bajos",
+      "aromas": [
+        "fresa",
+        "grosella",
+        "flores",
+        "pan tostado"
+      ],
+      "pairings": [
+        "aperitivo premium",
+        "antipasti",
+        "quesos",
+        "celebraciones",
+        "platos delicados"
+      ],
+      "service_temperature": "6-8°C",
+      "cost_price": 36.0,
+      "recommended_bottle_price": 144.0,
+      "by_glass": false,
+      "description": "Franciacorta Rosé Millesimato de método clásico. Color rosa brillante con burbuja fina y persistente. En nariz ofrece pequeños frutos rojos, flores, fruta fresca y notas delicadas de panificación. En boca es fresco, elegante, amplio y envolvente, con acidez viva, textura cremosa y final persistente.",
+      "sales_note": "Perfecto para mesas que buscan algo bonito, elegante y especial.",
+      "keywords": [
+        "bellavista_ros_millesimato",
+        "bellavista",
+        "lombardia",
+        "chardonnay",
+        "pinot_nero"
+      ]
+    },
+    {
+      "code": "NA-WIN-SPA-005",
+      "name": "Bellavista Riserva Vittorio Moretti",
+      "producer": "Bellavista",
+      "category": "Spumante",
+      "region": "Lombardia",
+      "denomination": "Franciacorta Riserva",
+      "format": "75cl",
+      "grapes": [
+        "Chardonnay",
+        "Pinot Nero"
+      ],
+      "style": [
+        "Franciacorta Riserva",
+        "método clásico",
+        "lujoso",
+        "complejo"
+      ],
+      "body": "Alto",
+      "acidity": "Alta",
+      "tannins": "Ningunos",
+      "aromas": [
+        "brioche",
+        "frutos secos",
+        "cítricos confitados",
+        "miel",
+        "mineralidad"
+      ],
+      "pairings": [
+        "celebraciones",
+        "menú completo",
+        "quesos",
+        "platos premium",
+        "ocasiones especiales"
+      ],
+      "service_temperature": "6-8°C",
+      "cost_price": 75.0,
+      "recommended_bottle_price": 300.0,
+      "by_glass": false,
+      "description": "Franciacorta Riserva de prestigio, pensado para ocasiones especiales. Burbuja finísima, perfil complejo y gran profundidad. En nariz combina fruta madura, flores, pan brioche, notas tostadas, mineralidad y matices de larga crianza. En boca es amplio, elegante, persistente y muy estructurado, con final largo y refinado.",
+      "sales_note": "Botella icono. Solo para clientes premium, celebraciones o mesas que pidan lo mejor.",
+      "keywords": [
+        "bellavista_riserva_vittorio_moretti",
+        "bellavista",
+        "lombardia",
+        "chardonnay",
+        "pinot_nero"
+      ]
+    },
+    {
+      "code": "NA-WIN-SWE-001",
+      "name": "Fina Passito El Aziz",
+      "producer": "Fina",
+      "category": "Dolce",
+      "region": "Sicilia",
+      "denomination": "IGT",
+      "format": "75cl",
+      "grapes": [
+        "Zibibbo"
+      ],
+      "style": [
+        "dulce",
+        "passito",
+        "siciliano",
+        "aromático",
+        "postre"
+      ],
+      "body": "Medio-alto",
+      "acidity": "Media",
+      "tannins": "Ningunos",
+      "aromas": [
+        "miel",
+        "albaricoque seco",
+        "cítricos confitados",
+        "flores",
+        "fruta tropical"
+      ],
+      "pairings": [
+        "cannolo",
+        "tiramisù",
+        "postres con crema",
+        "quesos azules",
+        "final de comida"
+      ],
+      "service_temperature": "8-10°C",
+      "cost_price": 16.2,
+      "recommended_bottle_price": 64.8,
+      "by_glass": false,
+      "description": "Vino dulce siciliano elaborado con Grillo de vendimia tardía. Color ámbar dorado. En nariz ofrece aromas complejos de frutas maduras y pasas, vainilla y miel. En boca es envolvente, de gran estructura y con sensaciones dulces de bollería. Ideal para postres, ricotta, pastelería y final de comida.",
+      "sales_note": "Vino de postre. Propónlo al final de la comida con cannolo o postres de crema.",
+      "keywords": [
+        "fina_passito_el_aziz",
+        "fina",
+        "sicilia",
+        "zibibbo"
+      ]
+    }
+  ]
+}

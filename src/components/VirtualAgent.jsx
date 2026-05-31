@@ -5,6 +5,7 @@ import topicsData from '../data/bot/topics.json'
 import flowsData from '../data/bot/flows.json'
 import restaurantKnowledge from '../data/bot/restaurantKnowledge.json'
 import cocktailKnowledge from '../data/bot/cocktailKnowledge.json'
+import wineKnowledge from '../data/bot/wineknowledge.json'
 
 const CHAT_STORAGE_KEY = 'nonna_angela_virtual_agent_messages'
 
@@ -285,44 +286,7 @@ function buildIntentResponse(matchedIntents) {
   return `${botMessages.acknowledgements.multipleTopics}\n\n${topicList}\n\n${botMessages.topicSuggestion.message}`
 }
 
-const quickActions = [
-  {
-    id: 'recommend',
-    label: 'Recomiéndame un plato',
-    response:
-      'Claro. Si quieres algo muy representativo, empezaría por los Paccheri al ragù napoletano, la Lasagna al ragù bolognese o los Gnocchi alla sorrentina. Son platos con identidad, sabor de casa y alma italiana.'
-  },
-  {
-    id: 'vegetarian',
-    label: 'Platos vegetarianos',
-    response:
-      'Puedo ayudarte. Entre las opciones más adecuadas están los Gnocchi alla sorrentina, Cacio e pepe, Rigatoni al pesto, Caprese, verduras a la parrilla y algunas guarniciones. Para alergias o contaminación cruzada, confirma siempre con el equipo.'
-  },
-  {
-    id: 'gluten-free',
-    label: 'Sin gluten / alérgenos',
-    response:
-      'Puedo orientarte, pero en caso de alergia o celiaquía es imprescindible confirmarlo con el equipo. Muchos platos de pasta contienen gluten. Algunos entrantes, segundos o guarniciones pueden ser más adecuados, pero también hay que verificar la contaminación cruzada.'
-  },
-  {
-    id: 'wine',
-    label: 'Recomiéndame vino o cóctel',
-    response:
-      'Para platos intensos con ragù elegiría un tinto italiano con estructura, como Mastro Rosso Campania, Chianti, Primitivo o Nebbiolo. Para aperitivo: Negroni, Americano, Aperol Spritz o Hugo Spritz, según prefieras algo más intenso o más fresco.'
-  },
-  {
-    id: 'booking',
-    label: 'Quiero reservar',
-    response:
-      'Perfecto. Puedo preparar tu solicitud de reserva. Necesito nombre, fecha, hora, número de personas y teléfono. La reserva solo será válida después de la confirmación del equipo.'
-  },
-  {
-    id: 'restaurant',
-    label: 'Info restaurante',
-    response:
-      'Nonna Angela es un restaurante italiano pensado para diferenciarse de los locales turísticos: cocina auténtica, platos reconocibles, servicio cuidado y una atmósfera cálida. La idea es comer italiano de verdad, con calma, como en una casa de familia pero con atención profesional.'
-  }
-]
+
 
 export default function VirtualAgent() {
   const [isOpen, setIsOpen] = useState(false)
@@ -498,17 +462,7 @@ export default function VirtualAgent() {
     setActiveOptions(response.options || [])
   }
 
-  const handleQuickAction = (action) => {
-    if (action.id === 'booking') {
-      setShowBookingForm(true)
-    }
-
-    setMessages((current) => [
-      ...current,
-      { role: 'user', text: action.label },
-      { role: 'agent', text: action.response }
-    ])
-  }
+ 
 
   const handleBookingChange = (event) => {
     const { name, value } = event.target
@@ -696,17 +650,7 @@ La reserva solo será válida después de la confirmación del equipo.`
             </form>
           )}
 
-          <div className="agent-actions">
-            {quickActions.map((action) => (
-              <button
-                key={action.id}
-                type="button"
-                onClick={() => handleQuickAction(action)}
-              >
-                {action.label}
-              </button>
-            ))}
-          </div>
+          
         </div>
       )}
 
