@@ -182,6 +182,141 @@ function buildCocktailCuriousAnswer(userText) {
   return matchedQuestion?.answer || null
 }
 
+function findWineByText(userText) {
+  const normalizedUserText = normalizeText(userText)
+  const wines = wineKnowledge.wineKnowledge || []
+
+  return wines.find((wine) => {
+    const searchableText = [
+      wine.name,
+      wine.producer,
+      wine.region,
+      wine.denomination,
+      ...(wine.grapes || []),
+      ...(wine.style || []),
+      ...(wine.aromas || []),
+      ...(wine.keywords || [])
+    ]
+      .filter(Boolean)
+      .join(' ')
+
+    return normalizeText(searchableText)
+      .split(/\s+/)
+      .some((token) => token.length > 3 && normalizedUserText.includes(token))
+  })
+}
+
+function buildWineAnswer(userText) {
+  const normalizedUserText = normalizeText(userText)
+  const wines = wineKnowledge.wineKnowledge || []
+
+  const byGlass = normalizedUserText.includes('copa') || normalizedUserText.includes('calice')
+  const wantsWhite = normalizedUserText.includes('blanco')
+  const wantsRed = normalizedUserText.includes('tinto')
+  const wantsRose = normalizedUserText.includes('rosado')
+  const wantsSparkling = normalizedUserText.includes('espumoso') || normalizedUserText.includes('prosecco') || normalizedUserText.includes('burbuja')
+  const wantsSweet = normalizedUserText.includes('postre') || normalizedUserText.includes('dulce')
+  const wantsSoft = normalizedUserText.includes('suave') || normalizedUserText.includes('ligero')
+  const wantsBody = normalizedUserText.includes('cuerpo') || normalizedUserText.includes('intenso') || normalizedUserText.includes('fuerte')
+  const wantsFresh = normalizedUserText.includes('fresco') || normalizedUserText.includes('fresquito')
+
+  let candidates = wines
+
+  if (byGlass) candidates = candidates.filter((wine) => wine.by_glass)
+  if (wantsWhite) candidates = candidates.filter((wine) => wine.category === 'Bianco')
+  if (wantsRed) candidates = candidates.filter((wine) => wine.category === 'Rosso')
+  if (wantsRose) candidates = candidates.filter((wine) => wine.category === 'Rosato')
+  if (wantsSparkling) candidates = candidates.filter((wine) => wine.category === 'Spumante')
+  if (wantsSweet) candidates = candidates.filter((wine) => wine.category === 'Dolce')
+
+  if (wantsSoft) {
+    candidates = candidates.filter((wine) =>
+      normalizeText(`${wine.body} ${wine.tannins} ${(wine.style || []).join(' ')}`)
+        .includes('suave') ||
+      normalizeText(`${wine.body} ${wine.style?.join(' ')}`).includes('ligero')
+    )
+  }
+
+  if (wantsBody || wantsFresh) {
+    candidates = candidates.filter((wine) => {
+      const text = normalizeText(`${wine.body} ${wine.acidity} ${(wine.style || []).join(' ')}`)
+      if (wantsBody) return text.includes('alto') || text.includes('intenso') || text.includes('estructurado')
+      if (wantsFresh) return text.includes('fresco') || text.includes('alta')
+      return true
+    })
+  }
+
+  const pairingKeywords = ['ragu', 'carbonara', 'carne', 'pasta', 'postre', 'queso', 'berenjena', 'porchetta', 'arrosticini']
+  const matchedPairing = pairingKeywords.find((keyword) => normalizedUserText.includes(keyword))
+
+  if (matchedPairing) {
+    candidates = wines.filter((wine) =>
+      (wine.pairings || []).some((pairing) =>
+        normalizeText(pairing).includes(matchedPairing)
+      )
+    )
+  }
+
+  const selected = candidates.slice(0, 3)
+
+  if (!selected.length) return null
+
+  return [
+    'Te recomendaría estas opciones:',
+    '',
+    ...selected.map((wine) => {
+      const glassText = wine.by_glass ? ' Disponible también por copa.' : ''
+      return `• ${wine.name} (${wine.region}) — ${wine.sales_note}${glassText}`
+    }),
+    '',
+    'Si quieres, también puedo explicarte la diferencia técnica entre dos vinos.'
+  ].join('\n')
+}
+
+function buildWineComparisonAnswer(userText) {
+  const normalizedUserText = normalizeText(userText)
+
+  const isComparison =
+    normalizedUserText.includes('diferencia') ||
+    normalizedUserText.includes('comparar') ||
+    normalizedUserText.includes('compara') ||
+    normalizedUserText.includes('mejor entre')
+
+  if (!isComparison) return null
+
+  const wines = wineKnowledge.wineKnowledge || []
+
+  const matchedWines = wines.filter((wine) => {
+    const searchableText = normalizeText([
+      wine.name,
+      wine.producer,
+      wine.region,
+      ...(wine.grapes || []),
+      ...(wine.style || [])
+    ].filter(Boolean).join(' '))
+
+    return searchableText
+      .split(/\s+/)
+      .some((token) => token.length > 4 && normalizedUserText.includes(token))
+  }).slice(0, 2)
+
+  if (matchedWines.length < 2) {
+    return 'Puedo comparar dos vinos de la carta. Por ejemplo: Barolo vs Brunello, Pinot Grigio vs Chardonnay, Valpolicella vs Ripasso, Nero d’Avola vs Primitivo.'
+  }
+
+  const [first, second] = matchedWines
+
+  return [
+    `La diferencia principal entre ${first.name} y ${second.name} es esta:`,
+    '',
+    `• ${first.name}: ${first.region}, uva ${first.grapes.join(', ')}, cuerpo ${first.body}, acidez ${first.acidity}, taninos ${first.tannins}. Aromas: ${first.aromas.join(', ')}.`,
+    '',
+    `• ${second.name}: ${second.region}, uva ${second.grapes.join(', ')}, cuerpo ${second.body}, acidez ${second.acidity}, taninos ${second.tannins}. Aromas: ${second.aromas.join(', ')}.`,
+    '',
+    `En simple: ${first.sales_note} ${second.sales_note}`
+  ].join('\n')
+}
+
 function buildDynamicTopicAnswer(topicId) {
   const restaurant = restaurantKnowledge.restaurant
 
@@ -349,7 +484,123 @@ export default function VirtualAgent() {
 
     if (!trimmedInput) return
 
+
+    const wineComparisonAnswer = buildWineComparisonAnswer(trimmedInput)
+
+    if (wineComparisonAnswer) {
+      const response = buildSatisfactionResponse(wineComparisonAnswer)
+
+      setMessages((current) => [
+        ...current,
+        { role: 'user', text: trimmedInput },
+        { role: 'agent', text: response.text }
+      ])
+
+      setActiveOptions(response.options || [])
+      setShowSuggestions(true)
+      setUserInput('')
+      return
+    }
+
+
+
+    function buildWineByGlassAnswer(userText) {
+      const normalizedUserText = normalizeText(userText)
+
+      const asksByGlass =
+        normalizedUserText.includes('por copa') ||
+        normalizedUserText.includes('copa') ||
+        normalizedUserText.includes('copas') ||
+        normalizedUserText.includes('vino abierto')
+
+      if (!asksByGlass) return null
+
+      const wines = (wineKnowledge.wineKnowledge || []).filter((wine) => wine.by_glass)
+
+      if (!wines.length) {
+        return 'Ahora mismo no tengo vinos marcados como disponibles por copa. Puedes consultar al equipo para confirmar las opciones abiertas del día.'
+      }
+
+      return [
+        'Tenemos estos vinos disponibles por copa:',
+        '',
+        ...wines.map((wine) =>
+          `• ${wine.name} (${wine.region}) — ${wine.category}. ${wine.sales_note || ''}`
+        ),
+        '',
+        'Si me dices si prefieres blanco, tinto, rosado o algo más suave, te recomiendo uno.'
+      ].join('\n')
+    }
+
+    function buildWineTechnicalAnswer(userText) {
+      const normalizedUserText = normalizeText(userText)
+
+      if (
+        normalizedUserText.includes('tanino') ||
+        normalizedUserText.includes('taninos') ||
+        normalizedUserText.includes('tannin')
+      ) {
+        return [
+          'Los taninos son una sensación de sequedad y estructura que notas sobre todo en las encías y en la lengua.',
+          '',
+          'En simple: si un vino “agarra” un poco la boca, tiene tanino.',
+          '',
+          'Los tintos como Barolo, Brunello, Ripasso o Cabernet suelen tener más tanino. Vinos más suaves como Valpolicella o algunos rosados suelen tener menos.',
+          '',
+          'Los taninos ayudan a que el vino combine bien con carne, ragù, quesos curados y platos más intensos.'
+        ].join('\n')
+      }
+
+      if (normalizedUserText.includes('acidez') || normalizedUserText.includes('acido')) {
+        return [
+          'La acidez es la frescura del vino.',
+          '',
+          'Un vino con buena acidez limpia la boca, da sensación de vivacidad y combina muy bien con tomate, grasa, fritos, quesos y platos salinos.',
+          '',
+          'Ejemplo fácil: Pinot Grigio, Ribolla Gialla, Gavi o Greco suelen sentirse más frescos que un tinto cálido y redondo.'
+        ].join('\n')
+      }
+
+      if (normalizedUserText.includes('cuerpo')) {
+        return [
+          'El cuerpo es la sensación de peso del vino en boca.',
+          '',
+          'Un vino ligero se siente fácil y fresco. Un vino con cuerpo se siente más amplio, intenso y persistente.',
+          '',
+          'Ejemplo: un Pinot Grigio suele ser ligero; un Primitivo, Brunello o Barolo tienen más cuerpo.'
+        ].join('\n')
+      }
+
+      return null
+    }
+
+    const wineAnswer = buildWineAnswer(trimmedInput)
+
+    if (wineAnswer) {
+      const response = buildSatisfactionResponse(wineAnswer)
+
+      setMessages((current) => [
+        ...current,
+        { role: 'user', text: trimmedInput },
+        { role: 'agent', text: response.text }
+      ])
+
+      setActiveOptions(response.options || [])
+      setShowSuggestions(true)
+      setUserInput('')
+      return
+    }
+
     const cocktailCuriousAnswer = buildCocktailCuriousAnswer(trimmedInput)
+    if (
+      normalizedUserText.includes('vino') ||
+      normalizedUserText.includes('vinos') ||
+      normalizedUserText.includes('tinto') ||
+      normalizedUserText.includes('blanco') ||
+      normalizedUserText.includes('rosado')
+    ) {
+      return null
+    }
 
     if (cocktailCuriousAnswer) {
       const response = buildSatisfactionResponse(cocktailCuriousAnswer)
@@ -365,6 +616,9 @@ export default function VirtualAgent() {
       setUserInput('')
       return
     }
+
+
+
 
     const matchedIntents = detectIntents(trimmedInput)
     const agentResponse = buildIntentResponse(matchedIntents)
@@ -462,7 +716,7 @@ export default function VirtualAgent() {
     setActiveOptions(response.options || [])
   }
 
- 
+
 
   const handleBookingChange = (event) => {
     const { name, value } = event.target
@@ -650,7 +904,7 @@ La reserva solo será válida después de la confirmación del equipo.`
             </form>
           )}
 
-          
+
         </div>
       )}
 
