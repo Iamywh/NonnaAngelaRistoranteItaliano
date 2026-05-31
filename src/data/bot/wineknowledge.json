@@ -231,7 +231,7 @@
       "service_temperature": "16-18°C",
       "cost_price": 8.4,
       "recommended_bottle_price": 33.6,
-      "by_glass": false,
+      "by_glass": true,
       "description": "Vino tinto de Abruzzo elaborado con 100% Montepulciano d’Abruzzo. Color rojo intenso con reflejos violáceos. En nariz muestra frutos rojos, violeta y un toque especiado. En boca aparecen sensaciones aromáticas, con tanino aterciopelado, cuerpo redondo, intensidad y persistencia.",
       "sales_note": "Tinto de batalla inteligente: fácil, redondo y muy útil para vender por copa.",
       "keywords": [
@@ -374,7 +374,7 @@
       "service_temperature": "16-18°C",
       "cost_price": 6.8,
       "recommended_bottle_price": 27.2,
-      "by_glass": false,
+      "by_glass": true,
       "description": "Vino tinto de Veneto elaborado con 100% Cabernet Sauvignon. Color rojo rubí intenso con reflejos violáceos. En nariz muestra aromas intensos y complejos, con fruta roja, flores y especias. En boca es intenso, aterciopelado y salino, con estructura elegante, tanino presente y final de fruta y especias.",
       "sales_note": "Buena opción económica para quien quiere un tinto con más estructura.",
       "keywords": [
@@ -524,7 +524,7 @@
       "service_temperature": "8-10°C",
       "cost_price": 6.8,
       "recommended_bottle_price": 27.2,
-      "by_glass": false,
+      "by_glass": true,
       "description": "Vino blanco de Veneto elaborado con 100% Pinot Grigio. Color amarillo pajizo con brillantes reflejos anaranjados. En nariz es agradablemente frutal. En boca es seco, limpio, mineral, elegante y equilibrado, con final fresco y ordenado.",
       "sales_note": "Blanco fresco y sencillo, perfecto para recomendar por copa.",
       "keywords": [
@@ -570,7 +570,7 @@
       "service_temperature": "8-10°C",
       "cost_price": 6.8,
       "recommended_bottle_price": 27.2,
-      "by_glass": false,
+      "by_glass": true,
       "description": "Vino blanco de Veneto elaborado con 100% Chardonnay. Color amarillo pajizo con brillantes reflejos verdosos. En nariz ofrece aroma limpio y versátil, de intensidad media. En boca es seco, limpio, suave y fresco, elegante y equilibrado.",
       "sales_note": "Blanco fácil y redondo para clientes que no quieren demasiada acidez.",
       "keywords": [
@@ -992,7 +992,7 @@
       "service_temperature": "6-8°C",
       "cost_price": 8.0,
       "recommended_bottle_price": 32.0,
-      "by_glass": false,
+      "by_glass": true,
       "description": "Vino espumoso italiano elaborado principalmente con Glera. Color amarillo pajizo pálido, burbuja fina y perfil aromático fresco. En nariz recuerda manzana, pera, flores blancas y ligeros cítricos. En boca es fresco, suave y agradable, con estilo Extra Dry ideal para aperitivo, brindis y spritz.",
       "sales_note": "La burbuja base para aperitivo, brindis y cócteles con Prosecco.",
       "keywords": [
@@ -1229,7 +1229,7 @@
       "service_temperature": "8-10°C",
       "cost_price": 16.2,
       "recommended_bottle_price": 64.8,
-      "by_glass": false,
+      "by_glass": true,
       "description": "Vino dulce siciliano elaborado con Grillo de vendimia tardía. Color ámbar dorado. En nariz ofrece aromas complejos de frutas maduras y pasas, vainilla y miel. En boca es envolvente, de gran estructura y con sensaciones dulces de bollería. Ideal para postres, ricotta, pastelería y final de comida.",
       "sales_note": "Vino de postre. Propónlo al final de la comida con cannolo o postres de crema.",
       "keywords": [
