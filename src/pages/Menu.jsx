@@ -10,6 +10,7 @@ import dolci from '../../data/menu/Dolci.json'
 import vini from '../../data/menu/vini.json'
 import cocktail from '../../data/menu/cocktail.json'
 import softdrinks from '../../data/menu/softdrinks.json'
+import amariliquori from '../../data/menu/amariliquori.json'
 
 const menuCategories = [
   {
@@ -333,6 +334,10 @@ function CategoryPage({ category, onBack }) {
 
     if (category.id === 'softdrinks') {
       return [{ title: 'Refrescos y aguas', subtitle: 'Bebidas frías sin alcohol', items: softdrinks.softdrinks || [] }]
+    }
+
+    if (category.id === 'liquori') {
+      return [{ title: 'Licores y digestivos', subtitle: 'Amari, grappas y final de comida', items: amariliquori.liquors || [] }]
     }
 
     return []

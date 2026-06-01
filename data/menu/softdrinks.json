@@ -37,30 +37,6 @@
       "available": true
     },
     {
-      "code": "NA-SD-004",
-      "name": "Fanta Limón",
-      "category": "Refresco",
-      "format": "33cl",
-      "cost_price": 0.7,
-      "recommended_price_x3": 2.1,
-      "recommended_price": 2.5,
-      "pricing_rule": "cost_price_x3_rounded_to_market",
-      "description": "Refresco de limón con burbuja, cítrico y refrescante. Funciona bien con entrantes fritos, platos salados y días de calor.",
-      "available": true
-    },
-    {
-      "code": "NA-SD-005",
-      "name": "Aquarius Naranja",
-      "category": "Refresco",
-      "format": "33cl",
-      "cost_price": 0.85,
-      "recommended_price_x3": 2.55,
-      "recommended_price": 3,
-      "pricing_rule": "cost_price_x3_rounded_to_market",
-      "description": "Bebida refrescante de naranja, suave y menos pesada que un refresco clásico. Buena opción para clientes que buscan algo fresco y fácil de beber.",
-      "available": true
-    },
-    {
       "code": "NA-SD-006",
       "name": "Aquarius Limón",
       "category": "Refresco",
@@ -82,78 +58,6 @@
       "recommended_price": 3,
       "pricing_rule": "cost_price_x3_rounded_to_market",
       "description": "Tónica aromática con perfil cítrico de limón. Puede servirse sola como refresco premium o utilizarse como mixer para cócteles.",
-      "available": true
-    },
-    {
-      "code": "NA-SD-008",
-      "name": "Tónica Fresa",
-      "category": "Tónica",
-      "format": "20cl",
-      "cost_price": 0.85,
-      "recommended_price_x3": 2.55,
-      "recommended_price": 3,
-      "pricing_rule": "cost_price_x3_rounded_to_market",
-      "description": "Tónica aromática con notas de fresa. Opción más dulce y perfumada, pensada para servicio premium o combinados.",
-      "available": true
-    },
-    {
-      "code": "NA-SD-009",
-      "name": "Appletiser",
-      "category": "Refresco Premium",
-      "format": "27.5cl",
-      "cost_price": 0.95,
-      "recommended_price_x3": 2.85,
-      "recommended_price": 3,
-      "pricing_rule": "cost_price_x3_rounded_to_market",
-      "description": "Bebida espumosa de manzana, fresca y elegante. Buena opción sin alcohol para aperitivo o para quien quiere algo diferente a los refrescos clásicos.",
-      "available": true
-    },
-    {
-      "code": "NA-SD-010",
-      "name": "Agua pequeña sin gas",
-      "category": "Agua",
-      "format": "50cl",
-      "cost_price": 0.35,
-      "recommended_price_x3": 1.05,
-      "recommended_price": 1.5,
-      "pricing_rule": "cost_price_x3_adjusted_to_restaurant_minimum",
-      "description": "Agua mineral sin gas en formato individual. Opción básica para servicio de mesa, café o comida rápida.",
-      "available": true
-    },
-    {
-      "code": "NA-SD-011",
-      "name": "Agua grande sin gas",
-      "category": "Agua",
-      "format": "1L",
-      "cost_price": 0.65,
-      "recommended_price_x3": 1.95,
-      "recommended_price": 2.5,
-      "pricing_rule": "cost_price_x3_adjusted_to_restaurant_minimum",
-      "description": "Agua mineral sin gas en formato grande, pensada para compartir en mesa.",
-      "available": true
-    },
-    {
-      "code": "NA-SD-012",
-      "name": "Agua pequeña con gas",
-      "category": "Agua",
-      "format": "50cl",
-      "cost_price": 0.45,
-      "recommended_price_x3": 1.35,
-      "recommended_price": 2,
-      "pricing_rule": "cost_price_x3_adjusted_to_restaurant_minimum",
-      "description": "Agua mineral con gas en formato individual. Fresca, limpia y perfecta para acompañar platos con grasa, fritos o quesos.",
-      "available": true
-    },
-    {
-      "code": "NA-SD-013",
-      "name": "Agua grande con gas",
-      "category": "Agua",
-      "format": "1L",
-      "cost_price": 0.75,
-      "recommended_price_x3": 2.25,
-      "recommended_price": 2.5,
-      "pricing_rule": "cost_price_x3_rounded_to_market",
-      "description": "Agua mineral con gas en formato grande, ideal para compartir en mesa y limpiar el paladar durante la comida.",
       "available": true
     },
     {
@@ -181,40 +85,28 @@
       "available": true
     },
     {
-  "code": "NA-SD-016",
-  "name": "Kopparberg Strawberry & Lime",
-  "category": "Sidra",
-  "format": "33cl",
-  "cost_price": 1.35,
-  "recommended_price_x3": 4.05,
-  "recommended_price": 3.5,
-  "pricing_rule": "manual_price_decision",
-  "description": "Sidra afrutada de fresa y lima, dulce, fresca y fácil de beber. Una opción diferente para quien busca una bebida ligera con alcohol.",
-  "available": true
-},
-{
-  "code": "NA-SD-017",
-  "name": "Limonada casera",
-  "category": "Limonada",
-  "format": "Vaso",
-  "cost_price": 0.65,
-  "recommended_price_x3": 1.95,
-  "recommended_price": 4.5,
-  "pricing_rule": "manual_price_handmade_product",
-  "description": "Limonada casera preparada con limón, agua fría y un equilibrio fresco entre acidez y dulzor. Una bebida artesanal, sencilla y muy refrescante.",
-  "available": true
-},
-{
-  "code": "NA-SD-018",
-  "name": "Limonada de sabores",
-  "category": "Limonada",
-  "format": "Vaso",
-  "cost_price": 0.85,
-  "recommended_price_x3": 2.55,
-  "recommended_price": 5,
-  "pricing_rule": "manual_price_handmade_product",
-  "description": "Limonada casera con sabores de fruta. Más colorida, aromática y especial que un refresco clásico, perfecta para días de calor o para clientes que quieren algo sin alcohol diferente.",
-  "available": true
-}
+      "code": "NA-SD-017",
+      "name": "Limonada casera",
+      "category": "Limonada",
+      "format": "Vaso",
+      "cost_price": 0.65,
+      "recommended_price_x3": 1.95,
+      "recommended_price": 4.5,
+      "pricing_rule": "manual_price_handmade_product",
+      "description": "Limonada casera preparada con limón, agua fría y un equilibrio fresco entre acidez y dulzor. Una bebida artesanal, sencilla y muy refrescante.",
+      "available": true
+    },
+    {
+      "code": "NA-SD-018",
+      "name": "Limonada de sabores",
+      "category": "Limonada",
+      "format": "Vaso",
+      "cost_price": 0.85,
+      "recommended_price_x3": 2.55,
+      "recommended_price": 5,
+      "pricing_rule": "manual_price_handmade_product",
+      "description": "Limonada casera con sabores de fruta. Más colorida, aromática y especial que un refresco clásico, perfecta para días de calor o para clientes que quieren algo sin alcohol diferente.",
+      "available": true
+    }
   ]
 }

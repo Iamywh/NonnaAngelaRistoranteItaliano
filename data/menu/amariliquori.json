@@ -1,0 +1,279 @@
+{
+  "liquors": [
+    {
+      "code": "NA-LIQ-001",
+      "name": "Averna",
+      "category": "Amari",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Amaro italiano para servicio de aperitivo o digestivo. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-002",
+      "name": "Aperol",
+      "category": "Aperitivo / Bitter",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Aperitivo italiano de perfil cítrico y amargo suave. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-003",
+      "name": "Campari",
+      "category": "Aperitivo / Bitter",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Bitter italiano clásico para aperitivo, cócteles y servicio de bar. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-004",
+      "name": "Fernet Branca",
+      "category": "Amari",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Amaro italiano de perfil intenso y herbal, tradicional como digestivo. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-005",
+      "name": "Hendricks",
+      "category": "Ginebra",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Ginebra para combinados y servicio de bar. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-006",
+      "name": "Beefeater",
+      "category": "Ginebra",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Ginebra para combinados y servicio de bar. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-007",
+      "name": "Martin Miller",
+      "category": "Ginebra",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Ginebra para combinados y servicio de bar. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-008",
+      "name": "Tanqueray",
+      "category": "Ginebra",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Ginebra para combinados y servicio de bar. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-009",
+      "name": "Limoncello Villa Massa",
+      "category": "Licores",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Limoncello italiano para servir frío como digestivo. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-010",
+      "name": "Martini Rosso",
+      "category": "Vermouth",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Vermouth rosso para aperitivo, cócteles y servicio de bar. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-011",
+      "name": "Martini Bianco",
+      "category": "Vermouth",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Vermouth bianco para aperitivo, cócteles y servicio de bar. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-012",
+      "name": "Frangelico",
+      "category": "Licores",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Licor para sobremesa y servicio digestivo. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-013",
+      "name": "Amaro Montenegro",
+      "category": "Amari",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Amaro italiano tradicional para digestivo y sobremesa. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-014",
+      "name": "Grappa Libarna",
+      "category": "Grappa",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Grappa italiana para servicio digestivo. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-015",
+      "name": "Grappa La Bianca Barbero",
+      "category": "Grappa",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Grappa italiana para servicio digestivo. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-016",
+      "name": "Amaretto Disaronno",
+      "category": "Licores",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Licor italiano para sobremesa, café o servicio digestivo. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-017",
+      "name": "Amaro del Capo",
+      "category": "Amari",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Amaro italiano para servir frío como digestivo. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-018",
+      "name": "Molinari",
+      "category": "Licores",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Licor para sobremesa y servicio digestivo. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-019",
+      "name": "Vermouth Giardino Mediterraneo Tradizionale Rosso",
+      "category": "Vermouth",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Vermouth rosso para aperitivo y servicio de bar. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-020",
+      "name": "Vermouth Giardino Mediterraneo Dry",
+      "category": "Vermouth",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Vermouth dry para aperitivo, cócteles y servicio de bar. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-021",
+      "name": "Johnny Walker Black",
+      "category": "Whisky",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Whisky para servicio de bar y sobremesa. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-022",
+      "name": "Jack Daniel's",
+      "category": "Whisky",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Whisky para servicio de bar y sobremesa. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-023",
+      "name": "Brugal",
+      "category": "Ron",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Ron para combinados y servicio de bar. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-024",
+      "name": "Flor de Caña 7",
+      "category": "Ron",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Ron para combinados, servicio solo o sobremesa. Precio pendiente de definir.",
+      "available": true
+    },
+    {
+      "code": "NA-LIQ-025",
+      "name": "Ron Zacapa Solera",
+      "category": "Ron",
+      "format": "",
+      "cost_price": null,
+      "recommended_price": null,
+      "pricing_rule": "TODO: precio pendiente de definir",
+      "description": "Ron para servicio solo y sobremesa. Precio pendiente de definir.",
+      "available": true
+    }
+  ]
+}
