@@ -6,9 +6,13 @@
       "category": "Amari",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Amaro italiano para servicio de aperitivo o digestivo. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5.5,
+        "chupito": 4,
+        "combinado": null
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Amaro italiano para servicio de aperitivo o digestivo.",
       "available": true
     },
     {
@@ -17,9 +21,13 @@
       "category": "Aperitivo / Bitter",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Aperitivo italiano de perfil cítrico y amargo suave. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5,
+        "chupito": null,
+        "combinado": 7.5
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Aperitivo italiano de perfil cítrico y amargo suave.",
       "available": true
     },
     {
@@ -28,9 +36,13 @@
       "category": "Aperitivo / Bitter",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Bitter italiano clásico para aperitivo, cócteles y servicio de bar. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5.5,
+        "chupito": null,
+        "combinado": 7.5
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Bitter italiano clásico para aperitivo, cócteles y servicio de bar.",
       "available": true
     },
     {
@@ -39,20 +51,28 @@
       "category": "Amari",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Amaro italiano de perfil intenso y herbal, tradicional como digestivo. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5.5,
+        "chupito": 4,
+        "combinado": 8
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Amaro italiano de perfil intenso y herbal, tradicional como digestivo.",
       "available": true
     },
     {
       "code": "NA-LIQ-005",
-      "name": "Hendricks",
+      "name": "Hendrick's",
       "category": "Ginebra",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Ginebra para combinados y servicio de bar. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 8,
+        "chupito": null,
+        "combinado": 12
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Ginebra para combinados y servicio de bar.",
       "available": true
     },
     {
@@ -61,9 +81,13 @@
       "category": "Ginebra",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Ginebra para combinados y servicio de bar. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 6,
+        "chupito": null,
+        "combinado": 8.5
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Ginebra para combinados y servicio de bar.",
       "available": true
     },
     {
@@ -72,9 +96,13 @@
       "category": "Ginebra",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Ginebra para combinados y servicio de bar. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 7,
+        "chupito": null,
+        "combinado": 10
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Ginebra para combinados y servicio de bar.",
       "available": true
     },
     {
@@ -83,9 +111,13 @@
       "category": "Ginebra",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Ginebra para combinados y servicio de bar. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 6.5,
+        "chupito": null,
+        "combinado": 9
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Ginebra para combinados y servicio de bar.",
       "available": true
     },
     {
@@ -94,9 +126,13 @@
       "category": "Licores",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Limoncello italiano para servir frío como digestivo. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5,
+        "chupito": 3.5,
+        "combinado": null
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Limoncello italiano para servir frío como digestivo.",
       "available": true
     },
     {
@@ -105,9 +141,13 @@
       "category": "Vermouth",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Vermouth rosso para aperitivo, cócteles y servicio de bar. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5,
+        "chupito": null,
+        "combinado": 7
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Vermouth rosso para aperitivo, cócteles y servicio de bar.",
       "available": true
     },
     {
@@ -116,9 +156,13 @@
       "category": "Vermouth",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Vermouth bianco para aperitivo, cócteles y servicio de bar. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5,
+        "chupito": null,
+        "combinado": 7
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Vermouth bianco para aperitivo, cócteles y servicio de bar.",
       "available": true
     },
     {
@@ -127,9 +171,13 @@
       "category": "Licores",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Licor para sobremesa y servicio digestivo. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5,
+        "chupito": 3.5,
+        "combinado": null
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Licor para sobremesa y servicio digestivo.",
       "available": true
     },
     {
@@ -138,9 +186,13 @@
       "category": "Amari",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Amaro italiano tradicional para digestivo y sobremesa. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5.5,
+        "chupito": 4,
+        "combinado": null
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Amaro italiano tradicional para digestivo y sobremesa.",
       "available": true
     },
     {
@@ -149,9 +201,13 @@
       "category": "Grappa",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Grappa italiana para servicio digestivo. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5.5,
+        "chupito": 4,
+        "combinado": null
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Grappa italiana para servicio digestivo.",
       "available": true
     },
     {
@@ -160,9 +216,13 @@
       "category": "Grappa",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Grappa italiana para servicio digestivo. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5.5,
+        "chupito": 4,
+        "combinado": null
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Grappa italiana para servicio digestivo.",
       "available": true
     },
     {
@@ -171,9 +231,13 @@
       "category": "Licores",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Licor italiano para sobremesa, café o servicio digestivo. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5.5,
+        "chupito": 4,
+        "combinado": 7.5
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Licor italiano para sobremesa, café o servicio digestivo.",
       "available": true
     },
     {
@@ -182,9 +246,13 @@
       "category": "Amari",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Amaro italiano para servir frío como digestivo. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5.5,
+        "chupito": 4,
+        "combinado": null
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Amaro italiano para servir frío como digestivo.",
       "available": true
     },
     {
@@ -193,9 +261,13 @@
       "category": "Licores",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Licor para sobremesa y servicio digestivo. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5,
+        "chupito": 3.5,
+        "combinado": null
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Licor para sobremesa y servicio digestivo.",
       "available": true
     },
     {
@@ -204,9 +276,13 @@
       "category": "Vermouth",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Vermouth rosso para aperitivo y servicio de bar. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5.5,
+        "chupito": null,
+        "combinado": 7.5
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Vermouth rosso para aperitivo y servicio de bar.",
       "available": true
     },
     {
@@ -215,20 +291,28 @@
       "category": "Vermouth",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Vermouth dry para aperitivo, cócteles y servicio de bar. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 5.5,
+        "chupito": null,
+        "combinado": 7.5
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Vermouth dry para aperitivo, cócteles y servicio de bar.",
       "available": true
     },
     {
       "code": "NA-LIQ-021",
-      "name": "Johnny Walker Black",
+      "name": "Johnnie Walker Black Label",
       "category": "Whisky",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Whisky para servicio de bar y sobremesa. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 7,
+        "chupito": null,
+        "combinado": 10
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Whisky para servicio de bar y sobremesa.",
       "available": true
     },
     {
@@ -237,9 +321,13 @@
       "category": "Whisky",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Whisky para servicio de bar y sobremesa. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 6.5,
+        "chupito": null,
+        "combinado": 9.5
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Whisky para servicio de bar y sobremesa.",
       "available": true
     },
     {
@@ -248,9 +336,13 @@
       "category": "Ron",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Ron para combinados y servicio de bar. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 6,
+        "chupito": null,
+        "combinado": 8.5
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Ron para combinados y servicio de bar.",
       "available": true
     },
     {
@@ -259,9 +351,13 @@
       "category": "Ron",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Ron para combinados, servicio solo o sobremesa. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 7,
+        "chupito": null,
+        "combinado": 10
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Ron para combinados, servicio solo o sobremesa.",
       "available": true
     },
     {
@@ -270,9 +366,13 @@
       "category": "Ron",
       "format": "",
       "cost_price": null,
-      "recommended_price": null,
-      "pricing_rule": "TODO: precio pendiente de definir",
-      "description": "Ron para servicio solo y sobremesa. Precio pendiente de definir.",
+      "recommended_price": {
+        "copa": 9,
+        "chupito": null,
+        "combinado": 13
+      },
+      "pricing_rule": "manual_price_by_service",
+      "description": "Ron para servicio solo y sobremesa.",
       "available": true
     }
   ]

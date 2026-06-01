@@ -78,6 +78,20 @@ const menuCategories = [
   }
 ]
 
+const PRICE_LABELS = {
+  copa: 'Copa',
+  chupito: 'Chupito',
+  combinado: 'Combinado'
+}
+
+function getVisiblePriceEntries(price) {
+  if (!price || typeof price !== 'object' || Array.isArray(price)) return []
+
+  return ['copa', 'chupito', 'combinado']
+    .map((key) => [key, price[key]])
+    .filter(([, value]) => typeof value === 'number')
+}
+
 function formatPrice(price) {
   if (price === null || price === undefined) return 'Por definir'
 
@@ -133,6 +147,7 @@ function DishCard({ item }) {
   const glassPrice = item.by_glass
     ? item.recommended_glass_price || calculateGlassPrice(item.recommended_bottle_price)
     : null
+  const servicePrices = getVisiblePriceEntries(item.recommended_price)
   return (
     <article className="dish-card">
       <div className="dish-image-placeholder">
@@ -193,6 +208,15 @@ function DishCard({ item }) {
                 <span>Botella</span>
                 <strong>{formatPrice(item.recommended_bottle_price)}</strong>
               </div>
+            </div>
+          ) : servicePrices.length > 0 ? (
+            <div className="wine-price-block">
+              {servicePrices.map(([key, value]) => (
+                <div key={`${item.code || item.name}-${key}`}>
+                  <span>{PRICE_LABELS[key] || key}</span>
+                  <strong>{formatPrice(value)}</strong>
+                </div>
+              ))}
             </div>
           ) : (
             <>
