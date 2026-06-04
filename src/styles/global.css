@@ -1309,3 +1309,145 @@ button {
   font-size: 22px;
   white-space: nowrap;
 }
+
+.locale-page {
+  position: relative;
+  overflow: hidden;
+}
+
+.locale-page::before {
+  content: "";
+  position: absolute;
+  top: 80px;
+  right: -120px;
+  width: 420px;
+  height: 420px;
+  background:
+    radial-gradient(circle, rgba(200, 155, 60, 0.18), transparent 62%),
+    radial-gradient(circle at 30% 30%, rgba(143, 29, 20, 0.12), transparent 45%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.locale-hero {
+  padding: 40px;
+  border-radius: 34px;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 243, 0.92), rgba(255, 255, 255, 0.72)),
+    radial-gradient(circle at top right, rgba(200, 155, 60, 0.18), transparent 40%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.reservation-section,
+.reviews-section {
+  margin-top: 34px;
+  padding: 32px;
+  border-radius: 30px;
+  background: var(--panel-strong);
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 34px rgba(42, 28, 20, 0.07);
+}
+
+.reservation-section {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.reservation-copy h3,
+.reviews-section h3 {
+  margin: 0 0 12px;
+  font-size: 34px;
+}
+
+.reservation-form {
+  display: grid;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.reservation-form label {
+  display: grid;
+  gap: 8px;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.reservation-form input,
+.reservation-form select,
+.reservation-form textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 13px 14px;
+  background: #fffaf3;
+  color: var(--text);
+  font: inherit;
+}
+
+.reservation-form textarea {
+  resize: vertical;
+}
+
+.reservation-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-message {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  font-weight: 700;
+}
+
+.form-message.success {
+  background: rgba(47, 125, 74, 0.12);
+  color: var(--green);
+}
+
+.form-message.error {
+  background: rgba(143, 29, 20, 0.1);
+  color: var(--accent);
+}
+
+.reviews-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+}
+
+.review-button {
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .locale-hero,
+  .reservation-section,
+  .reviews-section {
+    padding: 24px;
+  }
+
+  .reservation-section,
+  .reviews-section,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .reviews-section {
+    align-items: flex-start;
+  }
+
+  .review-button {
+    width: fit-content;
+  }
+}
