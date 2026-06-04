@@ -108,6 +108,13 @@ export default function AdminDashboard({ setCurrentPage }) {
                 />
 
                 <AdminModuleCard
+                    title="Reservas"
+                    description="Solicitudes de reserva, confirmaciones y no-show"
+                    meta="Sala / reservas / atención cliente"
+                    onClick={() => setCurrentPage('admin-reservations')}
+                />
+
+                <AdminModuleCard
                     title="Orders"
                     description="Ordini cucina e barra con storico"
                     meta="Food / beverage / fornitori"

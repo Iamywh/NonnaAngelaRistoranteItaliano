@@ -1,11 +1,22 @@
 import React from 'react'
 
-export default function Navbar({ currentPage, setCurrentPage }) {
+export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIsAdminMode }) {
   const publicLinks = [
     { id: 'home', label: 'Inicio' },
     { id: 'locale', label: 'Restaurante' },
     { id: 'menu', label: 'Menú' }
   ]
+
+  const handleAdminToggle = () => {
+    if (currentPage === 'admin') {
+      setCurrentPage('home')
+      setIsAdminMode(false)
+      return
+    }
+
+    setIsAdminMode(true)
+    setCurrentPage('admin')
+  }
 
   return (
     <header className="navbar">
@@ -29,6 +40,14 @@ export default function Navbar({ currentPage, setCurrentPage }) {
           </button>
         ))}
       </nav>
+
+      <button
+        className={isAdminMode ? 'admin-toggle active' : 'admin-toggle'}
+        type="button"
+        onClick={handleAdminToggle}
+      >
+        Manager
+      </button>
     </header>
   )
 }

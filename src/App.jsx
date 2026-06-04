@@ -9,6 +9,7 @@ import BeverageDashboard from './pages/admin/BeverageDashboard.jsx'
 import FBControl from './pages/admin/FBControl.jsx'
 import Orders from './pages/admin/Orders.jsx'
 import Invoices from './pages/admin/Invoices.jsx'
+import ReservationsDashboard from './pages/admin/ReservationsDashboard.jsx'
 import VirtualAgent from './components/VirtualAgent.jsx'
 import Footer from './components/Footer.jsx'
 
@@ -25,6 +26,7 @@ export default function App() {
     if (currentPage === 'admin-fb') return <FBControl setCurrentPage={setCurrentPage} />
     if (currentPage === 'admin-orders') return <Orders setCurrentPage={setCurrentPage} />
     if (currentPage === 'admin-invoices') return <Invoices setCurrentPage={setCurrentPage} />
+    if (currentPage === 'admin-reservations') return <ReservationsDashboard setCurrentPage={setCurrentPage} />
     return <Home setCurrentPage={setCurrentPage} />
   }
 
