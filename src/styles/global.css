@@ -1451,3 +1451,60 @@ button {
     width: fit-content;
   }
 }
+
+.manager-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(42, 28, 20, 0.46);
+  backdrop-filter: blur(8px);
+}
+
+.manager-modal {
+  width: min(420px, 100%);
+  padding: 28px;
+  border-radius: 28px;
+  background: var(--panel-strong);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.manager-modal h3 {
+  margin: 0 0 10px;
+  font-size: 30px;
+}
+
+.manager-modal p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.manager-modal form {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.manager-modal input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 13px 14px;
+  background: #fffaf3;
+  color: var(--text);
+  font: inherit;
+}
+
+.manager-error {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.manager-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
