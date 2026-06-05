@@ -1313,6 +1313,7 @@ button {
 .locale-page {
   position: relative;
   overflow: hidden;
+  animation: fadeInUp 0.35s ease;
 }
 
 .locale-page::before {
@@ -1330,7 +1331,11 @@ button {
 }
 
 .locale-hero {
-  padding: 40px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(360px, 1.12fr);
+  gap: 34px;
+  align-items: stretch;
+  padding: clamp(26px, 4vw, 46px);
   border-radius: 34px;
   background:
     linear-gradient(135deg, rgba(255, 250, 243, 0.92), rgba(255, 255, 255, 0.72)),
@@ -1339,10 +1344,92 @@ button {
   box-shadow: var(--shadow);
 }
 
+.locale-hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.locale-hero-copy h2 {
+  max-width: 680px;
+}
+
+.locale-hero-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.locale-story-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+  margin: 0;
+  padding: clamp(24px, 3.2vw, 36px);
+  overflow: hidden;
+  border: 1px solid rgba(143, 29, 20, 0.14);
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(143, 29, 20, 0.96), rgba(95, 19, 14, 0.98)),
+    radial-gradient(circle at top right, rgba(200, 155, 60, 0.36), transparent 42%);
+  color: white;
+  box-shadow: 0 18px 46px rgba(95, 19, 14, 0.2);
+}
+
+.locale-story-card::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(255, 250, 243, 0.18);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.locale-story-card p {
+  position: relative;
+  max-width: none;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(17px, 1.55vw, 21px);
+  line-height: 1.75;
+}
+
+.locale-experience-block {
+  margin-top: 30px;
+}
+
+.locale-info-grid {
+  margin-top: 30px;
+}
+
+.locale-info-grid article {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.locale-info-grid article::before {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 4px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  background: var(--gold);
+}
+
+.locale-info-grid article:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200, 155, 60, 0.45);
+  box-shadow: 0 18px 44px rgba(42, 28, 20, 0.1);
+}
+
 .reservation-section,
 .reviews-section {
   margin-top: 34px;
-  padding: 32px;
+  padding: clamp(24px, 3vw, 34px);
   border-radius: 30px;
   background: var(--panel-strong);
   border: 1px solid var(--border);
@@ -1351,9 +1438,14 @@ button {
 
 .reservation-section {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 28px;
+  grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
+  gap: clamp(24px, 4vw, 44px);
   align-items: start;
+}
+
+.reservation-copy {
+  position: sticky;
+  top: 112px;
 }
 
 .reservation-copy h3,
@@ -1365,6 +1457,11 @@ button {
 .reservation-form {
   display: grid;
   gap: 16px;
+  padding: clamp(18px, 2.5vw, 26px);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(248, 241, 231, 0.72), rgba(255, 250, 243, 0.88));
+  border: 1px solid rgba(42, 28, 20, 0.08);
 }
 
 .form-row {
@@ -1390,10 +1487,23 @@ button {
   background: #fffaf3;
   color: var(--text);
   font: inherit;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .reservation-form textarea {
   resize: vertical;
+}
+
+.reservation-form input:focus,
+.reservation-form select:focus,
+.reservation-form textarea:focus {
+  border-color: rgba(143, 29, 20, 0.5);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(143, 29, 20, 0.08);
 }
 
 .reservation-form button:disabled {
@@ -1423,6 +1533,9 @@ button {
   justify-content: space-between;
   gap: 24px;
   align-items: center;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 250, 243, 0.94)),
+    radial-gradient(circle at top right, rgba(47, 125, 74, 0.12), transparent 34%);
 }
 
 .review-button {
@@ -1437,18 +1550,61 @@ button {
     padding: 24px;
   }
 
+  .locale-hero {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .locale-story-card p {
+    font-size: 16px;
+  }
+
   .reservation-section,
   .reviews-section,
   .form-row {
     grid-template-columns: 1fr;
   }
 
+  .reservation-copy {
+    position: static;
+  }
+
   .reviews-section {
+    flex-direction: column;
     align-items: flex-start;
   }
 
   .review-button {
     width: fit-content;
+  }
+}
+
+@media (max-width: 560px) {
+  .locale-hero,
+  .reservation-section,
+  .reviews-section {
+    border-radius: 24px;
+    padding: 20px;
+  }
+
+  .locale-story-card {
+    border-radius: 22px;
+    padding: 22px;
+  }
+
+  .locale-story-card::before {
+    inset: 10px;
+    border-radius: 18px;
+  }
+
+  .reservation-form {
+    padding: 16px;
+  }
+
+  .review-button,
+  .reservation-form .primary-button {
+    width: 100%;
+    text-align: center;
   }
 }
 

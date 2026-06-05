@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { supabase } from '../lib/supabaseClient.js'
 
+const menuStory =
+  'En Italia, las mejores recetas no nacen en los restaurantes, sino alrededor de una mesa familiar. En Nonna Angela queremos compartir precisamente esa tradición: platos preparados con tiempo, ingredientes seleccionados y el cariño de la cocina de casa. Nuestra propuesta está inspirada en los sabores que han acompañado a generaciones de familias italianas: pastas artesanales, salsas cocinadas lentamente, embutidos, quesos y vinos cuidadosamente elegidos para acompañar cada momento. Más que un restaurante, queremos ser un lugar donde disfrutar sin prisas, compartir, brindar y sentirse como en casa. Benvenuti a Nonna Angela.'
+
 const initialReservation = {
   customer_name: '',
   customer_phone: '',
@@ -64,7 +67,7 @@ export default function Locale() {
   return (
     <section className="content-page locale-page">
       <div className="locale-hero">
-        <div>
+        <div className="locale-hero-copy">
           <p className="eyebrow">El restaurante</p>
           <h2>Un bistrot italiano con alma familiar</h2>
           <p>
@@ -73,28 +76,34 @@ export default function Locale() {
             control en cada plato.
           </p>
         </div>
+
+        <blockquote className="locale-story-card">
+          <p>{menuStory}</p>
+        </blockquote>
       </div>
 
-      <div className="info-grid">
-        <article>
-          <h3>Servicio</h3>
-          <p>Acogida cálida, atención en mesa y explicación de los platos.</p>
-        </article>
+      <div className="locale-experience-block">
+        <div className="info-grid locale-info-grid">
+          <article>
+            <h3>Servicio</h3>
+            <p>Acogida cálida, atención en mesa y explicación de los platos.</p>
+          </article>
 
-        <article>
-          <h3>Cocina</h3>
-          <p>
-            Preparaciones organizadas, ragú, pastas, carnes y postres
-            tradicionales italianos.
-          </p>
-        </article>
+          <article>
+            <h3>Cocina</h3>
+            <p>
+              Preparaciones organizadas, ragú, pastas, carnes y postres
+              tradicionales italianos.
+            </p>
+          </article>
 
-        <article>
-          <h3>Experiencia</h3>
-          <p>
-            Platos sencillos, pero presentados y contados con valor.
-          </p>
-        </article>
+          <article>
+            <h3>Experiencia</h3>
+            <p>
+              Platos sencillos, pero presentados y contados con valor.
+            </p>
+          </article>
+        </div>
       </div>
 
       <section className="reservation-section">
@@ -227,7 +236,7 @@ export default function Locale() {
 
         <a
           className="primary-button review-button"
-          href="https://www.google.com/search?q=Nonna+Angela+Santa+Cruz+de+Tenerife"
+          href="https://g.page/r/CQb-RYyd7PNAEBM/review"
           target="_blank"
           rel="noreferrer"
         >
