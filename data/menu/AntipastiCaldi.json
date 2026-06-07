@@ -97,7 +97,7 @@
     "categoria_profitto": "molto alta",
     "warning_commerciale": "Piatto estremamente profittevole se servito con presentazione premium.",
     "name_es": "Mozzarella in carrozza con salame",
-    "description_es": "Mozzarella empanada y frita con salame.",
+    "description_es": "Mozzarella con pan, empanada y frita con salame.",
     "ingredients_es": [
       "mozzarella",
       "pan rallado",
@@ -136,7 +136,7 @@
     "categoria_profitto": "alta",
     "warning_commerciale": "Le alici aumentano la personalità del piatto ma riducono il target clienti.",
     "name_es": "Mozzarella in carrozza con anchoas",
-    "description_es": "Mozzarella empanada y frita con anchoas.",
+    "description_es": "Mozzarella con pan, empanada y frita con anchoas.",
     "ingredients_es": [
       "mozzarella",
       "pan rallado",

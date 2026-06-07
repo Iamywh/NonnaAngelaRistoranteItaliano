@@ -29,14 +29,13 @@
   },
   {
     "category": "contorni",
-    "id": "pure_patata_arrosto_radicchio",
-    "name_it": "Purè di patata arrosto e radicchio",
+    "id": "pure_patata_arrosto",
+    "name_it": "Purè di patata arrosto",
     "sizes": [],
     "ingredients": [
-      "patata arrosto",
-      "radicchio"
+      "patata arrosto"
     ],
-    "notes": "Guarnición cremosa con una nota ligeramente amarga.",
+    "notes": "Guarnición cremosa de patata asada.",
     "allergens_to_verify": [
       "latte"
     ],
@@ -49,11 +48,10 @@
     "margine_percentuale": 57.2,
     "categoria_profitto": "media-alta",
     "warning_commerciale": "Contorno elegante e da bistrot. Ottimo abbinato a carni rosse e porchetta.",
-    "name_es": "Puré de patata asada y radicchio",
-    "description_es": "Puré de patata asada con radicchio.",
+    "name_es": "Puré de patata asada",
+    "description_es": "Puré de patata asada.",
     "ingredients_es": [
-      "patata asada",
-      "radicchio"
+      "patata asada"
     ],
     "allergens_es": [
       "leche"

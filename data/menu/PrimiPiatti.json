@@ -27,13 +27,14 @@
     "prezzo_consigliato": 22,
     "margine_percentuale": 76.8,
     "categoria_profitto": "molto alta",
-    "warning_commerciale": "Attenzione: l'id non corrisponde al nome. Qui va rinominato in tagliatelle_ragu_bolognese.",
-    "name_es": "Tagliatelle al ragú boloñés",
-    "description_es": "Tagliatelle con ragú boloñés y parmigiano.",
+    "warning_commerciale": "Piatto classico molto riconoscibile. Nome e id sono coerenti con lasagna_bolognese.",
+    "name_es": "Lasagna al ragú boloñés",
+    "description_es": "Lasagna con ragú boloñés, parmigiano y bechamel.",
     "ingredients_es": [
-      "tagliatelle",
+      "lasagna",
       "ragú boloñés",
-      "parmigiano"
+      "parmigiano",
+      "bechamel"
     ],
     "allergens_es": [
       "gluten",

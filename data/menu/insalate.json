@@ -1,12 +1,12 @@
 [
   {
     "category": "insalate",
-    "id": "insalata_rucola_grana_pachino",
-    "name_it": "Insalata rucola, grana e pachino",
+    "id": "insalata_rucola_parmesano_pachino",
+    "name_it": "Insalata rucola, parmesano e pachino",
     "sizes": [],
     "ingredients": [
       "rucola",
-      "grana",
+      "parmesano",
       "pomodoro pachino",
       "vinaigrette balsamico"
     ],
@@ -23,12 +23,12 @@
     "prezzo_consigliato": 8.5,
     "margine_percentuale": 57.6,
     "categoria_profitto": "media-alta",
-    "warning_commerciale": "Insalata con forte percezione premium grazie a rucola e grana. Ottima per upselling vino bianco.",
-    "name_es": "Ensalada de rúcula, grana y tomate cherry",
-    "description_es": "Rúcula, grana, tomate cherry y vinagreta balsámica.",
+    "warning_commerciale": "Insalata con forte percezione premium grazie a rucola e parmesano. Ottima per upselling vino bianco.",
+    "name_es": "Ensalada de rúcula, parmesano y tomate cherry",
+    "description_es": "Rúcula, parmesano, tomate cherry y vinagreta balsámica.",
     "ingredients_es": [
       "rúcula",
-      "grana",
+      "parmesano",
       "tomate cherry",
       "vinagreta balsámica"
     ],
