@@ -605,6 +605,121 @@ button {
   padding: 16px;
 }
 
+.music-manager-panel {
+  display: grid;
+  gap: 22px;
+}
+
+.music-now-playing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px;
+  border-radius: 22px;
+  background: rgba(143, 29, 20, 0.05);
+  border: 1px solid rgba(143, 29, 20, 0.1);
+}
+
+.music-now-playing span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.music-now-playing h3 {
+  margin: 0 0 6px;
+}
+
+.music-now-playing p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.music-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.music-volume {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.music-volume input {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.music-track-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.music-track {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: #fff;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.music-track span,
+.music-track b {
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.music-track strong,
+.music-track small {
+  display: block;
+}
+
+.music-track small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.music-track.active {
+  background: rgba(143, 29, 20, 0.07);
+  border-color: rgba(143, 29, 20, 0.28);
+}
+
+@media (max-width: 720px) {
+  .music-volume,
+  .music-track {
+    grid-template-columns: 1fr;
+  }
+
+  .music-now-playing {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .music-controls .primary-button,
+  .music-controls .ghost-button {
+    flex: 1 1 120px;
+  }
+}
+
 @media (max-width: 1050px) {
   .invoice-line-row {
     grid-template-columns: 1fr;

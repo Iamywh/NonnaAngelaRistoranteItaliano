@@ -115,6 +115,13 @@ export default function AdminDashboard({ setCurrentPage }) {
                 />
 
                 <AdminModuleCard
+                    title="Musica"
+                    description="Playlist sala, riproduzione e controllo ambiente"
+                    meta="Sala / atmosfera / customer experience"
+                    onClick={() => setCurrentPage('admin-music')}
+                />
+
+                <AdminModuleCard
                     title="Orders"
                     description="Ordini cucina e barra con storico"
                     meta="Food / beverage / fornitori"
