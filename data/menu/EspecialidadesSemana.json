@@ -1,0 +1,74 @@
+[
+  {
+    "category": "especialidades_semana",
+    "id": "lomito_cerdo_marinado",
+    "name_it": "Lomito de cerdo marinado",
+    "sizes": [],
+    "image": "assets/dishes/20260607_210815.jpg",
+    "ingredients": [
+      "cerdo en doble marinatura de cúrcuma durante 24 horas + segunda marinatura de 24 horas",
+      "crujiente de verduras",
+      "calabacín",
+      "zanahoria",
+      "patatas marinadas en cúrcuma"
+    ],
+    "notes": "Sabores auténticos, ingredientes seleccionados y mucho cariño en cada plato.",
+    "allergens_to_verify": [],
+    "source": "correzione manuale utente",
+    "fornitore": null,
+    "coperto_da_ordine": null,
+    "food_cost_raw": null,
+    "food_cost_operativo": null,
+    "prezzo_consigliato": 25,
+    "margine_percentuale": null,
+    "categoria_profitto": "da_calcolare",
+    "warning_commerciale": "Especialidad de la semana.",
+    "name_es": "Lomito de cerdo marinado",
+    "description_es": "Sabores auténticos, ingredientes seleccionados y mucho cariño en cada plato.",
+    "ingredients_es": [
+      "cerdo en doble marinatura de cúrcuma durante 24 horas + segunda marinatura de 24 horas",
+      "crujiente de verduras",
+      "calabacín",
+      "zanahoria",
+      "patatas marinadas en cúrcuma"
+    ],
+    "allergens_es": []
+  },
+  {
+    "category": "especialidades_semana",
+    "id": "rolle_berenjena",
+    "name_it": "Rollé de berenjena",
+    "sizes": [],
+    "image": "assets/dishes/20260607_211137.jpg",
+    "ingredients": [
+      "berenjena",
+      "provola",
+      "tomate",
+      "parmigiano en dos texturas: sólido y líquido"
+    ],
+    "notes": "Una receta sencilla convertida en algo especial.",
+    "allergens_to_verify": [
+      "latte"
+    ],
+    "source": "correzione manuale utente",
+    "fornitore": null,
+    "coperto_da_ordine": null,
+    "food_cost_raw": null,
+    "food_cost_operativo": null,
+    "prezzo_consigliato": 22.5,
+    "margine_percentuale": null,
+    "categoria_profitto": "da_calcolare",
+    "warning_commerciale": "Especialidad de la semana.",
+    "name_es": "Rollé de berenjena",
+    "description_es": "Una receta sencilla convertida en algo especial.",
+    "ingredients_es": [
+      "berenjena",
+      "provola",
+      "tomate",
+      "parmigiano en dos texturas: sólido y líquido"
+    ],
+    "allergens_es": [
+      "leche"
+    ]
+  }
+]

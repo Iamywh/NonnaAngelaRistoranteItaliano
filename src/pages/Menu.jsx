@@ -4,6 +4,7 @@ import antipastiFreddi from '../../data/menu/AntipastiFreddi.json'
 import antipastiCaldi from '../../data/menu/AntipastiCaldi.json'
 import primiPiatti from '../../data/menu/PrimiPiatti.json'
 import secondiPiatti from '../../data/menu/SecondiPiatti.json'
+import especialidadesSemana from '../../data/menu/EspecialidadesSemana.json'
 import contorni from '../../data/menu/Contorni.json'
 import insalate from '../../data/menu/insalate.json'
 import dolci from '../../data/menu/Dolci.json'
@@ -11,8 +12,16 @@ import vini from '../../data/menu/vini.json'
 import cocktail from '../../data/menu/cocktail.json'
 import softdrinks from '../../data/menu/softdrinks.json'
 import amariliquori from '../../data/menu/amariliquori.json'
+import especialidadesImage from '../../assets/dishes/20260607_210815.jpg'
 
 const menuCategories = [
+  {
+    id: 'especialidades_semana',
+    title: 'Especialidades de la semana',
+    subtitle: 'Platos especiales preparados por tiempo limitado.',
+    image: especialidadesImage,
+    type: 'food'
+  },
   {
     id: 'antipasti',
     title: 'Entrantes',
@@ -139,7 +148,8 @@ function DishCard({ item }) {
       secondi_piatti: 'Segundos',
       contorni: 'Guarniciones',
       insalate: 'Ensaladas',
-      dolci: 'Postres'
+      dolci: 'Postres',
+      especialidades_semana: 'Especialidades de la semana'
     }
 
     return labels[category] || category?.replaceAll('_', ' ') || 'Menú'
@@ -148,6 +158,7 @@ function DishCard({ item }) {
     ? item.recommended_glass_price || calculateGlassPrice(item.recommended_bottle_price)
     : null
   const servicePrices = getVisiblePriceEntries(item.recommended_price)
+  
   return (
     <article className="dish-card">
       <div className="dish-image-placeholder">
@@ -155,6 +166,14 @@ function DishCard({ item }) {
       </div>
 
       <div className="dish-card-body">
+        {item.image && (
+          <img
+            src={item.image}
+            alt={item.name || item.title || 'Plato de Nonna Angela'}
+            className="dish-card-image"
+            loading="lazy"
+          />
+        )}
         <div className="dish-topline">
           <p className="dish-kicker">{formatCategoryLabel(item.category)}</p>
           {item.available === false && <span className="soldout-badge">Non disponibile</span>}
@@ -335,6 +354,10 @@ function CategoryPage({ category, onBack }) {
 
     if (category.id === 'secondi') {
       return [{ title: 'Segundos', subtitle: 'Carne y cocina lenta', items: secondiPiatti }]
+    }
+
+    if (category.id === 'especialidades_semana') {
+      return [{ title: 'Especialidades de la semana', subtitle: 'Platos especiales de temporada', items: especialidadesSemana }]
     }
 
     if (category.id === 'contorni') {

@@ -1664,3 +1664,16 @@ button {
   justify-content: flex-end;
   gap: 12px;
 }
+
+.dish-card-image {
+  width: 100%;
+  height: 190px;
+  object-fit: contain;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.dish-card {
+  overflow: hidden;
+}
