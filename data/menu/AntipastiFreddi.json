@@ -197,7 +197,7 @@
       "basilico",
       "olio extravergine"
     ],
-    "notes": "Clásico italiano fresco con tomate, mozzarella y albahaca o aceite de albahaca.",
+    "notes": "Clásico italiano fresco con tomate, burrata y albahaca o aceite de albahaca.",
     "allergens_to_verify": [
       "latte"
     ],
@@ -209,12 +209,12 @@
     "prezzo_consigliato": 15.5,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Prezzo sostenibile solo se la presentazione è curata: pomodoro buono, mozzarella intera o ben valorizzata, basilico fresco/olio aromatico e impiattamento pulito.",
+    "warning_commerciale": "Prezzo sostenibile solo se la presentazione è curata: pomodoro buono, burrata intera o ben valorizzata, basilico fresco/olio aromatico e impiattamento pulito.",
     "name_es": "Caprese",
     "description_es": "Tomate, burrata, albahaca y aceite de oliva virgen extra.",
     "ingredients_es": [
       "tomate",
-      "mozzarella fiordilatte",
+      "burrata",
       "albahaca",
       "aceite de oliva virgen extra"
     ],

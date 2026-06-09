@@ -13,6 +13,7 @@ import cocktail from '../../data/menu/cocktail.json'
 import softdrinks from '../../data/menu/softdrinks.json'
 import amariliquori from '../../data/menu/amariliquori.json'
 import especialidadesImage from '../../assets/dishes/20260607_210815.jpg'
+import allergenDefinitions from '../data/allergens.json'
 
 const menuCategories = [
   {
@@ -93,6 +94,78 @@ const PRICE_LABELS = {
   combinado: 'Combinado'
 }
 
+const ALLERGENS_BY_ID = new Map(
+  allergenDefinitions.map((allergen) => [allergen.id, allergen])
+)
+
+const ALLERGEN_ALIASES = {
+  gluten: 'gluten',
+  glutine: 'gluten',
+  crustaceos: 'crustaceos',
+  crostacei: 'crustaceos',
+  huevos: 'huevos',
+  uova: 'huevos',
+  pescado: 'pescado',
+  pesce: 'pescado',
+  cacahuetes: 'cacahuetes',
+  arachidi: 'cacahuetes',
+  soja: 'soja',
+  soia: 'soja',
+  leche: 'leche',
+  latte: 'leche',
+  'frutos secos': 'frutos_secos',
+  'frutta a guscio': 'frutos_secos',
+  pistacho: 'frutos_secos',
+  pistacchio: 'frutos_secos',
+  apio: 'apio',
+  sedano: 'apio',
+  mostaza: 'mostaza',
+  senape: 'mostaza',
+  sesamo: 'sesamo',
+  sulfitos: 'sulfitos',
+  solfiti: 'sulfitos',
+  altramuces: 'altramuces',
+  lupini: 'altramuces',
+  moluscos: 'moluscos',
+  molluschi: 'moluscos'
+}
+
+function normalizeAllergenId(value) {
+  const rawValue = typeof value === 'object' && value !== null ? value.id : value
+  if (!rawValue) return null
+
+  const normalizedValue = String(rawValue)
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\s+/g, ' ')
+
+  return ALLERGEN_ALIASES[normalizedValue] || null
+}
+
+function getItemAllergens(item) {
+  const allergenValues = [
+    item.allergens,
+    item.allergens_es,
+    item.allergens_to_verify
+  ]
+    .flatMap((value) => {
+      if (Array.isArray(value)) return value
+      if (typeof value === 'string') return value.split(/[,;/]/)
+      return []
+    })
+    .map(normalizeAllergenId)
+    .filter(Boolean)
+
+  return [...new Set(allergenValues)]
+}
+
+function getAllergenInfo(allergenId) {
+  return ALLERGENS_BY_ID.get(allergenId)
+}
+
 function getVisiblePriceEntries(price) {
   if (!price || typeof price !== 'object' || Array.isArray(price)) return []
 
@@ -158,6 +231,7 @@ function DishCard({ item }) {
     ? item.recommended_glass_price || calculateGlassPrice(item.recommended_bottle_price)
     : null
   const servicePrices = getVisiblePriceEntries(item.recommended_price)
+  const allergens = getItemAllergens(item)
   
   return (
     <article className="dish-card">
@@ -206,12 +280,23 @@ function DishCard({ item }) {
           {formatIngredients(item.ingredients_es || item.ingredients)}
         </p>
 
-        {Array.isArray(item.allergens_es || item.allergens_to_verify) &&
-          (item.allergens_es || item.allergens_to_verify).length > 0 && (
-            <p className="dish-allergens">
-              Alérgenos: {(item.allergens_es || item.allergens_to_verify).join(', ')}
-            </p>
-          )}
+        {allergens.length > 0 && (
+          <div className="dish-allergen-list">
+            <span className="dish-allergen-title">Alérgenos</span>
+            <div className="allergen-badges">
+              {allergens.map((allergenId) => {
+                const allergen = getAllergenInfo(allergenId)
+
+                return (
+                  <span className="allergen-badge" key={allergenId}>
+                    <span aria-hidden="true">{allergen.icon}</span>
+                    {allergen.name_es}
+                  </span>
+                )
+              })}
+            </div>
+          </div>
+        )}
 
         <div className="dish-footer">
           {item.recommended_bottle_price ? (
@@ -401,6 +486,10 @@ function CategoryPage({ category, onBack }) {
         <h2>{category.title}</h2>
         <p>{category.subtitle}</p>
       </div>
+
+      <p className="allergen-disclaimer">
+        Información sobre alérgenos orientativa. Para alergias severas o intolerancias, consulta siempre con nuestro personal.
+      </p>
 
       {sections.length > 0 ? (
         sections.map((section) => (

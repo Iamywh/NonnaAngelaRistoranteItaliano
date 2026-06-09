@@ -1,0 +1,86 @@
+[
+  {
+    "id": "gluten",
+    "name_es": "Gluten",
+    "name_it": "Glutine",
+    "icon": "G"
+  },
+  {
+    "id": "crustaceos",
+    "name_es": "Crustáceos",
+    "name_it": "Crostacei",
+    "icon": "Cr"
+  },
+  {
+    "id": "huevos",
+    "name_es": "Huevos",
+    "name_it": "Uova",
+    "icon": "H"
+  },
+  {
+    "id": "pescado",
+    "name_es": "Pescado",
+    "name_it": "Pesce",
+    "icon": "P"
+  },
+  {
+    "id": "cacahuetes",
+    "name_es": "Cacahuetes",
+    "name_it": "Arachidi",
+    "icon": "Ca"
+  },
+  {
+    "id": "soja",
+    "name_es": "Soja",
+    "name_it": "Soia",
+    "icon": "S"
+  },
+  {
+    "id": "leche",
+    "name_es": "Leche",
+    "name_it": "Latte",
+    "icon": "L"
+  },
+  {
+    "id": "frutos_secos",
+    "name_es": "Frutos secos",
+    "name_it": "Frutta a guscio",
+    "icon": "FS"
+  },
+  {
+    "id": "apio",
+    "name_es": "Apio",
+    "name_it": "Sedano",
+    "icon": "A"
+  },
+  {
+    "id": "mostaza",
+    "name_es": "Mostaza",
+    "name_it": "Senape",
+    "icon": "M"
+  },
+  {
+    "id": "sesamo",
+    "name_es": "Sésamo",
+    "name_it": "Sesamo",
+    "icon": "Se"
+  },
+  {
+    "id": "sulfitos",
+    "name_es": "Sulfitos",
+    "name_it": "Solfiti",
+    "icon": "Su"
+  },
+  {
+    "id": "altramuces",
+    "name_es": "Altramuces",
+    "name_it": "Lupini",
+    "icon": "Al"
+  },
+  {
+    "id": "moluscos",
+    "name_es": "Moluscos",
+    "name_it": "Molluschi",
+    "icon": "Mo"
+  }
+]
