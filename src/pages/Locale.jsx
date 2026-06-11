@@ -15,19 +15,79 @@ const initialReservation = {
   notes: '',
 }
 
+function formatTime(minutes) {
+  const hours = Math.floor(minutes / 60)
+  const remainingMinutes = minutes % 60
+
+  return `${String(hours).padStart(2, '0')}:${String(remainingMinutes).padStart(2, '0')}`
+}
+
+function buildTimeSlots(startTime, lastTime) {
+  const [startHours, startMinutes] = startTime.split(':').map(Number)
+  const [lastHours, lastMinutes] = lastTime.split(':').map(Number)
+  const start = startHours * 60 + startMinutes
+  const last = lastHours * 60 + lastMinutes
+  const slots = []
+
+  for (let minutes = start; minutes <= last; minutes += 15) {
+    slots.push(formatTime(minutes))
+  }
+
+  return slots
+}
+
+function getDayFromDateValue(dateValue) {
+  if (!dateValue) return null
+
+  const [year, month, day] = dateValue.split('-').map(Number)
+  return new Date(year, month - 1, day).getDay()
+}
+
+function isFridayOrSaturday(dateValue) {
+  const day = getDayFromDateValue(dateValue)
+
+  return day === 5 || day === 6
+}
+
+function getReservationTimeSlots(dateValue) {
+  if (!dateValue) return []
+
+  const lastDinnerSlot = isFridayOrSaturday(dateValue) ? '22:45' : '22:30'
+
+  return [
+    ...buildTimeSlots('12:30', '15:15'),
+    ...buildTimeSlots('19:30', lastDinnerSlot),
+  ]
+}
+
 export default function Locale() {
   const [reservation, setReservation] = useState(initialReservation)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState(null)
   const [error, setError] = useState(null)
+  const reservationTimeSlots = getReservationTimeSlots(reservation.reservation_date)
 
   const handleChange = (event) => {
     const { name, value } = event.target
 
-    setReservation((current) => ({
-      ...current,
-      [name]: name === 'guests' ? Number(value) : value,
-    }))
+    setReservation((current) => {
+      if (name === 'reservation_date') {
+        const nextSlots = getReservationTimeSlots(value)
+
+        return {
+          ...current,
+          reservation_date: value,
+          reservation_time: nextSlots.includes(current.reservation_time)
+            ? current.reservation_time
+            : '',
+        }
+      }
+
+      return {
+        ...current,
+        [name]: name === 'guests' ? Number(value) : value,
+      }
+    })
   }
 
   const handleSubmit = async (event) => {
@@ -35,6 +95,12 @@ export default function Locale() {
     setIsSubmitting(true)
     setMessage(null)
     setError(null)
+
+    if (!getReservationTimeSlots(reservation.reservation_date).includes(reservation.reservation_time)) {
+      setError('Selecciona una hora disponible para la fecha elegida.')
+      setIsSubmitting(false)
+      return
+    }
 
     const payload = {
       customer_name: reservation.customer_name.trim(),
@@ -165,13 +231,24 @@ export default function Locale() {
 
             <label>
               Hora
-              <input
-                type="time"
+              <select
                 name="reservation_time"
                 value={reservation.reservation_time}
                 onChange={handleChange}
+                disabled={!reservation.reservation_date}
                 required
-              />
+              >
+                <option value="">
+                  {reservation.reservation_date
+                    ? 'Selecciona una hora'
+                    : 'Selecciona primero una fecha'}
+                </option>
+                {reservationTimeSlots.map((time) => (
+                  <option key={time} value={time}>
+                    {time}
+                  </option>
+                ))}
+              </select>
             </label>
           </div>
 

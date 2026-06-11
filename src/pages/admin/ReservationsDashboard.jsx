@@ -24,10 +24,47 @@ const STATUS_ACTIONS = [
 const reservationGridColumns =
   '1.2fr 1fr 1.3fr 0.9fr 0.8fr 0.6fr 1fr 1.4fr 0.9fr 0.8fr 1fr 1.6fr'
 
+const whatsAppReservationsPhone = import.meta.env.VITE_WHATSAPP_RESERVATIONS_PHONE
+
 function formatDateTime(value) {
   if (!value) return '-'
 
   return new Date(value).toLocaleString()
+}
+
+function formatReservationDate(dateValue) {
+  if (!dateValue) return '-'
+
+  const [year, month, day] = dateValue.split('-').map(Number)
+
+  return new Date(year, month - 1, day).toLocaleDateString('es-ES', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+}
+
+function sanitizeWhatsAppPhone(phone) {
+  return String(phone || '').replace(/\D/g, '')
+}
+
+function getWhatsAppConfirmationUrl(reservation) {
+  const phone = sanitizeWhatsAppPhone(
+    whatsAppReservationsPhone || reservation.customer_phone
+  )
+
+  if (!phone) return ''
+
+  const message = [
+    `Hola ${reservation.customer_name || ''}, te confirmamos tu reserva en Nonna Angela.`,
+    `Fecha: ${formatReservationDate(reservation.reservation_date)}.`,
+    `Hora: ${reservation.reservation_time || '-'}.`,
+    `Personas: ${reservation.guests || '-'}.`,
+    'La reserva queda confirmada. Grazie!',
+  ].join('\n')
+
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
 }
 
 export default function ReservationsDashboard({ setCurrentPage }) {
@@ -180,6 +217,14 @@ export default function ReservationsDashboard({ setCurrentPage }) {
             <span>{reservation.source || '-'}</span>
             <span>{formatDateTime(reservation.created_at)}</span>
             <span className="history-actions">
+              <a
+                className="ghost-button small"
+                href={getWhatsAppConfirmationUrl(reservation)}
+                target="_blank"
+                rel="noreferrer"
+              >
+                WhatsApp
+              </a>
               {STATUS_ACTIONS.map((action) => (
                 <button
                   className="ghost-button small"
