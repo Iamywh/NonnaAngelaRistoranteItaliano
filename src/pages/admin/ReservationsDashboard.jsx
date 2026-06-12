@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../../lib/supabaseClient.js'
+import ReservationCalendar from '../../components/reservations/ReservationCalendar.jsx'
 
 const STATUS_OPTIONS = [
   { value: 'all', label: 'Todos' },
@@ -21,9 +22,6 @@ const STATUS_ACTIONS = [
   { label: 'No-show', status: 'no_show' }
 ]
 
-const reservationGridColumns =
-  '1.2fr 1fr 1.3fr 0.9fr 0.8fr 0.6fr 1fr 1.4fr 0.9fr 0.8fr 1fr 1.6fr'
-
 const whatsAppReservationsPhone = import.meta.env.VITE_WHATSAPP_RESERVATIONS_PHONE
 
 function formatDateTime(value) {
@@ -32,17 +30,36 @@ function formatDateTime(value) {
   return new Date(value).toLocaleString()
 }
 
+function parseDateValue(value) {
+  if (!value) return null
+  const [year, month, day] = value.split('-').map(Number)
+  return { year, month, day }
+}
+
+function createLocalDate(year, month, day) {
+  return new Date(year, month - 1, day)
+}
+
 function formatReservationDate(dateValue) {
   if (!dateValue) return '-'
 
-  const [year, month, day] = dateValue.split('-').map(Number)
+  const parsed = parseDateValue(dateValue)
+  if (!parsed) return '-'
 
-  return new Date(year, month - 1, day).toLocaleDateString('es-ES', {
+  return createLocalDate(parsed.year, parsed.month, parsed.day).toLocaleDateString('es-ES', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
     year: 'numeric',
   })
+}
+
+function getTodayDateValue() {
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = String(today.getMonth() + 1).padStart(2, '0')
+  const day = String(today.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
 }
 
 function sanitizeWhatsAppPhone(phone) {
@@ -68,9 +85,12 @@ function getWhatsAppConfirmationUrl(reservation) {
 }
 
 export default function ReservationsDashboard({ setCurrentPage }) {
+  const todayValue = getTodayDateValue()
   const [reservations, setReservations] = useState([])
   const [statusFilter, setStatusFilter] = useState('all')
   const [dateFilter, setDateFilter] = useState('')
+  const [selectedDate, setSelectedDate] = useState(todayValue)
+  const [calendarMonth, setCalendarMonth] = useState(todayValue.slice(0, 7))
   const [isLoading, setIsLoading] = useState(false)
   const [updatingId, setUpdatingId] = useState(null)
   const [errorMessage, setErrorMessage] = useState('')
@@ -94,6 +114,8 @@ export default function ReservationsDashboard({ setCurrentPage }) {
 
     if (dateFilter) {
       query = query.eq('reservation_date', dateFilter)
+    } else {
+      query = query.gte('reservation_date', todayValue)
     }
 
     const { data, error } = await query
@@ -130,32 +152,81 @@ export default function ReservationsDashboard({ setCurrentPage }) {
     setUpdatingId(null)
   }
 
+  const reservationSummary = useMemo(() => {
+    return reservations.reduce(
+      (summary, reservation) => {
+        const dateKey = reservation.reservation_date
+        if (!dateKey) return summary
+
+        summary.total += 1
+        summary.guests += Number(reservation.guests || 0)
+        if (reservation.status === 'pending') summary.pending += 1
+        if (reservation.status === 'confirmed') summary.confirmed += 1
+        return summary
+      },
+      { total: 0, guests: 0, pending: 0, confirmed: 0 }
+    )
+  }, [reservations])
+
+  const selectedDay = selectedDate || todayValue
+  const selectedDayReservations = useMemo(() => {
+    return [...reservations]
+      .filter((reservation) => reservation.reservation_date === selectedDay)
+      .sort((a, b) => (a.reservation_time || '').localeCompare(b.reservation_time || ''))
+  }, [reservations, selectedDay])
+
+  const handleSelectDate = (dateValue) => {
+    setSelectedDate(dateValue)
+    setCalendarMonth(dateValue.slice(0, 7))
+  }
+
   return (
-    <section className="admin-page">
-      <button className="back-button" onClick={() => setCurrentPage('admin')}>
-        ← Volver al panel admin
-      </button>
+    <section className="admin-page reservation-control-layout">
+      <div className="reservation-page-top">
+        <button className="back-button" onClick={() => setCurrentPage('admin')}>
+          ← Volver al panel admin
+        </button>
 
-      <div className="admin-header">
-        <div>
-          <p className="eyebrow">Reservas</p>
-          <h2>Dashboard reservas</h2>
-          <p>
-            Solicitudes de reserva, confirmaciones, cancelaciones y no-show de Nonna Angela.
-          </p>
-        </div>
-      </div>
-
-      <div className="dashboard-panel">
-        <div className="panel-heading">
+        <div className="reservation-page-header">
           <div>
-            <p className="eyebrow">Filtros</p>
-            <h3>Reservas recibidas</h3>
+            <p className="eyebrow">Reservas</p>
+            <h2>Dashboard reservas</h2>
+            <p>
+              Solicitudes de reserva, confirmaciones, cancelaciones y no-show de Nonna Angela.
+            </p>
           </div>
 
           <button className="ghost-button" type="button" onClick={loadReservations} disabled={isLoading}>
             {isLoading ? 'Cargando...' : 'Actualizar'}
           </button>
+        </div>
+      </div>
+
+      <div className="reservation-summary-grid">
+        <article className="reservation-summary-card">
+          <p>Total reservas</p>
+          <strong>{reservationSummary.total}</strong>
+        </article>
+        <article className="reservation-summary-card">
+          <p>Total personas</p>
+          <strong>{reservationSummary.guests}</strong>
+        </article>
+        <article className="reservation-summary-card">
+          <p>Pending</p>
+          <strong>{reservationSummary.pending}</strong>
+        </article>
+        <article className="reservation-summary-card">
+          <p>Confirmadas</p>
+          <strong>{reservationSummary.confirmed}</strong>
+        </article>
+      </div>
+
+      <div className="dashboard-panel reservation-filter-panel">
+        <div className="panel-heading">
+          <div>
+            <p className="eyebrow">Filtros</p>
+            <h3>Filtrar reservas</h3>
+          </div>
         </div>
 
         <div className="history-filters">
@@ -171,78 +242,97 @@ export default function ReservationsDashboard({ setCurrentPage }) {
           </label>
 
           <label>
-            Fecha reserva
+            Fecha de filtro
             <input
               type="date"
               value={dateFilter}
               onChange={(event) => setDateFilter(event.target.value)}
             />
+            <small>El calendario es el filtro visual principal.</small>
           </label>
         </div>
 
         {errorMessage && <p className="empty-state">Error: {errorMessage}</p>}
       </div>
 
-      <div className="data-table" style={{ overflowX: 'auto' }}>
-        <div className="data-row table-head" style={{ gridTemplateColumns: reservationGridColumns, minWidth: 1320 }}>
-          <span>Nombre</span>
-          <span>Teléfono</span>
-          <span>Email</span>
-          <span>Fecha</span>
-          <span>Hora</span>
-          <span>Guests</span>
-          <span>Área</span>
-          <span>Notas</span>
-          <span>Estado</span>
-          <span>Source</span>
-          <span>Creada</span>
-          <span>Acciones</span>
-        </div>
+      <div className="reservation-main-grid">
+        <ReservationCalendar
+          reservations={reservations}
+          selectedDate={selectedDay}
+          onSelectDate={handleSelectDate}
+          currentMonth={calendarMonth}
+          onChangeMonth={setCalendarMonth}
+        />
 
-        {reservations.map((reservation) => (
-          <div
-            className="data-row"
-            key={reservation.id}
-            style={{ gridTemplateColumns: reservationGridColumns, minWidth: 1320 }}
-          >
-            <span>{reservation.customer_name || '-'}</span>
-            <span>{reservation.customer_phone || '-'}</span>
-            <span>{reservation.customer_email || '-'}</span>
-            <span>{reservation.reservation_date || '-'}</span>
-            <span>{reservation.reservation_time || '-'}</span>
-            <span>{reservation.guests || '-'}</span>
-            <span>{reservation.area_preference || '-'}</span>
-            <span>{reservation.notes || '-'}</span>
-            <span>{reservation.status || '-'}</span>
-            <span>{reservation.source || '-'}</span>
-            <span>{formatDateTime(reservation.created_at)}</span>
-            <span className="history-actions">
-              <a
-                className="ghost-button small"
-                href={getWhatsAppConfirmationUrl(reservation)}
-                target="_blank"
-                rel="noreferrer"
-              >
-                WhatsApp
-              </a>
-              {STATUS_ACTIONS.map((action) => (
-                <button
-                  className="ghost-button small"
-                  key={action.status}
-                  type="button"
-                  disabled={updatingId === reservation.id || reservation.status === action.status}
-                  onClick={() => updateReservationStatus(reservation, action.status)}
-                >
-                  {action.label}
-                </button>
-              ))}
-            </span>
+        <section className="reservation-day-panel">
+          <div className="reservation-day-panel-header">
+            <div>
+              <p className="eyebrow">Reservas del día</p>
+              <h3>{formatReservationDate(selectedDay)}</h3>
+            </div>
           </div>
-        ))}
 
-        {!isLoading && !reservations.length && (
-          <p className="empty-state">No hay reservas para estos filtros.</p>
-        )}
+          {selectedDayReservations.length > 0 ? (
+            <div className="reservation-day-list">
+              {selectedDayReservations.map((reservation) => (
+                <article className="reservation-day-card" key={reservation.id}>
+                  <div className="reservation-card-top">
+                    <div>
+                      <span className="reservation-time">{reservation.reservation_time || '-'}</span>
+                      <h4>{reservation.customer_name || 'Cliente sin nombre'}</h4>
+                      <p>{reservation.customer_phone || '-'}</p>
+                    </div>
+                    <span className={`reservation-status-badge status-${reservation.status}`}>
+                      {reservation.status || '-'}
+                    </span>
+                  </div>
+
+                  <div className="reservation-card-body">
+                    <p>
+                      <strong>Personas:</strong> {reservation.guests || '-'}
+                    </p>
+                    <p>
+                      <strong>Área:</strong> {reservation.area_preference || '-'}
+                    </p>
+                    {reservation.notes && (
+                      <p>
+                        <strong>Notas:</strong> {reservation.notes}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="reservation-card-meta">
+                    <small>Creada: {formatDateTime(reservation.created_at)}</small>
+                  </div>
+
+                  <div className="reservation-actions">
+                    <a
+                      className="ghost-button small"
+                      href={getWhatsAppConfirmationUrl(reservation)}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      WhatsApp
+                    </a>
+                    {STATUS_ACTIONS.map((action) => (
+                      <button
+                        className="ghost-button small"
+                        key={action.status}
+                        type="button"
+                        disabled={updatingId === reservation.id || reservation.status === action.status}
+                        onClick={() => updateReservationStatus(reservation, action.status)}
+                      >
+                        {action.label}
+                      </button>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <p className="empty-state">No hay reservas para este día.</p>
+          )}
+        </section>
       </div>
     </section>
   )
