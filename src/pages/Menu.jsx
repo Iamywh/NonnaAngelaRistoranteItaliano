@@ -88,6 +88,32 @@ const menuCategories = [
   }
 ]
 
+const FOOD_MENU_UNDER_RENOVATION = true
+const RENOVATION_VISIBLE_CATEGORIES = ['vini', 'cocktail']
+
+function FoodMenuRenovationNotice() {
+  return (
+    <section className="food-menu-renovation-notice">
+      <div className="food-menu-renovation-card">
+        <div className="food-menu-renovation-icon" aria-hidden="true">🍷</div>
+        <div>
+          <h2>Carta de cocina en renovación</h2>
+          <p>
+            Estamos ajustando nuestra propuesta gastronómica y actualizando nuestros precios para ofrecerte una experiencia más clara, auténtica y equilibrada.
+          </p>
+          <p>
+            Mientras tanto, puedes seguir consultando nuestra carta de vinos y cócteles.
+          </p>
+          <p>
+            Muy pronto podrás descubrir aquí la nueva carta de Nonna Angela.
+          </p>
+          <p className="thanks-line">Gracias por tu paciencia.</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 const PRICE_LABELS = {
   copa: 'Copa',
   chupito: 'Chupito',
@@ -355,6 +381,10 @@ function DishCard({ item }) {
 }
 
 function MenuLanding({ onSelectCategory }) {
+  const visibleCategories = FOOD_MENU_UNDER_RENOVATION
+    ? menuCategories.filter((category) => RENOVATION_VISIBLE_CATEGORIES.includes(category.id))
+    : menuCategories
+
   return (
     <>
       <div className="menu-hero">
@@ -366,8 +396,10 @@ function MenuLanding({ onSelectCategory }) {
         </p>
       </div>
 
+      {FOOD_MENU_UNDER_RENOVATION && <FoodMenuRenovationNotice />}
+
       <div className="premium-menu-grid">
-        {menuCategories.map((category) => (
+        {visibleCategories.map((category) => (
           <button
             key={category.id}
             className="premium-menu-card"
