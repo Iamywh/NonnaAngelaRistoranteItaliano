@@ -40,6 +40,80 @@ export default function AdminDashboard({ setCurrentPage }) {
                 </div>
             </div>
 
+            <div className="admin-control-sections">
+                <div className="admin-control-section">
+                    <div className="admin-control-section-header">
+                        <p className="eyebrow">Operaciones de sala</p>
+                        <h3>Operaciones de sala</h3>
+                    </div>
+                    <div className="admin-module-grid">
+                        <AdminModuleCard
+                            title="Reservas"
+                            description="Solicitudes de reserva, confirmaciones y no-show"
+                            meta="Sala / reservas / atención cliente"
+                            onClick={() => setCurrentPage('admin-reservations')}
+                            variant="featured"
+                        />
+
+                        <AdminModuleCard
+                            title="Musica"
+                            description="Playlist sala, riproduzione e controllo ambiente"
+                            meta="Sala / atmosfera / customer experience"
+                            onClick={() => setCurrentPage('admin-music')}
+                            variant="secondary"
+                        />
+                    </div>
+                </div>
+
+                <div className="admin-control-section">
+                    <div className="admin-control-section-header">
+                        <p className="eyebrow">Carta y contenidos</p>
+                        <h3>Gestión de carta</h3>
+                    </div>
+                    <div className="admin-module-grid">
+                        <AdminModuleCard
+                            title="Food"
+                            description="Food cost, fornitori cucina, ordini food"
+                            meta="Cucina / ingredienti / ricette"
+                            onClick={() => setCurrentPage('admin-food')}
+                        />
+                        <AdminModuleCard
+                            title="Beverage"
+                            description="Vini, soft drink, liquori, ordini bar"
+                            meta="Bar / cantina / cocktail"
+                            onClick={() => setCurrentPage('admin-beverage')}
+                        />
+                        <AdminModuleCard
+                            title="F&B Control"
+                            description="Menu completo, margini, alert, riserve e takeaway futuri"
+                            meta="Controllo manageriale"
+                            onClick={() => setCurrentPage('admin-fb')}
+                        />
+                    </div>
+                </div>
+
+                <div className="admin-control-section">
+                    <div className="admin-control-section-header">
+                        <p className="eyebrow">Control interno</p>
+                        <h3>Back office</h3>
+                    </div>
+                    <div className="admin-module-grid">
+                        <AdminModuleCard
+                            title="Orders"
+                            description="Ordini cucina e barra con storico"
+                            meta="Food / beverage / fornitori"
+                            onClick={() => setCurrentPage('admin-orders')}
+                        />
+                        <AdminModuleCard
+                            title="Invoices"
+                            description="Carica fatture, OCR, storico prezzi prodotti"
+                            meta="Fornitori / prezzi / prossimo ordine"
+                            onClick={() => setCurrentPage('admin-invoices')}
+                        />
+                    </div>
+                </div>
+            </div>
+
             <div className="kpi-grid">
                 <KpiCard
                     label="Food cost medio"
@@ -83,56 +157,6 @@ export default function AdminDashboard({ setCurrentPage }) {
                         </article>
                     ))}
                 </div>
-            </div>
-
-            <div className="admin-grid">
-                <AdminModuleCard
-                    title="Food"
-                    description="Food cost, fornitori cucina, ordini food"
-                    meta="Cucina / ingredienti / ricette"
-                    onClick={() => setCurrentPage('admin-food')}
-                />
-
-                <AdminModuleCard
-                    title="Beverage"
-                    description="Vini, soft drink, liquori, ordini bar"
-                    meta="Bar / cantina / cocktail"
-                    onClick={() => setCurrentPage('admin-beverage')}
-                />
-
-                <AdminModuleCard
-                    title="F&B Control"
-                    description="Menu completo, margini, alert, riserve e takeaway futuri"
-                    meta="Controllo manageriale"
-                    onClick={() => setCurrentPage('admin-fb')}
-                />
-
-                <AdminModuleCard
-                    title="Reservas"
-                    description="Solicitudes de reserva, confirmaciones y no-show"
-                    meta="Sala / reservas / atención cliente"
-                    onClick={() => setCurrentPage('admin-reservations')}
-                />
-
-                <AdminModuleCard
-                    title="Musica"
-                    description="Playlist sala, riproduzione e controllo ambiente"
-                    meta="Sala / atmosfera / customer experience"
-                    onClick={() => setCurrentPage('admin-music')}
-                />
-
-                <AdminModuleCard
-                    title="Orders"
-                    description="Ordini cucina e barra con storico"
-                    meta="Food / beverage / fornitori"
-                    onClick={() => setCurrentPage('admin-orders')}
-                />
-                <AdminModuleCard
-                    title="Invoices"
-                    description="Carica fatture, OCR, storico prezzi prodotti"
-                    meta="Fornitori / prezzi / prossimo ordine"
-                    onClick={() => setCurrentPage('admin-invoices')}
-                />
             </div>
         </section>
     )

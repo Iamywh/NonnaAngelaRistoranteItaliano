@@ -172,7 +172,7 @@ export default function Locale() {
         </div>
       </div>
 
-      <section className="reservation-section">
+      <section id="reservas" className="reservation-section">
         <div className="reservation-copy">
           <p className="eyebrow">Reservas</p>
           <h3>Reserva tu mesa</h3>

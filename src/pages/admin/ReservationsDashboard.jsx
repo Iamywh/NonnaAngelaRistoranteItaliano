@@ -24,6 +24,40 @@ const STATUS_ACTIONS = [
 
 const whatsAppReservationsPhone = import.meta.env.VITE_WHATSAPP_RESERVATIONS_PHONE
 
+const WHATSAPP_TEMPLATE_LABELS = {
+  confirmation: 'Confirmación WhatsApp',
+  alternative_time: 'Proponer otra hora',
+  not_available: 'No disponible'
+}
+
+function buildWhatsAppMessage(templateKey, reservation) {
+  const name = reservation.customer_name || 'cliente'
+  const guests = reservation.guests || '-'
+  const date = reservation.reservation_date || '-'
+  const time = reservation.reservation_time || '-'
+
+  switch (templateKey) {
+    case 'alternative_time':
+      return `Hola ${name}, gracias por tu solicitud. Para esa hora no tenemos disponibilidad, pero podemos ofrecerte otra hora. ¿Nos confirmas si te viene bien? Un saludo, Nonna Angela.`
+    case 'not_available':
+      return `Hola ${name}, muchas gracias por tu solicitud. Lo sentimos, para ese día y horario no tenemos disponibilidad. Podemos ayudarte a buscar otra opción. Un saludo, Nonna Angela.`
+    case 'confirmation':
+    default:
+      return `Hola ${name}, tu reserva en Nonna Angela para ${guests} personas el día ${date} a las ${time} ha sido confirmada. Te esperamos. Un saludo.`
+  }
+}
+
+function getWhatsAppConfirmationUrl(reservation, templateKey = 'confirmation') {
+  const phone = sanitizeWhatsAppPhone(
+    whatsAppReservationsPhone || reservation.customer_phone
+  )
+
+  if (!phone) return ''
+
+  const message = buildWhatsAppMessage(templateKey, reservation)
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
+}
+
 function formatDateTime(value) {
   if (!value) return '-'
 
@@ -66,24 +100,6 @@ function sanitizeWhatsAppPhone(phone) {
   return String(phone || '').replace(/\D/g, '')
 }
 
-function getWhatsAppConfirmationUrl(reservation) {
-  const phone = sanitizeWhatsAppPhone(
-    whatsAppReservationsPhone || reservation.customer_phone
-  )
-
-  if (!phone) return ''
-
-  const message = [
-    `Hola ${reservation.customer_name || ''}, te confirmamos tu reserva en Nonna Angela.`,
-    `Fecha: ${formatReservationDate(reservation.reservation_date)}.`,
-    `Hora: ${reservation.reservation_time || '-'}.`,
-    `Personas: ${reservation.guests || '-'}.`,
-    'La reserva queda confirmada. Grazie!',
-  ].join('\n')
-
-  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
-}
-
 export default function ReservationsDashboard({ setCurrentPage }) {
   const todayValue = getTodayDateValue()
   const [reservations, setReservations] = useState([])
@@ -91,6 +107,7 @@ export default function ReservationsDashboard({ setCurrentPage }) {
   const [dateFilter, setDateFilter] = useState('')
   const [selectedDate, setSelectedDate] = useState(todayValue)
   const [calendarMonth, setCalendarMonth] = useState(todayValue.slice(0, 7))
+  const [selectedWhatsAppTemplate, setSelectedWhatsAppTemplate] = useState({})
   const [isLoading, setIsLoading] = useState(false)
   const [updatingId, setUpdatingId] = useState(null)
   const [errorMessage, setErrorMessage] = useState('')
@@ -305,10 +322,34 @@ export default function ReservationsDashboard({ setCurrentPage }) {
                     <small>Creada: {formatDateTime(reservation.created_at)}</small>
                   </div>
 
+                  <div className="reservation-whatsapp-template">
+                    <label>
+                      Mensaje WhatsApp
+                      <select
+                        value={selectedWhatsAppTemplate[reservation.id] || 'confirmation'}
+                        onChange={(event) =>
+                          setSelectedWhatsAppTemplate((current) => ({
+                            ...current,
+                            [reservation.id]: event.target.value,
+                          }))
+                        }
+                      >
+                        {Object.entries(WHATSAPP_TEMPLATE_LABELS).map(([value, label]) => (
+                          <option key={value} value={value}>
+                            {label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
+
                   <div className="reservation-actions">
                     <a
                       className="ghost-button small"
-                      href={getWhatsAppConfirmationUrl(reservation)}
+                      href={getWhatsAppConfirmationUrl(
+                        reservation,
+                        selectedWhatsAppTemplate[reservation.id] || 'confirmation'
+                      )}
                       target="_blank"
                       rel="noreferrer"
                     >

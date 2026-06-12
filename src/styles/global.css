@@ -400,6 +400,105 @@ button {
   font-weight: 600;
 }
 
+.admin-control-sections {
+  display: grid;
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.admin-control-section {
+  background: var(--panel-strong);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 0 14px 36px rgba(42, 28, 20, 0.06);
+}
+
+.admin-control-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.admin-control-section-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.admin-module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.admin-module-featured {
+  background: rgba(143, 29, 20, 0.07);
+  border-color: rgba(143, 29, 20, 0.16);
+}
+
+.admin-module-secondary {
+  background: rgba(200, 155, 60, 0.08);
+  border-color: rgba(200, 155, 60, 0.16);
+}
+
+.admin-module-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.admin-module-badge {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(143, 29, 20, 0.08);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.reservation-whatsapp-template {
+  margin: 16px 0 0;
+}
+
+.reservation-whatsapp-template label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.reservation-whatsapp-template select {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--panel-strong);
+  color: var(--text);
+}
+
+.birthday-action-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.birthday-button {
+  min-width: 220px;
+}
+
+.birthday-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 .back-button {
   margin-bottom: 22px;
   border: 1px solid var(--border);

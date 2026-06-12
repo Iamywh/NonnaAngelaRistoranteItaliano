@@ -15,6 +15,19 @@ export default function Home({ setCurrentPage }) {
           <button
             className="primary-button"
             type="button"
+            onClick={() => {
+              setCurrentPage('locale')
+              setTimeout(() => {
+                document.getElementById('reservas')?.scrollIntoView({ behavior: 'smooth' })
+              }, 100)
+            }}
+          >
+            Reserva una mesa
+          </button>
+
+          <button
+            className="primary-button"
+            type="button"
             onClick={() => setCurrentPage('menu')}
           >
             Ver el menú

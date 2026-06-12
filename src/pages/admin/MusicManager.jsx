@@ -34,6 +34,29 @@ export default function MusicManager({ setCurrentPage }) {
     [tracks, currentIndex]
   )
 
+  const birthdayTrackIndex = useMemo(() => {
+    return tracks.findIndex((track) => {
+      const mood = String(track.mood || '').toLowerCase()
+      const title = String(track.title || '').toLowerCase()
+
+      return (
+        mood.includes('cumple') ||
+        mood.includes('birthday') ||
+        title.includes('cumple') ||
+        title.includes('birthday')
+      )
+    })
+  }, [tracks])
+
+  const birthdayTrack = birthdayTrackIndex >= 0 ? tracks[birthdayTrackIndex] : null
+
+  const playBirthdayTrack = () => {
+    if (birthdayTrackIndex < 0) return
+    setCurrentIndex(birthdayTrackIndex)
+    setIsPlaying(true)
+    setPlayerMessage('')
+  }
+
   const loadTracks = async () => {
     setIsLoading(true)
     setErrorMessage('')
@@ -163,6 +186,22 @@ export default function MusicManager({ setCurrentPage }) {
           <button className="ghost-button" type="button" onClick={loadTracks} disabled={isLoading}>
             {isLoading ? 'Cargando...' : 'Actualizar'}
           </button>
+        </div>
+
+        <div className="birthday-action-bar">
+          {birthdayTrack ? (
+            <button
+              className="ghost-button small birthday-button"
+              type="button"
+              onClick={playBirthdayTrack}
+            >
+              🎂 Reproducir cumpleaños
+            </button>
+          ) : (
+            <p className="birthday-note">
+              Añade una pista con mood "Cumpleaños" para activar el botón de cumpleaños.
+            </p>
+          )}
         </div>
 
         {errorMessage && <p className="empty-state">Error: {errorMessage}</p>}
