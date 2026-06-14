@@ -200,6 +200,33 @@ button {
   line-height: 1.6;
 }
 
+.hero-hours {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.hero-hours div {
+  display: grid;
+  gap: 3px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.hero-hours div:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.hero-hours strong {
+  color: white;
+  font-size: 15px;
+}
+
+.hero-card .ghost-button {
+  margin-top: 22px;
+}
+
 .info-grid,
 .menu-section-grid,
 .kpi-grid,

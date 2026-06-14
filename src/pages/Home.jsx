@@ -1,6 +1,13 @@
 import React from 'react'
 
 export default function Home({ setCurrentPage }) {
+  const goToReservations = () => {
+    setCurrentPage('locale')
+    setTimeout(() => {
+      document.getElementById('reservas')?.scrollIntoView({ behavior: 'smooth' })
+    }, 100)
+  }
+
   return (
     <section className="hero-page">
       <div className="hero-copy">
@@ -15,12 +22,7 @@ export default function Home({ setCurrentPage }) {
           <button
             className="primary-button"
             type="button"
-            onClick={() => {
-              setCurrentPage('locale')
-              setTimeout(() => {
-                document.getElementById('reservas')?.scrollIntoView({ behavior: 'smooth' })
-              }, 100)
-            }}
+            onClick={goToReservations}
           >
             Reserva una mesa
           </button>
@@ -44,9 +46,41 @@ export default function Home({ setCurrentPage }) {
       </div>
 
       <div className="hero-card">
-        <p>Plato signature</p>
-        <h3>Paccheri al ragù napoletano</h3>
-        <span>Ragú lento, receta de casa, identidad del sur de Italia.</span>
+        <p>HORARIO</p>
+        <div className="hero-hours">
+          <div>
+            <strong>Lunes</strong>
+            <span>12:30–15:00 / 19:30–22:45</span>
+          </div>
+          <div>
+            <strong>Martes</strong>
+            <span>12:30–15:00 / 19:30–22:45</span>
+          </div>
+          <div>
+            <strong>Miércoles</strong>
+            <span>Cerrado</span>
+          </div>
+          <div>
+            <strong>Jueves</strong>
+            <span>12:30–15:00 / 19:30–22:45</span>
+          </div>
+          <div>
+            <strong>Viernes</strong>
+            <span>12:30–15:00 / 19:30–23:00</span>
+          </div>
+          <div>
+            <strong>Sábado</strong>
+            <span>12:30–15:00 / 19:30–23:00</span>
+          </div>
+          <div>
+            <strong>Domingo</strong>
+            <span>12:30–16:00</span>
+          </div>
+        </div>
+        <span>Te recomendamos reservar.</span>
+        <button className="ghost-button" type="button" onClick={goToReservations}>
+          Reservar mesa
+        </button>
       </div>
     </section>
   )
