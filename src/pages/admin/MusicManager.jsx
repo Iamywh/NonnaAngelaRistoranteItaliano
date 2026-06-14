@@ -19,40 +19,48 @@ function formatDuration(seconds) {
   return `${minutes}:${String(remainingSeconds).padStart(2, '0')}`
 }
 
+function isBirthdayTrack(track) {
+  const mood = String(track?.mood || '').toLowerCase()
+  const title = String(track?.title || '').toLowerCase()
+
+  return (
+    mood.includes('cumple') ||
+    mood.includes('birthday') ||
+    title.includes('cumple') ||
+    title.includes('birthday')
+  )
+}
+
 export default function MusicManager({ setCurrentPage }) {
   const audioRef = useRef(null)
   const [tracks, setTracks] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [specialTrack, setSpecialTrack] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [volume, setVolume] = useState(0.7)
   const [errorMessage, setErrorMessage] = useState('')
   const [playerMessage, setPlayerMessage] = useState('')
 
-  const currentTrack = useMemo(
-    () => tracks[currentIndex] || null,
-    [tracks, currentIndex]
+  const regularTracks = useMemo(
+    () => tracks.filter((track) => !isBirthdayTrack(track)),
+    [tracks]
   )
 
-  const birthdayTrackIndex = useMemo(() => {
-    return tracks.findIndex((track) => {
-      const mood = String(track.mood || '').toLowerCase()
-      const title = String(track.title || '').toLowerCase()
+  const birthdayTrack = useMemo(
+    () => tracks.find(isBirthdayTrack) || null,
+    [tracks]
+  )
 
-      return (
-        mood.includes('cumple') ||
-        mood.includes('birthday') ||
-        title.includes('cumple') ||
-        title.includes('birthday')
-      )
-    })
-  }, [tracks])
-
-  const birthdayTrack = birthdayTrackIndex >= 0 ? tracks[birthdayTrackIndex] : null
+  const currentTrack = useMemo(
+    () => specialTrack || regularTracks[currentIndex] || null,
+    [specialTrack, regularTracks, currentIndex]
+  )
 
   const playBirthdayTrack = () => {
-    if (birthdayTrackIndex < 0) return
-    setCurrentIndex(birthdayTrackIndex)
+    if (!birthdayTrack) return
+
+    setSpecialTrack(birthdayTrack)
     setIsPlaying(true)
     setPlayerMessage('')
   }
@@ -71,6 +79,7 @@ export default function MusicManager({ setCurrentPage }) {
       setErrorMessage(error.message)
       setTracks([])
       setCurrentIndex(0)
+      setSpecialTrack(null)
       setIsPlaying(false)
       setIsLoading(false)
       return
@@ -85,6 +94,7 @@ export default function MusicManager({ setCurrentPage }) {
 
     setTracks(playableTracks)
     setCurrentIndex(0)
+    setSpecialTrack(null)
     setIsPlaying(false)
     setPlayerMessage('')
     setIsLoading(false)
@@ -99,6 +109,12 @@ export default function MusicManager({ setCurrentPage }) {
       audioRef.current.volume = volume
     }
   }, [volume])
+
+  useEffect(() => {
+    if (!regularTracks.length || currentIndex <= regularTracks.length - 1) return
+
+    setCurrentIndex(0)
+  }, [currentIndex, regularTracks.length])
 
   useEffect(() => {
     if (!audioRef.current || !currentTrack || !isPlaying) return
@@ -144,22 +160,43 @@ export default function MusicManager({ setCurrentPage }) {
   }
 
   const selectTrack = (index) => {
+    setSpecialTrack(null)
     setCurrentIndex(index)
     setPlayerMessage('')
   }
 
   const goToPreviousTrack = () => {
-    if (!tracks.length) return
+    setSpecialTrack(null)
 
-    setCurrentIndex((index) => (index === 0 ? tracks.length - 1 : index - 1))
+    if (!regularTracks.length) {
+      setIsPlaying(false)
+      return
+    }
+
+    setCurrentIndex((index) => (index === 0 ? regularTracks.length - 1 : index - 1))
     setPlayerMessage('')
   }
 
   const goToNextTrack = () => {
-    if (!tracks.length) return
+    setSpecialTrack(null)
 
-    setCurrentIndex((index) => (index + 1) % tracks.length)
+    if (!regularTracks.length) {
+      setIsPlaying(false)
+      return
+    }
+
+    setCurrentIndex((index) => (index + 1) % regularTracks.length)
     setPlayerMessage('')
+  }
+
+  const handleAudioEnded = () => {
+    if (specialTrack) {
+      setSpecialTrack(null)
+      setIsPlaying(false)
+      return
+    }
+
+    goToNextTrack()
   }
 
   return (
@@ -188,8 +225,8 @@ export default function MusicManager({ setCurrentPage }) {
           </button>
         </div>
 
-        <div className="birthday-action-bar">
-          {birthdayTrack ? (
+        {birthdayTrack && (
+          <div className="birthday-action-bar">
             <button
               className="ghost-button small birthday-button"
               type="button"
@@ -197,17 +234,13 @@ export default function MusicManager({ setCurrentPage }) {
             >
               🎂 Reproducir cumpleaños
             </button>
-          ) : (
-            <p className="birthday-note">
-              Añade una pista con mood "Cumpleaños" para activar el botón de cumpleaños.
-            </p>
-          )}
-        </div>
+          </div>
+        )}
 
         {errorMessage && <p className="empty-state">Error: {errorMessage}</p>}
 
-        {!isLoading && !errorMessage && tracks.length === 0 && (
-          <p className="empty-state">No hay pistas activas disponibles.</p>
+        {!isLoading && !errorMessage && regularTracks.length === 0 && !specialTrack && (
+          <p className="empty-state">No hay pistas de sala activas disponibles.</p>
         )}
 
         {currentTrack && (
@@ -225,7 +258,7 @@ export default function MusicManager({ setCurrentPage }) {
               ref={audioRef}
               src={currentTrack.audio_url}
               preload="metadata"
-              onEnded={goToNextTrack}
+              onEnded={handleAudioEnded}
               onError={() => {
                 setIsPlaying(false)
                 setPlayerMessage('No se pudo cargar esta pista.')
@@ -262,7 +295,7 @@ export default function MusicManager({ setCurrentPage }) {
         )}
       </div>
 
-      {tracks.length > 0 && (
+      {regularTracks.length > 0 && (
         <div className="dashboard-panel">
           <div>
             <p className="eyebrow">Playlist</p>
@@ -270,9 +303,9 @@ export default function MusicManager({ setCurrentPage }) {
           </div>
 
           <div className="music-track-list">
-            {tracks.map((track, index) => (
+            {regularTracks.map((track, index) => (
               <button
-                className={`music-track${index === currentIndex ? ' active' : ''}`}
+                className={`music-track${!specialTrack && index === currentIndex ? ' active' : ''}`}
                 key={track.id}
                 type="button"
                 onClick={() => selectTrack(index)}
