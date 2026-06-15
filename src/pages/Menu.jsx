@@ -88,7 +88,7 @@ const menuCategories = [
   }
 ]
 
-const FOOD_MENU_UNDER_RENOVATION = true
+const FOOD_MENU_UNDER_RENOVATION = false
 const RENOVATION_VISIBLE_CATEGORIES = ['vini', 'cocktail']
 
 function FoodMenuRenovationNotice() {

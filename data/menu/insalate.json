@@ -1,36 +1,39 @@
 [
   {
     "category": "insalate",
-    "id": "insalata_rucola_parmesano_pachino",
-    "name_it": "Insalata rucola, parmesano e pachino",
+    "id": "insalata_rucola_grana",
+    "name_it": "Insalata rucola e grana",
     "sizes": [],
     "ingredients": [
       "rucola",
-      "parmesano",
-      "pomodoro pachino",
-      "vinaigrette balsamico"
+      "grana padano",
+      "pomodoro",
+      "vinaigrette balsamico",
+      "olio extravergine"
     ],
     "notes": "Ensalada premium, sencilla e italiana.",
     "allergens_to_verify": [
       "latte",
       "solfiti"
     ],
-    "source": "trascrizione manuale utente",
+    "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
     "food_cost_raw": 1.95,
     "food_cost_operativo": 3.6,
-    "prezzo_consigliato": 8.5,
-    "margine_percentuale": 57.6,
+    "prezzo_consigliato": 7.5,
+    "margine_percentuale": 52,
     "categoria_profitto": "media-alta",
-    "warning_commerciale": "Insalata con forte percezione premium grazie a rucola e parmesano. Ottima per upselling vino bianco.",
-    "name_es": "Ensalada de rúcula, parmesano y tomate cherry",
-    "description_es": "Rúcula, parmesano, tomate cherry y vinagreta balsámica.",
+    "warning_commerciale": "Insalata con forte percezione premium grazie a rucola e grana padano. Ottima per upselling vino bianco.",
+    "name_es": "Ensalada Rúcula y Grana",
+    "image": "/images/dishes/ensalada-rucula-grana.webp",
+    "description_es": "Rúcula, grana padano, tomate, vinagreta balsámica y aceite de oliva.",
     "ingredients_es": [
       "rúcula",
-      "parmesano",
-      "tomate cherry",
-      "vinagreta balsámica"
+      "grana padano",
+      "tomate",
+      "vinagreta balsámica",
+      "aceite de oliva"
     ],
     "allergens_es": [
       "leche",
@@ -39,35 +42,31 @@
   },
   {
     "category": "insalate",
-    "id": "insalata_mista_classica",
+    "id": "insalata_mista",
     "name_it": "Insalata mista",
     "sizes": [],
     "ingredients": [
-      "lattuga mista",
-      "pomodoro pachino",
-      "cipolla",
-      "carote",
-      "mais"
+      "pomodoro",
+      "lattuga",
+      "carote"
     ],
     "notes": "Ensalada clásica y fresca.",
     "allergens_to_verify": [],
-    "source": "trascrizione manuale utente",
+    "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
     "food_cost_raw": 1.15,
     "food_cost_operativo": 2.7,
-    "prezzo_consigliato": 6.5,
-    "margine_percentuale": 58.5,
-    "categoria_profitto": "media-alta",
-    "warning_commerciale": "Piatto ad altissima marginalità. La qualità percepita dipenderà quasi totalmente dalla freschezza visiva.",
-    "name_es": "Ensalada mixta",
-    "description_es": "Lechuga mixta, tomate cherry, cebolla, zanahoria y maíz.",
+    "prezzo_consigliato": 5,
+    "margine_percentuale": 46,
+    "categoria_profitto": "media",
+    "warning_commerciale": "Piatto semplice ad alta rotazione. La qualità percepita dipenderà dalla freschezza visiva.",
+    "name_es": "Ensalada Mixta",
+    "description_es": "Tomate, lechuga y zanahoria.",
     "ingredients_es": [
-      "lechuga mixta",
-      "tomate cherry",
-      "cebolla",
-      "zanahoria",
-      "maíz"
+      "tomate",
+      "lechuga",
+      "zanahoria"
     ],
     "allergens_es": []
   }

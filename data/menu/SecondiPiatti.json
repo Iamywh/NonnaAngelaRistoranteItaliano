@@ -4,198 +4,107 @@
     "id": "arrosticini_abruzzesi",
     "name_it": "Arrosticini abruzzesi",
     "sizes": [
-      "3x80gr"
+      "8 pezzi",
+      "240gr"
     ],
     "ingredients": [
-      "arrosticini di pecora",
-      "peperone arrosto"
+      "arrosticini abruzzesi",
+      "patate al forno",
+      "verdure del giorno"
     ],
     "notes": "Segundo o plato para compartir con fuerte identidad regional.",
     "allergens_to_verify": [],
-    "source": "trascrizione manuale utente",
+    "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": "parziale",
     "food_cost_raw": 5.8,
     "food_cost_operativo": 8.6,
-    "prezzo_consigliato": 24,
-    "margine_percentuale": 64.2,
+    "prezzo_consigliato": 22.5,
+    "margine_percentuale": 61.8,
     "categoria_profitto": "alta",
     "warning_commerciale": "Piatto identitario fortissimo. Va servito sizzling/rustico per aumentare percezione premium.",
     "name_es": "Arrosticini abruzzesi",
-    "description_es": "Brochetas tradicionales de cordero servidas con pimiento asado.",
+    "image": "/images/dishes/arrosticini-abruzzesi.webp",
+    "description_es": "8 arrosticini abruzzesi, 240 g en total, con papas al horno y verduras del día.",
     "ingredients_es": [
-      "cordero",
-      "pimiento asado"
+      "arrosticini abruzzesi",
+      "papas al horno",
+      "verduras del día"
     ],
     "allergens_es": []
   },
   {
     "category": "secondi_piatti",
-    "id": "misto_carne_ragu_napoletano",
-    "name_it": "Misto di carne al ragù napoletano",
+    "id": "panceta_de_cerdo",
+    "name_it": "Pancetta di maiale",
     "sizes": [],
     "ingredients": [
-      "braciola",
-      "salsiccia",
-      "spuntata di maiale",
-      "corazza di vitello",
-      "cotica",
-      "ragù napoletano"
+      "pancetta di maiale",
+      "cavolo rosso marinato",
+      "finocchio",
+      "arancia"
     ],
-    "notes": "Plato profundamente tradicional y con mucha identidad.",
-    "allergens_to_verify": [
-      "sedano"
-    ],
-    "source": "trascrizione manuale utente",
+    "notes": "Segundo de cerdo con guarnición fresca y aromática.",
+    "allergens_to_verify": [],
+    "source": "menu confermato",
     "fornitore": "Orthidal",
-    "coperto_da_ordine": true,
-    "food_cost_raw": 8.9,
-    "food_cost_operativo": 12.8,
-    "prezzo_consigliato": 29.5,
-    "margine_percentuale": 56.6,
-    "categoria_profitto": "media-alta",
-    "warning_commerciale": "Questo non è un piatto da margine: è storytelling puro. Deve sembrare il pranzo della domenica italiana.",
-    "name_es": "Mixto de carne al ragú napolitano",
-    "description_es": "Braciola, salchicha, costilla de cerdo, costilla de res, carne de ternera y piel de cerdo cocinadas en ragú napolitano.",
+    "coperto_da_ordine": "parziale",
+    "food_cost_raw": null,
+    "food_cost_operativo": null,
+    "prezzo_consigliato": 20.5,
+    "margine_percentuale": null,
+    "categoria_profitto": "da_calcolare",
+    "warning_commerciale": "La freschezza di finocchio e arancia deve bilanciare bene il grasso della pancetta.",
+    "name_es": "Panceta de cerdo",
+    "description_es": "Panceta de cerdo con col lombarda marinada, hinojo y naranja.",
     "ingredients_es": [
-      "braciola",
-      "salchicha",
-      "costilla de cerdo",
-      "costilla de res",
-      "carne de ternera",
-      "piel de cerdo",
-      "ragú napolitano"
+      "panceta de cerdo",
+      "col lombarda marinada",
+      "hinojo",
+      "naranja"
     ],
-    "allergens_es": [
-      "apio",
-      "sulfitos"
-    ]
+    "allergens_es": []
   },
   {
     "category": "secondi_piatti",
-    "id": "polpette_ragu",
-    "name_it": "Polpette al ragù",
+    "id": "polpettone_al_horno",
+    "name_it": "Polpettone al forno",
     "sizes": [],
     "ingredients": [
-      "sasiccia",
-      "pane",
-      "uova",
-      "parmigiano e pecorino"
+      "carne",
+      "spezie italiane",
+      "prosciutto cotto",
+      "patate",
+      "verdure"
     ],
-    "notes": "Comfort food italiano clásico.",
+    "notes": "Comfort food italiano clásico al horno.",
     "allergens_to_verify": [
       "glutine",
       "uova",
       "latte"
     ],
-    "source": "trascrizione manuale utente",
+    "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
     "food_cost_raw": 3.1,
     "food_cost_operativo": 5.7,
-    "prezzo_consigliato": 22,
-    "margine_percentuale": 74.1,
-    "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto estremamente vendibile. Con pane buono e impiattamento rustico diventa comfort food perfetto.",
-    "name_es": "Albóndigas al ragú",
-    "description_es": "Albóndigas de carne servidas con ragú napolitano.",
+    "prezzo_consigliato": 16.5,
+    "margine_percentuale": 65.5,
+    "categoria_profitto": "alta",
+    "warning_commerciale": "Piatto estremamente vendibile. Con impiattamento rustico diventa comfort food perfetto.",
+    "name_es": "Polpettone al horno",
+    "description_es": "Polpettone al horno con especias italianas, jamón cocido, papas y verduras.",
     "ingredients_es": [
-      "albóndigas de carne",
-      "ragú napolitano"
+      "carne",
+      "especias italianas",
+      "jamón cocido",
+      "papas",
+      "verduras"
     ],
     "allergens_es": [
       "gluten",
-      "leche",
-      "huevo",
-      "apio"
-    ]
-  },
-  {
-    "category": "secondi_piatti",
-    "id": "peperone_mbuttunato",
-    "name_it": "Peperone mbuttunato",
-    "sizes": [],
-    "ingredients": [
-      "peperone",
-      "popetta pane",
-      ""
-    ],
-    "notes": "Plato regional tradicional.",
-    "allergens_to_verify": [],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": false,
-    "food_cost_raw": 2.6,
-    "food_cost_operativo": 4.8,
-    "prezzo_consigliato": 18.5,
-    "margine_percentuale": 74.1,
-    "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto molto interessante per differenziarsi dai soliti italiani turistici.",
-    "name_es": "Pimiento mbuttunato",
-    "description_es": "Pimiento relleno según tradición.",
-    "ingredients_es": [
-      "pimiento relleno"
-    ],
-    "allergens_es": []
-  },
-  {
-    "category": "secondi_piatti",
-    "id": "porchetta_pure_patate_arrosto",
-    "name_it": "Porchetta con purè di patate arrosto",
-    "sizes": [],
-    "ingredients": [
-      "porchetta",
-      "purè di patate arrosto"
-    ],
-    "notes": "Segundo rústico de carácter premium.",
-    "allergens_to_verify": [
-      "latte"
-    ],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": true,
-    "food_cost_raw": 5.4,
-    "food_cost_operativo": 8.2,
-    "prezzo_consigliato": 35,
-    "margine_percentuale": 76.6,
-    "categoria_profitto": "molto alta",
-    "warning_commerciale": "La porchetta vende tantissimo a livello emotivo e olfattivo. Ottima anche per contenuti social.",
-    "name_es": "Porchetta con puré de patata asada",
-    "description_es": "Porchetta servida con puré de patata asada.",
-    "ingredients_es": [
-      "porchetta",
-      "puré de patata asada"
-    ],
-    "allergens_es": [
+      "huevos",
       "leche"
     ]
-  },
-  {
-    "category": "secondi_piatti",
-    "id": "fagioli_cotiche",
-    "name_it": "Fagioli con cotiche",
-    "sizes": [],
-    "ingredients": [
-      "fagioli",
-      "cotiche"
-    ],
-    "notes": "Plato tradicional de comfort food.",
-    "allergens_to_verify": [],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": true,
-    "food_cost_raw": 2.2,
-    "food_cost_operativo": 4.5,
-    "prezzo_consigliato": 18.5,
-    "margine_percentuale": 75.7,
-    "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto povero storico italiano. Margine ottimo se raccontato bene nel menu.",
-    "name_es": "Fagioli con cotiche",
-    "description_es": "Alubias con piel de cerdo según tradición italiana.",
-    "ingredients_es": [
-      "alubias",
-      "piel de cerdo"
-    ],
-    "allergens_es": []
   }
 ]

@@ -1,128 +1,121 @@
 [
   {
     "category": "primi_piatti",
-    "id": "lasagna_bolognese",
-    "name_it": "lasagne al ragù bolognese",
+    "id": "lasagne_bolognese",
+    "name_it": "Lasagne alla bolognese",
     "sizes": [
       "250gr"
     ],
     "ingredients": [
-      "lasagne",
+      "pasta all'uovo",
       "ragù bolognese",
-      "parmigiano",
-      "besciamella"
+      "besciamella",
+      "parmigiano"
     ],
     "notes": "Clásico italiano con mucha identidad.",
     "allergens_to_verify": [
       "glutine",
-      "latte",
-      "sedano",
-      "uova"
+      "uova",
+      "latte"
     ],
-    "source": "trascrizione manuale utente",
+    "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
     "food_cost_raw": 2.65,
     "food_cost_operativo": 5.1,
-    "prezzo_consigliato": 22,
-    "margine_percentuale": 76.8,
-    "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto classico molto riconoscibile. Nome e id sono coerenti con lasagna_bolognese.",
-    "name_es": "Lasagna al ragú boloñés",
-    "description_es": "Lasagna con ragú boloñés, parmigiano y bechamel.",
-    "ingredients_es": [
-      "lasagna",
-      "ragú boloñés",
-      "parmigiano",
-      "bechamel"
-    ],
-    "allergens_es": [
-      "gluten",
-      "leche",
-      "huevo",
-      "apio"
-    ]
-  },
-  {
-    "category": "primi_piatti",
-    "id": "pappardelle_cinghiale",
-    "name_it": "Pappardelle al sugo di cinghiale",
-    "sizes": [],
-    "ingredients": [
-      "pappardelle",
-      "ragù di cinghiale",
-      "pomodoro",
-      "vino rosso",
-      "parmigiano"
-    ],
-    "notes": "Plato rústico de carácter premium.",
-    "allergens_to_verify": [
-      "glutine",
-      "latte",
-      "sedano",
-      "uova",
-      "solfiti"
-    ],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": "parziale",
-    "food_cost_raw": 4.2,
-    "food_cost_operativo": 6.9,
-    "prezzo_consigliato": 22.5,
-    "margine_percentuale": 69.3,
+    "prezzo_consigliato": 18,
+    "margine_percentuale": 71.7,
     "categoria_profitto": "alta",
-    "warning_commerciale": "Il cinghiale dà valore percepito alto, ma va porzionato con precisione. Non deve diventare una ciotola di ragù regalato.",
-    "name_es": "Pappardelle con salsa de jabalí",
-    "description_es": "Pappardelle con ragú de jabalí, tomate, vino tinto y parmigiano.",
+    "warning_commerciale": "Piatto classico molto riconoscibile. Nome e id sono coerenti con lasagne_bolognese.",
+    "name_es": "Lasagne Bolognese",
+    "description_es": "Láminas de pasta al horno con ragù bolognese, bechamel y parmigiano.",
     "ingredients_es": [
-      "pappardelle",
-      "ragú de jabalí",
-      "tomate",
-      "vino tinto",
+      "pasta al huevo",
+      "ragù bolognese",
+      "bechamel",
       "parmigiano"
     ],
     "allergens_es": [
       "gluten",
-      "leche",
-      "huevo",
-      "apio",
-      "sulfitos"
+      "huevos",
+      "leche"
     ]
   },
   {
     "category": "primi_piatti",
-    "id": "gnocchi_sorrentina",
-    "name_it": "Gnocchi alla sorrentina",
+    "id": "gnocchi_pesto_gambas_tomate_pistacho",
+    "name_it": "Gnocchi pesto, gamberi, pomodoro e pistacchio",
     "sizes": [],
     "ingredients": [
       "gnocchi",
-      "pomodoro",
-      "fiordilatte",
-      "parmigiano",
-      "basilico"
+      "pesto di basilico",
+      "gamberi",
+      "pomodoro cherry",
+      "pistacchio tostato"
     ],
-    "notes": "Comfort food clásico de Campania.",
+    "notes": "Gnocchi con pesto, gambas y pistacho.",
+    "allergens_to_verify": [
+      "glutine",
+      "crostacei",
+      "frutta a guscio",
+      "latte"
+    ],
+    "source": "menu confermato",
+    "fornitore": "Orthidal",
+    "coperto_da_ordine": "parziale",
+    "food_cost_raw": 2.15,
+    "food_cost_operativo": 4.7,
+    "prezzo_consigliato": 22,
+    "margine_percentuale": 78.6,
+    "categoria_profitto": "molto alta",
+    "warning_commerciale": "Piatto con percezione premium grazie a gamberi e pistacchio. Attenzione alla costanza del pesto.",
+    "name_es": "Gnocchi pesto, gambas, tomate y pistacho",
+    "image": "/images/dishes/gnocchi-pesto.webp",
+    "description_es": "Gnocchi con pesto de albahaca, gambas, tomate cherry y pistacho tostado.",
+    "ingredients_es": [
+      "gnocchi",
+      "pesto de albahaca",
+      "gambas",
+      "tomate cherry",
+      "pistacho tostado"
+    ],
+    "allergens_es": [
+      "gluten",
+      "crustaceos",
+      "frutos secos",
+      "leche"
+    ]
+  },
+  {
+    "category": "primi_piatti",
+    "id": "spaghetti_cacio_e_pepe",
+    "name_it": "Spaghetti cacio e pepe",
+    "sizes": [],
+    "ingredients": [
+      "spaghetti",
+      "pecorino romano",
+      "pepe nero"
+    ],
+    "notes": "Minimalismo italiano en estado puro.",
     "allergens_to_verify": [
       "glutine",
       "latte"
     ],
-    "source": "trascrizione manuale utente",
+    "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
-    "food_cost_raw": 2.3,
-    "food_cost_operativo": 4.9,
-    "prezzo_consigliato": 20,
-    "margine_percentuale": 75.5,
-    "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto molto vendibile e familiare. Ottimo comfort food, ma va gratinato/presentato bene per non sembrare economico.",
-    "name_es": "Gnocchi alla sorrentina",
-    "description_es": "Gnocchi con tomate, fiordilatte, parmigiano y albahaca.",
+    "food_cost_raw": 1.85,
+    "food_cost_operativo": 4.35,
+    "prezzo_consigliato": 18,
+    "margine_percentuale": 75.8,
+    "categoria_profitto": "alta",
+    "warning_commerciale": "Piatto ad alto margine, ma tecnicamente rischioso: se esce male sembra una pasta al formaggio. Serve esecuzione impeccabile.",
+    "name_es": "Spaghetti cacio e pepe",
+    "description_es": "Spaghetti con pecorino romano y pimienta negra.",
     "ingredients_es": [
-      "gnocchi",
-      "tomate",
-      "fiordilatte",
-      "parmigiano",
-      "albahaca"
+      "spaghetti",
+      "pecorino romano",
+      "pimienta negra"
     ],
     "allergens_es": [
       "gluten",
@@ -131,148 +124,34 @@
   },
   {
     "category": "primi_piatti",
-    "id": "paccheri_ragu_napoletano",
-    "name_it": "Paccheri al ragù napoletano",
-    "sizes": [],
-    "ingredients": [
-      "paccheri",
-      "ragù napoletano",
-      "parmigiano"
-    ],
-    "notes": "Posible plato signature de la casa.",
-    "allergens_to_verify": [
-      "glutine",
-      "latte",
-      "sedano"
-    ],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": true,
-    "food_cost_raw": 3.1,
-    "food_cost_operativo": 5.9,
-    "prezzo_consigliato": 24,
-    "margine_percentuale": 75.4,
-    "categoria_profitto": "molto alta",
-    "warning_commerciale": "Questo può diventare piatto bandiera. Il nome deve vendere emozione: ragù napoletano lento, casa, domenica, Nonna Angela.",
-    "name_es": "Paccheri al ragú napolitano",
-    "description_es": "Paccheri con ragú napolitano y parmigiano.",
-    "ingredients_es": [
-      "paccheri",
-      "ragú napolitano",
-      "parmigiano"
-    ],
-    "allergens_es": [
-      "gluten",
-      "leche",
-      "apio"
-    ]
-  },
-  {
-    "category": "primi_piatti",
-    "id": "cacio_pepe_chitarra",
-    "name_it": "Cacio e pepe alla chitarra",
-    "sizes": [],
-    "ingredients": [
-      "pasta alla chitarra",
-      "pecorino romano",
-      "pepe nero"
-    ],
-    "notes": "Minimalismo italiano en estado puro.",
-    "allergens_to_verify": [
-      "glutine",
-      "latte",
-      "uova"
-    ],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": true,
-    "food_cost_raw": 1.85,
-    "food_cost_operativo": 4.35,
-    "prezzo_consigliato": 21.5,
-    "margine_percentuale": 79.8,
-    "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto ad altissimo margine, ma tecnicamente rischioso: se esce male sembra una pasta al formaggio. Serve esecuzione impeccabile.",
-    "name_es": "Cacio e pepe alla chitarra",
-    "description_es": "Spaghetti alla chitarra con pecorino romano y pimienta negra.",
-    "ingredients_es": [
-      "spaghetti alla chitarra",
-      "pecorino romano",
-      "pimienta negra"
-    ],
-    "allergens_es": [
-      "gluten",
-      "leche",
-      "huevo"
-    ]
-  },
-  {
-    "category": "primi_piatti",
-    "id": "rigatoni_pesto",
-    "name_it": "Rigatoni al pesto genovese",
-    "sizes": [],
-    "ingredients": [
-      "rigatoni",
-      "pesto genovese",
-      "parmigiano"
-    ],
-    "notes": "Por confirmar si será pesto genovés clásico o una reinterpretación.",
-    "allergens_to_verify": [
-      "glutine",
-      "latte",
-      "frutta a guscio"
-    ],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": "parziale",
-    "food_cost_raw": 2.15,
-    "food_cost_operativo": 4.7,
-    "prezzo_consigliato": 22.5,
-    "margine_percentuale": 79.1,
-    "categoria_profitto": "molto alta",
-    "warning_commerciale": "Se il pesto è fatto bene vende freschezza. Se è industriale, abbassa la percezione del brand.",
-    "name_es": "Rigatoni al pesto",
-    "description_es": "Rigatoni con pesto y parmigiano.",
-    "ingredients_es": [
-      "rigatoni",
-      "pesto",
-      "parmigiano"
-    ],
-    "allergens_es": [
-      "gluten",
-      "leche",
-      "frutos secos"
-    ]
-  },
-  {
-    "category": "primi_piatti",
     "id": "rigatoni_amatriciana",
-    "name_it": "Rigatoni all'amatriciana",
+    "name_it": "Rigatoni all'Amatriciana",
     "sizes": [
       "170gr"
     ],
     "ingredients": [
       "rigatoni",
-      "guanciale",
       "pomodoro",
+      "guanciale",
       "pecorino romano",
-      "pepe nero"
+      "pepe"
     ],
     "notes": "Clásico romano con guanciale, tomate y pecorino.",
     "allergens_to_verify": [
       "glutine",
       "latte"
     ],
-    "source": "aggiunta manuale utente",
+    "source": "menu confermato",
     "fornitore": "orthidal",
     "coperto_da_ordine": "parziale",
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": 21.5,
+    "prezzo_consigliato": 19,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
     "warning_commerciale": "Piatto molto vendibile. La qualità del guanciale e la gestione della sapidità sono decisive.",
-    "name_es": "Rigatoni all’amatriciana",
-    "description_es": "Rigatoni con tomate, guanciale, pecorino romano y un toque de pimienta.",
+    "name_es": "Rigatoni all'Amatriciana",
+    "description_es": "Rigatoni con tomate, guanciale, pecorino romano y pimienta.",
     "ingredients_es": [
       "rigatoni",
       "tomate",
@@ -294,39 +173,40 @@
     ],
     "ingredients": [
       "paccheri",
-      "guanciale",
       "uova",
       "pecorino romano",
+      "guanciale",
       "pepe nero"
     ],
     "notes": "Carbonara cremosa con paccheri, guanciale, huevos, pecorino y pimienta.",
     "allergens_to_verify": [
       "glutine",
-      "latte",
-      "uova"
+      "uova",
+      "latte"
     ],
-    "source": "aggiunta manuale utente",
+    "source": "menu confermato",
     "fornitore": "orthidal",
     "coperto_da_ordine": "parziale",
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": 21.5,
+    "prezzo_consigliato": 19,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
     "warning_commerciale": "Piatto ad alta richiesta ma tecnicamente delicato: crema, temperatura e guanciale devono uscire perfetti.",
-    "name_es": "Paccheri alla carbonara",
-    "description_es": "Paccheri con guanciale, pecorino romano, huevo y pimienta negra.",
+    "name_es": "Paccheri alla Carbonara",
+    "image": "/images/dishes/paccheri-carbonara.webp",
+    "description_es": "Paccheri con huevo, pecorino romano, guanciale y pimienta negra.",
     "ingredients_es": [
       "paccheri",
-      "guanciale",
-      "pecorino romano",
       "huevo",
+      "pecorino romano",
+      "guanciale",
       "pimienta negra"
     ],
     "allergens_es": [
       "gluten",
-      "leche",
-      "huevo"
+      "huevos",
+      "leche"
     ]
   }
 ]

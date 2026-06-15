@@ -1,40 +1,116 @@
 [
   {
     "category": "dolci",
-    "id": "cannolo_tricolore",
-    "name_it": "Cannolo tricolore",
+    "id": "tiramisu_classico",
+    "name_it": "Tiramisù classico",
     "sizes": [],
     "ingredients": [
-      "scorze cannolo",
-      "ricotta zuccherata",
-      "amarena",
-      "pistacchio",
-      "zucchero a velo"
+      "mascarpone",
+      "caffè",
+      "cacao",
+      "savoiardi"
     ],
-    "notes": "Tris de cannoli rellenos de pistacho, amarena y ricotta.",
+    "notes": "Tiramisú clásico.",
     "allergens_to_verify": [
       "glutine",
-      "latte",
-      "frutta a guscio",
-      "pistacchio",
-      "uova"
+      "uova",
+      "latte"
     ],
-    "source": "trascrizione manuale utente",
+    "source": "menu confermato",
+    "fornitore": null,
+    "coperto_da_ordine": null,
+    "food_cost_raw": null,
+    "food_cost_operativo": null,
+    "prezzo_consigliato": 7.5,
+    "margine_percentuale": null,
+    "categoria_profitto": "da_calcolare",
+    "warning_commerciale": "Prezzo confermato.",
+    "name_es": "Tiramisú clásico",
+    "description_es": "Clásico tiramisú italiano con crema de mascarpone, café y cacao.",
+    "ingredients_es": [
+      "mascarpone",
+      "café",
+      "cacao",
+      "bizcocho"
+    ],
+    "allergens_es": [
+      "gluten",
+      "huevos",
+      "leche"
+    ]
+  },
+  {
+    "category": "dolci",
+    "id": "baba_al_ron",
+    "name_it": "Babà al rum",
+    "sizes": [],
+    "ingredients": [
+      "babà",
+      "rum"
+    ],
+    "notes": "Babà tradicional bañado al ron.",
+    "allergens_to_verify": [
+      "glutine",
+      "uova",
+      "latte"
+    ],
+    "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": 11.5,
+    "prezzo_consigliato": 8,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Dolce ad alto valore percepito. I cannoli si ordinano, quindi controllare bene porzioni, rotture e rotazione.",
-    "name_es": "Cannolo tricolore",
-    "description_es": "Tris de cannoli rellenos de pistacho, amarena y ricotta.",
+    "warning_commerciale": "Dolce identitario napoletano. Se il locale punta su Nonna Angela e cucina del sud, questo debe ser contado bien.",
+    "name_es": "Babà al ron",
+    "description_es": "Bizcocho napolitano bañado en ron.",
     "ingredients_es": [
-      "cannoli",
-      "ricotta",
-      "amarena",
-      "pistacho"
+      "bizcocho",
+      "ron"
+    ],
+    "allergens_es": [
+      "gluten",
+      "huevos",
+      "leche"
+    ]
+  },
+  {
+    "category": "dolci",
+    "id": "cannolo_alla_siciliana",
+    "name_it": "Cannolo alla siciliana",
+    "sizes": [],
+    "ingredients": [
+      "cannolo",
+      "panna",
+      "pistacchio",
+      "cioccolato",
+      "amarena"
+    ],
+    "notes": "Cannolo siciliano con nata, pistacho, chocolate y amarena.",
+    "allergens_to_verify": [
+      "glutine",
+      "latte",
+      "frutta a guscio"
+    ],
+    "source": "menu confermato",
+    "fornitore": "Orthidal",
+    "coperto_da_ordine": true,
+    "food_cost_raw": null,
+    "food_cost_operativo": null,
+    "prezzo_consigliato": 8.5,
+    "margine_percentuale": null,
+    "categoria_profitto": "da_calcolare",
+    "warning_commerciale": "Dolce ad alto valore percepito. Controllare bene porzioni, rotture e rotazione.",
+    "name_es": "Cannolo alla siciliana",
+    "image": "/images/dishes/cannolo-siciliana.webp",
+    "description_es": "Cannolo siciliano con nata, pistacho, chocolate y amarena.",
+    "ingredients_es": [
+      "cannolo",
+      "nata",
+      "pistacho",
+      "chocolate",
+      "amarena"
     ],
     "allergens_es": [
       "gluten",
@@ -44,165 +120,40 @@
   },
   {
     "category": "dolci",
-    "id": "tiramisu_limone",
-    "name_it": "Tiramisù al limone",
+    "id": "tarta_manzana_canela_albaricoque",
+    "name_it": "Torta di mele e cannella con albicocca",
     "sizes": [],
     "ingredients": [
-      "savoiardi",
-      "limone",
-      "mascarpone",
-      "uova",
-      "zucchero",
-      "panna",
-      "scorza di limone"
+      "mela",
+      "cannella",
+      "confettura di albicocca"
     ],
-    "notes": "Savoiardi bañados en limón con crema de mascarpone al limón.",
+    "notes": "Tarta casera de manzana, canela y confitura de albaricoque.",
     "allergens_to_verify": [
       "glutine",
-      "latte",
-      "uova"
-    ],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": "parziale",
-    "food_cost_raw": null,
-    "food_cost_operativo": 8,
-    "prezzo_consigliato": null,
-    "margine_percentuale": null,
-    "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Dolce fresco e più elegante del tiramisù classico. Ottimo per differenziarsi, ma va bilanciato: se è troppo dolce o troppo acido perde.",
-    "name_es": "Tiramisú de limón",
-    "description_es": "Savoiardi bañados en limón con crema de mascarpone al limón.",
-    "ingredients_es": [
-      "savoiardi",
-      "limón",
-      "mascarpone"
-    ],
-    "allergens_es": [
-      "gluten",
-      "leche",
-      "huevo"
-    ]
-  },
-  {
-    "category": "dolci",
-    "id": "tiramisu_classico",
-    "name_it": "Tiramisù classico",
-    "sizes": [],
-    "ingredients": [
-      "savoiardi",
-      "caffè",
-      "mascarpone",
       "uova",
-      "zucchero",
-      "cacao"
+      "latte"
     ],
-    "notes": "Tiramisú clásico.",
-    "allergens_to_verify": [
-      "glutine",
-      "latte",
-      "uova"
-    ],
-    "source": "correzione manuale utente",
+    "source": "menu confermato",
     "fornitore": null,
     "coperto_da_ordine": null,
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": null,
-    "margine_percentuale": null,
-    "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Prezzo da confermare.",
-    "name_es": "Tiramisú clásico",
-    "description_es": "Savoiardi con café, crema de mascarpone y cacao.",
-    "ingredients_es": [
-      "savoiardi",
-      "café",
-      "mascarpone",
-      "cacao"
-    ],
-    "allergens_es": [
-      "gluten",
-      "leche",
-      "huevo"
-    ]
-  },
-  {
-    "category": "dolci",
-    "id": "pere_ricotta",
-    "name_it": "Pere e ricotta",
-    "sizes": [],
-    "ingredients": [
-      "ricotta",
-      "pere",
-      "zucchero",
-      "pan di spagna",
-      "panna",
-      "zucchero a velo"
-    ],
-    "notes": "Postre tradicional con ricotta y pera. Receta final pendiente de confirmar.",
-    "allergens_to_verify": [
-      "glutine",
-      "latte",
-      "uova"
-    ],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": "parziale",
-    "food_cost_raw": null,
-    "food_cost_operativo": null,
     "prezzo_consigliato": 8,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Dolce molto italiano e raffinato. Va presentato bene per non sembrare una semplice torta alla ricotta.",
-    "name_es": "Pera y ricotta",
-    "description_es": "Postre tradicional con ricotta y pera.",
+    "warning_commerciale": "Dolce casalingo da valorizzare con presentazione semplice e pulita.",
+    "name_es": "Tarta de manzana y canela con albaricoque",
+    "description_es": "Tarta casera de manzana, canela y confitura de albaricoque.",
     "ingredients_es": [
-      "ricotta",
-      "pera"
+      "manzana",
+      "canela",
+      "confitura de albaricoque"
     ],
     "allergens_es": [
+      "gluten",
+      "huevos",
       "leche"
-    ]
-  },
-  {
-    "category": "dolci",
-    "id": "baba_con_ron",
-    "name_it": "Babà con Ron",
-    "sizes": [],
-    "ingredients": [
-      "babà",
-      "rum",
-      "zucchero",
-      "acqua",
-      "scorza di limone",
-      "panna"
-    ],
-    "notes": "Babà tradicional bañado al ron. Pendiente de confirmar si se servirá solo o con nata.",
-    "allergens_to_verify": [
-      "glutine",
-      "latte",
-      "uova",
-      "solfiti"
-    ],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": true,
-    "food_cost_raw": null,
-    "food_cost_operativo": null,
-    "prezzo_consigliato": 8,
-    "margine_percentuale": null,
-    "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Dolce identitario napoletano. Se il locale punta su Nonna Angela e cucina del sud, questo deve essere raccontato bene.",
-    "name_es": "Babà con Ron",
-    "description_es": "Babà tradicional bañado al ron.",
-    "ingredients_es": [
-      "babà",
-      "ron"
-    ],
-    "allergens_es": [
-      "gluten",
-      "huevo",
-      "sulfitos"
     ]
   }
 ]

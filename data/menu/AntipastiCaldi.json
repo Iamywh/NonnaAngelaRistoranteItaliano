@@ -1,20 +1,20 @@
 [
   {
     "category": "antipasti_caldi",
-    "id": "crostone_taleggio_lardo_colonnata",
-    "name_it": "Crostone taleggio e lardo di Colonnata",
+    "id": "bruschetta_lardo_colonnata_taleggio",
+    "name_it": "Bruschetta lardo di Colonnata e taleggio",
     "sizes": [],
     "ingredients": [
-      "pane crostone",
-      "taleggio",
-      "lardo di Colonnata"
+      "pane tostato",
+      "lardo di Colonnata",
+      "taleggio"
     ],
     "notes": "Entrante caliente intenso y premium.",
     "allergens_to_verify": [
       "glutine",
       "latte"
     ],
-    "source": "trascrizione manuale utente",
+    "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": false,
     "food_cost_raw": 3.1,
@@ -23,12 +23,13 @@
     "margine_percentuale": 64.1,
     "categoria_profitto": "alta",
     "warning_commerciale": "Il lardo di Colonnata aumenta il valore percepito ma ha rotazione più lenta.",
-    "name_es": "Crostone de taleggio y lardo de Colonnata",
-    "description_es": "Pan tostado con taleggio fundido y lardo de Colonnata.",
+    "name_es": "Bruschetta lardo di Colonnata y taleggio",
+    "image": "/images/dishes/bruschetta-lardo-taleggio.webp",
+    "description_es": "Pan tostado con lardo di Colonnata y taleggio fundente.",
     "ingredients_es": [
       "pan tostado",
-      "taleggio",
-      "lardo de Colonnata"
+      "lardo di Colonnata",
+      "taleggio"
     ],
     "allergens_es": [
       "gluten",
@@ -37,20 +38,20 @@
   },
   {
     "category": "antipasti_caldi",
-    "id": "crostone_stracchino_salsiccia",
-    "name_it": "Crostone stracchino e salsiccia",
+    "id": "bruschetta_stracchino_salsiccia",
+    "name_it": "Bruschetta stracchino e salsiccia",
     "sizes": [],
     "ingredients": [
-      "pane crostone",
+      "pane tostato",
       "stracchino",
-      "salsiccia"
+      "salsiccia italiana"
     ],
     "notes": "Comfort food italiano de estilo rústico.",
     "allergens_to_verify": [
       "glutine",
       "latte"
     ],
-    "source": "trascrizione manuale utente",
+    "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
     "food_cost_raw": 2.45,
@@ -59,12 +60,12 @@
     "margine_percentuale": 70,
     "categoria_profitto": "molto alta",
     "warning_commerciale": "Ottimo antipasto da aperitivo e upselling vino rosso.",
-    "name_es": "Crostone de stracchino y salchicha",
-    "description_es": "Pan tostado con stracchino cremoso y salchicha.",
+    "name_es": "Bruschetta stracchino y salsiccia",
+    "description_es": "Pan tostado con stracchino y salsiccia italiana.",
     "ingredients_es": [
       "pan tostado",
       "stracchino",
-      "salchicha"
+      "salsiccia italiana"
     ],
     "allergens_es": [
       "gluten",
@@ -73,142 +74,83 @@
   },
   {
     "category": "antipasti_caldi",
-    "id": "mozzarella_carrozza_salame",
-    "name_it": "Mozzarella in carrozza con salame",
-    "sizes": [],
-    "ingredients": [
-      "mozzarella",
-      "pane",
-      "salame"
-    ],
-    "notes": "Versión salada clásica.",
-    "allergens_to_verify": [
-      "glutine",
-      "latte",
-      "uova"
-    ],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": true,
-    "food_cost_raw": 1.95,
-    "food_cost_operativo": 3.6,
-    "prezzo_consigliato": 12.5,
-    "margine_percentuale": 71.2,
-    "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto estremamente profittevole se servito con presentazione premium.",
-    "name_es": "Mozzarella in carrozza con salame",
-    "description_es": "Mozzarella con pan, empanada y frita con salame.",
-    "ingredients_es": [
-      "mozzarella",
-      "pan rallado",
-      "salame"
-    ],
-    "allergens_es": [
-      "gluten",
-      "leche",
-      "huevo"
-    ]
-  },
-  {
-    "category": "antipasti_caldi",
-    "id": "mozzarella_carrozza_alici",
-    "name_it": "Mozzarella in carrozza con alici",
-    "sizes": [],
-    "ingredients": [
-      "mozzarella",
-      "pane",
-      "alici"
-    ],
-    "notes": "Versión más mediterránea y sabrosa.",
-    "allergens_to_verify": [
-      "glutine",
-      "latte",
-      "pesce",
-      "uova"
-    ],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": false,
-    "food_cost_raw": 2.35,
-    "food_cost_operativo": 4,
-    "prezzo_consigliato": 12.5,
-    "margine_percentuale": 68,
-    "categoria_profitto": "alta",
-    "warning_commerciale": "Le alici aumentano la personalità del piatto ma riducono il target clienti.",
-    "name_es": "Mozzarella in carrozza con anchoas",
-    "description_es": "Mozzarella con pan, empanada y frita con anchoas.",
-    "ingredients_es": [
-      "mozzarella",
-      "pan rallado",
-      "anchoas"
-    ],
-    "allergens_es": [
-      "gluten",
-      "leche",
-      "huevo",
-      "pescado"
-    ]
-  },
-  {
-    "category": "antipasti_caldi",
-    "id": "verdure_grigliate_stagione",
-    "name_it": "Verdure grigliate di stagione",
-    "sizes": [],
-    "ingredients": [
-      "verdure di stagione",
-      "olio extravergine"
-    ],
-    "notes": "Guarnición o entrante vegetal versátil.",
-    "allergens_to_verify": [],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": "parziale",
-    "food_cost_raw": 1.6,
-    "food_cost_operativo": 3.2,
-    "prezzo_consigliato": 11.5,
-    "margine_percentuale": 72.2,
-    "categoria_profitto": "molto alta",
-    "warning_commerciale": "Molto utile per vegetariani e tavoli misti. Alto margine.",
-    "name_es": "Verduras de temporada a la parrilla",
-    "description_es": "Verduras de temporada a la parrilla con aceite de oliva virgen extra.",
-    "ingredients_es": [
-      "verduras de temporada",
-      "aceite de oliva virgen extra"
-    ],
-    "allergens_es": []
-  },
-  {
-    "category": "antipasti_caldi",
-    "id": "melanzana_funghetto",
-    "name_it": "Melanzana a funghetto",
+    "id": "melanzane_alla_parmigiana",
+    "name_it": "Melanzane alla parmigiana",
     "sizes": [],
     "ingredients": [
       "melanzana",
       "pomodoro",
-      "olio extravergine",
-      "aglio",
-      "basilico"
+      "parmigiano",
+      "basilico",
+      "provola"
     ],
-    "notes": "Preparación tradicional napolitana, pendiente de confirmar en la receta final.",
-    "allergens_to_verify": [],
-    "source": "trascrizione manuale utente",
+    "notes": "Clásico italiano al horno con berenjena, tomate y queso.",
+    "allergens_to_verify": [
+      "latte"
+    ],
+    "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
-    "food_cost_raw": 1.25,
-    "food_cost_operativo": 2.95,
-    "prezzo_consigliato": 13.5,
-    "margine_percentuale": 78.1,
-    "categoria_profitto": "molto alta",
-    "warning_commerciale": "Piatto povero tradizionale con margine eccellente e storytelling forte.",
-    "name_es": "Berenjena a funghetto",
-    "description_es": "Berenjena con tomate, ajo, albahaca y aceite de oliva virgen extra.",
+    "food_cost_raw": null,
+    "food_cost_operativo": null,
+    "prezzo_consigliato": 12.5,
+    "margine_percentuale": null,
+    "categoria_profitto": "da_calcolare",
+    "warning_commerciale": "Piatto tradizionale con grande valore percepito. La gratinatura e la porzione devono essere costanti.",
+    "name_es": "Melanzane alla parmigiana",
+    "description_es": "Berenjena, tomate, parmigiano, albahaca y provola.",
     "ingredients_es": [
       "berenjena",
       "tomate",
-      "ajo",
+      "parmigiano",
       "albahaca",
-      "aceite de oliva virgen extra"
+      "provola"
     ],
-    "allergens_es": []
+    "allergens_es": [
+      "leche"
+    ]
+  },
+  {
+    "category": "antipasti_caldi",
+    "id": "mozzarella_carrozza_anchoas",
+    "name_it": "Mozzarella in carrozza con alici",
+    "sizes": [],
+    "ingredients": [
+      "mozzarella",
+      "pane grattugiato",
+      "uova",
+      "alici"
+    ],
+    "notes": "Versión mediterránea y sabrosa.",
+    "allergens_to_verify": [
+      "glutine",
+      "uova",
+      "latte",
+      "pesce"
+    ],
+    "source": "menu confermato",
+    "fornitore": "Orthidal",
+    "coperto_da_ordine": false,
+    "food_cost_raw": 2.35,
+    "food_cost_operativo": 4,
+    "prezzo_consigliato": 16,
+    "margine_percentuale": 75,
+    "categoria_profitto": "alta",
+    "warning_commerciale": "Le alici aumentano la personalità del piatto ma riducono il target clienti.",
+    "name_es": "Mozzarella in carrozza con anchoas",
+    "image": "/images/dishes/mozzarella-carrozza.webp",
+    "description_es": "Mozzarella empanada y frita con anchoas.",
+    "ingredients_es": [
+      "mozzarella",
+      "pan rallado",
+      "huevo",
+      "anchoas"
+    ],
+    "allergens_es": [
+      "gluten",
+      "huevos",
+      "leche",
+      "pescado"
+    ]
   }
 ]

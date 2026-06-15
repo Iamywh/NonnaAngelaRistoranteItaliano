@@ -4,8 +4,8 @@
     "id": "tagliere_affettati",
     "name_it": "Tagliere affettati",
     "sizes": [
-      "intero",
-      "mezzo"
+      "entero",
+      "medio"
     ],
     "ingredients": [
       "bresaola",
@@ -23,7 +23,7 @@
       "pistacchio",
       "frutta a guscio"
     ],
-    "source": "trascrizione manuale utente",
+    "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
     "food_cost_raw": {
@@ -35,8 +35,8 @@
       "mezzo": 6.8
     },
     "prezzo_consigliato": {
-      "intero": 30,
-      "mezzo": 23
+      "medio": 23,
+      "entero": 30
     },
     "margine_percentuale": {
       "intero": 59.3,
@@ -45,7 +45,8 @@
     "categoria_profitto": "media-alta",
     "warning_commerciale": "Piatto ad alto valore percepito, ma attenzione: i salumi premium mangiano margine. Va venduto bene, non regalato.",
     "name_es": "Tabla de embutidos",
-    "description_es": "Selección de bresaola, coppa, finocchiona, salame Napoli, mortadela con pistacho y speck.",
+    "image": "/images/dishes/tabla-embutidos.webp",
+    "description_es": "Selección de embutidos italianos.",
     "ingredients_es": [
       "bresaola",
       "coppa",
@@ -64,8 +65,8 @@
     "id": "tagliere_formaggi",
     "name_it": "Tagliere formaggi",
     "sizes": [
-      "intero",
-      "mezzo"
+      "entero",
+      "medio"
     ],
     "ingredients": [
       "fontina",
@@ -78,7 +79,7 @@
     "allergens_to_verify": [
       "latte"
     ],
-    "source": "trascrizione manuale utente",
+    "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
     "food_cost_raw": {
@@ -90,8 +91,8 @@
       "mezzo": 6.3
     },
     "prezzo_consigliato": {
-      "intero": 30,
-      "mezzo": 23
+      "medio": 23,
+      "entero": 30
     },
     "margine_percentuale": {
       "intero": 62,
@@ -100,7 +101,8 @@
     "categoria_profitto": "alta",
     "warning_commerciale": "Buono per upselling vino. Il formaggio al tartufo e Barolo danno storytelling, ma vanno porzionati con precisione.",
     "name_es": "Tabla de quesos",
-    "description_es": "Selección de fontina, taleggio, parmigiano, queso al tartufo y queso al Barolo.",
+    "image": "/images/dishes/tabla-quesos.webp",
+    "description_es": "Selección de quesos italianos.",
     "ingredients_es": [
       "fontina",
       "taleggio",
@@ -114,72 +116,37 @@
   },
   {
     "category": "antipasti_freddi",
-    "id": "alici_cantabrico_burrata_pomodoro_secco",
-    "name_it": "Alici del Cantabrico con burrata e pomodoro secco",
+    "id": "carpaccio_bresaola",
+    "name_it": "Carpaccio di bresaola",
     "sizes": [],
     "ingredients": [
-      "alici del Cantabrico",
-      "burrata",
-      "pomodoro secco"
-    ],
-    "notes": "Entrante frío premium, con fuerte identidad mediterránea.",
-    "allergens_to_verify": [
-      "pesce",
-      "latte"
-    ],
-    "source": "trascrizione manuale utente",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": false,
-    "food_cost_raw": 5.2,
-    "food_cost_operativo": 7.6,
-    "prezzo_consigliato": 18.5,
-    "margine_percentuale": 58.9,
-    "categoria_profitto": "media-alta",
-    "warning_commerciale": "Piatto premium da non prezzare basso. Le alici del Cantabrico devono essere dichiarate bene nel menu perché giustificano il prezzo.",
-    "name_es": "Anchoas del Cantábrico con burrata y tomate seco",
-    "description_es": "Anchoas del Cantábrico servidas con burrata cremosa y tomate seco.",
-    "ingredients_es": [
-      "anchoas del Cantábrico",
-      "burrata",
-      "tomate seco"
-    ],
-    "allergens_es": [
-      "pescado",
-      "leche"
-    ]
-  },
-  {
-    "category": "antipasti_freddi",
-    "id": "carpaccio_bresaola_rucola_grana_balsamico",
-    "name_it": "Carpaccio / bresaola",
-    "sizes": [],
-    "ingredients": [
-      "carpaccio o bresaola",
+      "bresaola",
       "rucola",
-      "grana",
+      "grana padano",
       "aceto balsamico"
     ],
-    "notes": "Por confirmar si el plato final será carpaccio, bresaola o doble opción.",
+    "notes": "Entrante frío de bresaola con rúcula y grana.",
     "allergens_to_verify": [
       "latte",
       "solfiti"
     ],
-    "source": "trascrizione manuale utente",
+    "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
     "food_cost_raw": 4.8,
     "food_cost_operativo": 7.1,
-    "prezzo_consigliato": 19.5,
-    "margine_percentuale": 63.6,
-    "categoria_profitto": "alta",
-    "warning_commerciale": "Meglio scegliere una sola identità: o bresaola o carpaccio. Se lasci doppia opzione, complichi stock e comunicazione.",
-    "name_es": "Carpaccio / Bresaola",
-    "description_es": "Carpaccio o bresaola con rúcula, grana y vinagre balsámico.",
+    "prezzo_consigliato": 17.5,
+    "margine_percentuale": 59.4,
+    "categoria_profitto": "media-alta",
+    "warning_commerciale": "Bresaola e grana danno valore percepito alto. Porzionare con precisione.",
+    "name_es": "Carpaccio de Bresaola",
+    "image": "/images/dishes/carpaccio-bresaola.webp",
+    "description_es": "Bresaola fina con rúcula, grana padano y vinagreta balsámica.",
     "ingredients_es": [
-      "carpaccio o bresaola",
+      "bresaola",
       "rúcula",
-      "grana",
-      "vinagre balsámico"
+      "grana padano",
+      "vinagreta balsámica"
     ],
     "allergens_es": [
       "leche",
@@ -192,34 +159,72 @@
     "name_it": "Caprese",
     "sizes": [],
     "ingredients": [
+      "mozzarella fiordilatte",
       "pomodoro",
-      "mozzarella",
       "basilico",
       "olio extravergine"
     ],
-    "notes": "Clásico italiano fresco con tomate, burrata y albahaca o aceite de albahaca.",
+    "notes": "Clásico italiano fresco con tomate, mozzarella y albahaca.",
     "allergens_to_verify": [
       "latte"
     ],
-    "source": "aggiunta manuale Manu",
+    "source": "menu confermato",
     "fornitore": "gm",
     "coperto_da_ordine": "parziale",
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": 15.5,
+    "prezzo_consigliato": 14,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Prezzo sostenibile solo se la presentazione è curata: pomodoro buono, burrata intera o ben valorizzata, basilico fresco/olio aromatico e impiattamento pulito.",
+    "warning_commerciale": "Prezzo sostenibile solo se la presentazione è curata: pomodoro buono, mozzarella valorizzata, basilico fresco e impiattamento pulito.",
     "name_es": "Caprese",
-    "description_es": "Tomate, burrata, albahaca y aceite de oliva virgen extra.",
+    "image": "/images/dishes/caprese.webp",
+    "description_es": "Mozzarella fiordilatte, tomate, albahaca y aceite de oliva.",
     "ingredients_es": [
+      "mozzarella fiordilatte",
       "tomate",
-      "burrata",
       "albahaca",
-      "aceite de oliva virgen extra"
+      "aceite de oliva"
     ],
     "allergens_es": [
       "leche"
+    ]
+  },
+  {
+    "category": "antipasti_freddi",
+    "id": "burrata_anchoas_tomate_seco",
+    "name_it": "Burrata, alici e pomodoro secco",
+    "sizes": [],
+    "ingredients": [
+      "burrata",
+      "alici del Cantabrico",
+      "pomodoro secco"
+    ],
+    "notes": "Entrante frío premium, con fuerte identidad mediterránea.",
+    "allergens_to_verify": [
+      "pesce",
+      "latte"
+    ],
+    "source": "menu confermato",
+    "fornitore": "Orthidal",
+    "coperto_da_ordine": false,
+    "food_cost_raw": 5.2,
+    "food_cost_operativo": 7.6,
+    "prezzo_consigliato": 16.5,
+    "margine_percentuale": 53.9,
+    "categoria_profitto": "media",
+    "warning_commerciale": "Piatto premium da non prezzare basso. Le alici del Cantabrico devono essere dichiarate bene nel menu perché giustificano il prezzo.",
+    "name_es": "Burrata, anchoas y tomate seco",
+    "image": "/images/dishes/burrata-anchoas-tomate-seco.webp",
+    "description_es": "Burrata cremosa con anchoas del Cantábrico y tomate seco.",
+    "ingredients_es": [
+      "burrata",
+      "anchoas del Cantábrico",
+      "tomate seco"
+    ],
+    "allergens_es": [
+      "leche",
+      "pescado"
     ]
   }
 ]
