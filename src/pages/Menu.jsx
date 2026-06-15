@@ -12,7 +12,6 @@ import vini from '../../data/menu/vini.json'
 import cocktail from '../../data/menu/cocktail.json'
 import softdrinks from '../../data/menu/softdrinks.json'
 import amariliquori from '../../data/menu/amariliquori.json'
-import especialidadesImage from '../../assets/dishes/20260607_210815.jpg'
 import allergenDefinitions from '../data/allergens.json'
 
 const menuCategories = [

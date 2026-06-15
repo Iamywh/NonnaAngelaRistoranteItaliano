@@ -4,7 +4,7 @@
     "id": "lomito_cerdo_marinado",
     "name_it": "Lomito de cerdo marinado",
     "sizes": [],
-    "image": "assets/dishes/20260607_210815.jpg",
+    "image": "/images/dishes/lonzino.webp",
     "ingredients": [
       "cerdo en doble marinatura de cúrcuma durante 24 horas + segunda marinatura de 24 horas",
       "crujiente de verduras",
@@ -39,7 +39,7 @@
     "id": "rolle_berenjena",
     "name_it": "Rollé de berenjena",
     "sizes": [],
-    "image": "assets/dishes/20260607_211137.jpg",
+    "image": "/images/dishes/rolle-melanzana.webp",
     "ingredients": [
       "berenjena",
       "provola",
