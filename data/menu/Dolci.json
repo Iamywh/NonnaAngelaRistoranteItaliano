@@ -26,6 +26,7 @@
     "categoria_profitto": "da_calcolare",
     "warning_commerciale": "Prezzo confermato.",
     "name_es": "Tiramisú clásico",
+    "image": "/images/dishes/tiramisu.webp",
     "description_es": "Clásico tiramisú italiano con crema de mascarpone, café y cacao.",
     "ingredients_es": [
       "mascarpone",
@@ -144,6 +145,7 @@
     "categoria_profitto": "da_calcolare",
     "warning_commerciale": "Dolce casalingo da valorizzare con presentazione semplice e pulita.",
     "name_es": "Tarta de manzana y canela con albaricoque",
+    "image": "/images/dishes/torta-mele.webp",
     "description_es": "Tarta casera de manzana, canela y confitura de albaricoque.",
     "ingredients_es": [
       "manzana",
