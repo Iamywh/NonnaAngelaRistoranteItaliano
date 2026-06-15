@@ -19,7 +19,6 @@ const menuCategories = [
     id: 'especialidades_semana',
     title: 'Especialidades de la semana',
     subtitle: 'Platos especiales preparados por tiempo limitado.',
-    image: especialidadesImage,
     type: 'food'
   },
   {
