@@ -50,7 +50,7 @@ export default function Home({ setCurrentPage }) {
         <div className="hero-hours">
           <div>
             <strong>Lunes</strong>
-            <span>12:30–15:00 / 19:30–22:45</span>
+            <span>Cerrado</span>
           </div>
           <div>
             <strong>Martes</strong>
@@ -58,7 +58,7 @@ export default function Home({ setCurrentPage }) {
           </div>
           <div>
             <strong>Miércoles</strong>
-            <span>Cerrado</span>
+            <span>12:30–15:00 / 19:30–22:45</span>
           </div>
           <div>
             <strong>Jueves</strong>
