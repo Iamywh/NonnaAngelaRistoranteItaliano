@@ -9,9 +9,6 @@ import contorni from '../../data/menu/Contorni.json'
 import insalate from '../../data/menu/insalate.json'
 import dolci from '../../data/menu/Dolci.json'
 import vini from '../../data/menu/vini.json'
-import cocktail from '../../data/menu/cocktail.json'
-import softdrinks from '../../data/menu/softdrinks.json'
-import amariliquori from '../../data/menu/amariliquori.json'
 import allergenDefinitions from '../data/allergens.json'
 
 const menuCategories = [
@@ -58,13 +55,6 @@ const menuCategories = [
     type: 'food'
   },
   {
-    id: 'softdrinks',
-    title: 'Refrescos y aguas',
-    subtitle: 'Agua, refrescos, tónicas y bebidas sin alcohol.',
-    image: '/images/menu/softdrinks.jpg',
-    type: 'drink'
-  },
-  {
     id: 'vini',
     title: 'Carta de vinos',
     subtitle: 'Blancos, tintos, rosados y burbujas italianas.',
@@ -72,23 +62,17 @@ const menuCategories = [
     type: 'wine'
   },
   {
-    id: 'cocktail',
-    title: 'Cócteles',
-    subtitle: 'Aperitivo italiano y grandes clásicos.',
+    id: 'bebidas',
+    title: 'Bebidas',
+    subtitle: 'Cócteles, aperitivos, refrescos, cervezas y digestivos.',
     image: '/images/menu/cocktail.jpg',
-    type: 'drink'
-  },
-  {
-    id: 'liquori',
-    title: 'Licores y digestivos',
-    subtitle: 'Amari, grappas y final de comida.',
-    image: '/images/menu/liquori.jpg',
-    type: 'drink'
+    type: 'drink',
+    navTarget: 'bebidas'
   }
 ]
 
 const FOOD_MENU_UNDER_RENOVATION = false
-const RENOVATION_VISIBLE_CATEGORIES = ['vini', 'cocktail']
+const RENOVATION_VISIBLE_CATEGORIES = ['vini', 'bebidas']
 
 function FoodMenuRenovationNotice() {
   return (
@@ -379,7 +363,7 @@ function DishCard({ item }) {
   )
 }
 
-function MenuLanding({ onSelectCategory }) {
+function MenuLanding({ onSelectCategory, setCurrentPage }) {
   const visibleCategories = FOOD_MENU_UNDER_RENOVATION
     ? menuCategories.filter((category) => RENOVATION_VISIBLE_CATEGORIES.includes(category.id))
     : menuCategories
@@ -402,7 +386,14 @@ function MenuLanding({ onSelectCategory }) {
           <button
             key={category.id}
             className="premium-menu-card"
-            onClick={() => onSelectCategory(category)}
+            onClick={() => {
+              if (category.navTarget) {
+                setCurrentPage(category.navTarget)
+                return
+              }
+
+              onSelectCategory(category)
+            }}
             type="button"
           >
             <div className="premium-menu-image">
@@ -491,18 +482,6 @@ function CategoryPage({ category, onBack }) {
       return [{ title: 'Carta de vinos', subtitle: 'Selección italiana', items: vini.wines || [] }]
     }
 
-    if (category.id === 'cocktail') {
-      return [{ title: 'Cócteles', subtitle: 'Aperitivo y clásicos', items: cocktail.cocktails || [] }]
-    }
-
-    if (category.id === 'softdrinks') {
-      return [{ title: 'Refrescos y aguas', subtitle: 'Bebidas frías sin alcohol', items: softdrinks.softdrinks || [] }]
-    }
-
-    if (category.id === 'liquori') {
-      return [{ title: 'Licores y digestivos', subtitle: 'Amari, grappas y final de comida', items: amariliquori.liquors || [] }]
-    }
-
     return []
   }, [category.id])
 
@@ -548,13 +527,16 @@ function CategoryPage({ category, onBack }) {
   )
 }
 
-export default function Menu() {
+export default function Menu({ setCurrentPage }) {
   const [selectedCategory, setSelectedCategory] = useState(null)
 
   return (
     <section className="content-page menu-page">
       {!selectedCategory ? (
-        <MenuLanding onSelectCategory={setSelectedCategory} />
+        <MenuLanding
+          onSelectCategory={setSelectedCategory}
+          setCurrentPage={setCurrentPage}
+        />
       ) : (
         <CategoryPage
           category={selectedCategory}

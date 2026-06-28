@@ -8,7 +8,7 @@
 
 .footer-inner {
   display: grid;
-  grid-template-columns: 1.4fr 0.8fr 1fr;
+  grid-template-columns: 1.4fr 0.8fr 1fr 0.8fr;
   gap: 28px;
   max-width: 1180px;
   margin: 0 auto;
@@ -58,13 +58,24 @@
   text-transform: uppercase;
 }
 
-.footer-links a {
+.footer-links a,
+.footer-links button {
   color: var(--text);
   font-weight: 800;
   text-decoration: none;
 }
 
-.footer-links a:hover {
+.footer-links button {
+  width: fit-content;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.footer-links a:hover,
+.footer-links button:hover {
   color: var(--accent);
 }
 

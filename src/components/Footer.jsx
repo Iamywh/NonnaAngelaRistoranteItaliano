@@ -18,7 +18,7 @@ const contactLinks = [
   }
 ]
 
-export default function Footer() {
+export default function Footer({ setCurrentPage }) {
   return (
     <footer className="site-footer">
       <div className="footer-inner">
@@ -48,6 +48,24 @@ export default function Footer() {
                 </a>
               </li>
             ))}
+          </ul>
+        </div>
+
+        <div className="footer-block">
+          <h3>Carta</h3>
+          <ul className="footer-links">
+            <li>
+              <span>Menú</span>
+              <button type="button" onClick={() => setCurrentPage('menu')}>
+                Cocina y vinos
+              </button>
+            </li>
+            <li>
+              <span>Bebidas</span>
+              <button type="button" onClick={() => setCurrentPage('bebidas')}>
+                Carta de Bebidas
+              </button>
+            </li>
           </ul>
         </div>
       </div>

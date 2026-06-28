@@ -1,0 +1,242 @@
+{
+  "categories": [
+    {
+      "id": "aguas_refrescos",
+      "title": "Aguas y refrescos",
+      "description": "Bebidas frías para acompañar la mesa con sencillez.",
+      "items": [
+        {
+          "id": "agua-emanantial-sin-gas",
+          "name": "Agua Emanantial sin gas",
+          "price": 2.3
+        },
+        {
+          "id": "agua-emanantial-con-gas",
+          "name": "Agua Emanantial con gas",
+          "price": 2.3
+        },
+        {
+          "id": "coca-cola-zero",
+          "name": "Coca-Cola Zero",
+          "price": 2.5
+        },
+        {
+          "id": "coca-cola-original",
+          "name": "Coca-Cola Original",
+          "price": 2.5
+        },
+        {
+          "id": "fanta-naranja",
+          "name": "Fanta Naranja",
+          "price": 2.5
+        },
+        {
+          "id": "sprite",
+          "name": "Sprite",
+          "price": 2.5
+        },
+        {
+          "id": "nestea-mango-pina",
+          "name": "Nestea Mango-Piña",
+          "price": 2.5
+        },
+        {
+          "id": "tonica-fresa",
+          "name": "Tónica de Fresa",
+          "price": 2.5
+        },
+        {
+          "id": "tonica-limon",
+          "name": "Tónica de Limón",
+          "price": 2.5
+        }
+      ]
+    },
+    {
+      "id": "aperitivos_vermut",
+      "title": "Aperitivos y vermut",
+      "description": "Amargos, vermut y sabores de aperitivo italiano.",
+      "items": [
+        {
+          "id": "aperol",
+          "name": "Aperol",
+          "price": 5
+        },
+        {
+          "id": "campari",
+          "name": "Campari",
+          "price": 5
+        },
+        {
+          "id": "giardino-vermut-rosso",
+          "name": "Giardino Vermut Rosso",
+          "price": 7
+        },
+        {
+          "id": "giardino-vermut-bianco",
+          "name": "Giardino Vermut Bianco",
+          "price": 7
+        },
+        {
+          "id": "martini-rosso",
+          "name": "Martini Rosso",
+          "price": 6
+        },
+        {
+          "id": "martini-bianco",
+          "name": "Martini Bianco",
+          "price": 6
+        }
+      ]
+    },
+    {
+      "id": "cervezas",
+      "title": "Cervezas",
+      "description": "Servicio fresco de barril.",
+      "items": [
+        {
+          "id": "cana",
+          "name": "Caña",
+          "price": 2.5
+        },
+        {
+          "id": "jarra",
+          "name": "Jarra",
+          "price": 4
+        }
+      ]
+    },
+    {
+      "id": "cocteles",
+      "title": "Cócteles",
+      "description": "Aperitivo italiano, burbujas y clásicos de barra.",
+      "layout": "cocktail",
+      "items": [
+        {
+          "id": "rossini",
+          "name": "Rossini",
+          "price": 7,
+          "ingredients": [
+            "Prosecco",
+            "puré de fresa"
+          ],
+          "history": "Cóctel italiano inspirado en Gioachino Rossini, dentro de la familia de combinados con fruta y burbujas nacidos tras el éxito del Bellini."
+        },
+        {
+          "id": "aperol-spritz",
+          "name": "Aperol Spritz",
+          "price": 9,
+          "ingredients": [
+            "Aperol",
+            "prosecco",
+            "soda",
+            "naranja"
+          ],
+          "history": "Nacido en el norte de Italia, el Spritz une la tradición veneciana del aperitivo con el carácter cítrico y ligero del Aperol."
+        },
+        {
+          "id": "hugo-spritz",
+          "name": "Hugo Spritz",
+          "price": 9,
+          "ingredients": [
+            "Prosecco",
+            "flor de saúco",
+            "soda",
+            "menta",
+            "lima"
+          ],
+          "history": "Una versión alpina y aromática del Spritz, originaria del Alto Adige, fresca, floral y muy elegante."
+        },
+        {
+          "id": "negroni",
+          "name": "Negroni",
+          "price": 10,
+          "ingredients": [
+            "Gin",
+            "Campari",
+            "vermut rojo"
+          ],
+          "history": "Clásico italiano ligado a Florencia y al Conde Negroni, famoso por su equilibrio entre amargor, dulzor y fuerza."
+        },
+        {
+          "id": "negroni-sbagliato",
+          "name": "Negroni Sbagliato",
+          "price": 9,
+          "ingredients": [
+            "Campari",
+            "vermut rojo",
+            "prosecco"
+          ],
+          "history": "Sbagliato significa equivocado: nació al sustituir el gin por prosecco, creando una versión más ligera y burbujeante del Negroni."
+        },
+        {
+          "id": "americano",
+          "name": "Americano",
+          "price": 7,
+          "ingredients": [
+            "Campari",
+            "vermut rojo",
+            "soda"
+          ],
+          "history": "Antes del Negroni existía el Americano: un aperitivo italiano ligero, amargo y refrescante, perfecto para abrir el apetito."
+        }
+      ]
+    },
+    {
+      "id": "licores_digestivos",
+      "title": "Licores y digestivos",
+      "description": "Para cerrar la comida con un final italiano.",
+      "layout": "service-prices",
+      "items": [
+        {
+          "id": "amaro-del-capo",
+          "name": "Amaro del Capo",
+          "prices": {
+            "copa": 6,
+            "chupito": 3
+          }
+        },
+        {
+          "id": "averna",
+          "name": "Averna",
+          "prices": {
+            "copa": 6,
+            "chupito": 3
+          }
+        },
+        {
+          "id": "montenegro",
+          "name": "Montenegro",
+          "prices": {
+            "copa": 6,
+            "chupito": 3
+          }
+        },
+        {
+          "id": "limoncello",
+          "name": "Limoncello",
+          "prices": {
+            "copa": 6,
+            "chupito": 3
+          }
+        },
+        {
+          "id": "grappa",
+          "name": "Grappa",
+          "prices": {
+            "copa": 6,
+            "chupito": 3
+          }
+        },
+        {
+          "id": "grappa-barricata",
+          "name": "Grappa barricata",
+          "prices": {
+            "copa": 6,
+            "chupito": 3
+          }
+        }
+      ]
+    }
+  ]
+}

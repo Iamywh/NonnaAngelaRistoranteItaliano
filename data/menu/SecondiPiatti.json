@@ -67,43 +67,37 @@
   },
   {
     "category": "secondi_piatti",
-    "id": "polpettone_al_horno",
-    "name_it": "Polpettone al forno",
+    "id": "tagliata_ternera_rucula_grana_pachino",
+    "name_it": "Tagliata di vitello con rucola, grana e pomodoro Pachino",
     "sizes": [],
     "ingredients": [
-      "carne",
-      "spezie italiane",
-      "prosciutto cotto",
-      "patate",
-      "verdure"
+      "vitello",
+      "rucola",
+      "grana padano",
+      "pomodoro Pachino"
     ],
-    "notes": "Comfort food italiano clásico al horno.",
+    "notes": "Tagliata de ternera con rúcula fresca, grana y tomate Pachino.",
     "allergens_to_verify": [
-      "glutine",
-      "uova",
       "latte"
     ],
     "source": "menu confermato",
     "fornitore": "Orthidal",
-    "coperto_da_ordine": true,
-    "food_cost_raw": 3.1,
-    "food_cost_operativo": 5.7,
-    "prezzo_consigliato": 16.5,
-    "margine_percentuale": 65.5,
-    "categoria_profitto": "alta",
-    "warning_commerciale": "Piatto estremamente vendibile. Con impiattamento rustico diventa comfort food perfetto.",
-    "name_es": "Polpettone al horno",
-    "description_es": "Polpettone al horno con especias italianas, jamón cocido, papas y verduras.",
+    "coperto_da_ordine": "parziale",
+    "food_cost_raw": null,
+    "food_cost_operativo": null,
+    "prezzo_consigliato": 30,
+    "margine_percentuale": null,
+    "categoria_profitto": "da_calcolare",
+    "warning_commerciale": "Piatto premium di carne da valorizzare con taglio, cottura e servizio precisi.",
+    "name_es": "Tagliata de ternera con rúcula, grana y tomate Pachino",
+    "description_es": "Corte de ternera servido con rúcula fresca, lascas de grana y tomate Pachino.",
     "ingredients_es": [
-      "carne",
-      "especias italianas",
-      "jamón cocido",
-      "papas",
-      "verduras"
+      "ternera",
+      "rúcula",
+      "grana",
+      "tomate Pachino"
     ],
     "allergens_es": [
-      "gluten",
-      "huevos",
       "leche"
     ]
   }

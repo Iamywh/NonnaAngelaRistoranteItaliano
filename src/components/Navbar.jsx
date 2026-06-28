@@ -10,7 +10,8 @@ export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIs
   const publicLinks = [
     { id: 'home', label: 'Inicio' },
     { id: 'locale', label: 'Restaurante' },
-    { id: 'menu', label: 'Menú' }
+    { id: 'menu', label: 'Menú' },
+    { id: 'bebidas', label: 'Bebidas' }
   ]
 
   const openManagerAccess = () => {

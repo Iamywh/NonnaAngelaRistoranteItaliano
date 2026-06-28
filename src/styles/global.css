@@ -2299,3 +2299,211 @@ button {
 .dish-card {
   overflow: hidden;
 }
+
+/* =========================
+   Carta de Bebidas
+========================= */
+
+.drinks-page {
+  animation: fadeInUp 0.35s ease;
+}
+
+.drinks-hero {
+  padding: clamp(26px, 4vw, 44px);
+  border: 1px solid var(--border);
+  border-radius: 34px;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 243, 0.95), rgba(255, 255, 255, 0.76)),
+    radial-gradient(circle at top right, rgba(143, 29, 20, 0.14), transparent 38%),
+    radial-gradient(circle at bottom left, rgba(200, 155, 60, 0.18), transparent 34%);
+  box-shadow: var(--shadow);
+}
+
+.drinks-hero h2 {
+  max-width: 760px;
+}
+
+.drinks-hero p:last-child {
+  margin-bottom: 0;
+}
+
+.drinks-sections {
+  display: grid;
+  gap: 28px;
+  margin-top: 30px;
+}
+
+.drinks-section {
+  padding: clamp(20px, 3vw, 30px);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: var(--panel-strong);
+  box-shadow: 0 12px 34px rgba(42, 28, 20, 0.07);
+}
+
+.drinks-section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: end;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.drinks-section-heading h2 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1;
+}
+
+.drinks-section-heading .eyebrow {
+  max-width: 420px;
+  margin: 0;
+  text-align: right;
+}
+
+.drink-list {
+  display: grid;
+  gap: 10px;
+}
+
+.drink-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: center;
+  min-height: 58px;
+  padding: 14px 16px;
+  border: 1px solid rgba(42, 28, 20, 0.08);
+  border-radius: 16px;
+  background: rgba(248, 241, 231, 0.58);
+}
+
+.drink-row > span {
+  color: var(--text);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.drink-row > strong,
+.service-price-list strong,
+.cocktail-card strong {
+  color: var(--accent);
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.service-price-row {
+  align-items: start;
+}
+
+.service-price-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.service-price-list div {
+  display: grid;
+  gap: 4px;
+  text-align: right;
+}
+
+.service-price-list span {
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cocktail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cocktail-card {
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  border: 1px solid rgba(143, 29, 20, 0.12);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 243, 0.96), rgba(248, 241, 231, 0.68)),
+    radial-gradient(circle at top right, rgba(200, 155, 60, 0.14), transparent 34%);
+}
+
+.cocktail-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: start;
+}
+
+.cocktail-card h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.cocktail-ingredients {
+  margin: 0;
+  color: var(--accent-dark);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.cocktail-history {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+@media (max-width: 760px) {
+  .drinks-section-heading {
+    display: grid;
+    align-items: start;
+  }
+
+  .drinks-section-heading .eyebrow {
+    max-width: none;
+    text-align: left;
+  }
+
+  .cocktail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .drink-row,
+  .cocktail-card-top {
+    align-items: start;
+  }
+}
+
+@media (max-width: 520px) {
+  .drinks-hero,
+  .drinks-section {
+    border-radius: 24px;
+    padding: 20px;
+  }
+
+  .drink-row,
+  .service-price-row {
+    display: grid;
+    gap: 12px;
+  }
+
+  .drink-row > strong,
+  .service-price-list {
+    justify-self: end;
+  }
+
+  .service-price-list {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
