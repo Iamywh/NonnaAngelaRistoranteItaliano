@@ -54,23 +54,23 @@ export default function Home({ setCurrentPage }) {
           </div>
           <div>
             <strong>Martes</strong>
-            <span>12:30–15:00 / 19:30–22:45</span>
+            <span>12:30–15:30 / 19:30–22:45</span>
           </div>
           <div>
             <strong>Miércoles</strong>
-            <span>12:30–15:00 / 19:30–22:45</span>
+            <span>12:30–15:30 / 19:30–22:45</span>
           </div>
           <div>
             <strong>Jueves</strong>
-            <span>12:30–15:00 / 19:30–22:45</span>
+            <span>12:30–15:30 / 19:30–22:45</span>
           </div>
           <div>
             <strong>Viernes</strong>
-            <span>12:30–15:00 / 19:30–23:00</span>
+            <span>12:30–15:30 / 19:30–23:00</span>
           </div>
           <div>
             <strong>Sábado</strong>
-            <span>12:30–15:00 / 19:30–23:00</span>
+            <span>12:30–15:30 / 19:30–23:00</span>
           </div>
           <div>
             <strong>Domingo</strong>
