@@ -127,12 +127,12 @@ export default function ReservationsDashboard({ setCurrentPage }) {
 
     if (statusFilter !== 'all') {
       query = query.eq('status', statusFilter)
+    } else {
+      query = query.or('status.is.null,status.neq.completed')
     }
 
     if (dateFilter) {
       query = query.eq('reservation_date', dateFilter)
-    } else {
-      query = query.gte('reservation_date', todayValue)
     }
 
     const { data, error } = await query
@@ -195,6 +195,15 @@ export default function ReservationsDashboard({ setCurrentPage }) {
   const handleSelectDate = (dateValue) => {
     setSelectedDate(dateValue)
     setCalendarMonth(dateValue.slice(0, 7))
+  }
+
+  const handleDateFilterChange = (dateValue) => {
+    setDateFilter(dateValue)
+
+    if (dateValue) {
+      setSelectedDate(dateValue)
+      setCalendarMonth(dateValue.slice(0, 7))
+    }
   }
 
   return (
@@ -263,7 +272,7 @@ export default function ReservationsDashboard({ setCurrentPage }) {
             <input
               type="date"
               value={dateFilter}
-              onChange={(event) => setDateFilter(event.target.value)}
+              onChange={(event) => handleDateFilterChange(event.target.value)}
             />
             <small>El calendario es el filtro visual principal.</small>
           </label>
