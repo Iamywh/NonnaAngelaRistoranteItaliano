@@ -1,8 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../lib/supabaseClient.js'
 
 const menuStory =
   'En Italia, las mejores recetas no nacen en los restaurantes, sino alrededor de una mesa familiar. En Nonna Angela queremos compartir precisamente esa tradición: platos preparados con tiempo, ingredientes seleccionados y el cariño de la cocina de casa. Nuestra propuesta está inspirada en los sabores que han acompañado a generaciones de familias italianas: pastas artesanales, salsas cocinadas lentamente, embutidos, quesos y vinos cuidadosamente elegidos para acompañar cada momento. Más que un restaurante, queremos ser un lugar donde disfrutar sin prisas, compartir, brindar y sentirse como en casa. Benvenuti a Nonna Angela.'
+
+const SERVICE_CAPACITY = 30
+const CLOSED_STATUSES_FOR_CAPACITY = ['rejected', 'cancelled', 'completed', 'no_show']
+const SERVICE_FULL_MESSAGE =
+  'Las reservas online para este servicio están casi completas. Por favor, contacta directamente con el restaurante para comprobar disponibilidad.'
 
 const initialReservation = {
   customer_name: '',
@@ -60,12 +65,122 @@ function getReservationTimeSlots(dateValue) {
   ]
 }
 
+function getReservationService(timeValue) {
+  if (!timeValue) return null
+
+  const [hours, minutes] = timeValue.split(':').map(Number)
+  if (Number.isNaN(hours) || Number.isNaN(minutes)) return null
+
+  return hours * 60 + minutes < 17 * 60 ? 'lunch' : 'dinner'
+}
+
+function getServiceLabel(service) {
+  if (service === 'lunch') return 'mediodía'
+  if (service === 'dinner') return 'cena'
+  return 'servicio'
+}
+
+function countsForServiceCapacity(status) {
+  return !CLOSED_STATUSES_FOR_CAPACITY.includes(status)
+}
+
+async function getBookedGuestsForService(dateValue, timeValue) {
+  const service = getReservationService(timeValue)
+
+  if (!dateValue || !service) return 0
+
+  const { data, error } = await supabase
+    .from('reservations')
+    .select('reservation_time, guests, status')
+    .eq('reservation_date', dateValue)
+
+  if (error) throw error
+
+  return (data || [])
+    .filter((booking) => getReservationService(booking.reservation_time) === service)
+    .filter((booking) => countsForServiceCapacity(booking.status))
+    .reduce((total, booking) => total + Number(booking.guests || 0), 0)
+}
+
 export default function Locale() {
   const [reservation, setReservation] = useState(initialReservation)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState(null)
   const [error, setError] = useState(null)
+  const [serviceAvailability, setServiceAvailability] = useState(null)
+  const [isCheckingAvailability, setIsCheckingAvailability] = useState(false)
+  const [availabilityError, setAvailabilityError] = useState(null)
   const reservationTimeSlots = getReservationTimeSlots(reservation.reservation_date)
+  const selectedService = getReservationService(reservation.reservation_time)
+  const selectedGuests = Number(reservation.guests || 0)
+
+  const capacityStatus = useMemo(() => {
+    if (!serviceAvailability || !selectedService) {
+      return {
+        bookedGuests: 0,
+        remainingGuests: null,
+        isCapacityBlocking: false,
+      }
+    }
+
+    const bookedGuests = serviceAvailability.bookedGuests
+    const remainingGuests = Math.max(SERVICE_CAPACITY - bookedGuests, 0)
+
+    return {
+      bookedGuests,
+      remainingGuests,
+      isCapacityBlocking:
+        bookedGuests >= SERVICE_CAPACITY || bookedGuests + selectedGuests > SERVICE_CAPACITY,
+    }
+  }, [serviceAvailability, selectedGuests, selectedService])
+
+  useEffect(() => {
+    let shouldIgnore = false
+
+    const loadServiceAvailability = async () => {
+      setAvailabilityError(null)
+
+      if (!reservation.reservation_date || !reservation.reservation_time || !selectedService) {
+        setServiceAvailability(null)
+        return
+      }
+
+      setIsCheckingAvailability(true)
+
+      try {
+        const bookedGuests = await getBookedGuestsForService(
+          reservation.reservation_date,
+          reservation.reservation_time
+        )
+
+        if (!shouldIgnore) {
+          setServiceAvailability({
+            bookedGuests,
+            service: selectedService,
+          })
+        }
+      } catch (availabilityCheckError) {
+        console.error(availabilityCheckError)
+
+        if (!shouldIgnore) {
+          setServiceAvailability(null)
+          setAvailabilityError(
+            'No hemos podido comprobar la disponibilidad online. Inténtalo de nuevo o contacta directamente con el restaurante.'
+          )
+        }
+      } finally {
+        if (!shouldIgnore) {
+          setIsCheckingAvailability(false)
+        }
+      }
+    }
+
+    loadServiceAvailability()
+
+    return () => {
+      shouldIgnore = true
+    }
+  }, [reservation.reservation_date, reservation.reservation_time, selectedService])
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -102,6 +217,31 @@ export default function Locale() {
       return
     }
 
+    try {
+      const bookedGuests = await getBookedGuestsForService(
+        reservation.reservation_date,
+        reservation.reservation_time
+      )
+
+      setServiceAvailability({
+        bookedGuests,
+        service: getReservationService(reservation.reservation_time),
+      })
+
+      if (bookedGuests + Number(reservation.guests || 0) > SERVICE_CAPACITY) {
+        setError(SERVICE_FULL_MESSAGE)
+        setIsSubmitting(false)
+        return
+      }
+    } catch (availabilityCheckError) {
+      console.error(availabilityCheckError)
+      setError(
+        'No hemos podido comprobar la disponibilidad online. Inténtalo de nuevo o contacta directamente con el restaurante.'
+      )
+      setIsSubmitting(false)
+      return
+    }
+
     const payload = {
       customer_name: reservation.customer_name.trim(),
       customer_phone: reservation.customer_phone.trim(),
@@ -125,6 +265,7 @@ export default function Locale() {
     } else {
       setMessage('Solicitud recibida. La reserva será válida solo después de la confirmación del equipo de Nonna Angela.')
       setReservation(initialReservation)
+      setServiceAvailability(null)
     }
 
     setIsSubmitting(false)
@@ -281,6 +422,22 @@ export default function Locale() {
             </label>
           </div>
 
+          {isCheckingAvailability && (
+            <p className="form-message">Comprobando disponibilidad del servicio...</p>
+          )}
+
+          {!isCheckingAvailability && selectedService && capacityStatus.remainingGuests !== null && !capacityStatus.isCapacityBlocking && (
+            <p className="form-message success">
+              Disponibilidad online para {getServiceLabel(selectedService)}: quedan {capacityStatus.remainingGuests} plazas.
+            </p>
+          )}
+
+          {!isCheckingAvailability && selectedService && capacityStatus.isCapacityBlocking && (
+            <p className="form-message error">{SERVICE_FULL_MESSAGE}</p>
+          )}
+
+          {availabilityError && <p className="form-message error">{availabilityError}</p>}
+
           <label>
             Notas
             <textarea
@@ -292,7 +449,11 @@ export default function Locale() {
             />
           </label>
 
-          <button className="primary-button" type="submit" disabled={isSubmitting}>
+          <button
+            className="primary-button"
+            type="submit"
+            disabled={isSubmitting || isCheckingAvailability || capacityStatus.isCapacityBlocking}
+          >
             {isSubmitting ? 'Enviando...' : 'Enviar solicitud'}
           </button>
 
