@@ -26,9 +26,24 @@ function isBirthdayTrack(track) {
   return (
     mood.includes('cumple') ||
     mood.includes('birthday') ||
+    mood.includes('compleanno') ||
     title.includes('cumple') ||
-    title.includes('birthday')
+    title.includes('birthday') ||
+    title.includes('compleanno')
   )
+}
+
+function getRandomTrackIndex(tracks, currentIndex) {
+  if (!tracks.length) return 0
+  if (tracks.length === 1) return 0
+
+  let nextIndex = currentIndex
+
+  while (nextIndex === currentIndex) {
+    nextIndex = Math.floor(Math.random() * tracks.length)
+  }
+
+  return nextIndex
 }
 
 export default function MusicManager({ setCurrentPage }) {
@@ -39,6 +54,7 @@ export default function MusicManager({ setCurrentPage }) {
   const [isLoading, setIsLoading] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [volume, setVolume] = useState(0.7)
+  const [isShuffleEnabled, setIsShuffleEnabled] = useState(true)
   const [errorMessage, setErrorMessage] = useState('')
   const [playerMessage, setPlayerMessage] = useState('')
 
@@ -165,6 +181,12 @@ export default function MusicManager({ setCurrentPage }) {
     setPlayerMessage('')
   }
 
+  const toggleShuffle = () => {
+    setSpecialTrack(null)
+    setIsShuffleEnabled((enabled) => !enabled)
+    setPlayerMessage('')
+  }
+
   const goToPreviousTrack = () => {
     setSpecialTrack(null)
 
@@ -173,7 +195,10 @@ export default function MusicManager({ setCurrentPage }) {
       return
     }
 
-    setCurrentIndex((index) => (index === 0 ? regularTracks.length - 1 : index - 1))
+    setCurrentIndex((index) => {
+      if (isShuffleEnabled) return getRandomTrackIndex(regularTracks, index)
+      return index === 0 ? regularTracks.length - 1 : index - 1
+    })
     setPlayerMessage('')
   }
 
@@ -185,7 +210,10 @@ export default function MusicManager({ setCurrentPage }) {
       return
     }
 
-    setCurrentIndex((index) => (index + 1) % regularTracks.length)
+    setCurrentIndex((index) => {
+      if (isShuffleEnabled) return getRandomTrackIndex(regularTracks, index)
+      return (index + 1) % regularTracks.length
+    })
     setPlayerMessage('')
   }
 
@@ -219,111 +247,95 @@ export default function MusicManager({ setCurrentPage }) {
             <p className="eyebrow">Now playing</p>
             <h3>Ambiente sala</h3>
           </div>
-
-          <button className="ghost-button" type="button" onClick={loadTracks} disabled={isLoading}>
-            {isLoading ? 'Cargando...' : 'Actualizar'}
+          <button className="ghost-button" onClick={loadTracks} type="button" disabled={isLoading}>
+            {isLoading ? 'Cargando...' : 'Actualizar playlist'}
           </button>
         </div>
 
-        {birthdayTrack && (
-          <div className="birthday-action-bar">
-            <button
-              className="ghost-button small birthday-button"
-              type="button"
-              onClick={playBirthdayTrack}
-            >
-              🎂 Reproducir cumpleaños
+        {errorMessage && <p className="form-error">{errorMessage}</p>}
+
+        <div className="music-player-card">
+          <div>
+            <p className="eyebrow">{specialTrack ? 'Pista especial' : 'Pista actual'}</p>
+            <h3>{currentTrack?.title || 'Ninguna pista seleccionada'}</h3>
+            <p>{currentTrack?.artist || 'Selecciona una canción para comenzar.'}</p>
+          </div>
+
+          <div className="music-controls">
+            <button className="ghost-button" onClick={goToPreviousTrack} type="button" disabled={!regularTracks.length}>
+              ⏮
+            </button>
+            <button className="primary-button" onClick={handlePlayPause} type="button" disabled={!currentTrack}>
+              {isPlaying ? 'Pausar' : 'Reproducir'}
+            </button>
+            <button className="ghost-button" onClick={goToNextTrack} type="button" disabled={!regularTracks.length}>
+              ⏭
             </button>
           </div>
-        )}
 
-        {errorMessage && <p className="empty-state">Error: {errorMessage}</p>}
+          <div className="music-extra-controls">
+            <button
+              className={isShuffleEnabled ? 'primary-button' : 'ghost-button'}
+              onClick={toggleShuffle}
+              type="button"
+              disabled={!regularTracks.length}
+            >
+              {isShuffleEnabled ? '🔀 Shuffle activo' : '🔀 Shuffle'}
+            </button>
+            {birthdayTrack && (
+              <button className="ghost-button" onClick={playBirthdayTrack} type="button">
+                🎂 Reproducir cumpleaños
+              </button>
+            )}
+          </div>
 
-        {!isLoading && !errorMessage && regularTracks.length === 0 && !specialTrack && (
-          <p className="empty-state">No hay pistas de sala activas disponibles.</p>
-        )}
-
-        {currentTrack && (
-          <>
-            <div className="music-now-playing">
-              <div>
-                <span>{currentTrack.mood || 'Mood sin definir'}</span>
-                <h3>{currentTrack.title}</h3>
-                <p>{currentTrack.artist || 'Artista sin definir'}</p>
-              </div>
-              {currentTrack.duration_seconds && <strong>{formatDuration(currentTrack.duration_seconds)}</strong>}
-            </div>
-
-            <audio
-              ref={audioRef}
-              src={currentTrack.audio_url}
-              preload="metadata"
-              onEnded={handleAudioEnded}
-              onError={() => {
-                setIsPlaying(false)
-                setPlayerMessage('No se pudo cargar esta pista.')
-              }}
+          <label className="music-volume-control">
+            Volumen
+            <input
+              max="1"
+              min="0"
+              onChange={(event) => setVolume(Number(event.target.value))}
+              step="0.05"
+              type="range"
+              value={volume}
             />
+          </label>
 
-            <div className="music-controls">
-              <button className="ghost-button" type="button" onClick={goToPreviousTrack}>
-                Previous
-              </button>
-              <button className="primary-button" type="button" onClick={handlePlayPause}>
-                {isPlaying ? 'Pause' : 'Play'}
-              </button>
-              <button className="ghost-button" type="button" onClick={goToNextTrack}>
-                Next
-              </button>
-            </div>
+          {playerMessage && <p className="form-help">{playerMessage}</p>}
 
-            <label className="music-volume">
-              Volumen
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.01"
-                value={volume}
-                onChange={(event) => setVolume(Number(event.target.value))}
-              />
-              <span>{Math.round(volume * 100)}%</span>
-            </label>
-
-            {playerMessage && <p className="empty-state">{playerMessage}</p>}
-          </>
-        )}
-      </div>
-
-      {regularTracks.length > 0 && (
-        <div className="dashboard-panel">
-          <div>
-            <p className="eyebrow">Playlist</p>
-            <h3>Pistas activas</h3>
-          </div>
-
-          <div className="music-track-list">
-            {regularTracks.map((track, index) => (
-              <button
-                className={`music-track${!specialTrack && index === currentIndex ? ' active' : ''}`}
-                key={track.id}
-                type="button"
-                onClick={() => selectTrack(index)}
-              >
-                <span>{track.sort_order ?? index + 1}</span>
-                <div>
-                  <strong>{track.title}</strong>
-                  <small>
-                    {track.artist || 'Artista sin definir'}
-                    {track.mood ? ` · ${track.mood}` : ''}
-                  </small>
-                </div>
-                {track.duration_seconds && <b>{formatDuration(track.duration_seconds)}</b>}
-              </button>
-            ))}
-          </div>
+          <audio
+            ref={audioRef}
+            src={currentTrack?.audio_url || ''}
+            onEnded={handleAudioEnded}
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+          />
         </div>
-      )}
+
+        <div className="music-playlist-list">
+          {regularTracks.map((track, index) => {
+            const isActive = currentTrack?.id === track.id
+
+            return (
+              <button
+                className={`music-track-row ${isActive ? 'active' : ''}`}
+                key={track.id}
+                onClick={() => selectTrack(index)}
+                type="button"
+              >
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <strong>{track.title}</strong>
+                <small>{track.artist}</small>
+                <em>{formatDuration(track.duration_seconds)}</em>
+              </button>
+            )
+          })}
+
+          {!isLoading && !regularTracks.length && (
+            <p className="empty-state">No hay canciones activas en Supabase.</p>
+          )}
+        </div>
+      </div>
     </section>
   )
 }
