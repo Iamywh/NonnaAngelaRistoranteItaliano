@@ -1,0 +1,71 @@
+.reservation-summary-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  align-items: stretch;
+}
+
+.reservation-summary-card span,
+.reservation-summary-card small {
+  display: block;
+}
+
+.reservation-summary-card span {
+  margin-top: 8px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.reservation-summary-card small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.reservation-service-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.reservation-service-card::after {
+  content: '';
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  opacity: 0.12;
+}
+
+.reservation-service-card.lunch {
+  border-color: rgba(200, 155, 60, 0.32);
+  background:
+    radial-gradient(circle at top right, rgba(200, 155, 60, 0.16), transparent 34%),
+    var(--panel-strong);
+}
+
+.reservation-service-card.lunch::after {
+  background: var(--gold);
+}
+
+.reservation-service-card.dinner {
+  border-color: rgba(143, 29, 20, 0.24);
+  background:
+    radial-gradient(circle at top right, rgba(143, 29, 20, 0.12), transparent 34%),
+    var(--panel-strong);
+}
+
+.reservation-service-card.dinner::after {
+  background: var(--accent);
+}
+
+.reservation-service-card strong {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 720px) {
+  .reservation-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
