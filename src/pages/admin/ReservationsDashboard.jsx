@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../../lib/supabaseClient.js'
 import ReservationCalendar from '../../components/reservations/ReservationCalendar.jsx'
+import '../../styles/reservations-dashboard.css'
 
 const STATUS_OPTIONS = [
   { value: 'all', label: 'Todos' },
@@ -100,6 +101,19 @@ function sanitizeWhatsAppPhone(phone) {
   return String(phone || '').replace(/\D/g, '')
 }
 
+function getReservationService(timeValue) {
+  if (!timeValue) return 'outside'
+
+  const [hourValue] = String(timeValue).split(':')
+  const hour = Number(hourValue)
+
+  if (Number.isNaN(hour)) return 'outside'
+  if (hour >= 9 && hour <= 17) return 'lunch'
+  if (hour >= 18 || hour <= 1) return 'dinner'
+
+  return 'outside'
+}
+
 export default function ReservationsDashboard({ setCurrentPage }) {
   const todayValue = getTodayDateValue()
   const [reservations, setReservations] = useState([])
@@ -175,13 +189,34 @@ export default function ReservationsDashboard({ setCurrentPage }) {
         const dateKey = reservation.reservation_date
         if (!dateKey) return summary
 
+        const guestsCount = Number(reservation.guests || 0)
+        const service = getReservationService(reservation.reservation_time)
+
         summary.total += 1
-        summary.guests += Number(reservation.guests || 0)
+        summary.guests += guestsCount
         if (reservation.status === 'pending') summary.pending += 1
         if (reservation.status === 'confirmed') summary.confirmed += 1
+
+        if (service === 'lunch') {
+          summary.lunch.reservations += 1
+          summary.lunch.guests += guestsCount
+        }
+
+        if (service === 'dinner') {
+          summary.dinner.reservations += 1
+          summary.dinner.guests += guestsCount
+        }
+
         return summary
       },
-      { total: 0, guests: 0, pending: 0, confirmed: 0 }
+      {
+        total: 0,
+        guests: 0,
+        pending: 0,
+        confirmed: 0,
+        lunch: { reservations: 0, guests: 0 },
+        dinner: { reservations: 0, guests: 0 },
+      }
     )
   }, [reservations])
 
@@ -244,6 +279,18 @@ export default function ReservationsDashboard({ setCurrentPage }) {
         <article className="reservation-summary-card">
           <p>Confirmadas</p>
           <strong>{reservationSummary.confirmed}</strong>
+        </article>
+        <article className="reservation-summary-card reservation-service-card lunch">
+          <p>Pranzo</p>
+          <strong>{reservationSummary.lunch.reservations}</strong>
+          <span>{reservationSummary.lunch.guests} personas</span>
+          <small>09:00–17:00</small>
+        </article>
+        <article className="reservation-summary-card reservation-service-card dinner">
+          <p>Cena</p>
+          <strong>{reservationSummary.dinner.reservations}</strong>
+          <span>{reservationSummary.dinner.guests} personas</span>
+          <small>18:00–01:00</small>
         </article>
       </div>
 
