@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { supabase } from '../../lib/supabaseClient.js'
+import '../../styles/music-manager.css'
 
 const MUSIC_BUCKET = 'restaurant-music'
 
