@@ -225,7 +225,13 @@ export default function MusicManager({ setCurrentPage }) {
       return
     }
 
+    setIsPlaying(true)
     goToNextTrack()
+  }
+
+  const handleAudioPause = () => {
+    if (audioRef.current?.ended) return
+    setIsPlaying(false)
   }
 
   return (
@@ -309,7 +315,7 @@ export default function MusicManager({ setCurrentPage }) {
             src={currentTrack?.audio_url || ''}
             onEnded={handleAudioEnded}
             onPlay={() => setIsPlaying(true)}
-            onPause={() => setIsPlaying(false)}
+            onPause={handleAudioPause}
           />
         </div>
 
