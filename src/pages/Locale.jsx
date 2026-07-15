@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabaseClient.js'
 const menuStory =
   'En Italia, las mejores recetas no nacen en los restaurantes, sino alrededor de una mesa familiar. En Nonna Angela queremos compartir precisamente esa tradición: platos preparados con tiempo, ingredientes seleccionados y el cariño de la cocina de casa. Nuestra propuesta está inspirada en los sabores que han acompañado a generaciones de familias italianas: pastas artesanales, salsas cocinadas lentamente, embutidos, quesos y vinos cuidadosamente elegidos para acompañar cada momento. Más que un restaurante, queremos ser un lugar donde disfrutar sin prisas, compartir, brindar y sentirse como en casa. Benvenuti a Nonna Angela.'
 
-const SERVICE_CAPACITY = 30
+const SERVICE_CAPACITY = 50
 const CLOSED_STATUSES_FOR_CAPACITY = ['rejected', 'cancelled', 'completed', 'no_show']
 const SERVICE_FULL_MESSAGE =
   'Las reservas online para este servicio están casi completas. Por favor, contacta directamente con el restaurante para comprobar disponibilidad.'
