@@ -159,36 +159,35 @@
     },
 
     {
-      "id": "hugo-spritz",
-      "name": "Hugo Spritz",
+      "id": "limoncello-spritz",
+      "name": "Limoncello Spritz",
       "category": "Spritz",
-      "origin": "Nord Italia",
+      "origin": "Italia mediterranea",
       "glass": "Wine Glass",
       "served_with_ice": true,
       "ingredients": [
         "Prosecco",
-        "Sambuco",
-        "Lime",
-        "Menta",
-        "Soda"
+        "Limoncello",
+        "Soda",
+        "Basilico"
       ],
       "garnish": [
-        "Menta fresca",
-        "Lime"
+        "Basilico fresco"
       ],
       "flavor_profile": [
-        "Floreale",
+        "Agrumato",
         "Fresco",
-        "Estivo",
-        "Leggero"
+        "Frizzante",
+        "Mediterraneo"
       ],
       "alcohol_level": "Medium",
-      "recommended_price": 8.5,
-      "description": "Aperitivo floreale e fresco diventato simbolo dell'estate italiana.",
+      "recommended_price": 9,
+      "description": "Spritz fresco e mediterraneo con limoncello, prosecco, soda e basilico.",
       "pairing": [
         "Burrata",
-        "Crudité",
-        "Insalate premium"
+        "Caprese",
+        "Bruschette",
+        "Aperitivo italiano"
       ],
       "available": true
     }
