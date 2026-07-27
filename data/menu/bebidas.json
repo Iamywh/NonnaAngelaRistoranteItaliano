@@ -103,6 +103,16 @@
           "id": "jarra",
           "name": "Jarra",
           "price": 4
+        },
+        {
+          "id": "mahou-tostada-00",
+          "name": "Mahou Tostada 0.0",
+          "price": 3.2
+        },
+        {
+          "id": "mahou-sin-gluten",
+          "name": "Mahou Sin Gluten",
+          "price": 3.2
         }
       ]
     },
@@ -135,17 +145,16 @@
           "history": "Nacido en el norte de Italia, el Spritz une la tradición veneciana del aperitivo con el carácter cítrico y ligero del Aperol."
         },
         {
-          "id": "hugo-spritz",
-          "name": "Hugo Spritz",
+          "id": "limoncello-spritz",
+          "name": "Limoncello Spritz",
           "price": 9,
           "ingredients": [
             "Prosecco",
-            "flor de saúco",
+            "limoncello",
             "soda",
-            "menta",
-            "lima"
+            "basilico"
           ],
-          "history": "Una versión alpina y aromática del Spritz, originaria del Alto Adige, fresca, floral y muy elegante."
+          "history": "Una versión luminosa y mediterránea del Spritz, con el carácter cítrico del limoncello, burbujas y un toque aromático de basilico."
         },
         {
           "id": "negroni",
@@ -231,6 +240,22 @@
         {
           "id": "grappa-barricata",
           "name": "Grappa barricata",
+          "prices": {
+            "copa": 6,
+            "chupito": 3
+          }
+        },
+        {
+          "id": "amaretto-disaronno",
+          "name": "Amaretto Disaronno",
+          "prices": {
+            "copa": 6,
+            "chupito": 3
+          }
+        },
+        {
+          "id": "ron-zacapa-23",
+          "name": "Ron Zacapa 23",
           "prices": {
             "copa": 6,
             "chupito": 3
