@@ -1,6 +1,7 @@
 import React from 'react'
 
 import bebidas from '../../data/menu/bebidas.json'
+import '../styles/bebidas-mobile.css'
 
 function formatPrice(price) {
   return `${price.toFixed(2).replace('.', ',')}€`
