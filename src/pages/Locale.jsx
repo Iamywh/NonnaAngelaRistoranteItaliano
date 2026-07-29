@@ -5,9 +5,12 @@ const menuStory =
   'En Italia, las mejores recetas no nacen en los restaurantes, sino alrededor de una mesa familiar. En Nonna Angela queremos compartir precisamente esa tradición: platos preparados con tiempo, ingredientes seleccionados y el cariño de la cocina de casa. Nuestra propuesta está inspirada en los sabores que han acompañado a generaciones de familias italianas: pastas artesanales, salsas cocinadas lentamente, embutidos, quesos y vinos cuidadosamente elegidos para acompañar cada momento. Más que un restaurante, queremos ser un lugar donde disfrutar sin prisas, compartir, brindar y sentirse como en casa. Benvenuti a Nonna Angela.'
 
 const SERVICE_CAPACITY = 50
+const CLOSED_RESERVATION_DAYS = [0, 1]
 const CLOSED_STATUSES_FOR_CAPACITY = ['rejected', 'cancelled', 'completed', 'no_show']
 const SERVICE_FULL_MESSAGE =
   'Las reservas online para este servicio están casi completas. Por favor, contacta directamente con el restaurante para comprobar disponibilidad.'
+const CLOSED_DAY_MESSAGE =
+  'El restaurante permanece cerrado los domingos y lunes. Por favor, selecciona otra fecha para tu reserva.'
 
 const initialReservation = {
   customer_name: '',
@@ -48,6 +51,12 @@ function getDayFromDateValue(dateValue) {
   return new Date(year, month - 1, day).getDay()
 }
 
+function isClosedReservationDate(dateValue) {
+  const day = getDayFromDateValue(dateValue)
+
+  return day !== null && CLOSED_RESERVATION_DAYS.includes(day)
+}
+
 function isFridayOrSaturday(dateValue) {
   const day = getDayFromDateValue(dateValue)
 
@@ -55,7 +64,7 @@ function isFridayOrSaturday(dateValue) {
 }
 
 function getReservationTimeSlots(dateValue) {
-  if (!dateValue) return []
+  if (!dateValue || isClosedReservationDate(dateValue)) return []
 
   const lastDinnerSlot = isFridayOrSaturday(dateValue) ? '22:45' : '22:30'
 
@@ -111,6 +120,7 @@ export default function Locale() {
   const [isCheckingAvailability, setIsCheckingAvailability] = useState(false)
   const [availabilityError, setAvailabilityError] = useState(null)
   const reservationTimeSlots = getReservationTimeSlots(reservation.reservation_date)
+  const isReservationDateClosed = isClosedReservationDate(reservation.reservation_date)
   const selectedService = getReservationService(reservation.reservation_time)
   const selectedGuests = Number(reservation.guests || 0)
 
@@ -210,6 +220,12 @@ export default function Locale() {
     setIsSubmitting(true)
     setMessage(null)
     setError(null)
+
+    if (isClosedReservationDate(reservation.reservation_date)) {
+      setError(CLOSED_DAY_MESSAGE)
+      setIsSubmitting(false)
+      return
+    }
 
     if (!getReservationTimeSlots(reservation.reservation_date).includes(reservation.reservation_time)) {
       setError('Selecciona una hora disponible para la fecha elegida.')
@@ -376,13 +392,15 @@ export default function Locale() {
                 name="reservation_time"
                 value={reservation.reservation_time}
                 onChange={handleChange}
-                disabled={!reservation.reservation_date}
+                disabled={!reservation.reservation_date || isReservationDateClosed}
                 required
               >
                 <option value="">
-                  {reservation.reservation_date
-                    ? 'Selecciona una hora'
-                    : 'Selecciona primero una fecha'}
+                  {!reservation.reservation_date
+                    ? 'Selecciona primero una fecha'
+                    : isReservationDateClosed
+                      ? 'Cerrado domingos y lunes'
+                      : 'Selecciona una hora'}
                 </option>
                 {reservationTimeSlots.map((time) => (
                   <option key={time} value={time}>
@@ -392,6 +410,10 @@ export default function Locale() {
               </select>
             </label>
           </div>
+
+          {isReservationDateClosed && (
+            <p className="form-message error">{CLOSED_DAY_MESSAGE}</p>
+          )}
 
           <div className="form-row">
             <label>
@@ -452,7 +474,12 @@ export default function Locale() {
           <button
             className="primary-button"
             type="submit"
-            disabled={isSubmitting || isCheckingAvailability || capacityStatus.isCapacityBlocking}
+            disabled={
+              isSubmitting ||
+              isCheckingAvailability ||
+              isReservationDateClosed ||
+              capacityStatus.isCapacityBlocking
+            }
           >
             {isSubmitting ? 'Enviando...' : 'Enviar solicitud'}
           </button>
