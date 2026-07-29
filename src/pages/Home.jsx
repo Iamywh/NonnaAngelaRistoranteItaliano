@@ -15,7 +15,7 @@ export default function Home({ setCurrentPage }) {
         <h2>Nonna Angela</h2>
         <p>
           Un restaurante italiano creado alrededor de recetas sinceras,
-          servicio cuidado y platos que hablan de casa, domingo y tradición.
+          servicio cuidado y platos que hablan de casa y tradición.
         </p>
 
         <div className="hero-actions">
@@ -74,10 +74,10 @@ export default function Home({ setCurrentPage }) {
           </div>
           <div>
             <strong>Domingo</strong>
-            <span>12:30–16:00</span>
+            <span>Cerrado</span>
           </div>
         </div>
-        <span>Te recomendamos reservar.</span>
+        <span>Te recomendamos reservar. Cerrado domingo y lunes.</span>
         <button className="ghost-button" type="button" onClick={goToReservations}>
           Reservar mesa
         </button>
