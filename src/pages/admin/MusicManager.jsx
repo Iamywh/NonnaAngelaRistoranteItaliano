@@ -3,6 +3,14 @@ import { supabase } from '../../lib/supabaseClient.js'
 import '../../styles/music-manager.css'
 
 const MUSIC_BUCKET = 'restaurant-music'
+const VOLUME_LEVELER_SETTINGS = {
+  threshold: -26,
+  knee: 24,
+  ratio: 8,
+  attack: 0.005,
+  release: 0.28,
+  makeupGain: 1.28,
+}
 
 function getTrackUrl(track) {
   if (track.public_url) return track.public_url
@@ -49,6 +57,10 @@ function getRandomTrackIndex(tracks, currentIndex) {
 
 export default function MusicManager({ setCurrentPage }) {
   const audioRef = useRef(null)
+  const audioContextRef = useRef(null)
+  const audioSourceRef = useRef(null)
+  const compressorRef = useRef(null)
+  const makeupGainRef = useRef(null)
   const [tracks, setTracks] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [specialTrack, setSpecialTrack] = useState(null)
@@ -56,6 +68,7 @@ export default function MusicManager({ setCurrentPage }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [volume, setVolume] = useState(0.7)
   const [isShuffleEnabled, setIsShuffleEnabled] = useState(true)
+  const [isVolumeLevelingEnabled, setIsVolumeLevelingEnabled] = useState(true)
   const [errorMessage, setErrorMessage] = useState('')
   const [playerMessage, setPlayerMessage] = useState('')
 
@@ -73,6 +86,65 @@ export default function MusicManager({ setCurrentPage }) {
     () => specialTrack || regularTracks[currentIndex] || null,
     [specialTrack, regularTracks, currentIndex]
   )
+
+  const createAudioGraph = async () => {
+    const audioElement = audioRef.current
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext
+
+    if (!audioElement || !AudioContextClass) return
+
+    if (!audioContextRef.current) {
+      audioContextRef.current = new AudioContextClass()
+    }
+
+    const audioContext = audioContextRef.current
+
+    if (audioContext.state === 'suspended') {
+      await audioContext.resume()
+    }
+
+    if (!audioSourceRef.current) {
+      audioSourceRef.current = audioContext.createMediaElementSource(audioElement)
+    }
+
+    if (!compressorRef.current) {
+      const compressor = audioContext.createDynamicsCompressor()
+      compressor.threshold.value = VOLUME_LEVELER_SETTINGS.threshold
+      compressor.knee.value = VOLUME_LEVELER_SETTINGS.knee
+      compressor.ratio.value = VOLUME_LEVELER_SETTINGS.ratio
+      compressor.attack.value = VOLUME_LEVELER_SETTINGS.attack
+      compressor.release.value = VOLUME_LEVELER_SETTINGS.release
+      compressorRef.current = compressor
+    }
+
+    if (!makeupGainRef.current) {
+      const makeupGain = audioContext.createGain()
+      makeupGain.gain.value = VOLUME_LEVELER_SETTINGS.makeupGain
+      makeupGainRef.current = makeupGain
+    }
+
+    audioSourceRef.current.disconnect()
+    compressorRef.current.disconnect()
+    makeupGainRef.current.disconnect()
+
+    if (isVolumeLevelingEnabled) {
+      audioSourceRef.current
+        .connect(compressorRef.current)
+        .connect(makeupGainRef.current)
+        .connect(audioContext.destination)
+    } else {
+      audioSourceRef.current.connect(audioContext.destination)
+    }
+  }
+
+  const setupAudioGraph = async () => {
+    try {
+      await createAudioGraph()
+    } catch (error) {
+      console.error(error)
+      setPlayerMessage('El nivelador de volumen no se pudo activar. La reproducción seguirá en modo normal.')
+    }
+  }
 
   const playBirthdayTrack = () => {
     if (!birthdayTrack) return
@@ -134,17 +206,29 @@ export default function MusicManager({ setCurrentPage }) {
   }, [currentIndex, regularTracks.length])
 
   useEffect(() => {
+    if (!audioSourceRef.current) return
+
+    setupAudioGraph()
+  }, [isVolumeLevelingEnabled])
+
+  useEffect(() => {
     if (!audioRef.current || !currentTrack || !isPlaying) return
 
-    audioRef.current
-      .play()
-      .then(() => {
-        setPlayerMessage('')
-      })
-      .catch((error) => {
-        setIsPlaying(false)
-        setPlayerMessage(error.message || 'No se pudo iniciar la reproducción.')
-      })
+    const startPlayback = async () => {
+      await setupAudioGraph()
+
+      audioRef.current
+        .play()
+        .then(() => {
+          setPlayerMessage('')
+        })
+        .catch((error) => {
+          setIsPlaying(false)
+          setPlayerMessage(error.message || 'No se pudo iniciar la reproducción.')
+        })
+    }
+
+    startPlayback()
   }, [currentTrack, isPlaying])
 
   const playCurrentTrack = async () => {
@@ -153,6 +237,7 @@ export default function MusicManager({ setCurrentPage }) {
     setPlayerMessage('')
 
     try {
+      await setupAudioGraph()
       await audioRef.current.play()
       setIsPlaying(true)
     } catch (error) {
@@ -185,6 +270,11 @@ export default function MusicManager({ setCurrentPage }) {
   const toggleShuffle = () => {
     setSpecialTrack(null)
     setIsShuffleEnabled((enabled) => !enabled)
+    setPlayerMessage('')
+  }
+
+  const toggleVolumeLeveling = () => {
+    setIsVolumeLevelingEnabled((enabled) => !enabled)
     setPlayerMessage('')
   }
 
@@ -289,6 +379,14 @@ export default function MusicManager({ setCurrentPage }) {
             >
               {isShuffleEnabled ? '🔀 Shuffle activo' : '🔀 Shuffle'}
             </button>
+            <button
+              className={isVolumeLevelingEnabled ? 'primary-button' : 'ghost-button'}
+              onClick={toggleVolumeLeveling}
+              type="button"
+              disabled={!currentTrack}
+            >
+              {isVolumeLevelingEnabled ? '🎚 Nivelador activo' : '🎚 Nivelador'}
+            </button>
             {birthdayTrack && (
               <button className="ghost-button" onClick={playBirthdayTrack} type="button">
                 🎂 Reproducir cumpleaños
@@ -312,6 +410,7 @@ export default function MusicManager({ setCurrentPage }) {
 
           <audio
             ref={audioRef}
+            crossOrigin="anonymous"
             src={currentTrack?.audio_url || ''}
             onEnded={handleAudioEnded}
             onPlay={() => setIsPlaying(true)}
