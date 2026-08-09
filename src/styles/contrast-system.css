@@ -1,20 +1,25 @@
-/* Contrast system: coherent premium readability rules
-   - dark/warm surfaces use gold + warm ivory
-   - light surfaces use elegant dark ink
+/* High contrast premium system
+   Dark surfaces: gold headings + ivory body.
+   Light surfaces: elegant dark ink.
 */
 :root {
-  --ink-dark: #1d120d;
-  --ink-soft: #3a2a21;
-  --premium-gold-text: #e8c77f;
-  --premium-gold-soft: #d9bb78;
-  --premium-ivory-text: #fff1dc;
-  --premium-muted-light: #e4d7c4;
-  --premium-dark-card: #1a0f0c;
-  --premium-dark-card-2: #2a1812;
-  --premium-light-card: #fff6e8;
+  --ink-dark: #180f0b;
+  --ink-soft: #33231a;
+  --premium-gold-text: #f5d68d;
+  --premium-gold-soft: #e2bf75;
+  --premium-ivory-text: #fff8ec;
+  --premium-muted-light: #f0e2cc;
+  --premium-dark-card: #160c09;
+  --premium-dark-card-2: #26140f;
+  --premium-dark-card-3: #3a2117;
+  --premium-light-card: #fff4df;
 }
 
-/* Dark premium cards: never use black text on brown/dark backgrounds */
+body {
+  color: var(--premium-ivory-text) !important;
+}
+
+/* Every premium/dark card must have a clearly dark base, never silver/grey */
 .hero-card,
 .info-grid article,
 .menu-section-card,
@@ -30,10 +35,20 @@
 .manager-modal,
 .music-player-card,
 .music-track-row,
-.reservation-pending-alert {
+.music-track,
+.music-now-playing,
+.reservation-pending-alert,
+.agent-window {
+  background:
+    radial-gradient(circle at top left, rgba(245, 214, 141, 0.12), transparent 34%),
+    radial-gradient(circle at top right, rgba(143, 29, 44, 0.18), transparent 36%),
+    linear-gradient(145deg, var(--premium-dark-card-3), var(--premium-dark-card-2) 48%, var(--premium-dark-card)) !important;
+  border-color: rgba(245, 214, 141, 0.34) !important;
   color: var(--premium-ivory-text) !important;
+  box-shadow: 0 0 0 1px rgba(245, 214, 141, 0.10), 0 26px 80px rgba(0, 0, 0, 0.42) !important;
 }
 
+/* Dark backgrounds: important words in gold */
 .hero-card h3,
 .info-grid article h3,
 .menu-section-card h3,
@@ -48,11 +63,17 @@
 .food-menu-renovation-card h2,
 .manager-modal h3,
 .music-player-card h3,
+.music-now-playing h3,
 .music-track-row strong,
-.reservation-pending-alert h3 {
+.music-track strong,
+.reservation-pending-alert h3,
+.agent-header h3,
+.agent-form-title,
+.reservation-match-card strong {
   color: var(--premium-gold-text) !important;
 }
 
+/* Dark backgrounds: paragraph/detail text in readable ivory, not black or weak grey */
 .hero-card p,
 .hero-card span,
 .info-grid article p,
@@ -72,9 +93,17 @@
 .confirmation-channel-card small,
 .risk-item span,
 .music-player-card p,
+.music-now-playing p,
 .music-track-row small,
 .music-track-row em,
-.reservation-pending-alert p {
+.music-track small,
+.music-track span,
+.music-track b,
+.reservation-pending-alert p,
+.agent-header p,
+.agent-message.bot,
+.agent-form-title,
+.reservation-match-card span {
   color: var(--premium-muted-light) !important;
 }
 
@@ -83,11 +112,69 @@
 .admin-module span,
 .reservation-actions-block p,
 .service-actions-block p,
-.music-volume-control {
+.music-volume-control,
+.music-now-playing span {
   color: var(--premium-gold-soft) !important;
 }
 
-/* Light utility surfaces: when a card is intentionally light, text becomes elegant dark */
+/* Buttons */
+.primary-button,
+.agent-input-form button,
+.booking-form button {
+  background: linear-gradient(135deg, #f5d68d, #d4a84f 58%, #9b5b22) !important;
+  color: #150b08 !important;
+  border: 1px solid rgba(255, 238, 190, 0.46) !important;
+}
+
+.ghost-button,
+.back-button,
+.admin-toggle,
+.agent-topic-options button,
+.agent-promoted-topics button,
+.reservation-match-card {
+  background: rgba(255, 248, 236, 0.08) !important;
+  border: 1px solid rgba(245, 214, 141, 0.32) !important;
+  color: var(--premium-gold-text) !important;
+}
+
+/* Form controls on dark cards */
+input,
+select,
+textarea,
+.agent-input-form input {
+  background: rgba(255, 248, 236, 0.10) !important;
+  border: 1px solid rgba(245, 214, 141, 0.34) !important;
+  color: var(--premium-ivory-text) !important;
+}
+
+input::placeholder,
+textarea::placeholder,
+.agent-input-form input::placeholder {
+  color: rgba(255, 248, 236, 0.62) !important;
+}
+
+select option {
+  background: #160c09 !important;
+  color: var(--premium-ivory-text) !important;
+}
+
+/* Active/hover music rows */
+.music-track-row:hover,
+.music-track:hover,
+.music-track-row.active,
+.music-track.active {
+  background:
+    radial-gradient(circle at top left, rgba(245, 214, 141, 0.18), transparent 34%),
+    linear-gradient(145deg, #462719, #24120d 70%) !important;
+  border-color: rgba(245, 214, 141, 0.56) !important;
+}
+
+.music-track-row span {
+  background: rgba(245, 214, 141, 0.16) !important;
+  color: var(--premium-gold-text) !important;
+}
+
+/* Light surfaces: dark elegant text */
 .cookie-banner,
 .cookie-banner p,
 .cookie-banner strong,
@@ -99,14 +186,22 @@
   color: var(--ink-dark) !important;
 }
 
-/* Form controls remain readable in the dark theme */
-input,
-select,
-textarea {
-  color: var(--premium-ivory-text) !important;
+.cookie-banner .ghost-button {
+  color: var(--ink-dark) !important;
 }
 
-select option {
-  background: #170d0b !important;
-  color: var(--premium-ivory-text) !important;
+.form-message.success,
+.agent-inline-status.success {
+  background: rgba(127, 189, 131, 0.16) !important;
+  border-color: rgba(127, 189, 131, 0.34) !important;
+  color: #d9ffdc !important;
+}
+
+.form-message.error,
+.form-error,
+.manager-error,
+.agent-inline-status.error {
+  background: rgba(143, 29, 44, 0.20) !important;
+  border-color: rgba(255, 181, 173, 0.30) !important;
+  color: #ffd0ca !important;
 }
