@@ -3,18 +3,21 @@
   gap: 18px;
   padding: 24px;
   border-radius: 28px;
-  background: linear-gradient(135deg, rgba(143, 29, 20, 0.06), rgba(200, 155, 60, 0.08));
-  border: 1px solid rgba(143, 29, 20, 0.12);
+  background:
+    radial-gradient(circle at top right, rgba(214, 173, 99, 0.14), transparent 34%),
+    linear-gradient(145deg, rgba(42, 24, 18, 0.98), rgba(18, 10, 8, 0.98));
+  border: 1px solid rgba(214, 173, 99, 0.22);
+  box-shadow: 0 0 0 1px rgba(214, 173, 99, 0.1), 0 24px 60px rgba(0, 0, 0, 0.28);
 }
 
 .music-player-card > div:first-child h3 {
   margin: 0 0 6px;
-  color: var(--accent-dark);
+  color: #e8c77f;
 }
 
 .music-player-card > div:first-child p:last-child {
   margin: 0;
-  color: var(--muted);
+  color: #e4d7c4;
 }
 
 .music-controls,
@@ -40,13 +43,13 @@
   grid-template-columns: auto minmax(180px, 320px);
   gap: 12px;
   align-items: center;
-  color: var(--muted);
+  color: #d9bb78;
   font-weight: 800;
 }
 
 .music-volume-control input {
   width: 100%;
-  accent-color: var(--accent);
+  accent-color: #d6ad63;
 }
 
 .music-playlist-list {
@@ -68,13 +71,15 @@
   row-gap: 4px;
   align-items: center;
   padding: 14px 16px;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(214, 173, 99, 0.22);
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.88);
-  color: var(--text);
+  background:
+    radial-gradient(circle at top right, rgba(214, 173, 99, 0.12), transparent 42%),
+    linear-gradient(145deg, rgba(57, 33, 24, 0.96), rgba(24, 14, 11, 0.98));
+  color: #fff1dc;
   text-align: left;
   cursor: pointer;
-  box-shadow: 0 10px 24px rgba(42, 28, 20, 0.06);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -84,14 +89,16 @@
 
 .music-track-row:hover {
   transform: translateY(-2px);
-  border-color: rgba(143, 29, 20, 0.32);
-  box-shadow: 0 16px 32px rgba(42, 28, 20, 0.1);
+  border-color: rgba(232, 199, 127, 0.48);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
 }
 
 .music-track-row.active {
-  background: rgba(143, 29, 20, 0.08);
-  border-color: rgba(143, 29, 20, 0.42);
-  box-shadow: inset 0 0 0 1px rgba(143, 29, 20, 0.12), 0 16px 34px rgba(143, 29, 20, 0.12);
+  background:
+    radial-gradient(circle at top right, rgba(232, 199, 127, 0.18), transparent 42%),
+    linear-gradient(145deg, rgba(94, 50, 25, 0.98), rgba(44, 22, 15, 0.98));
+  border-color: rgba(232, 199, 127, 0.62);
+  box-shadow: inset 0 0 0 1px rgba(232, 199, 127, 0.18), 0 20px 42px rgba(0, 0, 0, 0.32);
 }
 
 .music-track-row span {
@@ -102,8 +109,8 @@
   width: 38px;
   height: 38px;
   border-radius: 14px;
-  background: rgba(143, 29, 20, 0.08);
-  color: var(--accent);
+  background: rgba(232, 199, 127, 0.14);
+  color: #e8c77f;
   font-weight: 900;
   font-size: 0.9rem;
 }
@@ -112,7 +119,7 @@
   grid-area: title;
   min-width: 0;
   display: block;
-  color: var(--text);
+  color: #e8c77f;
   font-size: 0.98rem;
   line-height: 1.25;
   overflow: hidden;
@@ -124,7 +131,7 @@
   grid-area: artist;
   min-width: 0;
   display: block;
-  color: var(--muted);
+  color: #e4d7c4;
   font-size: 0.82rem;
   font-weight: 700;
   line-height: 1.2;
@@ -135,7 +142,7 @@
 
 .music-track-row em {
   grid-area: duration;
-  color: var(--gold);
+  color: #d9bb78;
   font-size: 0.78rem;
   font-style: normal;
   font-weight: 900;
