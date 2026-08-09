@@ -1,0 +1,136 @@
+.reservation-process-list {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding-left: 22px;
+  color: var(--muted);
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.phone-field {
+  min-width: 0;
+}
+
+.phone-input-grid {
+  display: grid;
+  grid-template-columns: minmax(116px, 0.38fr) minmax(0, 1fr);
+  gap: 10px;
+}
+
+.confirmation-channel-fieldset {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.confirmation-channel-fieldset legend {
+  margin-bottom: 10px;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.confirmation-channel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.confirmation-channel-card {
+  position: relative;
+  display: grid;
+  gap: 5px;
+  min-height: 92px;
+  padding: 16px 16px 16px 46px;
+  border: 1px solid rgba(42, 28, 20, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 250, 243, 0.86);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.confirmation-channel-card:hover,
+.confirmation-channel-card.selected {
+  transform: translateY(-1px);
+  border-color: rgba(143, 29, 20, 0.32);
+  background: rgba(143, 29, 20, 0.06);
+  box-shadow: 0 12px 26px rgba(42, 28, 20, 0.08);
+}
+
+.confirmation-channel-card input {
+  position: absolute;
+  left: 16px;
+  top: 18px;
+  width: auto;
+  accent-color: var(--accent);
+}
+
+.confirmation-channel-card span {
+  color: var(--accent-dark);
+  font-weight: 900;
+}
+
+.confirmation-channel-card small,
+.form-helper {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.form-helper {
+  margin: -4px 0 2px;
+}
+
+.form-helper.strong {
+  padding: 12px 14px;
+  border: 1px solid rgba(200, 155, 60, 0.24);
+  border-radius: 16px;
+  background: rgba(255, 248, 232, 0.72);
+  color: var(--accent-dark);
+}
+
+.guest-stepper {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) 46px;
+  gap: 8px;
+  align-items: center;
+}
+
+.guest-stepper button {
+  min-height: 48px;
+  border: 1px solid rgba(143, 29, 20, 0.16);
+  border-radius: 14px;
+  background: rgba(143, 29, 20, 0.07);
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.guest-stepper button:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.guest-stepper input {
+  text-align: center;
+  font-weight: 900;
+}
+
+@media (max-width: 720px) {
+  .phone-input-grid,
+  .confirmation-channel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guest-stepper {
+    grid-template-columns: 52px minmax(0, 1fr) 52px;
+  }
+}
