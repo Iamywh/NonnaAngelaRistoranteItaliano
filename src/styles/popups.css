@@ -1,0 +1,157 @@
+.cookie-consent {
+  position: fixed;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 20px;
+  border: 1px solid rgba(214, 173, 99, 0.24);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(214, 173, 99, 0.16), transparent 30%),
+    rgba(22, 13, 11, 0.94);
+  color: var(--text);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.46);
+  backdrop-filter: blur(18px);
+}
+
+.cookie-consent h3 {
+  margin: 0 0 6px;
+  color: #fff2dc;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.45rem;
+}
+
+.cookie-consent p {
+  margin: 0;
+  color: rgba(255, 243, 223, 0.72);
+  line-height: 1.55;
+}
+
+.cookie-consent-actions,
+.welcome-popup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cookie-consent-actions {
+  flex-shrink: 0;
+}
+
+.welcome-popup-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(8, 5, 4, 0.58);
+  backdrop-filter: blur(8px);
+}
+
+.welcome-popup-card {
+  position: relative;
+  width: min(520px, 100%);
+  padding: 34px;
+  border: 1px solid rgba(214, 173, 99, 0.28);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at top right, rgba(214, 173, 99, 0.18), transparent 35%),
+    radial-gradient(circle at bottom left, rgba(143, 29, 44, 0.22), transparent 38%),
+    linear-gradient(145deg, rgba(38, 21, 18, 0.98), rgba(13, 8, 7, 0.98));
+  box-shadow: 0 36px 110px rgba(0, 0, 0, 0.52);
+  color: var(--text);
+  overflow: hidden;
+}
+
+.welcome-popup-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 233, 198, 0.42), transparent 38%, rgba(143, 29, 44, 0.5));
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.welcome-popup-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(214, 173, 99, 0.18);
+  border-radius: 50%;
+  background: rgba(255, 246, 232, 0.07);
+  color: #ffe6b4;
+  cursor: pointer;
+  font-size: 1.35rem;
+}
+
+.welcome-popup-mark {
+  display: grid;
+  place-items: center;
+  width: 62px;
+  height: 62px;
+  margin-bottom: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(214, 173, 99, 0.4);
+  background: linear-gradient(145deg, #8f1d2c, #2a0e10);
+  color: #ffe9bd;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.welcome-popup-card h3 {
+  margin: 0 0 14px;
+  color: #fff2dc;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+}
+
+.welcome-popup-card p:not(.eyebrow) {
+  margin: 0;
+  color: rgba(255, 243, 223, 0.75);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.welcome-popup-actions {
+  margin-top: 24px;
+}
+
+@media (max-width: 720px) {
+  .cookie-consent {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cookie-consent-actions .primary-button,
+  .cookie-consent-actions .ghost-button,
+  .welcome-popup-actions .primary-button,
+  .welcome-popup-actions .ghost-button {
+    flex: 1 1 100%;
+  }
+
+  .welcome-popup-card {
+    padding: 28px 22px;
+    border-radius: 28px;
+  }
+}
