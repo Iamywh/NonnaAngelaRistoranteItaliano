@@ -32,6 +32,20 @@ const initialModifyForm = {
   notes: ''
 }
 
+const RESERVATION_STATUS_LABELS = {
+  pending: 'pendiente de confirmación',
+  confirmed: 'confirmada',
+  rejected: 'rechazada',
+  cancelled: 'cancelada'
+}
+
+const SERVICE_STATUS_LABELS = {
+  not_arrived: 'sin llegar todavía',
+  seated: 'cliente sentado',
+  completed: 'servicio completado',
+  no_show: 'no-show'
+}
+
 function getInitialMessages() {
   const fallbackMessages = [{ role: 'agent', text: botMessages.greeting.message }]
 
@@ -69,6 +83,7 @@ function phonesMatch(storedPhone, requestedPhone) {
   if (requestedDigits.length < 6 || storedDigits.length < 6) return false
   if (storedDigits === requestedDigits) return true
   if (storedDigits.endsWith(requestedDigits)) return true
+  if (requestedDigits.endsWith(storedDigits)) return true
 
   const requestedTail = requestedDigits.slice(-7)
   const storedTail = storedDigits.slice(-7)
@@ -217,14 +232,22 @@ function buildNotesWithOrigin(notes, originText) {
   return cleanNotes ? `${originText}\n${cleanNotes}` : originText
 }
 
-function isBookingRequest(userText) {
+function isStatusRequest(userText) {
   const normalized = normalizeText(userText)
   return (
-    normalized.includes('reservar') ||
+    normalized.includes('estado') ||
+    normalized.includes('status') ||
+    normalized.includes('confirmada') ||
+    normalized.includes('confirmado') ||
+    normalized.includes('confirmacion') ||
+    normalized.includes('saber mi reserva') ||
+    normalized.includes('mi reserva esta') ||
+    normalized.includes('check reserva')
+  ) && (
     normalized.includes('reserva') ||
     normalized.includes('mesa') ||
-    normalized.includes('book')
-  ) && !isModificationRequest(userText)
+    normalized.includes('booking')
+  )
 }
 
 function isModificationRequest(userText) {
@@ -238,8 +261,19 @@ function isModificationRequest(userText) {
     normalized.includes('modifica')
   ) && (
     normalized.includes('reserva') ||
-    normalized.includes('mesa')
+    normalized.includes('mesa') ||
+    normalized.includes('booking')
   )
+}
+
+function isBookingRequest(userText) {
+  const normalized = normalizeText(userText)
+  return (
+    normalized.includes('reservar') ||
+    normalized.includes('reserva') ||
+    normalized.includes('mesa') ||
+    normalized.includes('book')
+  ) && !isModificationRequest(userText) && !isStatusRequest(userText)
 }
 
 function hasWineIntent(userText) {
@@ -344,6 +378,29 @@ function buildReservationSummary(reservation) {
   return `${formatReservationDateShort(reservation.reservation_date)} · ${reservation.reservation_time || '-'} · ${reservation.guests || '-'} pax`
 }
 
+function buildReservationStatusAnswer(reservation) {
+  const reservationStatus = getReservationStatus(reservation)
+  const serviceStatus = getServiceStatus(reservation)
+  const reservationLabel = RESERVATION_STATUS_LABELS[reservationStatus] || reservationStatus || 'pendiente'
+  const serviceLabel = SERVICE_STATUS_LABELS[serviceStatus] || serviceStatus || 'sin llegar'
+
+  const intro = `Tienes una reserva para ${formatReservationDate(reservation.reservation_date)} a las ${reservation.reservation_time || '-'} para ${reservation.guests || '-'} persona${Number(reservation.guests || 0) === 1 ? '' : 's'}.`
+
+  if (reservationStatus === 'confirmed') {
+    return `${intro}\n\nEstado: ${reservationLabel}.\nServicio: ${serviceLabel}.\n\nTe esperamos en Nonna Angela.`
+  }
+
+  if (reservationStatus === 'pending') {
+    return `${intro}\n\nEstado: ${reservationLabel}.\n\nEl equipo todavía debe confirmarla por WhatsApp o email.`
+  }
+
+  if (reservationStatus === 'rejected' || reservationStatus === 'cancelled') {
+    return `${intro}\n\nEstado: ${reservationLabel}.\n\nEsta reserva no está activa. Contacta directamente con el restaurante si necesitas ayuda.`
+  }
+
+  return `${intro}\n\nEstado de reserva: ${reservationLabel}.\nEstado del servicio: ${serviceLabel}.`
+}
+
 export default function VirtualAgent() {
   const [isOpen, setIsOpen] = useState(false)
   const [userInput, setUserInput] = useState('')
@@ -365,13 +422,19 @@ export default function VirtualAgent() {
   const [isSearchingModification, setIsSearchingModification] = useState(false)
   const [isUpdatingReservation, setIsUpdatingReservation] = useState(false)
 
+  const [showStatusSearchForm, setShowStatusSearchForm] = useState(false)
+  const [statusPhone, setStatusPhone] = useState('')
+  const [statusReservations, setStatusReservations] = useState([])
+  const [statusStatus, setStatusStatus] = useState({ type: '', message: '' })
+  const [isSearchingStatus, setIsSearchingStatus] = useState(false)
+
   const promotedTopics = useMemo(() => [
     { label: 'Reservas', action: 'open_booking_form' },
+    { label: 'Estado reserva', action: 'open_status_reservation' },
     { label: 'Modificar reserva', action: 'open_modify_reservation' },
     { label: 'Vinos', prompt: '¿Qué vinos tenéis por copa?' },
     { label: 'Cócteles', prompt: 'Recomiéndame un cóctel' },
-    { label: 'Horarios', prompt: '¿Cuál es vuestro horario?' },
-    { label: 'Ubicación', prompt: '¿Dónde está el restaurante?' }
+    { label: 'Horarios', prompt: '¿Cuál es vuestro horario?' }
   ], [])
 
   const bookingTimeSlots = getReservationTimeSlots(bookingForm.date)
@@ -385,10 +448,6 @@ export default function VirtualAgent() {
     }
   }, [messages])
 
-  const addAgentMessage = (text) => {
-    setMessages((current) => [...current, { role: 'agent', text }])
-  }
-
   const appendConversation = (userText, agentText) => {
     setMessages((current) => [
       ...current,
@@ -397,13 +456,23 @@ export default function VirtualAgent() {
     ])
   }
 
+  const addAgentMessage = (agentText) => {
+    setMessages((current) => [
+      ...current,
+      { role: 'agent', text: agentText }
+    ])
+  }
+
   const resetForms = () => {
     setShowBookingForm(false)
     setShowModifySearchForm(false)
+    setShowStatusSearchForm(false)
     setSelectedReservation(null)
     setMatchingReservations([])
+    setStatusReservations([])
     setBookingStatus({ type: '', message: '' })
     setModifyStatus({ type: '', message: '' })
+    setStatusStatus({ type: '', message: '' })
   }
 
   const openBookingForm = (userText = 'Quiero reservar una mesa') => {
@@ -428,6 +497,17 @@ export default function VirtualAgent() {
     )
   }
 
+  const openStatusForm = (userText = 'Quiero saber el estado de mi reserva') => {
+    resetForms()
+    setShowStatusSearchForm(true)
+    setActiveOptions([])
+    setShowSuggestions(false)
+    appendConversation(
+      userText,
+      'Claro. Escribe el número de teléfono usado en la reserva y buscaré el estado de tus reservas futuras.'
+    )
+  }
+
   const handleResetChat = () => {
     const initialMessages = [{ role: 'agent', text: botMessages.greeting.message }]
     setMessages(initialMessages)
@@ -437,6 +517,7 @@ export default function VirtualAgent() {
     setBookingForm(initialBookingForm)
     setModifyForm(initialModifyForm)
     setModifyPhone('')
+    setStatusPhone('')
     resetForms()
 
     try {
@@ -464,7 +545,30 @@ export default function VirtualAgent() {
     return ''
   }
 
-  const searchReservationsByPhone = async (phoneValue, shouldAppendUserMessage = false) => {
+  const findReservationsByPhone = async (phoneValue) => {
+    const searchedPhone = phoneValue.trim()
+
+    if (sanitizePhoneDigits(searchedPhone).length < 6) {
+      return { error: 'Introduce al menos 6 dígitos del número usado en la reserva.', matches: [] }
+    }
+
+    const { data, error } = await supabase
+      .from('reservations')
+      .select('id, customer_name, customer_phone, customer_email, reservation_date, reservation_time, guests, area_preference, notes, status, reservation_status, service_status, confirmation_channel, created_at')
+      .gte('reservation_date', getTodayDateValue())
+      .order('reservation_date', { ascending: true })
+      .order('reservation_time', { ascending: true })
+
+    if (error) throw error
+
+    const matches = (data || [])
+      .filter((reservation) => phonesMatch(reservation.customer_phone, searchedPhone))
+      .slice(0, 6)
+
+    return { error: '', matches }
+  }
+
+  const searchReservationsForModification = async (phoneValue, shouldAppendUserMessage = false) => {
     const searchedPhone = phoneValue.trim()
     setIsSearchingModification(true)
     setModifyStatus({ type: '', message: '' })
@@ -472,57 +576,97 @@ export default function VirtualAgent() {
     setSelectedReservation(null)
 
     try {
-      if (sanitizePhoneDigits(searchedPhone).length < 6) {
-        const message = 'Introduce al menos 6 dígitos del número usado en la reserva.'
-        setModifyStatus({ type: 'error', message })
-        if (shouldAppendUserMessage) appendConversation(searchedPhone, message)
+      const { error, matches } = await findReservationsByPhone(searchedPhone)
+
+      if (error) {
+        setModifyStatus({ type: 'error', message: error })
+        if (shouldAppendUserMessage) appendConversation(searchedPhone, error)
         return
       }
 
-      const { data, error } = await supabase
-        .from('reservations')
-        .select('id, customer_name, customer_phone, customer_email, reservation_date, reservation_time, guests, area_preference, notes, status, reservation_status, service_status, confirmation_channel, created_at')
-        .gte('reservation_date', getTodayDateValue())
-        .order('reservation_date', { ascending: true })
-        .order('reservation_time', { ascending: true })
-
-      if (error) throw error
-
-      const matches = (data || [])
-        .filter((reservation) => phonesMatch(reservation.customer_phone, searchedPhone))
+      const editableMatches = matches
         .filter((reservation) => !['rejected', 'cancelled'].includes(getReservationStatus(reservation)))
         .filter((reservation) => !['completed', 'no_show'].includes(getServiceStatus(reservation)))
         .slice(0, 5)
 
-      if (!matches.length) {
-        const message = 'No he encontrado reservas futuras con ese número. Revisa el teléfono o contacta directamente con el restaurante.'
+      if (!editableMatches.length) {
+        const message = 'No he encontrado reservas futuras activas con ese número. Revisa el teléfono o contacta directamente con el restaurante.'
         setModifyStatus({ type: 'error', message })
         if (shouldAppendUserMessage) appendConversation(searchedPhone, message)
         return
       }
 
-      setMatchingReservations(matches)
+      setMatchingReservations(editableMatches)
 
-      if (matches.length === 1) {
-        selectReservationToModify(matches[0])
+      if (editableMatches.length === 1) {
+        selectReservationToModify(editableMatches[0])
         if (shouldAppendUserMessage) {
           appendConversation(
             searchedPhone,
-            `He encontrado esta reserva: ${buildReservationSummary(matches[0])}. Puedes cambiar los datos en el formulario.`
+            `He encontrado esta reserva: ${buildReservationSummary(editableMatches[0])}. Puedes cambiar los datos en el formulario.`
           )
         }
       } else {
-        const message = `He encontrado ${matches.length} reservas con ese número. Elige cuál quieres modificar.`
+        const message = `He encontrado ${editableMatches.length} reservas activas con ese número. Elige cuál quieres modificar.`
         setModifyStatus({ type: 'success', message })
         if (shouldAppendUserMessage) appendConversation(searchedPhone, message)
       }
     } catch (error) {
       console.error(error)
-      const message = 'No hemos podido buscar la reserva. Inténtalo de nuevo o contacta directamente con el restaurante.'
+      const message = `No hemos podido buscar la reserva. Detalle: ${error?.message || 'error desconocido'}`
       setModifyStatus({ type: 'error', message })
       if (shouldAppendUserMessage) appendConversation(searchedPhone, message)
     } finally {
       setIsSearchingModification(false)
+    }
+  }
+
+  const showReservationStatus = (reservation, shouldAddAgentMessage = true) => {
+    const answer = buildReservationStatusAnswer(reservation)
+    setStatusStatus({ type: 'success', message: answer })
+    if (shouldAddAgentMessage) addAgentMessage(answer)
+  }
+
+  const searchReservationsForStatus = async (phoneValue, shouldAppendUserMessage = false) => {
+    const searchedPhone = phoneValue.trim()
+    setIsSearchingStatus(true)
+    setStatusStatus({ type: '', message: '' })
+    setStatusReservations([])
+
+    try {
+      const { error, matches } = await findReservationsByPhone(searchedPhone)
+
+      if (error) {
+        setStatusStatus({ type: 'error', message: error })
+        if (shouldAppendUserMessage) appendConversation(searchedPhone, error)
+        return
+      }
+
+      if (!matches.length) {
+        const message = 'No he encontrado reservas futuras con ese número. Revisa el teléfono o contacta directamente con el restaurante.'
+        setStatusStatus({ type: 'error', message })
+        if (shouldAppendUserMessage) appendConversation(searchedPhone, message)
+        return
+      }
+
+      setStatusReservations(matches)
+
+      if (matches.length === 1) {
+        const answer = buildReservationStatusAnswer(matches[0])
+        setStatusStatus({ type: 'success', message: answer })
+        if (shouldAppendUserMessage) appendConversation(searchedPhone, answer)
+      } else {
+        const message = `He encontrado ${matches.length} reservas futuras con ese número. Elige cuál quieres consultar.`
+        setStatusStatus({ type: 'success', message })
+        if (shouldAppendUserMessage) appendConversation(searchedPhone, message)
+      }
+    } catch (error) {
+      console.error(error)
+      const message = `No hemos podido consultar el estado. Detalle: ${error?.message || 'error desconocido'}`
+      setStatusStatus({ type: 'error', message })
+      if (shouldAppendUserMessage) appendConversation(searchedPhone, message)
+    } finally {
+      setIsSearchingStatus(false)
     }
   }
 
@@ -535,7 +679,20 @@ export default function VirtualAgent() {
     if (showModifySearchForm && !selectedReservation && sanitizePhoneDigits(trimmedInput).length >= 6) {
       setModifyPhone(trimmedInput)
       setUserInput('')
-      await searchReservationsByPhone(trimmedInput, true)
+      await searchReservationsForModification(trimmedInput, true)
+      return
+    }
+
+    if (showStatusSearchForm && sanitizePhoneDigits(trimmedInput).length >= 6) {
+      setStatusPhone(trimmedInput)
+      setUserInput('')
+      await searchReservationsForStatus(trimmedInput, true)
+      return
+    }
+
+    if (isStatusRequest(trimmedInput)) {
+      setUserInput('')
+      openStatusForm(trimmedInput)
       return
     }
 
@@ -557,6 +714,7 @@ export default function VirtualAgent() {
       appendConversation(trimmedInput, `${answer}\n\n¿Quieres que te ayude con algo más?`)
       setActiveOptions([
         { label: 'Reservar mesa', action: 'open_booking_form' },
+        { label: 'Estado reserva', action: 'open_status_reservation' },
         { label: 'Modificar reserva', action: 'open_modify_reservation' }
       ])
       setShowSuggestions(true)
@@ -566,7 +724,7 @@ export default function VirtualAgent() {
 
     appendConversation(
       trimmedInput,
-      'Puedo ayudarte con reservas, modificar una reserva existente, horarios, ubicación, vinos y cócteles. ¿Qué necesitas?'
+      'Puedo ayudarte con reservas, estado de una reserva, modificar una reserva existente, horarios, ubicación, vinos y cócteles. ¿Qué necesitas?'
     )
     setActiveOptions(promotedTopics)
     setShowSuggestions(true)
@@ -584,11 +742,17 @@ export default function VirtualAgent() {
       return
     }
 
+    if (option.action === 'open_status_reservation') {
+      openStatusForm(option.label)
+      return
+    }
+
     if (option.prompt) {
       const answer = buildBasicAnswer(option.prompt) || 'Puedo ayudarte con eso. Escribe tu pregunta y te respondo.'
       appendConversation(option.label, `${answer}\n\n¿Quieres que te ayude con algo más?`)
       setActiveOptions([
         { label: 'Reservar mesa', action: 'open_booking_form' },
+        { label: 'Estado reserva', action: 'open_status_reservation' },
         { label: 'Modificar reserva', action: 'open_modify_reservation' }
       ])
       setShowSuggestions(true)
@@ -714,7 +878,12 @@ export default function VirtualAgent() {
 
   const handleModificationSearch = async (event) => {
     event.preventDefault()
-    await searchReservationsByPhone(modifyPhone, false)
+    await searchReservationsForModification(modifyPhone, false)
+  }
+
+  const handleStatusSearch = async (event) => {
+    event.preventDefault()
+    await searchReservationsForStatus(statusPhone, false)
   }
 
   const selectReservationToModify = (reservation) => {
@@ -977,6 +1146,40 @@ export default function VirtualAgent() {
                     {isUpdatingReservation ? 'Actualizando...' : 'Enviar modificación'}
                   </button>
                 </form>
+              )}
+            </div>
+          )}
+
+          {showStatusSearchForm && (
+            <div className="agent-modification-box agent-status-box">
+              <form className="booking-form agent-reservation-form" onSubmit={handleStatusSearch}>
+                <input
+                  value={statusPhone}
+                  onChange={(event) => setStatusPhone(event.target.value)}
+                  placeholder="Teléfono usado en la reserva"
+                  required
+                />
+                <button type="submit" disabled={isSearchingStatus}>
+                  {isSearchingStatus ? 'Buscando...' : 'Consultar estado'}
+                </button>
+              </form>
+
+              {statusStatus.message && <p className={`agent-inline-status ${statusStatus.type}`}>{statusStatus.message}</p>}
+
+              {statusReservations.length > 1 && (
+                <div className="reservation-match-list">
+                  {statusReservations.map((reservation) => (
+                    <button
+                      key={reservation.id}
+                      type="button"
+                      className="reservation-match-card"
+                      onClick={() => showReservationStatus(reservation)}
+                    >
+                      <strong>{buildReservationSummary(reservation)}</strong>
+                      <span>Estado: {RESERVATION_STATUS_LABELS[getReservationStatus(reservation)] || getReservationStatus(reservation)}</span>
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
           )}
