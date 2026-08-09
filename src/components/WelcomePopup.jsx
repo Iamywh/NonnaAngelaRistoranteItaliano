@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 const WELCOME_POPUP_KEY = 'nonna_welcome_popup_seen'
 
 export default function WelcomePopup({ currentPage, setCurrentPage }) {
   const [isVisible, setIsVisible] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     if (String(currentPage || '').startsWith('admin')) return
@@ -40,26 +42,23 @@ export default function WelcomePopup({ currentPage, setCurrentPage }) {
   if (!isVisible) return null
 
   return (
-    <div className="welcome-popup-backdrop" role="dialog" aria-modal="true" aria-label="Bienvenida Nonna Angela">
+    <div className="welcome-popup-backdrop" role="dialog" aria-modal="true" aria-label={t('popup.aria')}>
       <section className="welcome-popup-card">
-        <button className="welcome-popup-close" type="button" onClick={closePopup} aria-label="Cerrar">
+        <button className="welcome-popup-close" type="button" onClick={closePopup} aria-label={t('popup.close')}>
           ×
         </button>
 
         <div className="welcome-popup-mark">NA</div>
-        <p className="eyebrow">Benvenuti</p>
-        <h3>Nonna Angela, cocina italiana con elegancia y alma familiar.</h3>
-        <p>
-          Una mesa íntima, sabores italianos auténticos y una experiencia pensada para
-          disfrutar sin prisa en Santa Cruz de Tenerife.
-        </p>
+        <p className="eyebrow">{t('popup.eyebrow')}</p>
+        <h3>{t('popup.title')}</h3>
+        <p>{t('popup.text')}</p>
 
         <div className="welcome-popup-actions">
           <button className="primary-button" type="button" onClick={goToReservations}>
-            Reservar mesa
+            {t('popup.reserve')}
           </button>
           <button className="ghost-button" type="button" onClick={goToMenu}>
-            Ver carta
+            {t('popup.menu')}
           </button>
         </div>
       </section>
