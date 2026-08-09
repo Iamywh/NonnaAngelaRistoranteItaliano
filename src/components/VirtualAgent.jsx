@@ -2,8 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../lib/supabaseClient.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import restaurantKnowledge from '../data/bot/restaurantKnowledge.json'
-import wineKnowledge from '../data/bot/wineknowledge.json'
-import cocktailKnowledge from '../data/bot/cocktailKnowledge.json'
+import { buildAdvancedRestaurantAnswer } from '../data/bot/advancedMenuAssistant.js'
 import '../styles/chatbot-reservations.css'
 
 const CHAT_STORAGE_KEY = 'nonna_angela_virtual_agent_messages'
@@ -233,125 +232,60 @@ function buildNotesWithOrigin(notes, originText) {
 function isStatusRequest(userText) {
   const normalized = normalizeText(userText)
   return (
-    normalized.includes('estado') || normalized.includes('status') || normalized.includes('confirm') ||
-    normalized.includes('etat') || normalized.includes('état') || normalized.includes('stato') ||
-    normalized.includes('booking') || normalized.includes('prenotazione')
+    normalized.includes('estado') ||
+    normalized.includes('status') ||
+    normalized.includes('confirm') ||
+    normalized.includes('etat') ||
+    normalized.includes('état') ||
+    normalized.includes('stato') ||
+    normalized.includes('booking') ||
+    normalized.includes('prenotazione')
   ) && (
-    normalized.includes('reserva') || normalized.includes('mesa') || normalized.includes('booking') ||
-    normalized.includes('reservation') || normalized.includes('prenotazione')
+    normalized.includes('reserva') ||
+    normalized.includes('mesa') ||
+    normalized.includes('booking') ||
+    normalized.includes('reservation') ||
+    normalized.includes('prenotazione')
   )
 }
 
 function isModificationRequest(userText) {
   const normalized = normalizeText(userText)
   return (
-    normalized.includes('modificar') || normalized.includes('cambiar') || normalized.includes('editar') ||
-    normalized.includes('mover') || normalized.includes('modify') || normalized.includes('change') ||
-    normalized.includes('modifier') || normalized.includes('changer') || normalized.includes('modifica') ||
+    normalized.includes('modificar') ||
+    normalized.includes('cambiar') ||
+    normalized.includes('editar') ||
+    normalized.includes('mover') ||
+    normalized.includes('modify') ||
+    normalized.includes('change') ||
+    normalized.includes('modifier') ||
+    normalized.includes('changer') ||
+    normalized.includes('modifica') ||
     normalized.includes('cambiare')
   ) && (
-    normalized.includes('reserva') || normalized.includes('mesa') || normalized.includes('booking') ||
-    normalized.includes('reservation') || normalized.includes('prenotazione')
+    normalized.includes('reserva') ||
+    normalized.includes('mesa') ||
+    normalized.includes('booking') ||
+    normalized.includes('reservation') ||
+    normalized.includes('prenotazione')
   )
 }
 
 function isBookingRequest(userText) {
   const normalized = normalizeText(userText)
   return (
-    normalized.includes('reservar') || normalized.includes('reserva') || normalized.includes('mesa') ||
-    normalized.includes('book') || normalized.includes('booking') || normalized.includes('réserver') ||
-    normalized.includes('reserver') || normalized.includes('prenotare') || normalized.includes('prenota') ||
-    normalized.includes('table') || normalized.includes('tavolo')
+    normalized.includes('reservar') ||
+    normalized.includes('reserva') ||
+    normalized.includes('mesa') ||
+    normalized.includes('book') ||
+    normalized.includes('booking') ||
+    normalized.includes('réserver') ||
+    normalized.includes('reserver') ||
+    normalized.includes('prenotare') ||
+    normalized.includes('prenota') ||
+    normalized.includes('table') ||
+    normalized.includes('tavolo')
   ) && !isModificationRequest(userText) && !isStatusRequest(userText)
-}
-
-function hasWineIntent(userText) {
-  const normalized = normalizeText(userText)
-  return [
-    'vino', 'vinos', 'wine', 'wines', 'vin', 'vins', 'copa', 'glass', 'verre', 'calice',
-    'tinto', 'red', 'rouge', 'rosso', 'blanco', 'white', 'blanc', 'bianco', 'rosado', 'rose', 'rosé',
-    'espumoso', 'sparkling', 'prosecco', 'barolo', 'brunello', 'valpolicella', 'lambrusco', 'gavi', 'chianti'
-  ].some((token) => normalized.includes(token))
-}
-
-function hasCocktailIntent(userText) {
-  const normalized = normalizeText(userText)
-  return ['cocktail', 'coctel', 'cóctel', 'spritz', 'negroni', 'americano', 'aperol', 'limoncello', 'bellini', 'rossini'].some((token) => normalized.includes(token))
-}
-
-function buildWineAnswer(userText, language) {
-  if (!hasWineIntent(userText)) return null
-
-  const normalizedUserText = normalizeText(userText)
-  const wines = wineKnowledge.wineKnowledge || []
-
-  const byGlass = normalizedUserText.includes('copa') || normalizedUserText.includes('glass') || normalizedUserText.includes('verre') || normalizedUserText.includes('calice')
-  const wantsWhite = normalizedUserText.includes('blanco') || normalizedUserText.includes('white') || normalizedUserText.includes('blanc') || normalizedUserText.includes('bianco')
-  const wantsRed = normalizedUserText.includes('tinto') || normalizedUserText.includes('red') || normalizedUserText.includes('rouge') || normalizedUserText.includes('rosso')
-  const wantsRose = normalizedUserText.includes('rosado') || normalizedUserText.includes('rose') || normalizedUserText.includes('rosé')
-  const wantsSparkling = normalizedUserText.includes('espumoso') || normalizedUserText.includes('sparkling') || normalizedUserText.includes('prosecco')
-
-  let candidates = wines
-  if (byGlass) candidates = candidates.filter((wine) => wine.by_glass)
-  if (wantsWhite) candidates = candidates.filter((wine) => wine.category === 'Bianco')
-  if (wantsRed) candidates = candidates.filter((wine) => wine.category === 'Rosso')
-  if (wantsRose) candidates = candidates.filter((wine) => wine.category === 'Rosato')
-  if (wantsSparkling) candidates = candidates.filter((wine) => wine.category === 'Spumante')
-
-  const selected = candidates.slice(0, 3)
-  if (!selected.length) return null
-
-  const intro = {
-    es: 'Te recomendaría estas opciones:',
-    en: 'I would recommend these options:',
-    fr: 'Je vous recommanderais ces options :',
-    it: 'Ti consiglierei queste opzioni:'
-  }[language] || 'Te recomendaría estas opciones:'
-
-  const glassText = {
-    es: ' Disponible también por copa.',
-    en: ' Also available by the glass.',
-    fr: ' Disponible aussi au verre.',
-    it: ' Disponibile anche al calice.'
-  }[language] || ' Disponible también por copa.'
-
-  return [
-    intro,
-    '',
-    ...selected.map((wine) => `• ${wine.name} (${wine.region}) — ${wine.sales_note || wine.category}.${wine.by_glass ? glassText : ''}`)
-  ].join('\n')
-}
-
-function buildCocktailAnswer(userText, language) {
-  if (!hasCocktailIntent(userText)) return null
-  const normalized = normalizeText(userText)
-
-  if (normalized.includes('negroni')) {
-    return {
-      es: 'El Negroni es intenso, amargo y elegante: gin, bitter rojo y vermut. Perfecto como aperitivo italiano con carácter.',
-      en: 'The Negroni is intense, bitter and elegant: gin, red bitter and vermouth. Perfect as a classic Italian aperitif.',
-      fr: 'Le Negroni est intense, amer et élégant : gin, bitter rouge et vermouth. Parfait comme apéritif italien de caractère.',
-      it: 'Il Negroni è intenso, amaro ed elegante: gin, bitter rosso e vermut. Perfetto come aperitivo italiano di carattere.'
-    }[language]
-  }
-
-  if (normalized.includes('limoncello')) {
-    return {
-      es: 'El Limoncello Spritz es fresco, cítrico y muy mediterráneo: prosecco, limoncello, soda y basilico.',
-      en: 'The Limoncello Spritz is fresh, citrusy and very Mediterranean: prosecco, limoncello, soda and basil.',
-      fr: 'Le Limoncello Spritz est frais, citronné et très méditerranéen : prosecco, limoncello, soda et basilic.',
-      it: 'Il Limoncello Spritz è fresco, agrumato e molto mediterraneo: prosecco, limoncello, soda e basilico.'
-    }[language]
-  }
-
-  const fallback = {
-    es: 'Tenemos cócteles italianos clásicos y aperitivos como Spritz, Negroni y opciones más frescas. Puedo recomendarte uno según si prefieres algo suave, fresco o intenso.',
-    en: 'We have classic Italian cocktails and aperitifs such as Spritz, Negroni and fresher options. I can recommend one depending on whether you prefer something soft, fresh or intense.',
-    fr: 'Nous avons des cocktails italiens classiques et des apéritifs comme le Spritz, le Negroni et des options plus fraîches. Je peux vous recommander selon vos préférences.',
-    it: 'Abbiamo cocktail italiani classici e aperitivi come Spritz, Negroni e opzioni più fresche. Posso consigliarti in base a ciò che preferisci.'
-  }
-
-  return fallback[language] || cocktailKnowledge.recommendationBranches?.fresh_light?.botAnswer
 }
 
 function buildBasicAnswer(userText, language) {
@@ -375,7 +309,7 @@ function buildBasicAnswer(userText, language) {
     return `${restaurant.contact?.mobile?.value || '+34 613 381 023'}`
   }
 
-  return buildWineAnswer(userText, language) || buildCocktailAnswer(userText, language)
+  return buildAdvancedRestaurantAnswer(userText, language)
 }
 
 function buildReservationSummary(reservation, language) {
