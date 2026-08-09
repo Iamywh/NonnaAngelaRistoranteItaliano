@@ -15,61 +15,64 @@ const CLOSED_DAY_MESSAGE =
   'El restaurante permanece cerrado los domingos y lunes. Por favor, selecciona otra fecha para tu reserva.'
 
 const PHONE_COUNTRIES = [
-  { iso: 'ES', dial: '+34', label: '🇪🇸 España +34' },
-  { iso: 'IT', dial: '+39', label: '🇮🇹 Italia +39' },
-  { iso: 'PT', dial: '+351', label: '🇵🇹 Portugal +351' },
-  { iso: 'FR', dial: '+33', label: '🇫🇷 Francia +33' },
-  { iso: 'DE', dial: '+49', label: '🇩🇪 Alemania +49' },
-  { iso: 'GB', dial: '+44', label: '🇬🇧 Reino Unido +44' },
-  { iso: 'IE', dial: '+353', label: '🇮🇪 Irlanda +353' },
-  { iso: 'NL', dial: '+31', label: '🇳🇱 Países Bajos +31' },
-  { iso: 'BE', dial: '+32', label: '🇧🇪 Bélgica +32' },
-  { iso: 'LU', dial: '+352', label: '🇱🇺 Luxemburgo +352' },
-  { iso: 'CH', dial: '+41', label: '🇨🇭 Suiza +41' },
-  { iso: 'AT', dial: '+43', label: '🇦🇹 Austria +43' },
-  { iso: 'DK', dial: '+45', label: '🇩🇰 Dinamarca +45' },
-  { iso: 'SE', dial: '+46', label: '🇸🇪 Suecia +46' },
-  { iso: 'NO', dial: '+47', label: '🇳🇴 Noruega +47' },
-  { iso: 'FI', dial: '+358', label: '🇫🇮 Finlandia +358' },
-  { iso: 'IS', dial: '+354', label: '🇮🇸 Islandia +354' },
-  { iso: 'PL', dial: '+48', label: '🇵🇱 Polonia +48' },
-  { iso: 'CZ', dial: '+420', label: '🇨🇿 Chequia +420' },
-  { iso: 'SK', dial: '+421', label: '🇸🇰 Eslovaquia +421' },
-  { iso: 'HU', dial: '+36', label: '🇭🇺 Hungría +36' },
-  { iso: 'RO', dial: '+40', label: '🇷🇴 Rumanía +40' },
-  { iso: 'BG', dial: '+359', label: '🇧🇬 Bulgaria +359' },
-  { iso: 'GR', dial: '+30', label: '🇬🇷 Grecia +30' },
-  { iso: 'HR', dial: '+385', label: '🇭🇷 Croacia +385' },
-  { iso: 'SI', dial: '+386', label: '🇸🇮 Eslovenia +386' },
-  { iso: 'EE', dial: '+372', label: '🇪🇪 Estonia +372' },
-  { iso: 'LV', dial: '+371', label: '🇱🇻 Letonia +371' },
-  { iso: 'LT', dial: '+370', label: '🇱🇹 Lituania +370' },
-  { iso: 'MT', dial: '+356', label: '🇲🇹 Malta +356' },
-  { iso: 'CY', dial: '+357', label: '🇨🇾 Chipre +357' },
-  { iso: 'AD', dial: '+376', label: '🇦🇩 Andorra +376' },
-  { iso: 'MC', dial: '+377', label: '🇲🇨 Mónaco +377' },
-  { iso: 'SM', dial: '+378', label: '🇸🇲 San Marino +378' },
-  { iso: 'UA', dial: '+380', label: '🇺🇦 Ucrania +380' },
-  { iso: 'US', dial: '+1', label: '🇺🇸 Estados Unidos +1' },
-  { iso: 'CA', dial: '+1', label: '🇨🇦 Canadá +1' },
-  { iso: 'MX', dial: '+52', label: '🇲🇽 México +52' },
-  { iso: 'BR', dial: '+55', label: '🇧🇷 Brasil +55' },
-  { iso: 'AR', dial: '+54', label: '🇦🇷 Argentina +54' },
-  { iso: 'CL', dial: '+56', label: '🇨🇱 Chile +56' },
-  { iso: 'CO', dial: '+57', label: '🇨🇴 Colombia +57' },
-  { iso: 'VE', dial: '+58', label: '🇻🇪 Venezuela +58' },
-  { iso: 'PE', dial: '+51', label: '🇵🇪 Perú +51' },
-  { iso: 'UY', dial: '+598', label: '🇺🇾 Uruguay +598' },
-  { iso: 'EC', dial: '+593', label: '🇪🇨 Ecuador +593' },
-  { iso: 'AU', dial: '+61', label: '🇦🇺 Australia +61' },
-  { iso: 'NZ', dial: '+64', label: '🇳🇿 Nueva Zelanda +64' },
-  { iso: 'MA', dial: '+212', label: '🇲🇦 Marruecos +212' },
-  { iso: 'TR', dial: '+90', label: '🇹🇷 Turquía +90' },
-  { iso: 'IL', dial: '+972', label: '🇮🇱 Israel +972' },
-  { iso: 'CN', dial: '+86', label: '🇨🇳 China +86' },
-  { iso: 'JP', dial: '+81', label: '🇯🇵 Japón +81' },
-  { iso: 'KR', dial: '+82', label: '🇰🇷 Corea del Sur +82' },
-  { iso: 'IN', dial: '+91', label: '🇮🇳 India +91' }
+  { iso: 'ES', dial: '+34', name: 'España', flagCode: 'es' },
+  { iso: 'IT', dial: '+39', name: 'Italia', flagCode: 'it' },
+  { iso: 'FR', dial: '+33', name: 'Francia', flagCode: 'fr' },
+  { iso: 'DE', dial: '+49', name: 'Alemania', flagCode: 'de' },
+  { iso: 'GB', dial: '+44', name: 'Reino Unido', flagCode: 'gb' },
+  { iso: 'PT', dial: '+351', name: 'Portugal', flagCode: 'pt' },
+  { iso: 'IE', dial: '+353', name: 'Irlanda', flagCode: 'ie' },
+  { iso: 'NL', dial: '+31', name: 'Países Bajos', flagCode: 'nl' },
+  { iso: 'BE', dial: '+32', name: 'Bélgica', flagCode: 'be' },
+  { iso: 'LU', dial: '+352', name: 'Luxemburgo', flagCode: 'lu' },
+  { iso: 'CH', dial: '+41', name: 'Suiza', flagCode: 'ch' },
+  { iso: 'AT', dial: '+43', name: 'Austria', flagCode: 'at' },
+  { iso: 'DK', dial: '+45', name: 'Dinamarca', flagCode: 'dk' },
+  { iso: 'SE', dial: '+46', name: 'Suecia', flagCode: 'se' },
+  { iso: 'NO', dial: '+47', name: 'Noruega', flagCode: 'no' },
+  { iso: 'FI', dial: '+358', name: 'Finlandia', flagCode: 'fi' },
+  { iso: 'IS', dial: '+354', name: 'Islandia', flagCode: 'is' },
+  { iso: 'PL', dial: '+48', name: 'Polonia', flagCode: 'pl' },
+  { iso: 'CZ', dial: '+420', name: 'Chequia', flagCode: 'cz' },
+  { iso: 'SK', dial: '+421', name: 'Eslovaquia', flagCode: 'sk' },
+  { iso: 'HU', dial: '+36', name: 'Hungría', flagCode: 'hu' },
+  { iso: 'RO', dial: '+40', name: 'Rumanía', flagCode: 'ro' },
+  { iso: 'BG', dial: '+359', name: 'Bulgaria', flagCode: 'bg' },
+  { iso: 'GR', dial: '+30', name: 'Grecia', flagCode: 'gr' },
+  { iso: 'HR', dial: '+385', name: 'Croacia', flagCode: 'hr' },
+  { iso: 'SI', dial: '+386', name: 'Eslovenia', flagCode: 'si' },
+  { iso: 'EE', dial: '+372', name: 'Estonia', flagCode: 'ee' },
+  { iso: 'LV', dial: '+371', name: 'Letonia', flagCode: 'lv' },
+  { iso: 'LT', dial: '+370', name: 'Lituania', flagCode: 'lt' },
+  { iso: 'MT', dial: '+356', name: 'Malta', flagCode: 'mt' },
+  { iso: 'CY', dial: '+357', name: 'Chipre', flagCode: 'cy' },
+  { iso: 'AD', dial: '+376', name: 'Andorra', flagCode: 'ad' },
+  { iso: 'MC', dial: '+377', name: 'Mónaco', flagCode: 'mc' },
+  { iso: 'SM', dial: '+378', name: 'San Marino', flagCode: 'sm' },
+  { iso: 'UA', dial: '+380', name: 'Ucrania', flagCode: 'ua' },
+  { iso: 'TR', dial: '+90', name: 'Turquía', flagCode: 'tr' },
+  { iso: 'US', dial: '+1', name: 'Estados Unidos', flagCode: 'us' },
+  { iso: 'CA', dial: '+1', name: 'Canadá', flagCode: 'ca' },
+  { iso: 'MX', dial: '+52', name: 'México', flagCode: 'mx' },
+  { iso: 'BR', dial: '+55', name: 'Brasil', flagCode: 'br' },
+  { iso: 'AR', dial: '+54', name: 'Argentina', flagCode: 'ar' },
+  { iso: 'CL', dial: '+56', name: 'Chile', flagCode: 'cl' },
+  { iso: 'CO', dial: '+57', name: 'Colombia', flagCode: 'co' },
+  { iso: 'PE', dial: '+51', name: 'Perú', flagCode: 'pe' },
+  { iso: 'UY', dial: '+598', name: 'Uruguay', flagCode: 'uy' },
+  { iso: 'VE', dial: '+58', name: 'Venezuela', flagCode: 've' },
+  { iso: 'MA', dial: '+212', name: 'Marruecos', flagCode: 'ma' },
+  { iso: 'ZA', dial: '+27', name: 'Sudáfrica', flagCode: 'za' },
+  { iso: 'AU', dial: '+61', name: 'Australia', flagCode: 'au' },
+  { iso: 'NZ', dial: '+64', name: 'Nueva Zelanda', flagCode: 'nz' },
+  { iso: 'CN', dial: '+86', name: 'China', flagCode: 'cn' },
+  { iso: 'JP', dial: '+81', name: 'Japón', flagCode: 'jp' },
+  { iso: 'KR', dial: '+82', name: 'Corea del Sur', flagCode: 'kr' },
+  { iso: 'IN', dial: '+91', name: 'India', flagCode: 'in' },
+  { iso: 'AE', dial: '+971', name: 'Emiratos Árabes', flagCode: 'ae' },
+  { iso: 'SA', dial: '+966', name: 'Arabia Saudí', flagCode: 'sa' },
+  { iso: 'QA', dial: '+974', name: 'Catar', flagCode: 'qa' },
+  { iso: 'IL', dial: '+972', name: 'Israel', flagCode: 'il' }
 ]
 
 const MIN_GUESTS = 1
@@ -488,18 +491,26 @@ export default function Locale() {
             <label className="phone-field">
               Teléfono
               <div className="phone-input-grid">
-                <select
-                  name="phone_country_iso"
-                  value={reservation.phone_country_iso}
-                  onChange={handleChange}
-                  aria-label="Prefijo telefónico"
-                >
-                  {PHONE_COUNTRIES.map((country) => (
-                    <option key={country.iso} value={country.iso}>
-                      {country.label}
-                    </option>
-                  ))}
-                </select>
+                <div className="phone-prefix-control">
+                  <img
+                    className="phone-country-flag"
+                    src={`https://flagcdn.com/w40/${selectedPhoneCountry.flagCode}.png`}
+                    alt={`Bandera ${selectedPhoneCountry.name}`}
+                    loading="lazy"
+                  />
+                  <select
+                    name="phone_country_iso"
+                    value={reservation.phone_country_iso}
+                    onChange={handleChange}
+                    aria-label="Prefijo telefónico"
+                  >
+                    {PHONE_COUNTRIES.map((country) => (
+                      <option key={country.iso} value={country.iso}>
+                        {country.name} {country.dial}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 <input
                   type="tel"
                   name="customer_phone_number"
