@@ -1,18 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../lib/supabaseClient.js'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 import '../styles/reservation-form.css'
-
-const menuStory =
-  'En Italia, las mejores recetas no nacen en los restaurantes, sino alrededor de una mesa familiar. En Nonna Angela queremos compartir precisamente esa tradición: platos preparados con tiempo, ingredientes seleccionados y el cariño de la cocina de casa. Nuestra propuesta está inspirada en los sabores que han acompañado a generaciones de familias italianas: pastas artesanales, salsas cocinadas lentamente, embutidos, quesos y vinos cuidadosamente elegidos para acompañar cada momento. Más que un restaurante, queremos ser un lugar donde disfrutar sin prisas, compartir, brindar y sentirse como en casa. Benvenuti a Nonna Angela.'
 
 const SERVICE_CAPACITY = 50
 const CLOSED_RESERVATION_DAYS = [0, 1]
 const CLOSED_RESERVATION_STATUSES_FOR_CAPACITY = ['rejected', 'cancelled']
 const CLOSED_SERVICE_STATUSES_FOR_CAPACITY = ['completed', 'no_show']
-const SERVICE_FULL_MESSAGE =
-  'Las reservas online para este servicio están casi completas. Por favor, contacta directamente con el restaurante para comprobar disponibilidad.'
-const CLOSED_DAY_MESSAGE =
-  'El restaurante permanece cerrado los domingos y lunes. Por favor, selecciona otra fecha para tu reserva.'
 
 const PHONE_COUNTRIES = [
   { iso: 'ES', dial: '+34', name: 'España', flagCode: 'es' },
@@ -95,7 +89,6 @@ const initialReservation = {
 function formatTime(minutes) {
   const hours = Math.floor(minutes / 60)
   const remainingMinutes = minutes % 60
-
   return `${String(hours).padStart(2, '0')}:${String(remainingMinutes).padStart(2, '0')}`
 }
 
@@ -115,26 +108,22 @@ function buildTimeSlots(startTime, lastTime) {
 
 function getDayFromDateValue(dateValue) {
   if (!dateValue) return null
-
   const [year, month, day] = dateValue.split('-').map(Number)
   return new Date(year, month - 1, day).getDay()
 }
 
 function isClosedReservationDate(dateValue) {
   const day = getDayFromDateValue(dateValue)
-
   return day !== null && CLOSED_RESERVATION_DAYS.includes(day)
 }
 
 function isFridayOrSaturday(dateValue) {
   const day = getDayFromDateValue(dateValue)
-
   return day === 5 || day === 6
 }
 
 function getReservationTimeSlots(dateValue) {
   if (!dateValue || isClosedReservationDate(dateValue)) return []
-
   const lastDinnerSlot = isFridayOrSaturday(dateValue) ? '22:45' : '22:30'
 
   return [
@@ -145,17 +134,9 @@ function getReservationTimeSlots(dateValue) {
 
 function getReservationService(timeValue) {
   if (!timeValue) return null
-
   const [hours, minutes] = timeValue.split(':').map(Number)
   if (Number.isNaN(hours) || Number.isNaN(minutes)) return null
-
   return hours * 60 + minutes < 17 * 60 ? 'lunch' : 'dinner'
-}
-
-function getServiceLabel(service) {
-  if (service === 'lunch') return 'mediodía'
-  if (service === 'dinner') return 'cena'
-  return 'servicio'
 }
 
 function getReservationStatus(booking) {
@@ -187,7 +168,6 @@ function getPhoneCountry(iso) {
 
 async function getBookedGuestsForService(dateValue, timeValue) {
   const service = getReservationService(timeValue)
-
   if (!dateValue || !service) return 0
 
   const { data, error } = await supabase
@@ -204,6 +184,7 @@ async function getBookedGuestsForService(dateValue, timeValue) {
 }
 
 export default function Locale() {
+  const { t } = useLanguage()
   const [reservation, setReservation] = useState(initialReservation)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState(null)
@@ -218,13 +199,15 @@ export default function Locale() {
   const selectedPhoneCountry = getPhoneCountry(reservation.phone_country_iso)
   const isEmailConfirmation = reservation.confirmation_channel === 'email'
 
+  const getServiceLabel = (service) => {
+    if (service === 'lunch') return t('locale.lunch')
+    if (service === 'dinner') return t('locale.dinner')
+    return t('locale.service')
+  }
+
   const capacityStatus = useMemo(() => {
     if (!serviceAvailability || !selectedService) {
-      return {
-        bookedGuests: 0,
-        remainingGuests: null,
-        isCapacityBlocking: false,
-      }
+      return { bookedGuests: 0, remainingGuests: null, isCapacityBlocking: false }
     }
 
     const bookedGuests = serviceAvailability.bookedGuests
@@ -233,8 +216,7 @@ export default function Locale() {
     return {
       bookedGuests,
       remainingGuests,
-      isCapacityBlocking:
-        bookedGuests >= SERVICE_CAPACITY || bookedGuests + selectedGuests > SERVICE_CAPACITY,
+      isCapacityBlocking: bookedGuests >= SERVICE_CAPACITY || bookedGuests + selectedGuests > SERVICE_CAPACITY,
     }
   }, [serviceAvailability, selectedGuests, selectedService])
 
@@ -252,30 +234,19 @@ export default function Locale() {
       setIsCheckingAvailability(true)
 
       try {
-        const bookedGuests = await getBookedGuestsForService(
-          reservation.reservation_date,
-          reservation.reservation_time
-        )
+        const bookedGuests = await getBookedGuestsForService(reservation.reservation_date, reservation.reservation_time)
 
         if (!shouldIgnore) {
-          setServiceAvailability({
-            bookedGuests,
-            service: selectedService,
-          })
+          setServiceAvailability({ bookedGuests, service: selectedService })
         }
       } catch (availabilityCheckError) {
         console.error(availabilityCheckError)
-
         if (!shouldIgnore) {
           setServiceAvailability(null)
-          setAvailabilityError(
-            'No hemos podido comprobar la disponibilidad online. Inténtalo de nuevo o contacta directamente con el restaurante.'
-          )
+          setAvailabilityError(t('locale.availabilityError'))
         }
       } finally {
-        if (!shouldIgnore) {
-          setIsCheckingAvailability(false)
-        }
+        if (!shouldIgnore) setIsCheckingAvailability(false)
       }
     }
 
@@ -284,7 +255,7 @@ export default function Locale() {
     return () => {
       shouldIgnore = true
     }
-  }, [reservation.reservation_date, reservation.reservation_time, selectedService])
+  }, [reservation.reservation_date, reservation.reservation_time, selectedService, t])
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -292,37 +263,24 @@ export default function Locale() {
     setReservation((current) => {
       if (name === 'reservation_date') {
         const nextSlots = getReservationTimeSlots(value)
-
         return {
           ...current,
           reservation_date: value,
-          reservation_time: nextSlots.includes(current.reservation_time)
-            ? current.reservation_time
-            : '',
+          reservation_time: nextSlots.includes(current.reservation_time) ? current.reservation_time : '',
         }
       }
 
       if (name === 'phone_country_iso') {
         const nextCountry = getPhoneCountry(value)
-        return {
-          ...current,
-          phone_country_iso: nextCountry.iso,
-          phone_country_code: nextCountry.dial,
-        }
+        return { ...current, phone_country_iso: nextCountry.iso, phone_country_code: nextCountry.dial }
       }
 
-      return {
-        ...current,
-        [name]: name === 'guests' ? clampGuests(value) : value,
-      }
+      return { ...current, [name]: name === 'guests' ? clampGuests(value) : value }
     })
   }
 
   const adjustGuests = (delta) => {
-    setReservation((current) => ({
-      ...current,
-      guests: clampGuests(Number(current.guests || 0) + delta),
-    }))
+    setReservation((current) => ({ ...current, guests: clampGuests(Number(current.guests || 0) + delta) }))
   }
 
   const handleSubmit = async (event) => {
@@ -332,50 +290,41 @@ export default function Locale() {
     setError(null)
 
     if (isClosedReservationDate(reservation.reservation_date)) {
-      setError(CLOSED_DAY_MESSAGE)
+      setError(t('locale.closedDay'))
       setIsSubmitting(false)
       return
     }
 
     if (isEmailConfirmation && !reservation.customer_email.trim()) {
-      setError('Introduce tu email para recibir la confirmación por correo.')
+      setError(t('locale.emailRequired'))
       setIsSubmitting(false)
       return
     }
 
     if (!reservation.customer_phone_number.trim()) {
-      setError('Introduce un número de teléfono válido.')
+      setError(t('locale.phoneRequired'))
       setIsSubmitting(false)
       return
     }
 
     if (!getReservationTimeSlots(reservation.reservation_date).includes(reservation.reservation_time)) {
-      setError('Selecciona una hora disponible para la fecha elegida.')
+      setError(t('locale.timeRequired'))
       setIsSubmitting(false)
       return
     }
 
     try {
-      const bookedGuests = await getBookedGuestsForService(
-        reservation.reservation_date,
-        reservation.reservation_time
-      )
-
-      setServiceAvailability({
-        bookedGuests,
-        service: getReservationService(reservation.reservation_time),
-      })
+      const bookedGuests = await getBookedGuestsForService(reservation.reservation_date, reservation.reservation_time)
+      setServiceAvailability({ bookedGuests, service: getReservationService(reservation.reservation_time) })
 
       if (bookedGuests + Number(reservation.guests || 0) > SERVICE_CAPACITY) {
-        setError(SERVICE_FULL_MESSAGE)
+        setError(t('locale.full'))
         setIsSubmitting(false)
         return
       }
     } catch (availabilityCheckError) {
       console.error(availabilityCheckError)
-      setError(
-        'No hemos podido comprobar la disponibilidad online. Inténtalo de nuevo o contacta directamente con el restaurante.'
-      )
+      setError(t('locale.availabilityError'))
       setIsSubmitting(false)
       return
     }
@@ -401,15 +350,13 @@ export default function Locale() {
       source: 'website',
     }
 
-    const { error: insertError } = await supabase
-      .from('reservations')
-      .insert([payload])
+    const { error: insertError } = await supabase.from('reservations').insert([payload])
 
     if (insertError) {
-      setError('No hemos podido enviar la solicitud. Inténtalo de nuevo o llámanos directamente.')
+      setError(t('locale.submitError'))
       console.error(insertError)
     } else {
-      setMessage('Solicitud recibida. Nuestro equipo revisará la disponibilidad y te enviará la confirmación por el canal elegido.')
+      setMessage(t('locale.success'))
       setReservation(initialReservation)
       setServiceAvailability(null)
     }
@@ -421,269 +368,154 @@ export default function Locale() {
     <section className="content-page locale-page">
       <div className="locale-hero">
         <div className="locale-hero-copy">
-          <p className="eyebrow">El restaurante</p>
-          <h2>Un bistrot italiano con alma familiar</h2>
-          <p>
-            Nonna Angela nace para diferenciarse de los restaurantes italianos
-            turísticos: menos confusión, más identidad, menos carta infinita y más
-            control en cada plato.
-          </p>
+          <p className="eyebrow">{t('locale.eyebrow')}</p>
+          <h2>{t('locale.title')}</h2>
+          <p>{t('locale.intro')}</p>
         </div>
 
         <blockquote className="locale-story-card">
-          <p>{menuStory}</p>
+          <p>{t('locale.story')}</p>
         </blockquote>
       </div>
 
       <div className="locale-experience-block">
         <div className="info-grid locale-info-grid">
           <article>
-            <h3>Servicio</h3>
-            <p>Acogida cálida, atención en mesa y explicación de los platos.</p>
+            <h3>{t('locale.serviceTitle')}</h3>
+            <p>{t('locale.serviceText')}</p>
           </article>
-
           <article>
-            <h3>Cocina</h3>
-            <p>
-              Preparaciones organizadas, ragú, pastas, carnes y postres
-              tradicionales italianos.
-            </p>
+            <h3>{t('locale.kitchenTitle')}</h3>
+            <p>{t('locale.kitchenText')}</p>
           </article>
-
           <article>
-            <h3>Experiencia</h3>
-            <p>
-              Platos sencillos, pero presentados y contados con valor.
-            </p>
+            <h3>{t('locale.experienceTitle')}</h3>
+            <p>{t('locale.experienceText')}</p>
           </article>
         </div>
       </div>
 
       <section id="reservas" className="reservation-section">
         <div className="reservation-copy">
-          <p className="eyebrow">Reservas</p>
-          <h3>Reserva tu mesa</h3>
-          <p>
-            Envíanos tu solicitud y nuestro equipo confirmará la reserva lo antes posible.
-            La reserva será válida únicamente después de recibir confirmación por email o WhatsApp.
-          </p>
+          <p className="eyebrow">{t('locale.reservationEyebrow')}</p>
+          <h3>{t('locale.reservationTitle')}</h3>
+          <p>{t('locale.reservationIntro')}</p>
 
           <ol className="reservation-process-list">
-            <li>Envías tu solicitud.</li>
-            <li>Revisamos disponibilidad.</li>
-            <li>Recibes la confirmación por el canal elegido.</li>
+            <li>{t('locale.step1')}</li>
+            <li>{t('locale.step2')}</li>
+            <li>{t('locale.step3')}</li>
           </ol>
         </div>
 
         <form className="reservation-form" onSubmit={handleSubmit}>
           <div className="form-row">
             <label>
-              Nombre
-              <input
-                type="text"
-                name="customer_name"
-                value={reservation.customer_name}
-                onChange={handleChange}
-                required
-              />
+              {t('locale.name')}
+              <input type="text" name="customer_name" value={reservation.customer_name} onChange={handleChange} required />
             </label>
 
             <label className="phone-field">
-              Teléfono
+              {t('locale.phone')}
               <div className="phone-input-grid">
                 <div className="phone-prefix-control">
                   <img
                     className="phone-country-flag"
                     src={`https://flagcdn.com/w40/${selectedPhoneCountry.flagCode}.png`}
-                    alt={`Bandera ${selectedPhoneCountry.name}`}
+                    alt={t('locale.flagAlt', { country: selectedPhoneCountry.name })}
                     loading="lazy"
                   />
-                  <select
-                    name="phone_country_iso"
-                    value={reservation.phone_country_iso}
-                    onChange={handleChange}
-                    aria-label="Prefijo telefónico"
-                  >
+                  <select name="phone_country_iso" value={reservation.phone_country_iso} onChange={handleChange} aria-label={t('locale.prefixLabel')}>
                     {PHONE_COUNTRIES.map((country) => (
-                      <option key={country.iso} value={country.iso}>
-                        {country.name} {country.dial}
-                      </option>
+                      <option key={country.iso} value={country.iso}>{country.name} {country.dial}</option>
                     ))}
                   </select>
                 </div>
-                <input
-                  type="tel"
-                  name="customer_phone_number"
-                  value={reservation.customer_phone_number}
-                  onChange={handleChange}
-                  placeholder="Número"
-                  required
-                />
+                <input type="tel" name="customer_phone_number" value={reservation.customer_phone_number} onChange={handleChange} placeholder={t('locale.number')} required />
               </div>
             </label>
           </div>
 
           <label>
-            Email {isEmailConfirmation ? '' : 'opcional'}
-            <input
-              type="email"
-              name="customer_email"
-              value={reservation.customer_email}
-              onChange={handleChange}
-              placeholder="Para confirmación por correo"
-              required={isEmailConfirmation}
-            />
+            {t('locale.email')} {isEmailConfirmation ? '' : t('common.optional')}
+            <input type="email" name="customer_email" value={reservation.customer_email} onChange={handleChange} placeholder={t('locale.emailPlaceholder')} required={isEmailConfirmation} />
           </label>
 
           <fieldset className="confirmation-channel-fieldset">
-            <legend>¿Cómo prefieres recibir la confirmación?</legend>
+            <legend>{t('locale.confirmationLegend')}</legend>
             <div className="confirmation-channel-grid">
               <label className={reservation.confirmation_channel === 'whatsapp' ? 'confirmation-channel-card selected' : 'confirmation-channel-card'}>
-                <input
-                  type="radio"
-                  name="confirmation_channel"
-                  value="whatsapp"
-                  checked={reservation.confirmation_channel === 'whatsapp'}
-                  onChange={handleChange}
-                />
+                <input type="radio" name="confirmation_channel" value="whatsapp" checked={reservation.confirmation_channel === 'whatsapp'} onChange={handleChange} />
                 <span>WhatsApp</span>
-                <small>Te escribiremos al número indicado.</small>
+                <small>{t('locale.whatsappHelp')}</small>
               </label>
-
               <label className={reservation.confirmation_channel === 'email' ? 'confirmation-channel-card selected' : 'confirmation-channel-card'}>
-                <input
-                  type="radio"
-                  name="confirmation_channel"
-                  value="email"
-                  checked={reservation.confirmation_channel === 'email'}
-                  onChange={handleChange}
-                />
-                <span>Email</span>
-                <small>Recibirás la confirmación por correo.</small>
+                <input type="radio" name="confirmation_channel" value="email" checked={reservation.confirmation_channel === 'email'} onChange={handleChange} />
+                <span>{t('locale.email')}</span>
+                <small>{t('locale.emailHelp')}</small>
               </label>
             </div>
           </fieldset>
 
-          <p className="form-helper strong">
-            La reserva será válida únicamente después de recibir confirmación del equipo de Nonna Angela por email o WhatsApp.
-          </p>
+          <p className="form-helper strong">{t('locale.confirmationNotice')}</p>
 
           <div className="form-row">
             <label>
-              Fecha
-              <input
-                type="date"
-                name="reservation_date"
-                value={reservation.reservation_date}
-                onChange={handleChange}
-                required
-              />
+              {t('locale.date')}
+              <input type="date" name="reservation_date" value={reservation.reservation_date} onChange={handleChange} required />
             </label>
-
             <label>
-              Hora
-              <select
-                name="reservation_time"
-                value={reservation.reservation_time}
-                onChange={handleChange}
-                disabled={!reservation.reservation_date || isReservationDateClosed}
-                required
-              >
+              {t('locale.time')}
+              <select name="reservation_time" value={reservation.reservation_time} onChange={handleChange} disabled={!reservation.reservation_date || isReservationDateClosed} required>
                 <option value="">
-                  {!reservation.reservation_date
-                    ? 'Selecciona primero una fecha'
-                    : isReservationDateClosed
-                      ? 'Cerrado domingos y lunes'
-                      : 'Selecciona una hora'}
+                  {!reservation.reservation_date ? t('common.selectFirstDate') : isReservationDateClosed ? t('common.closedSundayMonday') : t('common.selectTime')}
                 </option>
-                {reservationTimeSlots.map((time) => (
-                  <option key={time} value={time}>
-                    {time}
-                  </option>
-                ))}
+                {reservationTimeSlots.map((time) => <option key={time} value={time}>{time}</option>)}
               </select>
             </label>
           </div>
 
-          {isReservationDateClosed && (
-            <p className="form-message error">{CLOSED_DAY_MESSAGE}</p>
-          )}
+          {isReservationDateClosed && <p className="form-message error">{t('locale.closedDay')}</p>}
 
           <div className="form-row">
             <label>
-              Personas
+              {t('locale.people')}
               <div className="guest-stepper">
-                <button type="button" onClick={() => adjustGuests(-1)} disabled={reservation.guests <= MIN_GUESTS}>
-                  −
-                </button>
-                <input
-                  type="number"
-                  name="guests"
-                  min={MIN_GUESTS}
-                  max={MAX_GUESTS}
-                  value={reservation.guests}
-                  onChange={handleChange}
-                  required
-                />
-                <button type="button" onClick={() => adjustGuests(1)} disabled={reservation.guests >= MAX_GUESTS}>
-                  +
-                </button>
+                <button type="button" onClick={() => adjustGuests(-1)} disabled={reservation.guests <= MIN_GUESTS}>−</button>
+                <input type="number" name="guests" min={MIN_GUESTS} max={MAX_GUESTS} value={reservation.guests} onChange={handleChange} required />
+                <button type="button" onClick={() => adjustGuests(1)} disabled={reservation.guests >= MAX_GUESTS}>+</button>
               </div>
             </label>
 
             <label>
-              Zona preferida
-              <select
-                name="area_preference"
-                value={reservation.area_preference}
-                onChange={handleChange}
-              >
-                <option value="indiferente">Indiferente</option>
-                <option value="terrazza">Terrazza</option>
-                <option value="sala">Sala</option>
-                <option value="coworking">Coworking</option>
+              {t('locale.preferredArea')}
+              <select name="area_preference" value={reservation.area_preference} onChange={handleChange}>
+                <option value="indiferente">{t('locale.indifferent')}</option>
+                <option value="terrazza">{t('locale.terrace')}</option>
+                <option value="sala">{t('locale.diningRoom')}</option>
+                <option value="coworking">{t('locale.coworking')}</option>
               </select>
             </label>
           </div>
 
-          {isCheckingAvailability && (
-            <p className="form-message">Comprobando disponibilidad del servicio...</p>
-          )}
+          {isCheckingAvailability && <p className="form-message">{t('locale.checkingAvailability')}</p>}
 
           {!isCheckingAvailability && selectedService && capacityStatus.remainingGuests !== null && !capacityStatus.isCapacityBlocking && (
             <p className="form-message success">
-              Disponibilidad online para {getServiceLabel(selectedService)}: quedan {capacityStatus.remainingGuests} plazas.
+              {t('locale.availability', { service: getServiceLabel(selectedService), spots: capacityStatus.remainingGuests })}
             </p>
           )}
 
-          {!isCheckingAvailability && selectedService && capacityStatus.isCapacityBlocking && (
-            <p className="form-message error">{SERVICE_FULL_MESSAGE}</p>
-          )}
-
+          {!isCheckingAvailability && selectedService && capacityStatus.isCapacityBlocking && <p className="form-message error">{t('locale.full')}</p>}
           {availabilityError && <p className="form-message error">{availabilityError}</p>}
 
           <label>
-            Notas
-            <textarea
-              name="notes"
-              value={reservation.notes}
-              onChange={handleChange}
-              rows="4"
-              placeholder="Alergias, carrito de bebé, celebración, preferencia..."
-            />
+            {t('locale.notes')}
+            <textarea name="notes" value={reservation.notes} onChange={handleChange} rows="4" placeholder={t('locale.notesPlaceholder')} />
           </label>
 
-          <button
-            className="primary-button"
-            type="submit"
-            disabled={
-              isSubmitting ||
-              isCheckingAvailability ||
-              isReservationDateClosed ||
-              capacityStatus.isCapacityBlocking
-            }
-          >
-            {isSubmitting ? 'Enviando...' : 'Enviar solicitud'}
+          <button className="primary-button" type="submit" disabled={isSubmitting || isCheckingAvailability || isReservationDateClosed || capacityStatus.isCapacityBlocking}>
+            {isSubmitting ? t('common.sending') : t('locale.submit')}
           </button>
 
           {message && <p className="form-message success">{message}</p>}
@@ -693,21 +525,13 @@ export default function Locale() {
 
       <section className="reviews-section">
         <div>
-          <p className="eyebrow">Google Reviews</p>
-          <h3>¿Ya nos has visitado?</h3>
-          <p>
-            Tu valoración ayuda a Nonna Angela a crecer y a que más personas descubran
-            nuestra cocina italiana.
-          </p>
+          <p className="eyebrow">{t('locale.reviewsEyebrow')}</p>
+          <h3>{t('locale.reviewsTitle')}</h3>
+          <p>{t('locale.reviewsText')}</p>
         </div>
 
-        <a
-          className="primary-button review-button"
-          href="https://g.page/r/CQb-RYyd7PNAEBM/review"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Valóranos en Google
+        <a className="primary-button review-button" href="https://g.page/r/CQb-RYyd7PNAEBM/review" target="_blank" rel="noreferrer">
+          {t('locale.reviewsButton')}
         </a>
       </section>
     </section>
