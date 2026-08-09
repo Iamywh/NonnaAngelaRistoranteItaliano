@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 const contactLinks = [
   {
@@ -19,26 +20,25 @@ const contactLinks = [
 ]
 
 export default function Footer({ setCurrentPage }) {
+  const { t } = useLanguage()
+
   return (
     <footer className="site-footer">
       <div className="footer-inner">
         <div className="footer-brand">
-          <p className="brand-kicker">Ristorante Italiano</p>
+          <p className="brand-kicker">{t('footer.kicker')}</p>
           <h2>Nonna Angela</h2>
-          <p>
-            Cocina italiana auténtica, menú digital, vinos, cócteles y reservas
-            con confirmación del equipo.
-          </p>
+          <p>{t('footer.text')}</p>
         </div>
 
         <div className="footer-block">
-          <h3>Dirección</h3>
+          <h3>{t('footer.address')}</h3>
           <p>Calle Méndez Núñez 20</p>
           <p>38002 Santa Cruz de Tenerife</p>
         </div>
 
         <div className="footer-block">
-          <h3>Contacto</h3>
+          <h3>{t('footer.contact')}</h3>
           <ul className="footer-links">
             {contactLinks.map((link) => (
               <li key={link.label}>
@@ -52,18 +52,18 @@ export default function Footer({ setCurrentPage }) {
         </div>
 
         <div className="footer-block">
-          <h3>Carta</h3>
+          <h3>{t('footer.carta')}</h3>
           <ul className="footer-links">
             <li>
-              <span>Menú</span>
+              <span>{t('footer.menu')}</span>
               <button type="button" onClick={() => setCurrentPage('menu')}>
-                Cocina y vinos
+                {t('footer.foodWine')}
               </button>
             </li>
             <li>
-              <span>Bebidas</span>
+              <span>{t('footer.drinks')}</span>
               <button type="button" onClick={() => setCurrentPage('bebidas')}>
-                Carta de Bebidas
+                {t('footer.drinksMenu')}
               </button>
             </li>
           </ul>
@@ -71,7 +71,7 @@ export default function Footer({ setCurrentPage }) {
       </div>
 
       <div className="footer-menuria">
-        <span>Powered by</span>
+        <span>{t('footer.powered')}</span>
         <strong>Menuria</strong>
       </div>
     </footer>
