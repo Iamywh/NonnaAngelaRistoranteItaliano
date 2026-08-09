@@ -1,5 +1,9 @@
 import React from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import {
+  getTranslatedBeverageCategory,
+  getTranslatedBeverageItem
+} from '../i18n/menuContentTranslations.js'
 
 import bebidas from '../../data/menu/bebidas.json'
 import '../styles/bebidas-mobile.css'
@@ -9,28 +13,32 @@ function formatPrice(price) {
 }
 
 function DrinkRow({ item }) {
+  const { language } = useLanguage()
+  const translatedItem = getTranslatedBeverageItem(item, language)
+
   return (
     <article className="drink-row">
-      <span>{item.name}</span>
-      <strong>{formatPrice(item.price)}</strong>
+      <span>{translatedItem.name}</span>
+      <strong>{formatPrice(translatedItem.price)}</strong>
     </article>
   )
 }
 
 function ServicePriceRow({ item }) {
-  const { t } = useLanguage()
+  const { language, t } = useLanguage()
+  const translatedItem = getTranslatedBeverageItem(item, language)
 
   return (
     <article className="drink-row service-price-row">
-      <span>{item.name}</span>
+      <span>{translatedItem.name}</span>
       <div className="service-price-list">
         <div>
           <span>{t('bebidas.glass')}</span>
-          <strong>{formatPrice(item.prices.copa)}</strong>
+          <strong>{formatPrice(translatedItem.prices.copa)}</strong>
         </div>
         <div>
           <span>{t('bebidas.shot')}</span>
-          <strong>{formatPrice(item.prices.chupito)}</strong>
+          <strong>{formatPrice(translatedItem.prices.chupito)}</strong>
         </div>
       </div>
     </article>
@@ -38,27 +46,32 @@ function ServicePriceRow({ item }) {
 }
 
 function CocktailCard({ item }) {
+  const { language } = useLanguage()
+  const translatedItem = getTranslatedBeverageItem(item, language)
+
   return (
     <article className="cocktail-card">
       <div className="cocktail-card-top">
-        <h3>{item.name}</h3>
-        <strong>{formatPrice(item.price)}</strong>
+        <h3>{translatedItem.name}</h3>
+        <strong>{formatPrice(translatedItem.price)}</strong>
       </div>
-      <p className="cocktail-ingredients">{item.ingredients.join(', ')}.</p>
-      <p className="cocktail-history">{item.history}</p>
+      <p className="cocktail-ingredients">{translatedItem.ingredients.join(', ')}.</p>
+      <p className="cocktail-history">{translatedItem.history}</p>
     </article>
   )
 }
 
 function DrinksSection({ category }) {
+  const { language } = useLanguage()
+  const translatedCategory = getTranslatedBeverageCategory(category, language)
   const isCocktailSection = category.layout === 'cocktail'
   const isServicePriceSection = category.layout === 'service-prices'
 
   return (
     <section className="drinks-section">
       <div className="drinks-section-heading">
-        <p className="eyebrow">{category.description}</p>
-        <h2>{category.title}</h2>
+        <p className="eyebrow">{translatedCategory.description}</p>
+        <h2>{translatedCategory.title}</h2>
       </div>
 
       {isCocktailSection ? (
