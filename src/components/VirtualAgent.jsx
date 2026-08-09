@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../lib/supabaseClient.js'
-import botMessages from '../data/bot/botMessages.json'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 import restaurantKnowledge from '../data/bot/restaurantKnowledge.json'
 import wineKnowledge from '../data/bot/wineknowledge.json'
 import cocktailKnowledge from '../data/bot/cocktailKnowledge.json'
@@ -32,22 +32,22 @@ const initialModifyForm = {
   notes: ''
 }
 
-const RESERVATION_STATUS_LABELS = {
-  pending: 'pendiente de confirmación',
-  confirmed: 'confirmada',
-  rejected: 'rechazada',
-  cancelled: 'cancelada'
+const LANGUAGE_LOCALES = {
+  es: 'es-ES',
+  en: 'en-GB',
+  fr: 'fr-FR',
+  it: 'it-IT'
 }
 
-const SERVICE_STATUS_LABELS = {
-  not_arrived: 'sin llegar todavía',
-  seated: 'cliente sentado',
-  completed: 'servicio completado',
-  no_show: 'no-show'
+function buildGreeting(t) {
+  return {
+    role: 'agent',
+    text: `${t('bot.title')} — ${t('bot.help')}`
+  }
 }
 
-function getInitialMessages() {
-  const fallbackMessages = [{ role: 'agent', text: botMessages.greeting.message }]
+function getInitialMessages(t) {
+  const fallbackMessages = [buildGreeting(t)]
 
   if (typeof window === 'undefined') return fallbackMessages
 
@@ -56,9 +56,7 @@ function getInitialMessages() {
     if (!savedMessages) return fallbackMessages
 
     const parsedMessages = JSON.parse(savedMessages)
-    return Array.isArray(parsedMessages) && parsedMessages.length > 0
-      ? parsedMessages
-      : fallbackMessages
+    return Array.isArray(parsedMessages) && parsedMessages.length > 0 ? parsedMessages : fallbackMessages
   } catch {
     return fallbackMessages
   }
@@ -147,8 +145,8 @@ function isFridayOrSaturday(dateValue) {
 
 function getReservationTimeSlots(dateValue) {
   if (!dateValue || isClosedReservationDate(dateValue)) return []
-
   const lastDinnerSlot = isFridayOrSaturday(dateValue) ? '22:45' : '22:30'
+
   return [
     ...buildTimeSlots('12:30', '15:15'),
     ...buildTimeSlots('19:30', lastDinnerSlot)
@@ -185,11 +183,11 @@ function clampGuests(value) {
   return Math.min(Math.max(numericValue, MIN_GUESTS), MAX_GUESTS)
 }
 
-function formatReservationDate(dateValue) {
+function formatReservationDate(dateValue, language = 'es') {
   const parsed = parseDateValue(dateValue)
   if (!parsed) return '-'
 
-  return createLocalDate(parsed.year, parsed.month, parsed.day).toLocaleDateString('es-ES', {
+  return createLocalDate(parsed.year, parsed.month, parsed.day).toLocaleDateString(LANGUAGE_LOCALES[language] || 'es-ES', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
@@ -197,11 +195,11 @@ function formatReservationDate(dateValue) {
   })
 }
 
-function formatReservationDateShort(dateValue) {
+function formatReservationDateShort(dateValue, language = 'es') {
   const parsed = parseDateValue(dateValue)
   if (!parsed) return '-'
 
-  return createLocalDate(parsed.year, parsed.month, parsed.day).toLocaleDateString('es-ES', {
+  return createLocalDate(parsed.year, parsed.month, parsed.day).toLocaleDateString(LANGUAGE_LOCALES[language] || 'es-ES', {
     weekday: 'short',
     day: '2-digit',
     month: '2-digit',
@@ -235,178 +233,170 @@ function buildNotesWithOrigin(notes, originText) {
 function isStatusRequest(userText) {
   const normalized = normalizeText(userText)
   return (
-    normalized.includes('estado') ||
-    normalized.includes('status') ||
-    normalized.includes('confirmada') ||
-    normalized.includes('confirmado') ||
-    normalized.includes('confirmacion') ||
-    normalized.includes('saber mi reserva') ||
-    normalized.includes('mi reserva esta') ||
-    normalized.includes('check reserva')
+    normalized.includes('estado') || normalized.includes('status') || normalized.includes('confirm') ||
+    normalized.includes('etat') || normalized.includes('état') || normalized.includes('stato') ||
+    normalized.includes('booking') || normalized.includes('prenotazione')
   ) && (
-    normalized.includes('reserva') ||
-    normalized.includes('mesa') ||
-    normalized.includes('booking')
+    normalized.includes('reserva') || normalized.includes('mesa') || normalized.includes('booking') ||
+    normalized.includes('reservation') || normalized.includes('prenotazione')
   )
 }
 
 function isModificationRequest(userText) {
   const normalized = normalizeText(userText)
   return (
-    normalized.includes('modificar') ||
-    normalized.includes('cambiar') ||
-    normalized.includes('cambio') ||
-    normalized.includes('editar') ||
-    normalized.includes('mover') ||
-    normalized.includes('modifica')
+    normalized.includes('modificar') || normalized.includes('cambiar') || normalized.includes('editar') ||
+    normalized.includes('mover') || normalized.includes('modify') || normalized.includes('change') ||
+    normalized.includes('modifier') || normalized.includes('changer') || normalized.includes('modifica') ||
+    normalized.includes('cambiare')
   ) && (
-    normalized.includes('reserva') ||
-    normalized.includes('mesa') ||
-    normalized.includes('booking')
+    normalized.includes('reserva') || normalized.includes('mesa') || normalized.includes('booking') ||
+    normalized.includes('reservation') || normalized.includes('prenotazione')
   )
 }
 
 function isBookingRequest(userText) {
   const normalized = normalizeText(userText)
   return (
-    normalized.includes('reservar') ||
-    normalized.includes('reserva') ||
-    normalized.includes('mesa') ||
-    normalized.includes('book')
+    normalized.includes('reservar') || normalized.includes('reserva') || normalized.includes('mesa') ||
+    normalized.includes('book') || normalized.includes('booking') || normalized.includes('réserver') ||
+    normalized.includes('reserver') || normalized.includes('prenotare') || normalized.includes('prenota') ||
+    normalized.includes('table') || normalized.includes('tavolo')
   ) && !isModificationRequest(userText) && !isStatusRequest(userText)
 }
 
 function hasWineIntent(userText) {
   const normalized = normalizeText(userText)
   return [
-    'vino', 'vinos', 'copa', 'copas', 'tinto', 'blanco', 'rosado', 'espumoso',
-    'barolo', 'brunello', 'valpolicella', 'lambrusco', 'gavi', 'prosecco', 'chianti',
-    'maridaje', 'maridar'
+    'vino', 'vinos', 'wine', 'wines', 'vin', 'vins', 'copa', 'glass', 'verre', 'calice',
+    'tinto', 'red', 'rouge', 'rosso', 'blanco', 'white', 'blanc', 'bianco', 'rosado', 'rose', 'rosé',
+    'espumoso', 'sparkling', 'prosecco', 'barolo', 'brunello', 'valpolicella', 'lambrusco', 'gavi', 'chianti'
   ].some((token) => normalized.includes(token))
 }
 
 function hasCocktailIntent(userText) {
   const normalized = normalizeText(userText)
-  return [
-    'cocktail', 'coctel', 'spritz', 'negroni', 'americano', 'aperol', 'limoncello', 'bellini', 'rossini'
-  ].some((token) => normalized.includes(token))
+  return ['cocktail', 'coctel', 'cóctel', 'spritz', 'negroni', 'americano', 'aperol', 'limoncello', 'bellini', 'rossini'].some((token) => normalized.includes(token))
 }
 
-function buildWineAnswer(userText) {
+function buildWineAnswer(userText, language) {
   if (!hasWineIntent(userText)) return null
 
   const normalizedUserText = normalizeText(userText)
   const wines = wineKnowledge.wineKnowledge || []
 
-  const byGlass = normalizedUserText.includes('copa') || normalizedUserText.includes('copas')
-  const wantsWhite = normalizedUserText.includes('blanco')
-  const wantsRed = normalizedUserText.includes('tinto')
-  const wantsRose = normalizedUserText.includes('rosado')
-  const wantsSparkling = normalizedUserText.includes('espumoso') || normalizedUserText.includes('prosecco') || normalizedUserText.includes('burbuja')
-  const wantsSweet = normalizedUserText.includes('postre') || normalizedUserText.includes('dulce')
+  const byGlass = normalizedUserText.includes('copa') || normalizedUserText.includes('glass') || normalizedUserText.includes('verre') || normalizedUserText.includes('calice')
+  const wantsWhite = normalizedUserText.includes('blanco') || normalizedUserText.includes('white') || normalizedUserText.includes('blanc') || normalizedUserText.includes('bianco')
+  const wantsRed = normalizedUserText.includes('tinto') || normalizedUserText.includes('red') || normalizedUserText.includes('rouge') || normalizedUserText.includes('rosso')
+  const wantsRose = normalizedUserText.includes('rosado') || normalizedUserText.includes('rose') || normalizedUserText.includes('rosé')
+  const wantsSparkling = normalizedUserText.includes('espumoso') || normalizedUserText.includes('sparkling') || normalizedUserText.includes('prosecco')
 
   let candidates = wines
-
   if (byGlass) candidates = candidates.filter((wine) => wine.by_glass)
   if (wantsWhite) candidates = candidates.filter((wine) => wine.category === 'Bianco')
   if (wantsRed) candidates = candidates.filter((wine) => wine.category === 'Rosso')
   if (wantsRose) candidates = candidates.filter((wine) => wine.category === 'Rosato')
   if (wantsSparkling) candidates = candidates.filter((wine) => wine.category === 'Spumante')
-  if (wantsSweet) candidates = candidates.filter((wine) => wine.category === 'Dolce')
 
   const selected = candidates.slice(0, 3)
+  if (!selected.length) return null
 
-  if (!selected.length) {
-    return 'Puedo ayudarte con la carta de vinos. Dime si prefieres blanco, tinto, rosado, espumoso o vino por copa.'
-  }
+  const intro = {
+    es: 'Te recomendaría estas opciones:',
+    en: 'I would recommend these options:',
+    fr: 'Je vous recommanderais ces options :',
+    it: 'Ti consiglierei queste opzioni:'
+  }[language] || 'Te recomendaría estas opciones:'
+
+  const glassText = {
+    es: ' Disponible también por copa.',
+    en: ' Also available by the glass.',
+    fr: ' Disponible aussi au verre.',
+    it: ' Disponibile anche al calice.'
+  }[language] || ' Disponible también por copa.'
 
   return [
-    'Te recomendaría estas opciones:',
+    intro,
     '',
-    ...selected.map((wine) => {
-      const glassText = wine.by_glass ? ' Disponible también por copa.' : ''
-      return `• ${wine.name} (${wine.region}) — ${wine.sales_note || wine.category}.${glassText}`
-    })
+    ...selected.map((wine) => `• ${wine.name} (${wine.region}) — ${wine.sales_note || wine.category}.${wine.by_glass ? glassText : ''}`)
   ].join('\n')
 }
 
-function buildCocktailAnswer(userText) {
+function buildCocktailAnswer(userText, language) {
   if (!hasCocktailIntent(userText)) return null
-
   const normalized = normalizeText(userText)
 
   if (normalized.includes('negroni')) {
-    return 'El Negroni es intenso, amargo y elegante: gin, bitter rojo y vermut. Perfecto como aperitivo italiano con carácter.'
+    return {
+      es: 'El Negroni es intenso, amargo y elegante: gin, bitter rojo y vermut. Perfecto como aperitivo italiano con carácter.',
+      en: 'The Negroni is intense, bitter and elegant: gin, red bitter and vermouth. Perfect as a classic Italian aperitif.',
+      fr: 'Le Negroni est intense, amer et élégant : gin, bitter rouge et vermouth. Parfait comme apéritif italien de caractère.',
+      it: 'Il Negroni è intenso, amaro ed elegante: gin, bitter rosso e vermut. Perfetto come aperitivo italiano di carattere.'
+    }[language]
   }
 
   if (normalized.includes('limoncello')) {
-    return 'El Limoncello Spritz es fresco, cítrico y muy mediterráneo: prosecco, limoncello, soda y basilico.'
+    return {
+      es: 'El Limoncello Spritz es fresco, cítrico y muy mediterráneo: prosecco, limoncello, soda y basilico.',
+      en: 'The Limoncello Spritz is fresh, citrusy and very Mediterranean: prosecco, limoncello, soda and basil.',
+      fr: 'Le Limoncello Spritz est frais, citronné et très méditerranéen : prosecco, limoncello, soda et basilic.',
+      it: 'Il Limoncello Spritz è fresco, agrumato e molto mediterraneo: prosecco, limoncello, soda e basilico.'
+    }[language]
   }
 
-  const branches = cocktailKnowledge.recommendationBranches || {}
-  const recommended = branches.fresh_light?.botAnswer || branches.bitter_intense?.botAnswer
+  const fallback = {
+    es: 'Tenemos cócteles italianos clásicos y aperitivos como Spritz, Negroni y opciones más frescas. Puedo recomendarte uno según si prefieres algo suave, fresco o intenso.',
+    en: 'We have classic Italian cocktails and aperitifs such as Spritz, Negroni and fresher options. I can recommend one depending on whether you prefer something soft, fresh or intense.',
+    fr: 'Nous avons des cocktails italiens classiques et des apéritifs comme le Spritz, le Negroni et des options plus fraîches. Je peux vous recommander selon vos préférences.',
+    it: 'Abbiamo cocktail italiani classici e aperitivi come Spritz, Negroni e opzioni più fresche. Posso consigliarti in base a ciò che preferisci.'
+  }
 
-  return recommended || 'Tenemos cócteles italianos clásicos y aperitivos como Spritz, Negroni y opciones más frescas. Puedo recomendarte uno según si prefieres algo suave, fresco o intenso.'
+  return fallback[language] || cocktailKnowledge.recommendationBranches?.fresh_light?.botAnswer
 }
 
-function buildBasicAnswer(userText) {
+function buildBasicAnswer(userText, language) {
   const normalized = normalizeText(userText)
   const restaurant = restaurantKnowledge.restaurant
 
-  if (normalized.includes('horario') || normalized.includes('abierto') || normalized.includes('hora')) {
-    return restaurant.openingHours?.humanReadable || 'Abrimos de martes a sábado, con servicio de mediodía y cena. Cerramos domingo y lunes.'
+  if (normalized.includes('horario') || normalized.includes('abierto') || normalized.includes('opening') || normalized.includes('hours') || normalized.includes('horaire') || normalized.includes('orari')) {
+    return {
+      es: restaurant.openingHours?.humanReadable || 'Abrimos de martes a sábado. Cerramos domingo y lunes.',
+      en: 'We are open Tuesday to Saturday for lunch and dinner. Closed Sunday and Monday.',
+      fr: 'Nous sommes ouverts du mardi au samedi, midi et soir. Fermé dimanche et lundi.',
+      it: 'Siamo aperti da martedì a sabato, a pranzo e cena. Chiuso domenica e lunedì.'
+    }[language]
   }
 
-  if (normalized.includes('direccion') || normalized.includes('donde') || normalized.includes('ubicacion')) {
-    return `Estamos en ${restaurant.address?.fullAddress || 'Calle Méndez Núñez 20, Santa Cruz de Tenerife'}.`
+  if (normalized.includes('direccion') || normalized.includes('donde') || normalized.includes('ubicacion') || normalized.includes('address') || normalized.includes('location') || normalized.includes('adresse') || normalized.includes('indirizzo')) {
+    return `${restaurant.address?.fullAddress || 'Calle Méndez Núñez 20, Santa Cruz de Tenerife'}.`
   }
 
-  if (normalized.includes('telefono') || normalized.includes('whatsapp') || normalized.includes('contacto')) {
-    return `Puedes contactar por WhatsApp al ${restaurant.contact?.mobile?.value || '+34 613 381 023'}.`
+  if (normalized.includes('telefono') || normalized.includes('phone') || normalized.includes('whatsapp') || normalized.includes('contacto') || normalized.includes('contact')) {
+    return `${restaurant.contact?.mobile?.value || '+34 613 381 023'}`
   }
 
-  const wineAnswer = buildWineAnswer(userText)
-  if (wineAnswer) return wineAnswer
-
-  const cocktailAnswer = buildCocktailAnswer(userText)
-  if (cocktailAnswer) return cocktailAnswer
-
-  return null
+  return buildWineAnswer(userText, language) || buildCocktailAnswer(userText, language)
 }
 
-function buildReservationSummary(reservation) {
-  return `${formatReservationDateShort(reservation.reservation_date)} · ${reservation.reservation_time || '-'} · ${reservation.guests || '-'} pax`
+function buildReservationSummary(reservation, language) {
+  return `${formatReservationDateShort(reservation.reservation_date, language)} · ${reservation.reservation_time || '-'} · ${reservation.guests || '-'} pax`
 }
 
-function buildReservationStatusAnswer(reservation) {
+function buildReservationStatusAnswer(reservation, t, language) {
   const reservationStatus = getReservationStatus(reservation)
-  const serviceStatus = getServiceStatus(reservation)
-  const reservationLabel = RESERVATION_STATUS_LABELS[reservationStatus] || reservationStatus || 'pendiente'
-  const serviceLabel = SERVICE_STATUS_LABELS[serviceStatus] || serviceStatus || 'sin llegar'
+  const statusLabel = t(`bot.statusLabels.${reservationStatus}`)
+  const summary = buildReservationSummary(reservation, language)
 
-  const intro = `Tienes una reserva para ${formatReservationDate(reservation.reservation_date)} a las ${reservation.reservation_time || '-'} para ${reservation.guests || '-'} persona${Number(reservation.guests || 0) === 1 ? '' : 's'}.`
-
-  if (reservationStatus === 'confirmed') {
-    return `${intro}\n\nEstado: ${reservationLabel}.\nServicio: ${serviceLabel}.\n\nTe esperamos en Nonna Angela.`
-  }
-
-  if (reservationStatus === 'pending') {
-    return `${intro}\n\nEstado: ${reservationLabel}.\n\nEl equipo todavía debe confirmarla por WhatsApp o email.`
-  }
-
-  if (reservationStatus === 'rejected' || reservationStatus === 'cancelled') {
-    return `${intro}\n\nEstado: ${reservationLabel}.\n\nEsta reserva no está activa. Contacta directamente con el restaurante si necesitas ayuda.`
-  }
-
-  return `${intro}\n\nEstado de reserva: ${reservationLabel}.\nEstado del servicio: ${serviceLabel}.`
+  return t('bot.selectedStatus', { summary, status: statusLabel })
 }
 
 export default function VirtualAgent() {
+  const { language, t } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
   const [userInput, setUserInput] = useState('')
   const [activeOptions, setActiveOptions] = useState([])
   const [showSuggestions, setShowSuggestions] = useState(true)
-  const [messages, setMessages] = useState(() => getInitialMessages())
+  const [messages, setMessages] = useState(() => getInitialMessages(t))
 
   const [showBookingForm, setShowBookingForm] = useState(false)
   const [bookingForm, setBookingForm] = useState(initialBookingForm)
@@ -429,13 +419,14 @@ export default function VirtualAgent() {
   const [isSearchingStatus, setIsSearchingStatus] = useState(false)
 
   const promotedTopics = useMemo(() => [
-    { label: 'Reservas', action: 'open_booking_form' },
-    { label: 'Estado reserva', action: 'open_status_reservation' },
-    { label: 'Modificar reserva', action: 'open_modify_reservation' },
-    { label: 'Vinos', prompt: '¿Qué vinos tenéis por copa?' },
-    { label: 'Cócteles', prompt: 'Recomiéndame un cóctel' },
-    { label: 'Horarios', prompt: '¿Cuál es vuestro horario?' }
-  ], [])
+    { label: t('bot.topics.booking'), action: 'open_booking_form' },
+    { label: t('bot.topics.status'), action: 'open_status_reservation' },
+    { label: t('bot.topics.modify'), action: 'open_modify_reservation' },
+    { label: t('bot.topics.wines'), prompt: 'wine by glass' },
+    { label: t('bot.topics.cocktails'), prompt: 'negroni cocktail' },
+    { label: t('bot.topics.hours'), prompt: 'opening hours' },
+    { label: t('bot.topics.location'), prompt: 'location address' }
+  ], [t])
 
   const bookingTimeSlots = getReservationTimeSlots(bookingForm.date)
   const modifyTimeSlots = getReservationTimeSlots(modifyForm.date)
@@ -448,19 +439,19 @@ export default function VirtualAgent() {
     }
   }, [messages])
 
+  useEffect(() => {
+    setMessages((current) => {
+      if (current.length !== 1) return current
+      return [buildGreeting(t)]
+    })
+  }, [language, t])
+
   const appendConversation = (userText, agentText) => {
-    setMessages((current) => [
-      ...current,
-      { role: 'user', text: userText },
-      { role: 'agent', text: agentText }
-    ])
+    setMessages((current) => [...current, { role: 'user', text: userText }, { role: 'agent', text: agentText }])
   }
 
   const addAgentMessage = (agentText) => {
-    setMessages((current) => [
-      ...current,
-      { role: 'agent', text: agentText }
-    ])
+    setMessages((current) => [...current, { role: 'agent', text: agentText }])
   }
 
   const resetForms = () => {
@@ -475,42 +466,32 @@ export default function VirtualAgent() {
     setStatusStatus({ type: '', message: '' })
   }
 
-  const openBookingForm = (userText = 'Quiero reservar una mesa') => {
+  const openBookingForm = (userText = t('bot.topics.booking')) => {
     resetForms()
     setShowBookingForm(true)
     setActiveOptions([])
     setShowSuggestions(false)
-    appendConversation(
-      userText,
-      'Perfecto. Rellena estos datos y guardaré la solicitud para que el equipo de Nonna Angela la confirme por WhatsApp o email.'
-    )
+    appendConversation(userText, t('bot.bookingPrompt'))
   }
 
-  const openModifyForm = (userText = 'Quiero modificar una reserva') => {
+  const openModifyForm = (userText = t('bot.topics.modify')) => {
     resetForms()
     setShowModifySearchForm(true)
     setActiveOptions([])
     setShowSuggestions(false)
-    appendConversation(
-      userText,
-      'Claro. Escribe aquí el número de teléfono usado en la reserva. Puedo reconocerlo también aunque lo escribas sin prefijo.'
-    )
+    appendConversation(userText, t('bot.modifyPrompt'))
   }
 
-  const openStatusForm = (userText = 'Quiero saber el estado de mi reserva') => {
+  const openStatusForm = (userText = t('bot.topics.status')) => {
     resetForms()
     setShowStatusSearchForm(true)
     setActiveOptions([])
     setShowSuggestions(false)
-    appendConversation(
-      userText,
-      'Claro. Escribe el número de teléfono usado en la reserva y buscaré el estado de tus reservas futuras.'
-    )
+    appendConversation(userText, t('bot.statusPrompt'))
   }
 
   const handleResetChat = () => {
-    const initialMessages = [{ role: 'agent', text: botMessages.greeting.message }]
-    setMessages(initialMessages)
+    setMessages([buildGreeting(t)])
     setActiveOptions([])
     setUserInput('')
     setShowSuggestions(true)
@@ -528,29 +509,17 @@ export default function VirtualAgent() {
   }
 
   const validateReservationFields = async ({ date, time, people }, excludedReservationId = null) => {
-    if (isClosedReservationDate(date)) {
-      return 'El restaurante permanece cerrado los domingos y lunes. Selecciona otra fecha.'
-    }
-
-    if (!getReservationTimeSlots(date).includes(time)) {
-      return 'Selecciona una hora disponible para la fecha elegida.'
-    }
+    if (isClosedReservationDate(date)) return t('locale.closedDay')
+    if (!getReservationTimeSlots(date).includes(time)) return t('locale.timeRequired')
 
     const bookedGuests = await getBookedGuestsForService(date, time, excludedReservationId)
-
-    if (bookedGuests + Number(people || 0) > SERVICE_CAPACITY) {
-      return 'Las reservas online para ese servicio están casi completas. Contacta directamente con el restaurante para comprobar disponibilidad.'
-    }
-
+    if (bookedGuests + Number(people || 0) > SERVICE_CAPACITY) return t('locale.full')
     return ''
   }
 
   const findReservationsByPhone = async (phoneValue) => {
     const searchedPhone = phoneValue.trim()
-
-    if (sanitizePhoneDigits(searchedPhone).length < 6) {
-      return { error: 'Introduce al menos 6 dígitos del número usado en la reserva.', matches: [] }
-    }
+    if (sanitizePhoneDigits(searchedPhone).length < 6) return { error: t('bot.phoneMin'), matches: [] }
 
     const { data, error } = await supabase
       .from('reservations')
@@ -561,10 +530,7 @@ export default function VirtualAgent() {
 
     if (error) throw error
 
-    const matches = (data || [])
-      .filter((reservation) => phonesMatch(reservation.customer_phone, searchedPhone))
-      .slice(0, 6)
-
+    const matches = (data || []).filter((reservation) => phonesMatch(reservation.customer_phone, searchedPhone)).slice(0, 6)
     return { error: '', matches }
   }
 
@@ -577,7 +543,6 @@ export default function VirtualAgent() {
 
     try {
       const { error, matches } = await findReservationsByPhone(searchedPhone)
-
       if (error) {
         setModifyStatus({ type: 'error', message: error })
         if (shouldAppendUserMessage) appendConversation(searchedPhone, error)
@@ -590,7 +555,7 @@ export default function VirtualAgent() {
         .slice(0, 5)
 
       if (!editableMatches.length) {
-        const message = 'No he encontrado reservas futuras activas con ese número. Revisa el teléfono o contacta directamente con el restaurante.'
+        const message = t('bot.noBooking')
         setModifyStatus({ type: 'error', message })
         if (shouldAppendUserMessage) appendConversation(searchedPhone, message)
         return
@@ -600,20 +565,15 @@ export default function VirtualAgent() {
 
       if (editableMatches.length === 1) {
         selectReservationToModify(editableMatches[0])
-        if (shouldAppendUserMessage) {
-          appendConversation(
-            searchedPhone,
-            `He encontrado esta reserva: ${buildReservationSummary(editableMatches[0])}. Puedes cambiar los datos en el formulario.`
-          )
-        }
+        if (shouldAppendUserMessage) appendConversation(searchedPhone, t('bot.foundOneModify', { summary: buildReservationSummary(editableMatches[0], language) }))
       } else {
-        const message = `He encontrado ${editableMatches.length} reservas activas con ese número. Elige cuál quieres modificar.`
+        const message = t('bot.foundManyModify', { count: editableMatches.length })
         setModifyStatus({ type: 'success', message })
         if (shouldAppendUserMessage) appendConversation(searchedPhone, message)
       }
     } catch (error) {
       console.error(error)
-      const message = `No hemos podido buscar la reserva. Detalle: ${error?.message || 'error desconocido'}`
+      const message = `${t('bot.searchError')} ${error?.message || ''}`.trim()
       setModifyStatus({ type: 'error', message })
       if (shouldAppendUserMessage) appendConversation(searchedPhone, message)
     } finally {
@@ -622,7 +582,7 @@ export default function VirtualAgent() {
   }
 
   const showReservationStatus = (reservation, shouldAddAgentMessage = true) => {
-    const answer = buildReservationStatusAnswer(reservation)
+    const answer = buildReservationStatusAnswer(reservation, t, language)
     setStatusStatus({ type: 'success', message: answer })
     if (shouldAddAgentMessage) addAgentMessage(answer)
   }
@@ -635,7 +595,6 @@ export default function VirtualAgent() {
 
     try {
       const { error, matches } = await findReservationsByPhone(searchedPhone)
-
       if (error) {
         setStatusStatus({ type: 'error', message: error })
         if (shouldAppendUserMessage) appendConversation(searchedPhone, error)
@@ -643,7 +602,7 @@ export default function VirtualAgent() {
       }
 
       if (!matches.length) {
-        const message = 'No he encontrado reservas futuras con ese número. Revisa el teléfono o contacta directamente con el restaurante.'
+        const message = t('bot.noBooking')
         setStatusStatus({ type: 'error', message })
         if (shouldAppendUserMessage) appendConversation(searchedPhone, message)
         return
@@ -652,17 +611,17 @@ export default function VirtualAgent() {
       setStatusReservations(matches)
 
       if (matches.length === 1) {
-        const answer = buildReservationStatusAnswer(matches[0])
+        const answer = buildReservationStatusAnswer(matches[0], t, language)
         setStatusStatus({ type: 'success', message: answer })
         if (shouldAppendUserMessage) appendConversation(searchedPhone, answer)
       } else {
-        const message = `He encontrado ${matches.length} reservas futuras con ese número. Elige cuál quieres consultar.`
+        const message = t('bot.foundManyStatus', { count: matches.length })
         setStatusStatus({ type: 'success', message })
         if (shouldAppendUserMessage) appendConversation(searchedPhone, message)
       }
     } catch (error) {
       console.error(error)
-      const message = `No hemos podido consultar el estado. Detalle: ${error?.message || 'error desconocido'}`
+      const message = `${t('bot.searchError')} ${error?.message || ''}`.trim()
       setStatusStatus({ type: 'error', message })
       if (shouldAppendUserMessage) appendConversation(searchedPhone, message)
     } finally {
@@ -672,7 +631,6 @@ export default function VirtualAgent() {
 
   const handleUserMessageSubmit = async (event) => {
     event.preventDefault()
-
     const trimmedInput = userInput.trim()
     if (!trimmedInput) return
 
@@ -708,52 +666,37 @@ export default function VirtualAgent() {
       return
     }
 
-    const answer = buildBasicAnswer(trimmedInput)
-
+    const answer = buildBasicAnswer(trimmedInput, language)
     if (answer) {
-      appendConversation(trimmedInput, `${answer}\n\n¿Quieres que te ayude con algo más?`)
+      appendConversation(trimmedInput, `${answer}\n\n${t('bot.anythingElse')}`)
       setActiveOptions([
-        { label: 'Reservar mesa', action: 'open_booking_form' },
-        { label: 'Estado reserva', action: 'open_status_reservation' },
-        { label: 'Modificar reserva', action: 'open_modify_reservation' }
+        { label: t('bot.topics.booking'), action: 'open_booking_form' },
+        { label: t('bot.topics.status'), action: 'open_status_reservation' },
+        { label: t('bot.topics.modify'), action: 'open_modify_reservation' }
       ])
       setShowSuggestions(true)
       setUserInput('')
       return
     }
 
-    appendConversation(
-      trimmedInput,
-      'Puedo ayudarte con reservas, estado de una reserva, modificar una reserva existente, horarios, ubicación, vinos y cócteles. ¿Qué necesitas?'
-    )
+    appendConversation(trimmedInput, t('bot.help'))
     setActiveOptions(promotedTopics)
     setShowSuggestions(true)
     setUserInput('')
   }
 
   const handleOptionClick = (option) => {
-    if (option.action === 'open_booking_form') {
-      openBookingForm(option.label)
-      return
-    }
-
-    if (option.action === 'open_modify_reservation') {
-      openModifyForm(option.label)
-      return
-    }
-
-    if (option.action === 'open_status_reservation') {
-      openStatusForm(option.label)
-      return
-    }
+    if (option.action === 'open_booking_form') return openBookingForm(option.label)
+    if (option.action === 'open_modify_reservation') return openModifyForm(option.label)
+    if (option.action === 'open_status_reservation') return openStatusForm(option.label)
 
     if (option.prompt) {
-      const answer = buildBasicAnswer(option.prompt) || 'Puedo ayudarte con eso. Escribe tu pregunta y te respondo.'
-      appendConversation(option.label, `${answer}\n\n¿Quieres que te ayude con algo más?`)
+      const answer = buildBasicAnswer(option.prompt, language) || t('bot.help')
+      appendConversation(option.label, `${answer}\n\n${t('bot.anythingElse')}`)
       setActiveOptions([
-        { label: 'Reservar mesa', action: 'open_booking_form' },
-        { label: 'Estado reserva', action: 'open_status_reservation' },
-        { label: 'Modificar reserva', action: 'open_modify_reservation' }
+        { label: t('bot.topics.booking'), action: 'open_booking_form' },
+        { label: t('bot.topics.status'), action: 'open_status_reservation' },
+        { label: t('bot.topics.modify'), action: 'open_modify_reservation' }
       ])
       setShowSuggestions(true)
     }
@@ -761,41 +704,23 @@ export default function VirtualAgent() {
 
   const handleBookingChange = (event) => {
     const { name, value } = event.target
-
     setBookingForm((current) => {
       if (name === 'date') {
         const nextSlots = getReservationTimeSlots(value)
-        return {
-          ...current,
-          date: value,
-          time: nextSlots.includes(current.time) ? current.time : ''
-        }
+        return { ...current, date: value, time: nextSlots.includes(current.time) ? current.time : '' }
       }
-
-      return {
-        ...current,
-        [name]: name === 'people' ? String(clampGuests(value)) : value
-      }
+      return { ...current, [name]: name === 'people' ? String(clampGuests(value)) : value }
     })
   }
 
   const handleModifyChange = (event) => {
     const { name, value } = event.target
-
     setModifyForm((current) => {
       if (name === 'date') {
         const nextSlots = getReservationTimeSlots(value)
-        return {
-          ...current,
-          date: value,
-          time: nextSlots.includes(current.time) ? current.time : ''
-        }
+        return { ...current, date: value, time: nextSlots.includes(current.time) ? current.time : '' }
       }
-
-      return {
-        ...current,
-        [name]: name === 'people' ? String(clampGuests(value)) : value
-      }
+      return { ...current, [name]: name === 'people' ? String(clampGuests(value)) : value }
     })
   }
 
@@ -806,16 +731,11 @@ export default function VirtualAgent() {
 
     try {
       if (bookingForm.confirmation_channel === 'email' && !bookingForm.email.trim()) {
-        setBookingStatus({ type: 'error', message: 'Introduce tu email para recibir la confirmación por correo.' })
+        setBookingStatus({ type: 'error', message: t('locale.emailRequired') })
         return
       }
 
-      const validationError = await validateReservationFields({
-        date: bookingForm.date,
-        time: bookingForm.time,
-        people: bookingForm.people
-      })
-
+      const validationError = await validateReservationFields({ date: bookingForm.date, time: bookingForm.time, people: bookingForm.people })
       if (validationError) {
         setBookingStatus({ type: 'error', message: validationError })
         return
@@ -839,38 +759,26 @@ export default function VirtualAgent() {
         source: 'website'
       }
 
-      const { error } = await supabase
-        .from('reservations')
-        .insert([payload])
-
+      const { error } = await supabase.from('reservations').insert([payload])
       if (error) throw error
 
       const summary = [
-        'Solicitud de reserva guardada correctamente.',
+        t('bot.bookingSaved'), '',
+        `${t('locale.name')}: ${bookingForm.name}`,
+        `${t('locale.date')}: ${formatReservationDate(bookingForm.date, language)}`,
+        `${t('locale.time')}: ${bookingForm.time}`,
+        `${t('locale.people')}: ${bookingForm.people}`,
+        `${t('locale.phone')}: ${bookingForm.phone}`,
         '',
-        `Nombre: ${bookingForm.name}`,
-        `Fecha: ${formatReservationDate(bookingForm.date)}`,
-        `Hora: ${bookingForm.time}`,
-        `Personas: ${bookingForm.people}`,
-        `Teléfono: ${bookingForm.phone}`,
-        `Confirmación preferida: ${bookingForm.confirmation_channel === 'email' ? 'Email' : 'WhatsApp'}`,
-        '',
-        'La reserva queda pendiente hasta que el equipo de Nonna Angela la confirme.'
+        t('bot.bookingPending')
       ].join('\n')
 
-      setMessages((current) => [
-        ...current,
-        { role: 'user', text: 'He enviado una solicitud de reserva.' },
-        { role: 'agent', text: summary }
-      ])
+      setMessages((current) => [...current, { role: 'user', text: t('bot.submitBooking') }, { role: 'agent', text: summary }])
       setBookingForm(initialBookingForm)
       setShowBookingForm(false)
     } catch (error) {
       console.error(error)
-      setBookingStatus({
-        type: 'error',
-        message: `No hemos podido guardar la solicitud. Detalle: ${error?.message || 'error desconocido'}`
-      })
+      setBookingStatus({ type: 'error', message: t('bot.saveError', { detail: error?.message || 'error' }) })
     } finally {
       setIsSavingBooking(false)
     }
@@ -888,16 +796,8 @@ export default function VirtualAgent() {
 
   const selectReservationToModify = (reservation) => {
     setSelectedReservation(reservation)
-    setModifyForm({
-      date: reservation.reservation_date || '',
-      time: reservation.reservation_time || '',
-      people: String(reservation.guests || 2),
-      notes: reservation.notes || ''
-    })
-    setModifyStatus({
-      type: 'success',
-      message: `Reserva seleccionada: ${buildReservationSummary(reservation)}. Cambia los datos y envía la modificación.`
-    })
+    setModifyForm({ date: reservation.reservation_date || '', time: reservation.reservation_time || '', people: String(reservation.guests || 2), notes: reservation.notes || '' })
+    setModifyStatus({ type: 'success', message: t('bot.selectedModify', { summary: buildReservationSummary(reservation, language) }) })
   }
 
   const handleModificationSubmit = async (event) => {
@@ -908,15 +808,7 @@ export default function VirtualAgent() {
     setModifyStatus({ type: '', message: '' })
 
     try {
-      const validationError = await validateReservationFields(
-        {
-          date: modifyForm.date,
-          time: modifyForm.time,
-          people: modifyForm.people
-        },
-        selectedReservation.id
-      )
-
+      const validationError = await validateReservationFields({ date: modifyForm.date, time: modifyForm.time, people: modifyForm.people }, selectedReservation.id)
       if (validationError) {
         setModifyStatus({ type: 'error', message: validationError })
         return
@@ -940,20 +832,15 @@ export default function VirtualAgent() {
       if (error) throw error
 
       const summary = [
-        'Modificación enviada correctamente.',
+        t('bot.modificationSaved'), '',
+        `${t('locale.date')}: ${formatReservationDate(modifyForm.date, language)}`,
+        `${t('locale.time')}: ${modifyForm.time}`,
+        `${t('locale.people')}: ${modifyForm.people}`,
         '',
-        `Nueva fecha: ${formatReservationDate(modifyForm.date)}`,
-        `Nueva hora: ${modifyForm.time}`,
-        `Personas: ${modifyForm.people}`,
-        '',
-        'La reserva vuelve a quedar pendiente hasta que el equipo confirme los cambios.'
+        t('bot.modificationPending')
       ].join('\n')
 
-      setMessages((current) => [
-        ...current,
-        { role: 'user', text: 'He enviado una modificación de mi reserva.' },
-        { role: 'agent', text: summary }
-      ])
+      setMessages((current) => [...current, { role: 'user', text: t('bot.submitModification') }, { role: 'agent', text: summary }])
       setSelectedReservation(null)
       setMatchingReservations([])
       setModifyPhone('')
@@ -961,10 +848,7 @@ export default function VirtualAgent() {
       setShowModifySearchForm(false)
     } catch (error) {
       console.error(error)
-      setModifyStatus({
-        type: 'error',
-        message: `No hemos podido actualizar la reserva. Detalle: ${error?.message || 'error desconocido'}`
-      })
+      setModifyStatus({ type: 'error', message: t('bot.updateError', { detail: error?.message || 'error' }) })
     } finally {
       setIsUpdatingReservation(false)
     }
@@ -976,26 +860,19 @@ export default function VirtualAgent() {
         <div className="agent-window">
           <div className="agent-header">
             <div>
-              <p>Menuria Assistant</p>
-              <h3>Nonna Angela</h3>
+              <p>{t('bot.header')}</p>
+              <h3>{t('bot.title')}</h3>
             </div>
 
             <div className="agent-header-actions">
-              <button type="button" onClick={handleResetChat} aria-label="Reiniciar chat" title="Reiniciar chat">
-                ↻
-              </button>
-              <button type="button" onClick={() => setIsOpen(false)} aria-label="Cerrar chat" title="Cerrar chat">
-                ×
-              </button>
+              <button type="button" onClick={handleResetChat} aria-label={t('bot.reset')} title={t('bot.reset')}>↻</button>
+              <button type="button" onClick={() => setIsOpen(false)} aria-label={t('bot.close')} title={t('bot.close')}>×</button>
             </div>
           </div>
 
           <div className="agent-messages">
             {messages.map((message, index) => (
-              <div
-                key={`${message.role}-${index}`}
-                className={message.role === 'agent' ? 'agent-message bot' : 'agent-message user'}
-              >
+              <div key={`${message.role}-${index}`} className={message.role === 'agent' ? 'agent-message bot' : 'agent-message user'}>
                 {message.text}
               </div>
             ))}
@@ -1004,30 +881,19 @@ export default function VirtualAgent() {
           <form className="agent-input-form" onSubmit={handleUserMessageSubmit}>
             <input
               value={userInput}
-              onFocus={() => {
-                setShowSuggestions(false)
-                setActiveOptions([])
-              }}
-              onChange={(event) => {
-                setUserInput(event.target.value)
-                setShowSuggestions(false)
-                setActiveOptions([])
-              }}
-              placeholder="Escribe tu pregunta..."
-              aria-label="Escribe tu pregunta"
+              onFocus={() => { setShowSuggestions(false); setActiveOptions([]) }}
+              onChange={(event) => { setUserInput(event.target.value); setShowSuggestions(false); setActiveOptions([]) }}
+              placeholder={t('bot.placeholder')}
+              aria-label={t('bot.placeholder')}
             />
-            <button type="submit">Enviar</button>
+            <button type="submit">{t('bot.send')}</button>
           </form>
 
           {showSuggestions && (
             activeOptions.length > 0 ? (
               <div className="agent-topic-options">
                 {activeOptions.map((option) => (
-                  <button
-                    key={`${option.label}-${option.action || option.prompt || 'topic'}`}
-                    type="button"
-                    onClick={() => handleOptionClick(option)}
-                  >
+                  <button key={`${option.label}-${option.action || option.prompt || 'topic'}`} type="button" onClick={() => handleOptionClick(option)}>
                     {option.label}
                   </button>
                 ))}
@@ -1036,11 +902,7 @@ export default function VirtualAgent() {
               messages.length === 1 && !userInput && (
                 <div className="agent-promoted-topics">
                   {promotedTopics.map((topic) => (
-                    <button
-                      key={`${topic.label}-${topic.action || topic.prompt}`}
-                      type="button"
-                      onClick={() => handleOptionClick(topic)}
-                    >
+                    <button key={`${topic.label}-${topic.action || topic.prompt}`} type="button" onClick={() => handleOptionClick(topic)}>
                       {topic.label}
                     </button>
                   ))}
@@ -1051,100 +913,64 @@ export default function VirtualAgent() {
 
           {showBookingForm && (
             <form className="booking-form agent-reservation-form" onSubmit={handleBookingSubmit}>
-              <input name="name" value={bookingForm.name} onChange={handleBookingChange} placeholder="Nombre" required />
+              <input name="name" value={bookingForm.name} onChange={handleBookingChange} placeholder={t('bot.formName')} required />
 
               <div className="agent-form-row">
                 <input name="date" type="date" min={getTodayDateValue()} value={bookingForm.date} onChange={handleBookingChange} required />
                 <select name="time" value={bookingForm.time} onChange={handleBookingChange} disabled={!bookingForm.date || isClosedReservationDate(bookingForm.date)} required>
-                  <option value="">
-                    {!bookingForm.date
-                      ? 'Fecha primero'
-                      : isClosedReservationDate(bookingForm.date)
-                        ? 'Cerrado dom/lun'
-                        : 'Hora'}
-                  </option>
+                  <option value="">{!bookingForm.date ? t('bot.formDate') : isClosedReservationDate(bookingForm.date) ? t('bot.closedShort') : t('bot.formTime')}</option>
                   {bookingTimeSlots.map((time) => <option key={time} value={time}>{time}</option>)}
                 </select>
               </div>
 
               <div className="agent-form-row">
-                <input name="people" type="number" min={MIN_GUESTS} max={MAX_GUESTS} value={bookingForm.people} onChange={handleBookingChange} placeholder="Personas" required />
-                <input name="phone" value={bookingForm.phone} onChange={handleBookingChange} placeholder="Teléfono con o sin prefijo" required />
+                <input name="people" type="number" min={MIN_GUESTS} max={MAX_GUESTS} value={bookingForm.people} onChange={handleBookingChange} placeholder={t('bot.people')} required />
+                <input name="phone" value={bookingForm.phone} onChange={handleBookingChange} placeholder={t('bot.phone')} required />
               </div>
 
-              <input name="email" type="email" value={bookingForm.email} onChange={handleBookingChange} placeholder="Email opcional" />
+              <input name="email" type="email" value={bookingForm.email} onChange={handleBookingChange} placeholder={t('bot.email')} />
 
               <select name="confirmation_channel" value={bookingForm.confirmation_channel} onChange={handleBookingChange}>
-                <option value="whatsapp">Confirmación por WhatsApp</option>
-                <option value="email">Confirmación por email</option>
+                <option value="whatsapp">{t('bot.confirmationWhatsapp')}</option>
+                <option value="email">{t('bot.confirmationEmail')}</option>
               </select>
 
-              <textarea name="notes" value={bookingForm.notes} onChange={handleBookingChange} placeholder="Notas opcionales" rows="2" />
-
+              <textarea name="notes" value={bookingForm.notes} onChange={handleBookingChange} placeholder={t('bot.notes')} rows="2" />
               {bookingStatus.message && <p className={`agent-inline-status ${bookingStatus.type}`}>{bookingStatus.message}</p>}
-
-              <button type="submit" disabled={isSavingBooking}>
-                {isSavingBooking ? 'Guardando...' : 'Enviar solicitud'}
-              </button>
+              <button type="submit" disabled={isSavingBooking}>{isSavingBooking ? t('bot.saving') : t('bot.submitBooking')}</button>
             </form>
           )}
 
           {showModifySearchForm && (
             <div className="agent-modification-box">
               <form className="booking-form agent-reservation-form" onSubmit={handleModificationSearch}>
-                <input
-                  value={modifyPhone}
-                  onChange={(event) => setModifyPhone(event.target.value)}
-                  placeholder="Teléfono usado en la reserva"
-                  required
-                />
-                <button type="submit" disabled={isSearchingModification}>
-                  {isSearchingModification ? 'Buscando...' : 'Buscar reserva'}
-                </button>
+                <input value={modifyPhone} onChange={(event) => setModifyPhone(event.target.value)} placeholder={t('bot.searchPhone')} required />
+                <button type="submit" disabled={isSearchingModification}>{isSearchingModification ? t('bot.searching') : t('bot.searchBooking')}</button>
               </form>
-
               {modifyStatus.message && <p className={`agent-inline-status ${modifyStatus.type}`}>{modifyStatus.message}</p>}
-
               {matchingReservations.length > 1 && !selectedReservation && (
                 <div className="reservation-match-list">
                   {matchingReservations.map((reservation) => (
-                    <button
-                      key={reservation.id}
-                      type="button"
-                      className="reservation-match-card"
-                      onClick={() => selectReservationToModify(reservation)}
-                    >
-                      <strong>{buildReservationSummary(reservation)}</strong>
+                    <button key={reservation.id} type="button" className="reservation-match-card" onClick={() => selectReservationToModify(reservation)}>
+                      <strong>{buildReservationSummary(reservation, language)}</strong>
                       <span>{reservation.customer_name || 'Cliente'} · {reservation.customer_phone}</span>
                     </button>
                   ))}
                 </div>
               )}
-
               {selectedReservation && (
                 <form className="booking-form agent-reservation-form" onSubmit={handleModificationSubmit}>
-                  <p className="agent-form-title">Modificar {buildReservationSummary(selectedReservation)}</p>
-
+                  <p className="agent-form-title">{t('bot.modifyTitle', { summary: buildReservationSummary(selectedReservation, language) })}</p>
                   <div className="agent-form-row">
                     <input name="date" type="date" min={getTodayDateValue()} value={modifyForm.date} onChange={handleModifyChange} required />
                     <select name="time" value={modifyForm.time} onChange={handleModifyChange} disabled={!modifyForm.date || isClosedReservationDate(modifyForm.date)} required>
-                      <option value="">
-                        {!modifyForm.date
-                          ? 'Fecha primero'
-                          : isClosedReservationDate(modifyForm.date)
-                            ? 'Cerrado dom/lun'
-                            : 'Hora'}
-                      </option>
+                      <option value="">{!modifyForm.date ? t('bot.formDate') : isClosedReservationDate(modifyForm.date) ? t('bot.closedShort') : t('bot.formTime')}</option>
                       {modifyTimeSlots.map((time) => <option key={time} value={time}>{time}</option>)}
                     </select>
                   </div>
-
-                  <input name="people" type="number" min={MIN_GUESTS} max={MAX_GUESTS} value={modifyForm.people} onChange={handleModifyChange} placeholder="Personas" required />
-                  <textarea name="notes" value={modifyForm.notes} onChange={handleModifyChange} placeholder="Notas opcionales" rows="2" />
-
-                  <button type="submit" disabled={isUpdatingReservation}>
-                    {isUpdatingReservation ? 'Actualizando...' : 'Enviar modificación'}
-                  </button>
+                  <input name="people" type="number" min={MIN_GUESTS} max={MAX_GUESTS} value={modifyForm.people} onChange={handleModifyChange} placeholder={t('bot.people')} required />
+                  <textarea name="notes" value={modifyForm.notes} onChange={handleModifyChange} placeholder={t('bot.notes')} rows="2" />
+                  <button type="submit" disabled={isUpdatingReservation}>{isUpdatingReservation ? t('bot.updating') : t('bot.submitModification')}</button>
                 </form>
               )}
             </div>
@@ -1153,30 +979,16 @@ export default function VirtualAgent() {
           {showStatusSearchForm && (
             <div className="agent-modification-box agent-status-box">
               <form className="booking-form agent-reservation-form" onSubmit={handleStatusSearch}>
-                <input
-                  value={statusPhone}
-                  onChange={(event) => setStatusPhone(event.target.value)}
-                  placeholder="Teléfono usado en la reserva"
-                  required
-                />
-                <button type="submit" disabled={isSearchingStatus}>
-                  {isSearchingStatus ? 'Buscando...' : 'Consultar estado'}
-                </button>
+                <input value={statusPhone} onChange={(event) => setStatusPhone(event.target.value)} placeholder={t('bot.searchPhone')} required />
+                <button type="submit" disabled={isSearchingStatus}>{isSearchingStatus ? t('bot.searching') : t('bot.topics.status')}</button>
               </form>
-
               {statusStatus.message && <p className={`agent-inline-status ${statusStatus.type}`}>{statusStatus.message}</p>}
-
               {statusReservations.length > 1 && (
                 <div className="reservation-match-list">
                   {statusReservations.map((reservation) => (
-                    <button
-                      key={reservation.id}
-                      type="button"
-                      className="reservation-match-card"
-                      onClick={() => showReservationStatus(reservation)}
-                    >
-                      <strong>{buildReservationSummary(reservation)}</strong>
-                      <span>Estado: {RESERVATION_STATUS_LABELS[getReservationStatus(reservation)] || getReservationStatus(reservation)}</span>
+                    <button key={reservation.id} type="button" className="reservation-match-card" onClick={() => showReservationStatus(reservation)}>
+                      <strong>{buildReservationSummary(reservation, language)}</strong>
+                      <span>{t('bot.statusLabels.' + getReservationStatus(reservation))}</span>
                     </button>
                   ))}
                 </div>
@@ -1186,12 +998,7 @@ export default function VirtualAgent() {
         </div>
       )}
 
-      <button
-        className={isOpen ? 'agent-fab active' : 'agent-fab'}
-        type="button"
-        onClick={() => setIsOpen((value) => !value)}
-        aria-label="Abrir asistente virtual"
-      >
+      <button className={isOpen ? 'agent-fab active' : 'agent-fab'} type="button" onClick={() => setIsOpen((value) => !value)} aria-label={t('bot.header')}>
         {isOpen ? '×' : '💬'}
       </button>
     </div>
