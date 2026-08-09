@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg: #120b09;
+  --panel: #1d1210;
+  --panel-strong: #231614;
+  --panel-soft: rgba(255, 246, 232, 0.07);
+  --text: #fff3df;
+  --muted: #d3bda2;
+  --accent: #8f1d2c;
+  --accent-dark: #3f0c12;
+  --gold: #d6ad63;
+  --green: #7fbd83;
+  --orange: #d79a4b;
+  --border: rgba(255, 233, 198, 0.14);
+  --shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+  --premium-glow: 0 0 0 1px rgba(214, 173, 99, 0.16), 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+html {
+  background: #120b09;
+}
+
+body {
+  font-family: Manrope, Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(143, 29, 44, 0.26), transparent 34%),
+    radial-gradient(circle at top right, rgba(214, 173, 99, 0.16), transparent 30%),
+    linear-gradient(135deg, #120b09 0%, #24110f 43%, #100806 100%);
+  color: var(--text);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.52), transparent 78%);
+  z-index: -1;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.navbar {
+  background: rgba(18, 11, 9, 0.82);
+  border-bottom: 1px solid rgba(214, 173, 99, 0.16);
+  box-shadow: 0 18px 52px rgba(0, 0, 0, 0.24);
+}
+
+.brand-mark {
+  border: 1px solid rgba(214, 173, 99, 0.42);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 238, 193, 0.18), transparent 38%),
+    linear-gradient(145deg, #8f1d2c, #321011 72%);
+  color: #ffe9bd;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.3);
+}
+
+.brand-block h1,
+.hero-copy h2,
+.content-page h2,
+.admin-header h2,
+.hero-card h3,
+.locale-story-card p,
+.welcome-popup-card h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.brand-block h1 {
+  color: #fff3df;
+  font-size: 25px;
+  letter-spacing: 0.02em;
+}
+
+.brand-kicker,
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 0.18em;
+}
+
+.nav-links {
+  background: rgba(255, 243, 223, 0.06);
+  border: 1px solid rgba(255, 233, 198, 0.1);
+}
+
+.nav-link,
+.admin-toggle {
+  color: rgba(255, 243, 223, 0.72);
+}
+
+.nav-link:hover,
+.admin-toggle:hover {
+  color: #fff3df;
+  background: rgba(255, 243, 223, 0.08);
+}
+
+.nav-link.active,
+.admin-toggle.active {
+  background: linear-gradient(135deg, #9c2031, #5b111b);
+  color: #fff8ee;
+  box-shadow: 0 10px 28px rgba(143, 29, 44, 0.24);
+}
+
+.admin-toggle,
+.back-button,
+.ghost-button {
+  background: rgba(255, 246, 232, 0.07);
+  border: 1px solid rgba(214, 173, 99, 0.22);
+  color: #ffe6b4;
+}
+
+.primary-button,
+.ghost-button,
+.nav-link,
+.admin-toggle,
+.back-button {
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+}
+
+.primary-button:hover,
+.ghost-button:hover,
+.back-button:hover {
+  transform: translateY(-1px);
+}
+
+.primary-button {
+  background:
+    linear-gradient(135deg, #b78338, #d6ad63 48%, #8f1d2c 130%);
+  color: #170b08;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.primary-button:disabled,
+.ghost-button:disabled {
+  opacity: 0.52;
+  cursor: not-allowed;
+}
+
+.hero-copy h2,
+.content-page h2,
+.admin-header h2 {
+  color: #fff2dc;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.hero-copy p,
+.content-page p,
+.admin-header p,
+.page-intro,
+.info-grid article p,
+.menu-section-card p,
+.dashboard-panel p {
+  color: var(--muted);
+}
+
+.hero-card,
+.info-grid article,
+.menu-section-card,
+.kpi-card,
+.admin-module,
+.dashboard-panel,
+.admin-control-section,
+.reservation-summary-card,
+.reservation-day-card,
+.reservation-calendar,
+.reservation-day-panel,
+.food-menu-renovation-card,
+.manager-modal {
+  background:
+    radial-gradient(circle at top right, rgba(214, 173, 99, 0.11), transparent 34%),
+    linear-gradient(145deg, rgba(42, 24, 21, 0.98), rgba(21, 12, 10, 0.96));
+  border: 1px solid rgba(214, 173, 99, 0.16);
+  box-shadow: var(--premium-glow);
+}
+
+.hero-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 38px;
+}
+
+.hero-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 229, 178, 0.18), transparent 36%),
+    linear-gradient(135deg, rgba(143, 29, 44, 0.26), transparent 54%);
+  pointer-events: none;
+}
+
+.hero-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-card p,
+.hero-card span {
+  color: rgba(255, 243, 223, 0.76);
+}
+
+.hero-hours div {
+  border-bottom-color: rgba(255, 233, 198, 0.14);
+}
+
+.info-grid article h3,
+.menu-section-card h3,
+.dashboard-panel h3,
+.admin-control-section-header h3,
+.reservation-day-panel h3,
+.reservation-calendar h3,
+.food-menu-renovation-card h2 {
+  color: #fff0d4;
+}
+
+.menu-section-card,
+.info-grid article,
+.admin-module {
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-section-card::after,
+.info-grid article::after,
+.admin-module::after {
+  content: '';
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(214, 173, 99, 0.52), transparent);
+}
+
+input,
+select,
+textarea {
+  background: rgba(255, 246, 232, 0.08) !important;
+  border: 1px solid rgba(214, 173, 99, 0.18) !important;
+  color: #fff3df !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 243, 223, 0.42);
+}
+
+select option {
+  background: #1e1210;
+  color: #fff3df;
+}
+
+.form-message.success {
+  background: rgba(127, 189, 131, 0.12);
+  border-color: rgba(127, 189, 131, 0.22);
+  color: #c9f0cc;
+}
+
+.form-message.error,
+.form-error,
+.manager-error {
+  color: #ffb5ad;
+}
+
+.risk-item,
+.reservation-actions-block,
+.service-actions-block,
+.confirmation-channel-card,
+.form-helper.strong,
+.food-menu-renovation-card,
+.admin-module-featured,
+.admin-module-secondary {
+  background: rgba(255, 246, 232, 0.06);
+  border-color: rgba(214, 173, 99, 0.16);
+}
+
+.site-footer {
+  background:
+    radial-gradient(circle at top left, rgba(143, 29, 44, 0.18), transparent 32%),
+    linear-gradient(180deg, rgba(18, 11, 9, 0.24), rgba(8, 5, 4, 0.96));
+  border-top: 1px solid rgba(214, 173, 99, 0.14);
+}
+
+.site-footer h2,
+.site-footer h3,
+.footer-menuria strong {
+  color: #fff0d4;
+}
+
+.site-footer p,
+.site-footer a,
+.site-footer button,
+.footer-menuria span {
+  color: rgba(255, 243, 223, 0.72);
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    gap: 14px;
+    padding: 16px 18px;
+  }
+
+  .brand-block h1 {
+    font-size: 22px;
+  }
+
+  .main-content {
+    padding: 28px 16px;
+  }
+}
