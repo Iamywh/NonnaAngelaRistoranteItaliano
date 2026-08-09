@@ -6,6 +6,7 @@ import './styles/footer.css'
 import './styles/premium-theme.css'
 import './styles/popups.css'
 import './styles/contrast-system.css'
+import './styles/i18n.css'
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
