@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 import bebidas from '../../data/menu/bebidas.json'
 import '../styles/bebidas-mobile.css'
@@ -17,16 +18,18 @@ function DrinkRow({ item }) {
 }
 
 function ServicePriceRow({ item }) {
+  const { t } = useLanguage()
+
   return (
     <article className="drink-row service-price-row">
       <span>{item.name}</span>
       <div className="service-price-list">
         <div>
-          <span>Copa</span>
+          <span>{t('bebidas.glass')}</span>
           <strong>{formatPrice(item.prices.copa)}</strong>
         </div>
         <div>
-          <span>Chupito</span>
+          <span>{t('bebidas.shot')}</span>
           <strong>{formatPrice(item.prices.chupito)}</strong>
         </div>
       </div>
@@ -41,11 +44,7 @@ function CocktailCard({ item }) {
         <h3>{item.name}</h3>
         <strong>{formatPrice(item.price)}</strong>
       </div>
-
-      <p className="cocktail-ingredients">
-        {item.ingredients.join(', ')}.
-      </p>
-
+      <p className="cocktail-ingredients">{item.ingredients.join(', ')}.</p>
       <p className="cocktail-history">{item.history}</p>
     </article>
   )
@@ -64,18 +63,12 @@ function DrinksSection({ category }) {
 
       {isCocktailSection ? (
         <div className="cocktail-grid">
-          {category.items.map((item) => (
-            <CocktailCard key={item.id} item={item} />
-          ))}
+          {category.items.map((item) => <CocktailCard key={item.id} item={item} />)}
         </div>
       ) : (
         <div className="drink-list">
           {category.items.map((item) => (
-            isServicePriceSection ? (
-              <ServicePriceRow key={item.id} item={item} />
-            ) : (
-              <DrinkRow key={item.id} item={item} />
-            )
+            isServicePriceSection ? <ServicePriceRow key={item.id} item={item} /> : <DrinkRow key={item.id} item={item} />
           ))}
         </div>
       )}
@@ -84,18 +77,18 @@ function DrinksSection({ category }) {
 }
 
 export default function Bebidas() {
+  const { t } = useLanguage()
+
   return (
     <section className="content-page drinks-page">
       <div className="drinks-hero">
-        <p className="eyebrow">Carta de Bebidas</p>
-        <h2>Carta de Bebidas</h2>
-        <p>Cócteles, aperitivos, refrescos, cervezas y digestivos.</p>
+        <p className="eyebrow">{t('bebidas.eyebrow')}</p>
+        <h2>{t('bebidas.title')}</h2>
+        <p>{t('bebidas.intro')}</p>
       </div>
 
       <div className="drinks-sections">
-        {bebidas.categories.map((category) => (
-          <DrinksSection key={category.id} category={category} />
-        ))}
+        {bebidas.categories.map((category) => <DrinksSection key={category.id} category={category} />)}
       </div>
     </section>
   )
