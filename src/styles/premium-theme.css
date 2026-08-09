@@ -5,8 +5,8 @@
   --panel: #1d1210;
   --panel-strong: #231614;
   --panel-soft: rgba(255, 246, 232, 0.07);
-  --text: #fff3df;
-  --muted: #d3bda2;
+  --text: #f5efe6;
+  --muted: #c8beb2;
   --accent: #8f1d2c;
   --accent-dark: #3f0c12;
   --gold: #d6ad63;
@@ -83,7 +83,7 @@ body::before {
 
 .brand-kicker,
 .eyebrow {
-  color: var(--gold);
+  color: #b9b0a5;
   letter-spacing: 0.18em;
 }
 
@@ -115,7 +115,7 @@ body::before {
 .ghost-button {
   background: rgba(255, 246, 232, 0.07);
   border: 1px solid rgba(214, 173, 99, 0.22);
-  color: #ffe6b4;
+  color: #d8d1c6;
 }
 
 .primary-button,
@@ -177,10 +177,11 @@ body::before {
 .food-menu-renovation-card,
 .manager-modal {
   background:
-    radial-gradient(circle at top right, rgba(214, 173, 99, 0.11), transparent 34%),
-    linear-gradient(145deg, rgba(42, 24, 21, 0.98), rgba(21, 12, 10, 0.96));
-  border: 1px solid rgba(214, 173, 99, 0.16);
-  box-shadow: var(--premium-glow);
+    radial-gradient(circle at 8% 0%, rgba(255, 230, 177, 0.16), transparent 36%),
+    radial-gradient(circle at top right, rgba(184, 131, 56, 0.22), transparent 40%),
+    linear-gradient(145deg, rgba(104, 66, 37, 0.96), rgba(41, 24, 18, 0.98) 58%, rgba(23, 14, 12, 0.98));
+  border: 1px solid rgba(214, 173, 99, 0.28);
+  box-shadow: 0 0 0 1px rgba(214, 173, 99, 0.12), 0 24px 70px rgba(0, 0, 0, 0.34);
 }
 
 .hero-card {
@@ -206,7 +207,7 @@ body::before {
 
 .hero-card p,
 .hero-card span {
-  color: rgba(255, 243, 223, 0.76);
+  color: #d2c8bc;
 }
 
 .hero-hours div {
@@ -220,7 +221,7 @@ body::before {
 .reservation-day-panel h3,
 .reservation-calendar h3,
 .food-menu-renovation-card h2 {
-  color: #fff0d4;
+  color: #f4ece0;
 }
 
 .menu-section-card,
@@ -280,8 +281,8 @@ select option {
 .food-menu-renovation-card,
 .admin-module-featured,
 .admin-module-secondary {
-  background: rgba(255, 246, 232, 0.06);
-  border-color: rgba(214, 173, 99, 0.16);
+  background: rgba(116, 76, 42, 0.22);
+  border-color: rgba(214, 173, 99, 0.22);
 }
 
 .site-footer {
@@ -302,6 +303,43 @@ select option {
 .site-footer button,
 .footer-menuria span {
   color: rgba(255, 243, 223, 0.72);
+}
+
+/* Premium readability pass: warm gold cards + neutral grey text instead of pale yellow */
+.hero-card p,
+.hero-card span,
+.info-grid article p,
+.menu-section-card p,
+.kpi-card p,
+.kpi-card span,
+.admin-module small,
+.dashboard-panel p,
+.reservation-summary-card p,
+.reservation-summary-card span,
+.reservation-summary-card small,
+.reservation-day-card p,
+.reservation-card-meta small,
+.reservation-actions-block p,
+.service-actions-block p,
+.form-helper,
+.confirmation-channel-card small,
+.risk-item span {
+  color: #cfc6ba;
+}
+
+.admin-module span,
+.kpi-card strong,
+.reservation-summary-card strong,
+.risk-item b {
+  color: #ded6cc;
+}
+
+.brand-kicker,
+.eyebrow,
+.admin-module span,
+.reservation-actions-block p,
+.service-actions-block p {
+  color: #b8afa4;
 }
 
 @media (max-width: 900px) {
