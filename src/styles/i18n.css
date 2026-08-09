@@ -1,0 +1,43 @@
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.language-switcher {
+  display: inline-flex;
+  gap: 4px;
+  padding: 5px;
+  border: 1px solid rgba(214, 173, 99, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 246, 232, 0.07);
+}
+
+.language-button {
+  min-width: 38px;
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 10px;
+  background: transparent;
+  color: rgba(255, 243, 223, 0.76);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.language-button.active {
+  background: linear-gradient(135deg, #d6ad63, #f0d28a);
+  color: #170b08;
+}
+
+@media (max-width: 900px) {
+  .navbar-actions {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .language-switcher {
+    overflow-x: auto;
+  }
+}
