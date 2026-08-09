@@ -29,10 +29,6 @@ function getTodayDateValue() {
   return `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`
 }
 
-function getMonthKey(dateValue) {
-  return dateValue.slice(0, 7)
-}
-
 function parseDateValue(value) {
   if (!value) return null
   const [year, month, day] = value.split('-').map(Number)
@@ -62,6 +58,10 @@ function buildCalendarDays(year, month) {
   return days
 }
 
+function getReservationStatus(reservation) {
+  return reservation?.reservation_status || reservation?.status || 'pending'
+}
+
 function summarizeReservations(reservations) {
   return reservations.reduce((summary, reservation) => {
     const dateValue = reservation.reservation_date
@@ -74,11 +74,13 @@ function summarizeReservations(reservations) {
       confirmed: 0
     }
 
+    const reservationStatus = getReservationStatus(reservation)
+
     entry.total += 1
     entry.guests += Number(reservation.guests || 0)
 
-    if (reservation.status === 'pending') entry.pending += 1
-    if (reservation.status === 'confirmed') entry.confirmed += 1
+    if (reservationStatus === 'pending') entry.pending += 1
+    if (reservationStatus === 'confirmed') entry.confirmed += 1
 
     summary[dateValue] = entry
     return summary
