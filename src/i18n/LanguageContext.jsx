@@ -5,6 +5,41 @@ const LANGUAGE_STORAGE_KEY = 'nonna_language'
 const DEFAULT_LANGUAGE = 'es'
 const SUPPORTED_LANGUAGES = ['es', 'en', 'fr', 'it']
 
+const TRANSLATION_OVERRIDES = {
+  es: {
+    'bot.phone': 'Teléfono con o sin prefijo',
+    'bot.searchPhone': 'Teléfono usado en la reserva',
+    'bot.modificationSaved': 'Modificación enviada correctamente.',
+    'bot.modificationPending': 'La reserva vuelve a quedar pendiente hasta que el equipo confirme los cambios.',
+    'bot.submitModification': 'Enviar modificación',
+    'bot.updating': 'Actualizando...'
+  },
+  en: {
+    'bot.phone': 'Phone with or without prefix',
+    'bot.searchPhone': 'Phone used for the booking',
+    'bot.modificationSaved': 'Modification sent successfully.',
+    'bot.modificationPending': 'The booking is pending again until the team confirms the changes.',
+    'bot.submitModification': 'Send modification',
+    'bot.updating': 'Updating...'
+  },
+  fr: {
+    'bot.phone': 'Téléphone avec ou sans indicatif',
+    'bot.searchPhone': 'Téléphone utilisé pour la réservation',
+    'bot.modificationSaved': 'Modification envoyée correctement.',
+    'bot.modificationPending': 'La réservation redevient en attente jusqu’à confirmation de l’équipe.',
+    'bot.submitModification': 'Envoyer la modification',
+    'bot.updating': 'Mise à jour...'
+  },
+  it: {
+    'bot.phone': 'Telefono con o senza prefisso',
+    'bot.searchPhone': 'Telefono usato per la prenotazione',
+    'bot.modificationSaved': 'Modifica inviata correttamente.',
+    'bot.modificationPending': 'La prenotazione torna in attesa finché il team non conferma le modifiche.',
+    'bot.submitModification': 'Invia modifica',
+    'bot.updating': 'Aggiornamento...'
+  }
+}
+
 const LanguageContext = createContext(null)
 
 function getInitialLanguage() {
@@ -33,7 +68,8 @@ export function LanguageProvider({ children }) {
   }
 
   const t = (path, variables = {}) => {
-    const value = getNestedValue(translations[language], path) ?? getNestedValue(translations[DEFAULT_LANGUAGE], path) ?? path
+    const overrideValue = TRANSLATION_OVERRIDES[language]?.[path]
+    const value = overrideValue ?? getNestedValue(translations[language], path) ?? getNestedValue(translations[DEFAULT_LANGUAGE], path) ?? path
 
     if (typeof value !== 'string') return value
 
