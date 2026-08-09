@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menuria · Brief sito ristorante premium</title>
+  <meta name="description" content="Formulario Menuria per raccogliere tutte le informazioni necessarie alla costruzione di un sito ristorante premium con menu digitale, prenotazioni, chatbot e multilingua." />
+  <style>
+    :root {
+      --bg: #120b09;
+      --panel: #1e1310;
+      --panel-strong: #2a1812;
+      --cream: #fff4df;
+      --muted: #d9c2a6;
+      --gold: #d7ad63;
+      --gold-soft: #f2d493;
+      --wine: #8f1d2c;
+      --wine-dark: #4d0f17;
+      --ink: #241812;
+      --light: #fffaf1;
+      --border: rgba(242, 212, 147, 0.24);
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(143, 29, 44, 0.34), transparent 34rem),
+        radial-gradient(circle at top right, rgba(215, 173, 99, 0.16), transparent 26rem),
+        linear-gradient(135deg, #120b09, #1b0e0b 46%, #0d0807);
+      color: var(--cream);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .page-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 36px 0 90px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 48px;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: var(--gold-soft);
+      font-weight: 900;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(215,173,99,0.1));
+      box-shadow: var(--shadow);
+    }
+
+    .brand-lockup strong { display: block; color: var(--gold-soft); letter-spacing: 0.08em; text-transform: uppercase; }
+    .brand-lockup span { display: block; color: var(--muted); font-size: 0.92rem; }
+
+    .status-pill {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 14px;
+      color: var(--gold-soft);
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 0.88rem;
+      white-space: nowrap;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 34px;
+      align-items: stretch;
+      margin-bottom: 34px;
+    }
+
+    .hero-card,
+    .audit-card,
+    .section-card {
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card { padding: clamp(28px, 5vw, 54px); }
+
+    .eyebrow {
+      color: var(--gold-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin: 0 0 12px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+    }
+
+    h1 { font-size: clamp(2.6rem, 7vw, 6rem); max-width: 10ch; color: var(--cream); }
+    h2 { font-size: clamp(1.75rem, 4vw, 3rem); color: var(--gold-soft); }
+    h3 { font-size: 1.25rem; color: var(--gold-soft); }
+
+    .hero-card > p:not(.eyebrow) {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 66ch;
+      margin: 22px 0 0;
+    }
+
+    .hero-side {
+      padding: 28px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .audit-mini {
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(255, 244, 223, 0.08);
+      border: 1px solid rgba(242, 212, 147, 0.16);
+    }
+
+    .audit-mini strong { color: var(--gold-soft); display: block; margin-bottom: 6px; }
+    .audit-mini span { color: var(--muted); font-size: 0.94rem; }
+
+    .audit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 28px 0 42px;
+    }
+
+    .audit-card { padding: 24px; }
+    .audit-card p { color: var(--muted); margin: 10px 0 0; }
+
+    .form-layout {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .toc {
+      position: sticky;
+      top: 18px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: rgba(18, 11, 9, 0.74);
+      backdrop-filter: blur(16px);
+      padding: 16px;
+    }
+
+    .toc a {
+      display: block;
+      text-decoration: none;
+      color: var(--muted);
+      padding: 9px 10px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+    }
+
+    .toc a:hover { background: rgba(255,255,255,0.07); color: var(--gold-soft); }
+
+    form { display: grid; gap: 20px; }
+
+    .section-card { padding: clamp(22px, 4vw, 36px); scroll-margin-top: 24px; }
+
+    .section-head {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .section-head p { color: var(--muted); margin: 0; max-width: 78ch; }
+
+    .fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field,
+    .field-full {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field-full { grid-column: 1 / -1; }
+
+    label {
+      color: var(--gold-soft);
+      font-weight: 750;
+      font-size: 0.95rem;
+    }
+
+    .hint {
+      color: rgba(255, 244, 223, 0.62);
+      font-size: 0.82rem;
+      margin-top: -3px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid rgba(36, 24, 18, 0.16);
+      border-radius: 15px;
+      padding: 13px 14px;
+      background: var(--light);
+      color: var(--ink);
+      font: inherit;
+      outline: none;
+    }
+
+    textarea { min-height: 110px; resize: vertical; }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(215, 173, 99, 0.18);
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .choice,
+    .checkbox-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 13px;
+      border: 1px solid rgba(242, 212, 147, 0.18);
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      color: var(--cream);
+      cursor: pointer;
+    }
+
+    .choice input,
+    .checkbox-line input { width: auto; margin-top: 4px; accent-color: var(--gold); }
+    .choice span,
+    .checkbox-line span { color: var(--muted); font-size: 0.92rem; }
+    .choice strong,
+    .checkbox-line strong { color: var(--gold-soft); display: block; }
+
+    .conditional {
+      display: none;
+      grid-column: 1 / -1;
+      border-left: 3px solid var(--gold);
+      background: rgba(215, 173, 99, 0.08);
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 4px;
+    }
+
+    .conditional.is-visible { display: grid; gap: 16px; }
+
+    .repeater {
+      grid-column: 1 / -1;
+      display: grid;
+      gap: 12px;
+    }
+
+    .repeater-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr 0.8fr;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .utility-bar {
+      position: sticky;
+      bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 22px;
+      z-index: 2;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 850;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+    }
+
+    .btn-primary { background: var(--gold); color: var(--ink); }
+    .btn-secondary { background: rgba(255,255,255,0.12); color: var(--cream); border: 1px solid var(--border); }
+
+    .output-box {
+      display: none;
+      margin-top: 18px;
+      background: #fffaf1;
+      color: #241812;
+      border-radius: 18px;
+      padding: 18px;
+      white-space: pre-wrap;
+      max-height: 420px;
+      overflow: auto;
+    }
+
+    .output-box.is-visible { display: block; }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(242, 212, 147, 0.18);
+      margin: 8px 0;
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 960px) {
+      .hero,
+      .form-layout,
+      .audit-grid { grid-template-columns: 1fr; }
+      .toc { position: static; }
+      .fields,
+      .choice-grid { grid-template-columns: 1fr; }
+      .repeater-row { grid-template-columns: 1fr; }
+      .topbar { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar">
+      <div class="brand-lockup">
+        <div class="brand-mark">M</div>
+        <div>
+          <strong>Menuria</strong>
+          <span>Template brief per siti ristorante premium</span>
+        </div>
+      </div>
+      <span class="status-pill">Basato sull’audit del sistema Nonna Angela</span>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <p class="eyebrow">Restaurant Website Blueprint</p>
+        <h1>Brief completo per costruire un sito ristorante.</h1>
+        <p>Questo formulario raccoglie tutte le informazioni necessarie per replicare un ecosistema digitale come Nonna Angela: identità, menu, prenotazioni, carta vini, chatbot, multilingua, dashboard e contenuti premium.</p>
+      </div>
+
+      <aside class="hero-card hero-side">
+        <div class="audit-mini">
+          <strong>Audit del modello attuale</strong>
+          <span>Il progetto Nonna Angela include sito premium, menu digitale, bebidas, carta vini, prenotazioni Supabase, dashboard manager, chatbot operativo, stato/modifica prenotazione, popup, cookie banner e multilingua ES/EN/FR/IT.</span>
+        </div>
+        <div class="audit-mini">
+          <strong>Obiettivo del formulario</strong>
+          <span>Separare ciò che è standard da ciò che è personalizzabile, così ogni nuovo cliente può fornire i dati giusti senza riunioni infinite.</span>
+        </div>
+        <div class="audit-mini">
+          <strong>Logica premium</strong>
+          <span>Le opzioni avanzate si espandono solo se il cliente le seleziona: chatbot, traduzioni, prenotazioni avanzate, menu vini/cocktail e dashboard.</span>
+        </div>
+      </aside>
+    </section>
+
+    <section class="audit-grid" aria-label="Audit sintetico del progetto">
+      <article class="audit-card">
+        <h3>Struttura pubblica</h3>
+        <p>Home, ristorante, menu, bebidas, footer, popup e contenuti visuali. Ogni blocco richiede testi, immagini, CTA e posizionamento.</p>
+      </article>
+      <article class="audit-card">
+        <h3>Sistema operativo</h3>
+        <p>Prenotazioni, stati, conferme manuali, modifica tramite telefono, ricerca prenotazione, capacità del servizio e dashboard manager.</p>
+      </article>
+      <article class="audit-card">
+        <h3>Moduli premium</h3>
+        <p>Chatbot, multilingua, pairing vino-piatto, allergeni, contenuti SEO, analytics, automazioni e manutenzione evolutiva.</p>
+      </article>
+    </section>
+
+    <div class="form-layout">
+      <nav class="toc" aria-label="Indice formulario">
+        <a href="#cliente">1. Cliente e progetto</a>
+        <a href="#brand">2. Brand e posizionamento</a>
+        <a href="#design">3. Design e materiali</a>
+        <a href="#pagine">4. Pagine del sito</a>
+        <a href="#menu">5. Menu e allergeni</a>
+        <a href="#vini">6. Vini, cocktail e bebidas</a>
+        <a href="#prenotazioni">7. Prenotazioni</a>
+        <a href="#dashboard">8. Dashboard</a>
+        <a href="#chatbot">9. Chatbot opzionale</a>
+        <a href="#traduzioni">10. Multilingua opzionale</a>
+        <a href="#marketing">11. SEO, social e tracking</a>
+        <a href="#legal">12. Legal e manutenzione</a>
+      </nav>
+
+      <form id="briefForm">
+        <section class="section-card" id="cliente">
+          <div class="section-head">
+            <p class="eyebrow">Step 1</p>
+            <h2>Cliente e progetto</h2>
+            <p>Dati base per capire chi è il cliente, che tipo di locale ha e quale risultato commerciale vuole ottenere.</p>
+          </div>
+          <div class="fields">
+            <div class="field"><label>Nome attività</label><input name="business_name" placeholder="Es. Nonna Angela Ristorante Italiano" required></div>
+            <div class="field"><label>Tipo di locale</label><select name="business_type"><option>Ristorante</option><option>Bistrot</option><option>Pizzeria</option><option>Cocktail bar</option><option>Cafetería</option><option>Hotel restaurant</option><option>Altro</option></select></div>
+            <div class="field"><label>Città / zona</label><input name="location_area" placeholder="Es. Santa Cruz de Tenerife, centro"></div>
+            <div class="field"><label>Target principale</label><select name="main_target"><option>Residenti locali</option><option>Turisti</option><option>Clientela premium</option><option>Famiglie</option><option>Business lunch</option><option>Mix locale + turistico</option></select></div>
+            <div class="field-full"><label>Obiettivo principale del sito</label><textarea name="main_goal" placeholder="Es. aumentare prenotazioni, spiegare meglio il menu, posizionare il ristorante come premium, ridurre chiamate ripetitive..."></textarea></div>
+          </div>
+        </section>
+
+        <section class="section-card" id="brand">
+          <div class="section-head">
+            <p class="eyebrow">Step 2</p>
+            <h2>Brand, identità e storytelling</h2>
+            <p>Il sito Nonna Angela funziona perché non mostra solo piatti: racconta identità, promessa e differenza rispetto ai ristoranti turistici.</p>
+          </div>
+          <div class="fields">
+            <div class="field"><label>Claim o frase principale</label><input name="claim" placeholder="Es. Cucina italiana con anima familiare"></div>
+            <div class="field"><label>Posizionamento desiderato</label><select name="positioning"><option>Autentico e familiare</option><option>Premium elegante</option><option>Moderno e informale</option><option>Tradizionale regionale</option><option>Luxury hospitality</option><option>Fast casual curato</option></select></div>
+            <div class="field-full"><label>Storia del locale</label><textarea name="brand_story" placeholder="Origine del progetto, perché esiste, chi c’è dietro, cosa lo rende diverso."></textarea></div>
+            <div class="field-full"><label>3 motivi per cui un cliente dovrebbe scegliere questo locale</label><textarea name="unique_reasons" placeholder="Es. pasta fresca, carta vini italiana, servizio curato, terrazza, cucina regionale..."></textarea></div>
+            <div class="field-full"><label>Cosa NON deve sembrare il brand?</label><textarea name="avoid_positioning" placeholder="Es. turistico, economico, freddo, troppo gourmet, troppo generico..."></textarea></div>
+          </div>
+        </section>
+
+        <section class="section-card" id="design">
+          <div class="section-head">
+            <p class="eyebrow">Step 3</p>
+            <h2>Design, stile e materiali visuali</h2>
+            <p>Qui si definisce la direzione visiva: palette, atmosfera, foto, logo, font e livello premium.</p>
+          </div>
+          <div class="fields">
+            <div class="field"><label>Logo disponibile?</label><select name="logo_available"><option>Sì, in alta qualità</option><option>Sì, ma da pulire</option><option>No, serve crearlo</option><option>Non so</option></select></div>
+            <div class="field"><label>Foto disponibili?</label><select name="photos_available"><option>Foto professionali</option><option>Foto smartphone buone</option><option>Poche foto</option><option>Nessuna, serve shooting</option></select></div>
+            <div class="field"><label>Stile visivo preferito</label><select name="visual_style"><option>Dark premium oro / vino</option><option>Chiaro elegante</option><option>Mediterraneo luminoso</option><option>Rustico tradizionale</option><option>Minimal moderno</option><option>Luxury hotel</option></select></div>
+            <div class="field"><label>Colori brand</label><input name="brand_colors" placeholder="Es. bordeaux, crema, oro, verde oliva"></div>
+            <div class="field-full"><label>Link o riferimenti visivi</label><textarea name="visual_references" placeholder="Siti, profili Instagram, ristoranti o hotel che rappresentano lo stile desiderato."></textarea></div>
+          </div>
+        </section>
+
+        <section class="section-card" id="pagine">
+          <div class="section-head">
+            <p class="eyebrow">Step 4</p>
+            <h2>Pagine e sezioni del sito</h2>
+            <p>Ogni pagina pubblica richiede testi e scelte. Questa sezione copre home, ristorante, contatti, recensioni, CTA e contenuti istituzionali.</p>
+          </div>
+          <div class="fields">
+            <div class="field-full"><label>Quali pagine deve avere il sito?</label>
+              <div class="choice-grid">
+                <label class="checkbox-line"><input type="checkbox" name="pages" value="home" checked><span><strong>Home</strong>Hero, CTA, orari, punti forti.</span></label>
+                <label class="checkbox-line"><input type="checkbox" name="pages" value="restaurant" checked><span><strong>Ristorante</strong>Storia, esperienza, cucina, sala.</span></label>
+                <label class="checkbox-line"><input type="checkbox" name="pages" value="menu" checked><span><strong>Menu digitale</strong>Piatti, prezzi, allergeni.</span></label>
+                <label class="checkbox-line"><input type="checkbox" name="pages" value="drinks"><span><strong>Bebidas</strong>Cocktail, soft drinks, digestivi.</span></label>
+                <label class="checkbox-line"><input type="checkbox" name="pages" value="wines"><span><strong>Carta vini</strong>Descrizioni e prezzi bottiglia/calice.</span></label>
+                <label class="checkbox-line"><input type="checkbox" name="pages" value="reservations"><span><strong>Prenotazioni</strong>Form, orari, conferma.</span></label>
+                <label class="checkbox-line"><input type="checkbox" name="pages" value="reviews"><span><strong>Recensioni</strong>CTA Google/TripAdvisor.</span></label>
+                <label class="checkbox-line"><input type="checkbox" name="pages" value="private"><span><strong>Area privata</strong>Accesso manager protetto.</span></label>
+              </div>
+            </div>
+            <div class="field"><label>Telefono pubblico</label><input name="public_phone" placeholder="+34 ..."></div>
+            <div class="field"><label>Email pubblica</label><input type="email" name="public_email" placeholder="info@ristorante.com"></div>
+            <div class="field-full"><label>Indirizzo completo</label><input name="address" placeholder="Via, numero, città, CAP"></div>
+            <div class="field-full"><label>Link utili</label><textarea name="external_links" placeholder="Google Maps, Instagram, Facebook, TripAdvisor, Google Reviews, WhatsApp..."></textarea></div>
+          </div>
+        </section>
+
+        <section class="section-card" id="menu">
+          <div class="section-head">
+            <p class="eyebrow">Step 5</p>
+            <h2>Menu, piatti e allergeni</h2>
+            <p>Nel modello Nonna Angela il menu non è un PDF: è una base dati modificabile con nomi, descrizioni, ingredienti, allergeni, foto, prezzi e disponibilità.</p>
+          </div>
+          <div class="fields">
+            <div class="field"><label>Formato menu attuale</label><select name="menu_source"><option>PDF</option><option>Excel / Google Sheet</option><option>Foto del menu</option><option>Testo scritto</option><option>Non esiste ancora</option></select></div>
+            <div class="field"><label>Prezzi già definiti?</label><select name="prices_ready"><option>Sì</option><option>In parte</option><option>No</option><option>Da revisionare strategicamente</option></select></div>
+            <div class="field-full"><label>Categorie del menu</label><textarea name="menu_categories" placeholder="Es. Antipasti freddi, Antipasti caldi, Primi, Secondi, Contorni, Dolci, Specialità..."></textarea></div>
+            <div class="field-full"><label>Per ogni piatto servono questi dati</label><textarea name="dish_template" placeholder="Nome piatto | descrizione | ingredienti | prezzo | categoria | allergeni | foto | disponibilità | note operative"></textarea></div>
+            <div class="field-full"><label>Gestione allergeni</label><select name="allergen_depth"><option>Allergeni base visibili nel menu</option><option>Allergeni dettagliati EU 14/16</option><option>Solo nota di consultare il personale</option><option>Da creare con verifica interna</option></select></div>
+          </div>
+        </section>
+
+        <section class="section-card" id="vini">
+          <div class="section-head">
+            <p class="eyebrow">Step 6</p>
+            <h2>Vini, cocktail e bebidas</h2>
+            <p>Questa parte trasforma la carta bevande in strumento commerciale: calice/bottiglia, descrizioni, storytelling cocktail, categorie e upselling.</p>
+          </div>
+          <div class="fields">
+            <div class="field"><label>Carta vini?</label><select name="wine_list"><option>Sì, completa</option><option>Sì, da sistemare</option><option>No</option><option>Solo pochi vini</option></select></div>
+            <div class="field"><label>Vendita al calice?</label><select name="wine_by_glass"><option>Sì</option><option>No</option><option>Solo alcuni vini</option><option>Da decidere</option></select></div>
+            <div class="field-full"><label>Dati richiesti per ogni vino</label><textarea name="wine_template" placeholder="Nome | cantina | regione | denominazione | uve | formato | prezzo bottiglia | prezzo calice | descrizione | abbinamenti"></textarea></div>
+            <div class="field"><label>Cocktail?</label><select name="cocktails"><option>Sì</option><option>No</option><option>Solo aperitivi</option><option>Da costruire</option></select></div>
+            <div class="field"><label>Digestivi / amari?</label><select name="digestifs"><option>Sì</option><option>No</option><option>Da costruire</option></select></div>
+            <div class="field-full"><label>Dati richiesti per cocktail e bebidas</label><textarea name="drink_template" placeholder="Categoria | nome | ingredienti | prezzo | storia/nota vendita | formato servizio"></textarea></div>
+          </div>
+        </section>
+
+        <section class="section-card" id="prenotazioni">
+          <div class="section-head">
+            <p class="eyebrow">Step 7</p>
+            <h2>Sistema prenotazioni</h2>
+            <p>Questa è la parte operativa: form, capacità, giorni chiusi, conferma manuale, stati, modifiche e ricerca tramite telefono.</p>
+          </div>
+          <div class="fields">
+            <div class="field"><label>Vuoi prenotazioni online?</label><select name="booking_enabled" data-toggle="bookingAdvanced"><option value="yes">Sì</option><option value="no">No</option><option value="external">Solo link esterno</option></select></div>
+            <div class="field"><label>Metodo conferma</label><select name="confirmation_method"><option>Manuale WhatsApp/email</option><option>Automatica</option><option>Mista</option><option>Solo richiesta, nessuna conferma automatica</option></select></div>
+            <div class="conditional is-visible" id="bookingAdvanced">
+              <div class="fields">
+                <div class="field"><label>Capacità massima per servizio</label><input type="number" name="service_capacity" placeholder="Es. 50"></div>
+                <div class="field"><label>Massimo persone per prenotazione</label><input type="number" name="max_guests" placeholder="Es. 20"></div>
+                <div class="field"><label>Giorni chiusi</label><input name="closed_days" placeholder="Es. domenica e lunedì"></div>
+                <div class="field"><label>Slot prenotazione</label><input name="booking_slots" placeholder="Es. ogni 15 minuti"></div>
+                <div class="field-full"><label>Orari pranzo/cena</label><textarea name="service_hours" placeholder="Es. Mar-Gio 12:30-15:30 / 19:30-22:45, Ven-Sab fino 23:00..."></textarea></div>
+                <div class="field-full"><label>Zone/tavoli/preferenze</label><textarea name="table_areas" placeholder="Es. terrazza, sala, coworking, interno, esterno, accessibile, vicino finestra..."></textarea></div>
+                <div class="field-full"><label>Il cliente può modificare o consultare lo stato della prenotazione?</label><select name="booking_self_service"><option>Sì, tramite telefono</option><option>Sì, con codice prenotazione</option><option>No</option><option>Da decidere</option></select></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="dashboard">
+          <div class="section-head">
+            <p class="eyebrow">Step 8</p>
+            <h2>Dashboard manager</h2>
+            <p>Nel modello Nonna Angela la dashboard serve a gestire prenotazioni pending, confermate, rifiutate, completate, no-show e azioni operative.</p>
+          </div>
+          <div class="fields">
+            <div class="field"><label>Vuoi una dashboard privata?</label><select name="dashboard_enabled" data-toggle="dashboardDetails"><option value="yes">Sì</option><option value="no">No</option></select></div>
+            <div class="field"><label>Tipo accesso</label><select name="dashboard_access"><option>Password semplice</option><option>Login email/password</option><option>Google Auth</option><option>Da decidere</option></select></div>
+            <div class="conditional is-visible" id="dashboardDetails">
+              <div class="fields">
+                <div class="field-full"><label>Azioni richieste in dashboard</label><textarea name="dashboard_actions" placeholder="Es. conferma, rifiuta, cancella, segna seduto, completato, no-show, apri WhatsApp, apri email..."></textarea></div>
+                <div class="field-full"><label>Filtri e viste utili</label><textarea name="dashboard_filters" placeholder="Es. oggi, domani, pending, confermate, pranzo, cena, sala, terrazza..."></textarea></div>
+                <div class="field-full"><label>Notifiche desiderate</label><select name="dashboard_notifications"><option>Nessuna per ora</option><option>Email</option><option>WhatsApp</option><option>Slack/Telegram</option><option>Da integrare in futuro</option></select></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="chatbot">
+          <div class="section-head">
+            <p class="eyebrow">Opzione premium</p>
+            <h2>Chatbot / Virtual Assistant</h2>
+            <p>Il chatbot può essere semplice o operativo. Nel modello Nonna Angela crea prenotazioni, modifica prenotazioni, consulta stati e risponde su menu, vini, cocktail e allergeni.</p>
+          </div>
+          <div class="fields">
+            <div class="field"><label>Vuoi il chatbot?</label><select name="chatbot_enabled" data-toggle="chatbotDetails"><option value="no">No</option><option value="yes">Sì</option><option value="later">Non ora, ma in futuro</option></select></div>
+            <div class="field"><label>Livello chatbot</label><select name="chatbot_level"><option>Informativo base</option><option>Prenotazioni operative</option><option>Menu + vini + cocktail</option><option>Completo come Nonna Angela</option><option>AI avanzata custom</option></select></div>
+            <div class="conditional" id="chatbotDetails">
+              <div class="fields">
+                <div class="field-full"><label>Cosa deve saper fare?</label>
+                  <div class="choice-grid">
+                    <label class="checkbox-line"><input type="checkbox" name="chatbot_features" value="faq"><span><strong>FAQ</strong>Orari, indirizzo, contatti.</span></label>
+                    <label class="checkbox-line"><input type="checkbox" name="chatbot_features" value="booking"><span><strong>Prenotare</strong>Salvare prenotazioni reali.</span></label>
+                    <label class="checkbox-line"><input type="checkbox" name="chatbot_features" value="modify"><span><strong>Modificare</strong>Ricerca tramite telefono.</span></label>
+                    <label class="checkbox-line"><input type="checkbox" name="chatbot_features" value="status"><span><strong>Stato</strong>Controllo confermata/pending/rifiutata.</span></label>
+                    <label class="checkbox-line"><input type="checkbox" name="chatbot_features" value="menu"><span><strong>Menu</strong>Piatti, ingredienti, allergeni.</span></label>
+                    <label class="checkbox-line"><input type="checkbox" name="chatbot_features" value="wine"><span><strong>Vini</strong>Calice, bottiglia, pairing.</span></label>
+                    <label class="checkbox-line"><input type="checkbox" name="chatbot_features" value="cocktails"><span><strong>Cocktail</strong>Storie e consigli.</span></label>
+                    <label class="checkbox-line"><input type="checkbox" name="chatbot_features" value="handoff"><span><strong>Handoff</strong>Passaggio a WhatsApp/staff.</span></label>
+                  </div>
+                </div>
+                <div class="field-full"><label>Tono del chatbot</label><select name="chatbot_tone"><option>Elegante e professionale</option><option>Caldo e familiare</option><option>Giovane e informale</option><option>Luxury concierge</option><option>Neutro</option></select></div>
+                <div class="field-full"><label>Frasi o informazioni che il bot NON deve dire</label><textarea name="chatbot_boundaries" placeholder="Es. non confermare automaticamente, non promettere tavoli specifici, non dare garanzie su allergeni..."></textarea></div>
+                <div class="field-full"><label>Fonti dati per il bot</label><textarea name="chatbot_sources" placeholder="Menu, carta vini, cocktail, orari, policy prenotazioni, allergeni, telefono, regole interne..."></textarea></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="traduzioni">
+          <div class="section-head">
+            <p class="eyebrow">Opzione premium</p>
+            <h2>Traduzioni e multilingua</h2>
+            <p>Per ristoranti turistici è fondamentale. Il modello Nonna Angela usa ES default con EN/FR/IT su sito, menu e chatbot.</p>
+          </div>
+          <div class="fields">
+            <div class="field"><label>Vuoi il sito multilingua?</label><select name="translations_enabled" data-toggle="translationDetails"><option value="no">No</option><option value="yes">Sì</option><option value="later">In futuro</option></select></div>
+            <div class="field"><label>Lingua principale</label><select name="default_language"><option>Spagnolo</option><option>Italiano</option><option>Inglese</option><option>Francese</option><option>Tedesco</option><option>Altro</option></select></div>
+            <div class="conditional" id="translationDetails">
+              <div class="fields">
+                <div class="field-full"><label>Lingue richieste</label>
+                  <div class="choice-grid">
+                    <label class="checkbox-line"><input type="checkbox" name="languages" value="es"><span><strong>ES</strong>Spagnolo</span></label>
+                    <label class="checkbox-line"><input type="checkbox" name="languages" value="en"><span><strong>EN</strong>Inglese</span></label>
+                    <label class="checkbox-line"><input type="checkbox" name="languages" value="fr"><span><strong>FR</strong>Francese</span></label>
+                    <label class="checkbox-line"><input type="checkbox" name="languages" value="it"><span><strong>IT</strong>Italiano</span></label>
+                    <label class="checkbox-line"><input type="checkbox" name="languages" value="de"><span><strong>DE</strong>Tedesco</span></label>
+                    <label class="checkbox-line"><input type="checkbox" name="languages" value="pt"><span><strong>PT</strong>Portoghese</span></label>
+                  </div>
+                </div>
+                <div class="field"><label>Tradurre anche menu?</label><select name="translate_menu"><option>Sì</option><option>No</option><option>Solo descrizioni</option></select></div>
+                <div class="field"><label>Tradurre anche chatbot?</label><select name="translate_chatbot"><option>Sì</option><option>No</option><option>Solo risposte principali</option></select></div>
+                <div class="field-full"><label>Note linguistiche</label><textarea name="translation_notes" placeholder="Es. mantenere nomi italiani dei piatti, tono formale in francese, inglese turistico semplice..."></textarea></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-card" id="marketing">
+          <div class="section-head">
+            <p class="eyebrow">Step 11</p>
+            <h2>SEO, social, tracking e conversione</h2>
+            <p>Qui si raccolgono gli elementi necessari per far trovare il sito e trasformare visite in prenotazioni.</p>
+          </div>
+          <div class="fields">
+            <div class="field"><label>Google Business Profile</label><select name="google_business"><option>Esiste ed è attivo</option><option>Esiste ma va ottimizzato</option><option>Non esiste</option><option>Non so</option></select></div>
+            <div class="field"><label>Recensioni da integrare</label><select name="reviews_platform"><option>Google</option><option>TripAdvisor</option><option>Entrambe</option><option>Nessuna</option></select></div>
+            <div class="field-full"><label>Keyword locali desiderate</label><textarea name="seo_keywords" placeholder="Es. ristorante italiano Tenerife, pasta fresca Santa Cruz, restaurante italiano centro..."></textarea></div>
+            <div class="field-full"><label>Social e contenuti</label><textarea name="social_content" placeholder="Instagram, TikTok, Facebook, stile foto, video, caroselli, contenuti vino/cocktail, calendario editoriale..."></textarea></div>
+            <div class="field"><label>Analytics / tracking</label><select name="tracking"><option>No</option><option>Google Analytics</option><option>Meta Pixel</option><option>Google Ads conversioni</option><option>Tutti</option></select></div>
+            <div class="field"><label>Campagne ads</label><select name="ads"><option>No</option><option>Google Ads</option><option>Meta Ads</option><option>Entrambe</option><option>Da decidere</option></select></div>
+          </div>
+        </section>
+
+        <section class="section-card" id="legal">
+          <div class="section-head">
+            <p class="eyebrow">Step 12</p>
+            <h2>Legal, hosting e manutenzione</h2>
+            <p>Ultimo blocco: privacy, cookie, dominio, hosting, aggiornamenti menu, supporto e proprietà degli asset.</p>
+          </div>
+          <div class="fields">
+            <div class="field"><label>Dominio</label><select name="domain_status"><option>Già disponibile</option><option>Da comprare</option><option>Da trasferire</option><option>Non so</option></select></div>
+            <div class="field"><label>Hosting preferito</label><select name="hosting"><option>Netlify</option><option>Vercel</option><option>Hosting tradizionale</option><option>Non so</option></select></div>
+            <div class="field"><label>Privacy e cookie</label><select name="privacy_cookie"><option>Banner base</option><option>CMP completo</option><option>Solo cookie essenziali</option><option>Da verificare legalmente</option></select></div>
+            <div class="field"><label>Manutenzione mensile</label><select name="maintenance"><option>No</option><option>Solo bugfix</option><option>Aggiornamento menu</option><option>Menu + contenuti + supporto</option><option>Pacchetto premium completo</option></select></div>
+            <div class="field-full"><label>Note finali / richieste speciali</label><textarea name="final_notes" placeholder="Automazioni, integrazioni future, CRM, email marketing, loyalty, gift card, eventi, delivery, POS..."></textarea></div>
+          </div>
+        </section>
+
+        <section class="section-card">
+          <div class="section-head">
+            <p class="eyebrow">Output</p>
+            <h2>Genera brief tecnico</h2>
+            <p>Questo bottone crea una bozza JSON leggibile da copiare in un CRM, inviare a Menuria o usare come base per preventivo.</p>
+          </div>
+          <div class="utility-bar">
+            <button class="btn btn-secondary" type="reset">Pulisci formulario</button>
+            <button class="btn btn-secondary" type="button" id="copyButton">Copia brief</button>
+            <button class="btn btn-primary" type="button" id="generateButton">Genera brief</button>
+          </div>
+          <pre class="output-box" id="outputBox"></pre>
+          <p class="small-note">Nota: questo prototipo non invia ancora i dati a un database. È pronto per essere collegato a Supabase, Airtable, HubSpot, Notion o al backend Menuria.</p>
+        </section>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById('briefForm')
+    const outputBox = document.getElementById('outputBox')
+
+    function refreshConditionals() {
+      document.querySelectorAll('[data-toggle]').forEach((control) => {
+        const target = document.getElementById(control.dataset.toggle)
+        if (!target) return
+        const shouldShow = control.value === 'yes'
+        target.classList.toggle('is-visible', shouldShow)
+      })
+    }
+
+    document.querySelectorAll('[data-toggle]').forEach((control) => {
+      control.addEventListener('change', refreshConditionals)
+    })
+
+    function formToObject() {
+      const data = new FormData(form)
+      const result = {
+        generated_at: new Date().toISOString(),
+        project_type: 'Menuria restaurant website brief',
+        sections: {}
+      }
+
+      for (const [key, value] of data.entries()) {
+        if (result.sections[key]) {
+          if (!Array.isArray(result.sections[key])) result.sections[key] = [result.sections[key]]
+          result.sections[key].push(value)
+        } else {
+          result.sections[key] = value
+        }
+      }
+
+      return result
+    }
+
+    document.getElementById('generateButton').addEventListener('click', () => {
+      const json = JSON.stringify(formToObject(), null, 2)
+      outputBox.textContent = json
+      outputBox.classList.add('is-visible')
+      outputBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+    })
+
+    document.getElementById('copyButton').addEventListener('click', async () => {
+      const json = outputBox.textContent || JSON.stringify(formToObject(), null, 2)
+      outputBox.textContent = json
+      outputBox.classList.add('is-visible')
+      try {
+        await navigator.clipboard.writeText(json)
+        document.getElementById('copyButton').textContent = 'Copiato ✓'
+        setTimeout(() => { document.getElementById('copyButton').textContent = 'Copia brief' }, 1400)
+      } catch {
+        alert('Copia manuale necessaria: seleziona il testo del brief.')
+      }
+    })
+
+    form.addEventListener('reset', () => {
+      setTimeout(() => {
+        outputBox.textContent = ''
+        outputBox.classList.remove('is-visible')
+        refreshConditionals()
+      }, 0)
+    })
+
+    refreshConditionals()
+  </script>
+</body>
+</html>
