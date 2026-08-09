@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 const COOKIE_STORAGE_KEY = 'nonna_cookie_consent'
 
 export default function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const savedConsent = localStorage.getItem(COOKIE_STORAGE_KEY)
@@ -25,22 +27,19 @@ export default function CookieConsent() {
   if (!isVisible) return null
 
   return (
-    <aside className="cookie-consent" role="dialog" aria-label="Aviso de cookies">
+    <aside className="cookie-consent" role="dialog" aria-label={t('cookies.aria')}>
       <div>
-        <p className="eyebrow">Privacidad</p>
-        <h3>Una experiencia más cuidada</h3>
-        <p>
-          Utilizamos cookies esenciales para que el sitio funcione correctamente y cookies
-          de experiencia para mejorar la navegación de Nonna Angela.
-        </p>
+        <p className="eyebrow">{t('cookies.eyebrow')}</p>
+        <h3>{t('cookies.title')}</h3>
+        <p>{t('cookies.text')}</p>
       </div>
 
       <div className="cookie-consent-actions">
         <button className="ghost-button" type="button" onClick={() => saveConsent('essential')}>
-          Solo esenciales
+          {t('cookies.essentials')}
         </button>
         <button className="primary-button" type="button" onClick={() => saveConsent('accepted')}>
-          Aceptar
+          {t('cookies.accept')}
         </button>
       </div>
     </aside>
