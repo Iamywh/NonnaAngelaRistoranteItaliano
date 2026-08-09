@@ -16,6 +16,7 @@ import VirtualAgent from './components/VirtualAgent.jsx'
 import Footer from './components/Footer.jsx'
 import CookieConsent from './components/CookieConsent.jsx'
 import WelcomePopup from './components/WelcomePopup.jsx'
+import { LanguageProvider } from './i18n/LanguageContext.jsx'
 
 const pagePaths = {
   home: '/',
@@ -76,20 +77,22 @@ export default function App() {
   }
 
   return (
-    <div className="app-shell">
-      <Navbar
-        currentPage={currentPage}
-        setCurrentPage={navigateToPage}
-        isAdminMode={isAdminMode}
-        setIsAdminMode={setIsAdminMode}
-      />
+    <LanguageProvider>
+      <div className="app-shell">
+        <Navbar
+          currentPage={currentPage}
+          setCurrentPage={navigateToPage}
+          isAdminMode={isAdminMode}
+          setIsAdminMode={setIsAdminMode}
+        />
 
-      <main className="main-content">{renderPage()}</main>
+        <main className="main-content">{renderPage()}</main>
 
-      <Footer setCurrentPage={navigateToPage} />
-      <VirtualAgent />
-      <WelcomePopup currentPage={currentPage} setCurrentPage={navigateToPage} />
-      <CookieConsent />
-    </div>
+        <Footer setCurrentPage={navigateToPage} />
+        <VirtualAgent />
+        <WelcomePopup currentPage={currentPage} setCurrentPage={navigateToPage} />
+        <CookieConsent />
+      </div>
+    </LanguageProvider>
   )
 }
