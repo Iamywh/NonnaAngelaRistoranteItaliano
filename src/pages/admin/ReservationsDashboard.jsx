@@ -130,6 +130,20 @@ function formatReservationDate(dateValue) {
   })
 }
 
+function formatShortReservationDate(dateValue) {
+  if (!dateValue) return '-'
+
+  const parsed = parseDateValue(dateValue)
+  if (!parsed) return '-'
+
+  return createLocalDate(parsed.year, parsed.month, parsed.day).toLocaleDateString('es-ES', {
+    weekday: 'short',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+  })
+}
+
 function getTodayDateValue() {
   const today = new Date()
   const year = today.getFullYear()
@@ -531,7 +545,10 @@ export default function ReservationsDashboard({ setCurrentPage }) {
                   <article className="reservation-day-card" key={reservation.id}>
                     <div className="reservation-card-top">
                       <div>
-                        <span className="reservation-time">{reservation.reservation_time || '-'}</span>
+                        <div className="reservation-date-time">
+                          <span className="reservation-date-badge">{formatShortReservationDate(reservation.reservation_date)}</span>
+                          <span className="reservation-time">{reservation.reservation_time || '-'}</span>
+                        </div>
                         <h4>{reservation.customer_name || 'Cliente sin nombre'}</h4>
                         <p>{reservation.customer_phone || '-'}</p>
                         {reservation.customer_email && <p>{reservation.customer_email}</p>}
