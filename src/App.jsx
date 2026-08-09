@@ -14,6 +14,8 @@ import ReservationsDashboard from './pages/admin/ReservationsDashboard.jsx'
 import MusicManager from './pages/admin/MusicManager.jsx'
 import VirtualAgent from './components/VirtualAgent.jsx'
 import Footer from './components/Footer.jsx'
+import CookieConsent from './components/CookieConsent.jsx'
+import WelcomePopup from './components/WelcomePopup.jsx'
 
 const pagePaths = {
   home: '/',
@@ -22,8 +24,14 @@ const pagePaths = {
   bebidas: '/bebidas'
 }
 
+function normalizePathname(pathname) {
+  if (pathname !== '/' && pathname.endsWith('/')) return pathname.slice(0, -1)
+  return pathname
+}
+
 function getPageFromPath(pathname) {
-  const entry = Object.entries(pagePaths).find(([, path]) => path === pathname)
+  const normalizedPathname = normalizePathname(pathname)
+  const entry = Object.entries(pagePaths).find(([, path]) => path === normalizedPathname)
 
   return entry?.[0] || 'home'
 }
@@ -80,6 +88,8 @@ export default function App() {
 
       <Footer setCurrentPage={navigateToPage} />
       <VirtualAgent />
+      <WelcomePopup currentPage={currentPage} setCurrentPage={navigateToPage} />
+      <CookieConsent />
     </div>
   )
 }
