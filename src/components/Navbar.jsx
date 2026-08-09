@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 const MANAGER_PASSWORD = import.meta.env.VITE_MANAGER_PASSWORD
 
@@ -6,17 +7,16 @@ export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIs
   const [showManagerModal, setShowManagerModal] = useState(false)
   const [managerPassword, setManagerPassword] = useState('')
   const [managerError, setManagerError] = useState('')
+  const { language, setLanguage, supportedLanguages, t } = useLanguage()
 
   const publicLinks = [
-    { id: 'home', label: 'Inicio' },
-    { id: 'locale', label: 'Restaurante' },
-    { id: 'menu', label: 'Menú' },
-    { id: 'bebidas', label: 'Bebidas' }
+    { id: 'home', label: t('nav.home') },
+    { id: 'locale', label: t('nav.locale') },
+    { id: 'menu', label: t('nav.menu') },
+    { id: 'bebidas', label: t('nav.bebidas') }
   ]
 
   const openManagerAccess = () => {
-    console.log('Manager clicked')
-
     const alreadyUnlocked = sessionStorage.getItem('nonna_manager_unlocked') === 'true'
 
     if (alreadyUnlocked) {
@@ -36,12 +36,8 @@ export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIs
     const expectedPassword = String(MANAGER_PASSWORD || '').trim()
     const typedPassword = String(managerPassword || '').trim()
 
-    console.log('Manager env loaded:', Boolean(expectedPassword))
-    console.log('Typed length:', typedPassword.length)
-    console.log('Expected length:', expectedPassword.length)
-
     if (!expectedPassword) {
-      setManagerError('Password manager non configurata.')
+      setManagerError(t('nav.missingPassword'))
       return
     }
 
@@ -53,7 +49,7 @@ export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIs
       setManagerPassword('')
       setManagerError('')
     } else {
-      setManagerError('Contraseña incorrecta')
+      setManagerError(t('nav.wrongPassword'))
     }
   }
 
@@ -69,7 +65,7 @@ export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIs
         <div className="brand-block" onClick={() => setCurrentPage('home')}>
           <div className="brand-mark">NA</div>
           <div>
-            <p className="brand-kicker">Restaurante Italiano</p>
+            <p className="brand-kicker">{t('nav.kicker')}</p>
             <h1>Nonna Angela</h1>
           </div>
         </div>
@@ -87,28 +83,43 @@ export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIs
           ))}
         </nav>
 
-        <button
-          className={isAdminMode ? 'admin-toggle active' : 'admin-toggle'}
-          type="button"
-          onClick={openManagerAccess}
-        >
-          Manager
-        </button>
+        <div className="navbar-actions">
+          <div className="language-switcher" aria-label="Language selector">
+            {supportedLanguages.map((item) => (
+              <button
+                key={item}
+                className={language === item ? 'language-button active' : 'language-button'}
+                type="button"
+                onClick={() => setLanguage(item)}
+              >
+                {t(`language.${item}`)}
+              </button>
+            ))}
+          </div>
+
+          <button
+            className={isAdminMode ? 'admin-toggle active' : 'admin-toggle'}
+            type="button"
+            onClick={openManagerAccess}
+          >
+            {t('common.manager')}
+          </button>
+        </div>
       </header>
 
       {showManagerModal && (
         <div className="manager-modal-backdrop">
           <div className="manager-modal">
-            <p className="eyebrow">Acceso manager</p>
-            <h3>Área privada</h3>
-            <p>Introduce la contraseña para acceder al panel de gestión.</p>
+            <p className="eyebrow">{t('nav.managerAccess')}</p>
+            <h3>{t('nav.privateArea')}</h3>
+            <p>{t('nav.passwordHelp')}</p>
 
             <form onSubmit={handleManagerSubmit}>
               <input
                 type="password"
                 value={managerPassword}
                 onChange={(event) => setManagerPassword(event.target.value)}
-                placeholder="Contraseña"
+                placeholder={t('nav.passwordPlaceholder')}
                 autoFocus
               />
 
@@ -116,10 +127,10 @@ export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIs
 
               <div className="manager-modal-actions">
                 <button className="ghost-button" type="button" onClick={closeManagerModal}>
-                  Cancelar
+                  {t('common.cancel')}
                 </button>
                 <button className="primary-button" type="submit">
-                  Entrar
+                  {t('common.enter')}
                 </button>
               </div>
             </form>
