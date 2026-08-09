@@ -1,6 +1,9 @@
 import React from 'react'
+import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 export default function Home({ setCurrentPage }) {
+  const { t } = useLanguage()
+
   const goToReservations = () => {
     setCurrentPage('locale')
     setTimeout(() => {
@@ -8,78 +11,51 @@ export default function Home({ setCurrentPage }) {
     }, 100)
   }
 
+  const days = [
+    ['home.monday', t('common.closed')],
+    ['home.tuesday', '12:30–15:30 / 19:30–22:45'],
+    ['home.wednesday', '12:30–15:30 / 19:30–22:45'],
+    ['home.thursday', '12:30–15:30 / 19:30–22:45'],
+    ['home.friday', '12:30–15:30 / 19:30–23:00'],
+    ['home.saturday', '12:30–15:30 / 19:30–23:00'],
+    ['home.sunday', t('common.closed')]
+  ]
+
   return (
     <section className="hero-page">
       <div className="hero-copy">
-        <p className="eyebrow">Cocina italiana auténtica</p>
-        <h2>Nonna Angela</h2>
-        <p>
-          Un restaurante italiano creado alrededor de recetas sinceras,
-          servicio cuidado y platos que hablan de casa y tradición.
-        </p>
+        <p className="eyebrow">{t('home.eyebrow')}</p>
+        <h2>{t('home.title')}</h2>
+        <p>{t('home.intro')}</p>
 
         <div className="hero-actions">
-          <button
-            className="primary-button"
-            type="button"
-            onClick={goToReservations}
-          >
-            Reserva una mesa
+          <button className="primary-button" type="button" onClick={goToReservations}>
+            {t('home.reserve')}
           </button>
 
-          <button
-            className="primary-button"
-            type="button"
-            onClick={() => setCurrentPage('menu')}
-          >
-            Ver el menú
+          <button className="primary-button" type="button" onClick={() => setCurrentPage('menu')}>
+            {t('home.menu')}
           </button>
 
-          <button
-            className="ghost-button"
-            type="button"
-            onClick={() => setCurrentPage('locale')}
-          >
-            Descubre el restaurante
+          <button className="ghost-button" type="button" onClick={() => setCurrentPage('locale')}>
+            {t('home.discover')}
           </button>
         </div>
       </div>
 
       <div className="hero-card">
-        <p>HORARIO</p>
+        <p>{t('home.hours')}</p>
         <div className="hero-hours">
-          <div>
-            <strong>Lunes</strong>
-            <span>Cerrado</span>
-          </div>
-          <div>
-            <strong>Martes</strong>
-            <span>12:30–15:30 / 19:30–22:45</span>
-          </div>
-          <div>
-            <strong>Miércoles</strong>
-            <span>12:30–15:30 / 19:30–22:45</span>
-          </div>
-          <div>
-            <strong>Jueves</strong>
-            <span>12:30–15:30 / 19:30–22:45</span>
-          </div>
-          <div>
-            <strong>Viernes</strong>
-            <span>12:30–15:30 / 19:30–23:00</span>
-          </div>
-          <div>
-            <strong>Sábado</strong>
-            <span>12:30–15:30 / 19:30–23:00</span>
-          </div>
-          <div>
-            <strong>Domingo</strong>
-            <span>Cerrado</span>
-          </div>
+          {days.map(([labelKey, value]) => (
+            <div key={labelKey}>
+              <strong>{t(labelKey)}</strong>
+              <span>{value}</span>
+            </div>
+          ))}
         </div>
-        <span>Te recomendamos reservar. Cerrado domingo y lunes.</span>
+        <span>{t('home.bookingTip')}</span>
         <button className="ghost-button" type="button" onClick={goToReservations}>
-          Reservar mesa
+          {t('home.reserveShort')}
         </button>
       </div>
     </section>
