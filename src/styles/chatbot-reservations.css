@@ -1,0 +1,114 @@
+.agent-reservation-form {
+  display: grid;
+  gap: 10px;
+  margin: 12px 14px 16px;
+  padding: 14px;
+  border: 1px solid rgba(214, 173, 99, 0.22);
+  border-radius: 18px;
+  background: rgba(255, 246, 232, 0.06);
+}
+
+.agent-reservation-form input,
+.agent-reservation-form select,
+.agent-reservation-form textarea {
+  width: 100%;
+  min-height: 42px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.agent-reservation-form textarea {
+  min-height: 70px;
+  resize: vertical;
+}
+
+.agent-reservation-form button,
+.reservation-match-card {
+  width: 100%;
+  border: 1px solid rgba(214, 173, 99, 0.28);
+  border-radius: 13px;
+  background: linear-gradient(135deg, #b78338, #d6ad63 56%, #8f1d2c 140%);
+  color: #170b08;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.agent-reservation-form button {
+  min-height: 44px;
+  padding: 11px 13px;
+}
+
+.agent-reservation-form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.agent-form-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+}
+
+.agent-form-title {
+  margin: 0;
+  color: #d6ad63;
+  font-size: 0.85rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.agent-inline-status {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.agent-inline-status.success {
+  border: 1px solid rgba(127, 189, 131, 0.22);
+  background: rgba(127, 189, 131, 0.12);
+  color: #d9f3dc;
+}
+
+.agent-inline-status.error {
+  border: 1px solid rgba(255, 181, 173, 0.22);
+  background: rgba(143, 29, 44, 0.14);
+  color: #ffcdc8;
+}
+
+.agent-modification-box {
+  display: grid;
+  gap: 10px;
+}
+
+.reservation-match-list {
+  display: grid;
+  gap: 8px;
+  margin: 0 14px 14px;
+}
+
+.reservation-match-card {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  text-align: left;
+}
+
+.reservation-match-card strong {
+  color: #170b08;
+  font-size: 0.9rem;
+}
+
+.reservation-match-card span {
+  color: rgba(23, 11, 8, 0.72);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+@media (max-width: 520px) {
+  .agent-form-row {
+    grid-template-columns: 1fr;
+  }
+}
