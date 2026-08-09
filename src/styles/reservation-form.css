@@ -14,8 +14,15 @@
 
 .phone-input-grid {
   display: grid;
-  grid-template-columns: minmax(116px, 0.38fr) minmax(0, 1fr);
+  grid-template-columns: minmax(220px, 0.52fr) minmax(0, 1fr);
   gap: 10px;
+}
+
+.phone-input-grid select {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .confirmation-channel-fieldset {
