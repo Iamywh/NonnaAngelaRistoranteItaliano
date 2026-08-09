@@ -1,5 +1,9 @@
 import React, { useMemo, useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import {
+  getTranslatedMenuItem,
+  getTranslatedWineDescription
+} from '../i18n/menuContentTranslations.js'
 
 import antipastiFreddi from '../../data/menu/AntipastiFreddi.json'
 import antipastiCaldi from '../../data/menu/AntipastiCaldi.json'
@@ -29,7 +33,35 @@ const PRICE_LABELS = { copa: 'glass', chupito: 'shot', combinado: 'combinado' }
 
 const ALLERGENS_BY_ID = new Map(allergenDefinitions.map((allergen) => [allergen.id, allergen]))
 const ALLERGEN_ALIASES = {
-  gluten: 'gluten', glutine: 'gluten', crustaceos: 'crustaceos', crostacei: 'crustaceos', huevos: 'huevos', uova: 'huevos', pescado: 'pescado', pesce: 'pescado', cacahuetes: 'cacahuetes', arachidi: 'cacahuetes', soja: 'soja', soia: 'soja', leche: 'leche', latte: 'leche', 'frutos secos': 'frutos_secos', 'frutta a guscio': 'frutos_secos', pistacho: 'frutos_secos', pistacchio: 'frutos_secos', apio: 'apio', sedano: 'apio', mostaza: 'mostaza', senape: 'mostaza', sesamo: 'sesamo', sulfitos: 'sulfitos', solfiti: 'sulfitos', altramuces: 'altramuces', lupini: 'altramuces', moluscos: 'moluscos', molluschi: 'moluscos'
+  gluten: 'gluten',
+  glutine: 'gluten',
+  crustaceos: 'crustaceos',
+  crostacei: 'crustaceos',
+  huevos: 'huevos',
+  uova: 'huevos',
+  pescado: 'pescado',
+  pesce: 'pescado',
+  cacahuetes: 'cacahuetes',
+  arachidi: 'cacahuetes',
+  soja: 'soja',
+  soia: 'soja',
+  leche: 'leche',
+  latte: 'leche',
+  'frutos secos': 'frutos_secos',
+  'frutta a guscio': 'frutos_secos',
+  pistacho: 'frutos_secos',
+  pistacchio: 'frutos_secos',
+  apio: 'apio',
+  sedano: 'apio',
+  mostaza: 'mostaza',
+  senape: 'mostaza',
+  sesamo: 'sesamo',
+  sulfitos: 'sulfitos',
+  solfiti: 'sulfitos',
+  altramuces: 'altramuces',
+  lupini: 'altramuces',
+  moluscos: 'moluscos',
+  molluschi: 'moluscos'
 }
 
 function FoodMenuRenovationNotice() {
@@ -93,7 +125,6 @@ function getVisiblePriceEntries(price) {
 
 function formatPrice(price, t) {
   if (price === null || price === undefined) return t('menu.undefinedPrice')
-
   if (typeof price === 'number') return `${price.toFixed(2).replace('.', ',')}€`
 
   if (typeof price === 'object') {
@@ -117,15 +148,20 @@ function calculateGlassPrice(bottlePrice) {
 }
 
 function getLocalizedField(item, baseField, language) {
-  const languageMap = { es: 'es', en: 'en', fr: 'fr', it: 'it' }
-  const suffix = languageMap[language] || 'es'
+  const translatedItem = getTranslatedMenuItem(item, language)
+  if (translatedItem?.[baseField]) return translatedItem[baseField]
 
+  if (baseField === 'description' && item.code) {
+    return getTranslatedWineDescription(item, language)
+  }
+
+  const suffix = language || 'es'
   return item[`${baseField}_${suffix}`] || item[`${baseField}_es`] || item[`${baseField}_it`] || item[baseField]
 }
 
-function formatIngredients(item, language, t) {
+function formatIngredients(item, language) {
   const ingredients = getLocalizedField(item, 'ingredients', language) || item.ingredients
-  if (!Array.isArray(ingredients) || ingredients.length === 0) return t('menu.ingredientsUpdate')
+  if (!Array.isArray(ingredients) || ingredients.length === 0) return ''
   return ingredients.join(', ')
 }
 
@@ -138,7 +174,12 @@ function getCategoryLabel(category, t) {
     contorni: t('menu.sections.contorni.0'),
     insalate: t('menu.sections.insalate.0'),
     dolci: t('menu.sections.dolci.0'),
-    especialidades_semana: t('menu.sections.especialidades.0')
+    especialidades_semana: t('menu.sections.especialidades.0'),
+    Rosso: 'Rosso',
+    Bianco: 'Bianco',
+    Rosato: 'Rosato',
+    Spumante: 'Spumante',
+    Dolce: 'Dolce'
   }
 
   return labels[category] || category?.replaceAll('_', ' ') || t('nav.menu')
@@ -149,8 +190,9 @@ function DishCard({ item }) {
   const glassPrice = item.by_glass ? item.recommended_glass_price || calculateGlassPrice(item.recommended_bottle_price) : null
   const servicePrices = getVisiblePriceEntries(item.recommended_price)
   const allergens = getItemAllergens(item)
-  const name = getLocalizedField(item, 'name', language) || item.name || t('nav.menu')
+  const name = item.code ? item.name : getLocalizedField(item, 'name', language) || item.name || t('nav.menu')
   const description = getLocalizedField(item, 'description', language) || item.description || item.notes
+  const ingredientsText = formatIngredients(item, language)
 
   return (
     <article className="dish-card">
@@ -173,7 +215,7 @@ function DishCard({ item }) {
 
         {!item.producer && item.format && <p className="wine-meta">{item.category}{item.format ? ` · ${item.format}` : ''}</p>}
         {description && <p className="dish-note">{description}</p>}
-        <p className="dish-ingredients">{formatIngredients(item, language, t)}</p>
+        {ingredientsText && <p className="dish-ingredients">{ingredientsText}</p>}
 
         {allergens.length > 0 && (
           <div className="dish-allergen-list">
