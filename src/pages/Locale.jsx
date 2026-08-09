@@ -1,21 +1,40 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../lib/supabaseClient.js'
+import '../styles/reservation-form.css'
 
 const menuStory =
   'En Italia, las mejores recetas no nacen en los restaurantes, sino alrededor de una mesa familiar. En Nonna Angela queremos compartir precisamente esa tradición: platos preparados con tiempo, ingredientes seleccionados y el cariño de la cocina de casa. Nuestra propuesta está inspirada en los sabores que han acompañado a generaciones de familias italianas: pastas artesanales, salsas cocinadas lentamente, embutidos, quesos y vinos cuidadosamente elegidos para acompañar cada momento. Más que un restaurante, queremos ser un lugar donde disfrutar sin prisas, compartir, brindar y sentirse como en casa. Benvenuti a Nonna Angela.'
 
 const SERVICE_CAPACITY = 50
 const CLOSED_RESERVATION_DAYS = [0, 1]
-const CLOSED_STATUSES_FOR_CAPACITY = ['rejected', 'cancelled', 'completed', 'no_show']
+const CLOSED_RESERVATION_STATUSES_FOR_CAPACITY = ['rejected', 'cancelled']
+const CLOSED_SERVICE_STATUSES_FOR_CAPACITY = ['completed', 'no_show']
 const SERVICE_FULL_MESSAGE =
   'Las reservas online para este servicio están casi completas. Por favor, contacta directamente con el restaurante para comprobar disponibilidad.'
 const CLOSED_DAY_MESSAGE =
   'El restaurante permanece cerrado los domingos y lunes. Por favor, selecciona otra fecha para tu reserva.'
 
+const PHONE_COUNTRIES = [
+  { iso: 'ES', dial: '+34', label: '🇪🇸 +34' },
+  { iso: 'IT', dial: '+39', label: '🇮🇹 +39' },
+  { iso: 'FR', dial: '+33', label: '🇫🇷 +33' },
+  { iso: 'DE', dial: '+49', label: '🇩🇪 +49' },
+  { iso: 'GB', dial: '+44', label: '🇬🇧 +44' },
+  { iso: 'PT', dial: '+351', label: '🇵🇹 +351' },
+  { iso: 'NL', dial: '+31', label: '🇳🇱 +31' },
+  { iso: 'BE', dial: '+32', label: '🇧🇪 +32' }
+]
+
+const MIN_GUESTS = 1
+const MAX_GUESTS = 20
+
 const initialReservation = {
   customer_name: '',
-  customer_phone: '',
+  phone_country_iso: 'ES',
+  phone_country_code: '+34',
+  customer_phone_number: '',
   customer_email: '',
+  confirmation_channel: 'whatsapp',
   reservation_date: '',
   reservation_time: '',
   guests: 2,
@@ -89,8 +108,31 @@ function getServiceLabel(service) {
   return 'servicio'
 }
 
-function countsForServiceCapacity(status) {
-  return !CLOSED_STATUSES_FOR_CAPACITY.includes(status)
+function getReservationStatus(booking) {
+  return booking?.reservation_status || booking?.status || 'pending'
+}
+
+function getServiceStatus(booking) {
+  if (booking?.service_status) return booking.service_status
+  if (['seated', 'completed', 'no_show'].includes(booking?.status)) return booking.status
+  return 'not_arrived'
+}
+
+function countsForServiceCapacity(booking) {
+  return (
+    !CLOSED_RESERVATION_STATUSES_FOR_CAPACITY.includes(getReservationStatus(booking)) &&
+    !CLOSED_SERVICE_STATUSES_FOR_CAPACITY.includes(getServiceStatus(booking))
+  )
+}
+
+function clampGuests(value) {
+  const numericValue = Number(value)
+  if (Number.isNaN(numericValue)) return MIN_GUESTS
+  return Math.min(Math.max(numericValue, MIN_GUESTS), MAX_GUESTS)
+}
+
+function getPhoneCountry(iso) {
+  return PHONE_COUNTRIES.find((country) => country.iso === iso) || PHONE_COUNTRIES[0]
 }
 
 async function getBookedGuestsForService(dateValue, timeValue) {
@@ -100,14 +142,14 @@ async function getBookedGuestsForService(dateValue, timeValue) {
 
   const { data, error } = await supabase
     .from('reservations')
-    .select('reservation_time, guests, status')
+    .select('reservation_time, guests, status, reservation_status, service_status')
     .eq('reservation_date', dateValue)
 
   if (error) throw error
 
   return (data || [])
     .filter((booking) => getReservationService(booking.reservation_time) === service)
-    .filter((booking) => countsForServiceCapacity(booking.status))
+    .filter((booking) => countsForServiceCapacity(booking))
     .reduce((total, booking) => total + Number(booking.guests || 0), 0)
 }
 
@@ -123,6 +165,8 @@ export default function Locale() {
   const isReservationDateClosed = isClosedReservationDate(reservation.reservation_date)
   const selectedService = getReservationService(reservation.reservation_time)
   const selectedGuests = Number(reservation.guests || 0)
+  const selectedPhoneCountry = getPhoneCountry(reservation.phone_country_iso)
+  const isEmailConfirmation = reservation.confirmation_channel === 'email'
 
   const capacityStatus = useMemo(() => {
     if (!serviceAvailability || !selectedService) {
@@ -208,11 +252,27 @@ export default function Locale() {
         }
       }
 
+      if (name === 'phone_country_iso') {
+        const nextCountry = getPhoneCountry(value)
+        return {
+          ...current,
+          phone_country_iso: nextCountry.iso,
+          phone_country_code: nextCountry.dial,
+        }
+      }
+
       return {
         ...current,
-        [name]: name === 'guests' ? Number(value) : value,
+        [name]: name === 'guests' ? clampGuests(value) : value,
       }
     })
+  }
+
+  const adjustGuests = (delta) => {
+    setReservation((current) => ({
+      ...current,
+      guests: clampGuests(Number(current.guests || 0) + delta),
+    }))
   }
 
   const handleSubmit = async (event) => {
@@ -223,6 +283,18 @@ export default function Locale() {
 
     if (isClosedReservationDate(reservation.reservation_date)) {
       setError(CLOSED_DAY_MESSAGE)
+      setIsSubmitting(false)
+      return
+    }
+
+    if (isEmailConfirmation && !reservation.customer_email.trim()) {
+      setError('Introduce tu email para recibir la confirmación por correo.')
+      setIsSubmitting(false)
+      return
+    }
+
+    if (!reservation.customer_phone_number.trim()) {
+      setError('Introduce un número de teléfono válido.')
       setIsSubmitting(false)
       return
     }
@@ -258,15 +330,23 @@ export default function Locale() {
       return
     }
 
+    const phoneNumber = reservation.customer_phone_number.trim()
+    const fullPhone = `${selectedPhoneCountry.dial} ${phoneNumber}`
+
     const payload = {
       customer_name: reservation.customer_name.trim(),
-      customer_phone: reservation.customer_phone.trim(),
+      customer_phone: fullPhone,
       customer_email: reservation.customer_email.trim() || null,
+      phone_country_code: selectedPhoneCountry.dial,
+      phone_country_iso: selectedPhoneCountry.iso,
+      confirmation_channel: reservation.confirmation_channel,
       reservation_date: reservation.reservation_date,
       reservation_time: reservation.reservation_time,
       guests: reservation.guests,
       area_preference: reservation.area_preference,
       notes: reservation.notes.trim() || null,
+      reservation_status: 'pending',
+      service_status: 'not_arrived',
       status: 'pending',
       source: 'website',
     }
@@ -279,7 +359,7 @@ export default function Locale() {
       setError('No hemos podido enviar la solicitud. Inténtalo de nuevo o llámanos directamente.')
       console.error(insertError)
     } else {
-      setMessage('Solicitud recibida. La reserva será válida solo después de la confirmación del equipo de Nonna Angela.')
+      setMessage('Solicitud recibida. Nuestro equipo revisará la disponibilidad y te enviará la confirmación por el canal elegido.')
       setReservation(initialReservation)
       setServiceAvailability(null)
     }
@@ -335,8 +415,14 @@ export default function Locale() {
           <h3>Reserva tu mesa</h3>
           <p>
             Envíanos tu solicitud y nuestro equipo confirmará la reserva lo antes posible.
-            La reserva no será válida hasta recibir confirmación.
+            La reserva será válida únicamente después de recibir confirmación por email o WhatsApp.
           </p>
+
+          <ol className="reservation-process-list">
+            <li>Envías tu solicitud.</li>
+            <li>Revisamos disponibilidad.</li>
+            <li>Recibes la confirmación por el canal elegido.</li>
+          </ol>
         </div>
 
         <form className="reservation-form" onSubmit={handleSubmit}>
@@ -352,27 +438,77 @@ export default function Locale() {
               />
             </label>
 
-            <label>
+            <label className="phone-field">
               Teléfono
-              <input
-                type="tel"
-                name="customer_phone"
-                value={reservation.customer_phone}
-                onChange={handleChange}
-                required
-              />
+              <div className="phone-input-grid">
+                <select
+                  name="phone_country_iso"
+                  value={reservation.phone_country_iso}
+                  onChange={handleChange}
+                  aria-label="Prefijo telefónico"
+                >
+                  {PHONE_COUNTRIES.map((country) => (
+                    <option key={country.iso} value={country.iso}>
+                      {country.label}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="tel"
+                  name="customer_phone_number"
+                  value={reservation.customer_phone_number}
+                  onChange={handleChange}
+                  placeholder="Número"
+                  required
+                />
+              </div>
             </label>
           </div>
 
           <label>
-            Email opcional
+            Email {isEmailConfirmation ? '' : 'opcional'}
             <input
               type="email"
               name="customer_email"
               value={reservation.customer_email}
               onChange={handleChange}
+              placeholder="Para confirmación por correo"
+              required={isEmailConfirmation}
             />
           </label>
+
+          <fieldset className="confirmation-channel-fieldset">
+            <legend>¿Cómo prefieres recibir la confirmación?</legend>
+            <div className="confirmation-channel-grid">
+              <label className={reservation.confirmation_channel === 'whatsapp' ? 'confirmation-channel-card selected' : 'confirmation-channel-card'}>
+                <input
+                  type="radio"
+                  name="confirmation_channel"
+                  value="whatsapp"
+                  checked={reservation.confirmation_channel === 'whatsapp'}
+                  onChange={handleChange}
+                />
+                <span>WhatsApp</span>
+                <small>Te escribiremos al número indicado.</small>
+              </label>
+
+              <label className={reservation.confirmation_channel === 'email' ? 'confirmation-channel-card selected' : 'confirmation-channel-card'}>
+                <input
+                  type="radio"
+                  name="confirmation_channel"
+                  value="email"
+                  checked={reservation.confirmation_channel === 'email'}
+                  onChange={handleChange}
+                />
+                <span>Email</span>
+                <small>Recibirás la confirmación por correo.</small>
+              </label>
+            </div>
+          </fieldset>
+
+          <p className="form-helper strong">
+            La reserva será válida únicamente después de recibir confirmación del equipo de Nonna Angela por email o WhatsApp.
+          </p>
 
           <div className="form-row">
             <label>
@@ -418,15 +554,23 @@ export default function Locale() {
           <div className="form-row">
             <label>
               Personas
-              <input
-                type="number"
-                name="guests"
-                min="1"
-                max="20"
-                value={reservation.guests}
-                onChange={handleChange}
-                required
-              />
+              <div className="guest-stepper">
+                <button type="button" onClick={() => adjustGuests(-1)} disabled={reservation.guests <= MIN_GUESTS}>
+                  −
+                </button>
+                <input
+                  type="number"
+                  name="guests"
+                  min={MIN_GUESTS}
+                  max={MAX_GUESTS}
+                  value={reservation.guests}
+                  onChange={handleChange}
+                  required
+                />
+                <button type="button" onClick={() => adjustGuests(1)} disabled={reservation.guests >= MAX_GUESTS}>
+                  +
+                </button>
+              </div>
             </label>
 
             <label>
