@@ -5,6 +5,7 @@ import './styles/global.css'
 import './styles/footer.css'
 import './styles/premium-theme.css'
 import './styles/popups.css'
+import './styles/contrast-system.css'
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
