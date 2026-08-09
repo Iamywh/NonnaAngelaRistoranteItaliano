@@ -1,0 +1,112 @@
+/* Contrast system: coherent premium readability rules
+   - dark/warm surfaces use gold + warm ivory
+   - light surfaces use elegant dark ink
+*/
+:root {
+  --ink-dark: #1d120d;
+  --ink-soft: #3a2a21;
+  --premium-gold-text: #e8c77f;
+  --premium-gold-soft: #d9bb78;
+  --premium-ivory-text: #fff1dc;
+  --premium-muted-light: #e4d7c4;
+  --premium-dark-card: #1a0f0c;
+  --premium-dark-card-2: #2a1812;
+  --premium-light-card: #fff6e8;
+}
+
+/* Dark premium cards: never use black text on brown/dark backgrounds */
+.hero-card,
+.info-grid article,
+.menu-section-card,
+.kpi-card,
+.admin-module,
+.dashboard-panel,
+.admin-control-section,
+.reservation-summary-card,
+.reservation-day-card,
+.reservation-calendar,
+.reservation-day-panel,
+.food-menu-renovation-card,
+.manager-modal,
+.music-player-card,
+.music-track-row,
+.reservation-pending-alert {
+  color: var(--premium-ivory-text) !important;
+}
+
+.hero-card h3,
+.info-grid article h3,
+.menu-section-card h3,
+.kpi-card strong,
+.admin-module strong,
+.dashboard-panel h3,
+.admin-control-section h3,
+.reservation-summary-card strong,
+.reservation-day-card h4,
+.reservation-calendar h3,
+.reservation-day-panel h3,
+.food-menu-renovation-card h2,
+.manager-modal h3,
+.music-player-card h3,
+.music-track-row strong,
+.reservation-pending-alert h3 {
+  color: var(--premium-gold-text) !important;
+}
+
+.hero-card p,
+.hero-card span,
+.info-grid article p,
+.menu-section-card p,
+.kpi-card p,
+.kpi-card span,
+.admin-module small,
+.dashboard-panel p,
+.reservation-summary-card p,
+.reservation-summary-card span,
+.reservation-summary-card small,
+.reservation-day-card p,
+.reservation-card-meta small,
+.reservation-actions-block p,
+.service-actions-block p,
+.form-helper,
+.confirmation-channel-card small,
+.risk-item span,
+.music-player-card p,
+.music-track-row small,
+.music-track-row em,
+.reservation-pending-alert p {
+  color: var(--premium-muted-light) !important;
+}
+
+.brand-kicker,
+.eyebrow,
+.admin-module span,
+.reservation-actions-block p,
+.service-actions-block p,
+.music-volume-control {
+  color: var(--premium-gold-soft) !important;
+}
+
+/* Light utility surfaces: when a card is intentionally light, text becomes elegant dark */
+.cookie-banner,
+.cookie-banner p,
+.cookie-banner strong,
+.cookie-banner small,
+.light-surface,
+.light-surface p,
+.light-surface span,
+.light-surface small {
+  color: var(--ink-dark) !important;
+}
+
+/* Form controls remain readable in the dark theme */
+input,
+select,
+textarea {
+  color: var(--premium-ivory-text) !important;
+}
+
+select option {
+  background: #170d0b !important;
+  color: var(--premium-ivory-text) !important;
+}
