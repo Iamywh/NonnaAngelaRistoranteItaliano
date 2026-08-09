@@ -1,11 +1,126 @@
+/* High contrast chatbot system — readable before decorative */
+.virtual-agent .agent-window {
+  background: #140b08 !important;
+  border: 1px solid rgba(221, 174, 92, 0.34) !important;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.48) !important;
+}
+
+.virtual-agent .agent-header {
+  background:
+    radial-gradient(circle at top right, rgba(221, 174, 92, 0.16), transparent 42%),
+    linear-gradient(135deg, #5b111b, #170b08 88%) !important;
+  color: #fff6e8 !important;
+  border-bottom: 1px solid rgba(221, 174, 92, 0.22) !important;
+}
+
+.virtual-agent .agent-header p {
+  color: #e0c487 !important;
+}
+
+.virtual-agent .agent-header h3 {
+  color: #fff6e8 !important;
+}
+
+.virtual-agent .agent-messages {
+  background:
+    radial-gradient(circle at top left, rgba(143, 29, 44, 0.18), transparent 42%),
+    linear-gradient(180deg, #1a0f0c, #100806) !important;
+}
+
+.virtual-agent .agent-message {
+  white-space: pre-line;
+  font-weight: 700;
+}
+
+.virtual-agent .agent-message.bot {
+  background: #fff5e3 !important;
+  color: #1c100b !important;
+  border: 1px solid rgba(221, 174, 92, 0.48) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22) !important;
+}
+
+.virtual-agent .agent-message.user {
+  background: linear-gradient(135deg, #7e1725, #4b0e15) !important;
+  color: #fff6e8 !important;
+  border: 1px solid rgba(221, 174, 92, 0.28) !important;
+}
+
+.virtual-agent .agent-input-form,
+.virtual-agent .agent-topic-options,
+.virtual-agent .agent-promoted-topics,
+.virtual-agent .booking-form,
+.virtual-agent .agent-reservation-form {
+  background: #140b08 !important;
+  border-color: rgba(221, 174, 92, 0.24) !important;
+}
+
+.virtual-agent .agent-input-form input,
+.virtual-agent .agent-reservation-form input,
+.virtual-agent .agent-reservation-form select,
+.virtual-agent .agent-reservation-form textarea,
+.virtual-agent .booking-form input,
+.virtual-agent .booking-form select,
+.virtual-agent .booking-form textarea {
+  background: #fff6e8 !important;
+  border: 1px solid rgba(221, 174, 92, 0.56) !important;
+  color: #1c100b !important;
+  font-weight: 800 !important;
+}
+
+.virtual-agent .agent-input-form input::placeholder,
+.virtual-agent .agent-reservation-form input::placeholder,
+.virtual-agent .agent-reservation-form textarea::placeholder,
+.virtual-agent .booking-form input::placeholder,
+.virtual-agent .booking-form textarea::placeholder {
+  color: rgba(28, 16, 11, 0.58) !important;
+}
+
+.virtual-agent .agent-input-form input:focus,
+.virtual-agent .agent-reservation-form input:focus,
+.virtual-agent .agent-reservation-form select:focus,
+.virtual-agent .agent-reservation-form textarea:focus {
+  background: #ffffff !important;
+  border-color: #d6ad63 !important;
+  box-shadow: 0 0 0 4px rgba(214, 173, 99, 0.22) !important;
+}
+
+.virtual-agent .agent-input-form button,
+.virtual-agent .agent-reservation-form button,
+.virtual-agent .booking-form button {
+  background: linear-gradient(135deg, #d6ad63, #f2d58f) !important;
+  color: #170b08 !important;
+  border: 1px solid rgba(255, 246, 232, 0.24) !important;
+  font-weight: 950 !important;
+}
+
+.virtual-agent .agent-input-form button:hover,
+.virtual-agent .agent-reservation-form button:hover,
+.virtual-agent .booking-form button:hover {
+  background: linear-gradient(135deg, #f2d58f, #d6ad63) !important;
+}
+
+.virtual-agent .agent-topic-options button,
+.virtual-agent .agent-promoted-topics button {
+  background: #fff6e8 !important;
+  color: #5b111b !important;
+  border: 1px solid rgba(221, 174, 92, 0.54) !important;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16) !important;
+}
+
+.virtual-agent .agent-topic-options button:hover,
+.virtual-agent .agent-promoted-topics button:hover {
+  background: #ffffff !important;
+  color: #3a0a10 !important;
+  transform: translateY(-1px);
+}
+
 .agent-reservation-form {
   display: grid;
   gap: 10px;
   margin: 12px 14px 16px;
   padding: 14px;
-  border: 1px solid rgba(214, 173, 99, 0.22);
+  border: 1px solid rgba(214, 173, 99, 0.34);
   border-radius: 18px;
-  background: rgba(255, 246, 232, 0.06);
 }
 
 .agent-reservation-form input,
@@ -22,27 +137,6 @@
   resize: vertical;
 }
 
-.agent-reservation-form button,
-.reservation-match-card {
-  width: 100%;
-  border: 1px solid rgba(214, 173, 99, 0.28);
-  border-radius: 13px;
-  background: linear-gradient(135deg, #b78338, #d6ad63 56%, #8f1d2c 140%);
-  color: #170b08;
-  cursor: pointer;
-  font-weight: 900;
-}
-
-.agent-reservation-form button {
-  min-height: 44px;
-  padding: 11px 13px;
-}
-
-.agent-reservation-form button:disabled {
-  cursor: not-allowed;
-  opacity: 0.55;
-}
-
 .agent-form-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -51,34 +145,36 @@
 
 .agent-form-title {
   margin: 0;
-  color: #d6ad63;
+  color: #f2d58f !important;
   font-size: 0.85rem;
-  font-weight: 900;
+  font-weight: 950;
   line-height: 1.35;
 }
 
 .agent-inline-status {
-  margin: 0;
-  padding: 10px 12px;
+  margin: 0 14px;
+  padding: 11px 12px;
   border-radius: 12px;
-  font-size: 0.82rem;
-  font-weight: 800;
-  line-height: 1.35;
+  font-size: 0.84rem;
+  font-weight: 850;
+  line-height: 1.45;
+  white-space: pre-line;
 }
 
 .agent-inline-status.success {
-  border: 1px solid rgba(127, 189, 131, 0.22);
-  background: rgba(127, 189, 131, 0.12);
-  color: #d9f3dc;
+  border: 1px solid rgba(214, 173, 99, 0.38);
+  background: #fff6e8;
+  color: #1c100b;
 }
 
 .agent-inline-status.error {
-  border: 1px solid rgba(255, 181, 173, 0.22);
-  background: rgba(143, 29, 44, 0.14);
-  color: #ffcdc8;
+  border: 1px solid rgba(255, 181, 173, 0.42);
+  background: #3d1212;
+  color: #ffe6e2;
 }
 
-.agent-modification-box {
+.agent-modification-box,
+.agent-status-box {
   display: grid;
   gap: 10px;
 }
@@ -92,19 +188,27 @@
 .reservation-match-card {
   display: grid;
   gap: 4px;
+  width: 100%;
   padding: 12px 14px;
+  border: 1px solid rgba(221, 174, 92, 0.52);
+  border-radius: 13px;
+  background: #fff6e8;
+  color: #1c100b;
+  cursor: pointer;
   text-align: left;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
 }
 
 .reservation-match-card strong {
-  color: #170b08;
-  font-size: 0.9rem;
+  color: #5b111b !important;
+  font-size: 0.92rem;
+  font-weight: 950;
 }
 
 .reservation-match-card span {
-  color: rgba(23, 11, 8, 0.72);
+  color: #2b1a12 !important;
   font-size: 0.78rem;
-  font-weight: 800;
+  font-weight: 850;
 }
 
 @media (max-width: 520px) {
