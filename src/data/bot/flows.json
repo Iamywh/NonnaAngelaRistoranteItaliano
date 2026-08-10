@@ -1,6 +1,6 @@
 {
   "language": "es",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "flows": [
     {
       "id": "dish_recommendation_flow",
@@ -217,7 +217,7 @@
         {
           "id": "location_contact_answer",
           "type": "answer",
-          "message": "Estamos en Calle Méndez Núñez 20, 38002 Santa Cruz de Tenerife. Puedes contactar por WhatsApp al +34 697 46 76 19. También estamos en Instagram como @nonnaangelaristorante.",
+          "message": "Estamos en Calle Méndez Núñez 20, 38002 Santa Cruz de Tenerife. Puedes contactar por WhatsApp al +34 697 47 76 19. También estamos en Instagram como @nonnaangelaristorante.",
           "nextStep": "satisfaction_check"
         }
       ]
@@ -241,7 +241,7 @@
         {
           "id": "contact_staff_answer",
           "type": "answer",
-          "message": "Para esta consulta, lo mejor es confirmarlo directamente con el personal de sala o escribir por WhatsApp al +34 697 46 76 19.",
+          "message": "Para esta consulta, lo mejor es confirmarlo directamente con el personal de sala o escribir por WhatsApp al +34 697 47 76 19.",
           "nextStep": "closing"
         }
       ]
