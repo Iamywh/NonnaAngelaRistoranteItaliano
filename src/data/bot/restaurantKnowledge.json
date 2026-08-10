@@ -1,6 +1,6 @@
 {
   "language": "es",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "restaurant": {
     "name": "Nonna Angela",
     "subtitle": "Ristorante Italiano",
@@ -41,75 +41,40 @@
         {
           "day": "domingo",
           "label": "Domingo",
-          "isClosed": false,
-          "shifts": [
-            {
-              "type": "almuerzo",
-              "opens": "12:30",
-              "closes": "15:30"
-            },
-            {
-              "type": "cena",
-              "opens": "19:30",
-              "closes": "22:45"
-            }
-          ]
+          "isClosed": true,
+          "shifts": []
         },
         {
           "day": "lunes",
           "label": "Lunes",
-          "isClosed": false,
-          "shifts": [
-            {
-              "type": "almuerzo",
-              "opens": "12:30",
-              "closes": "15:30"
-            },
-            {
-              "type": "cena",
-              "opens": "19:30",
-              "closes": "22:45"
-            }
-          ]
+          "isClosed": true,
+          "shifts": []
         },
         {
           "day": "martes",
           "label": "Martes",
           "isClosed": false,
           "shifts": [
-            {
-              "type": "almuerzo",
-              "opens": "12:30",
-              "closes": "15:30"
-            },
-            {
-              "type": "cena",
-              "opens": "19:30",
-              "closes": "22:45"
-            }
+            { "type": "almuerzo", "opens": "12:30", "closes": "15:30" },
+            { "type": "cena", "opens": "19:30", "closes": "22:45" }
           ]
         },
         {
           "day": "miércoles",
           "label": "Miércoles",
-          "isClosed": true,
-          "shifts": []
+          "isClosed": false,
+          "shifts": [
+            { "type": "almuerzo", "opens": "12:30", "closes": "15:30" },
+            { "type": "cena", "opens": "19:30", "closes": "22:45" }
+          ]
         },
         {
           "day": "jueves",
           "label": "Jueves",
           "isClosed": false,
           "shifts": [
-            {
-              "type": "almuerzo",
-              "opens": "12:30",
-              "closes": "15:30"
-            },
-            {
-              "type": "cena",
-              "opens": "19:30",
-              "closes": "22:45"
-            }
+            { "type": "almuerzo", "opens": "12:30", "closes": "15:30" },
+            { "type": "cena", "opens": "19:30", "closes": "22:45" }
           ]
         },
         {
@@ -117,16 +82,8 @@
           "label": "Viernes",
           "isClosed": false,
           "shifts": [
-            {
-              "type": "almuerzo",
-              "opens": "12:30",
-              "closes": "15:30"
-            },
-            {
-              "type": "cena",
-              "opens": "19:30",
-              "closes": "22:45"
-            }
+            { "type": "almuerzo", "opens": "12:30", "closes": "15:30" },
+            { "type": "cena", "opens": "19:30", "closes": "23:00" }
           ]
         },
         {
@@ -134,20 +91,12 @@
           "label": "Sábado",
           "isClosed": false,
           "shifts": [
-            {
-              "type": "almuerzo",
-              "opens": "12:30",
-              "closes": "15:30"
-            },
-            {
-              "type": "cena",
-              "opens": "19:30",
-              "closes": "22:45"
-            }
+            { "type": "almuerzo", "opens": "12:30", "closes": "15:30" },
+            { "type": "cena", "opens": "19:30", "closes": "23:00" }
           ]
         }
       ],
-      "humanReadable": "Abrimos de jueves a martes de 12:30 a 15:30 y de 19:30 a 22:45. Cerramos los miércoles."
+      "humanReadable": "Abrimos de martes a sábado de 12:30 a 15:30. Cenas: martes, miércoles y jueves de 19:30 a 22:45; viernes y sábado de 19:30 a 23:00. Cerramos domingo y lunes."
     },
     "reservationPolicy": {
       "status": "manual_confirmation_required",
