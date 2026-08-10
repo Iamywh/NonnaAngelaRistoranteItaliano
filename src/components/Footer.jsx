@@ -4,8 +4,8 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
 const contactLinks = [
   {
     label: 'WhatsApp',
-    value: '+34 697 46 76 19',
-    href: 'https://wa.me/34697467619'
+    value: '+34 697 47 76 19',
+    href: 'https://wa.me/34697477619'
   },
   {
     label: 'Instagram',
