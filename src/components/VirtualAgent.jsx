@@ -35,8 +35,40 @@ const LANGUAGE_LOCALES = {
   es: 'es-ES',
   en: 'en-GB',
   fr: 'fr-FR',
-  it: 'it-IT'
+  it: 'it-IT',
+  de: 'de-DE',
+  pt: 'pt-PT'
 }
+
+const CURRENT_HOURS = {
+  es: 'Abrimos de martes a sábado de 12:30 a 15:30. Cenas: martes, miércoles y jueves de 19:30 a 22:45; viernes y sábado de 19:30 a 23:00. Cerramos domingo y lunes.',
+  en: 'We are open Tuesday to Saturday from 12:30 to 15:30. Dinner: Tuesday, Wednesday and Thursday from 19:30 to 22:45; Friday and Saturday from 19:30 to 23:00. Closed Sunday and Monday.',
+  fr: 'Nous sommes ouverts du mardi au samedi de 12:30 à 15:30. Dîner : mardi, mercredi et jeudi de 19:30 à 22:45 ; vendredi et samedi de 19:30 à 23:00. Fermé dimanche et lundi.',
+  it: 'Siamo aperti da martedì a sabato dalle 12:30 alle 15:30. Cena: martedì, mercoledì e giovedì dalle 19:30 alle 22:45; venerdì e sabato dalle 19:30 alle 23:00. Chiusi domenica e lunedì.',
+  de: 'Wir sind von Dienstag bis Samstag von 12:30 bis 15:30 geöffnet. Abendessen: Dienstag, Mittwoch und Donnerstag von 19:30 bis 22:45; Freitag und Samstag von 19:30 bis 23:00. Sonntag und Montag geschlossen.',
+  pt: 'Estamos abertos de terça a sábado das 12:30 às 15:30. Jantar: terça, quarta e quinta das 19:30 às 22:45; sexta e sábado das 19:30 às 23:00. Fechamos domingo e segunda.'
+}
+
+const RESERVATION_WORDS = [
+  'reserva', 'reservas', 'reservation', 'reservations', 'booking', 'bookings', 'mesa', 'table', 'tavolo', 'prenotazione', 'prenotazioni',
+  'réservation', 'réservations', 'reservacion', 'reservación', 'buchung', 'reservierung', 'reservaçao', 'reservacao'
+]
+
+const STATUS_WORDS = [
+  'estado', 'status', 'confirmada', 'confirmado', 'confirmar', 'confirmacion', 'confirmación', 'confirmed', 'confirmation', 'confirmée',
+  'confirmee', 'etat', 'état', 'stato', 'confermata', 'confermato', 'zustand', 'status', 'bestatigt', 'bestätigt', 'estado atual'
+]
+
+const MODIFICATION_WORDS = [
+  'modificar', 'cambiar', 'editar', 'mover', 'cambio', 'modify', 'change', 'edit', 'reschedule', 'move', 'modifier', 'changer',
+  'modifica', 'modificare', 'cambiare', 'spostare', 'ändern', 'andern', 'verschieben', 'umbuchen', 'alterar', 'remarcar'
+]
+
+const BOOKING_WORDS = [
+  'reservar', 'reserva', 'hacer una reserva', 'reservar mesa', 'book a table', 'book table', 'make a booking', 'make a reservation',
+  'booking', 'reservation', 'reserve', 'réserver', 'reserver', 'réservation', 'reservation', 'prenotare', 'prenota', 'prenotazione',
+  'tavolo', 'mesa', 'table', 'buchen', 'reservieren', 'reservar uma mesa', 'fazer reserva'
+]
 
 function buildGreeting(t) {
   return {
@@ -66,7 +98,12 @@ function normalizeText(text) {
     .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[’']/g, '')
     .trim()
+}
+
+function containsAny(text, terms) {
+  return terms.some((term) => text.includes(normalizeText(term)))
 }
 
 function sanitizePhoneDigits(phone) {
@@ -231,82 +268,42 @@ function buildNotesWithOrigin(notes, originText) {
 
 function isStatusRequest(userText) {
   const normalized = normalizeText(userText)
-  return (
-    normalized.includes('estado') ||
-    normalized.includes('status') ||
-    normalized.includes('confirm') ||
-    normalized.includes('etat') ||
-    normalized.includes('état') ||
-    normalized.includes('stato') ||
-    normalized.includes('booking') ||
-    normalized.includes('prenotazione')
-  ) && (
-    normalized.includes('reserva') ||
-    normalized.includes('mesa') ||
-    normalized.includes('booking') ||
-    normalized.includes('reservation') ||
-    normalized.includes('prenotazione')
-  )
+  return containsAny(normalized, STATUS_WORDS) && containsAny(normalized, RESERVATION_WORDS)
 }
 
 function isModificationRequest(userText) {
   const normalized = normalizeText(userText)
-  return (
-    normalized.includes('modificar') ||
-    normalized.includes('cambiar') ||
-    normalized.includes('editar') ||
-    normalized.includes('mover') ||
-    normalized.includes('modify') ||
-    normalized.includes('change') ||
-    normalized.includes('modifier') ||
-    normalized.includes('changer') ||
-    normalized.includes('modifica') ||
-    normalized.includes('cambiare')
-  ) && (
-    normalized.includes('reserva') ||
-    normalized.includes('mesa') ||
-    normalized.includes('booking') ||
-    normalized.includes('reservation') ||
-    normalized.includes('prenotazione')
-  )
+  return containsAny(normalized, MODIFICATION_WORDS) && containsAny(normalized, RESERVATION_WORDS)
 }
 
 function isBookingRequest(userText) {
   const normalized = normalizeText(userText)
-  return (
-    normalized.includes('reservar') ||
-    normalized.includes('reserva') ||
-    normalized.includes('mesa') ||
-    normalized.includes('book') ||
-    normalized.includes('booking') ||
-    normalized.includes('réserver') ||
-    normalized.includes('reserver') ||
-    normalized.includes('prenotare') ||
-    normalized.includes('prenota') ||
-    normalized.includes('table') ||
-    normalized.includes('tavolo')
-  ) && !isModificationRequest(userText) && !isStatusRequest(userText)
+  return containsAny(normalized, BOOKING_WORDS) && !isModificationRequest(userText) && !isStatusRequest(userText)
+}
+
+function isHoursRequest(userText) {
+  const normalized = normalizeText(userText)
+  return containsAny(normalized, [
+    'horario', 'horarios', 'abierto', 'abren', 'cerrado', 'opening', 'hours', 'open', 'closed',
+    'horaire', 'horaires', 'ouvert', 'ferme', 'fermé', 'orari', 'aperti', 'chiusi', 'öffnungszeiten',
+    'offnungszeiten', 'geöffnet', 'geoffnet', 'horário', 'horario', 'aberto'
+  ])
 }
 
 function buildBasicAnswer(userText, language) {
   const normalized = normalizeText(userText)
   const restaurant = restaurantKnowledge.restaurant
 
-  if (normalized.includes('horario') || normalized.includes('abierto') || normalized.includes('opening') || normalized.includes('hours') || normalized.includes('horaire') || normalized.includes('orari')) {
-    return {
-      es: restaurant.openingHours?.humanReadable || 'Abrimos de martes a sábado. Cerramos domingo y lunes.',
-      en: 'We are open Tuesday to Saturday for lunch and dinner. Closed Sunday and Monday.',
-      fr: 'Nous sommes ouverts du mardi au samedi, midi et soir. Fermé dimanche et lundi.',
-      it: 'Siamo aperti da martedì a sabato, a pranzo e cena. Chiuso domenica e lunedì.'
-    }[language]
+  if (isHoursRequest(userText)) {
+    return CURRENT_HOURS[language] || CURRENT_HOURS.es
   }
 
-  if (normalized.includes('direccion') || normalized.includes('donde') || normalized.includes('ubicacion') || normalized.includes('address') || normalized.includes('location') || normalized.includes('adresse') || normalized.includes('indirizzo')) {
+  if (containsAny(normalized, ['direccion', 'donde', 'ubicacion', 'address', 'location', 'adresse', 'indirizzo', 'endereco', 'endereço'])) {
     return `${restaurant.address?.fullAddress || 'Calle Méndez Núñez 20, Santa Cruz de Tenerife'}.`
   }
 
-  if (normalized.includes('telefono') || normalized.includes('phone') || normalized.includes('whatsapp') || normalized.includes('contacto') || normalized.includes('contact')) {
-    return `${restaurant.contact?.mobile?.value || '+34 613 381 023'}`
+  if (containsAny(normalized, ['telefono', 'phone', 'whatsapp', 'contacto', 'contact', 'téléphone', 'telephone', 'contatto', 'kontakt'])) {
+    return `${restaurant.contact?.mobile?.value || '+34 697 46 76 19'}`
   }
 
   return buildAdvancedRestaurantAnswer(userText, language)
