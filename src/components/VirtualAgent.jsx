@@ -303,7 +303,7 @@ function buildBasicAnswer(userText, language) {
   }
 
   if (containsAny(normalized, ['telefono', 'phone', 'whatsapp', 'contacto', 'contact', 'téléphone', 'telephone', 'contatto', 'kontakt'])) {
-    return `${restaurant.contact?.mobile?.value || '+34 697 46 76 19'}`
+    return `${restaurant.contact?.mobile?.value || '+34 697 47 76 19'}`
   }
 
   return buildAdvancedRestaurantAnswer(userText, language)
