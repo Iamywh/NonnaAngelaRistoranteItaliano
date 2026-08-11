@@ -154,6 +154,124 @@
   font-weight: 900;
 }
 
+/* Public reservation form contrast pass
+   Platinum fields = dark espresso text for maximum readability.
+*/
+.reservation-section .reservation-form label,
+.reservation-section .reservation-form legend {
+  color: #ffe9b8 !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.01em;
+}
+
+.reservation-section .reservation-process-list {
+  color: #f3e2c4 !important;
+}
+
+.reservation-section .reservation-form input,
+.reservation-section .reservation-form select,
+.reservation-section .reservation-form textarea {
+  background:
+    linear-gradient(180deg, #fffaf0 0%, #f4e4c8 100%) !important;
+  border: 1px solid rgba(255, 229, 177, 0.64) !important;
+  color: #1b0f0a !important;
+  caret-color: #5f130e !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 0 0 1px rgba(74, 43, 24, 0.10) !important;
+  font-weight: 850 !important;
+}
+
+.reservation-section .reservation-form input::placeholder,
+.reservation-section .reservation-form textarea::placeholder {
+  color: rgba(58, 34, 22, 0.72) !important;
+  font-weight: 750 !important;
+}
+
+.reservation-section .reservation-form input:focus,
+.reservation-section .reservation-form select:focus,
+.reservation-section .reservation-form textarea:focus {
+  outline: none !important;
+  border-color: #f5d68d !important;
+  box-shadow:
+    0 0 0 3px rgba(245, 214, 141, 0.28),
+    0 12px 28px rgba(0, 0, 0, 0.22) !important;
+}
+
+.reservation-section .reservation-form select:disabled,
+.reservation-section .reservation-form input:disabled,
+.reservation-section .reservation-form textarea:disabled {
+  background: linear-gradient(180deg, #dbcaa9 0%, #c9b58f 100%) !important;
+  color: #332016 !important;
+  opacity: 1 !important;
+  cursor: not-allowed;
+}
+
+.reservation-section .reservation-form select option {
+  background: #fffaf0 !important;
+  color: #1b0f0a !important;
+  font-weight: 800 !important;
+}
+
+.reservation-section .reservation-form input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: sepia(0.8) saturate(1.8) hue-rotate(345deg) brightness(0.55);
+  opacity: 0.95;
+}
+
+.reservation-section .confirmation-channel-card {
+  background:
+    linear-gradient(180deg, #fffaf0 0%, #f2dfbd 100%) !important;
+  border-color: rgba(245, 214, 141, 0.54) !important;
+  color: #1b0f0a !important;
+}
+
+.reservation-section .confirmation-channel-card:hover,
+.reservation-section .confirmation-channel-card.selected {
+  background:
+    linear-gradient(180deg, #fff6df 0%, #e7c98d 100%) !important;
+  border-color: rgba(245, 214, 141, 0.86) !important;
+}
+
+.reservation-section .confirmation-channel-card span,
+.reservation-section .confirmation-channel-card small,
+.reservation-section .form-helper,
+.reservation-section .form-helper.strong {
+  color: #23140d !important;
+}
+
+.reservation-section .form-helper.strong {
+  background:
+    linear-gradient(180deg, #fff7df 0%, #edd49d 100%) !important;
+  border-color: rgba(245, 214, 141, 0.64) !important;
+}
+
+.reservation-section .guest-stepper button {
+  background:
+    linear-gradient(135deg, #f5d68d, #d4a84f 64%, #9b5b22) !important;
+  border-color: rgba(255, 238, 190, 0.54) !important;
+  color: #160b08 !important;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18) !important;
+}
+
+.reservation-section .guest-stepper button:disabled {
+  background: #a89166 !important;
+  color: #392719 !important;
+  opacity: 0.72 !important;
+}
+
+.reservation-section .form-message:not(.success):not(.error) {
+  color: #ffe9b8 !important;
+  font-weight: 850 !important;
+}
+
+.reservation-section input:-webkit-autofill,
+.reservation-section input:-webkit-autofill:hover,
+.reservation-section input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #1b0f0a !important;
+  box-shadow: 0 0 0 1000px #fffaf0 inset !important;
+}
+
 @media (max-width: 720px) {
   .phone-input-grid {
     grid-template-columns: minmax(118px, 132px) minmax(0, 1fr);
