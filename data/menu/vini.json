@@ -42,7 +42,8 @@
       "purchase_units": 1,
       "cost_price": 11.0,
       "recommended_bottle_price": 44.0,
-      "by_glass": false,
+      "recommended_glass_price": 8,
+      "by_glass": true,
       "description": "Vino tinto toscano de estilo clásico, elaborado principalmente con Sangiovese y una pequeña parte de otras uvas autorizadas. Color rojo rubí intenso. En nariz es amplio y complejo, con fruta roja madura, especias y notas aportadas por la madera. En boca tiene buena estructura, taninos suaves y maduros, con final fresco, salino y agradablemente frutal."
     },
     {
@@ -192,7 +193,8 @@
       "purchase_units": 1,
       "cost_price": 9.1,
       "recommended_bottle_price": 36.4,
-      "by_glass": false,
+      "recommended_glass_price": 8,
+      "by_glass": true,
       "description": "Vino blanco friulano elaborado con 100% Ribolla Gialla. Color amarillo pajizo con reflejos verdosos. En nariz es floral y frutal, con recuerdos de albaricoque. En boca es seco y muy fresco, con acidez agradable y equilibrada. Ideal con ostras, entrantes fríos, pastas y arroces de pescado."
     },
     {
