@@ -1,0 +1,130 @@
+{
+  "updated_at": "2026-08-18",
+  "currency": "EUR",
+  "notes": "Inventario beverage inserito manualmente. I costi e i prezzi vendita saranno completati in una fase successiva.",
+  "categories": [
+    {
+      "id": "sodas",
+      "title": "Sodas",
+      "unit": "unità",
+      "items": [
+        { "name": "CocaCola", "quantity": 52 },
+        { "name": "CocaCola 0", "quantity": 5 },
+        { "name": "Fanta Naranja", "quantity": 21 },
+        { "name": "Fanta Limón", "quantity": 18 },
+        { "name": "Sprite", "quantity": 11 },
+        { "name": "Aquarius Naranja", "quantity": 24 },
+        { "name": "Aquarius Limón", "quantity": 32 },
+        { "name": "Nestea Mango Piña", "quantity": 28 },
+        { "name": "Appletiser", "quantity": 20 },
+        { "name": "Tónica Limón", "quantity": 11 },
+        { "name": "Tónica Fresa", "quantity": 22 },
+        { "name": "Mahou Sin Gluten", "quantity": 15 },
+        { "name": "Mahou Tostada 0.0%", "quantity": 6 }
+      ]
+    },
+    {
+      "id": "gin",
+      "title": "Gin",
+      "unit": "bottiglia",
+      "items": [
+        { "name": "Beefeater", "quantity": 1 },
+        { "name": "Bombay", "quantity": 1 },
+        { "name": "Brockman's", "quantity": 1 },
+        { "name": "Hendricks", "quantity": 1 },
+        { "name": "Martin Miller", "quantity": 1 },
+        { "name": "Tanqueray", "quantity": 2 }
+      ]
+    },
+    {
+      "id": "ron",
+      "title": "Ron",
+      "unit": "bottiglia",
+      "items": [
+        { "name": "Brugal", "quantity": 1 },
+        { "name": "Flor de caña", "quantity": 1 },
+        { "name": "Zacapa", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "whisky",
+      "title": "Whisky",
+      "unit": "bottiglia",
+      "items": [
+        { "name": "Jhonny Walker Black Label", "quantity": 1 },
+        { "name": "Jack Daniel's", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "licores",
+      "title": "Licores",
+      "unit": "bottiglia",
+      "items": [
+        { "name": "Martini Bianco", "quantity": 1 },
+        { "name": "Martini Rosso", "quantity": 0 },
+        { "name": "Giardini Bianco", "quantity": 1 },
+        { "name": "Giardini Rosso", "quantity": 0 },
+        { "name": "Fernet Branca", "quantity": 1 },
+        { "name": "Montenegro", "quantity": 1 },
+        { "name": "Disaronno", "quantity": 1 },
+        { "name": "Grappa Bianca", "quantity": 0.5 },
+        { "name": "Grappa Barricata", "quantity": 0 },
+        { "name": "Averna", "quantity": 1 },
+        { "name": "Campari", "quantity": 1 },
+        { "name": "Aperol", "quantity": 1 },
+        { "name": "Frangelico", "quantity": 1 },
+        { "name": "Sambuca Molinari", "quantity": 0.5 }
+      ]
+    },
+    {
+      "id": "vini_bianchi",
+      "title": "Vini bianchi / bollicine bianche",
+      "unit": "bottiglia",
+      "items": [
+        { "name": "Bellavista Satèn", "quantity": 1 },
+        { "name": "Bellavista Vittorio Moretti", "quantity": 1 },
+        { "name": "Terra Vizina Prosecco", "quantity": 6 },
+        { "name": "Gavi di Gavi", "quantity": 1 },
+        { "name": "Falanghina", "quantity": 1 },
+        { "name": "Greco di Tufo", "quantity": 0 },
+        { "name": "Ribolla Gialla", "quantity": 3 },
+        { "name": "Belvento", "quantity": 5 },
+        { "name": "Pinot Grigio", "quantity": 0 },
+        { "name": "Chardonnay", "quantity": 0.5 }
+      ]
+    },
+    {
+      "id": "vini_rossi",
+      "title": "Vini rossi",
+      "unit": "bottiglia",
+      "items": [
+        { "name": "Montepulciano d'Abruzzo", "quantity": 0 },
+        { "name": "Cabernet Sauvignon", "quantity": 5 },
+        { "name": "Chianti", "quantity": 4 },
+        { "name": "Brunello di Montalcino", "quantity": 1 },
+        { "name": "Rosso di Montalcino", "quantity": 3 },
+        { "name": "Amarone della Valpolicella", "quantity": 2 },
+        { "name": "Barolo", "quantity": 2 },
+        { "name": "Primitivo di Manduria", "quantity": 3 }
+      ]
+    },
+    {
+      "id": "vini_rosati",
+      "title": "Vini rosati",
+      "unit": "bottiglia",
+      "items": [
+        { "name": "Fina Hanami Rosé", "quantity": 2 },
+        { "name": "Belvento Rosé", "quantity": 3 },
+        { "name": "Bellavista Rosé", "quantity": 1 }
+      ]
+    },
+    {
+      "id": "vino_dolce",
+      "title": "Vino dolce",
+      "unit": "bottiglia",
+      "items": [
+        { "name": "Fina Hanami", "quantity": 2 }
+      ]
+    }
+  ]
+}
