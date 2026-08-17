@@ -38,6 +38,9 @@
     "category": "especialidades_semana",
     "id": "spaghetti_allo_scoglio",
     "name_it": "Spaghetti allo Scoglio",
+    "name_es": "Spaghetti allo Scoglio",
+    "name_en": "Spaghetti allo Scoglio",
+    "name_fr": "Spaghetti allo Scoglio",
     "sizes": [],
     "image": "/images/dishes/spaghetti-allo-scoglio.webp",
     "ingredients": [
@@ -49,11 +52,53 @@
       "calamari"
     ],
     "notes": "Spaghetti con bisque e sugo di pomodoro con basilico, cozze, gamberi e calamari.",
+    "description_es": "Spaghetti con bisque y salsa de tomate con albahaca, mejillones, gambas y calamares.",
+    "description_en": "Spaghetti with bisque and tomato sauce with basil, mussels, prawns and calamari.",
+    "description_fr": "Spaghetti avec bisque et sauce tomate au basilic, moules, gambas et calamars.",
+    "description_it": "Spaghetti con bisque e sugo di pomodoro al basilico, cozze, gamberi e calamari.",
+    "ingredients_es": [
+      "spaghetti",
+      "bisque",
+      "salsa de tomate con albahaca",
+      "mejillones",
+      "gambas",
+      "calamares"
+    ],
+    "ingredients_en": [
+      "spaghetti",
+      "bisque",
+      "tomato sauce with basil",
+      "mussels",
+      "prawns",
+      "calamari"
+    ],
+    "ingredients_fr": [
+      "spaghetti",
+      "bisque",
+      "sauce tomate au basilic",
+      "moules",
+      "gambas",
+      "calamars"
+    ],
+    "ingredients_it": [
+      "spaghetti",
+      "bisque",
+      "sugo di pomodoro al basilico",
+      "cozze",
+      "gamberi",
+      "calamari"
+    ],
     "allergens_to_verify": [
       "glutine",
       "crostacei",
       "molluschi",
       "pesce"
+    ],
+    "allergens_es": [
+      "gluten",
+      "crustáceos",
+      "moluscos",
+      "pescado"
     ],
     "source": "correzione manuale utente",
     "fornitore": null,
@@ -63,22 +108,6 @@
     "prezzo_consigliato": 25,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Especialidad de temporada.",
-    "name_es": "Spaghetti allo Scoglio",
-    "description_es": "Spaghetti con bisque y salsa de tomate con albahaca, mejillones, gambas y calamares.",
-    "ingredients_es": [
-      "spaghetti",
-      "bisque",
-      "salsa de tomate con albahaca",
-      "mejillones",
-      "gambas",
-      "calamares"
-    ],
-    "allergens_es": [
-      "gluten",
-      "crustáceos",
-      "moluscos",
-      "pescado"
-    ]
+    "warning_commerciale": "Especialidad de temporada."
   }
 ]
