@@ -13,7 +13,7 @@ const TRANSLATION_OVERRIDES = {
     'bot.modificationPending': 'La reserva vuelve a quedar pendiente hasta que el equipo confirme los cambios.',
     'bot.submitModification': 'Enviar modificación',
     'bot.updating': 'Actualizando...',
-    'menu.categories.especialidades_semana': ['Especialidades de temporada', 'Platos especiales preparados por tiempo limitado.'],
+    'menu.categories.especialidades_semana': ['Especialidades de temporada', 'Platos especiales de temporada, según mercado y disponibilidad.'],
     'menu.sections.especialidades': ['Especialidades de temporada', 'Platos especiales de temporada']
   },
   en: {
@@ -23,7 +23,7 @@ const TRANSLATION_OVERRIDES = {
     'bot.modificationPending': 'The booking is pending again until the team confirms the changes.',
     'bot.submitModification': 'Send modification',
     'bot.updating': 'Updating...',
-    'menu.categories.especialidades_semana': ['Seasonal specialties', 'Special seasonal dishes available for a limited time.'],
+    'menu.categories.especialidades_semana': ['Seasonal specialties', 'Special seasonal dishes, depending on market and availability.'],
     'menu.sections.especialidades': ['Seasonal specialties', 'Special seasonal dishes']
   },
   fr: {
@@ -33,7 +33,7 @@ const TRANSLATION_OVERRIDES = {
     'bot.modificationPending': 'La réservation redevient en attente jusqu’à confirmation de l’équipe.',
     'bot.submitModification': 'Envoyer la modification',
     'bot.updating': 'Mise à jour...',
-    'menu.categories.especialidades_semana': ['Spécialités de saison', 'Plats saisonniers disponibles pour une durée limitée.'],
+    'menu.categories.especialidades_semana': ['Spécialités de saison', 'Plats de saison, selon le marché et la disponibilité.'],
     'menu.sections.especialidades': ['Spécialités de saison', 'Plats spéciaux de saison']
   },
   it: {
@@ -43,7 +43,7 @@ const TRANSLATION_OVERRIDES = {
     'bot.modificationPending': 'La prenotazione torna in attesa finché il team non conferma le modifiche.',
     'bot.submitModification': 'Invia modifica',
     'bot.updating': 'Aggiornamento...',
-    'menu.categories.especialidades_semana': ['Specialità di stagione', 'Piatti speciali disponibili per tempo limitato.'],
+    'menu.categories.especialidades_semana': ['Specialità di stagione', 'Piatti speciali di stagione, secondo mercato e disponibilità.'],
     'menu.sections.especialidades': ['Specialità di stagione', 'Piatti speciali di stagione']
   }
 }
