@@ -1,3 +1,18 @@
+.beverage-page-top {
+  align-items: flex-start;
+}
+
+.beverage-manager-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.beverage-save-message {
+  margin: 18px 0 0;
+}
+
 .beverage-inventory-summary {
   display: grid;
   grid-template-columns: repeat(4, minmax(160px, 1fr));
@@ -7,6 +22,36 @@
 
 .beverage-inventory-summary .kpi-card {
   min-height: 132px;
+}
+
+.beverage-howto-panel {
+  margin-bottom: 28px;
+}
+
+.beverage-howto-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.beverage-howto-grid div {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid rgba(245, 214, 141, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 248, 236, 0.07);
+}
+
+.beverage-howto-grid strong {
+  color: #f5d68d;
+}
+
+.beverage-howto-grid span {
+  color: #f0e2cc;
+  font-weight: 700;
+  line-height: 1.45;
 }
 
 .beverage-inventory-grid {
@@ -60,6 +105,10 @@
   background: rgba(255, 248, 236, 0.07);
 }
 
+.beverage-inventory-row.inventory-edit-row {
+  grid-template-columns: minmax(0, 1fr) 110px 76px 132px;
+}
+
 .beverage-inventory-row.inventory-head {
   background: rgba(245, 214, 141, 0.12);
   color: #f5d68d;
@@ -79,6 +128,34 @@
   font-weight: 800;
 }
 
+.beverage-inventory-row input {
+  width: 100%;
+  min-height: 42px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 900;
+}
+
+.beverage-stock-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.beverage-stock-actions button {
+  min-height: 40px;
+  border: 1px solid rgba(245, 214, 141, 0.32);
+  border-radius: 12px;
+  background: rgba(255, 248, 236, 0.09);
+  color: #f5d68d;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.beverage-stock-actions button:hover {
+  background: rgba(245, 214, 141, 0.18);
+}
+
 .beverage-inventory-row.is-empty {
   border-color: rgba(255, 181, 173, 0.38);
   background: rgba(143, 29, 44, 0.18);
@@ -95,11 +172,25 @@
 
 @media (max-width: 980px) {
   .beverage-inventory-summary,
-  .beverage-inventory-grid {
+  .beverage-inventory-grid,
+  .beverage-howto-grid {
     grid-template-columns: 1fr;
   }
 
-  .beverage-inventory-row {
-    grid-template-columns: minmax(0, 1fr) 76px 84px;
+  .beverage-manager-actions {
+    justify-content: flex-start;
+  }
+
+  .beverage-inventory-row.inventory-edit-row {
+    grid-template-columns: minmax(0, 1fr) 86px;
+  }
+
+  .beverage-inventory-row.inventory-edit-row small,
+  .beverage-inventory-row.inventory-edit-row .beverage-stock-actions {
+    grid-column: 1 / -1;
+  }
+
+  .beverage-inventory-row.inventory-head.inventory-edit-row {
+    display: none;
   }
 }
