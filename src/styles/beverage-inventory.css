@@ -1,0 +1,105 @@
+.beverage-inventory-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(160px, 1fr));
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.beverage-inventory-summary .kpi-card {
+  min-height: 132px;
+}
+
+.beverage-inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.beverage-inventory-panel {
+  display: grid;
+  gap: 16px;
+}
+
+.beverage-inventory-panel-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.beverage-inventory-panel-header h3 {
+  margin: 0;
+}
+
+.beverage-inventory-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 64px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(245, 214, 141, 0.14);
+  color: #f5d68d;
+  font-weight: 900;
+}
+
+.beverage-inventory-table {
+  display: grid;
+  gap: 8px;
+}
+
+.beverage-inventory-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 92px 92px;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid rgba(245, 214, 141, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 248, 236, 0.07);
+}
+
+.beverage-inventory-row.inventory-head {
+  background: rgba(245, 214, 141, 0.12);
+  color: #f5d68d;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.beverage-inventory-row strong {
+  color: #fff8ec;
+}
+
+.beverage-inventory-row span,
+.beverage-inventory-row small {
+  color: #f0e2cc;
+  font-weight: 800;
+}
+
+.beverage-inventory-row.is-empty {
+  border-color: rgba(255, 181, 173, 0.38);
+  background: rgba(143, 29, 44, 0.18);
+}
+
+.beverage-inventory-row.is-low:not(.is-empty) {
+  border-color: rgba(245, 214, 141, 0.44);
+  background: rgba(245, 214, 141, 0.10);
+}
+
+.beverage-next-step {
+  margin-top: 28px;
+}
+
+@media (max-width: 980px) {
+  .beverage-inventory-summary,
+  .beverage-inventory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .beverage-inventory-row {
+    grid-template-columns: minmax(0, 1fr) 76px 84px;
+  }
+}
