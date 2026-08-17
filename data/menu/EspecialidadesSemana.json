@@ -22,7 +22,7 @@
     "prezzo_consigliato": 25,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Especialidad de la semana.",
+    "warning_commerciale": "Especialidad de temporada.",
     "name_es": "Lomito de cerdo marinado",
     "description_es": "Sabores auténticos, ingredientes seleccionados y mucho cariño en cada plato.",
     "ingredients_es": [
@@ -36,39 +36,49 @@
   },
   {
     "category": "especialidades_semana",
-    "id": "rolle_berenjena",
-    "name_it": "Rollé de berenjena",
+    "id": "spaghetti_allo_scoglio",
+    "name_it": "Spaghetti allo Scoglio",
     "sizes": [],
-    "image": "/images/dishes/rolle-melanzana.webp",
+    "image": "/images/dishes/spaghetti-allo-scoglio.webp",
     "ingredients": [
-      "berenjena",
-      "provola",
-      "tomate",
-      "parmigiano en dos texturas: sólido y líquido"
+      "spaghetti",
+      "bisque",
+      "sugo di pomodoro con basilico",
+      "cozze",
+      "gamberi",
+      "calamari"
     ],
-    "notes": "Una receta sencilla convertida en algo especial.",
+    "notes": "Spaghetti con bisque e sugo di pomodoro con basilico, cozze, gamberi e calamari.",
     "allergens_to_verify": [
-      "latte"
+      "glutine",
+      "crostacei",
+      "molluschi",
+      "pesce"
     ],
     "source": "correzione manuale utente",
     "fornitore": null,
     "coperto_da_ordine": null,
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": 22.5,
+    "prezzo_consigliato": 25,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Especialidad de la semana.",
-    "name_es": "Rollé de berenjena",
-    "description_es": "Una receta sencilla convertida en algo especial.",
+    "warning_commerciale": "Especialidad de temporada.",
+    "name_es": "Spaghetti allo Scoglio",
+    "description_es": "Spaghetti con bisque y salsa de tomate con albahaca, mejillones, gambas y calamares.",
     "ingredients_es": [
-      "berenjena",
-      "provola",
-      "tomate",
-      "parmigiano en dos texturas: sólido y líquido"
+      "spaghetti",
+      "bisque",
+      "salsa de tomate con albahaca",
+      "mejillones",
+      "gambas",
+      "calamares"
     ],
     "allergens_es": [
-      "leche"
+      "gluten",
+      "crustáceos",
+      "moluscos",
+      "pescado"
     ]
   }
 ]
