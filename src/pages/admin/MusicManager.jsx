@@ -42,17 +42,23 @@ function isBirthdayTrack(track) {
   )
 }
 
-function getRandomTrackIndex(tracks, currentIndex) {
-  if (!tracks.length) return 0
-  if (tracks.length === 1) return 0
+function shuffleIndexes(indexes) {
+  const shuffled = [...indexes]
 
-  let nextIndex = currentIndex
-
-  while (nextIndex === currentIndex) {
-    nextIndex = Math.floor(Math.random() * tracks.length)
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1))
+    const currentValue = shuffled[index]
+    shuffled[index] = shuffled[randomIndex]
+    shuffled[randomIndex] = currentValue
   }
 
-  return nextIndex
+  return shuffled
+}
+
+function buildShuffleQueue(trackCount, currentIndex) {
+  const indexes = Array.from({ length: trackCount }, (_, index) => index)
+  const filteredIndexes = trackCount > 1 ? indexes.filter((index) => index !== currentIndex) : indexes
+  return shuffleIndexes(filteredIndexes)
 }
 
 export default function MusicManager({ setCurrentPage }) {
@@ -61,6 +67,7 @@ export default function MusicManager({ setCurrentPage }) {
   const audioSourceRef = useRef(null)
   const compressorRef = useRef(null)
   const makeupGainRef = useRef(null)
+  const shuffleQueueRef = useRef([])
   const [tracks, setTracks] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [specialTrack, setSpecialTrack] = useState(null)
@@ -86,6 +93,20 @@ export default function MusicManager({ setCurrentPage }) {
     () => specialTrack || regularTracks[currentIndex] || null,
     [specialTrack, regularTracks, currentIndex]
   )
+
+  const getNextShuffleIndex = (trackCount, activeIndex) => {
+    if (!trackCount) return 0
+    if (trackCount === 1) return 0
+
+    const validQueue = shuffleQueueRef.current
+      .filter((index) => index >= 0 && index < trackCount && index !== activeIndex)
+
+    const queue = validQueue.length ? validQueue : buildShuffleQueue(trackCount, activeIndex)
+    const nextIndex = queue.shift()
+    shuffleQueueRef.current = queue
+
+    return typeof nextIndex === 'number' ? nextIndex : (activeIndex + 1) % trackCount
+  }
 
   const createAudioGraph = async () => {
     const audioElement = audioRef.current
@@ -170,6 +191,7 @@ export default function MusicManager({ setCurrentPage }) {
       setCurrentIndex(0)
       setSpecialTrack(null)
       setIsPlaying(false)
+      shuffleQueueRef.current = []
       setIsLoading(false)
       return
     }
@@ -185,6 +207,7 @@ export default function MusicManager({ setCurrentPage }) {
     setCurrentIndex(0)
     setSpecialTrack(null)
     setIsPlaying(false)
+    shuffleQueueRef.current = []
     setPlayerMessage('')
     setIsLoading(false)
   }
@@ -203,7 +226,12 @@ export default function MusicManager({ setCurrentPage }) {
     if (!regularTracks.length || currentIndex <= regularTracks.length - 1) return
 
     setCurrentIndex(0)
+    shuffleQueueRef.current = []
   }, [currentIndex, regularTracks.length])
+
+  useEffect(() => {
+    shuffleQueueRef.current = []
+  }, [regularTracks.length])
 
   useEffect(() => {
     if (!audioSourceRef.current) return
@@ -264,12 +292,17 @@ export default function MusicManager({ setCurrentPage }) {
   const selectTrack = (index) => {
     setSpecialTrack(null)
     setCurrentIndex(index)
+    shuffleQueueRef.current = shuffleQueueRef.current.filter((queueIndex) => queueIndex !== index)
     setPlayerMessage('')
   }
 
   const toggleShuffle = () => {
     setSpecialTrack(null)
-    setIsShuffleEnabled((enabled) => !enabled)
+    setIsShuffleEnabled((enabled) => {
+      const nextValue = !enabled
+      shuffleQueueRef.current = nextValue ? buildShuffleQueue(regularTracks.length, currentIndex) : []
+      return nextValue
+    })
     setPlayerMessage('')
   }
 
@@ -287,7 +320,7 @@ export default function MusicManager({ setCurrentPage }) {
     }
 
     setCurrentIndex((index) => {
-      if (isShuffleEnabled) return getRandomTrackIndex(regularTracks, index)
+      if (isShuffleEnabled) return getNextShuffleIndex(regularTracks.length, index)
       return index === 0 ? regularTracks.length - 1 : index - 1
     })
     setPlayerMessage('')
@@ -302,7 +335,7 @@ export default function MusicManager({ setCurrentPage }) {
     }
 
     setCurrentIndex((index) => {
-      if (isShuffleEnabled) return getRandomTrackIndex(regularTracks, index)
+      if (isShuffleEnabled) return getNextShuffleIndex(regularTracks.length, index)
       return (index + 1) % regularTracks.length
     })
     setPlayerMessage('')
@@ -377,7 +410,7 @@ export default function MusicManager({ setCurrentPage }) {
               type="button"
               disabled={!regularTracks.length}
             >
-              {isShuffleEnabled ? '🔀 Shuffle activo' : '🔀 Shuffle'}
+              {isShuffleEnabled ? '🔀 Shuffle ciclo completo' : '🔀 Shuffle'}
             </button>
             <button
               className={isVolumeLevelingEnabled ? 'primary-button' : 'ghost-button'}
