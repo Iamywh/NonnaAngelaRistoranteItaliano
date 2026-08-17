@@ -205,3 +205,30 @@ select option {
   border-color: rgba(255, 181, 173, 0.30) !important;
   color: #ffd0ca !important;
 }
+
+/* Manager reservations: make date and hour instantly visible on dark cards */
+.reservation-time,
+.reservation-date,
+.reservation-day-card .reservation-time,
+.reservation-day-card .reservation-date,
+.reservation-card-top .reservation-time,
+.reservation-card-top .reservation-date {
+  display: inline-flex !important;
+  align-items: center !important;
+  width: fit-content !important;
+  margin-bottom: 6px !important;
+  padding: 6px 10px !important;
+  border: 1px solid rgba(245, 214, 141, 0.54) !important;
+  border-radius: 999px !important;
+  background: rgba(245, 214, 141, 0.16) !important;
+  color: #ffe9b8 !important;
+  font-size: 0.95rem !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.02em !important;
+}
+
+.reservation-card-meta,
+.reservation-card-meta small,
+.reservation-card-body p {
+  color: #fff3df !important;
+}
