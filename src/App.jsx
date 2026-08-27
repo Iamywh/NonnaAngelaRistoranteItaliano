@@ -22,8 +22,27 @@ const pagePaths = {
   home: '/',
   locale: '/restaurante',
   menu: '/menu',
-  bebidas: '/bebidas'
+  bebidas: '/bebidas',
+  admin: '/manager',
+  'admin-food': '/manager/food',
+  'admin-beverage': '/manager/beverage',
+  'admin-fb': '/manager/fb-control',
+  'admin-orders': '/manager/orders',
+  'admin-invoices': '/manager/invoices',
+  'admin-reservations': '/manager/reservas',
+  'admin-music': '/manager/music'
 }
+
+const adminPages = new Set([
+  'admin',
+  'admin-food',
+  'admin-beverage',
+  'admin-fb',
+  'admin-orders',
+  'admin-invoices',
+  'admin-reservations',
+  'admin-music'
+])
 
 function normalizePathname(pathname) {
   if (pathname !== '/' && pathname.endsWith('/')) return pathname.slice(0, -1)
@@ -37,9 +56,18 @@ function getPageFromPath(pathname) {
   return entry?.[0] || 'home'
 }
 
+function isAdminPage(page) {
+  return adminPages.has(page)
+}
+
+function isManagerUnlocked() {
+  if (typeof window === 'undefined') return false
+  return window.sessionStorage.getItem('nonna_manager_unlocked') === 'true'
+}
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState(() => getPageFromPath(window.location.pathname))
-  const [isAdminMode, setIsAdminMode] = useState(false)
+  const [isAdminMode, setIsAdminMode] = useState(isManagerUnlocked)
 
   const navigateToPage = (page) => {
     setCurrentPage(page)
@@ -62,19 +90,25 @@ export default function App() {
   }, [])
 
   const renderPage = () => {
+    if (isAdminPage(currentPage) && !isAdminMode) {
+      return <Home setCurrentPage={navigateToPage} />
+    }
+
     if (currentPage === 'locale') return <Locale />
     if (currentPage === 'menu') return <Menu setCurrentPage={navigateToPage} />
     if (currentPage === 'bebidas') return <Bebidas />
-    if (currentPage === 'admin') return <AdminDashboard setCurrentPage={setCurrentPage} />
-    if (currentPage === 'admin-food') return <FoodDashboard setCurrentPage={setCurrentPage} />
-    if (currentPage === 'admin-beverage') return <BeverageDashboard setCurrentPage={setCurrentPage} />
-    if (currentPage === 'admin-fb') return <FBControl setCurrentPage={setCurrentPage} />
-    if (currentPage === 'admin-orders') return <Orders setCurrentPage={setCurrentPage} />
-    if (currentPage === 'admin-invoices') return <Invoices setCurrentPage={setCurrentPage} />
-    if (currentPage === 'admin-reservations') return <ReservationsDashboard setCurrentPage={setCurrentPage} />
-    if (currentPage === 'admin-music') return <MusicManager setCurrentPage={setCurrentPage} />
+    if (currentPage === 'admin') return <AdminDashboard setCurrentPage={navigateToPage} />
+    if (currentPage === 'admin-food') return <FoodDashboard setCurrentPage={navigateToPage} />
+    if (currentPage === 'admin-beverage') return <BeverageDashboard setCurrentPage={navigateToPage} />
+    if (currentPage === 'admin-fb') return <FBControl setCurrentPage={navigateToPage} />
+    if (currentPage === 'admin-orders') return <Orders setCurrentPage={navigateToPage} />
+    if (currentPage === 'admin-invoices') return <Invoices setCurrentPage={navigateToPage} />
+    if (currentPage === 'admin-reservations') return <ReservationsDashboard setCurrentPage={navigateToPage} />
+    if (currentPage === 'admin-music') return <MusicManager setCurrentPage={navigateToPage} />
     return <Home setCurrentPage={navigateToPage} />
   }
+
+  const managerTargetPage = isAdminPage(currentPage) ? currentPage : 'admin'
 
   return (
     <LanguageProvider>
@@ -84,6 +118,7 @@ export default function App() {
           setCurrentPage={navigateToPage}
           isAdminMode={isAdminMode}
           setIsAdminMode={setIsAdminMode}
+          managerTargetPage={managerTargetPage}
         />
 
         <main className="main-content">{renderPage()}</main>
