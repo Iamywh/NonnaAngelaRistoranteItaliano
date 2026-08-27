@@ -3,7 +3,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
 
 const MANAGER_PASSWORD = import.meta.env.VITE_MANAGER_PASSWORD
 
-export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIsAdminMode }) {
+export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIsAdminMode, managerTargetPage = 'admin' }) {
   const [showManagerModal, setShowManagerModal] = useState(false)
   const [managerPassword, setManagerPassword] = useState('')
   const [managerError, setManagerError] = useState('')
@@ -21,7 +21,7 @@ export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIs
 
     if (alreadyUnlocked) {
       setIsAdminMode(true)
-      setCurrentPage('admin')
+      setCurrentPage(managerTargetPage)
       return
     }
 
@@ -44,7 +44,7 @@ export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIs
     if (typedPassword === expectedPassword) {
       sessionStorage.setItem('nonna_manager_unlocked', 'true')
       setIsAdminMode(true)
-      setCurrentPage('admin')
+      setCurrentPage(managerTargetPage)
       setShowManagerModal(false)
       setManagerPassword('')
       setManagerError('')
