@@ -320,6 +320,14 @@ function isAllowedChat(chatId: number | string) {
   return String(chatId) === String(allowedChatId)
 }
 
+function getForceDateReplyMarkup() {
+  return {
+    force_reply: true,
+    selective: true,
+    input_field_placeholder: '05-09-2026'
+  }
+}
+
 async function handleMessage(message: Record<string, unknown>) {
   const chat = message.chat as Record<string, unknown> | undefined
   const from = message.from as Record<string, unknown> | undefined
@@ -367,9 +375,13 @@ async function handleMessage(message: Record<string, unknown>) {
     await sendTelegramMessage(chatId, [
       '📅 ¿Qué fecha quieres consultar?',
       '',
-      'Envía la fecha en formato dd-mm-aaaa.',
-      'Ejemplo: 05-09-2026'
-    ].join('\n'))
+      'Responde a este mensaje con la fecha en formato dd-mm-aaaa.',
+      'Ejemplo: 05-09-2026',
+      '',
+      'También puedes usar directamente: /reservasdate 05-09-2026'
+    ].join('\n'), {
+      reply_markup: getForceDateReplyMarkup()
+    })
     return
   }
 
@@ -379,7 +391,9 @@ async function handleMessage(message: Record<string, unknown>) {
     const requestedDate = parseDateValueFromText(text)
 
     if (!requestedDate) {
-      await sendTelegramMessage(chatId, 'Formato no reconocido. Envía la fecha como 05-09-2026.')
+      await sendTelegramMessage(chatId, 'Formato no reconocido. Responde con la fecha como 05-09-2026.', {
+        reply_markup: getForceDateReplyMarkup()
+      })
       return
     }
 
