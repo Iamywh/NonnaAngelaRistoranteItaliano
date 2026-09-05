@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../../lib/supabaseClient.js'
 import ReservationCalendar from '../../components/reservations/ReservationCalendar.jsx'
+import ReservationSlotBlockPanel from '../../components/reservations/ReservationSlotBlockPanel.jsx'
 import '../../styles/reservations-dashboard.css'
 
 const RESERVATION_STATUS_OPTIONS = [
@@ -513,6 +514,12 @@ export default function ReservationsDashboard({ setCurrentPage }) {
 
         {errorMessage && <p className="empty-state">Error: {errorMessage}</p>}
       </div>
+
+      <ReservationSlotBlockPanel
+        reservations={reservations}
+        selectedDate={selectedDay}
+        onDateChange={handleSelectDate}
+      />
 
       <div className="reservation-main-grid">
         <ReservationCalendar
