@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../lib/supabaseClient.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { useBlockedReservationSlots } from '../hooks/useBlockedReservationSlots.js'
+import { filterBlockedSlots } from '../lib/reservationSlotBlocks.js'
 import '../styles/reservation-form.css'
 
 const SERVICE_CAPACITY = 50
@@ -192,7 +194,8 @@ export default function Locale() {
   const [serviceAvailability, setServiceAvailability] = useState(null)
   const [isCheckingAvailability, setIsCheckingAvailability] = useState(false)
   const [availabilityError, setAvailabilityError] = useState(null)
-  const reservationTimeSlots = getReservationTimeSlots(reservation.reservation_date)
+  const { blockedTimes: blockedReservationTimes, isLoading: isLoadingBlockedSlots } = useBlockedReservationSlots(reservation.reservation_date)
+  const reservationTimeSlots = filterBlockedSlots(getReservationTimeSlots(reservation.reservation_date), blockedReservationTimes)
   const isReservationDateClosed = isClosedReservationDate(reservation.reservation_date)
   const selectedService = getReservationService(reservation.reservation_time)
   const selectedGuests = Number(reservation.guests || 0)
@@ -307,7 +310,7 @@ export default function Locale() {
       return
     }
 
-    if (!getReservationTimeSlots(reservation.reservation_date).includes(reservation.reservation_time)) {
+    if (!reservationTimeSlots.includes(reservation.reservation_time)) {
       setError(t('locale.timeRequired'))
       setIsSubmitting(false)
       return
@@ -466,9 +469,9 @@ export default function Locale() {
             </label>
             <label>
               {t('locale.time')}
-              <select name="reservation_time" value={reservation.reservation_time} onChange={handleChange} disabled={!reservation.reservation_date || isReservationDateClosed} required>
+              <select name="reservation_time" value={reservation.reservation_time} onChange={handleChange} disabled={!reservation.reservation_date || isReservationDateClosed || isLoadingBlockedSlots} required>
                 <option value="">
-                  {!reservation.reservation_date ? t('common.selectFirstDate') : isReservationDateClosed ? t('common.closedSundayMonday') : t('common.selectTime')}
+                  {!reservation.reservation_date ? t('common.selectFirstDate') : isReservationDateClosed ? t('common.closedSundayMonday') : isLoadingBlockedSlots ? t('common.loading') : t('common.selectTime')}
                 </option>
                 {reservationTimeSlots.map((time) => <option key={time} value={time}>{time}</option>)}
               </select>
@@ -514,7 +517,7 @@ export default function Locale() {
             <textarea name="notes" value={reservation.notes} onChange={handleChange} rows="4" placeholder={t('locale.notesPlaceholder')} />
           </label>
 
-          <button className="primary-button" type="submit" disabled={isSubmitting || isCheckingAvailability || isReservationDateClosed || capacityStatus.isCapacityBlocking}>
+          <button className="primary-button" type="submit" disabled={isSubmitting || isCheckingAvailability || isLoadingBlockedSlots || isReservationDateClosed || capacityStatus.isCapacityBlocking}>
             {isSubmitting ? t('common.sending') : t('locale.submit')}
           </button>
 
