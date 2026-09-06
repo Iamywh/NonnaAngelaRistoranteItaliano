@@ -1,0 +1,182 @@
+/* Cura sito - readability and micro-layout fixes
+   Keep this file last in main.jsx so it can safely override earlier theme layers.
+*/
+
+/* Home: keep the reserve CTA clearly below the booking note */
+.hero-card > span {
+  display: block !important;
+  margin-top: 18px !important;
+  max-width: 100% !important;
+}
+
+.hero-card > span + .ghost-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: fit-content !important;
+  margin-top: 18px !important;
+}
+
+/* Restaurant page: light story panel needs dark elegant text, not ivory-on-cream */
+.locale-hero .locale-hero-copy h2 {
+  color: #3f0c12 !important;
+  text-shadow: none !important;
+}
+
+.locale-hero .locale-hero-copy > p:not(.eyebrow) {
+  display: block !important;
+  margin-top: 18px !important;
+  padding: 16px 18px !important;
+  border: 1px solid rgba(95, 19, 14, 0.14) !important;
+  border-radius: 18px !important;
+  background: rgba(255, 248, 232, 0.78) !important;
+  color: #3a261b !important;
+  font-weight: 750 !important;
+  line-height: 1.75 !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.74) !important;
+}
+
+.locale-hero .locale-hero-copy .eyebrow {
+  color: #a36d1f !important;
+}
+
+/* Reservation form: country prefix shows only the flag in the closed field */
+.reservation-section .phone-input-grid {
+  grid-template-columns: 76px minmax(0, 1fr) !important;
+}
+
+.reservation-section .phone-prefix-control {
+  width: 76px !important;
+}
+
+.reservation-section .phone-prefix-control select {
+  min-height: 52px !important;
+  padding: 13px 12px !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  text-shadow: none !important;
+  cursor: pointer !important;
+}
+
+.reservation-section .phone-prefix-control select option {
+  color: #1b0f0a !important;
+  font-size: 0.95rem !important;
+  font-weight: 800 !important;
+}
+
+.reservation-section .phone-country-flag {
+  left: 50% !important;
+  width: 28px !important;
+  height: 20px !important;
+  transform: translate(-50%, -50%) !important;
+  box-shadow: 0 0 0 1px rgba(58, 34, 22, 0.18), 0 6px 12px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Reservation form: hide native radio dots/squares, keep the whole card clickable */
+.reservation-section .confirmation-channel-card {
+  padding: 15px 16px !important;
+  text-align: center !important;
+}
+
+.reservation-section .confirmation-channel-card input[type="radio"] {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  appearance: none !important;
+}
+
+.reservation-section .confirmation-channel-card.selected {
+  box-shadow: 0 0 0 2px rgba(143, 29, 44, 0.26), 0 14px 28px rgba(42, 28, 20, 0.14) !important;
+}
+
+.reservation-section .confirmation-channel-card.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #8f1d2c;
+  color: #fff8ec;
+  font-size: 13px;
+  font-weight: 950;
+}
+
+/* Menu allergen notice: force dark text on the light warning box */
+.allergen-disclaimer {
+  background: linear-gradient(180deg, #fff8e6 0%, #edd49d 100%) !important;
+  border: 1px solid rgba(95, 19, 14, 0.24) !important;
+  border-left: 4px solid #8f1d2c !important;
+  color: #26160f !important;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16) !important;
+}
+
+.category-page .allergen-disclaimer,
+.menu-page .allergen-disclaimer,
+.allergen-disclaimer * {
+  color: #26160f !important;
+  font-weight: 850 !important;
+}
+
+/* Cocktails and light drink cards: dark text on light/platinum cards */
+.drinks-page .drink-row,
+.drinks-page .cocktail-card {
+  background: linear-gradient(180deg, #fffaf0 0%, #eadfcf 100%) !important;
+  border-color: rgba(95, 19, 14, 0.22) !important;
+  color: #20120d !important;
+}
+
+.drinks-page .drink-row > span,
+.drinks-page .cocktail-card h3,
+.drinks-page .cocktail-ingredients,
+.drinks-page .cocktail-history {
+  color: #20120d !important;
+}
+
+.drinks-page .cocktail-card h3 {
+  font-weight: 950 !important;
+}
+
+.drinks-page .cocktail-ingredients {
+  color: #6d2118 !important;
+  font-weight: 900 !important;
+}
+
+.drinks-page .cocktail-history {
+  color: #3b2a20 !important;
+  font-weight: 760 !important;
+  line-height: 1.72 !important;
+}
+
+.drinks-page .drink-row > strong,
+.drinks-page .service-price-list strong,
+.drinks-page .cocktail-card strong {
+  color: #8f1d2c !important;
+  font-weight: 950 !important;
+}
+
+@media (max-width: 720px) {
+  .reservation-section .phone-input-grid {
+    grid-template-columns: 70px minmax(0, 1fr) !important;
+  }
+
+  .reservation-section .phone-prefix-control {
+    width: 70px !important;
+  }
+
+  .reservation-section .phone-country-flag {
+    width: 26px !important;
+    height: 18px !important;
+  }
+
+  .hero-card > span + .ghost-button {
+    width: 100% !important;
+  }
+}
