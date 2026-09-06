@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../../lib/supabaseClient.js'
 import ReservationCalendar from '../../components/reservations/ReservationCalendar.jsx'
 import ReservationSlotBlockPanel from '../../components/reservations/ReservationSlotBlockPanel.jsx'
+import CurrentServiceSheet from '../../components/reservations/CurrentServiceSheet.jsx'
 import '../../styles/reservations-dashboard.css'
 
 const RESERVATION_STATUS_OPTIONS = [
@@ -160,12 +161,15 @@ function sanitizeWhatsAppPhone(phone) {
 function getReservationService(timeValue) {
   if (!timeValue) return 'outside'
 
-  const [hourValue] = String(timeValue).split(':')
+  const [hourValue, minuteValue = '0'] = String(timeValue).split(':')
   const hour = Number(hourValue)
+  const minute = Number(minuteValue)
 
-  if (Number.isNaN(hour)) return 'outside'
-  if (hour >= 9 && hour <= 17) return 'lunch'
-  if (hour >= 18 || hour <= 1) return 'dinner'
+  if (Number.isNaN(hour) || Number.isNaN(minute)) return 'outside'
+
+  const totalMinutes = hour * 60 + minute
+  if (totalMinutes >= 12 * 60 && totalMinutes <= 16 * 60) return 'lunch'
+  if (totalMinutes >= 19 * 60 && totalMinutes <= 23 * 60 + 30) return 'dinner'
 
   return 'outside'
 }
@@ -439,6 +443,8 @@ export default function ReservationsDashboard({ setCurrentPage }) {
         </div>
       )}
 
+      <CurrentServiceSheet />
+
       <div className="reservation-summary-grid">
         <article className="reservation-summary-card">
           <p>Total reservas</p>
@@ -460,13 +466,13 @@ export default function ReservationsDashboard({ setCurrentPage }) {
           <p>Pranzo</p>
           <strong>{reservationSummary.lunch.reservations}</strong>
           <span>{reservationSummary.lunch.guests} personas</span>
-          <small>09:00–17:00</small>
+          <small>12:00–16:00</small>
         </article>
         <article className="reservation-summary-card reservation-service-card dinner">
           <p>Cena</p>
           <strong>{reservationSummary.dinner.reservations}</strong>
           <span>{reservationSummary.dinner.guests} personas</span>
-          <small>18:00–01:00</small>
+          <small>19:00–23:30</small>
         </article>
       </div>
 
