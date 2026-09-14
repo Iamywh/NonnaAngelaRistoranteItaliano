@@ -125,6 +125,47 @@
   font-weight: 850 !important;
 }
 
+/* Menu dishes: photos must replace the red placeholder and behave like premium food cards */
+.menu-page .dish-image-frame {
+  position: relative !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 100% !important;
+  height: clamp(210px, 28vw, 320px) !important;
+  overflow: hidden !important;
+  background:
+    radial-gradient(circle at 18% 10%, rgba(245, 214, 141, 0.2), transparent 34%),
+    linear-gradient(135deg, rgba(143, 29, 44, 0.96), rgba(54, 16, 12, 0.98)) !important;
+  color: rgba(255, 248, 236, 0.72) !important;
+  font-size: 0.76rem !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+}
+
+.menu-page .dish-image-frame img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+.menu-page .dish-image-frame.has-image span {
+  display: none !important;
+}
+
+.menu-page .dish-image-frame.image-error span,
+.menu-page .dish-image-frame.is-placeholder span {
+  display: block !important;
+}
+
+.menu-page .dish-card-image {
+  display: none !important;
+}
+
 /* Cocktails and light drink cards: dark text on light/platinum cards */
 .drinks-page .drink-row,
 .drinks-page .cocktail-card {
