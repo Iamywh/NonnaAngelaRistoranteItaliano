@@ -54,7 +54,7 @@ const ALLERGEN_ALIASES = {
   apio: 'apio',
   sedano: 'apio',
   mostaza: 'mostaza',
-  senape: 'mostaza',
+  senape: 'senape',
   sesamo: 'sesamo',
   sulfitos: 'sulfitos',
   solfiti: 'sulfitos',
@@ -185,6 +185,25 @@ function getCategoryLabel(category, t) {
   return labels[category] || category?.replaceAll('_', ' ') || t('nav.menu')
 }
 
+function DishImage({ src, alt }) {
+  return (
+    <div className={`dish-image-frame ${src ? 'has-image' : 'is-placeholder'}`}>
+      {src && (
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          onError={(event) => {
+            event.currentTarget.style.display = 'none'
+            event.currentTarget.parentElement?.classList.add('image-error')
+          }}
+        />
+      )}
+      <span>Nonna Angela</span>
+    </div>
+  )
+}
+
 function DishCard({ item }) {
   const { language, t } = useLanguage()
   const glassPrice = item.by_glass ? item.recommended_glass_price || calculateGlassPrice(item.recommended_bottle_price) : null
@@ -193,13 +212,13 @@ function DishCard({ item }) {
   const name = item.code ? item.name : getLocalizedField(item, 'name', language) || item.name || t('nav.menu')
   const description = getLocalizedField(item, 'description', language) || item.description || item.notes
   const ingredientsText = formatIngredients(item, language)
+  const imageSrc = item.image || ''
 
   return (
     <article className="dish-card">
-      <div className="dish-image-placeholder"><span>Nonna Angela</span></div>
+      <DishImage src={imageSrc} alt={name} />
 
       <div className="dish-card-body">
-        {item.image && <img src={item.image} alt={name} className="dish-card-image" loading="lazy" />}
         <div className="dish-topline">
           <p className="dish-kicker">{getCategoryLabel(item.category, t)}</p>
           {item.available === false && <span className="soldout-badge">{t('menu.soldout')}</span>}
