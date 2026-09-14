@@ -125,26 +125,26 @@
   font-weight: 850 !important;
 }
 
-/* Menu landing photos: no aggressive 16:9 crop; keep the image centered and scaled down */
+/* Menu landing photos: centered and reduced so the dish is visible, not stretched */
 .menu-page .premium-menu-image {
   display: grid !important;
   place-items: center !important;
-  padding: 18px !important;
+  padding: 22px !important;
 }
 
 .menu-page .premium-menu-image img {
   width: auto !important;
   height: auto !important;
-  max-width: 72% !important;
-  max-height: 72% !important;
+  max-width: 50% !important;
+  max-height: 50% !important;
   object-fit: contain !important;
   object-position: center !important;
   border-radius: 18px !important;
-  opacity: 0.92 !important;
+  opacity: 0.96 !important;
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22) !important;
 }
 
-/* Menu dishes: photos must replace the red placeholder without becoming full-bleed banners */
+/* Menu dishes: photos must stay centered and reduced inside the red premium frame */
 .menu-page .dish-image-frame {
   position: relative !important;
   display: grid !important;
@@ -152,7 +152,7 @@
   width: 100% !important;
   height: clamp(210px, 28vw, 320px) !important;
   overflow: hidden !important;
-  padding: 20px !important;
+  padding: 24px !important;
   background:
     radial-gradient(circle at 18% 10%, rgba(245, 214, 141, 0.2), transparent 34%),
     linear-gradient(135deg, rgba(143, 29, 44, 0.96), rgba(54, 16, 12, 0.98)) !important;
@@ -169,8 +169,8 @@
   display: block !important;
   width: auto !important;
   height: auto !important;
-  max-width: 74% !important;
-  max-height: 74% !important;
+  max-width: 50% !important;
+  max-height: 50% !important;
   object-fit: contain !important;
   object-position: center !important;
   border-radius: 18px !important;
@@ -247,7 +247,7 @@
 
   .menu-page .premium-menu-image img,
   .menu-page .dish-image-frame img {
-    max-width: 82% !important;
-    max-height: 82% !important;
+    max-width: 64% !important;
+    max-height: 64% !important;
   }
 }
