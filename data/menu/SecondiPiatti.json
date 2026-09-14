@@ -3,15 +3,8 @@
     "category": "secondi_piatti",
     "id": "arrosticini_abruzzesi",
     "name_it": "Arrosticini abruzzesi",
-    "sizes": [
-      "8 pezzi",
-      "240gr"
-    ],
-    "ingredients": [
-      "arrosticini abruzzesi",
-      "patate al forno",
-      "verdure del giorno"
-    ],
+    "sizes": ["8 pezzi", "240gr"],
+    "ingredients": ["arrosticini abruzzesi", "patate al forno", "verdure del giorno"],
     "notes": "Segundo o plato para compartir con fuerte identidad regional.",
     "allergens_to_verify": [],
     "source": "menu confermato",
@@ -26,60 +19,75 @@
     "name_es": "Arrosticini abruzzesi",
     "image": "/images/dishes/arrosticini-abruzzesi.webp",
     "description_es": "8 arrosticini abruzzesi, 240 g en total, con papas al horno y verduras del día.",
-    "ingredients_es": [
-      "arrosticini abruzzesi",
-      "papas al horno",
-      "verduras del día"
-    ],
+    "ingredients_es": ["arrosticini abruzzesi", "papas al horno", "verduras del día"],
     "allergens_es": []
   },
   {
     "category": "secondi_piatti",
-    "id": "panceta_de_cerdo",
-    "name_it": "Pancetta di maiale",
+    "id": "lingote_cerdo",
+    "name_it": "Lingotto di maiale al forno",
+    "name_es": "Lingote de cerdo al horno",
+    "name_en": "Slow-roasted pork ingot",
+    "name_fr": "Lingot de porc au four",
     "sizes": [],
+    "image": "/images/dishes/menu-2026-09/lingote-cerdo.webp",
     "ingredients": [
-      "pancetta di maiale",
-      "cavolo rosso marinato",
-      "finocchio",
-      "arancia"
+      "maiale al forno",
+      "cottura lenta 10 ore a bassa temperatura",
+      "insalata di croccanti",
+      "carota",
+      "sedano",
+      "crema di zucca"
     ],
-    "notes": "Segundo de cerdo con guarnición fresca y aromática.",
-    "allergens_to_verify": [],
-    "source": "menu confermato",
-    "fornitore": "Orthidal",
-    "coperto_da_ordine": "parziale",
+    "ingredients_es": [
+      "cerdo al horno",
+      "cocción lenta de 10 horas a baja temperatura",
+      "ensalada de crujientes",
+      "zanahoria",
+      "apio",
+      "crema de calabaza"
+    ],
+    "ingredients_en": [
+      "roasted pork",
+      "10-hour slow cooking at low temperature",
+      "crispy salad",
+      "carrot",
+      "celery",
+      "pumpkin cream"
+    ],
+    "ingredients_fr": [
+      "porc au four",
+      "cuisson lente de 10 heures à basse température",
+      "salade de croustillants",
+      "carotte",
+      "céleri",
+      "crème de courge"
+    ],
+    "notes": "Lingote de cerdo al horno con cocción lenta de 10 horas a baja temperatura.",
+    "description_es": "Lingote de cerdo al horno, cocción lenta de 10 horas a baja temperatura, servido con ensalada de crujientes, zanahoria, apio y crema de calabaza.",
+    "description_en": "Slow-roasted pork ingot, cooked for 10 hours at low temperature and served with crispy salad, carrot, celery and pumpkin cream.",
+    "description_fr": "Lingot de porc au four, cuisson lente de 10 heures à basse température, servi avec salade de croustillants, carotte, céleri et crème de courge.",
+    "description_it": "Lingotto di maiale al forno, cottura lenta di 10 ore a bassa temperatura, servito con insalata di croccanti, carota, sedano e crema di zucca.",
+    "allergens_to_verify": ["sedano"],
+    "allergens_es": ["apio"],
+    "source": "correzione manuale utente",
+    "fornitore": null,
+    "coperto_da_ordine": null,
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": 20.5,
+    "prezzo_consigliato": 35,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "La freschezza di finocchio e arancia deve bilanciare bene il grasso della pancetta.",
-    "name_es": "Panceta de cerdo",
-    "description_es": "Panceta de cerdo con col lombarda marinada, hinojo y naranja.",
-    "ingredients_es": [
-      "panceta de cerdo",
-      "col lombarda marinada",
-      "hinojo",
-      "naranja"
-    ],
-    "allergens_es": []
+    "warning_commerciale": "Sostituisce la panceta de cerdo. Piatto premium da valorizzare con presentazione e racconto della cottura lenta."
   },
   {
     "category": "secondi_piatti",
     "id": "tagliata_ternera_rucula_grana_pachino",
     "name_it": "Tagliata di vitello con rucola, grana e pomodoro Pachino",
     "sizes": [],
-    "ingredients": [
-      "vitello",
-      "rucola",
-      "grana padano",
-      "pomodoro Pachino"
-    ],
+    "ingredients": ["vitello", "rucola", "grana padano", "pomodoro Pachino"],
     "notes": "Tagliata de ternera con rúcula fresca, grana y tomate Pachino.",
-    "allergens_to_verify": [
-      "latte"
-    ],
+    "allergens_to_verify": ["latte"],
     "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": "parziale",
@@ -91,14 +99,7 @@
     "warning_commerciale": "Piatto premium di carne da valorizzare con taglio, cottura e servizio precisi.",
     "name_es": "Tagliata de ternera con rúcula, grana y tomate Pachino",
     "description_es": "Corte de ternera servido con rúcula fresca, lascas de grana y tomate Pachino.",
-    "ingredients_es": [
-      "ternera",
-      "rúcula",
-      "grana",
-      "tomate Pachino"
-    ],
-    "allergens_es": [
-      "leche"
-    ]
+    "ingredients_es": ["ternera", "rúcula", "grana", "tomate Pachino"],
+    "allergens_es": ["leche"]
   }
 ]
