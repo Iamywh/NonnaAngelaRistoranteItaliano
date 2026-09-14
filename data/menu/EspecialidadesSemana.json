@@ -42,64 +42,19 @@
     "name_en": "Spaghetti allo Scoglio",
     "name_fr": "Spaghetti allo Scoglio",
     "sizes": [],
-    "image": null,
-    "ingredients": [
-      "spaghetti",
-      "bisque",
-      "sugo di pomodoro con basilico",
-      "cozze",
-      "gamberi",
-      "calamari"
-    ],
+    "image": "/images/dishes/menu-2026-09/spaghetti-allo-scoglio.webp",
+    "ingredients": ["spaghetti", "bisque", "sugo di pomodoro con basilico", "cozze", "gamberi", "calamari"],
     "notes": "Spaghetti con bisque e sugo di pomodoro con basilico, cozze, gamberi e calamari.",
     "description_es": "Spaghetti con bisque y salsa de tomate con albahaca, mejillones, gambas y calamares.",
     "description_en": "Spaghetti with bisque and tomato sauce with basil, mussels, prawns and calamari.",
     "description_fr": "Spaghetti avec bisque et sauce tomate au basilic, moules, gambas et calamars.",
     "description_it": "Spaghetti con bisque e sugo di pomodoro al basilico, cozze, gamberi e calamari.",
-    "ingredients_es": [
-      "spaghetti",
-      "bisque",
-      "salsa de tomate con albahaca",
-      "mejillones",
-      "gambas",
-      "calamares"
-    ],
-    "ingredients_en": [
-      "spaghetti",
-      "bisque",
-      "tomato sauce with basil",
-      "mussels",
-      "prawns",
-      "calamari"
-    ],
-    "ingredients_fr": [
-      "spaghetti",
-      "bisque",
-      "sauce tomate au basilic",
-      "moules",
-      "gambas",
-      "calamars"
-    ],
-    "ingredients_it": [
-      "spaghetti",
-      "bisque",
-      "sugo di pomodoro al basilico",
-      "cozze",
-      "gamberi",
-      "calamari"
-    ],
-    "allergens_to_verify": [
-      "glutine",
-      "crostacei",
-      "molluschi",
-      "pesce"
-    ],
-    "allergens_es": [
-      "gluten",
-      "crustáceos",
-      "moluscos",
-      "pescado"
-    ],
+    "ingredients_es": ["spaghetti", "bisque", "salsa de tomate con albahaca", "mejillones", "gambas", "calamares"],
+    "ingredients_en": ["spaghetti", "bisque", "tomato sauce with basil", "mussels", "prawns", "calamari"],
+    "ingredients_fr": ["spaghetti", "bisque", "sauce tomate au basilic", "moules", "gambas", "calamars"],
+    "ingredients_it": ["spaghetti", "bisque", "sugo di pomodoro al basilico", "cozze", "gamberi", "calamari"],
+    "allergens_to_verify": ["glutine", "crostacei", "molluschi", "pesce"],
+    "allergens_es": ["gluten", "crustáceos", "moluscos", "pescado"],
     "source": "correzione manuale utente",
     "fornitore": null,
     "coperto_da_ordine": null,
