@@ -3,21 +3,21 @@ import { supabase } from '../../lib/supabaseClient.js'
 import '../../styles/current-service-sheet.css'
 
 const TABLE_NUMBERS = Array.from({ length: 16 }, (_, index) => String(index + 1))
-const OPEN_DAYS = [2, 3, 4, 5, 6]
+const OPEN_DAYS = [0, 1, 4, 5, 6]
 const ACTIVE_RESERVATION_STATUSES = ['pending', 'confirmed']
 
 const SERVICE_WINDOWS = {
   lunch: {
     label: 'Pranzo',
     title: 'Turno de mediodía',
-    start: '12:00',
-    end: '16:00',
+    start: '13:00',
+    end: '15:30',
   },
   dinner: {
     label: 'Cena',
     title: 'Turno de noche',
-    start: '19:00',
-    end: '23:30',
+    start: '19:30',
+    end: '22:45',
   },
 }
 
@@ -45,6 +45,14 @@ function isOpenDate(dateValue) {
   return OPEN_DAYS.includes(getDateFromValue(dateValue).getDay())
 }
 
+function getDinnerWindow(dateValue) {
+  const day = getDateFromValue(dateValue).getDay()
+  return {
+    ...SERVICE_WINDOWS.dinner,
+    end: day === 5 || day === 6 ? '23:00' : '22:45',
+  }
+}
+
 function getNextOpenDate(dateValue) {
   let nextDate = dateValue
 
@@ -67,8 +75,9 @@ function getServiceInfo(now = new Date()) {
   const currentMinutes = now.getHours() * 60 + now.getMinutes()
   const lunchStart = toMinutes(SERVICE_WINDOWS.lunch.start)
   const lunchEnd = toMinutes(SERVICE_WINDOWS.lunch.end)
-  const dinnerStart = toMinutes(SERVICE_WINDOWS.dinner.start)
-  const dinnerEnd = toMinutes(SERVICE_WINDOWS.dinner.end)
+  const dinnerWindow = getDinnerWindow(todayValue)
+  const dinnerStart = toMinutes(dinnerWindow.start)
+  const dinnerEnd = toMinutes(dinnerWindow.end)
 
   if (!isOpenDate(todayValue)) {
     return {
@@ -84,7 +93,7 @@ function getServiceInfo(now = new Date()) {
   }
 
   if (currentMinutes >= dinnerStart && currentMinutes <= dinnerEnd) {
-    return { key: 'dinner', date: todayValue, mode: 'current', ...SERVICE_WINDOWS.dinner }
+    return { key: 'dinner', date: todayValue, mode: 'current', ...dinnerWindow }
   }
 
   if (currentMinutes < lunchStart) {
@@ -92,7 +101,7 @@ function getServiceInfo(now = new Date()) {
   }
 
   if (currentMinutes < dinnerStart) {
-    return { key: 'dinner', date: todayValue, mode: 'next', ...SERVICE_WINDOWS.dinner }
+    return { key: 'dinner', date: todayValue, mode: 'next', ...dinnerWindow }
   }
 
   return {
