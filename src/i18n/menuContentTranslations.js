@@ -325,11 +325,11 @@ export const beverageTranslations = {
       }
     },
     'limoncello-spritz': {
-      ingredients: { en: ['Prosecco', 'limoncello', 'soda', 'basil'], fr: ['Prosecco', 'limoncello', 'soda', 'basilic'], it: ['Prosecco', 'limoncello', 'soda', 'basilico'] },
+      ingredients: { en: ['Prosecco', 'limoncello', 'soda'], fr: ['Prosecco', 'limoncello', 'soda'], it: ['Prosecco', 'limoncello', 'soda'] },
       history: {
-        en: 'A bright Mediterranean version of the Spritz, with the citrus character of limoncello, bubbles and an aromatic touch of basil.',
-        fr: 'Une version lumineuse et méditerranéenne du Spritz, avec le caractère citronné du limoncello, des bulles et une touche aromatique de basilic.',
-        it: 'Una versione luminosa e mediterranea dello Spritz, con il carattere agrumato del limoncello, bollicine e un tocco aromatico di basilico.'
+        en: 'A bright Mediterranean version of the Spritz, with the citrus character of limoncello and the freshness of bubbles.',
+        fr: 'Une version lumineuse et méditerranéenne du Spritz, avec le caractère citronné du limoncello et la fraîcheur des bulles.',
+        it: 'Una versione luminosa e mediterranea dello Spritz, con il carattere agrumato del limoncello e la freschezza delle bollicine.'
       }
     },
     negroni: {
@@ -354,6 +354,22 @@ export const beverageTranslations = {
         en: 'Before the Negroni there was the Americano: a light, bitter and refreshing Italian aperitif, perfect to open the appetite.',
         fr: 'Avant le Negroni, il y avait l’Americano : un apéritif italien léger, amer et rafraîchissant, parfait pour ouvrir l’appétit.',
         it: 'Prima del Negroni c’era l’Americano: un aperitivo italiano leggero, amaro e rinfrescante, perfetto per aprire l’appetito.'
+      }
+    },
+    'espresso-martini': {
+      ingredients: { en: ['Vodka', 'espresso', 'coffee liqueur', 'sugar syrup'], fr: ['Vodka', 'espresso', 'liqueur de café', 'sirop de sucre'], it: ['Vodka', 'espresso', 'liquore al caffè', 'sciroppo di zucchero'] },
+      history: {
+        en: 'Created in London in the 1980s by bartender Dick Bradsell, it was born from a request for a cocktail combining energy and character. It is now one of the great modern classics.',
+        fr: 'Créé à Londres dans les années 1980 par le barman Dick Bradsell, il est né d’une demande pour un cocktail alliant énergie et caractère. C’est aujourd’hui un grand classique moderne.',
+        it: 'Creato a Londra negli anni Ottanta dal bartender Dick Bradsell, nacque dalla richiesta di un cocktail capace di unire energia e carattere. Oggi è uno dei grandi classici moderni.'
+      }
+    },
+    'amaretto-sour': {
+      ingredients: { en: ['Amaretto', 'lemon juice', 'sugar syrup', 'egg white', 'Angostura'], fr: ['Amaretto', 'jus de citron', 'sirop de sucre', 'blanc d’œuf', 'Angostura'], it: ['Amaretto', 'succo di limone', 'sciroppo di zucchero', 'albume', 'Angostura'] },
+      history: {
+        en: 'The Amaretto Sour became popular in the United States as Italian amaretto spread internationally in the second half of the 20th century. Almond sweetness, citrus and foam create its characteristic balance.',
+        fr: 'L’Amaretto Sour s’est popularisé aux États-Unis avec la diffusion internationale de l’amaretto italien dans la seconde moitié du XXe siècle. La douceur d’amande, les agrumes et la mousse créent son équilibre caractéristique.',
+        it: 'L’Amaretto Sour si diffuse negli Stati Uniti con la popolarità internazionale dell’amaretto italiano nella seconda metà del Novecento. Dolcezza di mandorla, agrumi e schiuma ne creano l’equilibrio caratteristico.'
       }
     }
   }
