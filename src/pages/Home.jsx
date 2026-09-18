@@ -12,13 +12,13 @@ export default function Home({ setCurrentPage }) {
   }
 
   const days = [
-    ['home.monday', t('common.closed')],
-    ['home.tuesday', '12:30–15:30 / 19:30–22:45'],
-    ['home.wednesday', '12:30–15:30 / 19:30–22:45'],
-    ['home.thursday', '12:30–15:30 / 19:30–22:45'],
-    ['home.friday', '12:30–15:30 / 19:30–23:00'],
-    ['home.saturday', '12:30–15:30 / 19:30–23:00'],
-    ['home.sunday', t('common.closed')]
+    ['home.monday', '13:00–15:30 / 19:30–22:45'],
+    ['home.tuesday', t('common.closed')],
+    ['home.wednesday', t('common.closed')],
+    ['home.thursday', '13:00–15:30 / 19:30–22:45'],
+    ['home.friday', '13:00–15:30 / 19:30–23:00'],
+    ['home.saturday', '13:00–15:30 / 19:30–23:00'],
+    ['home.sunday', '13:00–15:30 / 19:30–22:45']
   ]
 
   return (
