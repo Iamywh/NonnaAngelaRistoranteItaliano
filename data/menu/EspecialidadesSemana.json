@@ -43,18 +43,63 @@
     "name_fr": "Spaghetti allo Scoglio",
     "sizes": [],
     "image": "/images/dishes/menu-2026-09/spaghetti-allo-scoglio.webp",
-    "ingredients": ["spaghetti", "bisque", "sugo di pomodoro con basilico", "cozze", "gamberi", "calamari"],
+    "ingredients": [
+      "spaghetti",
+      "bisque",
+      "sugo di pomodoro con basilico",
+      "cozze",
+      "gamberi",
+      "calamari"
+    ],
     "notes": "Spaghetti con bisque e sugo di pomodoro con basilico, cozze, gamberi e calamari.",
     "description_es": "Spaghetti con bisque y salsa de tomate con albahaca, mejillones, gambas y calamares.",
     "description_en": "Spaghetti with bisque and tomato sauce with basil, mussels, prawns and calamari.",
     "description_fr": "Spaghetti avec bisque et sauce tomate au basilic, moules, gambas et calamars.",
     "description_it": "Spaghetti con bisque e sugo di pomodoro al basilico, cozze, gamberi e calamari.",
-    "ingredients_es": ["spaghetti", "bisque", "salsa de tomate con albahaca", "mejillones", "gambas", "calamares"],
-    "ingredients_en": ["spaghetti", "bisque", "tomato sauce with basil", "mussels", "prawns", "calamari"],
-    "ingredients_fr": ["spaghetti", "bisque", "sauce tomate au basilic", "moules", "gambas", "calamars"],
-    "ingredients_it": ["spaghetti", "bisque", "sugo di pomodoro al basilico", "cozze", "gamberi", "calamari"],
-    "allergens_to_verify": ["glutine", "crostacei", "molluschi", "pesce"],
-    "allergens_es": ["gluten", "crustáceos", "moluscos", "pescado"],
+    "ingredients_es": [
+      "spaghetti",
+      "bisque",
+      "salsa de tomate con albahaca",
+      "mejillones",
+      "gambas",
+      "calamares"
+    ],
+    "ingredients_en": [
+      "spaghetti",
+      "bisque",
+      "tomato sauce with basil",
+      "mussels",
+      "prawns",
+      "calamari"
+    ],
+    "ingredients_fr": [
+      "spaghetti",
+      "bisque",
+      "sauce tomate au basilic",
+      "moules",
+      "gambas",
+      "calamars"
+    ],
+    "ingredients_it": [
+      "spaghetti",
+      "bisque",
+      "sugo di pomodoro al basilico",
+      "cozze",
+      "gamberi",
+      "calamari"
+    ],
+    "allergens_to_verify": [
+      "glutine",
+      "crostacei",
+      "molluschi",
+      "pesce"
+    ],
+    "allergens_es": [
+      "gluten",
+      "crustáceos",
+      "moluscos",
+      "pescado"
+    ],
     "source": "correzione manuale utente",
     "fornitore": null,
     "coperto_da_ordine": null,
@@ -74,26 +119,57 @@
     "name_fr": "Linguine au pesto de citron",
     "sizes": [],
     "image": "/images/dishes/menu-2026-09/linguine-pesto-limone.webp",
-    "ingredients": ["linguine", "pesto di limone", "tartar di granchio", "basilico"],
-    "ingredients_es": ["linguine", "pesto de limón", "tartar de cangrejo", "albahaca"],
-    "ingredients_en": ["linguine", "lemon pesto", "crab tartare", "basil"],
-    "ingredients_fr": ["linguine", "pesto de citron", "tartare de crabe", "basilic"],
-    "ingredients_it": ["linguine", "pesto di limone", "tartar di granchio", "basilico"],
+    "ingredients": [
+      "linguine",
+      "pesto di limone",
+      "tartar di granchio",
+      "basilico"
+    ],
+    "ingredients_es": [
+      "linguine",
+      "pesto de limón",
+      "tartar de cangrejo",
+      "albahaca"
+    ],
+    "ingredients_en": [
+      "linguine",
+      "lemon pesto",
+      "crab tartare",
+      "basil"
+    ],
+    "ingredients_fr": [
+      "linguine",
+      "pesto de citron",
+      "tartare de crabe",
+      "basilic"
+    ],
+    "ingredients_it": [
+      "linguine",
+      "pesto di limone",
+      "tartar di granchio",
+      "basilico"
+    ],
     "notes": "Linguine con pesto di limone, tartar di granchio e basilico.",
     "description_es": "Linguine con pesto de limón, tartar de cangrejo y albahaca.",
     "description_en": "Linguine with lemon pesto, crab tartare and basil.",
     "description_fr": "Linguine au pesto de citron, tartare de crabe et basilic.",
     "description_it": "Linguine con pesto di limone, tartar di granchio e basilico.",
-    "allergens_to_verify": ["glutine", "crostacei"],
-    "allergens_es": ["gluten", "crustaceos"],
+    "allergens_to_verify": [
+      "glutine",
+      "crostacei"
+    ],
+    "allergens_es": [
+      "gluten",
+      "crustaceos"
+    ],
     "source": "correzione manuale utente",
     "fornitore": null,
     "coperto_da_ordine": null,
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": null,
+    "prezzo_consigliato": 23,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Especialidad de temporada. Precio final por confirmar."
+    "warning_commerciale": "Especialidad de temporada."
   }
 ]
