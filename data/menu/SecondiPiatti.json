@@ -3,8 +3,15 @@
     "category": "secondi_piatti",
     "id": "arrosticini_abruzzesi",
     "name_it": "Arrosticini abruzzesi",
-    "sizes": ["8 pezzi", "240gr"],
-    "ingredients": ["arrosticini abruzzesi", "patate al forno", "verdure del giorno"],
+    "sizes": [
+      "8 pezzi",
+      "240gr"
+    ],
+    "ingredients": [
+      "arrosticini abruzzesi",
+      "patate al forno",
+      "verdure del giorno"
+    ],
     "notes": "Segundo o plato para compartir con fuerte identidad regional.",
     "allergens_to_verify": [],
     "source": "menu confermato",
@@ -19,7 +26,11 @@
     "name_es": "Arrosticini abruzzesi",
     "image": "/images/dishes/arrosticini-abruzzesi.webp",
     "description_es": "8 arrosticini abruzzesi, 240 g en total, con papas al horno y verduras del día.",
-    "ingredients_es": ["arrosticini abruzzesi", "papas al horno", "verduras del día"],
+    "ingredients_es": [
+      "arrosticini abruzzesi",
+      "papas al horno",
+      "verduras del día"
+    ],
     "allergens_es": []
   },
   {
@@ -68,8 +79,12 @@
     "description_en": "Slow-roasted pork ingot, cooked for 10 hours at low temperature and served with crispy salad, carrot, celery and pumpkin cream.",
     "description_fr": "Lingot de porc au four, cuisson lente de 10 heures à basse température, servi avec salade de croustillants, carotte, céleri et crème de courge.",
     "description_it": "Lingotto di maiale al forno, cottura lenta di 10 ore a bassa temperatura, servito con insalata di croccanti, carota, sedano e crema di zucca.",
-    "allergens_to_verify": ["sedano"],
-    "allergens_es": ["apio"],
+    "allergens_to_verify": [
+      "sedano"
+    ],
+    "allergens_es": [
+      "apio"
+    ],
     "source": "correzione manuale utente",
     "fornitore": null,
     "coperto_da_ordine": null,
@@ -85,21 +100,35 @@
     "id": "tagliata_ternera_rucula_grana_pachino",
     "name_it": "Tagliata di vitello con rucola, grana e pomodoro Pachino",
     "sizes": [],
-    "ingredients": ["vitello", "rucola", "grana padano", "pomodoro Pachino"],
+    "ingredients": [
+      "vitello",
+      "rucola",
+      "grana padano",
+      "pomodoro Pachino"
+    ],
     "notes": "Tagliata de ternera con rúcula fresca, grana y tomate Pachino.",
-    "allergens_to_verify": ["latte"],
+    "allergens_to_verify": [
+      "latte"
+    ],
     "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": "parziale",
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": 30,
+    "prezzo_consigliato": 35,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
     "warning_commerciale": "Piatto premium di carne da valorizzare con taglio, cottura e servizio precisi.",
     "name_es": "Tagliata de ternera con rúcula, grana y tomate Pachino",
     "description_es": "Corte de ternera servido con rúcula fresca, lascas de grana y tomate Pachino.",
-    "ingredients_es": ["ternera", "rúcula", "grana", "tomate Pachino"],
-    "allergens_es": ["leche"]
+    "ingredients_es": [
+      "ternera",
+      "rúcula",
+      "grana",
+      "tomate Pachino"
+    ],
+    "allergens_es": [
+      "leche"
+    ]
   }
 ]
