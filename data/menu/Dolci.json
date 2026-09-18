@@ -4,23 +4,41 @@
     "id": "tiramisu_classico",
     "name_it": "Tiramisù classico",
     "sizes": [],
-    "ingredients": ["mascarpone", "caffè", "cacao", "savoiardi"],
+    "ingredients": [
+      "mascarpone",
+      "caffè",
+      "cacao",
+      "savoiardi"
+    ],
     "notes": "Tiramisú clásico.",
-    "allergens_to_verify": ["glutine", "uova", "latte"],
+    "allergens_to_verify": [
+      "glutine",
+      "uova",
+      "latte"
+    ],
     "source": "menu confermato",
     "fornitore": null,
     "coperto_da_ordine": null,
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": 7.5,
+    "prezzo_consigliato": 8,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
     "warning_commerciale": "Prezzo confermato.",
     "name_es": "Tiramisú clásico",
     "image": "/images/dishes/tiramisu.webp",
     "description_es": "Clásico tiramisú italiano con crema de mascarpone, café y cacao.",
-    "ingredients_es": ["mascarpone", "café", "cacao", "bizcocho"],
-    "allergens_es": ["gluten", "huevos", "leche"]
+    "ingredients_es": [
+      "mascarpone",
+      "café",
+      "cacao",
+      "bizcocho"
+    ],
+    "allergens_es": [
+      "gluten",
+      "huevos",
+      "leche"
+    ]
   },
   {
     "category": "dolci",
@@ -28,54 +46,96 @@
     "name_it": "Babà al rum",
     "sizes": [],
     "image": "/images/dishes/menu-2026-09/baba-al-ron.webp",
-    "ingredients": ["babà", "rum"],
+    "ingredients": [
+      "babà",
+      "rum"
+    ],
     "notes": "Babà tradicional bañado al ron.",
-    "allergens_to_verify": ["glutine", "uova", "latte"],
+    "allergens_to_verify": [
+      "glutine",
+      "uova",
+      "latte"
+    ],
     "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": 8,
+    "prezzo_consigliato": 9,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
     "warning_commerciale": "Dolce identitario napoletano. Se il locale punta su Nonna Angela e cucina del sud, questo debe ser contado bien.",
     "name_es": "Babà al ron",
     "description_es": "Bizcocho napolitano bañado en ron.",
-    "ingredients_es": ["bizcocho", "ron"],
-    "allergens_es": ["gluten", "huevos", "leche"]
+    "ingredients_es": [
+      "bizcocho",
+      "ron"
+    ],
+    "allergens_es": [
+      "gluten",
+      "huevos",
+      "leche"
+    ]
   },
   {
     "category": "dolci",
     "id": "cannolo_alla_siciliana",
     "name_it": "Cannolo alla siciliana",
     "sizes": [],
-    "ingredients": ["cannolo", "panna", "pistacchio", "cioccolato", "amarena"],
+    "ingredients": [
+      "cannolo",
+      "panna",
+      "pistacchio",
+      "cioccolato",
+      "amarena"
+    ],
     "notes": "Cannolo siciliano con nata, pistacho, chocolate y amarena.",
-    "allergens_to_verify": ["glutine", "latte", "frutta a guscio"],
+    "allergens_to_verify": [
+      "glutine",
+      "latte",
+      "frutta a guscio"
+    ],
     "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": 8.5,
+    "prezzo_consigliato": 9,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
     "warning_commerciale": "Dolce ad alto valore percepito. Controllare bene porzioni, rotture e rotazione.",
     "name_es": "Cannolo alla siciliana",
     "image": "/images/dishes/cannolo-siciliana.webp",
     "description_es": "Cannolo siciliano con nata, pistacho, chocolate y amarena.",
-    "ingredients_es": ["cannolo", "nata", "pistacho", "chocolate", "amarena"],
-    "allergens_es": ["gluten", "leche", "frutos secos"]
+    "ingredients_es": [
+      "cannolo",
+      "nata",
+      "pistacho",
+      "chocolate",
+      "amarena"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche",
+      "frutos secos"
+    ]
   },
   {
     "category": "dolci",
     "id": "tarta_manzana_canela_albaricoque",
     "name_it": "Torta di mele e cannella con albicocca",
     "sizes": [],
-    "ingredients": ["mela", "cannella", "confettura di albicocca"],
+    "ingredients": [
+      "mela",
+      "cannella",
+      "confettura di albicocca"
+    ],
     "notes": "Tarta casera de manzana, canela y confitura de albaricoque.",
-    "allergens_to_verify": ["glutine", "uova", "latte"],
+    "allergens_to_verify": [
+      "glutine",
+      "uova",
+      "latte"
+    ],
     "source": "menu confermato",
     "fornitore": null,
     "coperto_da_ordine": null,
@@ -88,7 +148,15 @@
     "name_es": "Tarta de manzana y canela con albaricoque",
     "image": "/images/dishes/torta-mele.webp",
     "description_es": "Tarta casera de manzana, canela y confitura de albaricoque.",
-    "ingredients_es": ["manzana", "canela", "confitura de albaricoque"],
-    "allergens_es": ["gluten", "huevos", "leche"]
+    "ingredients_es": [
+      "manzana",
+      "canela",
+      "confitura de albaricoque"
+    ],
+    "allergens_es": [
+      "gluten",
+      "huevos",
+      "leche"
+    ]
   }
 ]
