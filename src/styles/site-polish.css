@@ -164,15 +164,21 @@
 }
 
 .menu-page .dish-image-frame img {
-  position: relative !important;
-  inset: auto !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
   display: block !important;
-  width: auto !important;
-  height: auto !important;
-  max-width: 50% !important;
-  max-height: 50% !important;
+  width: 50% !important;
+  height: 50% !important;
+  max-width: none !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
   object-fit: contain !important;
-  object-position: center !important;
+  object-position: 50% 50% !important;
+  transform: translate(-50%, -50%) !important;
   border-radius: 18px !important;
   box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24) !important;
 }
@@ -245,9 +251,18 @@
     width: 100% !important;
   }
 
-  .menu-page .premium-menu-image img,
-  .menu-page .dish-image-frame img {
+  .menu-page .premium-menu-image img {
     max-width: 64% !important;
     max-height: 64% !important;
+  }
+
+  .menu-page .dish-image-frame img {
+    width: 64% !important;
+    height: 64% !important;
+    max-width: none !important;
+    max-height: none !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
   }
 }
