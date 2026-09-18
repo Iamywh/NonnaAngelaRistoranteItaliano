@@ -3,11 +3,22 @@
     "category": "primi_piatti",
     "id": "lasagne_bolognese",
     "name_it": "Lasagne alla bolognese",
-    "sizes": ["250gr"],
+    "sizes": [
+      "250gr"
+    ],
     "image": "/images/dishes/menu-2026-09/lasagne-bolognese.webp",
-    "ingredients": ["pasta all'uovo", "ragù bolognese", "besciamella", "parmigiano"],
+    "ingredients": [
+      "pasta all'uovo",
+      "ragù bolognese",
+      "besciamella",
+      "parmigiano"
+    ],
     "notes": "Clásico italiano con mucha identidad.",
-    "allergens_to_verify": ["glutine", "uova", "latte"],
+    "allergens_to_verify": [
+      "glutine",
+      "uova",
+      "latte"
+    ],
     "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
@@ -19,8 +30,17 @@
     "warning_commerciale": "Piatto classico molto riconoscibile. Nome e id sono coerenti con lasagne_bolognese.",
     "name_es": "Lasagne Bolognese",
     "description_es": "Láminas de pasta al horno con ragù bolognese, bechamel y parmigiano.",
-    "ingredients_es": ["pasta al huevo", "ragù bolognese", "bechamel", "parmigiano"],
-    "allergens_es": ["gluten", "huevos", "leche"]
+    "ingredients_es": [
+      "pasta al huevo",
+      "ragù bolognese",
+      "bechamel",
+      "parmigiano"
+    ],
+    "allergens_es": [
+      "gluten",
+      "huevos",
+      "leche"
+    ]
   },
   {
     "category": "primi_piatti",
@@ -31,26 +51,50 @@
     "name_fr": "Spaghetti à la tomate",
     "sizes": [],
     "image": "/images/dishes/menu-2026-09/spaghetti-pomodoro.webp",
-    "ingredients": ["spaghetti", "pomodoro", "basilico", "olio extravergine d'oliva"],
-    "ingredients_es": ["spaghetti", "tomate", "albahaca", "aceite de oliva virgen extra"],
-    "ingredients_en": ["spaghetti", "tomato", "basil", "extra virgin olive oil"],
-    "ingredients_fr": ["spaghetti", "tomate", "basilic", "huile d'olive vierge extra"],
+    "ingredients": [
+      "spaghetti",
+      "pomodoro",
+      "basilico",
+      "olio extravergine d'oliva"
+    ],
+    "ingredients_es": [
+      "spaghetti",
+      "tomate",
+      "albahaca",
+      "aceite de oliva virgen extra"
+    ],
+    "ingredients_en": [
+      "spaghetti",
+      "tomato",
+      "basil",
+      "extra virgin olive oil"
+    ],
+    "ingredients_fr": [
+      "spaghetti",
+      "tomate",
+      "basilic",
+      "huile d'olive vierge extra"
+    ],
     "notes": "Spaghetti con tomate, albahaca y aceite de oliva virgen extra.",
     "description_es": "Spaghetti con salsa de tomate, albahaca y aceite de oliva virgen extra.",
     "description_en": "Spaghetti with tomato sauce, basil and extra virgin olive oil.",
     "description_fr": "Spaghetti à la sauce tomate, basilic et huile d'olive vierge extra.",
     "description_it": "Spaghetti con salsa di pomodoro, basilico e olio extravergine d'oliva.",
-    "allergens_to_verify": ["glutine"],
-    "allergens_es": ["gluten"],
+    "allergens_to_verify": [
+      "glutine"
+    ],
+    "allergens_es": [
+      "gluten"
+    ],
     "source": "correzione manuale utente",
     "fornitore": null,
     "coperto_da_ordine": null,
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": null,
+    "prezzo_consigliato": 18,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
-    "warning_commerciale": "Prezzo da confermare."
+    "warning_commerciale": "Prezzo confermato."
   },
   {
     "category": "primi_piatti",
@@ -58,9 +102,20 @@
     "name_it": "Gnocchi pesto, gamberi, pomodoro e pistacchio",
     "sizes": [],
     "image": "/images/dishes/menu-2026-09/gnocchi-pesto-gambas.webp",
-    "ingredients": ["gnocchi", "pesto di basilico", "gamberi", "pomodoro cherry", "pistacchio tostato"],
+    "ingredients": [
+      "gnocchi",
+      "pesto di basilico",
+      "gamberi",
+      "pomodoro cherry",
+      "pistacchio tostato"
+    ],
     "notes": "Gnocchi con pesto, gambas y pistacho.",
-    "allergens_to_verify": ["glutine", "crostacei", "frutta a guscio", "latte"],
+    "allergens_to_verify": [
+      "glutine",
+      "crostacei",
+      "frutta a guscio",
+      "latte"
+    ],
     "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": "parziale",
@@ -72,8 +127,19 @@
     "warning_commerciale": "Piatto con percezione premium grazie a gamberi e pistacchio. Attenzione alla costanza del pesto.",
     "name_es": "Gnocchi pesto, gambas, tomate y pistacho",
     "description_es": "Gnocchi con pesto de albahaca, gambas, tomate cherry y pistacho tostado.",
-    "ingredients_es": ["gnocchi", "pesto de albahaca", "gambas", "tomate cherry", "pistacho tostado"],
-    "allergens_es": ["gluten", "crustaceos", "frutos secos", "leche"]
+    "ingredients_es": [
+      "gnocchi",
+      "pesto de albahaca",
+      "gambas",
+      "tomate cherry",
+      "pistacho tostado"
+    ],
+    "allergens_es": [
+      "gluten",
+      "crustaceos",
+      "frutos secos",
+      "leche"
+    ]
   },
   {
     "category": "primi_piatti",
@@ -81,9 +147,16 @@
     "name_it": "Spaghetti cacio e pepe",
     "sizes": [],
     "image": "/images/dishes/menu-2026-09/cacio-e-pepe.webp",
-    "ingredients": ["spaghetti", "pecorino romano", "pepe nero"],
+    "ingredients": [
+      "spaghetti",
+      "pecorino romano",
+      "pepe nero"
+    ],
     "notes": "Minimalismo italiano en estado puro.",
-    "allergens_to_verify": ["glutine", "latte"],
+    "allergens_to_verify": [
+      "glutine",
+      "latte"
+    ],
     "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
@@ -95,8 +168,15 @@
     "warning_commerciale": "Piatto ad alto margine, ma tecnicamente rischioso: se esce male sembra una pasta al formaggio. Serve esecuzione impeccabile.",
     "name_es": "Spaghetti cacio e pepe",
     "description_es": "Spaghetti con pecorino romano y pimienta negra.",
-    "ingredients_es": ["spaghetti", "pecorino romano", "pimienta negra"],
-    "allergens_es": ["gluten", "leche"]
+    "ingredients_es": [
+      "spaghetti",
+      "pecorino romano",
+      "pimienta negra"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche"
+    ]
   },
   {
     "category": "primi_piatti",
@@ -105,19 +185,51 @@
     "name_es": "Paccheri all'Amatriciana",
     "name_en": "Paccheri all'Amatriciana",
     "name_fr": "Paccheri all'Amatriciana",
-    "sizes": ["170gr"],
+    "sizes": [
+      "170gr"
+    ],
     "image": "/images/dishes/menu-2026-09/paccheri-amatriciana.webp",
-    "ingredients": ["paccheri", "pomodoro", "guanciale", "pecorino romano", "pepe"],
-    "ingredients_es": ["paccheri", "tomate", "guanciale", "pecorino romano", "pimienta"],
-    "ingredients_en": ["paccheri", "tomato", "guanciale", "pecorino romano", "pepper"],
-    "ingredients_fr": ["paccheri", "tomate", "guanciale", "pecorino romano", "poivre"],
+    "ingredients": [
+      "paccheri",
+      "pomodoro",
+      "guanciale",
+      "pecorino romano",
+      "pepe"
+    ],
+    "ingredients_es": [
+      "paccheri",
+      "tomate",
+      "guanciale",
+      "pecorino romano",
+      "pimienta"
+    ],
+    "ingredients_en": [
+      "paccheri",
+      "tomato",
+      "guanciale",
+      "pecorino romano",
+      "pepper"
+    ],
+    "ingredients_fr": [
+      "paccheri",
+      "tomate",
+      "guanciale",
+      "pecorino romano",
+      "poivre"
+    ],
     "notes": "Clásico romano con guanciale, tomate y pecorino.",
     "description_es": "Paccheri con tomate, guanciale, pecorino romano y pimienta.",
     "description_en": "Paccheri with tomato, guanciale, pecorino romano and pepper.",
     "description_fr": "Paccheri à la tomate, guanciale, pecorino romano et poivre.",
     "description_it": "Paccheri con pomodoro, guanciale, pecorino romano e pepe.",
-    "allergens_to_verify": ["glutine", "latte"],
-    "allergens_es": ["gluten", "leche"],
+    "allergens_to_verify": [
+      "glutine",
+      "latte"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche"
+    ],
     "source": "correzione manuale utente",
     "fornitore": "orthidal",
     "coperto_da_ordine": "parziale",
@@ -132,11 +244,23 @@
     "category": "primi_piatti",
     "id": "paccheri_carbonara",
     "name_it": "Paccheri alla carbonara",
-    "sizes": ["170gr"],
+    "sizes": [
+      "170gr"
+    ],
     "image": "/images/dishes/menu-2026-09/paccheri-carbonara.webp",
-    "ingredients": ["paccheri", "uova", "pecorino romano", "guanciale", "pepe nero"],
+    "ingredients": [
+      "paccheri",
+      "uova",
+      "pecorino romano",
+      "guanciale",
+      "pepe nero"
+    ],
     "notes": "Carbonara cremosa con paccheri, guanciale, huevos, pecorino y pimienta.",
-    "allergens_to_verify": ["glutine", "uova", "latte"],
+    "allergens_to_verify": [
+      "glutine",
+      "uova",
+      "latte"
+    ],
     "source": "menu confermato",
     "fornitore": "orthidal",
     "coperto_da_ordine": "parziale",
@@ -148,7 +272,17 @@
     "warning_commerciale": "Piatto ad alta richiesta ma tecnicamente delicato: crema, temperatura e guanciale devono uscire perfetti.",
     "name_es": "Paccheri alla Carbonara",
     "description_es": "Paccheri con huevo, pecorino romano, guanciale y pimienta negra.",
-    "ingredients_es": ["paccheri", "huevo", "pecorino romano", "guanciale", "pimienta negra"],
-    "allergens_es": ["gluten", "huevos", "leche"]
+    "ingredients_es": [
+      "paccheri",
+      "huevo",
+      "pecorino romano",
+      "guanciale",
+      "pimienta negra"
+    ],
+    "allergens_es": [
+      "gluten",
+      "huevos",
+      "leche"
+    ]
   }
 ]
