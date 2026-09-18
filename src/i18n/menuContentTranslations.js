@@ -286,6 +286,16 @@ export const beverageTranslations = {
       fr: ['Bières', 'Service de bière fraîche.'],
       it: ['Birre', 'Servizio fresco alla spina e in bottiglia.']
     },
+    gin_tonic: {
+      en: ['Gin & Tonic', 'Gin served with tonic. Classic and premium selection.'],
+      fr: ['Gin Tonic', 'Gin servi avec tonic. Sélection classique et premium.'],
+      it: ['Gin Tonic', 'Gin servito con tonica. Selezione classica e premium.']
+    },
+    whisky: {
+      en: ['Whisky', 'Served by the glass or as a shot.'],
+      fr: ['Whisky', 'Servi au verre ou en shot.'],
+      it: ['Whisky', 'Servizio al bicchiere o come shot.']
+    },
     cocteles: {
       en: ['Cocktails', 'Italian aperitif, bubbles and bar classics.'],
       fr: ['Cocktails', 'Apéritif italien, bulles et classiques du bar.'],
@@ -306,6 +316,8 @@ export const beverageTranslations = {
     'tonica-limon': { en: 'Lemon tonic', fr: 'Tonic au citron', it: 'Tonica al limone' },
     cana: { en: 'Small draught beer', fr: 'Petite bière pression', it: 'Birra piccola alla spina' },
     jarra: { en: 'Large draught beer', fr: 'Grande bière pression', it: 'Birra grande alla spina' },
+    'clara-cana': { en: 'Shandy · Small draught', fr: 'Panaché · Petit pression', it: 'Radler · Piccola alla spina' },
+    'clara-jarra': { en: 'Shandy · Large draught', fr: 'Panaché · Grande pression', it: 'Radler · Grande alla spina' },
     'mahou-sin-gluten': { en: 'Mahou Gluten Free', fr: 'Mahou sans gluten', it: 'Mahou senza glutine' },
     'grappa-barricata': { en: 'Barrel-aged grappa', fr: 'Grappa barricata', it: 'Grappa barricata' },
     rossini: {
