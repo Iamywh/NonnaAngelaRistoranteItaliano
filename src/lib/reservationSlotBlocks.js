@@ -39,7 +39,7 @@ export function getManagementTimeSlotGroups(dateValue) {
       id: 'lunch',
       title: 'Pranzo',
       description: 'Control manual para mediodía. Los horarios marcados como online son los que ve el cliente.',
-      slots: buildTimeSlots('12:00', '15:30').map((time) => ({
+      slots: buildTimeSlots('13:00', '15:30').map((time) => ({
         time,
         isReservableOnline: reservableSlots.has(time)
       }))
@@ -48,7 +48,7 @@ export function getManagementTimeSlotGroups(dateValue) {
       id: 'dinner',
       title: 'Cena',
       description: 'Control manual para la noche. Bloquea un horario si quieres reservarlo para walk-ins o gestión interna.',
-      slots: buildTimeSlots('19:00', '23:00').map((time) => ({
+      slots: buildTimeSlots('19:30', '23:00').map((time) => ({
         time,
         isReservableOnline: reservableSlots.has(time)
       }))
@@ -60,12 +60,12 @@ export function getOnlineReservationSlots(dateValue) {
   if (!dateValue) return []
 
   const day = getDayFromDateValue(dateValue)
-  if (day === 0 || day === 1) return []
+  if (day === 2 || day === 3) return []
 
   const lastDinnerSlot = day === 5 || day === 6 ? '22:45' : '22:30'
 
   return [
-    ...buildTimeSlots('12:30', '15:15'),
+    ...buildTimeSlots('13:00', '15:15'),
     ...buildTimeSlots('19:30', lastDinnerSlot)
   ]
 }
