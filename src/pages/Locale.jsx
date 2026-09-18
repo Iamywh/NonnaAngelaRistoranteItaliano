@@ -6,7 +6,7 @@ import { filterBlockedSlots } from '../lib/reservationSlotBlocks.js'
 import '../styles/reservation-form.css'
 
 const SERVICE_CAPACITY = 50
-const CLOSED_RESERVATION_DAYS = [0, 1]
+const CLOSED_RESERVATION_DAYS = [2, 3]
 const CLOSED_RESERVATION_STATUSES_FOR_CAPACITY = ['rejected', 'cancelled']
 const CLOSED_SERVICE_STATUSES_FOR_CAPACITY = ['completed', 'no_show']
 
@@ -129,7 +129,7 @@ function getReservationTimeSlots(dateValue) {
   const lastDinnerSlot = isFridayOrSaturday(dateValue) ? '22:45' : '22:30'
 
   return [
-    ...buildTimeSlots('12:30', '15:15'),
+    ...buildTimeSlots('13:00', '15:15'),
     ...buildTimeSlots('19:30', lastDinnerSlot),
   ]
 }
