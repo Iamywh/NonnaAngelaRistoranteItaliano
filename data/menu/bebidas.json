@@ -151,10 +151,9 @@
           "ingredients": [
             "Prosecco",
             "limoncello",
-            "soda",
-            "basilico"
+            "soda"
           ],
-          "history": "Una versión luminosa y mediterránea del Spritz, con el carácter cítrico del limoncello, burbujas y un toque aromático de basilico."
+          "history": "Una versión luminosa y mediterránea del Spritz, con el carácter cítrico del limoncello y la frescura de las burbujas."
         },
         {
           "id": "negroni",
@@ -188,6 +187,31 @@
             "soda"
           ],
           "history": "Antes del Negroni existía el Americano: un aperitivo italiano ligero, amargo y refrescante, perfecto para abrir el apetito."
+        },
+        {
+          "id": "espresso-martini",
+          "name": "Espresso Martini",
+          "price": 10,
+          "ingredients": [
+            "Vodka",
+            "espresso",
+            "licor de café",
+            "jarabe de azúcar"
+          ],
+          "history": "Creado en Londres en los años 80 por el bartender Dick Bradsell, nació a petición de una clienta que buscaba un cóctel capaz de combinar energía y carácter. Hoy es uno de los grandes clásicos modernos de la coctelería."
+        },
+        {
+          "id": "amaretto-sour",
+          "name": "Amaretto Sour",
+          "price": 10,
+          "ingredients": [
+            "Amaretto",
+            "zumo de limón",
+            "jarabe de azúcar",
+            "clara de huevo",
+            "Angostura"
+          ],
+          "history": "El Amaretto Sour se popularizó en Estados Unidos durante la expansión del amaretto italiano en la segunda mitad del siglo XX. La mezcla de almendra, cítrico y espuma equilibra el dulzor del licor con una acidez fresca."
         }
       ]
     },
