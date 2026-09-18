@@ -31,7 +31,6 @@
       ],
       "available": true
     },
-
     {
       "id": "americano",
       "name": "Americano",
@@ -63,7 +62,6 @@
       ],
       "available": true
     },
-
     {
       "id": "aperol-spritz",
       "name": "Aperol Spritz",
@@ -95,7 +93,6 @@
       ],
       "available": true
     },
-
     {
       "id": "bellini",
       "name": "Bellini",
@@ -126,7 +123,6 @@
       ],
       "available": true
     },
-
     {
       "id": "rossini",
       "name": "Rossini",
@@ -157,7 +153,6 @@
       ],
       "available": true
     },
-
     {
       "id": "limoncello-spritz",
       "name": "Limoncello Spritz",
@@ -168,11 +163,10 @@
       "ingredients": [
         "Prosecco",
         "Limoncello",
-        "Soda",
-        "Basilico"
+        "Soda"
       ],
       "garnish": [
-        "Basilico fresco"
+        "Fetta di limone"
       ],
       "flavor_profile": [
         "Agrumato",
@@ -182,12 +176,77 @@
       ],
       "alcohol_level": "Medium",
       "recommended_price": 9,
-      "description": "Spritz fresco e mediterraneo con limoncello, prosecco, soda e basilico.",
+      "description": "Spritz fresco e mediterraneo con limoncello, prosecco e soda.",
       "pairing": [
         "Burrata",
         "Caprese",
         "Bruschette",
         "Aperitivo italiano"
+      ],
+      "available": true
+    },
+    {
+      "id": "espresso-martini",
+      "name": "Espresso Martini",
+      "category": "Modern Classic",
+      "origin": "Londra, Regno Unito",
+      "glass": "Coupe",
+      "served_with_ice": false,
+      "ingredients": [
+        "Vodka",
+        "Espresso",
+        "Liquore al caffè",
+        "Sciroppo di zucchero"
+      ],
+      "garnish": [
+        "Chicchi di caffè"
+      ],
+      "flavor_profile": [
+        "Caffè",
+        "Intenso",
+        "Morbido",
+        "Aromatico"
+      ],
+      "alcohol_level": "High",
+      "recommended_price": 10,
+      "description": "Classico moderno nato a Londra negli anni Ottanta, creato dal bartender Dick Bradsell. Unisce la forza dell'espresso alla morbidezza del liquore al caffè.",
+      "pairing": [
+        "Tiramisù",
+        "Cannolo siciliano",
+        "Dopocena"
+      ],
+      "available": true
+    },
+    {
+      "id": "amaretto-sour",
+      "name": "Amaretto Sour",
+      "category": "Sour",
+      "origin": "Tradizione italo-americana",
+      "glass": "Old Fashioned",
+      "served_with_ice": true,
+      "ingredients": [
+        "Amaretto",
+        "Succo di limone",
+        "Sciroppo di zucchero",
+        "Albume",
+        "Angostura"
+      ],
+      "garnish": [
+        "Scorza di limone"
+      ],
+      "flavor_profile": [
+        "Mandorlato",
+        "Agrumato",
+        "Morbido",
+        "Agrodolce"
+      ],
+      "alcohol_level": "Medium",
+      "recommended_price": 10,
+      "description": "Sour reso popolare con la diffusione dell'amaretto italiano negli Stati Uniti. Dolcezza di mandorla, limone e schiuma cremosa in equilibrio.",
+      "pairing": [
+        "Dolci",
+        "Torta di mele",
+        "Dopocena"
       ],
       "available": true
     }
