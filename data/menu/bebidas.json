@@ -49,6 +49,11 @@
           "id": "tonica-limon",
           "name": "Tónica de Limón",
           "price": 2.5
+        },
+        {
+          "id": "appletiser",
+          "name": "Appletiser",
+          "price": 2.5
         }
       ]
     },
@@ -66,16 +71,6 @@
           "id": "campari",
           "name": "Campari",
           "price": 5
-        },
-        {
-          "id": "giardino-vermut-rosso",
-          "name": "Giardino Vermut Rosso",
-          "price": 7
-        },
-        {
-          "id": "giardino-vermut-bianco",
-          "name": "Giardino Vermut Bianco",
-          "price": 7
         },
         {
           "id": "martini-rosso",
@@ -113,6 +108,48 @@
           "id": "mahou-sin-gluten",
           "name": "Mahou Sin Gluten",
           "price": 3.2
+        },
+        {
+          "id": "clara-cana",
+          "name": "Clara · Caña",
+          "price": 2.6
+        },
+        {
+          "id": "clara-jarra",
+          "name": "Clara · Jarra",
+          "price": 4.1
+        }
+      ]
+    },
+    {
+      "id": "gin_tonic",
+      "title": "Gin Tonic",
+      "description": "Gin servido con tónica. Selección clásica y premium.",
+      "items": [
+        {
+          "id": "gin-tonic-tanqueray",
+          "name": "Gin Tonic · Tanqueray",
+          "price": 9
+        },
+        {
+          "id": "gin-tonic-beefeater",
+          "name": "Gin Tonic · Beefeater",
+          "price": 9
+        },
+        {
+          "id": "gin-tonic-bombay",
+          "name": "Gin Tonic · Bombay",
+          "price": 9
+        },
+        {
+          "id": "gin-tonic-martin-millers",
+          "name": "Gin Tonic · Martin Miller’s · Premium",
+          "price": 10
+        },
+        {
+          "id": "gin-tonic-brockmans",
+          "name": "Gin Tonic · Brockmans · Premium",
+          "price": 10
         }
       ]
     },
@@ -212,6 +249,30 @@
             "Angostura"
           ],
           "history": "El Amaretto Sour se popularizó en Estados Unidos durante la expansión del amaretto italiano en la segunda mitad del siglo XX. La mezcla de almendra, cítrico y espuma equilibra el dulzor del licor con una acidez fresca."
+        }
+      ]
+    },
+    {
+      "id": "whisky",
+      "title": "Whisky",
+      "description": "Servicio por copa o chupito.",
+      "layout": "service-prices",
+      "items": [
+        {
+          "id": "johnnie-walker-black-label",
+          "name": "Johnnie Walker Black Label",
+          "prices": {
+            "copa": 7,
+            "chupito": 3
+          }
+        },
+        {
+          "id": "jack-daniels",
+          "name": "Jack Daniel’s",
+          "prices": {
+            "copa": 6,
+            "chupito": 3
+          }
         }
       ]
     },
