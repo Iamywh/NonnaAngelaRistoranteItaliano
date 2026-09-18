@@ -43,7 +43,7 @@
     "coperto_da_ordine": true,
     "food_cost_raw": 1.55,
     "food_cost_operativo": 3.1,
-    "prezzo_consigliato": 7,
+    "prezzo_consigliato": 7.5,
     "margine_percentuale": 55.7,
     "categoria_profitto": "media-alta",
     "warning_commerciale": "Fondamentale per tavoli misti, vegetariani e clienti light. Margine buono.",
