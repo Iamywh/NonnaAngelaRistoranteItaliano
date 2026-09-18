@@ -4,9 +4,16 @@
     "id": "bruschetta_lardo_colonnata_taleggio",
     "name_it": "Bruschetta lardo di Colonnata e taleggio",
     "sizes": [],
-    "ingredients": ["pane tostato", "lardo di Colonnata", "taleggio"],
+    "ingredients": [
+      "pane tostato",
+      "lardo di Colonnata",
+      "taleggio"
+    ],
     "notes": "Entrante caliente intenso y premium.",
-    "allergens_to_verify": ["glutine", "latte"],
+    "allergens_to_verify": [
+      "glutine",
+      "latte"
+    ],
     "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": false,
@@ -19,8 +26,15 @@
     "name_es": "Bruschetta lardo di Colonnata y taleggio",
     "image": "/images/dishes/bruschetta-lardo-taleggio.webp",
     "description_es": "Pan tostado con lardo di Colonnata y taleggio fundente.",
-    "ingredients_es": ["pan tostado", "lardo di Colonnata", "taleggio"],
-    "allergens_es": ["gluten", "leche"]
+    "ingredients_es": [
+      "pan tostado",
+      "lardo di Colonnata",
+      "taleggio"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche"
+    ]
   },
   {
     "category": "antipasti_caldi",
@@ -31,17 +45,39 @@
     "name_fr": "Crostone salsiccia et taleggio",
     "sizes": [],
     "image": "/images/dishes/menu-2026-09/crostone-salsiccia-taleggio.webp",
-    "ingredients": ["pane tostato", "salsiccia italiana", "taleggio"],
-    "ingredients_es": ["pan tostado", "salsiccia italiana", "taleggio"],
-    "ingredients_en": ["toasted bread", "Italian salsiccia", "taleggio"],
-    "ingredients_fr": ["pain grillé", "salsiccia italienne", "taleggio"],
+    "ingredients": [
+      "pane tostato",
+      "salsiccia italiana",
+      "taleggio"
+    ],
+    "ingredients_es": [
+      "pan tostado",
+      "salsiccia italiana",
+      "taleggio"
+    ],
+    "ingredients_en": [
+      "toasted bread",
+      "Italian salsiccia",
+      "taleggio"
+    ],
+    "ingredients_fr": [
+      "pain grillé",
+      "salsiccia italienne",
+      "taleggio"
+    ],
     "notes": "Crostone caliente, rústico y fundente.",
     "description_es": "Pan tostado con salsiccia italiana y taleggio fundente.",
     "description_en": "Toasted bread with Italian salsiccia and melting taleggio.",
     "description_fr": "Pain grillé avec salsiccia italienne et taleggio fondant.",
     "description_it": "Pane tostato con salsiccia italiana e taleggio fondente.",
-    "allergens_to_verify": ["glutine", "latte"],
-    "allergens_es": ["gluten", "leche"],
+    "allergens_to_verify": [
+      "glutine",
+      "latte"
+    ],
+    "allergens_es": [
+      "gluten",
+      "leche"
+    ],
     "source": "correzione manuale utente",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
@@ -57,44 +93,80 @@
     "id": "melanzane_alla_parmigiana",
     "name_it": "Melanzane alla parmigiana",
     "sizes": [],
-    "ingredients": ["melanzana", "pomodoro", "parmigiano", "basilico", "provola"],
+    "ingredients": [
+      "melanzana",
+      "pomodoro",
+      "parmigiano",
+      "basilico",
+      "provola"
+    ],
     "notes": "Clásico italiano al horno con berenjena, tomate y queso.",
-    "allergens_to_verify": ["latte"],
+    "allergens_to_verify": [
+      "latte"
+    ],
     "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": true,
     "food_cost_raw": null,
     "food_cost_operativo": null,
-    "prezzo_consigliato": 12.5,
+    "prezzo_consigliato": 13.5,
     "margine_percentuale": null,
     "categoria_profitto": "da_calcolare",
     "warning_commerciale": "Piatto tradizionale con grande valore percepito. La gratinatura e la porzione devono essere costanti.",
     "name_es": "Melanzane alla parmigiana",
     "description_es": "Berenjena, tomate, parmigiano, albahaca y provola.",
-    "ingredients_es": ["berenjena", "tomate", "parmigiano", "albahaca", "provola"],
-    "allergens_es": ["leche"]
+    "ingredients_es": [
+      "berenjena",
+      "tomate",
+      "parmigiano",
+      "albahaca",
+      "provola"
+    ],
+    "allergens_es": [
+      "leche"
+    ]
   },
   {
     "category": "antipasti_caldi",
     "id": "mozzarella_carrozza_anchoas",
     "name_it": "Mozzarella in carrozza con alici",
     "sizes": [],
-    "ingredients": ["mozzarella", "pane grattugiato", "uova", "alici"],
+    "ingredients": [
+      "mozzarella",
+      "pane grattugiato",
+      "uova",
+      "alici"
+    ],
     "notes": "Versión mediterránea y sabrosa.",
-    "allergens_to_verify": ["glutine", "uova", "latte", "pesce"],
+    "allergens_to_verify": [
+      "glutine",
+      "uova",
+      "latte",
+      "pesce"
+    ],
     "source": "menu confermato",
     "fornitore": "Orthidal",
     "coperto_da_ordine": false,
     "food_cost_raw": 2.35,
     "food_cost_operativo": 4,
-    "prezzo_consigliato": 16,
+    "prezzo_consigliato": 12.5,
     "margine_percentuale": 75,
     "categoria_profitto": "alta",
     "warning_commerciale": "Le alici aumentano la personalità del piatto ma riducono il target clienti.",
     "name_es": "Mozzarella in carrozza con anchoas",
     "image": "/images/dishes/mozzarella-carrozza.webp",
     "description_es": "Mozzarella empanada y frita con anchoas.",
-    "ingredients_es": ["mozzarella", "pan rallado", "huevo", "anchoas"],
-    "allergens_es": ["gluten", "huevos", "leche", "pescado"]
+    "ingredients_es": [
+      "mozzarella",
+      "pan rallado",
+      "huevo",
+      "anchoas"
+    ],
+    "allergens_es": [
+      "gluten",
+      "huevos",
+      "leche",
+      "pescado"
+    ]
   }
 ]
