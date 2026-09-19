@@ -39,7 +39,7 @@ export function getManagementTimeSlotGroups(dateValue) {
       id: 'lunch',
       title: 'Pranzo',
       description: 'Control manual para mediodía. Los horarios marcados como online son los que ve el cliente.',
-      slots: buildTimeSlots('13:00', '15:30').map((time) => ({
+      slots: buildTimeSlots('12:30', '15:30').map((time) => ({
         time,
         isReservableOnline: reservableSlots.has(time)
       }))
@@ -65,7 +65,7 @@ export function getOnlineReservationSlots(dateValue) {
   const lastDinnerSlot = day === 5 || day === 6 ? '22:45' : '22:30'
 
   return [
-    ...buildTimeSlots('13:00', '15:15'),
+    ...buildTimeSlots('12:30', '15:15'),
     ...buildTimeSlots('19:30', lastDinnerSlot)
   ]
 }
