@@ -10,7 +10,7 @@ const SERVICE_WINDOWS = {
   lunch: {
     label: 'Pranzo',
     title: 'Turno de mediodía',
-    start: '13:00',
+    start: '12:30',
     end: '15:30',
   },
   dinner: {
