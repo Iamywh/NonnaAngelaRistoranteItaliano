@@ -466,7 +466,7 @@ export default function ReservationsDashboard({ setCurrentPage }) {
           <p>Pranzo</p>
           <strong>{reservationSummary.lunch.reservations}</strong>
           <span>{reservationSummary.lunch.guests} personas</span>
-          <small>13:00–15:30</small>
+          <small>12:30–15:30</small>
         </article>
         <article className="reservation-summary-card reservation-service-card dinner">
           <p>Cena</p>
