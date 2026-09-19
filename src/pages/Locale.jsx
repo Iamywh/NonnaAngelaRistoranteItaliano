@@ -129,7 +129,7 @@ function getReservationTimeSlots(dateValue) {
   const lastDinnerSlot = isFridayOrSaturday(dateValue) ? '22:45' : '22:30'
 
   return [
-    ...buildTimeSlots('13:00', '15:15'),
+    ...buildTimeSlots('12:30', '15:15'),
     ...buildTimeSlots('19:30', lastDinnerSlot),
   ]
 }
