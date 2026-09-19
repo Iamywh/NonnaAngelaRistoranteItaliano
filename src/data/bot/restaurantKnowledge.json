@@ -45,7 +45,7 @@
           "shifts": [
             {
               "type": "almuerzo",
-              "opens": "13:00",
+              "opens": "12:30",
               "closes": "15:30"
             },
             {
@@ -62,7 +62,7 @@
           "shifts": [
             {
               "type": "almuerzo",
-              "opens": "13:00",
+              "opens": "12:30",
               "closes": "15:30"
             },
             {
@@ -91,7 +91,7 @@
           "shifts": [
             {
               "type": "almuerzo",
-              "opens": "13:00",
+              "opens": "12:30",
               "closes": "15:30"
             },
             {
@@ -108,7 +108,7 @@
           "shifts": [
             {
               "type": "almuerzo",
-              "opens": "13:00",
+              "opens": "12:30",
               "closes": "15:30"
             },
             {
@@ -125,7 +125,7 @@
           "shifts": [
             {
               "type": "almuerzo",
-              "opens": "13:00",
+              "opens": "12:30",
               "closes": "15:30"
             },
             {
@@ -136,7 +136,7 @@
           ]
         }
       ],
-      "humanReadable": "Abrimos de jueves a lunes de 13:00 a 15:30. Cenas: jueves, domingo y lunes de 19:30 a 22:45; viernes y sábado de 19:30 a 23:00. Cerramos martes y miércoles."
+      "humanReadable": "Abrimos de jueves a lunes de 12:30 a 15:30. Cenas: jueves, domingo y lunes de 19:30 a 22:45; viernes y sábado de 19:30 a 23:00. Cerramos martes y miércoles."
     },
     "reservationPolicy": {
       "status": "manual_confirmation_required",
