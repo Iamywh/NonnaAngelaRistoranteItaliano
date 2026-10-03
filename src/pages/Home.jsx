@@ -13,9 +13,9 @@ export default function Home({ setCurrentPage }) {
 
   const days = [
     ['home.monday', '12:30–15:30 / 19:30–22:45'],
-    ['home.tuesday', t('common.closed')],
+    ['home.tuesday', '12:30–15:30 / 19:30–22:45'],
     ['home.wednesday', t('common.closed')],
-    ['home.thursday', '12:30–15:30 / 19:30–22:45'],
+    ['home.thursday', t('common.closed')],
     ['home.friday', '12:30–15:30 / 19:30–23:00'],
     ['home.saturday', '12:30–15:30 / 19:30–23:00'],
     ['home.sunday', '12:30–15:30 / 19:30–22:45']
