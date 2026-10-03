@@ -7,7 +7,7 @@ import '../styles/chatbot-reservations.css'
 
 const CHAT_STORAGE_KEY = 'nonna_angela_virtual_agent_messages'
 const SERVICE_CAPACITY = 50
-const CLOSED_RESERVATION_DAYS = [2, 3]
+const CLOSED_RESERVATION_DAYS = [3, 4]
 const CLOSED_RESERVATION_STATUSES_FOR_CAPACITY = ['rejected', 'cancelled']
 const CLOSED_SERVICE_STATUSES_FOR_CAPACITY = ['completed', 'no_show']
 const MIN_GUESTS = 1
@@ -41,12 +41,12 @@ const LANGUAGE_LOCALES = {
 }
 
 const CURRENT_HOURS = {
-  es: 'Abrimos de jueves a lunes de 12:30 a 15:30. Cenas: jueves, domingo y lunes de 19:30 a 22:45; viernes y sábado de 19:30 a 23:00. Cerramos martes y miércoles.',
-  en: 'We are open Thursday to Monday from 12:30 to 15:30. Dinner: Thursday, Sunday and Monday from 19:30 to 22:45; Friday and Saturday from 19:30 to 23:00. Closed Tuesday and Wednesday.',
-  fr: 'Nous sommes ouverts du jeudi au lundi de 12:30 à 15:30. Dîner : jeudi, dimanche et lundi de 19:30 à 22:45 ; vendredi et samedi de 19:30 à 23:00. Fermé mardi et mercredi.',
-  it: 'Siamo aperti da giovedì a lunedì dalle 12:30 alle 15:30. Cena: giovedì, domenica e lunedì dalle 19:30 alle 22:45; venerdì e sabato dalle 19:30 alle 23:00. Chiusi martedì e mercoledì.',
-  de: 'Wir sind von Donnerstag bis Montag von 12:30 bis 15:30 geöffnet. Abendessen: Donnerstag, Sonntag und Montag von 19:30 bis 22:45; Freitag und Samstag von 19:30 bis 23:00. Dienstag und Mittwoch geschlossen.',
-  pt: 'Estamos abertos de quinta a segunda das 12:30 às 15:30. Jantar: quinta, domingo e segunda das 19:30 às 22:45; sexta e sábado das 19:30 às 23:00. Fechado terça e quarta.'
+  es: 'Abrimos de viernes a martes de 12:30 a 15:30. Cenas: domingo, lunes y martes de 19:30 a 22:45; viernes y sábado de 19:30 a 23:00. Cerramos miércoles y jueves.',
+  en: 'We are open Friday to Tuesday from 12:30 to 15:30. Dinner: Sunday, Monday and Tuesday from 19:30 to 22:45; Friday and Saturday from 19:30 to 23:00. Closed Wednesday and Thursday.',
+  fr: 'Nous sommes ouverts du vendredi au mardi de 12:30 à 15:30. Dîner : dimanche, lundi et mardi de 19:30 à 22:45 ; vendredi et samedi de 19:30 à 23:00. Fermé mercredi et jeudi.',
+  it: 'Siamo aperti da venerdì a martedì dalle 12:30 alle 15:30. Cena: domenica, lunedì e martedì dalle 19:30 alle 22:45; venerdì e sabato dalle 19:30 alle 23:00. Chiusi mercoledì e giovedì.',
+  de: 'Wir sind von Freitag bis Dienstag von 12:30 bis 15:30 geöffnet. Abendessen: Sonntag, Montag und Dienstag von 19:30 bis 22:45; Freitag und Samstag von 19:30 bis 23:00. Mittwoch und Donnerstag geschlossen.',
+  pt: 'Estamos abertos de sexta a terça das 12:30 às 15:30. Jantar: domingo, segunda e terça das 19:30 às 22:45; sexta e sábado das 19:30 às 23:00. Fechado quarta e quinta.'
 }
 
 const RESERVATION_WORDS = [
