@@ -75,18 +75,6 @@
         {
           "day": "martes",
           "label": "Martes",
-          "isClosed": true,
-          "shifts": []
-        },
-        {
-          "day": "miércoles",
-          "label": "Miércoles",
-          "isClosed": true,
-          "shifts": []
-        },
-        {
-          "day": "jueves",
-          "label": "Jueves",
           "isClosed": false,
           "shifts": [
             {
@@ -100,6 +88,18 @@
               "closes": "22:45"
             }
           ]
+        },
+        {
+          "day": "miércoles",
+          "label": "Miércoles",
+          "isClosed": true,
+          "shifts": []
+        },
+        {
+          "day": "jueves",
+          "label": "Jueves",
+          "isClosed": true,
+          "shifts": []
         },
         {
           "day": "viernes",
@@ -136,7 +136,7 @@
           ]
         }
       ],
-      "humanReadable": "Abrimos de jueves a lunes de 12:30 a 15:30. Cenas: jueves, domingo y lunes de 19:30 a 22:45; viernes y sábado de 19:30 a 23:00. Cerramos martes y miércoles."
+      "humanReadable": "Abrimos de viernes a martes de 12:30 a 15:30. Cenas: domingo, lunes y martes de 19:30 a 22:45; viernes y sábado de 19:30 a 23:00. Cerramos miércoles y jueves."
     },
     "reservationPolicy": {
       "status": "manual_confirmation_required",
