@@ -6,7 +6,7 @@ import { filterBlockedSlots } from '../lib/reservationSlotBlocks.js'
 import '../styles/reservation-form.css'
 
 const SERVICE_CAPACITY = 50
-const CLOSED_RESERVATION_DAYS = [2, 3]
+const CLOSED_RESERVATION_DAYS = [3, 4]
 const CLOSED_RESERVATION_STATUSES_FOR_CAPACITY = ['rejected', 'cancelled']
 const CLOSED_SERVICE_STATUSES_FOR_CAPACITY = ['completed', 'no_show']
 
