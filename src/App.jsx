@@ -12,6 +12,7 @@ import Orders from './pages/admin/Orders.jsx'
 import Invoices from './pages/admin/Invoices.jsx'
 import ReservationsDashboard from './pages/admin/ReservationsDashboard.jsx'
 import MusicManager from './pages/admin/MusicManager.jsx'
+import ManualOperativo from './pages/admin/ManualOperativo.jsx'
 import VirtualAgent from './components/VirtualAgent.jsx'
 import Footer from './components/Footer.jsx'
 import CookieConsent from './components/CookieConsent.jsx'
@@ -30,7 +31,8 @@ const pagePaths = {
   'admin-orders': '/manager/orders',
   'admin-invoices': '/manager/invoices',
   'admin-reservations': '/manager/reservas',
-  'admin-music': '/manager/music'
+  'admin-music': '/manager/music',
+  'admin-manual': '/manager/manual-operativo'
 }
 
 const adminPages = new Set([
@@ -41,7 +43,8 @@ const adminPages = new Set([
   'admin-orders',
   'admin-invoices',
   'admin-reservations',
-  'admin-music'
+  'admin-music',
+  'admin-manual'
 ])
 
 function normalizePathname(pathname) {
@@ -105,6 +108,7 @@ export default function App() {
     if (currentPage === 'admin-invoices') return <Invoices setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-reservations') return <ReservationsDashboard setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-music') return <MusicManager setCurrentPage={navigateToPage} />
+    if (currentPage === 'admin-manual') return <ManualOperativo setCurrentPage={navigateToPage} />
     return <Home setCurrentPage={navigateToPage} />
   }
 
