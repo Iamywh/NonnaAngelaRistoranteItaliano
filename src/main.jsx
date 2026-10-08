@@ -8,6 +8,7 @@ import './styles/popups.css'
 import './styles/contrast-system.css'
 import './styles/i18n.css'
 import './styles/site-polish.css'
+import './styles/manual-operativo.css'
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
