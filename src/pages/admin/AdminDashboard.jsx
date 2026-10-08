@@ -62,6 +62,14 @@ export default function AdminDashboard({ setCurrentPage }) {
                             onClick={() => setCurrentPage('admin-music')}
                             variant="secondary"
                         />
+
+                        <AdminModuleCard
+                            title="Manual Operativo"
+                            description="Procedimientos oficiales de apertura, servicio, cierre y control de mesas"
+                            meta="Sala / formación / procedimientos"
+                            onClick={() => setCurrentPage('admin-manual')}
+                            variant="secondary"
+                        />
                     </div>
                 </div>
 
