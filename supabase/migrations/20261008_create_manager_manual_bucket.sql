@@ -12,4 +12,3 @@ set
   file_size_limit = excluded.file_size_limit,
   allowed_mime_types = excluded.allowed_mime_types;
 
-comment on table storage.buckets is 'Storage buckets managed by Supabase Storage. manager-manual is private and only accessed through the Manager Edge Function.';
