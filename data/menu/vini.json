@@ -193,8 +193,7 @@
       "purchase_units": 1,
       "cost_price": 9.1,
       "recommended_bottle_price": 36.4,
-      "recommended_glass_price": 8,
-      "by_glass": true,
+      "by_glass": false,
       "description": "Vino blanco friulano elaborado con 100% Ribolla Gialla. Color amarillo pajizo con reflejos verdosos. En nariz es floral y frutal, con recuerdos de albaricoque. En boca es seco y muy fresco, con acidez agradable y equilibrada. Ideal con ostras, entrantes fríos, pastas y arroces de pescado."
     },
     {
@@ -239,7 +238,8 @@
       "purchase_units": 1,
       "cost_price": 9.3,
       "recommended_bottle_price": 37.2,
-      "by_glass": false,
+      "recommended_glass_price": 7.5,
+      "by_glass": true,
       "description": "Vino blanco toscano elaborado con 100% Viognier. Color amarillo pajizo intenso y brillante. En nariz muestra vivacidad de notas vegetales, balsámicas y florales, lavanda, saúco, melisa y salvia, con cítricos, melón y papaya. En boca entra suavemente y de forma sensual, con salinidad, frescura y cuerpo elegante."
     },
     {
