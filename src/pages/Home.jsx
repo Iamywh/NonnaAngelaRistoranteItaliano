@@ -1,8 +1,16 @@
 import React from 'react'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
+import { isEmergencyScheduleWindowActive } from '../lib/scheduleExceptions.js'
 
 export default function Home({ setCurrentPage }) {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
+  const emergencyScheduleActive = isEmergencyScheduleWindowActive()
+  const emergencyCopy = {
+    es: { closed: 'Cerrado excepcionalmente · 13/10', open: 'Abierto excepcionalmente · 15/10' },
+    en: { closed: 'Exceptionally closed · 13/10', open: 'Exceptionally open · 15/10' },
+    fr: { closed: 'Fermé exceptionnellement · 13/10', open: 'Ouvert exceptionnellement · 15/10' },
+    it: { closed: 'Chiuso eccezionalmente · 13/10', open: 'Aperto eccezionalmente · 15/10' }
+  }[language] || { closed: 'Cerrado excepcionalmente · 13/10', open: 'Abierto excepcionalmente · 15/10' }
 
   const goToReservations = () => {
     setCurrentPage('locale')
@@ -13,9 +21,9 @@ export default function Home({ setCurrentPage }) {
 
   const days = [
     ['home.monday', '12:30–15:30 / 19:30–22:45'],
-    ['home.tuesday', '12:30–15:30 / 19:30–22:45'],
+    ['home.tuesday', emergencyScheduleActive ? emergencyCopy.closed : '12:30–15:30 / 19:30–22:45'],
     ['home.wednesday', t('common.closed')],
-    ['home.thursday', t('common.closed')],
+    ['home.thursday', emergencyScheduleActive ? `12:30–15:30 / 19:30–22:45 · ${emergencyCopy.open}` : t('common.closed')],
     ['home.friday', '12:30–15:30 / 19:30–23:00'],
     ['home.saturday', '12:30–15:30 / 19:30–23:00'],
     ['home.sunday', '12:30–15:30 / 19:30–22:45']
