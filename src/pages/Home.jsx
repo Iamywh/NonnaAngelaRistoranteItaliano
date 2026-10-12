@@ -6,11 +6,31 @@ export default function Home({ setCurrentPage }) {
   const { t, language } = useLanguage()
   const emergencyScheduleActive = isEmergencyScheduleWindowActive()
   const emergencyCopy = {
-    es: { closed: 'Cerrado excepcionalmente · 13/10', open: 'Abierto excepcionalmente · 15/10' },
-    en: { closed: 'Exceptionally closed · 13/10', open: 'Exceptionally open · 15/10' },
-    fr: { closed: 'Fermé exceptionnellement · 13/10', open: 'Ouvert exceptionnellement · 15/10' },
-    it: { closed: 'Chiuso eccezionalmente · 13/10', open: 'Aperto eccezionalmente · 15/10' }
-  }[language] || { closed: 'Cerrado excepcionalmente · 13/10', open: 'Abierto excepcionalmente · 15/10' }
+    es: {
+      closed: 'Cerrado excepcionalmente · 13/10',
+      open: 'Abierto excepcionalmente · 15/10',
+      tip: 'Cambio excepcional: martes 13 cerrado · jueves 15 abierto con horario habitual del martes.'
+    },
+    en: {
+      closed: 'Exceptionally closed · 13/10',
+      open: 'Exceptionally open · 15/10',
+      tip: 'Exceptional change: Tuesday 13 closed · Thursday 15 open with Tuesday hours.'
+    },
+    fr: {
+      closed: 'Fermé exceptionnellement · 13/10',
+      open: 'Ouvert exceptionnellement · 15/10',
+      tip: 'Changement exceptionnel : mardi 13 fermé · jeudi 15 ouvert aux horaires du mardi.'
+    },
+    it: {
+      closed: 'Chiuso eccezionalmente · 13/10',
+      open: 'Aperto eccezionalmente · 15/10',
+      tip: 'Cambio eccezionale: martedì 13 chiuso · giovedì 15 aperto con gli orari del martedì.'
+    }
+  }[language] || {
+    closed: 'Cerrado excepcionalmente · 13/10',
+    open: 'Abierto excepcionalmente · 15/10',
+    tip: 'Cambio excepcional: martes 13 cerrado · jueves 15 abierto con horario habitual del martes.'
+  }
 
   const goToReservations = () => {
     setCurrentPage('locale')
@@ -61,7 +81,7 @@ export default function Home({ setCurrentPage }) {
             </div>
           ))}
         </div>
-        <span>{t('home.bookingTip')}</span>
+        <span>{emergencyScheduleActive ? emergencyCopy.tip : t('home.bookingTip')}</span>
         <button className="ghost-button" type="button" onClick={goToReservations}>
           {t('home.reserveShort')}
         </button>
