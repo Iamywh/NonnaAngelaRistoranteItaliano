@@ -1,4 +1,5 @@
 import { supabase } from './supabaseClient.js'
+import { getDayFromDateValue, isClosedReservationDate } from './scheduleExceptions.js'
 
 export const RESERVATION_SLOT_BLOCKS_TABLE = 'reservation_slot_blocks'
 
@@ -60,7 +61,7 @@ export function getOnlineReservationSlots(dateValue) {
   if (!dateValue) return []
 
   const day = getDayFromDateValue(dateValue)
-  if (day === 2 || day === 3) return []
+  if (isClosedReservationDate(dateValue)) return []
 
   const lastDinnerSlot = day === 5 || day === 6 ? '22:45' : '22:30'
 
@@ -68,15 +69,6 @@ export function getOnlineReservationSlots(dateValue) {
     ...buildTimeSlots('12:30', '15:15'),
     ...buildTimeSlots('19:30', lastDinnerSlot)
   ]
-}
-
-export function getDayFromDateValue(dateValue) {
-  if (!dateValue) return null
-
-  const [year, month, day] = String(dateValue).split('-').map(Number)
-  if (!year || !month || !day) return null
-
-  return new Date(year, month - 1, day).getDay()
 }
 
 export function filterBlockedSlots(slots, blockedTimes = []) {
