@@ -3,10 +3,10 @@ import { supabase } from '../lib/supabaseClient.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { useBlockedReservationSlots } from '../hooks/useBlockedReservationSlots.js'
 import { filterBlockedSlots } from '../lib/reservationSlotBlocks.js'
+import { getDayFromDateValue, isClosedReservationDate, isEmergencyClosedDate } from '../lib/scheduleExceptions.js'
 import '../styles/reservation-form.css'
 
 const SERVICE_CAPACITY = 50
-const CLOSED_RESERVATION_DAYS = [3, 4]
 const CLOSED_RESERVATION_STATUSES_FOR_CAPACITY = ['rejected', 'cancelled']
 const CLOSED_SERVICE_STATUSES_FOR_CAPACITY = ['completed', 'no_show']
 
@@ -108,17 +108,6 @@ function buildTimeSlots(startTime, lastTime) {
   return slots
 }
 
-function getDayFromDateValue(dateValue) {
-  if (!dateValue) return null
-  const [year, month, day] = dateValue.split('-').map(Number)
-  return new Date(year, month - 1, day).getDay()
-}
-
-function isClosedReservationDate(dateValue) {
-  const day = getDayFromDateValue(dateValue)
-  return day !== null && CLOSED_RESERVATION_DAYS.includes(day)
-}
-
 function isFridayOrSaturday(dateValue) {
   const day = getDayFromDateValue(dateValue)
   return day === 5 || day === 6
@@ -186,7 +175,13 @@ async function getBookedGuestsForService(dateValue, timeValue) {
 }
 
 export default function Locale() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
+  const emergencyClosedMessage = {
+    es: 'Cerrado excepcionalmente el martes 13 de octubre. El jueves 15 abrimos con horario de martes.',
+    en: 'Exceptionally closed on Tuesday 13 October. On Thursday 15 we are open with Tuesday hours.',
+    fr: 'Fermé exceptionnellement le mardi 13 octobre. Le jeudi 15, nous ouvrons aux horaires du mardi.',
+    it: 'Chiuso eccezionalmente martedì 13 ottobre. Giovedì 15 apriamo con gli orari del martedì.'
+  }[language] || 'Cerrado excepcionalmente el martes 13 de octubre. El jueves 15 abrimos con horario de martes.'
   const [reservation, setReservation] = useState(initialReservation)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState(null)
@@ -293,7 +288,7 @@ export default function Locale() {
     setError(null)
 
     if (isClosedReservationDate(reservation.reservation_date)) {
-      setError(t('locale.closedDay'))
+      setError(isEmergencyClosedDate(reservation.reservation_date) ? emergencyClosedMessage : t('locale.closedDay'))
       setIsSubmitting(false)
       return
     }
@@ -478,7 +473,11 @@ export default function Locale() {
             </label>
           </div>
 
-          {isReservationDateClosed && <p className="form-message error">{t('locale.closedDay')}</p>}
+          {isReservationDateClosed && (
+            <p className="form-message error">
+              {isEmergencyClosedDate(reservation.reservation_date) ? emergencyClosedMessage : t('locale.closedDay')}
+            </p>
+          )}
 
           <div className="form-row">
             <label>
