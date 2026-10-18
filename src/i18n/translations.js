@@ -91,7 +91,7 @@ export const translations = {
       submit: 'Enviar solicitud',
       success: 'Solicitud recibida. Nuestro equipo revisará la disponibilidad y te enviará la confirmación por el canal elegido.',
       full: 'Las reservas online para este servicio están casi completas. Por favor, contacta directamente con el restaurante para comprobar disponibilidad.',
-      closedDay: 'El restaurante permanece cerrado los miércoles y jueves. Por favor, selecciona otra fecha para tu reserva.',
+      closedDay: 'El restaurante permanece cerrado los martes y miércoles. Por favor, selecciona otra fecha para tu reserva.',
       emailRequired: 'Introduce tu email para recibir la confirmación por correo.',
       phoneRequired: 'Introduce un número de teléfono válido.',
       timeRequired: 'Selecciona una hora disponible para la fecha elegida.',
