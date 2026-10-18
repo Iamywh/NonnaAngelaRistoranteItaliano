@@ -3,7 +3,7 @@ import { supabase } from '../lib/supabaseClient.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import restaurantKnowledge from '../data/bot/restaurantKnowledge.json'
 import { buildAdvancedRestaurantAnswer } from '../data/bot/advancedMenuAssistant.js'
-import { isClosedReservationDate, isEmergencyClosedDate, isEmergencyScheduleWindowActive } from '../lib/scheduleExceptions.js'
+import { isClosedReservationDate } from '../lib/scheduleExceptions.js'
 import '../styles/chatbot-reservations.css'
 
 const CHAT_STORAGE_KEY = 'nonna_angela_virtual_agent_messages'
@@ -41,58 +41,12 @@ const LANGUAGE_LOCALES = {
 }
 
 const CURRENT_HOURS = {
-  es: 'Abrimos de viernes a martes de 12:30 a 15:30. Cenas: domingo, lunes y martes de 19:30 a 22:45; viernes y sábado de 19:30 a 23:00. Cerramos miércoles y jueves.',
-  en: 'We are open Friday to Tuesday from 12:30 to 15:30. Dinner: Sunday, Monday and Tuesday from 19:30 to 22:45; Friday and Saturday from 19:30 to 23:00. Closed Wednesday and Thursday.',
-  fr: 'Nous sommes ouverts du vendredi au mardi de 12:30 à 15:30. Dîner : dimanche, lundi et mardi de 19:30 à 22:45 ; vendredi et samedi de 19:30 à 23:00. Fermé mercredi et jeudi.',
-  it: 'Siamo aperti da venerdì a martedì dalle 12:30 alle 15:30. Cena: domenica, lunedì e martedì dalle 19:30 alle 22:45; venerdì e sabato dalle 19:30 alle 23:00. Chiusi mercoledì e giovedì.',
-  de: 'Wir sind von Freitag bis Dienstag von 12:30 bis 15:30 geöffnet. Abendessen: Sonntag, Montag und Dienstag von 19:30 bis 22:45; Freitag und Samstag von 19:30 bis 23:00. Mittwoch und Donnerstag geschlossen.',
-  pt: 'Estamos abertos de sexta a terça das 12:30 às 15:30. Jantar: domingo, segunda e terça das 19:30 às 22:45; sexta e sábado das 19:30 às 23:00. Fechado quarta e quinta.'
-}
-
-const EMERGENCY_HOURS_NOTICE = {
-  es: 'Cambio excepcional esta semana: martes 13 de octubre cerrado. Jueves 15 de octubre abierto de 12:30 a 15:30 y de 19:30 a 22:45.',
-  en: 'Exceptional change this week: closed Tuesday 13 October. Open Thursday 15 October from 12:30 to 15:30 and 19:30 to 22:45.',
-  fr: 'Changement exceptionnel cette semaine : fermé mardi 13 octobre. Ouvert jeudi 15 octobre de 12:30 à 15:30 et de 19:30 à 22:45.',
-  it: 'Cambio eccezionale questa settimana: chiuso martedì 13 ottobre. Aperto giovedì 15 ottobre dalle 12:30 alle 15:30 e dalle 19:30 alle 22:45.',
-  de: 'Ausnahmeregelung diese Woche: Dienstag, 13. Oktober, geschlossen. Donnerstag, 15. Oktober, von 12:30 bis 15:30 und 19:30 bis 22:45 geöffnet.',
-  pt: 'Alteração excecional esta semana: fechado terça-feira, 13 de outubro. Aberto quinta-feira, 15 de outubro, das 12:30 às 15:30 e das 19:30 às 22:45.'
-}
-
-const EMERGENCY_CLOSED_MESSAGES = {
-  es: 'Cerrado excepcionalmente el martes 13 de octubre. El jueves 15 abrimos con horario de martes.',
-  en: 'Exceptionally closed on Tuesday 13 October. On Thursday 15 we are open with Tuesday hours.',
-  fr: 'Fermé exceptionnellement le mardi 13 octobre. Le jeudi 15, nous ouvrons aux horaires du mardi.',
-  it: 'Chiuso eccezionalmente martedì 13 ottobre. Giovedì 15 apriamo con gli orari del martedì.',
-  de: 'Am Dienstag, den 13. Oktober, ausnahmsweise geschlossen. Am Donnerstag, den 15. Oktober, gelten die Dienstagszeiten.',
-  pt: 'Fechado excecionalmente na terça-feira, 13 de outubro. Na quinta-feira, 15, abrimos com o horário de terça.'
-}
-
-function getCurrentHoursAnswer(language) {
-  const base = CURRENT_HOURS[language] || CURRENT_HOURS.es
-  if (!isEmergencyScheduleWindowActive()) return base
-  return `${EMERGENCY_HOURS_NOTICE[language] || EMERGENCY_HOURS_NOTICE.es} ${base}`
-}
-
-function getClosedReservationMessage(dateValue, language, t) {
-  if (isEmergencyClosedDate(dateValue)) {
-    return EMERGENCY_CLOSED_MESSAGES[language] || EMERGENCY_CLOSED_MESSAGES.es
-  }
-  return t('locale.closedDay')
-}
-
-function getClosedReservationShort(dateValue, language, t) {
-  if (!isEmergencyClosedDate(dateValue)) return t('bot.closedShort')
-
-  const labels = {
-    es: 'Cerrado el 13/10',
-    en: 'Closed 13/10',
-    fr: 'Fermé le 13/10',
-    it: 'Chiuso il 13/10',
-    de: 'Geschlossen 13/10',
-    pt: 'Fechado 13/10'
-  }
-
-  return labels[language] || labels.es
+  es: 'Abrimos lunes, jueves, viernes, sábado y domingo de 12:30 a 15:30. Cenas: lunes, jueves y domingo de 19:30 a 22:45; viernes y sábado de 19:30 a 23:00. Cerramos martes y miércoles.',
+  en: 'We are open Monday, Thursday, Friday, Saturday and Sunday from 12:30 to 15:30. Dinner: Monday, Thursday and Sunday from 19:30 to 22:45; Friday and Saturday from 19:30 to 23:00. Closed Tuesday and Wednesday.',
+  fr: 'Nous sommes ouverts lundi, jeudi, vendredi, samedi et dimanche de 12:30 à 15:30. Dîner : lundi, jeudi et dimanche de 19:30 à 22:45 ; vendredi et samedi de 19:30 à 23:00. Fermé mardi et mercredi.',
+  it: 'Siamo aperti lunedì, giovedì, venerdì, sabato e domenica dalle 12:30 alle 15:30. Cena: lunedì, giovedì e domenica dalle 19:30 alle 22:45; venerdì e sabato dalle 19:30 alle 23:00. Chiusi martedì e mercoledì.',
+  de: 'Wir sind montags, donnerstags, freitags, samstags und sonntags von 12:30 bis 15:30 geöffnet. Abendessen: Montag, Donnerstag und Sonntag von 19:30 bis 22:45; Freitag und Samstag von 19:30 bis 23:00. Dienstag und Mittwoch geschlossen.',
+  pt: 'Estamos abertos segunda, quinta, sexta, sábado e domingo das 12:30 às 15:30. Jantar: segunda, quinta e domingo das 19:30 às 22:45; sexta e sábado das 19:30 às 23:00. Fechado terça e quarta.'
 }
 
 const RESERVATION_WORDS = [
@@ -336,7 +290,7 @@ function buildBasicAnswer(userText, language) {
   const restaurant = restaurantKnowledge.restaurant
 
   if (isHoursRequest(userText)) {
-    return getCurrentHoursAnswer(language)
+    return CURRENT_HOURS[language] || CURRENT_HOURS.es
   }
 
   if (containsAny(normalized, ['direccion', 'donde', 'ubicacion', 'address', 'location', 'adresse', 'indirizzo', 'endereco', 'endereço'])) {
@@ -481,7 +435,7 @@ export default function VirtualAgent() {
   }
 
   const validateReservationFields = async ({ date, time, people }, excludedReservationId = null) => {
-    if (isClosedReservationDate(date)) return getClosedReservationMessage(date, language, t)
+    if (isClosedReservationDate(date)) return t('locale.closedDay')
     if (!getReservationTimeSlots(date).includes(time)) return t('locale.timeRequired')
 
     const bookedGuests = await getBookedGuestsForService(date, time, excludedReservationId)
@@ -890,7 +844,7 @@ export default function VirtualAgent() {
               <div className="agent-form-row">
                 <input name="date" type="date" min={getTodayDateValue()} value={bookingForm.date} onChange={handleBookingChange} required />
                 <select name="time" value={bookingForm.time} onChange={handleBookingChange} disabled={!bookingForm.date || isClosedReservationDate(bookingForm.date)} required>
-                  <option value="">{!bookingForm.date ? t('bot.formDate') : isClosedReservationDate(bookingForm.date) ? getClosedReservationShort(bookingForm.date, language, t) : t('bot.formTime')}</option>
+                  <option value="">{!bookingForm.date ? t('bot.formDate') : isClosedReservationDate(bookingForm.date) ? t('bot.closedShort') : t('bot.formTime')}</option>
                   {bookingTimeSlots.map((time) => <option key={time} value={time}>{time}</option>)}
                 </select>
               </div>
@@ -936,7 +890,7 @@ export default function VirtualAgent() {
                   <div className="agent-form-row">
                     <input name="date" type="date" min={getTodayDateValue()} value={modifyForm.date} onChange={handleModifyChange} required />
                     <select name="time" value={modifyForm.time} onChange={handleModifyChange} disabled={!modifyForm.date || isClosedReservationDate(modifyForm.date)} required>
-                      <option value="">{!modifyForm.date ? t('bot.formDate') : isClosedReservationDate(modifyForm.date) ? getClosedReservationShort(modifyForm.date, language, t) : t('bot.formTime')}</option>
+                      <option value="">{!modifyForm.date ? t('bot.formDate') : isClosedReservationDate(modifyForm.date) ? t('bot.closedShort') : t('bot.formTime')}</option>
                       {modifyTimeSlots.map((time) => <option key={time} value={time}>{time}</option>)}
                     </select>
                   </div>
