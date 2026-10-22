@@ -3,7 +3,7 @@ import { supabase } from '../lib/supabaseClient.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { useBlockedReservationSlots } from '../hooks/useBlockedReservationSlots.js'
 import { filterBlockedSlots } from '../lib/reservationSlotBlocks.js'
-import { getDayFromDateValue, isClosedReservationDate } from '../lib/scheduleExceptions.js'
+import { getDayFromDateValue, getSpecialSchedule, isClosedReservationDate } from '../lib/scheduleExceptions.js'
 import '../styles/reservation-form.css'
 
 const SERVICE_CAPACITY = 50
@@ -115,6 +115,12 @@ function isFridayOrSaturday(dateValue) {
 
 function getReservationTimeSlots(dateValue) {
   if (!dateValue || isClosedReservationDate(dateValue)) return []
+
+  const specialSchedule = getSpecialSchedule(dateValue)
+  if (specialSchedule?.type === 'special_open') {
+    return buildTimeSlots(specialSchedule.opens, specialSchedule.lastReservation)
+  }
+
   const lastDinnerSlot = isFridayOrSaturday(dateValue) ? '22:45' : '22:30'
 
   return [
