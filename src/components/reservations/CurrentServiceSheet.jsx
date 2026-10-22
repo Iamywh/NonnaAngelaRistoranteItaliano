@@ -44,14 +44,14 @@ function addDays(dateValue, days) {
 function getServiceWindowsForDate(dateValue) {
   if (isClosedReservationDate(dateValue)) return []
 
-  const specialDate = getSpecialReservationDate(dateValue)
-  if (specialDate && !specialDate.isClosed) {
+  const specialSchedule = getSpecialSchedule(dateValue)
+  if (specialSchedule?.type === 'special_open') {
     return [{
       key: 'special',
       label: 'Servicio especial',
-      title: specialDate.label || 'Horario especial',
-      start: specialDate.opens,
-      end: specialDate.closes,
+      title: specialSchedule.label || 'Horario especial',
+      start: specialSchedule.opens,
+      end: specialSchedule.closes,
     }]
   }
 
