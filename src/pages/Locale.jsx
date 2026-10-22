@@ -164,7 +164,7 @@ function getPhoneCountry(iso) {
 }
 
 async function getBookedGuestsForService(dateValue, timeValue) {
-  const service = getReservationService(timeValue)
+  const service = getReservationService(timeValue, dateValue)
   if (!dateValue || !service) return 0
 
   const { data, error } = await supabase
@@ -175,7 +175,7 @@ async function getBookedGuestsForService(dateValue, timeValue) {
   if (error) throw error
 
   return (data || [])
-    .filter((booking) => getReservationService(booking.reservation_time) === service)
+    .filter((booking) => getReservationService(booking.reservation_time, dateValue) === service)
     .filter((booking) => countsForServiceCapacity(booking))
     .reduce((total, booking) => total + Number(booking.guests || 0), 0)
 }
@@ -192,7 +192,7 @@ export default function Locale() {
   const { blockedTimes: blockedReservationTimes, isLoading: isLoadingBlockedSlots } = useBlockedReservationSlots(reservation.reservation_date)
   const reservationTimeSlots = filterBlockedSlots(getReservationTimeSlots(reservation.reservation_date), blockedReservationTimes)
   const isReservationDateClosed = isClosedReservationDate(reservation.reservation_date)
-  const selectedService = getReservationService(reservation.reservation_time)
+  const selectedService = getReservationService(reservation.reservation_time, reservation.reservation_date)
   const selectedGuests = Number(reservation.guests || 0)
   const selectedPhoneCountry = getPhoneCountry(reservation.phone_country_iso)
   const isEmailConfirmation = reservation.confirmation_channel === 'email'
@@ -313,7 +313,7 @@ export default function Locale() {
 
     try {
       const bookedGuests = await getBookedGuestsForService(reservation.reservation_date, reservation.reservation_time)
-      setServiceAvailability({ bookedGuests, service: getReservationService(reservation.reservation_time) })
+      setServiceAvailability({ bookedGuests, service: getReservationService(reservation.reservation_time, reservation.reservation_date) })
 
       if (bookedGuests + Number(reservation.guests || 0) > SERVICE_CAPACITY) {
         setError(t('locale.full'))
