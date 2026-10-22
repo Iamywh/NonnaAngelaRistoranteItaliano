@@ -33,6 +33,8 @@ export function getReservationServiceFromTime(timeValue) {
 }
 
 export function getManagementTimeSlotGroups(dateValue) {
+  if (!dateValue || isClosedReservationDate(dateValue)) return []
+
   const reservableSlots = new Set(getOnlineReservationSlots(dateValue))
   const specialSchedule = getSpecialSchedule(dateValue)
 
