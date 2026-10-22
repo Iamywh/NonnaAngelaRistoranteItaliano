@@ -129,8 +129,12 @@ function getReservationTimeSlots(dateValue) {
   ]
 }
 
-function getReservationService(timeValue) {
+function getReservationService(timeValue, dateValue) {
   if (!timeValue) return null
+
+  const specialSchedule = getSpecialSchedule(dateValue)
+  if (specialSchedule?.type === 'special_open') return 'special'
+
   const [hours, minutes] = timeValue.split(':').map(Number)
   if (Number.isNaN(hours) || Number.isNaN(minutes)) return null
   return hours * 60 + minutes < 17 * 60 ? 'lunch' : 'dinner'
@@ -200,6 +204,7 @@ export default function Locale() {
   const getServiceLabel = (service) => {
     if (service === 'lunch') return t('locale.lunch')
     if (service === 'dinner') return t('locale.dinner')
+    if (service === 'special') return t('locale.service')
     return t('locale.service')
   }
 
