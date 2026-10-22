@@ -293,7 +293,7 @@ export default function Locale() {
     setError(null)
 
     if (isClosedReservationDate(reservation.reservation_date)) {
-      setError(t('locale.closedDay'))
+      setError(closedDateMessage)
       setIsSubmitting(false)
       return
     }
@@ -471,14 +471,14 @@ export default function Locale() {
               {t('locale.time')}
               <select name="reservation_time" value={reservation.reservation_time} onChange={handleChange} disabled={!reservation.reservation_date || isReservationDateClosed || isLoadingBlockedSlots} required>
                 <option value="">
-                  {!reservation.reservation_date ? t('common.selectFirstDate') : isReservationDateClosed ? t('common.closedSundayMonday') : isLoadingBlockedSlots ? t('common.loading') : t('common.selectTime')}
+                  {!reservation.reservation_date ? t('common.selectFirstDate') : isReservationDateClosed ? (specialReservationSchedule?.type === 'closed' ? t('common.closed') : t('common.closedSundayMonday')) : isLoadingBlockedSlots ? t('common.loading') : t('common.selectTime')}
                 </option>
                 {reservationTimeSlots.map((time) => <option key={time} value={time}>{time}</option>)}
               </select>
             </label>
           </div>
 
-          {isReservationDateClosed && <p className="form-message error">{t('locale.closedDay')}</p>}
+          {isReservationDateClosed && <p className="form-message error">{closedDateMessage}</p>}
 
           <div className="form-row">
             <label>
