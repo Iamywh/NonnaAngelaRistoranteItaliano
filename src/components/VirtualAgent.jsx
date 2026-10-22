@@ -3,7 +3,7 @@ import { supabase } from '../lib/supabaseClient.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import restaurantKnowledge from '../data/bot/restaurantKnowledge.json'
 import { buildAdvancedRestaurantAnswer } from '../data/bot/advancedMenuAssistant.js'
-import { getSpecialReservationDate, isClosedReservationDate } from '../lib/scheduleExceptions.js'
+import { getSpecialReservationDate, getSpecialSchedule, isClosedReservationDate } from '../lib/scheduleExceptions.js'
 import '../styles/chatbot-reservations.css'
 
 const CHAT_STORAGE_KEY = 'nonna_angela_virtual_agent_messages'
