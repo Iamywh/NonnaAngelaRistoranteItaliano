@@ -3,7 +3,7 @@ import { supabase } from '../lib/supabaseClient.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import restaurantKnowledge from '../data/bot/restaurantKnowledge.json'
 import { buildAdvancedRestaurantAnswer } from '../data/bot/advancedMenuAssistant.js'
-import { isClosedReservationDate } from '../lib/scheduleExceptions.js'
+import { getSpecialReservationDate, isClosedReservationDate } from '../lib/scheduleExceptions.js'
 import '../styles/chatbot-reservations.css'
 
 const CHAT_STORAGE_KEY = 'nonna_angela_virtual_agent_messages'
@@ -176,6 +176,12 @@ function isFridayOrSaturday(dateValue) {
 
 function getReservationTimeSlots(dateValue) {
   if (!dateValue || isClosedReservationDate(dateValue)) return []
+
+  const specialDate = getSpecialReservationDate(dateValue)
+  if (specialDate && !specialDate.isClosed) {
+    return buildTimeSlots(specialDate.firstReservation, specialDate.lastReservation)
+  }
+
   const lastDinnerSlot = isFridayOrSaturday(dateValue) ? '22:45' : '22:30'
 
   return [
@@ -184,8 +190,12 @@ function getReservationTimeSlots(dateValue) {
   ]
 }
 
-function getReservationService(timeValue) {
+function getReservationService(timeValue, dateValue = '') {
   if (!timeValue) return null
+
+  const specialDate = getSpecialReservationDate(dateValue)
+  if (specialDate && !specialDate.isClosed) return 'special'
+
   const [hours, minutes] = String(timeValue).split(':').map(Number)
   if (Number.isNaN(hours) || Number.isNaN(minutes)) return null
   return hours * 60 + minutes < 17 * 60 ? 'lunch' : 'dinner'
@@ -239,7 +249,7 @@ function formatReservationDateShort(dateValue, language = 'es') {
 }
 
 async function getBookedGuestsForService(dateValue, timeValue, excludedReservationId = null) {
-  const service = getReservationService(timeValue)
+  const service = getReservationService(timeValue, dateValue)
   if (!dateValue || !service) return 0
 
   const { data, error } = await supabase
@@ -251,7 +261,7 @@ async function getBookedGuestsForService(dateValue, timeValue, excludedReservati
 
   return (data || [])
     .filter((booking) => !excludedReservationId || booking.id !== excludedReservationId)
-    .filter((booking) => getReservationService(booking.reservation_time) === service)
+    .filter((booking) => getReservationService(booking.reservation_time, dateValue) === service)
     .filter((booking) => countsForServiceCapacity(booking))
     .reduce((total, booking) => total + Number(booking.guests || 0), 0)
 }
