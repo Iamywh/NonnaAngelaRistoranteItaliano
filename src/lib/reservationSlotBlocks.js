@@ -34,6 +34,21 @@ export function getReservationServiceFromTime(timeValue) {
 
 export function getManagementTimeSlotGroups(dateValue) {
   const reservableSlots = new Set(getOnlineReservationSlots(dateValue))
+  const specialSchedule = getSpecialSchedule(dateValue)
+
+  if (specialSchedule?.type === 'special_open') {
+    return [
+      {
+        id: 'special',
+        title: 'Horario especial',
+        description: `${specialSchedule.label}: servicio continuo especial. Los horarios marcados como online son los que ve el cliente.`,
+        slots: buildTimeSlots(specialSchedule.opens, specialSchedule.closes).map((time) => ({
+          time,
+          isReservableOnline: reservableSlots.has(time)
+        }))
+      }
+    ]
+  }
 
   return [
     {
