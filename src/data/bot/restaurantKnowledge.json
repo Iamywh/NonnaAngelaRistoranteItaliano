@@ -1,6 +1,6 @@
 {
   "language": "es",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "restaurant": {
     "name": "Nonna Angela",
     "subtitle": "Ristorante Italiano",
@@ -136,7 +136,45 @@
           ]
         }
       ],
-      "humanReadable": "Abrimos lunes, jueves, viernes, sábado y domingo de 12:30 a 15:30. Cenas: lunes, jueves y domingo de 19:30 a 22:45; viernes y sábado de 19:30 a 23:00. Cerramos martes y miércoles."
+      "humanReadable": "Abrimos lunes, jueves, viernes, sábado y domingo de 12:30 a 15:30. Cenas: lunes, jueves y domingo de 19:30 a 22:45; viernes y sábado de 19:30 a 23:00. Cerramos martes y miércoles. Horario especial: 24 y 31 de diciembre de 13:00 a 18:00. Cerrado el 25 de diciembre y el 1 de enero.",
+      "specialDates": [
+        {
+          "date": "2026-12-24",
+          "label": "Nochebuena",
+          "isClosed": false,
+          "shifts": [
+            {
+              "type": "horario_especial",
+              "opens": "13:00",
+              "closes": "18:00"
+            }
+          ]
+        },
+        {
+          "date": "2026-12-25",
+          "label": "Navidad",
+          "isClosed": true,
+          "shifts": []
+        },
+        {
+          "date": "2026-12-31",
+          "label": "Nochevieja",
+          "isClosed": false,
+          "shifts": [
+            {
+              "type": "horario_especial",
+              "opens": "13:00",
+              "closes": "18:00"
+            }
+          ]
+        },
+        {
+          "date": "2027-01-01",
+          "label": "Año Nuevo",
+          "isClosed": true,
+          "shifts": []
+        }
+      ]
     },
     "reservationPolicy": {
       "status": "manual_confirmation_required",
