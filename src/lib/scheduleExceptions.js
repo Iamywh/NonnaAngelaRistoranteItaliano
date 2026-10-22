@@ -46,6 +46,15 @@ export function getSpecialReservationDate(dateValue) {
   return SPECIAL_RESERVATION_DATES[monthDay] || null
 }
 
+export function getSpecialSchedule(dateValue) {
+  const specialDate = getSpecialReservationDate(dateValue)
+  if (!specialDate) return null
+
+  return specialDate.isClosed
+    ? { ...specialDate, type: 'closed' }
+    : { ...specialDate, type: 'special_open' }
+}
+
 export function isClosedReservationDate(dateValue) {
   if (!dateValue) return false
 
