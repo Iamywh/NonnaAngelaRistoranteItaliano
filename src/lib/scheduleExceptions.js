@@ -1,7 +1,7 @@
 export const NORMAL_CLOSED_RESERVATION_DAYS = [2, 3]
 
 export const SPECIAL_RESERVATION_DATES = {
-  '12-24': {
+  '2026-12-24': {
     isClosed: false,
     label: 'Nochebuena',
     opens: '13:00',
@@ -9,11 +9,11 @@ export const SPECIAL_RESERVATION_DATES = {
     firstReservation: '13:00',
     lastReservation: '17:45',
   },
-  '12-25': {
+  '2026-12-25': {
     isClosed: true,
     label: 'Navidad',
   },
-  '12-31': {
+  '2026-12-31': {
     isClosed: false,
     label: 'Nochevieja',
     opens: '13:00',
@@ -21,7 +21,7 @@ export const SPECIAL_RESERVATION_DATES = {
     firstReservation: '13:00',
     lastReservation: '17:45',
   },
-  '01-01': {
+  '2027-01-01': {
     isClosed: true,
     label: 'Año Nuevo',
   },
@@ -39,11 +39,7 @@ export function getDayFromDateValue(dateValue) {
 export function getSpecialReservationDate(dateValue) {
   if (!dateValue) return null
 
-  const parts = String(dateValue).split('-')
-  if (parts.length !== 3) return null
-
-  const monthDay = `${parts[1]}-${parts[2]}`
-  return SPECIAL_RESERVATION_DATES[monthDay] || null
+  return SPECIAL_RESERVATION_DATES[String(dateValue)] || null
 }
 
 export function getSpecialSchedule(dateValue) {
