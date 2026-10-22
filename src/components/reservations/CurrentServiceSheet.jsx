@@ -41,32 +41,31 @@ function addDays(dateValue, days) {
   return getDateValue(date)
 }
 
-function isOpenDate(dateValue) {
-  return !isClosedReservationDate(dateValue)
-}
+function getServiceWindowsForDate(dateValue) {
+  if (isClosedReservationDate(dateValue)) return []
 
-function getFirstServiceWindow(dateValue) {
-  const specialSchedule = getSpecialSchedule(dateValue)
-
-  if (specialSchedule?.type === 'special_open') {
-    return {
-      key: 'lunch',
-      label: 'Especial',
-      title: specialSchedule.label || 'Horario especial',
-      start: specialSchedule.opens,
-      end: specialSchedule.closes,
-    }
+  const specialDate = getSpecialReservationDate(dateValue)
+  if (specialDate && !specialDate.isClosed) {
+    return [{
+      key: 'special',
+      label: 'Servicio especial',
+      title: specialDate.label || 'Horario especial',
+      start: specialDate.opens,
+      end: specialDate.closes,
+    }]
   }
 
-  return { key: 'lunch', ...SERVICE_WINDOWS.lunch }
-}
-
-function getDinnerWindow(dateValue) {
   const day = getDateFromValue(dateValue).getDay()
-  return {
-    ...SERVICE_WINDOWS.dinner,
-    end: day === 5 || day === 6 ? '23:00' : '22:45',
-  }
+  const dinnerEnd = day === 5 || day === 6 ? '23:00' : '22:45'
+
+  return [
+    { key: 'lunch', ...SERVICE_WINDOWS.lunch },
+    { key: 'dinner', ...SERVICE_WINDOWS.dinner, end: dinnerEnd },
+  ]
+}
+
+function isOpenDate(dateValue) {
+  return getServiceWindowsForDate(dateValue).length > 0
 }
 
 function getNextOpenDate(dateValue) {
@@ -89,65 +88,45 @@ function toMinutes(timeValue) {
 function getServiceInfo(now = new Date()) {
   const todayValue = getDateValue(now)
   const currentMinutes = now.getHours() * 60 + now.getMinutes()
+  const todayWindows = getServiceWindowsForDate(todayValue)
 
-  if (!isOpenDate(todayValue)) {
+  if (!todayWindows.length) {
     const nextDate = getNextOpenDate(addDays(todayValue, 1))
+    const [nextWindow] = getServiceWindowsForDate(nextDate)
+
     return {
+      ...nextWindow,
       date: nextDate,
       mode: 'next',
-      ...getFirstServiceWindow(nextDate),
     }
   }
 
-  const specialSchedule = getSpecialSchedule(todayValue)
-  if (specialSchedule?.type === 'special_open') {
-    const specialWindow = getFirstServiceWindow(todayValue)
-    const specialStart = toMinutes(specialWindow.start)
-    const specialEnd = toMinutes(specialWindow.end)
+  const currentWindow = todayWindows.find((window) => {
+    const start = toMinutes(window.start)
+    const end = toMinutes(window.end)
+    return start !== null && end !== null && currentMinutes >= start && currentMinutes <= end
+  })
 
-    if (currentMinutes >= specialStart && currentMinutes <= specialEnd) {
-      return { date: todayValue, mode: 'current', ...specialWindow }
-    }
-
-    if (currentMinutes < specialStart) {
-      return { date: todayValue, mode: 'next', ...specialWindow }
-    }
-
-    const nextDate = getNextOpenDate(addDays(todayValue, 1))
-    return {
-      date: nextDate,
-      mode: 'next',
-      ...getFirstServiceWindow(nextDate),
-    }
+  if (currentWindow) {
+    return { ...currentWindow, date: todayValue, mode: 'current' }
   }
 
-  const lunchStart = toMinutes(SERVICE_WINDOWS.lunch.start)
-  const lunchEnd = toMinutes(SERVICE_WINDOWS.lunch.end)
-  const dinnerWindow = getDinnerWindow(todayValue)
-  const dinnerStart = toMinutes(dinnerWindow.start)
-  const dinnerEnd = toMinutes(dinnerWindow.end)
+  const nextWindowToday = todayWindows.find((window) => {
+    const start = toMinutes(window.start)
+    return start !== null && currentMinutes < start
+  })
 
-  if (currentMinutes >= lunchStart && currentMinutes <= lunchEnd) {
-    return { key: 'lunch', date: todayValue, mode: 'current', ...SERVICE_WINDOWS.lunch }
-  }
-
-  if (currentMinutes >= dinnerStart && currentMinutes <= dinnerEnd) {
-    return { key: 'dinner', date: todayValue, mode: 'current', ...dinnerWindow }
-  }
-
-  if (currentMinutes < lunchStart) {
-    return { key: 'lunch', date: todayValue, mode: 'next', ...SERVICE_WINDOWS.lunch }
-  }
-
-  if (currentMinutes < dinnerStart) {
-    return { key: 'dinner', date: todayValue, mode: 'next', ...dinnerWindow }
+  if (nextWindowToday) {
+    return { ...nextWindowToday, date: todayValue, mode: 'next' }
   }
 
   const nextDate = getNextOpenDate(addDays(todayValue, 1))
+  const [nextWindow] = getServiceWindowsForDate(nextDate)
+
   return {
+    ...nextWindow,
     date: nextDate,
     mode: 'next',
-    ...getFirstServiceWindow(nextDate),
   }
 }
 
