@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { supabase } from '../../lib/supabaseClient.js'
+import { getSpecialSchedule, isClosedReservationDate } from '../../lib/scheduleExceptions.js'
 import '../../styles/current-service-sheet.css'
 
 const TABLE_NUMBERS = Array.from({ length: 16 }, (_, index) => String(index + 1))
-const OPEN_DAYS = [0, 1, 4, 5, 6]
 const ACTIVE_RESERVATION_STATUSES = ['pending', 'confirmed']
 
 const SERVICE_WINDOWS = {
@@ -42,7 +42,23 @@ function addDays(dateValue, days) {
 }
 
 function isOpenDate(dateValue) {
-  return OPEN_DAYS.includes(getDateFromValue(dateValue).getDay())
+  return !isClosedReservationDate(dateValue)
+}
+
+function getFirstServiceWindow(dateValue) {
+  const specialSchedule = getSpecialSchedule(dateValue)
+
+  if (specialSchedule?.type === 'special_open') {
+    return {
+      key: 'lunch',
+      label: 'Especial',
+      title: specialSchedule.label || 'Horario especial',
+      start: specialSchedule.opens,
+      end: specialSchedule.closes,
+    }
+  }
+
+  return { key: 'lunch', ...SERVICE_WINDOWS.lunch }
 }
 
 function getDinnerWindow(dateValue) {
@@ -73,20 +89,43 @@ function toMinutes(timeValue) {
 function getServiceInfo(now = new Date()) {
   const todayValue = getDateValue(now)
   const currentMinutes = now.getHours() * 60 + now.getMinutes()
+
+  if (!isOpenDate(todayValue)) {
+    const nextDate = getNextOpenDate(addDays(todayValue, 1))
+    return {
+      date: nextDate,
+      mode: 'next',
+      ...getFirstServiceWindow(nextDate),
+    }
+  }
+
+  const specialSchedule = getSpecialSchedule(todayValue)
+  if (specialSchedule?.type === 'special_open') {
+    const specialWindow = getFirstServiceWindow(todayValue)
+    const specialStart = toMinutes(specialWindow.start)
+    const specialEnd = toMinutes(specialWindow.end)
+
+    if (currentMinutes >= specialStart && currentMinutes <= specialEnd) {
+      return { date: todayValue, mode: 'current', ...specialWindow }
+    }
+
+    if (currentMinutes < specialStart) {
+      return { date: todayValue, mode: 'next', ...specialWindow }
+    }
+
+    const nextDate = getNextOpenDate(addDays(todayValue, 1))
+    return {
+      date: nextDate,
+      mode: 'next',
+      ...getFirstServiceWindow(nextDate),
+    }
+  }
+
   const lunchStart = toMinutes(SERVICE_WINDOWS.lunch.start)
   const lunchEnd = toMinutes(SERVICE_WINDOWS.lunch.end)
   const dinnerWindow = getDinnerWindow(todayValue)
   const dinnerStart = toMinutes(dinnerWindow.start)
   const dinnerEnd = toMinutes(dinnerWindow.end)
-
-  if (!isOpenDate(todayValue)) {
-    return {
-      key: 'lunch',
-      date: getNextOpenDate(addDays(todayValue, 1)),
-      mode: 'next',
-      ...SERVICE_WINDOWS.lunch,
-    }
-  }
 
   if (currentMinutes >= lunchStart && currentMinutes <= lunchEnd) {
     return { key: 'lunch', date: todayValue, mode: 'current', ...SERVICE_WINDOWS.lunch }
@@ -104,11 +143,11 @@ function getServiceInfo(now = new Date()) {
     return { key: 'dinner', date: todayValue, mode: 'next', ...dinnerWindow }
   }
 
+  const nextDate = getNextOpenDate(addDays(todayValue, 1))
   return {
-    key: 'lunch',
-    date: getNextOpenDate(addDays(todayValue, 1)),
+    date: nextDate,
     mode: 'next',
-    ...SERVICE_WINDOWS.lunch,
+    ...getFirstServiceWindow(nextDate),
   }
 }
 
