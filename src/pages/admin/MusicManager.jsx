@@ -42,6 +42,10 @@ function isBirthdayTrack(track) {
   )
 }
 
+function isThanksgivingTrack(track) {
+  return String(track?.mood || '').trim().toLowerCase() === 'thanksgiving'
+}
+
 function shuffleIndexes(indexes) {
   const shuffled = [...indexes]
 
@@ -69,6 +73,7 @@ export default function MusicManager({ setCurrentPage }) {
   const makeupGainRef = useRef(null)
   const shuffleQueueRef = useRef([])
   const [tracks, setTracks] = useState([])
+  const [selectedPlaylist, setSelectedPlaylist] = useState('italian')
   const [currentIndex, setCurrentIndex] = useState(0)
   const [specialTrack, setSpecialTrack] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -79,9 +84,14 @@ export default function MusicManager({ setCurrentPage }) {
   const [errorMessage, setErrorMessage] = useState('')
   const [playerMessage, setPlayerMessage] = useState('')
 
-  const regularTracks = useMemo(
-    () => tracks.filter((track) => !isBirthdayTrack(track)),
-    [tracks]
+  const playlistTracks = useMemo(
+    () => tracks.filter((track) => {
+      if (isBirthdayTrack(track)) return false
+      return selectedPlaylist === 'thanksgiving'
+        ? isThanksgivingTrack(track)
+        : !isThanksgivingTrack(track)
+    }),
+    [tracks, selectedPlaylist]
   )
 
   const birthdayTrack = useMemo(
@@ -90,8 +100,8 @@ export default function MusicManager({ setCurrentPage }) {
   )
 
   const currentTrack = useMemo(
-    () => specialTrack || regularTracks[currentIndex] || null,
-    [specialTrack, regularTracks, currentIndex]
+    () => specialTrack || playlistTracks[currentIndex] || null,
+    [specialTrack, playlistTracks, currentIndex]
   )
 
   const getNextShuffleIndex = (trackCount, activeIndex) => {
@@ -223,15 +233,15 @@ export default function MusicManager({ setCurrentPage }) {
   }, [volume])
 
   useEffect(() => {
-    if (!regularTracks.length || currentIndex <= regularTracks.length - 1) return
+    if (!playlistTracks.length || currentIndex <= playlistTracks.length - 1) return
 
     setCurrentIndex(0)
     shuffleQueueRef.current = []
-  }, [currentIndex, regularTracks.length])
+  }, [currentIndex, playlistTracks.length])
 
   useEffect(() => {
     shuffleQueueRef.current = []
-  }, [regularTracks.length])
+  }, [playlistTracks.length])
 
   useEffect(() => {
     if (!audioSourceRef.current) return
@@ -296,11 +306,27 @@ export default function MusicManager({ setCurrentPage }) {
     setPlayerMessage('')
   }
 
+  const selectPlaylist = (playlist) => {
+    if (playlist === selectedPlaylist) return
+
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current.currentTime = 0
+    }
+
+    setSelectedPlaylist(playlist)
+    setCurrentIndex(0)
+    setSpecialTrack(null)
+    setIsPlaying(false)
+    setPlayerMessage('')
+    shuffleQueueRef.current = []
+  }
+
   const toggleShuffle = () => {
     setSpecialTrack(null)
     setIsShuffleEnabled((enabled) => {
       const nextValue = !enabled
-      shuffleQueueRef.current = nextValue ? buildShuffleQueue(regularTracks.length, currentIndex) : []
+      shuffleQueueRef.current = nextValue ? buildShuffleQueue(playlistTracks.length, currentIndex) : []
       return nextValue
     })
     setPlayerMessage('')
@@ -314,14 +340,14 @@ export default function MusicManager({ setCurrentPage }) {
   const goToPreviousTrack = () => {
     setSpecialTrack(null)
 
-    if (!regularTracks.length) {
+    if (!playlistTracks.length) {
       setIsPlaying(false)
       return
     }
 
     setCurrentIndex((index) => {
-      if (isShuffleEnabled) return getNextShuffleIndex(regularTracks.length, index)
-      return index === 0 ? regularTracks.length - 1 : index - 1
+      if (isShuffleEnabled) return getNextShuffleIndex(playlistTracks.length, index)
+      return index === 0 ? playlistTracks.length - 1 : index - 1
     })
     setPlayerMessage('')
   }
@@ -329,14 +355,14 @@ export default function MusicManager({ setCurrentPage }) {
   const goToNextTrack = () => {
     setSpecialTrack(null)
 
-    if (!regularTracks.length) {
+    if (!playlistTracks.length) {
       setIsPlaying(false)
       return
     }
 
     setCurrentIndex((index) => {
-      if (isShuffleEnabled) return getNextShuffleIndex(regularTracks.length, index)
-      return (index + 1) % regularTracks.length
+      if (isShuffleEnabled) return getNextShuffleIndex(playlistTracks.length, index)
+      return (index + 1) % playlistTracks.length
     })
     setPlayerMessage('')
   }
@@ -384,6 +410,23 @@ export default function MusicManager({ setCurrentPage }) {
 
         {errorMessage && <p className="form-error">{errorMessage}</p>}
 
+        <div className="music-extra-controls">
+          <button
+            className={selectedPlaylist === 'italian' ? 'primary-button' : 'ghost-button'}
+            onClick={() => selectPlaylist('italian')}
+            type="button"
+          >
+            🇮🇹 Playlist italiana
+          </button>
+          <button
+            className={selectedPlaylist === 'thanksgiving' ? 'primary-button' : 'ghost-button'}
+            onClick={() => selectPlaylist('thanksgiving')}
+            type="button"
+          >
+            🦃 Thanksgiving
+          </button>
+        </div>
+
         <div className="music-player-card">
           <div>
             <p className="eyebrow">{specialTrack ? 'Pista especial' : 'Pista actual'}</p>
@@ -392,13 +435,13 @@ export default function MusicManager({ setCurrentPage }) {
           </div>
 
           <div className="music-controls">
-            <button className="ghost-button" onClick={goToPreviousTrack} type="button" disabled={!regularTracks.length}>
+            <button className="ghost-button" onClick={goToPreviousTrack} type="button" disabled={!playlistTracks.length}>
               ⏮
             </button>
             <button className="primary-button" onClick={handlePlayPause} type="button" disabled={!currentTrack}>
               {isPlaying ? 'Pausar' : 'Reproducir'}
             </button>
-            <button className="ghost-button" onClick={goToNextTrack} type="button" disabled={!regularTracks.length}>
+            <button className="ghost-button" onClick={goToNextTrack} type="button" disabled={!playlistTracks.length}>
               ⏭
             </button>
           </div>
@@ -408,7 +451,7 @@ export default function MusicManager({ setCurrentPage }) {
               className={isShuffleEnabled ? 'primary-button' : 'ghost-button'}
               onClick={toggleShuffle}
               type="button"
-              disabled={!regularTracks.length}
+              disabled={!playlistTracks.length}
             >
               {isShuffleEnabled ? '🔀 Shuffle ciclo completo' : '🔀 Shuffle'}
             </button>
@@ -452,7 +495,7 @@ export default function MusicManager({ setCurrentPage }) {
         </div>
 
         <div className="music-playlist-list">
-          {regularTracks.map((track, index) => {
+          {playlistTracks.map((track, index) => {
             const isActive = currentTrack?.id === track.id
 
             return (
@@ -470,8 +513,12 @@ export default function MusicManager({ setCurrentPage }) {
             )
           })}
 
-          {!isLoading && !regularTracks.length && (
-            <p className="empty-state">No hay canciones activas en Supabase.</p>
+          {!isLoading && !playlistTracks.length && (
+            <p className="empty-state">
+              {selectedPlaylist === 'thanksgiving'
+                ? 'No hay canciones activas en la playlist Thanksgiving.'
+                : 'No hay canciones activas en la playlist italiana.'}
+            </p>
           )}
         </div>
       </div>
