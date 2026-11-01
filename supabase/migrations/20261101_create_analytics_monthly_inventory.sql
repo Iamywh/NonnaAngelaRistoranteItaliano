@@ -13,6 +13,8 @@ CREATE TABLE IF NOT EXISTS public.analytics_monthly_inventory (
   external_adjustment numeric(12,2) NOT NULL DEFAULT 0,
   valuation_basis text NOT NULL CHECK (valuation_basis IN ('gross', 'net')),
   purchases_reconciled boolean NOT NULL DEFAULT false,
+  reconciled_purchase_total numeric(12,2),
+  reconciled_purchase_count integer,
   notes text CHECK (notes IS NULL OR char_length(notes) <= 2000),
   created_by uuid NOT NULL REFERENCES auth.users(id),
   updated_by uuid NOT NULL REFERENCES auth.users(id),
@@ -65,6 +67,10 @@ DECLARE
   v_id uuid;
   v_old jsonb;
   v_new jsonb;
+  v_purchases_total numeric(12,2);
+  v_purchases_count integer;
+  v_kinds integer;
+  v_tax_mismatches integer;
 BEGIN
   IF NOT public.analytics_has_permission('analytics.write') THEN
     RAISE EXCEPTION 'Access denied';
@@ -88,6 +94,22 @@ BEGIN
     RAISE EXCEPTION 'Invalid stock valuation values';
   END IF;
 
+  IF p_purchases_reconciled THEN
+    SELECT coalesce(sum(e.amount), 0), count(*)::integer,
+           count(DISTINCT e.period_kind)::integer,
+           count(*) FILTER (WHERE e.tax_basis <> p_valuation_basis)::integer
+    INTO v_purchases_total, v_purchases_count, v_kinds, v_tax_mismatches
+    FROM public.analytics_expenses e
+    WHERE e.category = CASE WHEN p_stock_type = 'food'
+      THEN 'food_purchases' ELSE 'beverage_purchases' END
+      AND e.period_date >= p_month_start
+      AND e.period_date < (p_month_start + INTERVAL '1 month')::date;
+
+    IF v_kinds > 1 OR v_tax_mismatches > 0 THEN
+      RAISE EXCEPTION 'Purchase totals contain multiple period types or tax bases';
+    END IF;
+  END IF;
+
   SELECT to_jsonb(i) INTO v_old
   FROM public.analytics_monthly_inventory i
   WHERE i.month_start = p_month_start AND i.stock_type = p_stock_type
@@ -95,12 +117,14 @@ BEGIN
 
   INSERT INTO public.analytics_monthly_inventory (
     month_start, stock_type, opening_value, closing_value,
-    external_adjustment, valuation_basis, purchases_reconciled, notes,
+    external_adjustment, valuation_basis, purchases_reconciled,
+    reconciled_purchase_total, reconciled_purchase_count, notes,
     created_by, updated_by
   )
   VALUES (
     p_month_start, p_stock_type, p_opening_value, p_closing_value,
     p_external_adjustment, p_valuation_basis, p_purchases_reconciled,
+    v_purchases_total, v_purchases_count,
     nullif(btrim(p_notes), ''), auth.uid(), auth.uid()
   )
   ON CONFLICT (month_start, stock_type) DO UPDATE SET
@@ -109,6 +133,8 @@ BEGIN
     external_adjustment = EXCLUDED.external_adjustment,
     valuation_basis = EXCLUDED.valuation_basis,
     purchases_reconciled = EXCLUDED.purchases_reconciled,
+    reconciled_purchase_total = EXCLUDED.reconciled_purchase_total,
+    reconciled_purchase_count = EXCLUDED.reconciled_purchase_count,
     notes = EXCLUDED.notes,
     updated_by = auth.uid(),
     updated_at = now()
