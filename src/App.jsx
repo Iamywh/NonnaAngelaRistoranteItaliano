@@ -112,6 +112,7 @@ export default function App() {
     if (currentPage === 'admin-reservations') return <ReservationsDashboard setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-music') return <MusicManager setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-manual') return <ManualOperativo setCurrentPage={navigateToPage} />
+    if (currentPage === 'admin-analytics') return <Analytics />
     return <Home setCurrentPage={navigateToPage} />
   }
 
