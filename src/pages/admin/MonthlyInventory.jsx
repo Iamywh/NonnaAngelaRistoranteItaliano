@@ -16,7 +16,8 @@ const TYPES = [
 ]
 const empty = () => ({
   opening_value: '', closing_value: '', external_adjustment: '0',
-  valuation_basis: 'gross', purchases_reconciled: false, notes: ''
+  valuation_basis: 'gross', purchases_reconciled: false,
+  reconciled_purchase_total: null, reconciled_purchase_count: null, notes: ''
 })
 const dateAfterMonth = month => {
   const [year, number] = month.split('-').map(Number)
@@ -28,6 +29,8 @@ const normalize = record => ({
   external_adjustment: String(record.external_adjustment ?? 0),
   valuation_basis: record.valuation_basis || 'gross',
   purchases_reconciled: Boolean(record.purchases_reconciled),
+  reconciled_purchase_total: record.reconciled_purchase_total == null ? null : Number(record.reconciled_purchase_total),
+  reconciled_purchase_count: record.reconciled_purchase_count == null ? null : Number(record.reconciled_purchase_count),
   notes: record.notes || ''
 })
 
@@ -35,6 +38,10 @@ function InventoryCard({ type, entry, purchases, loading, saving, onChange, onSa
   const purchasesByBasis = new Set(purchases.map(item => item.tax_basis))
   const purchaseKinds = new Set(purchases.map(item => item.period_kind))
   const totalPurchases = purchases.reduce((sum, item) => sum + Number(item.amount), 0)
+  const staleReconciliation = entry.reconciled_purchase_total === null ||
+    entry.reconciled_purchase_count === null ||
+    Math.abs(Number(entry.reconciled_purchase_total) - totalPurchases) > 0.005 ||
+    Number(entry.reconciled_purchase_count) !== purchases.length
   const duplicateRisk = purchaseKinds.size > 1
   const taxMismatch = [...purchasesByBasis].some(basis => basis !== entry.valuation_basis)
   const incompleteValues = entry.opening_value === '' || entry.closing_value === ''
@@ -44,11 +51,13 @@ function InventoryCard({ type, entry, purchases, loading, saving, onChange, onSa
     + Number(entry.external_adjustment) - Number(entry.closing_value)
   const canCalculate = !loading && Boolean(entry.purchases_reconciled)
     && !incompleteValues && numeric && !duplicateRisk && !taxMismatch
+    && !staleReconciliation
     && estimated >= 0
 
   let explanation = ''
   if (loading) explanation = 'Cargando compras del período…'
   else if (!entry.purchases_reconciled) explanation = 'Compras pendientes de comprobar. Confirma todos los gastos de compras del mes antes de calcular.'
+  else if (staleReconciliation) explanation = 'Las compras han cambiado desde la última conciliación, o todavía no se ha guardado. Vuelve a comprobarlas y guarda el inventario.'
   else if (incompleteValues) explanation = 'Falta inventario inicial o final. Una casilla vacía no equivale a cero.'
   else if (duplicateRisk) explanation = 'Hay compras registradas en gastos diarios y mensuales de esta categoría. Revisa posibles duplicidades antes de calcular.'
   else if (taxMismatch) explanation = 'La base fiscal de las compras no coincide con la valoración del inventario. Regulariza los importes antes de calcular.'
@@ -139,7 +148,7 @@ export default function MonthlyInventory() {
       setError('')
       const [inventoryResult, expensesResult] = await Promise.all([
         supabase.from('analytics_monthly_inventory')
-          .select('stock_type,opening_value,closing_value,external_adjustment,valuation_basis,purchases_reconciled,notes')
+          .select('stock_type,opening_value,closing_value,external_adjustment,valuation_basis,purchases_reconciled,reconciled_purchase_total,reconciled_purchase_count,notes')
           .eq('month_start', monthStart),
         supabase.from('analytics_expenses')
           .select('period_kind,period_date,category,amount,tax_basis')
