@@ -118,6 +118,13 @@ export default function AdminDashboard({ setCurrentPage }) {
                             meta="Fornitori / prezzi / prossimo ordine"
                             onClick={() => setCurrentPage('admin-invoices')}
                         />
+                        <AdminModuleCard
+                            title="Analytics"
+                            description="Análisis económico, ingresos, gastos y rentabilidad"
+                            meta="Acceso privado · Owner / Admin"
+                            onClick={() => setCurrentPage('admin-analytics')}
+                            variant="featured"
+                        />
                     </div>
                 </div>
             </div>
