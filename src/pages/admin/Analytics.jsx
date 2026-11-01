@@ -3,6 +3,7 @@ import { supabase } from '../../lib/supabaseClient.js'
 import DailyRegister from './DailyRegister.jsx'
 import ExpensesRegister from './ExpensesRegister.jsx'
 import MonthlyInventory from './MonthlyInventory.jsx'
+import FinancialDashboard from './FinancialDashboard.jsx'
 
 export default function Analytics() {
   const [session, setSession] = useState(null)
@@ -11,7 +12,7 @@ export default function Analytics() {
   const [password, setPassword] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
-  const [activeTab, setActiveTab] = useState('daily')
+  const [activeTab, setActiveTab] = useState('dashboard')
 
   useEffect(() => {
     let active = true
@@ -103,11 +104,12 @@ export default function Analytics() {
           <h3>Control financiero</h3>
           <p>Ingresos, comensales y gastos del restaurante.</p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 16 }}>
+            <button type="button" className={activeTab === 'dashboard' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('dashboard')}>Dashboard</button>
             <button type="button" className={activeTab === 'daily' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('daily')}>Registro diario</button>
             <button type="button" className={activeTab === 'expenses' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('expenses')}>Gastos</button>
             <button type="button" className={activeTab === 'inventory' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('inventory')}>Inventario</button>
           </div>
-          {activeTab === 'daily' ? <DailyRegister /> : activeTab === 'expenses' ? <ExpensesRegister /> : <MonthlyInventory />}
+          {activeTab === 'dashboard' ? <FinancialDashboard /> : activeTab === 'daily' ? <DailyRegister /> : activeTab === 'expenses' ? <ExpensesRegister /> : <MonthlyInventory />}
           <button className="ghost-button" onClick={signOut} disabled={busy}>Cerrar sesión</button>
         </div>
       )}
