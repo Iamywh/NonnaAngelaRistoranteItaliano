@@ -69,7 +69,7 @@ export default function DailyRegister() {
     <h3>Resumen del día</h3>
     <p>Ingresos registrados: <strong>{money(revenue('lunch')+revenue('dinner'))}</strong></p>
     <p>Comensales: <strong>{covers('lunch')+covers('dinner')}</strong></p>
-    <p>Ticket medio: <strong>{covers('lunch')+covers('dinner')?money((revenue('lunch')+revenue('dinner'))/(covers('lunch')+covers('dinner')):'—'}</strong></p>
+    <p>Ticket medio: <strong>{covers('lunch')+covers('dinner')?money((revenue('lunch')+revenue('dinner'))/(covers('lunch')+covers('dinner'))):'—'}</strong></p>
     {services.lunch.tax_basis!==services.dinner.tax_basis&&<p role="alert">Atención: importes con distinta base fiscal. El total combina bruto y neto; no utilizar para cierres contables.</p>}
     <label>Notas del día <textarea value={notes} disabled={saving||status==='finalized'} onChange={e=>setNotes(e.target.value)} /></label>
     {error&&<p role="alert" className="manager-error">{error}</p>}
