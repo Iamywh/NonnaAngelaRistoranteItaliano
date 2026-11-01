@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabaseClient.js'
+import DailyRegister from './DailyRegister.jsx'
 
 export default function Analytics() {
   const [session, setSession] = useState(null)
@@ -96,8 +97,9 @@ export default function Analytics() {
       {access === 'allowed' && (
         <div className="dashboard-panel">
           <p className="eyebrow">Acceso autorizado</p>
-          <h3>Panel financiero en preparación</h3>
-          <p>La autenticación del propietario funciona. El registro diario, los gastos, el inventario y los gráficos se añadirán en las siguientes fases. Todavía no se muestran datos financieros.</p>
+          <h3>Control financiero</h3>
+          <p>Registro de ingresos y comensales por servicio.</p>
+          <DailyRegister />
           <button className="ghost-button" onClick={signOut} disabled={busy}>Cerrar sesión</button>
         </div>
       )}
