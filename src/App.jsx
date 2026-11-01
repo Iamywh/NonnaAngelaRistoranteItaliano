@@ -13,6 +13,7 @@ import Invoices from './pages/admin/Invoices.jsx'
 import ReservationsDashboard from './pages/admin/ReservationsDashboard.jsx'
 import MusicManager from './pages/admin/MusicManager.jsx'
 import ManualOperativo from './pages/admin/ManualOperativo.jsx'
+import Analytics from './pages/admin/Analytics.jsx'
 import VirtualAgent from './components/VirtualAgent.jsx'
 import Footer from './components/Footer.jsx'
 import CookieConsent from './components/CookieConsent.jsx'
@@ -32,7 +33,8 @@ const pagePaths = {
   'admin-invoices': '/manager/invoices',
   'admin-reservations': '/manager/reservas',
   'admin-music': '/manager/music',
-  'admin-manual': '/manager/manual-operativo'
+  'admin-manual': '/manager/manual-operativo',
+  'admin-analytics': '/manager/analytics'
 }
 
 const adminPages = new Set([
@@ -44,7 +46,8 @@ const adminPages = new Set([
   'admin-invoices',
   'admin-reservations',
   'admin-music',
-  'admin-manual'
+  'admin-manual',
+  'admin-analytics'
 ])
 
 function normalizePathname(pathname) {
