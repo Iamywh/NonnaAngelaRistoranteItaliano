@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabaseClient.js'
 import { historyCsvHeader, parseHistoryCsv, validateHistoryRow } from '../../lib/analyticsPlanning.mjs'
+import { validateMonthlyTargets } from '../../lib/analyticsTargetsValidation.mjs'
 
 const currentMonth = () => new Intl.DateTimeFormat('en-CA', {
   timeZone: 'Atlantic/Canary', year: 'numeric', month: '2-digit'
@@ -86,7 +87,8 @@ export function HistoryRegister() {
   }
   const saveSingle = event => {
     event.preventDefault()
-    const parsed = validateHistoryRow(form)
+    // Manual entries accept the local decimal comma; CSV keeps its explicit dot-decimal format.
+    const parsed = validateHistoryRow({ ...form, revenue: String(form.revenue).trim().replace(',', '.') })
     if (parsed.errors.length) { setError(parsed.errors.join('; ')); return }
     importRows([parsed.value])
   }
@@ -123,6 +125,7 @@ export function HistoryRegister() {
       <p>Introduce el total completo del mes tomado de caja, informes o contabilidad.
         Si es aproximado, márcalo como estimado. Nunca añadiremos este importe
         a las ventas registradas día a día.</p>
+      <p>Entrada manual: admite coma o punto decimal. Los comensales deben ser enteros.</p>
       <form onSubmit={saveSingle} style={{ display: 'grid', gap: 12 }}>
         <div style={historicalInputStyle}>
           <label>Mes
@@ -130,11 +133,11 @@ export function HistoryRegister() {
               onChange={e => update('month', e.target.value)} />
           </label>
           <label>Facturación del mes (€)
-            <input required type="number" min="0" step="0.01" value={form.revenue}
+            <input required type="text" inputMode="decimal" value={form.revenue}
               disabled={saving} onChange={e => update('revenue', e.target.value)} />
           </label>
           <label>Comensales (opcional)
-            <input type="number" min="0" step="1" value={form.covers} disabled={saving}
+            <input type="text" inputMode="numeric" value={form.covers} disabled={saving}
               onChange={e => update('covers', e.target.value)} />
           </label>
           <BasisSelector value={form.tax_basis} disabled={saving}
@@ -228,6 +231,7 @@ export function MonthlyGoals() {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [revision, setRevision] = useState(0)
+  const [fieldErrors, setFieldErrors] = useState({})
 
   useEffect(() => {
     let active = true
@@ -236,6 +240,7 @@ export function MonthlyGoals() {
       setLoading(true)
       setError('')
       setMessage('')
+      setFieldErrors({})
       const { data, error: readError } = await supabase.from('analytics_monthly_targets')
         .select('month_start,revenue_target,covers_target,ticket_target,expense_ceiling,food_cost_ceiling_pct,beverage_cost_ceiling_pct,revenue_basis,expense_basis,notes')
         .eq('month_start', month + '-01').maybeSingle()
@@ -249,28 +254,29 @@ export function MonthlyGoals() {
     return () => { active = false }
   }, [month, revision])
 
+  const changeGoal = (key, value) => {
+    setForm(previous => ({ ...previous, [key]: value }))
+    setFieldErrors(previous => ({ ...previous, [key]: undefined }))
+    setError('')
+    setMessage('')
+  }
+
   const save = async event => {
     event.preventDefault()
-    setError(''); setMessage('')
-    const values = Object.fromEntries(goalFields.map(([key]) => [key, form[key].trim()]))
-    const nonEmpty = Object.values(values).filter(value => value !== '')
-    const invalid = Object.entries(values).some(([key, value]) =>
-      value !== '' && (
-        !/^\d+(?:\.\d{1,2})?$/.test(value) ||
-        !Number.isFinite(Number(value)) || Number(value) > 9999999999 ||
-        (key !== 'food_cost_ceiling_pct' && key !== 'beverage_cost_ceiling_pct' && Number(value) <= 0) ||
-        ((key === 'food_cost_ceiling_pct' || key === 'beverage_cost_ceiling_pct') && Number(value) > 100) ||
-        (key === 'covers_target' && !/^\d+$/.test(value))
-      ))
-    if (!nonEmpty.length || invalid || !form.revenue_basis || !form.expense_basis) {
-      setError('Introduce al menos un objetivo positivo y bases fiscales válidas. Máximo 2 decimales.')
+    setError('')
+    setMessage('')
+    const result = validateMonthlyTargets(form, month)
+    setFieldErrors(result.errors)
+    if (!result.isValid) {
+      const first = Object.entries(result.errors)[0]
+      setError((result.labels[first[0]] ? result.labels[first[0]] + ': ' : '') + first[1])
       return
     }
+
     setSaving(true)
     const args = {
       p_month_start: month + '-01',
-      ...Object.fromEntries(Object.entries(values).map(([key, value]) =>
-        ['p_' + key, value === '' ? null : Number(value)])),
+      ...Object.fromEntries(goalFields.map(([key]) => ['p_' + key, result.values[key]])),
       p_revenue_basis: form.revenue_basis,
       p_expense_basis: form.expense_basis,
       p_notes: form.notes.trim() || null
@@ -291,27 +297,29 @@ export function MonthlyGoals() {
           onChange={e => { setLoading(true); setMonth(e.target.value) }} />
       </label>
       {loading ? <p>Cargando objetivos…</p> :
-        <form onSubmit={save} style={{ display: 'grid', gap: 12 }}>
+        <form onSubmit={save} noValidate style={{ display: 'grid', gap: 12 }}>
+          <p>Importes: puedes usar coma o punto decimal (ej.: 27000,01). Comensales: únicamente números enteros (ej.: 800).</p>
           <div style={historicalInputStyle}>
             {goalFields.map(([key, label]) => <label key={key}>{label}
-              <input type="number" step={key === 'covers_target' ? '1' : '0.01'}
-                min={key.endsWith('_pct') ? '0' : '0.01'}
-                max={key.endsWith('_pct') ? '100' : undefined}
-                value={form[key]} disabled={saving}
-                onChange={e => setForm(prev => ({ ...prev, [key]: e.target.value }))} />
+              <input type="text"
+                inputMode={key === 'covers_target' ? 'numeric' : 'decimal'}
+                autoComplete="off" value={form[key]} disabled={saving}
+                aria-invalid={Boolean(fieldErrors[key])}
+                onChange={e => changeGoal(key, e.target.value)} />
+              {fieldErrors[key] && <small role="alert" className="manager-error">{fieldErrors[key]}</small>}
             </label>)}
           </div>
           <div style={historicalInputStyle}>
             <BasisSelector label="Base fiscal de facturación" disabled={saving}
               value={form.revenue_basis}
-              onChange={value => setForm(prev => ({ ...prev, revenue_basis: value }))} />
+              onChange={value => changeGoal('revenue_basis', value)} />
             <BasisSelector label="Base fiscal de gastos" disabled={saving}
               value={form.expense_basis}
-              onChange={value => setForm(prev => ({ ...prev, expense_basis: value }))} />
+              onChange={value => changeGoal('expense_basis', value)} />
           </div>
           <label>Notas / hipótesis de estos objetivos
             <textarea rows={2} maxLength={1500} value={form.notes} disabled={saving}
-              onChange={e => setForm(prev => ({ ...prev, notes: e.target.value }))} />
+              onChange={e => changeGoal('notes', e.target.value)} />
           </label>
           {error && <p role="alert" className="manager-error">{error}</p>}
           {message && <p role="status">{message}</p>}
