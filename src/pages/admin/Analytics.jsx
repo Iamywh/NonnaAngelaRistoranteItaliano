@@ -5,6 +5,7 @@ import ExpensesRegister from './ExpensesRegister.jsx'
 import MonthlyInventory from './MonthlyInventory.jsx'
 import FinancialDashboard from './FinancialDashboard.jsx'
 import { HistoryRegister, MonthlyGoals } from './HistoryTargets.jsx'
+import Forecasting from './Forecasting.jsx'
 
 export default function Analytics() {
   const [session, setSession] = useState(null)
@@ -111,8 +112,9 @@ export default function Analytics() {
             <button type="button" className={activeTab === 'inventory' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('inventory')}>Inventario</button>
             <button type="button" className={activeTab === 'history' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('history')}>Histórico</button>
             <button type="button" className={activeTab === 'goals' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('goals')}>Objetivos</button>
+            <button type="button" className={activeTab === 'forecast' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('forecast')}>Forecasting</button>
           </div>
-          {activeTab === 'dashboard' ? <FinancialDashboard /> : activeTab === 'daily' ? <DailyRegister /> : activeTab === 'expenses' ? <ExpensesRegister /> : activeTab === 'inventory' ? <MonthlyInventory /> : activeTab === 'history' ? <HistoryRegister /> : <MonthlyGoals />}
+          {activeTab === 'dashboard' ? <FinancialDashboard /> : activeTab === 'daily' ? <DailyRegister /> : activeTab === 'expenses' ? <ExpensesRegister /> : activeTab === 'inventory' ? <MonthlyInventory /> : activeTab === 'history' ? <HistoryRegister /> : activeTab === 'goals' ? <MonthlyGoals /> : <Forecasting />}
           <button className="ghost-button" onClick={signOut} disabled={busy}>Cerrar sesión</button>
         </div>
       )}
