@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { supabase } from '../../lib/supabaseClient.js'
 import { monthlyOverview } from '../../lib/analyticsMetrics.mjs'
+import { goalProgress } from '../../lib/analyticsPlanning.mjs'
 
 const money = amount => new Intl.NumberFormat('es-ES', {
   style: 'currency', currency: 'EUR'
@@ -79,7 +80,7 @@ export default function FinancialDashboard() {
       setLoading(true)
       setError('')
       setData(null)
-      const [sales, expenses, inventories] = await Promise.all([
+      const [sales, expenses, inventories, historical, targets] = await Promise.all([
         supabase.from('analytics_daily_entries')
           .select('business_date,status,lunch_status,dinner_status,analytics_service_entries(service_type,covers,food_revenue_amount,beverage_revenue_amount,tax_basis)')
           .gte('business_date', start).lt('business_date', end)
@@ -89,10 +90,16 @@ export default function FinancialDashboard() {
           .gte('period_date', start).lt('period_date', end).limit(1000),
         supabase.from('analytics_monthly_inventory')
           .select('stock_type,month_start,opening_value,closing_value,external_adjustment,valuation_basis,purchases_reconciled,reconciled_purchase_total,reconciled_purchase_count')
-          .eq('month_start', start).limit(3)
+          .eq('month_start', start).limit(3),
+        supabase.from('analytics_monthly_history')
+          .select('month_start,revenue_total,covers,tax_basis,data_quality,source_note,notes')
+          .eq('month_start', start).maybeSingle(),
+        supabase.from('analytics_monthly_targets')
+          .select('month_start,revenue_target,covers_target,ticket_target,expense_ceiling,food_cost_ceiling_pct,beverage_cost_ceiling_pct,revenue_basis,expense_basis,notes')
+          .eq('month_start', start).maybeSingle()
       ])
       if (!alive) return
-      const failed = [sales, expenses, inventories].find(result => result.error)
+      const failed = [sales, expenses, inventories, historical, targets].find(result => result.error)
       if (failed) {
         setError('Error leyendo Analytics: ' + failed.error.message)
         setLoading(false)
@@ -105,7 +112,9 @@ export default function FinancialDashboard() {
       }
       setData({
         dayEntries: sales.data || [], expenses: expenses.data || [],
-        inventories: inventories.data || []
+        inventories: inventories.data || [],
+        historical: historical.data || null,
+        targets: targets.data || null
       })
       setLoading(false)
     }
@@ -115,6 +124,7 @@ export default function FinancialDashboard() {
 
   const metric = useMemo(() =>
     data ? monthlyOverview({ month, ...data }) : null, [month, data])
+  const plan = metric && data ? goalProgress(metric, data.historical, data.targets) : null
   const maxDaily = metric ? Math.max(1, ...metric.daily.map(day => day.total)) : 1
   const topExpense = metric ? Math.max(1, ...metric.expenseByCategory.map(row => row.amount)) : 1
 
@@ -145,6 +155,57 @@ export default function FinancialDashboard() {
         <Kpi label="Gastos registrados"
           value={metric.expenseTotal === null ? 'No comparable' : money(metric.expenseTotal)}
           detail="No equivale al coste de consumo de inventario" />
+      </div>
+      <div className="dashboard-panel">
+        <h3>Histórico mensual consolidado</h3>
+        {data.historical ? <>
+          <p><strong>{money(data.historical.revenue_total)}</strong> ·
+            {data.historical.data_quality === 'verified' ? ' Verificado' : ' Estimación'}
+            · {data.historical.tax_basis === 'gross' ? ' Bruto' : ' Neto'}
+            {data.historical.covers == null ? '' : ' · ' + integer(data.historical.covers) + ' comensales'}
+          </p>
+          <p>Fuente: {data.historical.source_note}</p>
+          <p>Este total es independiente del Registro diario. <strong>No se suman</strong> ambas fuentes.</p>
+          {metric.recordedDays > 0 && <p role="status">
+            También hay {metric.recordedDays} jornadas diarias: comprueba diferencias con
+            el total histórico antes de cerrar el mes. La comparación de objetivos
+            usa el histórico verificado si el mes diario sigue incompleto.
+          </p>}
+          {data.historical.data_quality === 'estimated' &&
+            <p role="status">Importe orientativo. No se utiliza como resultado verificado de objetivos.</p>}
+        </> : <p>No hay histórico consolidado para este mes. Puedes importarlo desde Histórico.</p>}
+      </div>
+      <div className="dashboard-panel">
+        <h3>Objetivos y avance del mes</h3>
+        {!data.targets ? <p>No hay objetivos definidos. Añádelos en la pestaña Objetivos.</p> : <>
+          <p>Base de ingresos: {data.targets.revenue_basis === 'gross' ? 'bruta' : 'neta'}.
+            Base de gastos: {data.targets.expense_basis === 'gross' ? 'bruta' : 'neta'}.</p>
+          <p>Fuente para los objetivos:
+            <strong>{plan.actual.origin === 'history' ? ' Histórico mensual verificado' :
+              plan.actual.origin === 'daily' ? ' Registro diario finalizado completo' :
+              ' Sin cierre mensual verificado'}</strong>.
+          </p>
+          {plan.comparisons.length === 0 ? <p>No hay métricas objetivo definidas.</p> :
+            <div style={{ display: 'grid', gap: 12 }}>
+              {plan.comparisons.map(item => {
+                const format = value => item.unit === 'currency' ? money(value) :
+                  item.unit === 'percentage' ? value + '%' : integer(value)
+                return <div key={item.id} style={cardStyle}>
+                  <strong>{item.label}</strong>
+                  <span>Objetivo: {format(item.goal)}</span>
+                  <span>Resultado: {item.observed == null ? 'Pendiente / no comparable' : format(item.observed)}</span>
+                  {item.progress != null && <span>
+                    {item.progress}% respecto al objetivo
+                    {item.partial ? ' · gastos registrados, todavía no cerrados' :
+                      item.achieved ? ' · objetivo cumplido' : ' · por debajo del objetivo o límite no cumplido'}
+                  </span>}
+                  {item.observed == null && <small>Hace falta cierre mensual o una base fiscal compatible.</small>}
+                </div>
+              })}
+            </div>}
+          <p>Los gastos registrados no se consideran definitivos hasta contar con un cierre de gastos.
+            No se afirma que un presupuesto esté cumplido solo por no haber superado aún el límite.</p>
+        </>}
       </div>
       <Warnings metric={metric} />
       <div className="dashboard-panel">
