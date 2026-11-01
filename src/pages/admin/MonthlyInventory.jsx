@@ -114,6 +114,7 @@ export default function MonthlyInventory() {
   const [records, setRecords] = useState({ food: empty(), beverage: empty() })
   const [purchaseRows, setPurchaseRows] = useState([])
   const [loading, setLoading] = useState(true)
+  const [loadFailure, setLoadFailure] = useState(false)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
@@ -126,6 +127,7 @@ export default function MonthlyInventory() {
   }), [purchaseRows])
   useEffect(() => {
     if (!monthStart) {
+      setLoadFailure(true)
       setLoading(false)
       setError('Selecciona un mes válido.')
       return
@@ -133,8 +135,8 @@ export default function MonthlyInventory() {
     let active = true
     const load = async () => {
       setLoading(true)
+      setLoadFailure(false)
       setError('')
-      setMessage('')
       const [inventoryResult, expensesResult] = await Promise.all([
         supabase.from('analytics_monthly_inventory')
           .select('stock_type,opening_value,closing_value,external_adjustment,valuation_basis,purchases_reconciled,notes')
@@ -147,6 +149,7 @@ export default function MonthlyInventory() {
       ])
       if (!active) return
       if (inventoryResult.error || expensesResult.error) {
+        setLoadFailure(true)
         setError('No se pudieron cargar inventarios o compras: ' +
           (inventoryResult.error?.message || expensesResult.error?.message))
         setPurchaseRows([])
@@ -159,6 +162,7 @@ export default function MonthlyInventory() {
         setRecords(next)
         setPurchaseRows(expensesResult.data || [])
         if ((expensesResult.data || []).length >= 1000) {
+          setLoadFailure(true)
           setError('Demasiados registros de compras. No confirmes inventario sin revisar la importación.')
         }
       }
@@ -220,7 +224,7 @@ export default function MonthlyInventory() {
         <p>Valor total de existencias de alimentos y bebidas, sin gestionar productos individuales.</p>
         <label>Mes
           <input type="month" value={month} disabled={saving}
-            onChange={event => setMonth(event.target.value)} />
+            onChange={event => { setLoading(true); setMonth(event.target.value); setMessage('') }} />
         </label>
         <p>El consumo estimado no es automáticamente el coste contable ni el beneficio. Se muestra solamente si existen datos coherentes y compras verificadas.</p>
         {error && <p role="alert" className="manager-error">{error}</p>}
@@ -229,7 +233,7 @@ export default function MonthlyInventory() {
       {TYPES.map(type => (
         <InventoryCard key={type.key} type={type}
           entry={records[type.key]} purchases={purchases[type.key]}
-          loading={loading || Boolean(error)} saving={saving}
+          loading={loading || loadFailure} saving={saving}
           onChange={changeField} onSave={save} />
       ))}
     </div>
