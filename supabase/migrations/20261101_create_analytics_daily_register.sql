@@ -30,7 +30,9 @@ create index if not exists analytics_service_daily_idx on public.analytics_servi
 alter table public.analytics_daily_entries enable row level security;
 alter table public.analytics_service_entries enable row level security;
 revoke all on public.analytics_daily_entries, public.analytics_service_entries from public, anon;
-grant select,insert,update on public.analytics_daily_entries, public.analytics_service_entries to authenticated;
+-- All writes must pass through the atomic security-definer RPC, preventing direct bypass of finalized records.
+revoke insert, update, delete on public.analytics_daily_entries, public.analytics_service_entries from authenticated;
+grant select on public.analytics_daily_entries, public.analytics_service_entries to authenticated;
 create policy analytics_daily_read on public.analytics_daily_entries for select to authenticated
 using ((select public.analytics_has_permission('analytics.read')));
 create policy analytics_daily_insert on public.analytics_daily_entries for insert to authenticated
