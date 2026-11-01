@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { supabase } from '../../lib/supabaseClient.js'
 import DailyRegister from './DailyRegister.jsx'
+import ExpensesRegister from './ExpensesRegister.jsx'
 
 export default function Analytics() {
   const [session, setSession] = useState(null)
@@ -9,6 +10,7 @@ export default function Analytics() {
   const [password, setPassword] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const [activeTab, setActiveTab] = useState('daily')
 
   useEffect(() => {
     let active = true
@@ -98,8 +100,12 @@ export default function Analytics() {
         <div className="dashboard-panel">
           <p className="eyebrow">Acceso autorizado</p>
           <h3>Control financiero</h3>
-          <p>Registro de ingresos y comensales por servicio.</p>
-          <DailyRegister />
+          <p>Ingresos, comensales y gastos del restaurante.</p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 16 }}>
+            <button type="button" className={activeTab === 'daily' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('daily')}>Registro diario</button>
+            <button type="button" className={activeTab === 'expenses' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('expenses')}>Gastos</button>
+          </div>
+          {activeTab === 'daily' ? <DailyRegister /> : <ExpensesRegister />}
           <button className="ghost-button" onClick={signOut} disabled={busy}>Cerrar sesión</button>
         </div>
       )}
