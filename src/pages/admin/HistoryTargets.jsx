@@ -87,7 +87,8 @@ export function HistoryRegister() {
   }
   const saveSingle = event => {
     event.preventDefault()
-    const parsed = validateHistoryRow(form)
+    // Manual entries accept the local decimal comma; CSV keeps its explicit dot-decimal format.
+    const parsed = validateHistoryRow({ ...form, revenue: String(form.revenue).trim().replace(',', '.') })
     if (parsed.errors.length) { setError(parsed.errors.join('; ')); return }
     importRows([parsed.value])
   }
@@ -124,6 +125,7 @@ export function HistoryRegister() {
       <p>Introduce el total completo del mes tomado de caja, informes o contabilidad.
         Si es aproximado, márcalo como estimado. Nunca añadiremos este importe
         a las ventas registradas día a día.</p>
+      <p>Entrada manual: admite coma o punto decimal. Los comensales deben ser enteros.</p>
       <form onSubmit={saveSingle} style={{ display: 'grid', gap: 12 }}>
         <div style={historicalInputStyle}>
           <label>Mes
@@ -131,11 +133,11 @@ export function HistoryRegister() {
               onChange={e => update('month', e.target.value)} />
           </label>
           <label>Facturación del mes (€)
-            <input required type="number" min="0" step="0.01" value={form.revenue}
+            <input required type="text" inputMode="decimal" value={form.revenue}
               disabled={saving} onChange={e => update('revenue', e.target.value)} />
           </label>
           <label>Comensales (opcional)
-            <input type="number" min="0" step="1" value={form.covers} disabled={saving}
+            <input type="text" inputMode="numeric" value={form.covers} disabled={saving}
               onChange={e => update('covers', e.target.value)} />
           </label>
           <BasisSelector value={form.tax_basis} disabled={saving}
