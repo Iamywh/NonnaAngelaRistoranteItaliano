@@ -33,6 +33,8 @@ test('changed sources are flagged without changing original stored figures',()=>
 test('closing is not claimed consistent when source evaluation fails',()=>{
   assert.equal(closeStatus(null,{source_fingerprint:'abc'}),'unavailable')
   assert.equal(closeStatus({...report,ready:false},{source_fingerprint:'abc'}),'unavailable')
+  assert.equal(closeStatus({...report,ready:false,fingerprint:'changed'},
+    {source_fingerprint:'abc'}),'changed')
 })
 test('negative or missing financial inputs cannot be interpreted as zero',()=>{
   assert.equal(managerialNetResult({...report.figures,other_expenses_net:null}),null)
