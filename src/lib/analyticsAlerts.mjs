@@ -134,7 +134,7 @@ export function buildManagementAlerts({
       push('budget','warning','Gastos registrados superan el presupuesto',
         'El total registrado (incluidas compras) supera el límite del objetivo. No sumes compras nuevamente al consumo de inventario.',
         'expenses',round(metric.expenseTotal),expenseLimit)
-    if(metric?.complete&&monthRow.status!=='closed'||(monthRow.status==='closed'&&monthRow.closureStatus==='consistent'&&metric?.complete)){
+    if(metric?.complete && (monthRow.status!=='closed' || monthRow.closureStatus==='consistent')){
       for(const [kind,label] of [['food','Alimentos'],['beverage','Bebidas']]){
         const goal=numeric(target[kind+'_cost_ceiling_pct'])
         const rate=metric?.consumption?.[kind]?.rate
