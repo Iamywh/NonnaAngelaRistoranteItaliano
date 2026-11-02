@@ -48,3 +48,20 @@
 5. Ruota/revoca immediatamente il token su BotFather se appare accidentalmente in screenshot, chat o log. Dopo un'eventuale rotazione aggiorna il secret in Supabase.
 
 **Nota:** i secrets GitHub del cron `ANALYTICS_CRON_SECRET` e `ANALYTICS_DIGEST_URL` non contengono né richiedono il token BotFather. Il token del bot resta soltanto su Supabase.
+
+## Smoke test Telegram isolato — senza attivare gli automatismi
+
+Dopo aver creato il bot Analytics su BotFather, inviato `/start` nella chat privata e salvato in **Supabase → Edge Functions → Secrets** sia `ANALYTICS_TELEGRAM_BOT_TOKEN` sia `ANALYTICS_TELEGRAM_CHAT_ID`:
+
+1. **Non attivare** `enabled` o `telegram_enabled`. In `SQL Editor` verifica che entrambi siano `false` con:
+   `SELECT enabled, telegram_enabled FROM public.analytics_notification_settings WHERE singleton=1;`
+2. Unisci questa PR dopo CI e preview. La funzione su Supabase NON si aggiorna automaticamente tramite Netlify: apri l'editor di **analytics-digest**, sostituisci il codice con `supabase/functions/analytics-digest/index.ts` da `main` e premi **Deploy updates** (in alternativa usa la CLI Supabase).
+3. Su **analytics-digest → Test** imposta **POST**, header `x-analytics-cron-secret` con lo stesso valore privato presente in Supabase, e body JSON esatto:
+   `{"mode":"telegram_test","confirm":"SEND_ONE_TEST_MESSAGE"}`
+4. Premi **Send Request** **una sola volta**. Se il bot può inviare nel chat autorizzato, restituisce:
+   `{"ok":true,"mode":"telegram_test","delivered":true,"autoNotificationsEnabled":false}`
+   e compare un messaggio sul bot. Non viene generata nessuna notifica di digest né registrato alcun dato economico.
+5. In caso di `502`, verifica se hai premuto **Start** sul bot, l'ID corretto del chat (e.g. un gruppo usa ID negativo), che il bot non sia bloccato e che i secrets siano salvati correttamente. Non reinviare in automatico: controlla il chat prima di un nuovo tentativo.
+6. Con l'interfaccia **Notificaciones** ancora spenta, prova nuovamente GitHub Actions manualmente: dovrebbe mostrare `created:0`, `delivered:0`. Solo successivamente valuta la programmazione reale.
+
+**Sicurezza:** la modalità di test è protetta dall'header secret, da una stringa di conferma esplicita e dal blocco quando gli automatismi sono attivi. Ogni invocazione valida invia **un solo** messaggio, ma non c'è un rate limit persistente: non esporre il secret, non condividere schermate degli header, e non ripetere test inutilmente. Il test non certifica che sia stato inviato un riepilogo giornaliero vero.
