@@ -33,6 +33,53 @@ Deno.serve(async request=>{
   const db=createClient(url,serviceKey,{
     auth:{persistSession:false,autoRefreshToken:false}
   })
+  // Manual connection smoke test. It is separate from scheduled digests.
+  // Requires the same server-only secret AND an explicit confirmation string.
+  // Never changes business data or notification state.
+  const body=await request.json().catch(()=>({}))
+  if(body?.mode!==undefined && body.mode!=='telegram_test')
+    return json({ok:false,error:'Unknown mode'},400)
+  if(body?.mode==='telegram_test'){
+    if(body.confirm!=='SEND_ONE_TEST_MESSAGE')
+      return json({ok:false,error:'Explicit test confirmation required'},400)
+    const {data:settings,error:settingsError}=await db
+      .from('analytics_notification_settings')
+      .select('enabled,telegram_enabled')
+      .eq('singleton',1).maybeSingle()
+    if(settingsError||!settings)
+      return json({ok:false,error:'Notification settings unavailable'},503)
+    if(settings.enabled||settings.telegram_enabled)
+      return json({ok:false,error:'Disable automated notifications before testing Telegram'},409)
+
+    const token=Deno.env.get('ANALYTICS_TELEGRAM_BOT_TOKEN')||''
+    const chat=Deno.env.get('ANALYTICS_TELEGRAM_CHAT_ID')||''
+    if(!token||!chat)
+      return json({ok:false,error:'Dedicated Analytics Telegram secrets missing'},503)
+    if(token===Deno.env.get('TELEGRAM_BOT_TOKEN'))
+      return json({ok:false,error:'Analytics bot must differ from reservations bot'},503)
+    if(!/^-?[0-9]{4,20}$/.test(chat))
+      return json({ok:false,error:'Invalid Analytics chat ID'},422)
+    try{
+      const response=await fetch('https://api.telegram.org/bot'+token+'/sendMessage',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          chat_id:chat,
+          text:'✅ Nonna Angela Analytics — mensaje de prueba.\n' +
+            'Conexión Supabase → Telegram verificada.\n' +
+            'Las notificaciones automáticas siguen desactivadas.',
+          disable_web_page_preview:true
+        }),
+        signal:AbortSignal.timeout(10000)
+      })
+      const outcome=await response.json().catch(()=>({}))
+      if(!response.ok||outcome?.ok!==true)
+        return json({ok:false,error:'Telegram rejected test message',telegramHttpStatus:response.status},502)
+      return json({ok:true,mode:'telegram_test',delivered:true,autoNotificationsEnabled:false})
+    }catch{
+      return json({ok:false,error:'Telegram connection failed'},502)
+    }
+  }
   const clock=canaryDate(new Date())
   const cadence=clock.monday?['daily','weekly']:['daily']
   let created=0,skipped=0,delivered=0,deliveryFailed=0
