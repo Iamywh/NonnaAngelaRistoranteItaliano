@@ -102,6 +102,17 @@ test('modified closure sources create audit warning; snapshot amount unchanged',
  assert.equal(m.closureStatus,'changed')
  assert.ok(m.warnings.some(w=>w.includes('Fuentes modificadas')))
 })
+test('stale closed snapshots remain visible but are excluded from consolidated verified totals',()=>{
+ const result=buildAnalyticsReport({
+  months:['2026-09','2026-10'],
+  closures:[closed('2026-09',16000),closed('2026-10',20000)],
+  closeChecks:{'2026-09-01':'consistent','2026-10-01':'changed'}
+ })
+ assert.equal(result.months[1].revenue,20000)
+ assert.equal(result.months[1].status,'closed')
+ assert.equal(result.summary.revenueTotal,null)
+ assert.equal(result.summary.fullyVerified,false)
+})
 test('xlsx is an actual ZIP based Excel workbook with expected 4 sheets',()=>{
  const result=prepare({history:[history('2026-10',22000)]})
  const bytes=createAnalyticsXlsx(result)
