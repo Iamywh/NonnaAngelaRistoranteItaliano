@@ -140,7 +140,7 @@ export default function ManagementAlerts({onNavigate}){
     {thresholds.map(([key,label])=><label key={key}>{label}
      <input type="number" inputMode="numeric" min="1" max="100" step="1"
       value={rules[key]} onChange={e=>setRules(old=>({
-       ...old,[key]:e.target.value===''?NaN:Number(e.target.value)
+       ...old,[key]:e.target.value===''?'':Number(e.target.value)
       }))}/>
     </label>)}
    </div>
