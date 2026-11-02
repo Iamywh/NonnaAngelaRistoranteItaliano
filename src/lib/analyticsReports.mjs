@@ -37,7 +37,7 @@ const warningsFor=(item,metric,history,closureStatus)=>{
   if(metric.expenseMixed)notes.push('Gastos brutos y netos: no sumar sin conciliacion.')
   if(metric.overlappingExpenseCategories.length)notes.push(
     'Posibles duplicidades de gastos diarios/mensuales: '+metric.overlappingExpenseCategories.join(', ')+'.')
-  if(history&&metric.recordedDays>0&&item.status!=='closed')notes.push(
+  if(history&&metric.recordedDays>0)notes.push(
     'Hay Historico y Registro diario del mismo mes: no se sumaron.')
   return notes
 }
