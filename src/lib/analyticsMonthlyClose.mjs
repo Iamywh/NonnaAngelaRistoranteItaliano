@@ -2,8 +2,9 @@
 const requiredChecks=['sales','expenses','inventory','igic','scope']
 export function closeStatus(report,closure) {
   if(!closure)return 'not-closed'
-  if(!report || typeof report.fingerprint!=='string' || !report.ready)return 'unavailable'
-  return report.fingerprint===closure.source_fingerprint?'consistent':'changed'
+  if(!report || typeof report.fingerprint!=='string')return 'unavailable'
+  if(report.fingerprint!==closure.source_fingerprint)return 'changed'
+  return report.ready ? 'consistent' : 'unavailable'
 }
 export function closeReadyForSubmission(report,closure,checks,note) {
   return Boolean(
