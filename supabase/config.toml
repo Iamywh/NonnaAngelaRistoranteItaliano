@@ -2,3 +2,8 @@
 # Handler requires an independent 32+ character ANALYTICS_CRON_SECRET.
 [functions.analytics-digest]
 verify_jwt = false
+
+# Telegram calls this function with its own webhook secret, not a Supabase JWT.
+# Handler rejects missing/invalid x-telegram-bot-api-secret-token and unknown users.
+[functions.analytics-telegram-entry]
+verify_jwt = false
