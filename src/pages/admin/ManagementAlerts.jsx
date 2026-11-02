@@ -174,9 +174,9 @@ export default function ManagementAlerts({onNavigate}){
     </p>
     <p>Registro diario: {model.coverage.recorded}/{model.coverage.expected??'?'} fechas
        {' · '}{model.coverage.finalized} finalizadas.
-       {' '}Copertos en jornadas finalizadas: <strong>{int(model.coverage.coversFinalized)}</strong>.
+       {' '}Comensales en jornadas finalizadas: <strong>{int(model.coverage.coversFinalized)}</strong>.
        {model.coverage.coversProvisional>0&&
-        <> Copertos provisionales (borradores): <strong>{int(model.coverage.coversProvisional)}</strong>.</>}
+        <> Comensales provisionales (borradores): <strong>{int(model.coverage.coversProvisional)}</strong>.</>}
     </p>
     <p>Los días sin registrar no cuentan como cero. Un mes en curso no se compara con
       un objetivo mensual como si ya hubiera terminado.</p>
