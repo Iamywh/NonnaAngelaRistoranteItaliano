@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Test Analytics calculations
-        run: node --test tests/analyticsMetrics.test.mjs tests/analyticsPlanning.test.mjs tests/analyticsTargetsValidation.test.mjs tests/analyticsForecast.test.mjs tests/analyticsBreakEven.test.mjs tests/analyticsMonthlyClose.test.mjs tests/analyticsReports.test.mjs tests/analyticsAlerts.test.mjs tests/analyticsDigest.test.mjs
+        run: node --test tests/analyticsMetrics.test.mjs tests/analyticsPlanning.test.mjs tests/analyticsTargetsValidation.test.mjs tests/analyticsForecast.test.mjs tests/analyticsBreakEven.test.mjs tests/analyticsMonthlyClose.test.mjs tests/analyticsReports.test.mjs tests/analyticsAlerts.test.mjs tests/analyticsDigest.test.mjs tests/analyticsTelegramIsolation.test.mjs
       - name: Verify production build
         run: npm run build
         env:

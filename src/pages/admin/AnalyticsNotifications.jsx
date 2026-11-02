@@ -127,7 +127,7 @@ export default function AnalyticsNotifications({onNavigate}){
             onChange={e=>update('telegram_enabled',e.target.checked)}/>
           Permitir Telegram a destinatario financiero autorizado (opcional)
         </label>
-        <p>Telegram usa <strong>ANALYTICS_TELEGRAM_CHAT_ID</strong> separado del chat de reservas.
+        <p>Telegram utiliza <strong>ANALYTICS_TELEGRAM_BOT_TOKEN</strong> y <strong>ANALYTICS_TELEGRAM_CHAT_ID</strong>, ambos específicos de Analytics. No se reutiliza el bot de reservas.
           Sin secrets y sin despliegue de la Edge Function, guardar estas preferencias NO
           genera envíos. Todos los mensajes requieren activación explícita.</p>
         <button type="submit" className="primary-button"
