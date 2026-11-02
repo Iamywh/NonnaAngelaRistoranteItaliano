@@ -106,11 +106,14 @@ export function buildAnalyticsReport({
     item.warnings=warningsFor(item,metric,h,closureStatus)
     return item
   })
-  const validated=results.filter(m=>['closed','verified','complete'].includes(m.status))
+  // A saved close remains visible as a historical snapshot; a changed or unverified
+  // fingerprint must never be counted in a trusted multi-month subtotal.
+  const validated=results.filter(m=>['closed','verified','complete'].includes(m.status) &&
+    (m.status!=='closed'||m.closureStatus==='consistent'))
   const revenueBases=[...new Set(validated.filter(m=>m.revenue!==null).map(m=>m.basis))]
   const summedRevenue=revenueBases.length===1 && validated.length===results.length
     ?round(validated.reduce((sum,m)=>sum+m.revenue,0)):null
-  const partialNotes=results.some(m=>!['closed','verified','complete'].includes(m.status))
+  const partialNotes=validated.length!==results.length
   const summaries={
     fullyVerified:!partialNotes && revenueBases.length===1,
     revenueTotal:summedRevenue,revenueBasis:revenueBases.length===1?revenueBases[0]:null,
