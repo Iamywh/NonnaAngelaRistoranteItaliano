@@ -8,6 +8,7 @@ import { HistoryRegister, MonthlyGoals } from './HistoryTargets.jsx'
 import Forecasting from './Forecasting.jsx'
 import BreakEven from './BreakEven.jsx'
 import MonthlyClose from './MonthlyClose.jsx'
+import AnalyticsReports from './AnalyticsReports.jsx'
 
 export default function Analytics() {
   const [session, setSession] = useState(null)
@@ -117,8 +118,9 @@ export default function Analytics() {
             <button type="button" className={activeTab === 'forecast' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('forecast')}>Forecasting</button>
             <button type="button" className={activeTab === 'break-even' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('break-even')}>Break-even</button>
             <button type="button" className={activeTab === 'closing' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('closing')}>Cierre mensual</button>
+            <button type="button" className={activeTab === 'reports' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('reports')}>Reportes</button>
           </div>
-          {activeTab === 'dashboard' ? <FinancialDashboard /> : activeTab === 'daily' ? <DailyRegister /> : activeTab === 'expenses' ? <ExpensesRegister /> : activeTab === 'inventory' ? <MonthlyInventory /> : activeTab === 'history' ? <HistoryRegister /> : activeTab === 'goals' ? <MonthlyGoals /> : activeTab === 'forecast' ? <Forecasting /> : activeTab === 'break-even' ? <BreakEven /> : <MonthlyClose />}
+          {activeTab === 'dashboard' ? <FinancialDashboard /> : activeTab === 'daily' ? <DailyRegister /> : activeTab === 'expenses' ? <ExpensesRegister /> : activeTab === 'inventory' ? <MonthlyInventory /> : activeTab === 'history' ? <HistoryRegister /> : activeTab === 'goals' ? <MonthlyGoals /> : activeTab === 'forecast' ? <Forecasting /> : activeTab === 'break-even' ? <BreakEven /> : activeTab === 'closing' ? <MonthlyClose /> : <AnalyticsReports />}
           <button className="ghost-button" onClick={signOut} disabled={busy}>Cerrar sesión</button>
         </div>
       )}
