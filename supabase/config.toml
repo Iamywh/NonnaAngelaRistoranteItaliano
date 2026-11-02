@@ -1,0 +1,4 @@
+# The analytics digest is invoked by an external scheduler, not by a user JWT.
+# Handler requires an independent 32+ character ANALYTICS_CRON_SECRET.
+[functions.analytics-digest]
+verify_jwt = false
