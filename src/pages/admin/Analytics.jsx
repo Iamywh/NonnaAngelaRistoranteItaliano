@@ -10,6 +10,7 @@ import BreakEven from './BreakEven.jsx'
 import MonthlyClose from './MonthlyClose.jsx'
 import AnalyticsReports from './AnalyticsReports.jsx'
 import ManagementAlerts from './ManagementAlerts.jsx'
+import AnalyticsNotifications from './AnalyticsNotifications.jsx'
 
 export default function Analytics() {
   const [session, setSession] = useState(null)
@@ -121,8 +122,9 @@ export default function Analytics() {
             <button type="button" className={activeTab === 'closing' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('closing')}>Cierre mensual</button>
             <button type="button" className={activeTab === 'reports' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('reports')}>Reportes</button>
             <button type="button" className={activeTab === 'alerts' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('alerts')}>Alertas</button>
+            <button type="button" className={activeTab === 'notifications' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('notifications')}>Notificaciones</button>
           </div>
-          {activeTab === 'dashboard' ? <FinancialDashboard /> : activeTab === 'daily' ? <DailyRegister /> : activeTab === 'expenses' ? <ExpensesRegister /> : activeTab === 'inventory' ? <MonthlyInventory /> : activeTab === 'history' ? <HistoryRegister /> : activeTab === 'goals' ? <MonthlyGoals /> : activeTab === 'forecast' ? <Forecasting /> : activeTab === 'break-even' ? <BreakEven /> : activeTab === 'closing' ? <MonthlyClose /> : activeTab === 'reports' ? <AnalyticsReports /> : <ManagementAlerts onNavigate={setActiveTab} />}
+          {activeTab === 'dashboard' ? <FinancialDashboard /> : activeTab === 'daily' ? <DailyRegister /> : activeTab === 'expenses' ? <ExpensesRegister /> : activeTab === 'inventory' ? <MonthlyInventory /> : activeTab === 'history' ? <HistoryRegister /> : activeTab === 'goals' ? <MonthlyGoals /> : activeTab === 'forecast' ? <Forecasting /> : activeTab === 'break-even' ? <BreakEven /> : activeTab === 'closing' ? <MonthlyClose /> : activeTab === 'reports' ? <AnalyticsReports /> : activeTab === 'alerts' ? <ManagementAlerts onNavigate={setActiveTab} /> : <AnalyticsNotifications onNavigate={setActiveTab} />}
           <button className="ghost-button" onClick={signOut} disabled={busy}>Cerrar sesión</button>
         </div>
       )}
