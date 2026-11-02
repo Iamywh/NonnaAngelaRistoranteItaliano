@@ -47,7 +47,12 @@ Deno.serve(async request=>{
       if(data.created)created++
       // Separate financial channel and explicit opt-in. Never reuse the reservation
       // chat destination as a fallback.
-      const token=Deno.env.get('TELEGRAM_BOT_TOKEN')
+      const token=Deno.env.get('ANALYTICS_TELEGRAM_BOT_TOKEN')
+      // Never use the same bot identity as the reservations channel, even
+      // if someone accidentally configures the Analytics secret incorrectly.
+      if(token && token===Deno.env.get('TELEGRAM_BOT_TOKEN')){
+        return json({ok:false,error:'Analytics Telegram bot must be different from reservations bot'},503)
+      }
       const chat=Deno.env.get('ANALYTICS_TELEGRAM_CHAT_ID')
       if(!token||!chat){
         // In-app digest is still generated; Telegram pending stays pending
