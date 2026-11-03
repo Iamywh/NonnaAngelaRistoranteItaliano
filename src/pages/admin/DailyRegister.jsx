@@ -11,6 +11,8 @@ export default function DailyRegister() {
  const [notes,setNotes] = useState('')
  const [services,setServices] = useState({lunch:blankService('lunch'),dinner:blankService('dinner')})
  const [status,setStatus] = useState('draft')
+ const [origin,setOrigin] = useState('')
+ const [refreshKey,setRefreshKey] = useState(0)
  const [loading,setLoading] = useState(true)
  const [saving,setSaving] = useState(false)
  const [message,setMessage] = useState('')
@@ -22,12 +24,21 @@ export default function DailyRegister() {
    if(!valid)return
    if(e){setError('No se pudieron cargar los datos: '+e.message);setLoading(false);return}
    setNotes(data?.notes||'');setStatus(data?.status||'draft')
+   setOrigin('')
+   if(data?.id){
+     // Origin is optional until Phase 12 migration is installed; the main register
+     // must remain usable even when the origin audit table does not exist yet.
+     const {data:telegramOrigin}=await supabase.from('analytics_telegram_entry_audit')
+       .select('id').eq('daily_entry_id',data.id).maybeSingle()
+     if(!valid)return
+     setOrigin(telegramOrigin?'telegram':'')
+   }
    setStatuses({lunch:data?.lunch_status||'open',dinner:data?.dinner_status||'open'})
    const next={lunch:blankService('lunch'),dinner:blankService('dinner')}
    for(const s of data?.analytics_service_entries||[])if(next[s.service_type])next[s.service_type]={...s,covers:String(s.covers),food_revenue_amount:String(s.food_revenue_amount),beverage_revenue_amount:String(s.beverage_revenue_amount)}
    setServices(next);setLoading(false)
   };load();return()=>{valid=false}
- },[date])
+ },[date,refreshKey])
  const setField=(type,field,value)=>setServices(prev=>({...prev,[type]:{...prev[type],[field]:value}}))
  const setServiceStatus=(type,value)=>{setStatuses(prev=>({...prev,[type]:value}));if(value==='closed')setServices(prev=>({...prev,[type]:{...prev[type],covers:'0',food_revenue_amount:'0',beverage_revenue_amount:'0'}}))}
  const save=async(finalize)=>{
@@ -61,6 +72,8 @@ export default function DailyRegister() {
   <div className="dashboard-panel"><h3>Registro diario</h3><p>Introduce los resultados de cada servicio. No se incluyen datos de reservas automáticamente.</p>
    <label>Fecha <input type="date" value={date} onChange={e=>setDate(e.target.value)} disabled={saving}/></label>
    <p>Estado: <strong>{status==='finalized'?'Finalizado':'Borrador'}</strong></p>
+   {origin==='telegram'&&<p role="status">🤖 Origen: Telegram Analytics · /startentry. Verifica los importes antes de finalizar.</p>}
+   <button type="button" className="ghost-button" disabled={saving||loading} onClick={()=>setRefreshKey(n=>n+1)}>Actualizar desde Supabase</button>
   </div>
   {loading?<p>Cargando registro…</p>:<>
    {renderService('lunch','Almuerzo')}
