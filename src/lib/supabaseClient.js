@@ -54,34 +54,34 @@ function installReservationNotificationBridge(client) {
   const originalFrom = client.from.bind(client)
 
   client.from = (...args) => {
-  const tableName = args[0]
-  const builder = originalFrom(...args)
+    const tableName = args[0]
+    const builder = originalFrom(...args)
 
-  if (tableName !== 'reservations' || typeof builder.insert !== 'function') return builder
+    if (tableName !== 'reservations' || typeof builder.insert !== 'function') return builder
 
-  const originalInsert = builder.insert.bind(builder)
+    const originalInsert = builder.insert.bind(builder)
 
-  builder.insert = (values, options) => {
-    const insertedReservation = getFirstInsertedReservation(values)
-    const insertBuilder = originalInsert(values, options)
-    const originalThen = typeof insertBuilder.then === 'function' ? insertBuilder.then.bind(insertBuilder) : null
+    builder.insert = (values, options) => {
+      const insertedReservation = getFirstInsertedReservation(values)
+      const insertBuilder = originalInsert(values, options)
+      const originalThen = typeof insertBuilder.then === 'function' ? insertBuilder.then.bind(insertBuilder) : null
 
-    if (!originalThen || !shouldNotifyReservationInsert(insertedReservation)) {
+      if (!originalThen || !shouldNotifyReservationInsert(insertedReservation)) {
+        return insertBuilder
+      }
+
+      insertBuilder.then = (onFulfilled, onRejected) => originalThen((response) => {
+        if (!response?.error) {
+          notifyReservationCreated(client, insertedReservation)
+        }
+
+        return onFulfilled ? onFulfilled(response) : response
+      }, onRejected)
+
       return insertBuilder
     }
 
-    insertBuilder.then = (onFulfilled, onRejected) => originalThen((response) => {
-      if (!response?.error) {
-        notifyReservationCreated(client, insertedReservation)
-      }
-
-      return onFulfilled ? onFulfilled(response) : response
-    }, onRejected)
-
-    return insertBuilder
-  }
-
-  return builder
+    return builder
   }
 }
 
