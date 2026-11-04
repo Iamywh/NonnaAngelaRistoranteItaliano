@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { supabase } from '../lib/supabaseClient.js'
+import { publicSupabase } from '../lib/supabaseClient.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import restaurantKnowledge from '../data/bot/restaurantKnowledge.json'
 import { buildAdvancedRestaurantAnswer } from '../data/bot/advancedMenuAssistant.js'
@@ -252,8 +252,7 @@ async function getBookedGuestsForService(dateValue, timeValue, excludedReservati
   const service = getReservationService(timeValue, dateValue)
   if (!dateValue || !service) return 0
 
-  const { data, error } = await supabase
-    .from('reservations')
+  const { data, error } = await publicSupabase.from('reservations')
     .select('id, reservation_time, guests, status, reservation_status, service_status')
     .eq('reservation_date', dateValue)
 
@@ -457,8 +456,7 @@ export default function VirtualAgent() {
     const searchedPhone = phoneValue.trim()
     if (sanitizePhoneDigits(searchedPhone).length < 6) return { error: t('bot.phoneMin'), matches: [] }
 
-    const { data, error } = await supabase
-      .from('reservations')
+    const { data, error } = await publicSupabase.from('reservations')
       .select('id, customer_name, customer_phone, customer_email, reservation_date, reservation_time, guests, area_preference, notes, status, reservation_status, service_status, confirmation_channel, created_at')
       .gte('reservation_date', getTodayDateValue())
       .order('reservation_date', { ascending: true })
@@ -695,7 +693,7 @@ export default function VirtualAgent() {
         source: 'website'
       }
 
-      const { error } = await supabase.from('reservations').insert([payload])
+      const { error } = await publicSupabase.from('reservations').insert([payload])
       if (error) throw error
 
       const summary = [
@@ -750,8 +748,7 @@ export default function VirtualAgent() {
         return
       }
 
-      const { error } = await supabase
-        .from('reservations')
+      const { error } = await publicSupabase.from('reservations')
         .update({
           reservation_date: modifyForm.date,
           reservation_time: modifyForm.time,

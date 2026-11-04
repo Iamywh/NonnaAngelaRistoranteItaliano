@@ -1,4 +1,4 @@
-import { supabase } from './supabaseClient.js'
+import { publicSupabase } from './supabaseClient.js'
 import { getDayFromDateValue, getSpecialSchedule, isClosedReservationDate } from './scheduleExceptions.js'
 
 export const RESERVATION_SLOT_BLOCKS_TABLE = 'reservation_slot_blocks'
@@ -100,8 +100,7 @@ export function filterBlockedSlots(slots, blockedTimes = []) {
 export async function fetchBlockedReservationTimes(dateValue) {
   if (!dateValue) return []
 
-  const { data, error } = await supabase
-    .from(RESERVATION_SLOT_BLOCKS_TABLE)
+  const { data, error } = await publicSupabase.from(RESERVATION_SLOT_BLOCKS_TABLE)
     .select('reservation_time')
     .eq('reservation_date', dateValue)
 

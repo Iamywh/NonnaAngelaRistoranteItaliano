@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { supabase } from '../lib/supabaseClient.js'
+import { publicSupabase } from '../lib/supabaseClient.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { useBlockedReservationSlots } from '../hooks/useBlockedReservationSlots.js'
 import { filterBlockedSlots } from '../lib/reservationSlotBlocks.js'
@@ -171,8 +171,7 @@ async function getBookedGuestsForService(dateValue, timeValue) {
   const service = getReservationService(timeValue, dateValue)
   if (!dateValue || !service) return 0
 
-  const { data, error } = await supabase
-    .from('reservations')
+  const { data, error } = await publicSupabase.from('reservations')
     .select('reservation_time, guests, status, reservation_status, service_status')
     .eq('reservation_date', dateValue)
 
@@ -353,7 +352,7 @@ export default function Locale() {
       source: 'website',
     }
 
-    const { error: insertError } = await supabase.from('reservations').insert([payload])
+    const { error: insertError } = await publicSupabase.from('reservations').insert([payload])
 
     if (insertError) {
       setError(t('locale.submitError'))

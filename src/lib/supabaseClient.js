@@ -9,6 +9,19 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
+// Public booking requests must not inherit a staff member's Analytics login.
+// Supabase RLS allows website reservations to role "anon" only.
+// A second client without a persisted session consistently uses the public
+// role, even when Analytics is signed in elsewhere in the same browser.
+export const publicSupabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false,
+    detectSessionInUrl: false,
+    storageKey: 'nonna-angela-public-reservations'
+  }
+})
+
 function getFirstInsertedReservation(values) {
   if (Array.isArray(values)) return values[0] || null
   if (values && typeof values === 'object') return values
@@ -23,9 +36,9 @@ function shouldNotifyReservationInsert(reservation) {
   return true
 }
 
-async function notifyReservationCreated(reservation) {
+async function notifyReservationCreated(client, reservation) {
   try {
-    const { error } = await supabase.functions.invoke('reservation-telegram-notify', {
+    const { error } = await client.functions.invoke('reservation-telegram-notify', {
       body: { reservation }
     })
 
@@ -37,35 +50,41 @@ async function notifyReservationCreated(reservation) {
   }
 }
 
-const originalFrom = supabase.from.bind(supabase)
+function installReservationNotificationBridge(client) {
+  const originalFrom = client.from.bind(client)
 
-supabase.from = (...args) => {
-  const tableName = args[0]
-  const builder = originalFrom(...args)
+  client.from = (...args) => {
+    const tableName = args[0]
+    const builder = originalFrom(...args)
 
-  if (tableName !== 'reservations' || typeof builder.insert !== 'function') return builder
+    if (tableName !== 'reservations' || typeof builder.insert !== 'function') return builder
 
-  const originalInsert = builder.insert.bind(builder)
+    const originalInsert = builder.insert.bind(builder)
 
-  builder.insert = (values, options) => {
-    const insertedReservation = getFirstInsertedReservation(values)
-    const insertBuilder = originalInsert(values, options)
-    const originalThen = typeof insertBuilder.then === 'function' ? insertBuilder.then.bind(insertBuilder) : null
+    builder.insert = (values, options) => {
+      const insertedReservation = getFirstInsertedReservation(values)
+      const insertBuilder = originalInsert(values, options)
+      const originalThen = typeof insertBuilder.then === 'function' ? insertBuilder.then.bind(insertBuilder) : null
 
-    if (!originalThen || !shouldNotifyReservationInsert(insertedReservation)) {
+      if (!originalThen || !shouldNotifyReservationInsert(insertedReservation)) {
+        return insertBuilder
+      }
+
+      insertBuilder.then = (onFulfilled, onRejected) => originalThen((response) => {
+        if (!response?.error) {
+          notifyReservationCreated(client, insertedReservation)
+        }
+
+        return onFulfilled ? onFulfilled(response) : response
+      }, onRejected)
+
       return insertBuilder
     }
 
-    insertBuilder.then = (onFulfilled, onRejected) => originalThen((response) => {
-      if (!response?.error) {
-        notifyReservationCreated(insertedReservation)
-      }
-
-      return onFulfilled ? onFulfilled(response) : response
-    }, onRejected)
-
-    return insertBuilder
+    return builder
   }
-
-  return builder
 }
+
+// Preserve existing Telegram notification behavior for both clients.
+installReservationNotificationBridge(supabase)
+installReservationNotificationBridge(publicSupabase)
