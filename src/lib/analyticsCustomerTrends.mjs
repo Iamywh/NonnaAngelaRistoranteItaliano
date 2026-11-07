@@ -97,8 +97,21 @@ export function buildCustomerTrends(rawMonths,todayMonth){
   totals.marked=totals.arrived+totals.no_show
   const services=asRows(months,'service','service','active_guests',['lunch','dinner','outside'])
     .map(row=>({...row,label:SERVICE_LABELS[row.id],share:fraction(row.value,totals.active_guests)}))
+  // Normalize weekday comparisons by the number of occurrences in the calendar.
+  // This still does NOT assume the restaurant was open on those days.
+  const weekdayOccurrences=new Map([1,2,3,4,5,6,7].map(day=>[day,0]))
+  for(const model of months){
+    const [y,m]=model.month.split('-').map(Number)
+    for(let d=1;d<=daysInMonth(model.month);d++){
+      const weekday=new Date(Date.UTC(y,m-1,d)).getUTCDay()||7
+      weekdayOccurrences.set(weekday,weekdayOccurrences.get(weekday)+1)
+    }
+  }
   const weekdays=asRows(months,'weekdays','weekday','active_guests',[1,2,3,4,5,6,7])
-    .map(row=>({...row,label:WEEKDAYS[row.id],share:fraction(row.value,totals.active_guests)}))
+    .map(row=>({...row,label:WEEKDAYS[row.id],
+      calendarOccurrences:weekdayOccurrences.get(row.id),
+      perCalendarOccurrence:round(row.value/weekdayOccurrences.get(row.id),2),
+      share:fraction(row.value,totals.active_guests)}))
   const leads=asRows(months,'lead','bucket','requests',
     ['same_day','one_two','three_seven','eight_plus','late_entry','unknown'])
     .map(row=>({...row,label:LEAD_LABELS[row.id],share:fraction(row.value,totals.requests)}))
@@ -150,12 +163,12 @@ export function buildCustomerTrends(rawMonths,todayMonth){
           fraction(totals.cancelled,totals.requests)+'%). '+
           'Revisa horarios y motivos disponibles; no se conoce automáticamente la razón de cancelación.')
       }
-      const max=Math.max(...weekdays.map(x=>x.value))
-      const less=weekdays.filter(x=>x.value<=max*0.4)
-      if(max>=15&&less.length&&less.length<7){
+      const max=Math.max(...weekdays.map(x=>x.perCalendarOccurrence))
+      const less=weekdays.filter(x=>x.perCalendarOccurrence<=max*0.4)
+      if(max>=0.8&&less.length&&less.length<7){
         add('opportunity','Días de demanda comparativamente baja',
           less.map(x=>x.label).join(', ')+
-          ' registran menos plazas solicitadas que los días de mayor demanda. '+
+          ' muestran menos plazas solicitadas por fecha calendario de ese día de semana. '+
           'Antes de invertir, comprueba cuáles son días y turnos realmente abiertos.')
       }
     } else {
