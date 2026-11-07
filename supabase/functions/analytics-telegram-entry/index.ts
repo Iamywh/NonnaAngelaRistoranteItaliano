@@ -1,6 +1,6 @@
 // Telegram webhook for PRIVATE Analytics data entry. Completely separate from reservations.
 // Authentication: Telegram webhook secret header + strict sender/chat allowlist.
-// The state machine and accounting insert are one atomic service-only PostgreSQL RPC.
+// Both daily revenue and expense-total wizards use one atomic service-only PostgreSQL RPC.
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2'
 
 function json(payload:Record<string,unknown>,status=200){
@@ -72,7 +72,7 @@ Deno.serve(async request=>{
       return json({error:'Entry processing unavailable'},503)
     }
     if(data.reply)await sendMessage(token,allowedChat,data.reply)
-    return json({ok:true,duplicate:!!data.duplicate,saved:!!data.saved_day_id})
+    return json({ok:true,duplicate:!!data.duplicate,saved:!!(data.saved_day_id||data.saved_expense_id)})
   }catch{
     // Non-2xx prompts Telegram to retry; the database receipt makes the
     // accounting write idempotent even if the first reply was delivered.
