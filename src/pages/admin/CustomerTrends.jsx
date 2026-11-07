@@ -23,8 +23,8 @@ function Stat({title,value,footnote}){
     <small style={{opacity:.8}}>{footnote}</small>
   </div>
 }
-function Distribution({title,description,items,formatter}){
-  const max=Math.max(1,...items.map(item=>item.value))
+function Distribution({title,description,items,formatter,barMetric='value'}){
+  const max=Math.max(0.00001,...items.map(item=>Number(item[barMetric])||0))
   return <div className="dashboard-panel">
     <h3>{title}</h3>
     <p>{description}</p>
@@ -35,7 +35,7 @@ function Distribution({title,description,items,formatter}){
           <strong>{integer(item.value)}{formatter&&formatter(item)}</strong>
         </div>
         <div aria-hidden="true" style={{background:'rgba(130,130,130,.2)',height:9,borderRadius:9,overflow:'hidden'}}>
-          <div style={{width:(100*item.value/max)+'%',height:'100%',
+          <div style={{width:(100*(Number(item[barMetric])||0)/max)+'%',height:'100%',
             borderRadius:9,background:'var(--accent-color,#ae885a)'}}/>
         </div>
       </div>)}
@@ -204,7 +204,7 @@ export default function CustomerTrends({onNavigate}){
           description="Plazas solicitadas activas; no es ocupación. Los horarios especiales se clasifican aparte."
           formatter={row=>row.share===null?'':' · '+pct(row.share)}/>
         <Distribution title="Demanda según día de la semana" items={model.weekdays}
-          description="Plazas solicitadas activas acumuladas; medias por fecha calendario de cada día semanal, sin suponer que se abrió."
+          barMetric="perCalendarOccurrence" description="Plazas solicitadas activas acumuladas; medias por fecha calendario de cada día semanal, sin suponer que se abrió."
           formatter={row=>' · '+decimal(row.perCalendarOccurrence)+'/fecha calendario'}/>
         <Distribution title="Anticipación de las reservas" items={model.leads}
           description="Solicitudes de todos los estados, según días entre creación y fecha reservada."
