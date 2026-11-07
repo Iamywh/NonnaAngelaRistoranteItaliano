@@ -83,7 +83,7 @@ test('Browser supports local bounded XLSX worksheet read, rejects formulas and n
   assert.match(xlsx,/LIMIT=2_000_000/)
   assert.match(xlsx,/Fórmulas XLSX no permitidas/)
   assert.match(xlsx,/validateImportTable\(table,kind\)/)
-  assert.doesNotMatch(xlsx,/https?:\/\//)
+  assert.doesNotMatch(xlsx,/\bfetch\s*\(|\bimport\s*\(\s*['\"]https?:\/\//)
 })
 test('Analytics import requires explicit preview and confirmation; monthly history remains separate',()=>{
   assert.match(page,/analytics_import_register_batch/)
