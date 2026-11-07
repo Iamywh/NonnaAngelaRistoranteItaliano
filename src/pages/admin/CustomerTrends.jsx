@@ -204,8 +204,8 @@ export default function CustomerTrends({onNavigate}){
           description="Plazas solicitadas activas; no es ocupación. Los horarios especiales se clasifican aparte."
           formatter={row=>row.share===null?'':' · '+pct(row.share)}/>
         <Distribution title="Demanda según día de la semana" items={model.weekdays}
-          description="Plazas solicitadas activas en todo el período. No descuenta los días cerrados."
-          formatter={row=>row.share===null?'':' · '+pct(row.share)}/>
+          description="Plazas solicitadas activas acumuladas; medias por fecha calendario de cada día semanal, sin suponer que se abrió."
+          formatter={row=>' · '+decimal(row.perCalendarOccurrence)+'/fecha calendario'}/>
         <Distribution title="Anticipación de las reservas" items={model.leads}
           description="Solicitudes de todos los estados, según días entre creación y fecha reservada."
           formatter={row=>row.share===null?'':' · '+pct(row.share)}/>
