@@ -30,7 +30,9 @@ test('Uses the existing private Analytics bot and a single service-only RPC', ()
 })
 
 test('Shares the receipt ID across both wizards and persists expense receipt on retry', () => {
-  assert.match(migration, /ADD COLUMN IF NOT EXISTS saved_expense_id uuid REFERENCES public\.analytics_expenses\(id\)/)
+  assert.match(migration, /ADD COLUMN IF NOT EXISTS saved_expense_id uuid;/)
+  assert.doesNotMatch(migration, /saved_expense_id uuid REFERENCES/)
+  assert.doesNotMatch(migration, /expense_id uuid NOT NULL UNIQUE REFERENCES public\.analytics_expenses/)
   assert.match(migration, /INSERT INTO public\.analytics_telegram_entry_updates\(update_id,chat_id,sender_id,reply\)/)
   assert.match(migration, /ON CONFLICT DO NOTHING/)
   assert.match(migration, /'duplicate',true/)
