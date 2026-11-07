@@ -2,14 +2,16 @@
 -- Apply once, AFTER 20261102_create_analytics_telegram_entry.sql and expenses migrations.
 -- Preserves /startentry, the existing webhook, the existing bot token and Telegram update receipts.
 -- Data model: one TOTAL per (daily/monthly, period, category), NOT individual invoices.
+-- Expense ids are deliberately NOT FK-linked in receipts/audit: the existing manager
+-- delete RPC must still be able to remove a total while preserving audit history.
 BEGIN;
 
 ALTER TABLE public.analytics_telegram_entry_updates
-  ADD COLUMN IF NOT EXISTS saved_expense_id uuid REFERENCES public.analytics_expenses(id);
+  ADD COLUMN IF NOT EXISTS saved_expense_id uuid;
 
 CREATE TABLE IF NOT EXISTS public.analytics_telegram_expense_audit (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  expense_id uuid NOT NULL UNIQUE REFERENCES public.analytics_expenses(id),
+  expense_id uuid NOT NULL UNIQUE,
   telegram_update_id bigint NOT NULL UNIQUE REFERENCES public.analytics_telegram_entry_updates(update_id),
   period_kind text NOT NULL CHECK(period_kind IN ('daily','monthly')),
   period_date date NOT NULL,
