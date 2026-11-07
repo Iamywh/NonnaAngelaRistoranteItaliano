@@ -70,7 +70,7 @@ BEGIN
     END IF;
     v_note:=coalesce(v_row->>'notes','');
     IF char_length(v_note)>2000 THEN RAISE EXCEPTION 'Row %: note too long',v_idx; END IF;
-    IF v_row->>'date' !~ '^([0-9]{4})-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])$' THEN
+    IF v_row->>'date' IS NULL OR v_row->>'date' !~ '^([0-9]{4})-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])$' THEN
       RAISE EXCEPTION 'Row %: date must be ISO YYYY-MM-DD',v_idx;
     END IF;
     BEGIN
@@ -89,8 +89,8 @@ BEGIN
       FOR v_kind IN SELECT unnest(ARRAY['lunch','dinner']) LOOP
         v_service:=v_row->v_kind;
         IF jsonb_typeof(v_service) IS DISTINCT FROM 'object' OR
-          v_service->>'status' NOT IN ('open','closed') OR
-          v_service->>'basis' NOT IN ('gross','net') OR
+          (v_service->>'status') IS NULL OR v_service->>'status' NOT IN ('open','closed') OR
+          (v_service->>'basis') IS NULL OR v_service->>'basis' NOT IN ('gross','net') OR
           jsonb_typeof(v_service->'covers') IS DISTINCT FROM 'number' OR
           jsonb_typeof(v_service->'food') IS DISTINCT FROM 'number' OR
           jsonb_typeof(v_service->'beverage') IS DISTINCT FROM 'number' THEN
