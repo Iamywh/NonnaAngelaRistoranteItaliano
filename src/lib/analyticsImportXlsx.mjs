@@ -89,7 +89,7 @@ function sheetPath(workbook,rels) {
   const match=nodes(rels,'Relationship').find(r=>r.getAttribute('Id')===id)
   if(!match||match.getAttribute('TargetMode')==='External')throw Error('Hoja XLSX inválida')
   const target=match.getAttribute('Target')||''
-  return normalizeSheet(target.startsWith('/')?target.slice(1):'xl/'+target)
+  return normalizeSheet(target.startsWith('/')?target.slice(1):target.startsWith('xl/')?target:'xl/'+target)
 }
 function colIndex(ref) {
   const match=/^([A-Z]+)[0-9]+$/.exec(ref)
