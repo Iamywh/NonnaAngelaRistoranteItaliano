@@ -25,7 +25,7 @@ export default function LoyaltyCard(){
   const [error,setError]=useState('')
   const [message,setMessage]=useState('')
   const [revision,setRevision]=useState(0)
-  const [saved,setSaved]=useState(()=>Boolean(safeStoredToken()))
+  const [saved,setSaved]=useState(()=>{const actual=tokenFromFragment()||safeStoredToken();return Boolean(actual&&actual===safeStoredToken())})
 
   useEffect(()=>{
     let active=true
@@ -85,7 +85,7 @@ export default function LoyaltyCard(){
   }
   const threshold=Number(card?.reward_threshold)||5
   const visits=Number(card?.visits)||0
-  const filled=Number(card?.progress)||0
+  const filled=Number(card?.available_rewards)>0?threshold:(Number(card?.progress)||0)
   return <section className="loyalty-page">
     <div className="loyalty-hero">
       <p className="eyebrow">Nonna Angela Ristorante Italiano</p>
@@ -120,7 +120,8 @@ export default function LoyaltyCard(){
               key={i} className={'loyalty-stamp '+(i<filled?'earned':'')}
               aria-hidden="true">{i<filled?'★':'☆'}</span>)}
           </div>
-          <p>Próximo premio: {threshold-filled} {threshold-filled===1?'visita':'visitas'} más.</p>
+          {Number(card.available_rewards)>0?<p>¡Ya has completado las marcas para un premio!</p>:
+            <p>Próximo premio: {threshold-filled} {threshold-filled===1?'visita':'visitas'} más.</p>}
           {Number(card.available_rewards)>0&&<p className="loyalty-reward-ready">
             🎁 {card.available_rewards} {card.available_rewards===1?'recompensa disponible':'recompensas disponibles'}.
             Pide al personal que la valide cuando visites el restaurante.
