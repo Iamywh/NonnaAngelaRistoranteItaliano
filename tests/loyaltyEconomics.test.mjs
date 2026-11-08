@@ -97,7 +97,7 @@ test('Economic metrics are aggregated and never return card IDs or identifiable 
     'loyalty_public_card','loyalty_public_delete','ALTER TABLE public.reservations']){
     assert.ok(!sql.includes(bad),'Unexpected access to '+bad)
   }
-  assert.ok(sql.includes("'returning_cards_month'"))
+  assert.ok(sql.includes('AS returning_cards_month'))
   assert.ok(sql.includes('count(DISTINCT v.card_id)'))
   assert.ok(sql.includes('prior.visit_date<p_month_start'))
   assert.ok(sql.includes("'estimated_costs_not_actual',true"))
