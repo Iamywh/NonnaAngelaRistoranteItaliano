@@ -61,6 +61,12 @@ export default function Footer({ setCurrentPage }) {
               </button>
             </li>
             <li>
+              <span>La Famiglia</span>
+              <button type="button" onClick={() => setCurrentPage('famiglia')}>
+                Tu tarjeta de fidelización
+              </button>
+            </li>
+            <li>
               <span>{t('footer.drinks')}</span>
               <button type="button" onClick={() => setCurrentPage('bebidas')}>
                 {t('footer.drinksMenu')}
