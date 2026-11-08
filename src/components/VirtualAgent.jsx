@@ -3,6 +3,7 @@ import { publicSupabase } from '../lib/supabaseClient.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import restaurantKnowledge from '../data/bot/restaurantKnowledge.json'
 import { buildAdvancedRestaurantAnswer } from '../data/bot/advancedMenuAssistant.js'
+import { getBookedGuestsForService } from '../lib/reservationAvailability.js'
 import { getSpecialReservationDate, getSpecialSchedule, isClosedReservationDate } from '../lib/scheduleExceptions.js'
 import '../styles/chatbot-reservations.css'
 
@@ -248,23 +249,6 @@ function formatReservationDateShort(dateValue, language = 'es') {
   })
 }
 
-async function getBookedGuestsForService(dateValue, timeValue, excludedReservationId = null) {
-  const service = getReservationService(timeValue, dateValue)
-  if (!dateValue || !service) return 0
-
-  const { data, error } = await publicSupabase.from('reservations')
-    .select('id, reservation_time, guests, status, reservation_status, service_status')
-    .eq('reservation_date', dateValue)
-
-  if (error) throw error
-
-  return (data || [])
-    .filter((booking) => !excludedReservationId || booking.id !== excludedReservationId)
-    .filter((booking) => getReservationService(booking.reservation_time, dateValue) === service)
-    .filter((booking) => countsForServiceCapacity(booking))
-    .reduce((total, booking) => total + Number(booking.guests || 0), 0)
-}
-
 function buildNotesWithOrigin(notes, originText) {
   const cleanNotes = String(notes || '').trim()
   return cleanNotes ? `${originText}\n${cleanNotes}` : originText
@@ -443,11 +427,17 @@ export default function VirtualAgent() {
     }
   }
 
-  const validateReservationFields = async ({ date, time, people }, excludedReservationId = null) => {
+  const validateReservationFields = async ({ date, time, people }, existingReservation = null) => {
     if (isClosedReservationDate(date)) return t('locale.closedDay')
     if (!getReservationTimeSlots(date).includes(time)) return t('locale.timeRequired')
 
-    const bookedGuests = await getBookedGuestsForService(date, time, excludedReservationId)
+    const service = getReservationService(time, date)
+    let bookedGuests = await getBookedGuestsForService(date, service)
+    if (existingReservation?.reservation_date === date &&
+        getReservationService(existingReservation.reservation_time, date) === service &&
+        countsForServiceCapacity(existingReservation)) {
+      bookedGuests = Math.max(0, bookedGuests - Number(existingReservation.guests || 0))
+    }
     if (bookedGuests + Number(people || 0) > SERVICE_CAPACITY) return t('locale.full')
     return ''
   }
@@ -742,7 +732,7 @@ export default function VirtualAgent() {
     setModifyStatus({ type: '', message: '' })
 
     try {
-      const validationError = await validateReservationFields({ date: modifyForm.date, time: modifyForm.time, people: modifyForm.people }, selectedReservation.id)
+      const validationError = await validateReservationFields({ date: modifyForm.date, time: modifyForm.time, people: modifyForm.people }, selectedReservation)
       if (validationError) {
         setModifyStatus({ type: 'error', message: validationError })
         return

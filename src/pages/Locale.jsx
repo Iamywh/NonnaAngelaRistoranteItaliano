@@ -2,13 +2,12 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { publicSupabase } from '../lib/supabaseClient.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { useBlockedReservationSlots } from '../hooks/useBlockedReservationSlots.js'
+import { getBookedGuestsForService } from '../lib/reservationAvailability.js'
 import { filterBlockedSlots } from '../lib/reservationSlotBlocks.js'
 import { getDayFromDateValue, getSpecialSchedule, isClosedReservationDate } from '../lib/scheduleExceptions.js'
 import '../styles/reservation-form.css'
 
 const SERVICE_CAPACITY = 50
-const CLOSED_RESERVATION_STATUSES_FOR_CAPACITY = ['rejected', 'cancelled']
-const CLOSED_SERVICE_STATUSES_FOR_CAPACITY = ['completed', 'no_show']
 
 const PHONE_COUNTRIES = [
   { iso: 'ES', dial: '+34', name: 'España', flagCode: 'es' },
@@ -140,23 +139,6 @@ function getReservationService(timeValue, dateValue) {
   return hours * 60 + minutes < 17 * 60 ? 'lunch' : 'dinner'
 }
 
-function getReservationStatus(booking) {
-  return booking?.reservation_status || booking?.status || 'pending'
-}
-
-function getServiceStatus(booking) {
-  if (booking?.service_status) return booking.service_status
-  if (['seated', 'completed', 'no_show'].includes(booking?.status)) return booking.status
-  return 'not_arrived'
-}
-
-function countsForServiceCapacity(booking) {
-  return (
-    !CLOSED_RESERVATION_STATUSES_FOR_CAPACITY.includes(getReservationStatus(booking)) &&
-    !CLOSED_SERVICE_STATUSES_FOR_CAPACITY.includes(getServiceStatus(booking))
-  )
-}
-
 function clampGuests(value) {
   const numericValue = Number(value)
   if (Number.isNaN(numericValue)) return MIN_GUESTS
@@ -165,22 +147,6 @@ function clampGuests(value) {
 
 function getPhoneCountry(iso) {
   return PHONE_COUNTRIES.find((country) => country.iso === iso) || PHONE_COUNTRIES[0]
-}
-
-async function getBookedGuestsForService(dateValue, timeValue) {
-  const service = getReservationService(timeValue, dateValue)
-  if (!dateValue || !service) return 0
-
-  const { data, error } = await publicSupabase.from('reservations')
-    .select('reservation_time, guests, status, reservation_status, service_status')
-    .eq('reservation_date', dateValue)
-
-  if (error) throw error
-
-  return (data || [])
-    .filter((booking) => getReservationService(booking.reservation_time, dateValue) === service)
-    .filter((booking) => countsForServiceCapacity(booking))
-    .reduce((total, booking) => total + Number(booking.guests || 0), 0)
 }
 
 export default function Locale() {
@@ -236,7 +202,7 @@ export default function Locale() {
       setIsCheckingAvailability(true)
 
       try {
-        const bookedGuests = await getBookedGuestsForService(reservation.reservation_date, reservation.reservation_time)
+        const bookedGuests = await getBookedGuestsForService(reservation.reservation_date, selectedService)
 
         if (!shouldIgnore) {
           setServiceAvailability({ bookedGuests, service: selectedService })
@@ -316,8 +282,8 @@ export default function Locale() {
     }
 
     try {
-      const bookedGuests = await getBookedGuestsForService(reservation.reservation_date, reservation.reservation_time)
-      setServiceAvailability({ bookedGuests, service: getReservationService(reservation.reservation_time, reservation.reservation_date) })
+      const bookedGuests = await getBookedGuestsForService(reservation.reservation_date, selectedService)
+      setServiceAvailability({ bookedGuests, service: selectedService })
 
       if (bookedGuests + Number(reservation.guests || 0) > SERVICE_CAPACITY) {
         setError(t('locale.full'))
