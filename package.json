@@ -3,7 +3,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "generate:cost-report": "node scripts/generateMenuCostReport.js"
+    "generate:cost-report": "node scripts/generateMenuCostReport.js",
+    "test": "node --test",
+    "test:phase15": "node --test tests/phase15SmokeContracts.test.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.0",
