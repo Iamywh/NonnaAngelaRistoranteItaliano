@@ -13,6 +13,8 @@ const clients=file('src/lib/supabaseClient.js')
 const booking=file('src/pages/Locale.jsx')
 const agent=file('src/components/VirtualAgent.jsx')
 const managerReservations=file('src/pages/admin/ReservationsDashboard.jsx')
+const reservationsAccess=file('src/pages/admin/ReservationsAccess.jsx')
+const reservationsStaffMigration=file('supabase/migrations/20261108120000_reservations_staff_access.sql')
 const analytics=file('src/pages/admin/Analytics.jsx')
 const loyaltyWallet=file('src/pages/LoyaltyCard.jsx')
 const loyaltyManager=file('src/pages/admin/LoyaltyManager.jsx')
@@ -81,6 +83,18 @@ test('Reservations editor status models remain available for live manual test',(
   assert.match(booking,/reservation_status: 'pending'/)
   assert.match(agent,/reservation_status: 'pending'/)
   assert.match(clients,/reservation-telegram-notify/)
+})
+
+test('The Telegram reservation route checks individual staff access before rendering bookings',()=>{
+  const directRoute = app.indexOf("if (currentPage === 'admin-reservations')")
+  const legacyGate = app.indexOf('if (isAdminPage(currentPage) && !isAdminMode)')
+  assert.ok(directRoute >= 0 && directRoute < legacyGate)
+  assert.match(app, /return <ReservationsAccess/)
+  assert.match(reservationsAccess, /supabase[.]auth[.]signInWithPassword/)
+  assert.match(reservationsAccess, /supabase[.]rpc[(]'reservations_staff_has_access'/)
+  assert.match(reservationsAccess, /if [(]status === 'allowed'[)][\s\S]*<ReservationsDashboard/)
+  assert.match(reservationsStaffMigration, /REVOKE ALL ON TABLE public[.]reservation_staff FROM PUBLIC, anon, authenticated/)
+  assert.match(reservationsStaffMigration, /FOR UPDATE TO authenticated[\s\S]*WITH CHECK [(][(]SELECT public[.]reservations_staff_has_access[(]true[)]/)
 })
 
 test('Private manager PDFs require a verified user and an active Analytics role',()=>{

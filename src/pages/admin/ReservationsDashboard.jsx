@@ -194,7 +194,7 @@ function getConfirmationChannelLabel(channel) {
   return 'No indicado'
 }
 
-export default function ReservationsDashboard({ setCurrentPage }) {
+export default function ReservationsDashboard({ onBack, onSignOut, authBusy }) {
   const todayValue = getTodayDateValue()
   const [reservations, setReservations] = useState([])
   const [reservationStatusFilter, setReservationStatusFilter] = useState('all')
@@ -411,9 +411,11 @@ export default function ReservationsDashboard({ setCurrentPage }) {
   return (
     <section className="admin-page reservation-control-layout">
       <div className="reservation-page-top">
-        <button className="back-button" onClick={() => setCurrentPage('admin')}>
-          ← Volver al panel admin
-        </button>
+        {onBack && (
+          <button className="back-button" type="button" onClick={onBack}>
+            ← Volver al panel admin
+          </button>
+        )}
 
         <div className="reservation-page-header">
           <div>
@@ -424,9 +426,14 @@ export default function ReservationsDashboard({ setCurrentPage }) {
             </p>
           </div>
 
-          <button className="ghost-button" type="button" onClick={loadReservations} disabled={isLoading}>
-            {isLoading ? 'Cargando...' : 'Actualizar'}
-          </button>
+          <div>
+            <button className="ghost-button" type="button" onClick={loadReservations} disabled={isLoading}>
+              {isLoading ? 'Cargando...' : 'Actualizar'}
+            </button>
+            <button className="ghost-button" type="button" onClick={onSignOut} disabled={authBusy}>
+              Cerrar sesión
+            </button>
+          </div>
         </div>
       </div>
 

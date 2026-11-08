@@ -11,7 +11,7 @@ import BeverageDashboard from './pages/admin/BeverageDashboard.jsx'
 import FBControl from './pages/admin/FBControl.jsx'
 import Orders from './pages/admin/Orders.jsx'
 import Invoices from './pages/admin/Invoices.jsx'
-import ReservationsDashboard from './pages/admin/ReservationsDashboard.jsx'
+import ReservationsAccess from './pages/admin/ReservationsAccess.jsx'
 import MusicManager from './pages/admin/MusicManager.jsx'
 import ManualOperativo from './pages/admin/ManualOperativo.jsx'
 import Analytics from './pages/admin/Analytics.jsx'
@@ -98,6 +98,10 @@ export default function App() {
   }, [])
 
   const renderPage = () => {
+    if (currentPage === 'admin-reservations') {
+      return <ReservationsAccess onBack={isAdminMode ? () => navigateToPage('admin') : undefined} />
+    }
+
     if (isAdminPage(currentPage) && !isAdminMode) {
       return <Home setCurrentPage={navigateToPage} />
     }
@@ -112,7 +116,6 @@ export default function App() {
     if (currentPage === 'admin-fb') return <FBControl setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-orders') return <Orders setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-invoices') return <Invoices setCurrentPage={navigateToPage} />
-    if (currentPage === 'admin-reservations') return <ReservationsDashboard setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-music') return <MusicManager setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-manual') return <ManualOperativo setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-analytics') return <Analytics />
