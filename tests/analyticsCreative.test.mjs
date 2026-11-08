@@ -145,4 +145,7 @@ test('Editorial calendar displays linked resource names and rights warnings',()=
   assert.match(calendar,/onOpenLibrary/)
   assert.match(calendar,/onNavigate[?][.]\('creative'\)/)
   assert.match(calendar,/Creative Library no está disponible/)
+  assert.match(calendar,/Reutilizar texto como nueva idea/)
+  assert.match(calendar,/const clone=\(item\)=>/)
+  assert.match(calendar,/\/\/ Never carry old approvals, checkboxes or linked media into a new idea\./)
 })
