@@ -7,3 +7,7 @@ verify_jwt = false
 # Handler rejects missing/invalid x-telegram-bot-api-secret-token and unknown users.
 [functions.analytics-telegram-entry]
 verify_jwt = false
+
+# The handler verifies the user token through Supabase Auth, then checks staff roles.
+[functions.manager-manual-docs]
+verify_jwt = false

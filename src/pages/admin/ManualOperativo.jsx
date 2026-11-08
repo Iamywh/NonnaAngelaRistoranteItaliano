@@ -227,6 +227,9 @@ export default function ManualOperativo({ setCurrentPage }) {
         <div className="manual-setup-alert">
           <strong>PDF privados pendientes de conexión.</strong>
           <span>{statusError}</span>
+          <button className="ghost-button" type="button" onClick={() => setCurrentPage('admin-analytics')}>
+            Ir a Analytics
+          </button>
         </div>
       )}
 
