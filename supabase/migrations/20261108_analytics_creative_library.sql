@@ -182,6 +182,7 @@ BEGIN
     v_status IS NULL OR v_status NOT IN ('active','archived') OR
     char_length(v_credit)>160 OR char_length(v_rights_note)>500 OR
     char_length(v_notes)>750 OR cardinality(v_tags)>8 OR
+    (v_rights='cleared' AND char_length(v_rights_note)<12) OR
     EXISTS(SELECT 1 FROM unnest(v_tags) t WHERE t='' OR char_length(t)>32) THEN
     RAISE EXCEPTION 'Invalid creative asset fields';
   END IF;
