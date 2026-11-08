@@ -75,7 +75,7 @@ export function validateCreativeForm(form){
 }
 export function creativeStoragePath(file,randomUUID){
   const {extension}=creativeFileValidation(file)
-  if(typeof randomUUID!=='string'||!/^[a-f0-9]{8}-[a-f0-9-]{27}$/i.test(randomUUID))
+  if(typeof randomUUID!=='string'||!/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(randomUUID))
     throw Error('Identificador aleatorio de archivo inválido')
   return 'media/'+randomUUID.toLowerCase()+'.'+extension
 }
