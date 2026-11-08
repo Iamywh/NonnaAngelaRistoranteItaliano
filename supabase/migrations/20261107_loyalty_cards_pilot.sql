@@ -1,6 +1,6 @@
 -- Phase 13C/1: "La Famiglia" pilot. Staff-issued bearer cards, no contact details.
--- Never reads public.reservations; the tables are private, writes go through
--- owner/admin-only RPCs. Public visitors can only read/delete with a 256-bit
+-- Never reads the reservations ledger; these new tables are private, writes go through
+-- owner/admin-only RPCs. Public visitors can only read/delete with a 64-hex
 -- bearer card token, not a guessable 8-character staff lookup code.
 -- Privacy: no names, emails, phone numbers, invoices, booking IDs or automated campaigns.
 BEGIN;
