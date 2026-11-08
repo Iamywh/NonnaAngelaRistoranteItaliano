@@ -239,6 +239,22 @@ BEGIN
 END;
 $$;
 
+-- Public brochure status contains no members or individual records.
+-- Disabling issuance only affects NEW cards, never accrued entitlements.
+CREATE FUNCTION public.loyalty_public_program()
+RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path = ''
+AS $
+DECLARE v_cfg public.loyalty_program_settings%ROWTYPE;
+BEGIN
+  SELECT * INTO v_cfg FROM public.loyalty_program_settings WHERE id=1;
+  RETURN jsonb_build_object(
+    'issuing_enabled',v_cfg.issuing_enabled,
+    'reward_threshold',CASE WHEN v_cfg.issuing_enabled THEN v_cfg.reward_threshold ELSE NULL END,
+    'reward_label',CASE WHEN v_cfg.issuing_enabled THEN v_cfg.reward_label ELSE NULL END
+  );
+END;
+$;
+
 -- Possession of the 256-bit bearer token is required for a public read.
 -- No raw visit records, staff IDs, PII or token digests are ever returned.
 CREATE FUNCTION public.loyalty_public_card(p_token text)
@@ -284,6 +300,7 @@ REVOKE ALL ON FUNCTION public.loyalty_admin_issue() FROM PUBLIC,anon,authenticat
 REVOKE ALL ON FUNCTION public.loyalty_admin_lookup(text) FROM PUBLIC,anon,authenticated;
 REVOKE ALL ON FUNCTION public.loyalty_admin_stamp(text,date) FROM PUBLIC,anon,authenticated;
 REVOKE ALL ON FUNCTION public.loyalty_admin_redeem(text) FROM PUBLIC,anon,authenticated;
+REVOKE ALL ON FUNCTION public.loyalty_public_program() FROM PUBLIC,anon,authenticated;
 REVOKE ALL ON FUNCTION public.loyalty_public_card(text) FROM PUBLIC,anon,authenticated;
 REVOKE ALL ON FUNCTION public.loyalty_public_delete(text) FROM PUBLIC,anon,authenticated;
 
@@ -293,6 +310,7 @@ GRANT EXECUTE ON FUNCTION public.loyalty_admin_issue() TO authenticated;
 GRANT EXECUTE ON FUNCTION public.loyalty_admin_lookup(text) TO authenticated;
 GRANT EXECUTE ON FUNCTION public.loyalty_admin_stamp(text,date) TO authenticated;
 GRANT EXECUTE ON FUNCTION public.loyalty_admin_redeem(text) TO authenticated;
+GRANT EXECUTE ON FUNCTION public.loyalty_public_program() TO anon,authenticated;
 GRANT EXECUTE ON FUNCTION public.loyalty_public_card(text) TO anon,authenticated;
 GRANT EXECUTE ON FUNCTION public.loyalty_public_delete(text) TO anon,authenticated;
 COMMIT;
