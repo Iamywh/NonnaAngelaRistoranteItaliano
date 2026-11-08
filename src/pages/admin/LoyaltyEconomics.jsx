@@ -1,5 +1,6 @@
 import React,{useEffect,useMemo,useState} from 'react'
 import {supabase} from '../../lib/supabaseClient.js'
+import {prepareLoyaltyEconomics} from '../../lib/loyaltyEconomics.mjs'
 
 const canaryMonth=()=>new Intl.DateTimeFormat('en-CA',{
   timeZone:'Atlantic/Canary',year:'numeric',month:'2-digit'
@@ -49,9 +50,16 @@ export default function LoyaltyEconomics(){
         !Array.isArray(data.visits_by_day)){
         setError('Supabase devolvió una respuesta incompleta. No se muestran estimaciones.')
       }else{
-        setResult(data)
+        let verified
+        try{verified=prepareLoyaltyEconomics(data)}
+        catch(e){
+          setError('Los datos agregados no cuadran: '+e.message)
+          setLoading(false)
+          return
+        }
+        setResult(verified)
         const next={}
-        for(const r of data.reward_types){
+        for(const r of verified.reward_types){
           const key=r.reward_label+'|'+r.reward_threshold
           next[key]=r.estimated_unit_cost==null?'':String(r.estimated_unit_cost)
         }
