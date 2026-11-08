@@ -243,7 +243,7 @@ $$;
 -- Disabling issuance only affects NEW cards, never accrued entitlements.
 CREATE FUNCTION public.loyalty_public_program()
 RETURNS jsonb LANGUAGE plpgsql SECURITY DEFINER SET search_path = ''
-AS $
+AS $$
 DECLARE v_cfg public.loyalty_program_settings%ROWTYPE;
 BEGIN
   SELECT * INTO v_cfg FROM public.loyalty_program_settings WHERE id=1;
@@ -253,7 +253,7 @@ BEGIN
     'reward_label',CASE WHEN v_cfg.issuing_enabled THEN v_cfg.reward_label ELSE NULL END
   );
 END;
-$;
+$$;
 
 -- Possession of the 256-bit bearer token is required for a public read.
 -- No raw visit records, staff IDs, PII or token digests are ever returned.
