@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from './components/Navbar.jsx'
 import Home from './pages/Home.jsx'
 import Locale from './pages/Locale.jsx'
+import LoyaltyCard from './pages/LoyaltyCard.jsx'
 import Menu from './pages/Menu.jsx'
 import Bebidas from './pages/Bebidas.jsx'
 import AdminDashboard from './pages/admin/AdminDashboard.jsx'
@@ -23,6 +24,7 @@ import { LanguageProvider } from './i18n/LanguageContext.jsx'
 const pagePaths = {
   home: '/',
   locale: '/restaurante',
+  famiglia: '/famiglia',
   menu: '/menu',
   bebidas: '/bebidas',
   admin: '/manager',
@@ -101,6 +103,7 @@ export default function App() {
     }
 
     if (currentPage === 'locale') return <Locale />
+    if (currentPage === 'famiglia') return <LoyaltyCard />
     if (currentPage === 'menu') return <Menu setCurrentPage={navigateToPage} />
     if (currentPage === 'bebidas') return <Bebidas />
     if (currentPage === 'admin') return <AdminDashboard setCurrentPage={navigateToPage} />

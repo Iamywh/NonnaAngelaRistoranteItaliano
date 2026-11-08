@@ -15,6 +15,7 @@ import AnalyticsImport from './AnalyticsImport.jsx'
 import AnalyticsDataQuality from './AnalyticsDataQuality.jsx'
 import CustomerIntelligence from './CustomerIntelligence.jsx'
 import CustomerTrends from './CustomerTrends.jsx'
+import LoyaltyManager from './LoyaltyManager.jsx'
 
 export default function Analytics() {
   const [session, setSession] = useState(null)
@@ -124,6 +125,7 @@ export default function Analytics() {
             <button type="button" className={activeTab === 'quality' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('quality')}>Calidad de datos</button>
             <button type="button" className={activeTab === 'customers' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('customers')}>Customer Intelligence</button>
             <button type="button" className={activeTab === 'customer-trends' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('customer-trends')}>Tendencias clientes</button>
+            <button type="button" className={activeTab === 'loyalty' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('loyalty')}>La Famiglia</button>
             <button type="button" className={activeTab === 'goals' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('goals')}>Objetivos</button>
             <button type="button" className={activeTab === 'forecast' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('forecast')}>Forecasting</button>
             <button type="button" className={activeTab === 'break-even' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('break-even')}>Break-even</button>
@@ -132,7 +134,7 @@ export default function Analytics() {
             <button type="button" className={activeTab === 'alerts' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('alerts')}>Alertas</button>
             <button type="button" className={activeTab === 'notifications' ? 'primary-button' : 'ghost-button'} onClick={() => setActiveTab('notifications')}>Notificaciones</button>
           </div>
-          {activeTab === 'dashboard' ? <FinancialDashboard /> : activeTab === 'daily' ? <DailyRegister /> : activeTab === 'expenses' ? <ExpensesRegister /> : activeTab === 'inventory' ? <MonthlyInventory /> : activeTab === 'history' ? <HistoryRegister /> : activeTab === 'import' ? <AnalyticsImport /> : activeTab === 'quality' ? <AnalyticsDataQuality onNavigate={setActiveTab} /> : activeTab === 'customers' ? <CustomerIntelligence /> : activeTab === 'customer-trends' ? <CustomerTrends onNavigate={setActiveTab} /> : activeTab === 'goals' ? <MonthlyGoals /> : activeTab === 'forecast' ? <Forecasting /> : activeTab === 'break-even' ? <BreakEven /> : activeTab === 'closing' ? <MonthlyClose /> : activeTab === 'reports' ? <AnalyticsReports /> : activeTab === 'alerts' ? <ManagementAlerts onNavigate={setActiveTab} /> : <AnalyticsNotifications onNavigate={setActiveTab} />}
+          {activeTab === 'dashboard' ? <FinancialDashboard /> : activeTab === 'daily' ? <DailyRegister /> : activeTab === 'expenses' ? <ExpensesRegister /> : activeTab === 'inventory' ? <MonthlyInventory /> : activeTab === 'history' ? <HistoryRegister /> : activeTab === 'import' ? <AnalyticsImport /> : activeTab === 'quality' ? <AnalyticsDataQuality onNavigate={setActiveTab} /> : activeTab === 'customers' ? <CustomerIntelligence /> : activeTab === 'customer-trends' ? <CustomerTrends onNavigate={setActiveTab} /> : activeTab === 'loyalty' ? <LoyaltyManager /> : activeTab === 'goals' ? <MonthlyGoals /> : activeTab === 'forecast' ? <Forecasting /> : activeTab === 'break-even' ? <BreakEven /> : activeTab === 'closing' ? <MonthlyClose /> : activeTab === 'reports' ? <AnalyticsReports /> : activeTab === 'alerts' ? <ManagementAlerts onNavigate={setActiveTab} /> : <AnalyticsNotifications onNavigate={setActiveTab} />}
           <button className="ghost-button" onClick={signOut} disabled={busy}>Cerrar sesión</button>
         </div>
       )}

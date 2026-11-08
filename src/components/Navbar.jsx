@@ -13,7 +13,8 @@ export default function Navbar({ currentPage, setCurrentPage, isAdminMode, setIs
     { id: 'home', label: t('nav.home') },
     { id: 'locale', label: t('nav.locale') },
     { id: 'menu', label: t('nav.menu') },
-    { id: 'bebidas', label: t('nav.bebidas') }
+    { id: 'bebidas', label: t('nav.bebidas') },
+    { id: 'famiglia', label: 'La Famiglia' }
   ]
 
   const openManagerAccess = () => {
