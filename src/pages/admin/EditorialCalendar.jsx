@@ -28,7 +28,7 @@ function Field({label,children,small}) {
     {small&&<small style={{opacity:.75}}>{small}</small>}
   </label>
 }
-function ItemCard({item,onEdit,onAction,busy,publicationUrl,onPublicationUrl,assets,onOpenLibrary}) {
+function ItemCard({item,onEdit,onAction,onClone,busy,publicationUrl,onPublicationUrl,assets,onOpenLibrary}) {
   const actions=editorialAllowedActions(item)
   const checklistCount=EDITORIAL_CHECKS.filter(x=>item[x.key]===true).length
   return <div style={{border:cardBorder,borderRadius:12,padding:15,display:'grid',gap:9}}>
@@ -71,6 +71,10 @@ function ItemCard({item,onEdit,onAction,busy,publicationUrl,onPublicationUrl,ass
       {!['published','cancelled'].includes(item.status)&&
         <button type="button" className="ghost-button" disabled={busy} onClick={()=>onEdit(item)}>
           Editar borrador / contenido
+        </button>}
+      {['approved','published'].includes(item.status)&&
+        <button type="button" className="ghost-button" disabled={busy} onClick={()=>onClone(item)}>
+          Reutilizar texto como nueva idea
         </button>}
       {actions.filter(x=>x!=='publish').map(action=>
         <button key={action} type="button"
@@ -180,6 +184,20 @@ export default function EditorialCalendar({onNavigate}) {
   }
   const edit=(item)=>{
     setDraft(editorialItemForm(item));setError('');setNotice('')
+  }
+  const clone=(item)=>{
+    const fresh=emptyEditorialItem(selectedDate)
+    setDraft({...fresh,
+      title:('Nueva versión · '+item.title).slice(0,120),
+      platform:item.platform,content_kind:item.content_kind,
+      owner_role:item.owner_role,language:item.language,
+      copy_text:item.copy_text||'',creative_brief:item.creative_brief||'',
+      cta:item.cta||'',hashtags:item.hashtags||'',
+      campaign_id:item.campaign_id||''
+    })
+    // Never carry old approvals, checkboxes or linked media into a new idea.
+    setError('')
+    setNotice('Texto reutilizado en un borrador nuevo. Revisa fecha, derechos y recursos; no se copian aprobaciones ni archivos vinculados.')
   }
   const create=()=>{
     setDraft(emptyEditorialItem(selectedDate))
@@ -343,7 +361,7 @@ export default function EditorialCalendar({onNavigate}) {
         {visible.length===0?<p>No hay contenido en este día con el filtro seleccionado.</p>:
           <div style={{display:'grid',gap:12}}>
             {visible.map(item=><ItemCard key={item.id} item={item}
-              onEdit={edit} onAction={action} busy={saving}
+              onEdit={edit} onClone={clone} onAction={action} busy={saving}
               assets={assetLinks.filter(link=>link.editorial_id===item.id)}
               onOpenLibrary={()=>onNavigate?.('creative')}
               publicationUrl={publicationLinks[item.id]||''}
