@@ -40,6 +40,9 @@ export default function Home({ setCurrentPage }) {
           <button className="ghost-button" type="button" onClick={() => setCurrentPage('locale')}>
             {t('home.discover')}
           </button>
+          <button className="ghost-button" type="button" onClick={() => setCurrentPage('famiglia')}>
+            La Famiglia ♡
+          </button>
         </div>
       </div>
 
