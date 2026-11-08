@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import KpiCard from '../../components/KpiCard.jsx'
 import beverageInventory from '../../data/beverageInventory.json'
+import { supabase } from '../../lib/supabaseClient.js'
 import '../../styles/beverage-inventory.css'
 
 const INVENTORY_STORAGE_KEY = 'nonna_beverage_inventory_v1'
@@ -9,23 +10,27 @@ function cloneInitialCategories() {
   return JSON.parse(JSON.stringify(beverageInventory.categories || []))
 }
 
-function getInitialCategories() {
-  if (typeof window === 'undefined') return cloneInitialCategories()
+function getLocalCategories(key) {
+  if (typeof window === 'undefined') return null
 
   try {
-    const savedInventory = window.localStorage.getItem(INVENTORY_STORAGE_KEY)
-    if (!savedInventory) return cloneInitialCategories()
+    const savedInventory = window.localStorage.getItem(key)
+    if (!savedInventory) return null
 
     const parsedInventory = JSON.parse(savedInventory)
-    return Array.isArray(parsedInventory) && parsedInventory.length ? parsedInventory : cloneInitialCategories()
+    return Array.isArray(parsedInventory) && parsedInventory.length ? parsedInventory : null
   } catch {
-    return cloneInitialCategories()
+    return null
   }
+}
+
+function inventoryDraftKey(userId, version) {
+  return `${INVENTORY_STORAGE_KEY}:draft:${userId}:${version}`
 }
 
 function normalizeQuantity(value) {
   const numericValue = Number(String(value ?? '').replace(',', '.'))
-  if (Number.isNaN(numericValue)) return 0
+  if (!Number.isFinite(numericValue)) return 0
   return Math.max(0, Math.round(numericValue * 100) / 100)
 }
 
@@ -59,17 +64,74 @@ function updateInventoryItem(categories, categoryId, itemName, updater) {
   })
 }
 
-export default function BeverageDashboard({ setCurrentPage }) {
-  const [categories, setCategories] = useState(getInitialCategories)
-  const [managerMessage, setManagerMessage] = useState('')
+export default function BeverageDashboard({ userId, onBack, onSignOut, authBusy }) {
+  const [categories, setCategories] = useState([])
+  const [snapshot, setSnapshot] = useState(null)
+  const [saving, setSaving] = useState(false)
+  const [managerMessage, setManagerMessage] = useState(null)
+  const hasChanges = snapshot && categories !== snapshot.categories
+  const canEdit = Boolean(snapshot) && !saving
 
   useEffect(() => {
-    try {
-      window.localStorage.setItem(INVENTORY_STORAGE_KEY, JSON.stringify(categories))
-    } catch {
-      setManagerMessage('No se ha podido guardar el inventario en este navegador.')
+    let active = true
+    async function loadInventory() {
+      try {
+        const { data, error } = await supabase.rpc('beverage_inventory_load')
+        if (error) throw error
+        if (!active) return
+        const saved = data || {
+          categories: getLocalCategories(INVENTORY_STORAGE_KEY) || cloneInitialCategories(),
+          version: 0,
+          updated_at: null
+        }
+        setSnapshot(saved)
+        setCategories(getLocalCategories(inventoryDraftKey(userId, saved.version)) || saved.categories)
+      } catch {
+        if (active) setManagerMessage({ tone: 'error', text: 'Impossibile caricare l’inventario condiviso. Ricarica la pagina e riprova.' })
+      }
     }
-  }, [categories])
+    loadInventory()
+    return () => { active = false }
+  }, [userId])
+
+  useEffect(() => {
+    if (!hasChanges) return
+    try {
+      window.localStorage.setItem(inventoryDraftKey(userId, snapshot.version), JSON.stringify(categories))
+    } catch {
+      // The draft stays in memory even when browser storage is unavailable.
+    }
+  }, [categories, hasChanges, snapshot, userId])
+
+  const saveInventory = async () => {
+    if (!canEdit || (!hasChanges && snapshot.version > 0)) return
+    setSaving(true)
+    setManagerMessage(null)
+    try {
+      const { data, error } = await supabase.rpc('beverage_inventory_save', {
+        p_categories: categories,
+        p_expected_version: snapshot.version
+      })
+      if (error) throw error
+      if (!data?.updated_at || data.version !== snapshot.version + 1) {
+        throw new Error('unexpected_inventory_response')
+      }
+      setSnapshot({ ...data, categories })
+      setManagerMessage({ tone: 'success', text: 'Inventario condiviso salvato.' })
+      try {
+        window.localStorage.removeItem(inventoryDraftKey(userId, snapshot.version))
+      } catch {
+        // The inventory has already been saved on the server.
+      }
+    } catch (error) {
+      const text = error?.message === 'inventory_conflict'
+        ? 'Un’altra persona ha già salvato una versione più recente. Usa “Copia JSON” per conservare le tue modifiche prima di ricaricare la pagina.'
+        : 'Salvataggio non riuscito. Le modifiche sono ancora qui. Riprova.'
+      setManagerMessage({ tone: 'error', text })
+    } finally {
+      setSaving(false)
+    }
+  }
 
   const stats = useMemo(() => {
     const items = categories.flatMap((category) => (category.items || []).map((item) => ({ ...item, categoryId: category.id })))
@@ -89,7 +151,7 @@ export default function BeverageDashboard({ setCurrentPage }) {
   const setItemQuantity = (categoryId, itemName, value) => {
     const nextQuantity = normalizeQuantity(value)
     setCategories((currentCategories) => updateInventoryItem(currentCategories, categoryId, itemName, (item) => ({ ...item, quantity: nextQuantity })))
-    setManagerMessage('Inventario actualizado y guardado en este navegador.')
+    setManagerMessage(null)
   }
 
   const adjustItemQuantity = (categoryId, itemName, delta) => {
@@ -97,20 +159,15 @@ export default function BeverageDashboard({ setCurrentPage }) {
       ...item,
       quantity: normalizeQuantity(Number(item.quantity || 0) + delta)
     })))
-    setManagerMessage(delta > 0 ? 'Entrada de pedido añadida.' : 'Salida/conteo descontado.')
+    setManagerMessage(null)
   }
 
   const resetInventory = () => {
-    const confirmed = window.confirm('¿Restaurar el inventario inicial cargado en el sistema? Se perderán los cambios guardados en este navegador.')
+    const confirmed = window.confirm('Ripristinare il conteggio iniziale nella bozza? L’inventario condiviso cambierà solo dopo il salvataggio.')
     if (!confirmed) return
 
     setCategories(cloneInitialCategories())
-    try {
-      window.localStorage.removeItem(INVENTORY_STORAGE_KEY)
-    } catch {
-      // Ignore localStorage errors.
-    }
-    setManagerMessage('Inventario restaurado al conteo inicial.')
+    setManagerMessage(null)
   }
 
   const copyInventoryJson = async () => {
@@ -118,16 +175,16 @@ export default function BeverageDashboard({ setCurrentPage }) {
 
     try {
       await navigator.clipboard.writeText(serializedInventory)
-      setManagerMessage('JSON del inventario copiado al portapapeles.')
+      setManagerMessage({ tone: 'success', text: 'JSON copiato negli appunti.' })
     } catch {
-      setManagerMessage('No se ha podido copiar el JSON automáticamente.')
+      setManagerMessage({ tone: 'error', text: 'Impossibile copiare il JSON negli appunti.' })
     }
   }
 
   return (
     <section className="admin-page">
-      <button className="back-button" onClick={() => setCurrentPage('admin')} type="button">
-        ← Torna alla dashboard
+      <button className="back-button" onClick={onBack} type="button">
+        ← Indietro
       </button>
 
       <div className="reservation-page-top beverage-page-top">
@@ -142,12 +199,26 @@ export default function BeverageDashboard({ setCurrentPage }) {
         </div>
 
         <div className="beverage-manager-actions">
-          <button className="ghost-button" type="button" onClick={copyInventoryJson}>Copia JSON</button>
-          <button className="ghost-button" type="button" onClick={resetInventory}>Reset iniziale</button>
+          <button className="primary-button" type="button" onClick={saveInventory} disabled={!canEdit || (!hasChanges && snapshot.version > 0)}>
+            {saving ? 'Salvataggio…' : 'Salva inventario'}
+          </button>
+          <button className="ghost-button" type="button" onClick={copyInventoryJson} disabled={!canEdit}>Copia JSON</button>
+          <button className="ghost-button" type="button" onClick={resetInventory} disabled={!canEdit}>Reset iniziale</button>
+          <button className="ghost-button" type="button" onClick={onSignOut} disabled={authBusy || saving}>Esci</button>
         </div>
       </div>
 
-      {managerMessage && <p className="form-message success beverage-save-message">{managerMessage}</p>}
+      {managerMessage && (
+        <p className={`form-message ${managerMessage.tone} beverage-save-message`} role={managerMessage.tone === 'error' ? 'alert' : 'status'}>
+          {managerMessage.text}
+        </p>
+      )}
+      {!snapshot && !managerMessage && <p role="status">Caricamento inventario…</p>}
+      {snapshot?.version === 0 && <p>Controlla il conteggio iniziale prima di pubblicarlo come inventario condiviso.</p>}
+      {hasChanges && <p>Modifiche in attesa di salvataggio.</p>}
+      {snapshot?.updated_at && (
+        <p>Ultimo salvataggio condiviso: {new Date(snapshot.updated_at).toLocaleString('it-IT', { timeZone: 'Atlantic/Canary' })}</p>
+      )}
 
       <div className="beverage-inventory-summary">
         <KpiCard label="Referenze" value={stats.items.length} detail="Prodotti inventariati" />
@@ -165,7 +236,7 @@ export default function BeverageDashboard({ setCurrentPage }) {
           </div>
           <div>
             <strong>Conteggio settimanale</strong>
-            <span>Scrivi nel campo stock la quantità reale contata: il sistema corregge subito il totale.</span>
+            <span>Scrivi la quantità reale e premi “Salva inventario” per condividerla con lo staff.</span>
           </div>
           <div>
             <strong>Backup</strong>
@@ -205,13 +276,14 @@ export default function BeverageDashboard({ setCurrentPage }) {
                       min="0"
                       step="0.5"
                       type="number"
+                      disabled={!canEdit}
                       value={item.quantity}
                       onChange={(event) => setItemQuantity(category.id, item.name, event.target.value)}
                     />
                     <small>{category.unit}</small>
                     <div className="beverage-stock-actions">
-                      <button type="button" onClick={() => adjustItemQuantity(category.id, item.name, -1)}>−1</button>
-                      <button type="button" onClick={() => adjustItemQuantity(category.id, item.name, 1)}>+1</button>
+                      <button type="button" disabled={!canEdit} onClick={() => adjustItemQuantity(category.id, item.name, -1)}>−1</button>
+                      <button type="button" disabled={!canEdit} onClick={() => adjustItemQuantity(category.id, item.name, 1)}>+1</button>
                     </div>
                   </div>
                 ))}
