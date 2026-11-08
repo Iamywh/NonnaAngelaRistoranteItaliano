@@ -1,0 +1,56 @@
+/* Fase 14C: Creative Library, compact mobile-first private asset gallery */
+.creative-library{display:grid;gap:16px}
+.creative-library input:not([type=checkbox]):not([type=file]),
+.creative-library select,
+.creative-library textarea{
+  width:100%;min-width:0;padding:9px 11px;border-radius:8px;
+  border:1px solid rgba(127,116,101,.48);
+  color:inherit;background:var(--panel-bg,transparent);
+  font:inherit
+}
+.creative-library select option{color:#151515;background:#fff}
+.creative-library textarea{resize:vertical}
+.creative-form-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));
+  align-items:start;gap:14px
+}
+.creative-filter{
+  display:flex;flex-wrap:wrap;gap:13px;align-items:end;margin:13px 0
+}
+.creative-filter label{min-width:min(100%,220px)}
+.creative-checkbox{display:flex;gap:9px;align-items:center;padding:9px}
+.creative-gallery{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,285px),1fr));
+  align-items:start;gap:15px;margin:17px 0
+}
+.creative-card{border:1px solid rgba(130,115,95,.38);
+  border-radius:15px;min-width:0;overflow:hidden}
+.creative-frame{
+  aspect-ratio:4/3;display:grid;place-items:center;
+  background:rgba(110,93,72,.12);
+  overflow:hidden
+}
+.creative-preview{width:100%;height:100%;object-fit:contain;display:block}
+.creative-preview-note{padding:16px;text-align:center;opacity:.75}
+.creative-card-body{padding:14px;display:grid;gap:7px}
+.creative-card-body h4{margin:0;overflow-wrap:anywhere}
+.creative-card-body p{margin:0;line-height:1.5;overflow-wrap:anywhere}
+.creative-card-body button{white-space:normal}
+.creative-status-ok,.creative-status-warning{
+  font-weight:650;font-size:.91rem
+}
+.creative-status-ok{color:#318457}
+.creative-status-warning{color:#b77a24}
+.creative-link-box,.creative-links{
+  border-top:1px solid rgba(129,112,83,.24);
+  padding-top:12px;margin-top:6px;display:grid;gap:10px
+}
+.creative-link-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.creative-pagination{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
+.creative-actions{display:flex;flex-wrap:wrap;gap:11px}
+.creative-edit-panel{border:2px solid rgba(140,108,61,.5)!important}
+@media(max-width:600px){
+  .creative-card-body button,.creative-actions button{width:100%}
+  .creative-form-grid{grid-template-columns:1fr}
+  .creative-filter>*{width:100%}
+}
