@@ -1,32 +1,26 @@
+import { supabase } from './supabaseClient.js'
+
 const FUNCTION_NAME = 'manager-manual-docs'
 
-function getConfig() {
-  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-  const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
-  const managerPassword = import.meta.env.VITE_MANAGER_PASSWORD
-
-  if (!supabaseUrl || !anonKey || !managerPassword) {
-    throw new Error('La configuración del Manual Operativo no está completa.')
+async function requestManualDocument(query = '', options = {}) {
+  const { data, error } = await supabase.auth.getSession()
+  if (error || !data?.session?.access_token) {
+    throw new Error('Inicia sesión en Analytics para acceder a los PDF privados.')
   }
 
-  return { supabaseUrl, anonKey, managerPassword }
-}
-
-async function requestManualDocument(query = '', options = {}) {
-  const { supabaseUrl, anonKey, managerPassword } = getConfig()
-  const response = await fetch(`${supabaseUrl}/functions/v1/${FUNCTION_NAME}${query}`, {
+  const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/${FUNCTION_NAME}${query}`, {
     ...options,
     headers: {
-      Authorization: `Bearer ${anonKey}`,
-      'x-manager-password': managerPassword,
-      ...(options.headers || {})
+      ...(options.headers || {}),
+      Authorization: `Bearer ${data.session.access_token}`,
+      apikey: import.meta.env.VITE_SUPABASE_ANON_KEY
     }
   })
 
   if (!response.ok) {
     let detail = ''
     try {
-      const payload = await response.json()
+      const payload = await response.clone().json()
       detail = payload?.error || ''
     } catch {
       detail = await response.text()

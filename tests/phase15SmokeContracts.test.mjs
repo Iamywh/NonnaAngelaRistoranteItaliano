@@ -23,6 +23,8 @@ const menu=file('src/pages/Menu.jsx')
 const reservationBot=file('supabase/functions/telegram-reservations-bot/index.ts')
 const analyticsBot=file('supabase/functions/analytics-telegram-entry/index.ts')
 const reservationNotifier=file('supabase/functions/reservation-telegram-notify/index.ts')
+const managerManualClient=file('src/lib/managerManualDocuments.js')
+const managerManualFunction=file('supabase/functions/manager-manual-docs/index.ts')
 const rlsDiagnostics=file('docs/phase15/read-only-rls-diagnostics.sql')
 const creativeMigration=file('supabase/migrations/20261108_analytics_creative_library.sql')
 const editorialMigration=file('supabase/migrations/20261108_analytics_editorial_calendar.sql')
@@ -79,6 +81,18 @@ test('Reservations editor status models remain available for live manual test',(
   assert.match(booking,/reservation_status: 'pending'/)
   assert.match(agent,/reservation_status: 'pending'/)
   assert.match(clients,/reservation-telegram-notify/)
+})
+
+test('Private manager PDFs require a verified user and an active Analytics role',()=>{
+  assert.doesNotMatch(managerManualClient,/VITE_MANAGER_PASSWORD|x-manager-password/)
+  assert.doesNotMatch(managerManualFunction,/MANAGER_PASSWORD|x-manager-password/)
+  assert.match(managerManualClient,/supabase[.]auth[.]getSession[(][)]/)
+  assert.match(managerManualClient,/Bearer \$\{data[.]session[.]access_token\}/)
+  assert.match(managerManualFunction,/admin[.]auth[.]getUser[(]token[)]/)
+  assert.match(managerManualFunction,/[.]eq[(]'user_id', auth[.]user[.]id[)]/)
+  const roleCheck = "!role?.is_active || !['owner', 'admin'].includes(role.role)"
+  const roleCheckIndex = managerManualFunction.indexOf(roleCheck)
+  assert.ok(roleCheckIndex >= 0 && roleCheckIndex < managerManualFunction.indexOf('admin.storage.from'))
 })
 
 test('Telegram reservation/Analytics bots remain distinct and auth gate stays present',()=>{

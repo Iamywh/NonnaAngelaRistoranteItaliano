@@ -10,7 +10,7 @@ const DOCUMENTS: Record<string, string> = {
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-manager-password',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
 }
 
@@ -19,12 +19,6 @@ function jsonResponse(payload: unknown, status = 200) {
     status,
     headers: { ...corsHeaders, 'Content-Type': 'application/json; charset=utf-8' }
   })
-}
-
-function isAuthorized(request: Request) {
-  const expected = String(Deno.env.get('MANAGER_PASSWORD') || '').trim()
-  const provided = String(request.headers.get('x-manager-password') || '').trim()
-  return Boolean(expected && provided && expected === provided)
 }
 
 function getAdminClient() {
@@ -45,14 +39,29 @@ Deno.serve(async (request) => {
     return new Response('ok', { headers: corsHeaders })
   }
 
-  if (!isAuthorized(request)) {
-    return jsonResponse({ error: 'Acceso Manager no autorizado.' }, 401)
+  const token = request.headers.get('authorization')?.match(/^Bearer\s+(\S+)$/i)?.[1]
+  if (!token) {
+    return jsonResponse({ error: 'Inicia sesión en Analytics para acceder a los PDF privados.' }, 401)
   }
 
   try {
-    const url = new URL(request.url)
     const admin = getAdminClient()
+    const { data: auth, error: authError } = await admin.auth.getUser(token)
+    if (authError || !auth.user) {
+      return jsonResponse({ error: 'La sesión no es válida. Vuelve a iniciar sesión en Analytics.' }, 401)
+    }
 
+    const { data: role, error: roleError } = await admin
+      .from('analytics_user_roles')
+      .select('role,is_active')
+      .eq('user_id', auth.user.id)
+      .maybeSingle()
+    if (roleError) throw roleError
+    if (!role?.is_active || !['owner', 'admin'].includes(role.role)) {
+      return jsonResponse({ error: 'Tu cuenta no tiene acceso a los PDF privados.' }, 403)
+    }
+
+    const url = new URL(request.url)
     if (url.searchParams.get('status') === '1') {
       const { data, error } = await admin.storage.from(BUCKET).list('', { limit: 100 })
       if (error) throw error
@@ -114,6 +123,6 @@ Deno.serve(async (request) => {
     })
   } catch (error) {
     console.error(error)
-    return jsonResponse({ error: error?.message || 'Error interno.' }, 500)
+    return jsonResponse({ error: 'No se pudo acceder a los PDF privados.' }, 500)
   }
 })
