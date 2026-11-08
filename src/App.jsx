@@ -8,11 +8,12 @@ import Bebidas from './pages/Bebidas.jsx'
 import AdminDashboard from './pages/admin/AdminDashboard.jsx'
 import FoodDashboard from './pages/admin/FoodDashboard.jsx'
 import BeverageDashboard from './pages/admin/BeverageDashboard.jsx'
-import StaffModuleAccess from './pages/admin/StaffModuleAccess.jsx'
 import FBControl from './pages/admin/FBControl.jsx'
 import Orders from './pages/admin/Orders.jsx'
 import Invoices from './pages/admin/Invoices.jsx'
-import ReservationsAccess from './pages/admin/ReservationsAccess.jsx'
+import ReservationsDashboard from './pages/admin/ReservationsDashboard.jsx'
+import AccountAccess from './pages/AccountAccess.jsx'
+import { supabase } from './lib/supabaseClient.js'
 import MusicManager from './pages/admin/MusicManager.jsx'
 import ManualOperativo from './pages/admin/ManualOperativo.jsx'
 import Analytics from './pages/admin/Analytics.jsx'
@@ -24,6 +25,7 @@ import { LanguageProvider } from './i18n/LanguageContext.jsx'
 
 const pagePaths = {
   home: '/',
+  account: '/account',
   locale: '/restaurante',
   famiglia: '/famiglia',
   menu: '/menu',
@@ -40,18 +42,18 @@ const pagePaths = {
   'admin-analytics': '/manager/analytics'
 }
 
-const adminPages = new Set([
-  'admin',
-  'admin-food',
-  'admin-beverage',
-  'admin-fb',
-  'admin-orders',
-  'admin-invoices',
-  'admin-reservations',
-  'admin-music',
-  'admin-manual',
-  'admin-analytics'
-])
+const staffPagePermissions = {
+  admin: 'staff',
+  'admin-orders': 'orders',
+  'admin-beverage': 'beverage',
+  'admin-reservations': 'reservations',
+  'admin-food': 'backoffice',
+  'admin-fb': 'backoffice',
+  'admin-invoices': 'backoffice',
+  'admin-music': 'backoffice',
+  'admin-manual': 'backoffice',
+  'admin-analytics': 'backoffice'
+}
 
 function normalizePathname(pathname) {
   if (pathname !== '/' && pathname.endsWith('/')) return pathname.slice(0, -1)
@@ -65,18 +67,57 @@ function getPageFromPath(pathname) {
   return entry?.[0] || 'home'
 }
 
-function isAdminPage(page) {
-  return adminPages.has(page)
-}
-
-function isManagerUnlocked() {
-  if (typeof window === 'undefined') return false
-  return window.sessionStorage.getItem('nonna_manager_unlocked') === 'true'
-}
-
 export default function App() {
   const [currentPage, setCurrentPage] = useState(() => getPageFromPath(window.location.pathname))
-  const [isAdminMode, setIsAdminMode] = useState(isManagerUnlocked)
+  const [session, setSession] = useState(undefined)
+  const [staffResult, setStaffResult] = useState(null)
+  const [authBusy, setAuthBusy] = useState(false)
+  const [authError, setAuthError] = useState(false)
+  const userId = session?.user?.id
+  const staffAccess = userId && staffResult?.userId === userId ? staffResult : null
+  const permissions = staffAccess?.permissions
+  const isStaff = Boolean(permissions?.backoffice || permissions?.orders ||
+    permissions?.beverage || permissions?.reservations)
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, nextSession) => {
+      setSession(nextSession ?? null)
+    })
+    return () => subscription.unsubscribe()
+  }, [])
+
+  useEffect(() => {
+    if (!userId) {
+      setStaffResult(null)
+      return
+    }
+
+    let active = true
+    async function loadPermissions() {
+      try {
+        const { data, error } = await supabase.rpc('staff_portal_access')
+        if (error) throw error
+        if (active) setStaffResult({ userId, permissions: data || {} })
+      } catch {
+        if (active) setStaffResult({ userId, error: true })
+      }
+    }
+    loadPermissions()
+    return () => { active = false }
+  }, [userId])
+
+  const signOut = async () => {
+    setAuthBusy(true)
+    setAuthError(false)
+    try {
+      const { error } = await supabase.auth.signOut({ scope: 'local' })
+      if (error) throw error
+    } catch {
+      setAuthError(true)
+    } finally {
+      setAuthBusy(false)
+    }
+  }
 
   const navigateToPage = (page) => {
     setCurrentPage(page)
@@ -99,41 +140,43 @@ export default function App() {
   }, [])
 
   const renderPage = () => {
+    const accountProps = { session, staff: isStaff, onSignOut: signOut, authBusy }
+    if (currentPage === 'account') return <AccountAccess {...accountProps} />
+
+    const permission = staffPagePermissions[currentPage]
+    if (permission) {
+      if (!session) return <AccountAccess privatePage {...accountProps} />
+      if (!staffAccess) return <p className="admin-page" role="status">Verificando acceso…</p>
+      if (staffAccess.error || (permission === 'staff' ? !isStaff : permissions?.[permission] !== true)) {
+        return (
+          <section className="admin-page">
+            <p role="alert">{staffAccess.error
+              ? 'No se han podido verificar los permisos. Recarga la página.'
+              : 'Tu cuenta no tiene acceso a esta sección.'}</p>
+            <button className="ghost-button" type="button" onClick={() => navigateToPage(isStaff ? 'admin' : 'account')}>
+              {isStaff ? 'Volver a Manager' : 'Mi cuenta'}
+            </button>
+          </section>
+        )
+      }
+    }
+
     if (currentPage === 'admin-reservations') {
-      return <ReservationsAccess onBack={isAdminMode ? () => navigateToPage('admin') : undefined} />
+      return <ReservationsDashboard key={userId} onBack={() => navigateToPage('admin')} onSignOut={signOut} authBusy={authBusy} />
     }
 
     if (currentPage === 'admin-beverage') {
-      return (
-        <StaffModuleAccess
-          permissionRpc="beverage_inventory_has_access"
-          title="Acceso al inventario de bebidas"
-          deniedMessage="Esta cuenta no tiene permiso para gestionar el inventario de bebidas."
-        >
-          {({ userId, ...auth }) => (
-            <BeverageDashboard
-              key={userId}
-              userId={userId}
-              onBack={() => navigateToPage(isAdminMode ? 'admin' : 'home')}
-              {...auth}
-            />
-          )}
-        </StaffModuleAccess>
-      )
-    }
-
-    if (isAdminPage(currentPage) && !isAdminMode) {
-      return <Home setCurrentPage={navigateToPage} />
+      return <BeverageDashboard key={userId} userId={userId} onBack={() => navigateToPage('admin')} onSignOut={signOut} authBusy={authBusy} />
     }
 
     if (currentPage === 'locale') return <Locale />
-    if (currentPage === 'famiglia') return <LoyaltyCard />
+    if (currentPage === 'famiglia') return <LoyaltyCard onOpenAccount={() => navigateToPage('account')} />
     if (currentPage === 'menu') return <Menu setCurrentPage={navigateToPage} />
     if (currentPage === 'bebidas') return <Bebidas />
-    if (currentPage === 'admin') return <AdminDashboard setCurrentPage={navigateToPage} />
+    if (currentPage === 'admin') return <AdminDashboard setCurrentPage={navigateToPage} permissions={permissions} />
     if (currentPage === 'admin-food') return <FoodDashboard setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-fb') return <FBControl setCurrentPage={navigateToPage} />
-    if (currentPage === 'admin-orders') return <Orders setCurrentPage={navigateToPage} />
+    if (currentPage === 'admin-orders') return <Orders key={userId} setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-invoices') return <Invoices setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-music') return <MusicManager setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-manual') return <ManualOperativo setCurrentPage={navigateToPage} />
@@ -141,20 +184,20 @@ export default function App() {
     return <Home setCurrentPage={navigateToPage} />
   }
 
-  const managerTargetPage = isAdminPage(currentPage) ? currentPage : 'admin'
-
   return (
     <LanguageProvider>
       <div className="app-shell">
         <Navbar
           currentPage={currentPage}
           setCurrentPage={navigateToPage}
-          isAdminMode={isAdminMode}
-          setIsAdminMode={setIsAdminMode}
-          managerTargetPage={managerTargetPage}
+          isStaff={isStaff}
+          signedIn={Boolean(session)}
         />
 
-        <main className="main-content">{renderPage()}</main>
+        <main className="main-content">
+          {authError && <p className="manager-error" role="alert">No se ha podido cerrar la sesión. Inténtalo de nuevo.</p>}
+          {renderPage()}
+        </main>
 
         <Footer setCurrentPage={navigateToPage} />
         <VirtualAgent />

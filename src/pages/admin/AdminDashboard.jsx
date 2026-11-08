@@ -18,7 +18,27 @@ function getRiskItems(items) {
         .slice(0, 5)
 }
 
-export default function AdminDashboard({ setCurrentPage }) {
+const operations = [
+    { permission: 'orders', page: 'admin-orders', title: 'Ordini', description: 'Ordini cucina e barra con storico' },
+    { permission: 'beverage', page: 'admin-beverage', title: 'Inventario bevande', description: 'Conteggio condiviso di bar e cantina' },
+    { permission: 'reservations', page: 'admin-reservations', title: 'Reservas', description: 'Solicitudes, confirmaciones y mesas' }
+]
+
+export default function AdminDashboard({ setCurrentPage, permissions }) {
+    if (!permissions.backoffice) {
+        return (
+            <section className="admin-page">
+                <div className="admin-header"><h2>Manager</h2></div>
+                <div className="admin-module-grid">
+                    {operations.filter(module => permissions[module.permission]).map(module => (
+                        <AdminModuleCard key={module.page} title={module.title} description={module.description}
+                            onClick={() => setCurrentPage(module.page)} />
+                    ))}
+                </div>
+            </section>
+        )
+    }
+
     const items = menuCostReport.items || []
 
     const completeItems = items.filter((item) => item.costing_status === 'complete')
@@ -92,6 +112,12 @@ export default function AdminDashboard({ setCurrentPage }) {
                             onClick={() => setCurrentPage('admin-beverage')}
                         />
                         <AdminModuleCard
+                            title="Orders"
+                            description="Ordini cucina e barra con storico"
+                            meta="Food / beverage / fornitori"
+                            onClick={() => setCurrentPage('admin-orders')}
+                        />
+                        <AdminModuleCard
                             title="F&B Control"
                             description="Menu completo, margini, alert, riserve e takeaway futuri"
                             meta="Controllo manageriale"
@@ -106,12 +132,6 @@ export default function AdminDashboard({ setCurrentPage }) {
                         <h3>Back office</h3>
                     </div>
                     <div className="admin-module-grid">
-                        <AdminModuleCard
-                            title="Orders"
-                            description="Ordini cucina e barra con storico"
-                            meta="Food / beverage / fornitori"
-                            onClick={() => setCurrentPage('admin-orders')}
-                        />
                         <AdminModuleCard
                             title="Invoices"
                             description="Carica fatture, OCR, storico prezzi prodotti"

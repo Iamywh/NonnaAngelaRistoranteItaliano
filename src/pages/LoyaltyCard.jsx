@@ -18,7 +18,7 @@ const safeStoredToken=()=>{
     return TOKEN_RE.test(saved||'')?saved:null
   }catch{return null}
 }
-export default function LoyaltyCard(){
+export default function LoyaltyCard({onOpenAccount}){
   const [token,setToken]=useState(()=>tokenFromFragment()||safeStoredToken())
   const [program,setProgram]=useState(null)
   const [card,setCard]=useState(null)
@@ -101,6 +101,7 @@ export default function LoyaltyCard(){
       <h2>La Famiglia di Nonna Angela</h2>
       <p>Un pequeño agradecimiento por cada visita. Sin puntos por gastar más:
         una visita real, una marca. Con cariño, como en casa.</p>
+      {!token&&<button className="ghost-button" type="button" onClick={onOpenAccount}>Mi cuenta</button>}
     </div>
     {!token&&<div className="loyalty-panel">
       <h3>{program?.issuing_enabled?'Tu tarjeta de La Famiglia':'La Famiglia · Próximamente'}</h3>

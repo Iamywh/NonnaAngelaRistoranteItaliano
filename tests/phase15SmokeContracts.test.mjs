@@ -13,8 +13,8 @@ const clients=file('src/lib/supabaseClient.js')
 const booking=file('src/pages/Locale.jsx')
 const agent=file('src/components/VirtualAgent.jsx')
 const managerReservations=file('src/pages/admin/ReservationsDashboard.jsx')
-const reservationsAccess=file('src/pages/admin/ReservationsAccess.jsx')
-const staffModuleAccess=file('src/pages/admin/StaffModuleAccess.jsx')
+const accountAccess=file('src/pages/AccountAccess.jsx')
+const portalMigration=file('supabase/migrations/20261108150000_staff_portal_access.sql')
 const reservationsStaffMigration=file('supabase/migrations/20261108120000_reservations_staff_access.sql')
 const analytics=file('src/pages/admin/Analytics.jsx')
 const loyaltyWallet=file('src/pages/LoyaltyCard.jsx')
@@ -38,12 +38,11 @@ const intelligenceMigration=file('supabase/migrations/20261107_analytics_custome
 
 test('Routes for restaurant, bookings, menu, loyalty and Analytics remain defined',()=>{
   for(const path of ['/restaurante','/menu','/bebidas','/famiglia',
-    '/manager/reservas','/manager/analytics']){
+    '/manager/reservas','/manager/analytics','/account']){
     assert.ok(app.includes("'"+path+"'"),'Missing route '+path)
   }
   assert.match(app,/window[.]addEventListener[(]'popstate'/)
-  assert.match(app,/new Set[(]\[/)
-  assert.match(app,/if [(]isAdminPage[(]currentPage[)] && !isAdminMode[)]/)
+  assert.match(app,/staffPagePermissions\[currentPage\]/)
 })
 
 test('Anonymous reservation client remains separate from authenticated Analytics',()=>{
@@ -69,10 +68,8 @@ test('Frontend never includes service role secrets or webhook secret values',()=
   })){
     assert.doesNotMatch(s,/SUPABASE_SERVICE_ROLE_KEY|ANALYTICS_TELEGRAM_BOT_TOKEN|ANALYTICS_TELEGRAM_WEBHOOK_SECRET/,name)
   }
-  assert.match(navbar,/VITE_MANAGER_PASSWORD/)
-  assert.match(app,/sessionStorage[.]getItem[(]'nonna_manager_unlocked'[)]/)
-  // Presence of the legacy client-side Manager gate is explicitly NOT a
-  // server-side authorization guarantee. Must be resolved in Phase 16.
+  assert.doesNotMatch(navbar,/VITE_MANAGER_PASSWORD/)
+  assert.doesNotMatch(app,/nonna_manager_unlocked/)
 })
 
 test('Reservations editor status models remain available for live manual test',()=>{
@@ -88,16 +85,25 @@ test('Reservations editor status models remain available for live manual test',(
 
 test('The Telegram reservation route checks individual staff access before rendering bookings',()=>{
   const directRoute = app.indexOf("if (currentPage === 'admin-reservations')")
-  const legacyGate = app.indexOf('if (isAdminPage(currentPage) && !isAdminMode)')
-  assert.ok(directRoute >= 0 && directRoute < legacyGate)
-  assert.match(app, /return <ReservationsAccess/)
-  assert.match(staffModuleAccess, /supabase[.]auth[.]signInWithPassword/)
-  assert.match(staffModuleAccess, /supabase[.]rpc[(]permissionRpc[)]/)
-  assert.match(staffModuleAccess, /if [(]status === 'allowed'[)][\s\S]*children[(]/)
-  assert.match(reservationsAccess, /permissionRpc="reservations_staff_has_access"/)
-  assert.match(reservationsAccess, /<ReservationsDashboard/)
+  const gate = app.indexOf('const permission = staffPagePermissions[currentPage]')
+  assert.ok(gate >= 0 && gate < directRoute)
+  assert.match(app, /'admin-reservations': 'reservations'/)
+  assert.match(app, /<ReservationsDashboard/)
+  assert.match(accountAccess, /supabase[.]auth[.]signInWithPassword/)
+  assert.match(app, /supabase[.]rpc[(]'staff_portal_access'[)]/)
+  assert.match(portalMigration, /public[.]reservations_staff_has_access[(][)]/)
   assert.match(reservationsStaffMigration, /REVOKE ALL ON TABLE public[.]reservation_staff FROM PUBLIC, anon, authenticated/)
   assert.match(reservationsStaffMigration, /FOR UPDATE TO authenticated[\s\S]*WITH CHECK [(][(]SELECT public[.]reservations_staff_has_access[(]true[)]/)
+})
+
+test('Public registration grants no staff permissions and staff sees only authorized modules',()=>{
+  assert.match(accountAccess, /supabase[.]auth[.]signUp/)
+  assert.match(navbar, /isStaff &&/)
+  assert.match(app, /'admin-orders': 'orders'/)
+  assert.match(app, /'admin-beverage': 'beverage'/)
+  assert.match(app, /'admin-analytics': 'backoffice'/)
+  assert.match(portalMigration, /REVOKE ALL ON FUNCTION public[.]staff_portal_access[(][)] FROM PUBLIC, anon, authenticated/)
+  assert.match(portalMigration, /module = 'orders'/)
 })
 
 test('Private manager PDFs require a verified user and an active Analytics role',()=>{
