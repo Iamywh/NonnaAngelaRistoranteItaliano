@@ -54,7 +54,7 @@ const ALLERGEN_ALIASES = {
   apio: 'apio',
   sedano: 'apio',
   mostaza: 'mostaza',
-  senape: 'senape',
+  senape: 'mostaza',
   sesamo: 'sesamo',
   sulfitos: 'sulfitos',
   solfiti: 'sulfitos',
