@@ -20,12 +20,21 @@ const safeStoredToken=()=>{
 }
 export default function LoyaltyCard(){
   const [token,setToken]=useState(()=>tokenFromFragment()||safeStoredToken())
+  const [program,setProgram]=useState(null)
   const [card,setCard]=useState(null)
   const [busy,setBusy]=useState(false)
   const [error,setError]=useState('')
   const [message,setMessage]=useState('')
   const [revision,setRevision]=useState(0)
   const [saved,setSaved]=useState(()=>{const actual=tokenFromFragment()||safeStoredToken();return Boolean(actual&&actual===safeStoredToken())})
+
+  useEffect(()=>{
+    let active=true
+    publicSupabase.rpc('loyalty_public_program').then(({data,error})=>{
+      if(active&&!error)setProgram(data)
+    }).catch(()=>{})
+    return()=>{active=false}
+  },[])
 
   useEffect(()=>{
     let active=true
@@ -94,9 +103,14 @@ export default function LoyaltyCard(){
         una visita real, una marca. Con cariño, como en casa.</p>
     </div>
     {!token&&<div className="loyalty-panel">
-      <h3>Tu tarjeta de La Famiglia</h3>
-      <p>Pide tu tarjeta al equipo durante tu próxima visita. Te entregarán
-        un enlace privado para que puedas consultar tus marcas y premios.</p>
+      <h3>{program?.issuing_enabled?'Tu tarjeta de La Famiglia':'La Famiglia · Próximamente'}</h3>
+      {program?.issuing_enabled?<>
+        <p>Pide tu tarjeta al equipo durante tu próxima visita. Te entregarán
+          un enlace privado para que puedas consultar tus marcas y premios.</p>
+        <p>Oferta actual para tarjetas nuevas: <strong>{program.reward_label}</strong>
+          {' '}por cada <strong>{program.reward_threshold}</strong> visitas verificadas.</p>
+      </>:<p>Estamos preparando nuestro programa. Todavía no emitimos tarjetas nuevas.
+        Consulta al equipo antes de contar con una recompensa.</p>}
       <p>La inscripción se hace en el restaurante y no requiere nombre, correo
         electrónico ni teléfono. No te enviaremos mensajes comerciales.</p>
       <p>Si ya tienes tu tarjeta, abre el enlace privado que te entregamos.
