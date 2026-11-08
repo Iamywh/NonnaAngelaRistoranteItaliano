@@ -180,6 +180,9 @@ BEGIN
   v_clicks:=(v_metrics->>'clicks')::integer;
   v_inquiries:=(v_metrics->>'inquiries')::integer;
   v_bookings:=(v_metrics->>'code_bookings')::integer;
+  IF coalesce(v_bookings,0)>0 AND v_tracking IS NULL THEN
+    RAISE EXCEPTION 'Do not declare campaign-code bookings without a tracking code';
+  END IF;
 
   IF nullif(p_campaign->>'id','') IS NULL THEN
     IF (p_campaign->>'expected_revision') IS NOT NULL THEN
