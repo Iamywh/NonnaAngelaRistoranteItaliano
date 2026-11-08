@@ -69,8 +69,8 @@ test('Library refuses truncated or malformed private records',()=>{
   assert.equal(validateCreativeList({ok:true,count:1,assets:[record()]}).length,1)
   assert.throws(()=>validateCreativeList({ok:true,count:2,assets:[record()]}),/incompleta/)
   assert.throws(()=>validateCreativeList({ok:true,count:2,assets:[record(),record()]}),/duplicado/)
-  assert.throws(()=>validateCreativeList({ok:true,count:1,assets:[record({mime_type:'image/svg+xml'})]}),/inválido/)
-  assert.throws(()=>validateCreativeList({ok:true,count:1,assets:[record({linked_count:-1})]}),/inválido/)
+  assert.throws(()=>validateCreativeList({ok:true,count:1,assets:[record({mime_type:'image/svg+xml'})]}),/no válido|inválido/)
+  assert.throws(()=>validateCreativeList({ok:true,count:1,assets:[record({linked_count:-1})]}),/no válido|inválido/)
 })
 test('Storage bucket is private and RLS enforced for select, upload and cleanup',()=>{
   assert.match(sql,/'nonna-creative-library','nonna-creative-library',false,26214400/)
