@@ -28,7 +28,7 @@ function Field({label,children,small}) {
     {small&&<small style={{opacity:.75}}>{small}</small>}
   </label>
 }
-function ItemCard({item,onEdit,onAction,busy,publicationUrl,onPublicationUrl}) {
+function ItemCard({item,onEdit,onAction,busy,publicationUrl,onPublicationUrl,assets,onOpenLibrary}) {
   const actions=editorialAllowedActions(item)
   const checklistCount=EDITORIAL_CHECKS.filter(x=>item[x.key]===true).length
   return <div style={{border:cardBorder,borderRadius:12,padding:15,display:'grid',gap:9}}>
@@ -46,6 +46,18 @@ function ItemCard({item,onEdit,onAction,busy,publicationUrl,onPublicationUrl}) {
     {item.copy_text&&<p style={{whiteSpace:'pre-wrap',overflowWrap:'anywhere',margin:'3px 0'}}>
       {item.copy_text.length>360?item.copy_text.slice(0,360)+'…':item.copy_text}
     </p>}
+    <div style={{borderTop:cardBorder,paddingTop:8,display:'grid',gap:7}}>
+      <small><strong>Archivos Creative Library:</strong> {assets.length} recurso(s) vinculado(s).</small>
+      {assets.map(asset=><small key={asset.asset_id}>
+        • {asset.asset_title}
+        {(asset.rights_status!=='cleared'||asset.asset_status!=='active')&&
+          <strong style={{color:'#b77a24'}}> · ⚠ Derechos/estado por revisar</strong>}
+      </small>)}
+      {assets.length===0&&<small>No hay fotos ni vídeos vinculados todavía.</small>}
+      <button type="button" className="ghost-button" disabled={busy} onClick={onOpenLibrary}>
+        Abrir Creative Library para vincular recursos
+      </button>
+    </div>
     {item.cta&&<small><strong>CTA:</strong> {item.cta}</small>}
     {item.hashtags&&<small style={{overflowWrap:'anywhere'}}><strong>Hashtags:</strong> {item.hashtags}</small>}
     <small>Checklist: {checklistCount}/4 ·
@@ -92,6 +104,8 @@ export default function EditorialCalendar({onNavigate}) {
   const [items,setItems]=useState([])
   const [ready,setReady]=useState(false)
   const [campaigns,setCampaigns]=useState([])
+  const [assetLinks,setAssetLinks]=useState([])
+  const [assetWarning,setAssetWarning]=useState('')
   const [campaignWarning,setCampaignWarning]=useState('')
   const [draft,setDraft]=useState(null)
   const [publicationLinks,setPublicationLinks]=useState({})
@@ -104,12 +118,15 @@ export default function EditorialCalendar({onNavigate}) {
       return()=>{active=false}
     }
     async function load(){
-      setLoading(true);setReady(false);setItems([]);setError('');setCampaignWarning('')
-      const [editorial,growth]=await Promise.all([
+      setLoading(true);setReady(false);setItems([]);setError('');setCampaignWarning('');setAssetWarning('');setAssetLinks([])
+      const [editorial,growth,creative]=await Promise.all([
         supabase.rpc('analytics_editorial_list',{
           p_start_date:calendar.start,p_end_date:calendar.end
         }),
         supabase.rpc('analytics_growth_list',{
+          p_start_date:calendar.start,p_end_date:calendar.end
+        }),
+        supabase.rpc('analytics_creative_month_links',{
           p_start_date:calendar.start,p_end_date:calendar.end
         })
       ])
@@ -132,6 +149,10 @@ export default function EditorialCalendar({onNavigate}) {
       }else{
         setCampaigns(growth.data.campaigns)
       }
+      if(creative.error||!creative.data?.ok||!Array.isArray(creative.data.links)||
+        creative.data.links.length!==creative.data.count){
+        setAssetWarning('Creative Library no está disponible. Los vínculos de archivos no se han podido comprobar.')
+      }else setAssetLinks(creative.data.links)
       setLoading(false)
     }
     load()
@@ -263,6 +284,7 @@ export default function EditorialCalendar({onNavigate}) {
       {error&&<p role="alert" className="manager-error">{error}</p>}
       {notice&&<p role="status">{notice}</p>}
       {campaignWarning&&<p role="status">{campaignWarning}</p>}
+      {assetWarning&&<p role="status">{assetWarning}</p>}
     </div>
     {model?.error&&<p role="alert" className="manager-error">{model.error}</p>}
     {ready&&model&&!model.error&&<>
@@ -322,6 +344,8 @@ export default function EditorialCalendar({onNavigate}) {
           <div style={{display:'grid',gap:12}}>
             {visible.map(item=><ItemCard key={item.id} item={item}
               onEdit={edit} onAction={action} busy={saving}
+              assets={assetLinks.filter(link=>link.editorial_id===item.id)}
+              onOpenLibrary={()=>onNavigate?.('creative')}
               publicationUrl={publicationLinks[item.id]||''}
               onPublicationUrl={value=>setPublicationLinks(old=>({...old,[item.id]:value}))}/>)}
           </div>}
