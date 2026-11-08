@@ -115,7 +115,7 @@ BEGIN
     WHERE id=p_editorial_id FOR UPDATE;
   IF v_old.status IN ('approved','in_review') THEN
     UPDATE public.analytics_editorial_items SET
-      status='draft',approved_by=NULL,approved_at=NULL,revision=revision+1,
+      status='draft',approved_by=NULL,approved_at=NULL,rights_checked=false,revision=revision+1,
       updated_by=auth.uid(),updated_at=now()
     WHERE id=p_editorial_id RETURNING * INTO v_new;
     INSERT INTO public.analytics_editorial_audit(
