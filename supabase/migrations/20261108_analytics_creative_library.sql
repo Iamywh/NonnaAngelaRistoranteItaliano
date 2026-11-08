@@ -22,6 +22,9 @@ AS $$
 $$;
 REVOKE ALL ON FUNCTION public.analytics_creative_authorized()
   FROM PUBLIC,anon,authenticated;
+-- Storage RLS evaluates this boolean helper as the signed-in database role.
+-- Granting EXECUTE is safe: it returns only whether that caller is owner/admin.
+GRANT EXECUTE ON FUNCTION public.analytics_creative_authorized() TO authenticated;
 
 -- Supabase Storage authorization is server-side, independent from the UI.
 -- Paths are random opaque UUID filenames in the media/ directory.
