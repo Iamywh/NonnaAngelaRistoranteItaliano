@@ -6,7 +6,8 @@ const load = path => readFileSync(new URL('../'+path, import.meta.url), 'utf8')
 const clients = load('src/lib/supabaseClient.js')
 const booking = load('src/pages/Locale.jsx')
 const agent = load('src/components/VirtualAgent.jsx')
-const availability = load('src/lib/reservationSlotBlocks.js')
+const availability = load('src/lib/reservationAvailability.js')
+const blockedSlots = load('src/lib/reservationSlotBlocks.js')
 const privateAnalytics = load('src/pages/admin/Analytics.jsx')
 
 test('Public reservation client cannot inherit private Analytics session', () => {
@@ -25,10 +26,17 @@ test('Public booking and chatbot reads/writes always use the anonymous client', 
   }
 })
 test('Availability and blocked times checks share the public session', () => {
-  assert.match(availability,/import \{ publicSupabase \} from '\.\/supabaseClient\.js'/)
-  assert.match(availability,/await publicSupabase/)
-  assert.match(booking,/await publicSupabase/)
-  assert.match(agent,/await publicSupabase/)
+  for (const source of [availability, blockedSlots]) {
+    assert.match(source, /import \{ publicSupabase \} from '\.\/supabaseClient\.js'/)
+  }
+  assert.match(blockedSlots, /await publicSupabase/)
+  assert.match(availability, /publicSupabase\.rpc\('reservation_service_booked_guests'/)
+  assert.doesNotMatch(availability, /\.from\('reservations'\)/)
+  for (const source of [booking, agent]) {
+    assert.match(source, /from '\.\.\/lib\/reservationAvailability\.js'/)
+    assert.match(source, /await getBookedGuestsForService\(/)
+  }
+  assert.doesNotMatch(booking, /\.select\(/)
 })
 test('Reservation Telegram notification side effect remains attached for both clients', () => {
   assert.match(clients,/installReservationNotificationBridge\(supabase\)/)
