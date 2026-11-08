@@ -8,6 +8,7 @@ import Bebidas from './pages/Bebidas.jsx'
 import AdminDashboard from './pages/admin/AdminDashboard.jsx'
 import FoodDashboard from './pages/admin/FoodDashboard.jsx'
 import BeverageDashboard from './pages/admin/BeverageDashboard.jsx'
+import StaffModuleAccess from './pages/admin/StaffModuleAccess.jsx'
 import FBControl from './pages/admin/FBControl.jsx'
 import Orders from './pages/admin/Orders.jsx'
 import Invoices from './pages/admin/Invoices.jsx'
@@ -102,6 +103,25 @@ export default function App() {
       return <ReservationsAccess onBack={isAdminMode ? () => navigateToPage('admin') : undefined} />
     }
 
+    if (currentPage === 'admin-beverage') {
+      return (
+        <StaffModuleAccess
+          permissionRpc="beverage_inventory_has_access"
+          title="Acceso al inventario de bebidas"
+          deniedMessage="Esta cuenta no tiene permiso para gestionar el inventario de bebidas."
+        >
+          {({ userId, ...auth }) => (
+            <BeverageDashboard
+              key={userId}
+              userId={userId}
+              onBack={() => navigateToPage(isAdminMode ? 'admin' : 'home')}
+              {...auth}
+            />
+          )}
+        </StaffModuleAccess>
+      )
+    }
+
     if (isAdminPage(currentPage) && !isAdminMode) {
       return <Home setCurrentPage={navigateToPage} />
     }
@@ -112,7 +132,6 @@ export default function App() {
     if (currentPage === 'bebidas') return <Bebidas />
     if (currentPage === 'admin') return <AdminDashboard setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-food') return <FoodDashboard setCurrentPage={navigateToPage} />
-    if (currentPage === 'admin-beverage') return <BeverageDashboard setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-fb') return <FBControl setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-orders') return <Orders setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-invoices') return <Invoices setCurrentPage={navigateToPage} />
