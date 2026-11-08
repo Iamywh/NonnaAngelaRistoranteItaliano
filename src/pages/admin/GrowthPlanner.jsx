@@ -31,7 +31,7 @@ function Field({label,children}) {
   return <label style={{display:'grid',gap:7,minWidth:0}}>{label}{children}</label>
 }
 
-export default function GrowthPlanner(){
+export default function GrowthPlanner({onNavigate}){
   const [start,setStart]=useState(()=>offsetDay(canaryDate(),-60))
   const [end,setEnd]=useState(()=>offsetDay(canaryDate(),120))
   const [loadNumber,setLoadNumber]=useState(0)
@@ -149,6 +149,9 @@ export default function GrowthPlanner(){
           disabled={loading||saving}>Actualizar desde Supabase</button>
         <button type="button" className="primary-button" onClick={newCampaign}
           disabled={loading||saving||!dataReady}>+ Nueva campaña</button>
+        <button type="button" className="ghost-button" onClick={()=>onNavigate?.('customer-trends')}>
+          Consultar Tendencias clientes
+        </button>
       </div>
       <p style={{opacity:.8}}>Se muestran campañas cuyos períodos se solapan con el filtro
         (máximo 367 días de filtro, 200 campañas).</p>
