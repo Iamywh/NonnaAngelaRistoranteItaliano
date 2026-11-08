@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Test Analytics calculations
-        run: node --test tests/analyticsMetrics.test.mjs tests/analyticsPlanning.test.mjs tests/analyticsTargetsValidation.test.mjs tests/analyticsForecast.test.mjs tests/analyticsBreakEven.test.mjs tests/analyticsMonthlyClose.test.mjs tests/analyticsReports.test.mjs tests/analyticsAlerts.test.mjs tests/analyticsDigest.test.mjs tests/analyticsTelegramIsolation.test.mjs tests/analyticsTelegramConnection.test.mjs tests/analyticsTelegramEntry.test.mjs tests/analyticsTelegramExpense.test.mjs tests/analyticsImport.test.mjs tests/analyticsDataQuality.test.mjs tests/analyticsCustomerIntelligence.test.mjs tests/analyticsCustomerTrends.test.mjs tests/loyaltyPilot.test.mjs tests/loyaltyEconomics.test.mjs tests/publicReservationAuthIsolation.test.mjs
+        run: node --test tests/analyticsMetrics.test.mjs tests/analyticsPlanning.test.mjs tests/analyticsTargetsValidation.test.mjs tests/analyticsForecast.test.mjs tests/analyticsBreakEven.test.mjs tests/analyticsMonthlyClose.test.mjs tests/analyticsReports.test.mjs tests/analyticsAlerts.test.mjs tests/analyticsDigest.test.mjs tests/analyticsTelegramIsolation.test.mjs tests/analyticsTelegramConnection.test.mjs tests/analyticsTelegramEntry.test.mjs tests/analyticsTelegramExpense.test.mjs tests/analyticsImport.test.mjs tests/analyticsDataQuality.test.mjs tests/analyticsCustomerIntelligence.test.mjs tests/analyticsCustomerTrends.test.mjs tests/loyaltyPilot.test.mjs tests/loyaltyEconomics.test.mjs tests/analyticsGrowth.test.mjs tests/publicReservationAuthIsolation.test.mjs
       - name: Verify production build
         run: npm run build
         env:
