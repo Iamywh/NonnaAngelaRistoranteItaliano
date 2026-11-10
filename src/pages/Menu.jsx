@@ -15,6 +15,7 @@ import insalate from '../../data/menu/insalate.json'
 import dolci from '../../data/menu/Dolci.json'
 import vini from '../../data/menu/vini.json'
 import allergenDefinitions from '../data/allergens.json'
+import { getItemAllergens } from '../lib/menuAllergens.mjs'
 
 const menuCategories = [
   { id: 'especialidades_semana', image: '/images/menu/especialidades-semana.jpg', type: 'food' },
@@ -32,37 +33,6 @@ const RENOVATION_VISIBLE_CATEGORIES = ['vini', 'bebidas']
 const PRICE_LABELS = { copa: 'glass', chupito: 'shot', combinado: 'combinado' }
 
 const ALLERGENS_BY_ID = new Map(allergenDefinitions.map((allergen) => [allergen.id, allergen]))
-const ALLERGEN_ALIASES = {
-  gluten: 'gluten',
-  glutine: 'gluten',
-  crustaceos: 'crustaceos',
-  crostacei: 'crustaceos',
-  huevos: 'huevos',
-  uova: 'huevos',
-  pescado: 'pescado',
-  pesce: 'pescado',
-  cacahuetes: 'cacahuetes',
-  arachidi: 'cacahuetes',
-  soja: 'soja',
-  soia: 'soja',
-  leche: 'leche',
-  latte: 'leche',
-  'frutos secos': 'frutos_secos',
-  'frutta a guscio': 'frutos_secos',
-  pistacho: 'frutos_secos',
-  pistacchio: 'frutos_secos',
-  apio: 'apio',
-  sedano: 'apio',
-  mostaza: 'mostaza',
-  senape: 'mostaza',
-  sesamo: 'sesamo',
-  sulfitos: 'sulfitos',
-  solfiti: 'sulfitos',
-  altramuces: 'altramuces',
-  lupini: 'altramuces',
-  moluscos: 'moluscos',
-  molluschi: 'moluscos'
-}
 
 function FoodMenuRenovationNotice() {
   const { t } = useLanguage()
@@ -83,33 +53,6 @@ function FoodMenuRenovationNotice() {
   )
 }
 
-function normalizeAllergenId(value) {
-  const rawValue = typeof value === 'object' && value !== null ? value.id : value
-  if (!rawValue) return null
-
-  const normalizedValue = String(rawValue)
-    .trim()
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[_-]+/g, ' ')
-    .replace(/\s+/g, ' ')
-
-  return ALLERGEN_ALIASES[normalizedValue] || null
-}
-
-function getItemAllergens(item) {
-  const allergenValues = [item.allergens, item.allergens_es, item.allergens_to_verify]
-    .flatMap((value) => {
-      if (Array.isArray(value)) return value
-      if (typeof value === 'string') return value.split(/[,;/]/)
-      return []
-    })
-    .map(normalizeAllergenId)
-    .filter(Boolean)
-
-  return [...new Set(allergenValues)]
-}
 
 function getAllergenInfo(allergenId) {
   return ALLERGENS_BY_ID.get(allergenId)

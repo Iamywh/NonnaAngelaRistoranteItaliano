@@ -1,0 +1,283 @@
+{
+  "notes": "Public descriptive fields extracted from the existing wine and cocktail knowledge. Prices come from the live menu files.",
+  "wines": [
+    {
+      "code": "NA-WIN-RED-001",
+      "grapes": [
+        "Nero d’Avola"
+      ],
+      "service_temperature": "16-18°C",
+      "body": "Medio-alto"
+    },
+    {
+      "code": "NA-WIN-RED-002",
+      "grapes": [
+        "Primitivo"
+      ],
+      "service_temperature": "16-18°C",
+      "body": "Alto"
+    },
+    {
+      "code": "NA-WIN-RED-003",
+      "grapes": [
+        "Sangiovese"
+      ],
+      "service_temperature": "16-18°C",
+      "body": "Medio"
+    },
+    {
+      "code": "NA-WIN-RED-004",
+      "grapes": [
+        "Sangiovese"
+      ],
+      "service_temperature": "16-18°C",
+      "body": "Medio-alto"
+    },
+    {
+      "code": "NA-WIN-RED-005",
+      "grapes": [
+        "Montepulciano d’Abruzzo"
+      ],
+      "service_temperature": "16-18°C",
+      "body": "Medio"
+    },
+    {
+      "code": "NA-WIN-RED-006",
+      "grapes": [
+        "Sangiovese"
+      ],
+      "service_temperature": "18°C",
+      "body": "Alto"
+    },
+    {
+      "code": "NA-WIN-RED-007",
+      "grapes": [
+        "Nebbiolo"
+      ],
+      "service_temperature": "18°C",
+      "body": "Alto"
+    },
+    {
+      "code": "NA-WIN-RED-008",
+      "grapes": [
+        "Cabernet Sauvignon"
+      ],
+      "service_temperature": "16-18°C",
+      "body": "Medio-alto"
+    },
+    {
+      "code": "NA-WIN-RED-009",
+      "grapes": [
+        "Corvina",
+        "Corvinone",
+        "Rondinella",
+        "Croatina",
+        "Oseleta"
+      ],
+      "service_temperature": "16-18°C",
+      "body": "Alto"
+    },
+    {
+      "code": "NA-WIN-RED-010",
+      "grapes": [
+        "Corvina",
+        "Rondinella"
+      ],
+      "service_temperature": "15-17°C",
+      "body": "Medio"
+    },
+    {
+      "code": "NA-WIN-WHI-001",
+      "grapes": [
+        "Pinot Grigio"
+      ],
+      "service_temperature": "8-10°C",
+      "body": "Ligero"
+    },
+    {
+      "code": "NA-WIN-WHI-002",
+      "grapes": [
+        "Chardonnay"
+      ],
+      "service_temperature": "8-10°C",
+      "body": "Medio"
+    },
+    {
+      "code": "NA-WIN-WHI-003",
+      "grapes": [
+        "Ribolla Gialla"
+      ],
+      "service_temperature": "8-10°C",
+      "body": "Medio"
+    },
+    {
+      "code": "NA-WIN-WHI-004",
+      "grapes": [
+        "Greco"
+      ],
+      "service_temperature": "8-10°C",
+      "body": "Medio"
+    },
+    {
+      "code": "NA-WIN-WHI-005",
+      "grapes": [
+        "Falanghina"
+      ],
+      "service_temperature": "8-10°C",
+      "body": "Ligero-medio"
+    },
+    {
+      "code": "NA-WIN-WHI-006",
+      "grapes": [
+        "Viognier"
+      ],
+      "service_temperature": "8-10°C",
+      "body": "Medio"
+    },
+    {
+      "code": "NA-WIN-WHI-007",
+      "grapes": [
+        "Malvasia"
+      ],
+      "service_temperature": "8-10°C",
+      "body": "Medio-alto"
+    },
+    {
+      "code": "NA-WIN-WHI-008",
+      "grapes": [
+        "Cortese"
+      ],
+      "service_temperature": "8-10°C",
+      "body": "Medio"
+    },
+    {
+      "code": "NA-WIN-ROS-001",
+      "grapes": [
+        "Sangiovese",
+        "Merlot"
+      ],
+      "service_temperature": "8-10°C",
+      "body": "Ligero-medio"
+    },
+    {
+      "code": "NA-WIN-ROS-002",
+      "grapes": [
+        "Nero d’Avola"
+      ],
+      "service_temperature": "8-10°C",
+      "body": "Ligero-medio"
+    },
+    {
+      "code": "NA-WIN-SPA-001",
+      "grapes": [
+        "Glera"
+      ],
+      "service_temperature": "6-8°C",
+      "body": "Ligero"
+    },
+    {
+      "code": "NA-WIN-SPA-002",
+      "grapes": [
+        "Chardonnay",
+        "Pinot Nero"
+      ],
+      "service_temperature": "6-8°C",
+      "body": "Medio"
+    },
+    {
+      "code": "NA-WIN-SPA-003",
+      "grapes": [
+        "Chardonnay"
+      ],
+      "service_temperature": "6-8°C",
+      "body": "Medio"
+    },
+    {
+      "code": "NA-WIN-SPA-004",
+      "grapes": [
+        "Chardonnay",
+        "Pinot Nero"
+      ],
+      "service_temperature": "6-8°C",
+      "body": "Medio"
+    },
+    {
+      "code": "NA-WIN-SPA-005",
+      "grapes": [
+        "Chardonnay",
+        "Pinot Nero"
+      ],
+      "service_temperature": "6-8°C",
+      "body": "Alto"
+    },
+    {
+      "code": "NA-WIN-SWE-001",
+      "grapes": [
+        "Zibibbo"
+      ],
+      "service_temperature": "8-10°C",
+      "body": "Medio-alto"
+    }
+  ],
+  "cocktails": [
+    {
+      "id": "americano",
+      "style": [
+        "amargo",
+        "fresco",
+        "ligero",
+        "clásico",
+        "aperitivo"
+      ]
+    },
+    {
+      "id": "negroni",
+      "style": [
+        "amargo",
+        "intenso",
+        "clásico",
+        "seco",
+        "elegante"
+      ]
+    },
+    {
+      "id": "aperol_spritz",
+      "style": [
+        "fresco",
+        "ligero",
+        "cítrico",
+        "aperitivo",
+        "popular"
+      ]
+    },
+    {
+      "id": "hugo_spritz",
+      "style": [
+        "fresco",
+        "floral",
+        "ligero",
+        "aromático",
+        "suave"
+      ]
+    },
+    {
+      "id": "rossini",
+      "style": [
+        "afrutado",
+        "suave",
+        "fresco",
+        "elegante"
+      ]
+    },
+    {
+      "id": "bellini",
+      "style": [
+        "elegante",
+        "suave",
+        "afrutado",
+        "delicado",
+        "veneciano"
+      ]
+    }
+  ]
+}
