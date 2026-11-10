@@ -1,11 +1,8 @@
-import antipastiFreddi from '../../../data/menu/AntipastiFreddi.json'
-import antipastiCaldi from '../../../data/menu/AntipastiCaldi.json'
-import primiPiatti from '../../../data/menu/PrimiPiatti.json'
-import secondiPiatti from '../../../data/menu/SecondiPiatti.json'
-import especialidadesSemana from '../../../data/menu/EspecialidadesSemana.json'
-import contorni from '../../../data/menu/Contorni.json'
-import insalate from '../../../data/menu/insalate.json'
-import dolci from '../../../data/menu/Dolci.json'
+import { foodMenu as allFoodItems } from '../foodMenu.js'
+import { findCatalogMatches } from '../../lib/catalogMatching.mjs'
+import beverageProfiles from './publicBeverageProfiles.json'
+import allergenDefinitions from '../allergens.json'
+import { getItemAllergens } from '../../lib/menuAllergens.mjs'
 import vini from '../../../data/menu/vini.json'
 import bebidas from '../../../data/menu/bebidas.json'
 import {
@@ -14,17 +11,6 @@ import {
   getTranslatedBeverageItem
 } from '../../i18n/menuContentTranslations.js'
 
-const allFoodItems = [
-  ...especialidadesSemana,
-  ...antipastiFreddi,
-  ...antipastiCaldi,
-  ...primiPiatti,
-  ...secondiPiatti,
-  ...contorni,
-  ...insalate,
-  ...dolci
-]
-
 const wines = vini.wines || []
 const cocktails = (bebidas.categories || [])
   .filter((category) => category.layout === 'cocktail')
@@ -32,6 +18,11 @@ const cocktails = (bebidas.categories || [])
 
 const TEXTS = {
   es: {
+    clarify: "¿A cuál de estas opciones te refieres?",
+    grapes: "Uvas",
+    temperature: "Servicio",
+    style: "Estilo",
+    profile: "Perfil",
     ingredients: 'Ingredientes',
     allergens: 'Alérgenos orientativos',
     price: 'Precio',
@@ -60,6 +51,11 @@ const TEXTS = {
     }
   },
   en: {
+    clarify: "Which of these options do you mean?",
+    grapes: "Grapes",
+    temperature: "Serving temperature",
+    style: "Style",
+    profile: "Profile",
     ingredients: 'Ingredients',
     allergens: 'Indicative allergens',
     price: 'Price',
@@ -88,6 +84,11 @@ const TEXTS = {
     }
   },
   fr: {
+    clarify: "De laquelle de ces options parlez-vous ?",
+    grapes: "Cépages",
+    temperature: "Température de service",
+    style: "Style",
+    profile: "Profil",
     ingredients: 'Ingrédients',
     allergens: 'Allergènes indicatifs',
     price: 'Prix',
@@ -116,6 +117,11 @@ const TEXTS = {
     }
   },
   it: {
+    clarify: "A quale di queste proposte ti riferisci?",
+    grapes: "Uve",
+    temperature: "Temperatura di servizio",
+    style: "Stile",
+    profile: "Profilo",
     ingredients: 'Ingredienti',
     allergens: 'Allergeni indicativi',
     price: 'Prezzo',
@@ -171,7 +177,7 @@ const WINE_CATEGORY_TRIGGERS = {
   Dolce: ['dulce', 'sweet', 'dessert wine', 'passito', 'vino dulce', 'vin doux', 'vino dolce']
 }
 
-const COCKTAIL_TRIGGERS = ['cocktail', 'coctel', 'cóctel', 'spritz', 'negroni', 'americano', 'rossini', 'bellini', 'aperol', 'limoncello', 'campari']
+const COCKTAIL_TRIGGERS = [...cocktails.map(cocktail => cocktail.name), 'cocktail', 'coctel', 'cóctel', 'spritz', 'negroni', 'americano', 'rossini', 'bellini', 'aperol', 'limoncello', 'campari']
 
 function getText(language) {
   return TEXTS[language] || TEXTS.es
@@ -209,38 +215,6 @@ function localizeItem(item, language) {
   }
 }
 
-function getSearchableItemText(item, language) {
-  const localized = localizeItem(item, language)
-  const translatedLanguages = ['en', 'fr', 'it']
-    .map((lang) => getTranslatedMenuItem(item, lang))
-    .flatMap((translation) => [translation.name, translation.description, ...(translation.ingredients || [])])
-
-  return normalizeText([
-    item.id,
-    item.name_it,
-    item.name_es,
-    item.description_es,
-    item.notes,
-    localized.displayName,
-    localized.displayDescription,
-    ...(item.ingredients || []),
-    ...(item.ingredients_es || []),
-    ...translatedLanguages
-  ].filter(Boolean).join(' '))
-}
-
-function getSearchableWineText(wine) {
-  return normalizeText([
-    wine.code,
-    wine.name,
-    wine.producer,
-    wine.category,
-    wine.region,
-    wine.denomination,
-    wine.description
-  ].filter(Boolean).join(' '))
-}
-
 function getSearchableCocktailText(cocktail, language) {
   const localized = getTranslatedBeverageItem(cocktail, language)
   return normalizeText([
@@ -258,46 +232,58 @@ function containsAny(normalizedText, tokens) {
   return tokens.some((token) => normalizedText.includes(normalizeText(token)))
 }
 
-function findSpecificDish(normalizedText, language) {
-  return allFoodItems.find((item) => {
-    const searchable = getSearchableItemText(item, language)
-    const idMatch = normalizeText(item.id).split('-').some((token) => token.length > 4 && normalizedText.includes(token))
-    const nameTokens = normalizeText(localizeItem(item, language).displayName)
-      .split(' ')
-      .filter((token) => token.length >= 5)
-
-    return idMatch || nameTokens.some((token) => normalizedText.includes(token)) || normalizedText.includes(searchable)
-  })
+function findDishes(normalizedText, language) {
+  return findCatalogMatches(normalizedText, allFoodItems, item => [
+    item.id, item.name_it, item.name_es, item.name_en, item.name_fr,
+    localizeItem(item, language).displayName
+  ])
 }
 
-function findWine(normalizedText) {
-  return wines.find((wine) => {
-    const searchable = getSearchableWineText(wine)
-    const tokens = normalizeText(`${wine.name} ${wine.producer} ${wine.region}`)
-      .split(' ')
-      .filter((token) => token.length >= 5)
-
-    return normalizedText.includes(normalizeText(wine.code)) || tokens.some((token) => normalizedText.includes(token)) || normalizedText.includes(searchable)
-  })
+function findWines(normalizedText) {
+  return findCatalogMatches(normalizedText, wines, wine => [
+    wine.code, wine.name, wine.producer
+  ])
 }
 
-function findCocktail(normalizedText, language) {
-  return cocktails.find((cocktail) => {
-    const searchable = getSearchableCocktailText(cocktail, language)
-    const tokens = normalizeText(cocktail.name).split(' ').filter((token) => token.length >= 5)
-    return tokens.some((token) => normalizedText.includes(token)) || normalizedText.includes(searchable)
-  })
+function findCocktails(normalizedText) {
+  return findCatalogMatches(normalizedText, cocktails, cocktail => [cocktail.id, cocktail.name])
 }
 
-function getAllergens(item) {
-  return [...new Set([...(item.allergens_es || []), ...(item.allergens_to_verify || [])])]
+function buildClarification(items, language, label) {
+  const text = getText(language)
+  return [
+    text.clarify,
+    ...items.slice(0, 6).map(item => '• ' + label(item))
+  ].join('\n')
+}
+
+const ALLERGEN_NAMES = {
+  en: {
+    gluten: 'Gluten', crustaceos: 'Crustaceans', huevos: 'Eggs', pescado: 'Fish',
+    cacahuetes: 'Peanuts', soja: 'Soy', leche: 'Milk', frutos_secos: 'Nuts',
+    apio: 'Celery', mostaza: 'Mustard', sesamo: 'Sesame', sulfitos: 'Sulphites',
+    altramuces: 'Lupin', moluscos: 'Molluscs'
+  },
+  fr: {
+    gluten: 'Gluten', crustaceos: 'Crustacés', huevos: 'Œufs', pescado: 'Poisson',
+    cacahuetes: 'Arachides', soja: 'Soja', leche: 'Lait', frutos_secos: 'Fruits à coque',
+    apio: 'Céleri', mostaza: 'Moutarde', sesamo: 'Sésame', sulfitos: 'Sulfites',
+    altramuces: 'Lupin', moluscos: 'Mollusques'
+  }
+}
+
+function getAllergens(item, language) {
+  return getItemAllergens(item).map(id => {
+    const definition = allergenDefinitions.find(allergen => allergen.id === id)
+    return ALLERGEN_NAMES[language]?.[id] || definition?.['name_' + language] || definition?.name_es
+  }).filter(Boolean)
 }
 
 function buildDishAnswer(item, language) {
   const text = getText(language)
   const localized = localizeItem(item, language)
   const price = formatPrice(item.prezzo_consigliato || item.price || item.recommended_price)
-  const allergens = getAllergens(item)
+  const allergens = getAllergens(item, language)
 
   return [
     `${text.dishIntro} ${localized.displayName}`,
@@ -346,7 +332,10 @@ function isMeatOrFishDish(item) {
   return containsAny(searchable, [
     'bresaola', 'coppa', 'finocchiona', 'salame', 'mortadella', 'speck', 'guanciale', 'lardo',
     'anchoa', 'anchoas', 'alici', 'pescado', 'pesce', 'gambas', 'gamberi', 'crustaceos',
-    'cerdo', 'maiale', 'pancetta', 'ternera', 'vitello', 'arrosticini', 'salsiccia'
+    'cerdo', 'maiale', 'pancetta', 'ternera', 'vitello', 'arrosticini', 'salsiccia',
+    'scoglio', 'marisco', 'frutti di mare', 'cozze', 'vongole', 'mejillones',
+    'almejas', 'ragu', 'bolognese', 'pollo', 'manzo', 'agnello', 'pecora', 'porchetta',
+    'granchio', 'cangrejo', 'crab', 'calamari', 'polpo', 'tonno', 'atun', 'tuna'
   ])
 }
 
@@ -388,10 +377,14 @@ function formatWineLine(wine, language) {
     ? formatPrice(Math.ceil((wine.recommended_bottle_price / 5) * 2) / 2)
     : null
   const description = getTranslatedWineDescription(wine, language)
+  const profile = beverageProfiles.wines.find(item => item.code === wine.code)
 
   return [
     `• ${wine.name} (${wine.region}${wine.denomination ? ` · ${wine.denomination}` : ''})`,
     description,
+    profile?.grapes?.length ? text.grapes + ': ' + profile.grapes.join(', ') + '.' : null,
+    profile?.service_temperature ? text.temperature + ': ' + profile.service_temperature + '.' : null,
+    language === 'es' && profile?.body ? text.profile + ': cuerpo ' + profile.body + '.' : null,
     bottlePrice ? `${text.price}: ${bottlePrice} ${text.bottle}${glassPrice ? ` / ${glassPrice} ${text.glass}` : ''}.` : null,
     wine.by_glass ? text.byGlass : null
   ].filter(Boolean).join('\n')
@@ -412,7 +405,9 @@ function buildPairingAnswer(item, language) {
 
 function buildWineAnswerFromMenu(normalizedText, language) {
   const text = getText(language)
-  const specificWine = findWine(normalizedText)
+  const matches = findWines(normalizedText)
+  if (matches.length > 1) return buildClarification(matches, language, wine => wine.name)
+  const specificWine = matches[0]
   if (specificWine) return formatWineLine(specificWine, language)
 
   let candidates = wines
@@ -438,7 +433,9 @@ function buildCocktailAnswerFromMenu(normalizedText, language) {
   if (!containsAny(normalizedText, COCKTAIL_TRIGGERS)) return null
 
   const text = getText(language)
-  const specificCocktail = findCocktail(normalizedText, language)
+  const matches = findCocktails(normalizedText)
+  if (matches.length > 1) return buildClarification(matches, language, cocktail => cocktail.name)
+  const specificCocktail = matches[0]
   const selected = specificCocktail
     ? [specificCocktail]
     : cocktails.filter((cocktail) => {
@@ -455,10 +452,12 @@ function buildCocktailAnswerFromMenu(normalizedText, language) {
     '',
     ...selected.map((cocktail) => {
       const localized = getTranslatedBeverageItem(cocktail, language)
+      const profile = beverageProfiles.cocktails.find(item => item.id === cocktail.id)
       return [
         `• ${localized.name} — ${formatPrice(cocktail.price)}`,
         localized.ingredients?.length ? `${text.ingredients}: ${localized.ingredients.join(', ')}.` : null,
-        localized.history
+        localized.history,
+        language === 'es' && profile?.style?.length ? text.style + ': ' + profile.style.join(', ') + '.' : null
       ].filter(Boolean).join('\n')
     })
   ].join('\n\n')
@@ -469,23 +468,30 @@ function getTriggeredCategory(normalizedText) {
 }
 
 function hasFoodIntent(normalizedText) {
-  return containsAny(normalizedText, FOOD_KEYWORDS) || Boolean(findSpecificDish(normalizedText, 'es'))
+  return containsAny(normalizedText, FOOD_KEYWORDS) || findDishes(normalizedText, 'es').length > 0
 }
 
 export function buildAdvancedRestaurantAnswer(userText, language = 'es') {
   const normalizedText = normalizeText(userText)
   const text = getText(language)
   const pairingIntent = containsAny(normalizedText, PAIRING_TRIGGERS)
-  const dish = findSpecificDish(normalizedText, language)
+  const dishes = findDishes(normalizedText, language)
+  const dish = dishes.length === 1 ? dishes[0] : null
 
+  if (containsAny(normalizedText, CATEGORY_TRIGGERS.vegetarian)) return buildVegetarianAnswer(language)
   if (pairingIntent && dish) return buildPairingAnswer(dish, language)
   if (containsAny(normalizedText, COCKTAIL_TRIGGERS)) return buildCocktailAnswerFromMenu(normalizedText, language)
-  if (containsAny(normalizedText, ['vino', 'vinos', 'wine', 'wines', 'vin', 'vins', 'copa', 'glass', 'verre', 'calice', 'barolo', 'gavi', 'brunello', 'prosecco', 'franciacorta'])) return buildWineAnswerFromMenu(normalizedText, language)
-  if (dish) return pairingIntent ? buildPairingAnswer(dish, language) : buildDishAnswer(dish, language)
+  if (findWines(normalizedText).length || containsAny(normalizedText, ['vino', 'vinos', 'wine', 'wines', 'vin', 'vins', 'copa', 'glass', 'verre', 'calice', 'barolo', 'gavi', 'brunello', 'prosecco', 'franciacorta'])) return buildWineAnswerFromMenu(normalizedText, language)
+  if (dish) {
+    const answer = buildDishAnswer(dish, language)
+    return containsAny(normalizedText, CATEGORY_TRIGGERS.allergens) && !getItemAllergens(dish).length
+      ? answer + '\n' + text.warning
+      : answer
+  }
+  if (dishes.length > 1) return buildClarification(dishes, language, item => localizeItem(item, language).displayName)
 
+  if (containsAny(normalizedText, CATEGORY_TRIGGERS.allergens)) return `${text.warning}\n\n${text.noSure}`
   const category = getTriggeredCategory(normalizedText)
-  if (category === 'vegetarian') return buildVegetarianAnswer(language)
-  if (category === 'allergens') return `${text.warning}\n\n${text.noSure}`
   if (category) return buildCategoryAnswer(category, language)
 
   if (hasFoodIntent(normalizedText)) return text.noSure

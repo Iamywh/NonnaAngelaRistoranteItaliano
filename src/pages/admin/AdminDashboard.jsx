@@ -1,22 +1,10 @@
 import React from 'react'
 import KpiCard from '../../components/KpiCard.jsx'
 import AdminModuleCard from '../../components/AdminModuleCard.jsx'
-import menuCostReport from '../../data/menuCostReport.json'
+import { foodMenu } from '../../data/foodMenu.js'
+import { buildMenuFoodCost } from '../../lib/menuFoodCost.mjs'
 
-function getAverage(items, field) {
-    const validItems = items.filter((item) => typeof item[field] === 'number')
-    if (!validItems.length) return 0
-
-    const total = validItems.reduce((sum, item) => sum + item[field], 0)
-    return total / validItems.length
-}
-
-function getRiskItems(items) {
-    return items
-        .filter((item) => item.food_cost_percent >= 20 || item.costing_status !== 'complete')
-        .sort((a, b) => (b.food_cost_percent || 0) - (a.food_cost_percent || 0))
-        .slice(0, 5)
-}
+const menuCosts = buildMenuFoodCost(foodMenu)
 
 const operations = [
     { permission: 'orders', page: 'admin-orders', title: 'Ordini', description: 'Ordini cucina e barra con storico' },
@@ -39,13 +27,11 @@ export default function AdminDashboard({ setCurrentPage, permissions }) {
         )
     }
 
-    const items = menuCostReport.items || []
-
-    const completeItems = items.filter((item) => item.costing_status === 'complete')
-    const warningItems = items.filter((item) => item.costing_status !== 'complete')
-    const avgFoodCost = getAverage(completeItems, 'food_cost_percent')
-    const avgMargin = getAverage(completeItems, 'gross_margin')
-    const riskItems = getRiskItems(items)
+    const riskItems = menuCosts.rows
+        .filter(item => item.estimatedCost === null || item.estimatedCostPercent >= 30)
+        .sort((a, b) => (b.estimatedCostPercent || 0) - (a.estimatedCostPercent || 0))
+        .slice(0, 5)
+    const highCostCount = menuCosts.rows.filter(item => item.estimatedCostPercent >= 30).length
 
     return (
         <section className="admin-page">
@@ -55,7 +41,7 @@ export default function AdminDashboard({ setCurrentPage, permissions }) {
                     <h2>Dashboard manageriale</h2>
                     <p>
                         Centro di controllo per food cost, beverage, ordini, menu engineering
-                        e decisioni operative. I dati sotto leggono il report food cost reale.
+                        e decisioni operative. I dati sotto leggono le stime nelle schede della carta attuale.
                     </p>
                 </div>
             </div>
@@ -100,8 +86,8 @@ export default function AdminDashboard({ setCurrentPage, permissions }) {
                     </div>
                     <div className="admin-module-grid">
                         <AdminModuleCard
-                            title="Food"
-                            description="Food cost, fornitori cucina, ordini food"
+                            title="Food cost e menu"
+                            description="Carta attuale, stime di costo, porzioni e dati da completare"
                             meta="Cucina / ingredienti / ricette"
                             onClick={() => setCurrentPage('admin-food')}
                         />
@@ -117,12 +103,7 @@ export default function AdminDashboard({ setCurrentPage, permissions }) {
                             meta="Food / beverage / fornitori"
                             onClick={() => setCurrentPage('admin-orders')}
                         />
-                        <AdminModuleCard
-                            title="F&B Control"
-                            description="Menu completo, margini, alert, riserve e takeaway futuri"
-                            meta="Controllo manageriale"
-                            onClick={() => setCurrentPage('admin-fb')}
-                        />
+
                     </div>
                 </div>
 
@@ -150,29 +131,10 @@ export default function AdminDashboard({ setCurrentPage, permissions }) {
             </div>
 
             <div className="kpi-grid">
-                <KpiCard
-                    label="Food cost medio"
-                    value={`${avgFoodCost.toFixed(1)}%`}
-                    detail="Media sui piatti completi"
-                    tone={avgFoodCost <= 25 ? 'good' : 'warning'}
-                />
-                <KpiCard
-                    label="Piatti completi"
-                    value={completeItems.length}
-                    detail={`${items.length} piatti nel report`}
-                />
-                <KpiCard
-                    label="Alert costing"
-                    value={warningItems.length}
-                    detail="Piatti da completare o verificare"
-                    tone={warningItems.length ? 'warning' : 'good'}
-                />
-                <KpiCard
-                    label="Margine medio"
-                    value={`${avgMargin.toFixed(2)}€`}
-                    detail="Margine medio per piatto"
-                    tone="good"
-                />
+                <KpiCard label="Piatti in carta" value={menuCosts.dishCount} detail="Carta attuale del sito" />
+                <KpiCard label="Con stima di costo" value={menuCosts.dishesWithCost} detail="Da validare con ricette e fatture" />
+                <KpiCard label="Costi da completare" value={menuCosts.dishesMissingCost} detail="Piatti senza costo operativo" tone="warning" />
+                <KpiCard label="Incidenza operativa dal 30%" value={highCostCount} detail="Porzioni da verificare" tone="warning" />
             </div>
 
             <div className="dashboard-panel">
@@ -183,12 +145,12 @@ export default function AdminDashboard({ setCurrentPage, permissions }) {
 
                 <div className="risk-list">
                     {riskItems.map((item) => (
-                        <article key={item.menu_item_id} className="risk-item">
+                        <article key={item.id} className="risk-item">
                             <div>
-                                <strong>{item.name_it}</strong>
-                                <span>{item.category}</span>
+                                <strong>{item.name}{item.variant ? ' · ' + item.variant : ''}</strong>
+                                <span>{item.estimatedCost === null ? 'Costo da completare' : 'Costo operativo stimato'}</span>
                             </div>
-                            <b>{item.food_cost_percent ? `${item.food_cost_percent}%` : 'Da completare'}</b>
+                            <b>{item.estimatedCostPercent === null ? 'Da completare' : item.estimatedCostPercent.toFixed(1) + '%'}</b>
                         </article>
                     ))}
                 </div>

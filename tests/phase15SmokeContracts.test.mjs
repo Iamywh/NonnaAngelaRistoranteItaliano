@@ -187,7 +187,7 @@ test('Menu catalogue and declared allergen aliases resolve to defined badges',()
   const valid=new Set(allergens.map(a=>a.id))
   assert.equal(valid.size,allergens.length)
   assert.ok(valid.size>=14)
-  const aliasBlock=menu.match(/const ALLERGEN_ALIASES = \{([\s\S]*?)\n\}/)
+  const aliasBlock=file('src/lib/menuAllergens.mjs').match(/const ALLERGEN_ALIASES = \{([\s\S]*?)\n\}/)
   assert.ok(aliasBlock,'Cannot find menu allergen aliases')
   const aliases=Object.fromEntries([...aliasBlock[1].matchAll(
     /^\s*(?:'([^']+)'|([a-z_]+)):\s*'([^']+)'/gm
