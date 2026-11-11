@@ -1,0 +1,16 @@
+.costs-procurement-page table { width: 100%; border-collapse: collapse; margin: 20px 0; min-width: 760px; }
+.costs-procurement-page th, .costs-procurement-page td { padding: 12px; text-align: left; vertical-align: top; border-bottom: 1px solid rgba(180,140,90,.35); }
+.costs-procurement-page th { color: var(--accent); background: var(--panel-strong); }
+.costs-procurement-page input, .costs-procurement-page select { max-width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #c8ac7a; background: #fff6e6; color: #291d17; }
+.costs-procurement-page label { display: grid; gap: 8px; margin: 8px 0; }
+.costs-procurement-page label:has(input[type='checkbox']) { display: flex; align-items: center; }
+.costs-procurement-page input[type='checkbox'] { width: auto; }
+.costs-procurement-page td input { width: 140px; }
+.costs-procurement-page button { margin: 5px; padding: 10px 14px; border-radius: 8px; border: 1px solid #c8ac7a; cursor: pointer; }
+.costs-procurement-page button:disabled { opacity: .5; cursor: default; }
+.costs-procurement-page fieldset { min-width: 0; border: 1px solid rgba(180,140,90,.35); border-radius: 12px; padding: 16px; }
+.costs-procurement-page details { padding: 14px 0; border-bottom: 1px solid rgba(180,140,90,.25); }
+.costs-procurement-page summary { cursor: pointer; overflow-wrap: anywhere; }
+.costs-procurement-page small { line-height: 1.5; }
+
+.costs-procurement-page .order-form > fieldset { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }

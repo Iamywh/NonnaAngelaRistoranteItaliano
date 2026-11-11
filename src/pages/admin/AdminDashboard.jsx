@@ -1,13 +1,10 @@
 import React from 'react'
-import KpiCard from '../../components/KpiCard.jsx'
+import WorkbookCostSummary from '../../components/WorkbookCostSummary.jsx'
 import AdminModuleCard from '../../components/AdminModuleCard.jsx'
-import { foodMenu } from '../../data/foodMenu.js'
-import { buildMenuFoodCost } from '../../lib/menuFoodCost.mjs'
 
-const menuCosts = buildMenuFoodCost(foodMenu)
 
 const operations = [
-    { permission: 'orders', page: 'admin-orders', title: 'Ordini', description: 'Ordini cucina e barra con storico' },
+    { permission: 'orders', page: 'admin-orders', title: 'Ordini', description: 'Ordini condivisi, inventario ingredienti e notifiche Telegram' },
     { permission: 'beverage', page: 'admin-beverage', title: 'Inventario bevande', description: 'Conteggio condiviso di bar e cantina' },
     { permission: 'reservations', page: 'admin-reservations', title: 'Reservas', description: 'Solicitudes, confirmaciones y mesas' }
 ]
@@ -27,12 +24,6 @@ export default function AdminDashboard({ setCurrentPage, permissions }) {
         )
     }
 
-    const riskItems = menuCosts.rows
-        .filter(item => item.estimatedCost === null || item.estimatedCostPercent >= 30)
-        .sort((a, b) => (b.estimatedCostPercent || 0) - (a.estimatedCostPercent || 0))
-        .slice(0, 5)
-    const highCostCount = menuCosts.rows.filter(item => item.estimatedCostPercent >= 30).length
-
     return (
         <section className="admin-page">
             <div className="admin-header">
@@ -41,7 +32,7 @@ export default function AdminDashboard({ setCurrentPage, permissions }) {
                     <h2>Dashboard manageriale</h2>
                     <p>
                         Centro di controllo per food cost, beverage, ordini, menu engineering
-                        e decisioni operative. I dati sotto leggono le stime nelle schede della carta attuale.
+                        e decisioni operative. Costi aggiornati dai file Excel e confrontati con la carta attuale.
                     </p>
                 </div>
             </div>
@@ -99,7 +90,7 @@ export default function AdminDashboard({ setCurrentPage, permissions }) {
                         />
                         <AdminModuleCard
                             title="Orders"
-                            description="Ordini cucina e barra con storico"
+                            description="Ordini condivisi, inventario ingredienti e notifiche Telegram"
                             meta="Food / beverage / fornitori"
                             onClick={() => setCurrentPage('admin-orders')}
                         />
@@ -130,31 +121,7 @@ export default function AdminDashboard({ setCurrentPage, permissions }) {
                 </div>
             </div>
 
-            <div className="kpi-grid">
-                <KpiCard label="Piatti in carta" value={menuCosts.dishCount} detail="Carta attuale del sito" />
-                <KpiCard label="Con stima di costo" value={menuCosts.dishesWithCost} detail="Da validare con ricette e fatture" />
-                <KpiCard label="Costi da completare" value={menuCosts.dishesMissingCost} detail="Piatti senza costo operativo" tone="warning" />
-                <KpiCard label="Incidenza operativa dal 30%" value={highCostCount} detail="Porzioni da verificare" tone="warning" />
-            </div>
-
-            <div className="dashboard-panel">
-                <div>
-                    <p className="eyebrow">Controllo rapido</p>
-                    <h3>Piatti da monitorare</h3>
-                </div>
-
-                <div className="risk-list">
-                    {riskItems.map((item) => (
-                        <article key={item.id} className="risk-item">
-                            <div>
-                                <strong>{item.name}{item.variant ? ' · ' + item.variant : ''}</strong>
-                                <span>{item.estimatedCost === null ? 'Costo da completare' : 'Costo operativo stimato'}</span>
-                            </div>
-                            <b>{item.estimatedCostPercent === null ? 'Da completare' : item.estimatedCostPercent.toFixed(1) + '%'}</b>
-                        </article>
-                    ))}
-                </div>
-            </div>
+            <WorkbookCostSummary setCurrentPage={setCurrentPage} />
         </section>
     )
 }

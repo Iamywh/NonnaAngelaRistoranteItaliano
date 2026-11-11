@@ -176,7 +176,7 @@ export default function App() {
     if (currentPage === 'admin') return <AdminDashboard setCurrentPage={navigateToPage} permissions={permissions} />
     if (currentPage === 'admin-food') return <FoodDashboard setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-fb') return <FBControl setCurrentPage={navigateToPage} />
-    if (currentPage === 'admin-orders') return <Orders key={userId} setCurrentPage={navigateToPage} />
+    if (currentPage === 'admin-orders') return <Orders key={userId} userId={userId} isAdmin={permissions.backoffice} setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-invoices') return <Invoices setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-music') return <MusicManager setCurrentPage={navigateToPage} />
     if (currentPage === 'admin-manual') return <ManualOperativo setCurrentPage={navigateToPage} />
