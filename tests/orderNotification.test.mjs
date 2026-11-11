@@ -46,3 +46,12 @@ test('invalid input and wrong methods are rejected before claiming',async()=>{
  assert.equal((await s.handler(new Request('https://test/'))).status,405)
  assert.equal(s.counts().sends,0)
 })
+
+test('groups interleaved lines by supplier and keeps quantities and notes', () => {
+  const text = formatOrderMessage({ ...order, lines: [
+    { product: 'Prosecco', quantity: 6, unit: 'bottiglie', supplierName: 'Orthidal' },
+    { product: 'Coca-Cola', quantity: 24, unit: 'lattine', supplierName: 'GM' },
+    { product: 'Pecorino', quantity: 2, unit: 'kg', supplierName: 'Orthidal', notes: 'Intero' }
+  ] })
+  assert.match(text, /Ordine Orthidal\n• Prosecco — 6 bottiglie\n• Pecorino — 2 kg\n  Intero\n\nOrdine GM\n• Coca-Cola — 24 lattine/)
+})

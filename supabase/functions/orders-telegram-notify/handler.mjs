@@ -2,11 +2,23 @@ const cors = {'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'
 const response = (body,status=200) => new Response(JSON.stringify(body),{status,headers:{...cors,'Content-Type':'application/json'}})
 export function formatOrderMessage(order) {
   let text='NONNA ANGELA · Richiesta ordine\n'+order.orderNumber+'\n'
-  let count=0
+  const suppliers = new Map()
   for (const line of order.lines) {
-    const item='\n• '+line.product+' — '+line.quantity+' '+line.unit+' ['+(line.supplierName||line.supplier)+']'+(line.notes?'\n  '+line.notes:'')
-    if (text.length+item.length>3100) break
-    text+=item;count++
+    const supplier = line.supplierName || line.supplier || 'Da definire'
+    if (!suppliers.has(supplier)) suppliers.set(supplier, [])
+    suppliers.get(supplier).push(line)
+  }
+  let count = 0
+  groups: for (const [supplier, lines] of suppliers) {
+    let heading = '\n\nOrdine ' + supplier
+    for (const line of lines) {
+      const notes = line.notes ? '\n  ' + line.notes : ''
+      const item = '\n• ' + line.product + ' — ' + line.quantity + ' ' + line.unit + notes
+      if (text.length + heading.length + item.length > 3100) break groups
+      text += heading + item
+      heading = ''
+      count++
+    }
   }
   if(count<order.lines.length)text+='\n… altre '+(order.lines.length-count)+' righe nello storico web.'
   return text+'\n\nRichiesta interna: verificare prima di ordinare al fornitore.\nhttps://nonnaangelaristorante.netlify.app/manager/orders'
@@ -26,7 +38,7 @@ export function createOrderNotificationHandler(deps) {
       let body
       try{body=JSON.parse(raw)}catch{return response({error:'Invalid JSON'},400)}
       if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(body?.order_id||''))return response({error:'Invalid order ID'},400)
-      if(!deps.configured())return response({error:'Ordine salvato. Configura ORDERS_TELEGRAM_CHAT_ID e TELEGRAM_BOT_TOKEN in Supabase per notificare Manu.'},503)
+      if(!deps.configured())return response({error:'Ordine salvato. Configura ORDERS_TELEGRAM_CHAT_ID e ORDERS_TELEGRAM_BOT_TOKEN in Supabase per notificare il gruppo ordini.'},503)
       const claim=await deps.claim(body.order_id)
       if(!claim)return response({error:'Order not found'},404)
       if(claim.state!=='claimed')return response({state:claim.state})

@@ -19,11 +19,11 @@ Deno.serve(createOrderNotificationHandler({
     if(error)throw new Error('Authorization failed')
     return data===true
   },
-  configured:()=>Boolean(Deno.env.get('TELEGRAM_BOT_TOKEN') && Deno.env.get('ORDERS_TELEGRAM_CHAT_ID')),
+  configured:()=>Boolean(Deno.env.get('ORDERS_TELEGRAM_BOT_TOKEN') && Deno.env.get('ORDERS_TELEGRAM_CHAT_ID')),
   claim:(id:string)=>rpc('procurement_notify_claim',{p_id:id}),
   finish:(id:string,attempt:string,state:string)=>rpc('procurement_notify_finish',{p_id:id,p_attempt:attempt,p_state:state}),
   send:async(text:string)=>{
-    const result=await fetch('https://api.telegram.org/bot'+Deno.env.get('TELEGRAM_BOT_TOKEN')+'/sendMessage',{
+    const result=await fetch('https://api.telegram.org/bot'+Deno.env.get('ORDERS_TELEGRAM_BOT_TOKEN')+'/sendMessage',{
       method:'POST',headers:{'Content-Type':'application/json'},signal:AbortSignal.timeout(12000),
       body:JSON.stringify({chat_id:Deno.env.get('ORDERS_TELEGRAM_CHAT_ID'),text,disable_web_page_preview:true})
     })

@@ -8,7 +8,7 @@ Questa versione importa le 31 schede del 10 novembre 2026, con provenienza, note
    - `supabase/migrations/20261110170000_manager_costs_procurement.sql`
    - `supabase/migrations/20261110171000_manager_workbook_seed.sql`
 2. Distribuire la Edge Function `orders-telegram-notify` con il relativo `handler.mjs`. La voce in `supabase/config.toml` disabilita il controllo JWT del gateway; il codice verifica comunque il token con Auth e il permesso ordini prima di leggere un ordine.
-3. Configurare il secret `ORDERS_TELEGRAM_CHAT_ID` con la chat Telegram di Manu, verificata per questo flusso. Manu deve aver avviato il bot. La funzione riutilizza `TELEGRAM_BOT_TOKEN`; non modifica webhook, bot Analytics o destinazione delle prenotazioni. Se il token non è già presente, configurarlo nei secrets Supabase. Non inserire il token nel frontend.
+3. Configurare `ORDERS_TELEGRAM_CHAT_ID` con l'ID del gruppo ordini e `ORDERS_TELEGRAM_BOT_TOKEN` con il token del bot dedicato. Il bot deve essere membro del gruppo. Lasciare il secret `TELEGRAM_BOT_TOKEN` alle integrazioni che lo usano già. Salvare il token solo nei secrets Supabase.
 4. Distribuire il frontend tramite il normale flusso GitHub/Netlify.
 5. Accedere con un account admin e controllare Food cost e Ordini. Solo una richiesta operativa reale deve provare il recapito a Manu: nessun messaggio di test è stato inviato durante lo sviluppo.
 
