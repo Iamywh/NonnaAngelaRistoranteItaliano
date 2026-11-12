@@ -15,3 +15,8 @@ verify_jwt = false
 # Handler verifies Auth user + orders permission before service-role access.
 [functions.orders-telegram-notify]
 verify_jwt = false
+
+# Legacy gateway JWT plus a single-use two-minute dispatch ticket validated in the DB.
+# An anon key alone cannot dispatch any message.
+[functions.beverage-telegram-alerts]
+verify_jwt = true
