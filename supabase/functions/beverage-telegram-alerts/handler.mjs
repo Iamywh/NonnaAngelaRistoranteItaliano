@@ -2,7 +2,7 @@ const reply=(body,status=200)=>new Response(JSON.stringify(body),{status,headers
 export function createBeverageAlertHandler(deps){
  return async request=>{
   if(request.method!=='POST')return reply({error:'Method not allowed'},405)
-  const secret=request.headers.get('x-beverage-secret')||''
+  const secret=request.headers.get('x-beverage-ticket')||''
   if(!/^[0-9a-f]{64}$/.test(secret))return reply({error:'Unauthorized'},401)
   try{
    if(!await deps.authorize(secret))return reply({error:'Unauthorized'},401)

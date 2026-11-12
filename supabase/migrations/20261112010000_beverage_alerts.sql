@@ -1,7 +1,7 @@
 BEGIN;
 CREATE TABLE public.beverage_alert_settings (
  id smallint PRIMARY KEY CHECK(id=1), enabled boolean NOT NULL DEFAULT false,
- endpoint text, gateway_anon_key text, secret_hash bytea, last_dispatch_at timestamptz,
+ endpoint text, gateway_anon_key text, secret_hash bytea, ticket_expires_at timestamptz, last_dispatch_at timestamptz,
  CHECK(endpoint IS NULL OR endpoint ~ '^https://[a-z0-9]+[.]supabase[.]co/functions/v1/beverage-telegram-alerts$')
 );
 INSERT INTO public.beverage_alert_settings(id) VALUES(1);
@@ -96,10 +96,12 @@ BEGIN
 END; $$;
 
 CREATE FUNCTION public.beverage_alert_authorize(p_secret text) RETURNS boolean
-LANGUAGE sql STABLE SECURITY DEFINER SET search_path='' AS $$
- SELECT coalesce(length(p_secret)=64 AND EXISTS(
- SELECT 1 FROM public.beverage_alert_settings WHERE id=1 AND enabled
- AND secret_hash=sha256(convert_to(p_secret,'UTF8'))),false);
+LANGUAGE sql VOLATILE SECURITY DEFINER SET search_path='' AS $$
+ WITH consumed AS (
+  UPDATE public.beverage_alert_settings SET secret_hash=NULL,ticket_expires_at=NULL
+  WHERE id=1 AND enabled AND ticket_expires_at>now() AND length(p_secret)=64
+   AND secret_hash=sha256(convert_to(p_secret,'UTF8')) RETURNING id
+ ) SELECT EXISTS(SELECT 1 FROM consumed);
 $$;
 CREATE FUNCTION public.beverage_alert_claim() RETURNS jsonb
 LANGUAGE plpgsql SECURITY DEFINER SET search_path='' AS $$

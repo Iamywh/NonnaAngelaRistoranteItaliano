@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import {createBeverageAlertHandler} from '../supabase/functions/beverage-telegram-alerts/handler.mjs'
 const secret='a'.repeat(64)
-const req=(token=secret)=>new Request('https://worker.test',{method:'POST',headers:{'x-beverage-secret':token}})
+const req=(token=secret)=>new Request('https://worker.test',{method:'POST',headers:{'x-beverage-ticket':token}})
 function fixture(overrides={}){
  const finished=[],sent=[];let claimed=false
  const deps={authorize:async()=>true,configured:()=>true,claim:async()=>claimed?null:(claimed=true,{id:'one',attempt:'attempt',text:'TEST'}),send:async text=>(sent.push(text),{ok:true}),finish:async(...args)=>(finished.push(args),true),pause:async()=>{},...overrides}

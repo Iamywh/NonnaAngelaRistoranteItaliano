@@ -10,8 +10,8 @@ The shared `beverage_inventory` is the only source. Kitchen inventory is exclude
 ## Deploy
 
 1. Apply `supabase/migrations/20261112010000_beverage_alerts.sql` (notifications initially disabled).
-2. Deploy `beverage-telegram-alerts`. `verify_jwt=true` preserves the gateway check. In addition, the handler requires a dedicated random 64-character secret and validates its hash through a service-only RPC. Neither an anon key nor a staff JWT permits dispatch.
-3. Replace its `<SUPABASE_ANON_KEY>` placeholder with the public legacy anon key (not a service key), then run `docs/deployment/beverage-alerts-enable.sql`. It installs pg_cron/pg_net, generates the private worker secret directly in Vault, stores only its hash in settings, and enables one minute job. No private key needs copying into SQL or source control. The file contains this project's public endpoint; update that URL for another project.
+2. Deploy `beverage-telegram-alerts`. `verify_jwt=true` preserves the gateway check. In addition, the handler requires a random 64-character, single-use dispatch ticket. A service-only RPC atomically checks its hash and two-minute expiry and consumes it. Neither an anon key nor a staff JWT permits dispatch.
+3. Replace its `<SUPABASE_ANON_KEY>` placeholder with the public legacy anon key (not a service key), then run `docs/deployment/beverage-alerts-enable.sql`. It installs pg_cron/pg_net, generates a short-lived ticket for each dispatch and stores only its hash and expiry in settings, and enables one minute job. No private key needs copying into SQL or source control. The file contains this project's public endpoint; update that URL for another project.
 4. Send a clearly marked preview without changing any quantities:
 
 ```sql
@@ -40,7 +40,7 @@ UPDATE public.beverage_alert_outbox SET state='pending',error_code=NULL
  WHERE state='failed' AND id='REVIEWED_MESSAGE_UUID';
 ```
 
-Do not requeue `uncertain` without checking the group. Do not expose Vault or pg_net request headers in logs/screenshots. The public RPCs and tables are denied to anon/authenticated; worker RPCs are granted only to service_role. Existing inventory save permissions are unchanged.
+Do not requeue `uncertain` without checking the group. Do not expose pg_net request headers in logs/screenshots. The public RPCs and tables are denied to anon/authenticated; worker RPCs are granted only to service_role. Supabase owns the pg_net queue and grants it broad access. No reusable private credential is placed in that queue: only the public anon key and an expiring, single-use dispatch ticket. Even a replay cannot choose content, read inventory or re-send a claimed message. Existing inventory save permissions are unchanged.
 
 Pause without deleting history:
 

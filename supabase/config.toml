@@ -16,7 +16,7 @@ verify_jwt = false
 [functions.orders-telegram-notify]
 verify_jwt = false
 
-# Legacy gateway JWT plus a dedicated random server-only secret validated in the DB.
+# Legacy gateway JWT plus a single-use two-minute dispatch ticket validated in the DB.
 # An anon key alone cannot dispatch any message.
 [functions.beverage-telegram-alerts]
 verify_jwt = true
