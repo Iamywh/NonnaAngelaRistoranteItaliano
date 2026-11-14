@@ -9,10 +9,10 @@ No production changes or real customer/stock/financial writes. Status is code/te
 | ALERT-01 | P1 | reportMonths rejects 2 requested by Alertas | Accept two-month periods, catch network rejections; DOM test loads December/January, refreshes and displays network errors | Corrected: PR #47; not deployed |
 | BOOK-02 | P1 | Public assistant reads future reservations then filters phone | Requires scoped credential flow, legacy fallback and server validation | Confirmed |
 | OCR-01 | P1 | Hardcoded quantities/prices presented as OCR | Explicit labelled/Orthidal-column parser; evidence retained, unknowns null, arithmetic validation, approval resets on edit | Corrected: PR #47; not deployed |
-| MANUAL-01 | P1 | Audit live PDF authorization differed from repository | Supabase dashboard redirected to sign-in on 14 November; authenticated access required to compare deployed function | Blocked on login |
+| MANUAL-01 | P1 | Audit live PDF authorization differed from repository | Supabase connected: deployed v17 still requires shared password; four private PDFs exist. JWT + active owner/admin handler tested | Prepared; awaiting production approval |
 | BOOK-03 | P1 | Client capacity check and INSERT separate; configured 50 not verified | Server transaction/concurrency validation; capacity business decision outstanding | To verify database |
 | NOTIFY-01 | P1 | Arbitrary browser notification payload, no persistent retry | Server-backed outbox and trusted destination | Confirmed code |
-| SEC-01 | P1 | Historical TRUNCATE grants | Inspect effective grants and role matrix, isolated DB tests | To verify database |
+| SEC-01 | P1 | Historical TRUNCATE grants | Confirmed effective TRUNCATE grants; tested revocation migration preserves reads and service role | Prepared; awaiting production approval |
 | SEC-02 | P1 | Private food costs in menu JSON included in public bundle | Build-time projection strips private fields from menu and bot JSON before bundling; private costs remain RPC-backed | Corrected locally |
 | DEP-01 | P1 | Audit dependency advisories | Targeted compatible updates; npm audit 8 → 0 findings (14 November) | Corrected locally |
 | UI-01 | P2 | Mixed translations, contrast, overlapping overlays, empty pairing | Removed welcome interruption, empty pairing headings; opaque contrasting form; full language/mobile review outstanding | Partial |
@@ -50,3 +50,9 @@ Build-time stripping removes purchase prices and margins from downloadable JSON 
 Release order: #46 → #47 → public-bundle PR, retarget stacked PRs to main as predecessors merge. Frontend only; no SQL/Edge deployment in these changes. Restore previous deployment for rollback, noting that it would restore the previous bugs and bundled values.
 
 Remaining backend work: inspect deployed schema/grants/triggers and manual function, then implement scoped reservation access, atomic validation and persistent notification outbox. Do not deploy speculative migrations without verifying the existing database. Capacity value is not yet approved; 50 remains legacy UI configuration, not a physical capacity guarantee.
+
+## Backend inspection — 14 November, after Supabase connection
+
+Read-only live checks confirmed the obsolete manual function, excess TRUNCATE and table-wide anonymous INSERT. Prepared two SQL migrations and tested private-PDF handler; 255 tests pass, six TODO. No production changes. See docs/deployment/audit-backend-access.md for exact release/verification/rollback.
+
+The missing blocked-slot trigger and absent server-side booking validators are now confirmed database findings. Protected customer lookup/modification, atomic availability and notification outbox remain unfinished, not fixed by permission narrowing. Full mobile, translations, password recovery and remaining QA remain open.
