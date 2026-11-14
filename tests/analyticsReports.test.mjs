@@ -30,7 +30,9 @@ test('range 3, 6, 12 and year boundaries preserve months',()=>{
  assert.deepEqual(reportMonths('2026-01',3),['2025-11','2025-12','2026-01'])
  assert.equal(reportMonths('2026-11',12).length,12)
  assert.equal(reportMonthEnd('2026-12'),'2027-01-01')
- assert.throws(()=>reportMonths('2026-11',2),/inválido/)
+ assert.deepEqual(reportMonths('2026-01',2),['2025-12','2026-01'])
+ assert.throws(()=>reportMonths('2026-13',2),/inválido/)
+ assert.throws(()=>reportMonths('2026-11',4),/inválido/)
 })
 test('stored closure is exclusive source even if historic and daily numbers exist',()=>{
  const result=prepare({
