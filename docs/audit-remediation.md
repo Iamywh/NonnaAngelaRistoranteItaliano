@@ -56,3 +56,7 @@ Remaining backend work: inspect deployed schema/grants/triggers and manual funct
 Read-only live checks confirmed the obsolete manual function, excess TRUNCATE and table-wide anonymous INSERT. Prepared two SQL migrations and tested private-PDF handler; 255 tests pass, six TODO. No production changes. See docs/deployment/audit-backend-access.md for exact release/verification/rollback.
 
 The missing blocked-slot trigger and absent server-side booking validators are now confirmed database findings. Protected customer lookup/modification, atomic availability and notification outbox remain unfinished, not fixed by permission narrowing. Full mobile, translations, password recovery and remaining QA remain open.
+
+## Approved backend release completed — 14 November 2026
+
+PR #49 backend artifacts applied after explicit approval: both permission migrations succeeded and manual function v18 deployed. Effective grants/policy/private bucket and deployed authentication code read back successfully; live unauthenticated endpoint returns 401. Authorized PDF download E2E remains pending. No PR merge, customer-data modification or Telegram send performed. See deployment/audit-backend-access.md for evidence and remaining checks.

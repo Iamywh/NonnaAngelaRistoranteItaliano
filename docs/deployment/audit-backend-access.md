@@ -39,3 +39,12 @@ These migrations do not alter rows. Prefer forward correction of any accidentall
 RLS-enabled tables with no policies can be intentional when accessed exclusively through authorized RPCs. Executable SECURITY DEFINER warnings must be reviewed by function; do not blanket-revoke working public loyalty/capacity APIs or staff RPCs. `set_updated_at` has mutable search_path; pg_net is installed in public; leaked-password protection is disabled. These are recorded, not silently changed.
 
 References: https://supabase.com/docs/guides/functions/auth ; https://supabase.com/docs/guides/database/database-linter?lint=0011_function_search_path_mutable
+
+## Production execution — 14 November 2026
+
+Explicit user approval received for the two migrations and manual function deployment (not PR merges).
+Both migrations applied successfully. Readback confirms authenticated SELECT retained and TRUNCATE denied on both Analytics tables; service_role retains TRUNCATE. Anonymous reservation INSERT is allowed on the 15 request columns and denied on 11 internal/server columns. Public SELECT remains denied. Restrictive pending/website/not_arrived policy verified.
+
+manager-manual-docs v18 is ACTIVE with verify_jwt=true; retrieved deployed files confirm Auth getUser validation and no MANAGER_PASSWORD fallback. Bucket remains private. Live HTTP request without Authorization returns 401 UNAUTHORIZED_NO_AUTH_HEADER. No real rows changed or messages sent; no production upload performed.
+
+Authorized account status/download and nonstaff authenticated HTTP verification are still pending: these require real test-user sessions. Do not equate deployment/401 verification with successful authenticated PDF E2E. GitHub PRs remain unmerged by this execution.
