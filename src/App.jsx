@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, lazy, Suspense } from 'react'
+import PageMetadata from './components/PageMetadata.jsx'
 import Navbar from './components/Navbar.jsx'
 import Home from './pages/Home.jsx'
 import Locale from './pages/Locale.jsx'
 import LoyaltyCard from './pages/LoyaltyCard.jsx'
 import Menu from './pages/Menu.jsx'
 import Bebidas from './pages/Bebidas.jsx'
-import AdminDashboard from './pages/admin/AdminDashboard.jsx'
-import FoodDashboard from './pages/admin/FoodDashboard.jsx'
-import BeverageDashboard from './pages/admin/BeverageDashboard.jsx'
-import FBControl from './pages/admin/FBControl.jsx'
-import Orders from './pages/admin/Orders.jsx'
-import Invoices from './pages/admin/Invoices.jsx'
-import ReservationsDashboard from './pages/admin/ReservationsDashboard.jsx'
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard.jsx'))
+const FoodDashboard = lazy(() => import('./pages/admin/FoodDashboard.jsx'))
+const BeverageDashboard = lazy(() => import('./pages/admin/BeverageDashboard.jsx'))
+const FBControl = lazy(() => import('./pages/admin/FBControl.jsx'))
+const Orders = lazy(() => import('./pages/admin/Orders.jsx'))
+const Invoices = lazy(() => import('./pages/admin/Invoices.jsx'))
+const ReservationsDashboard = lazy(() => import('./pages/admin/ReservationsDashboard.jsx'))
 import AccountAccess from './pages/AccountAccess.jsx'
 import { supabase } from './lib/supabaseClient.js'
-import MusicManager from './pages/admin/MusicManager.jsx'
-import ManualOperativo from './pages/admin/ManualOperativo.jsx'
-import Analytics from './pages/admin/Analytics.jsx'
+const MusicManager = lazy(() => import('./pages/admin/MusicManager.jsx'))
+const ManualOperativo = lazy(() => import('./pages/admin/ManualOperativo.jsx'))
+const Analytics = lazy(() => import('./pages/admin/Analytics.jsx'))
 import VirtualAgent from './components/VirtualAgent.jsx'
 import Footer from './components/Footer.jsx'
 import CookieConsent from './components/CookieConsent.jsx'
-import WelcomePopup from './components/WelcomePopup.jsx'
 import { LanguageProvider } from './i18n/LanguageContext.jsx'
 
 const pagePaths = {
@@ -187,6 +187,7 @@ export default function App() {
   return (
     <LanguageProvider>
       <div className="app-shell">
+        <PageMetadata page={currentPage} path={pagePaths[currentPage] || '/'} />
         <Navbar
           currentPage={currentPage}
           setCurrentPage={navigateToPage}
@@ -196,12 +197,10 @@ export default function App() {
 
         <main className="main-content">
           {authError && <p className="manager-error" role="alert">No se ha podido cerrar la sesión. Inténtalo de nuevo.</p>}
-          {renderPage()}
+          <Suspense fallback={<p role="status">…</p>}>{renderPage()}</Suspense>
         </main>
 
-        <Footer setCurrentPage={navigateToPage} />
-        <VirtualAgent />
-        <WelcomePopup currentPage={currentPage} setCurrentPage={navigateToPage} />
+        {!currentPage.startsWith('admin') && <><Footer setCurrentPage={navigateToPage} /><VirtualAgent /></>}
         <CookieConsent />
       </div>
     </LanguageProvider>

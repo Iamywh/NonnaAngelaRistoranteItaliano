@@ -302,3 +302,14 @@
     height: 14px;
   }
 }
+
+/* Opaque surfaces make label contrast independent of the photo/background. */
+.reservation-form { background: #fffaf3; color: #2a1c14; }
+.reservation-form label, .reservation-form legend, .reservation-form .form-helper,
+.reservation-form .form-helper.strong, .reservation-form input, .reservation-form select,
+.reservation-form textarea { color: #2a1c14; }
+.reservation-form .form-message.error { background: #fce8e6; color: #7a1b16; }
+.reservation-form :focus-visible { outline: 3px solid #76501c; outline-offset: 3px; }
+@media (max-width: 390px) {
+ .reservation-form .form-row, .reservation-form .phone-input-grid { grid-template-columns: 1fr; }
+}
