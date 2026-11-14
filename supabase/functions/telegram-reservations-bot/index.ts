@@ -80,13 +80,13 @@ async function sendLongTelegramMessage(chatId: number | string, text: string, op
   }
 }
 
-function getTodayDateValue() {
+export function getTodayDateValue(now = new Date()) {
   const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: CANARY_TIME_ZONE,
     year: 'numeric',
     month: '2-digit',
     day: '2-digit'
-  }).formatToParts(new Date())
+  }).formatToParts(now)
 
   const year = parts.find((part) => part.type === 'year')?.value
   const month = parts.find((part) => part.type === 'month')?.value
@@ -209,13 +209,19 @@ function formatReservationLine(reservation: Record<string, unknown>, index: numb
   return base.join('\n')
 }
 
-async function getReservationsReport(dateValue: string) {
+async function getReservationsReport(dateValue: string, service: 'lunch' | 'dinner' | null = null) {
   const supabase = getSupabaseAdminClient()
 
-  const { data, error } = await supabase
+  let query = supabase
     .from('reservations')
     .select('id, customer_name, customer_phone, customer_email, reservation_date, reservation_time, guests, area_preference, notes, status, reservation_status, service_status, source, created_at')
     .eq('reservation_date', dateValue)
+
+  // Same service boundary as the website. Filter before calculating totals.
+  if (service === 'lunch') query = query.lt('reservation_time', '17:00:00')
+  if (service === 'dinner') query = query.gte('reservation_time', '17:00:00')
+
+  const { data, error } = await query
     .order('reservation_time', { ascending: true })
     .order('created_at', { ascending: true })
 
@@ -228,7 +234,8 @@ async function getReservationsReport(dateValue: string) {
   const pending = activeReservations.filter((reservation) => getReservationStatus(reservation) === 'pending').length
   const confirmed = activeReservations.filter((reservation) => getReservationStatus(reservation) === 'confirmed').length
 
-  const title = `📅 Reservas Nonna Angela — ${formatDateForTitle(dateValue)}`
+  const serviceLabel = service === 'lunch' ? ' · Almuerzo' : service === 'dinner' ? ' · Cena' : ''
+  const title = `📅 Reservas Nonna Angela${serviceLabel} — ${formatDateForTitle(dateValue)}`
   const summary = [
     title,
     '',
@@ -239,7 +246,7 @@ async function getReservationsReport(dateValue: string) {
   ]
 
   if (!activeReservations.length) {
-    summary.push('', 'No hay reservas activas para esta fecha.')
+    summary.push('', service ? 'No hay reservas activas para este servicio.' : 'No hay reservas activas para esta fecha.')
     return summary.join('\n')
   }
 
@@ -348,7 +355,9 @@ async function handleMessage(message: Record<string, unknown>) {
       '🍝 Bot reservas Nonna Angela',
       '',
       'Comandos disponibles:',
-      '/reservashoy — ver reservas de hoy',
+      '/reservashoy — ver todas las reservas de hoy',
+      '/reslunch — ver reservas de almuerzo de hoy',
+      '/resdinner — ver reservas de cena de hoy',
       '/reservasdate — buscar reservas por fecha',
       '',
       'También puedes escribir /reservasdate 05-09-2026.'
@@ -356,8 +365,9 @@ async function handleMessage(message: Record<string, unknown>) {
     return
   }
 
-  if (command === '/reservashoy') {
-    const report = await getReservationsReport(getTodayDateValue())
+  if (['/reservashoy', '/reslunch', '/resdinner'].includes(command)) {
+    const service = command === '/reslunch' ? 'lunch' : command === '/resdinner' ? 'dinner' : null
+    const report = await getReservationsReport(getTodayDateValue(), service)
     await sendLongTelegramMessage(chatId, report)
     return
   }
