@@ -1,119 +1,7 @@
 import React, { useState } from 'react'
 import { createWorker } from 'tesseract.js'
 
-const KNOWN_ORTHIDAL_PRODUCTS = [
-  {
-    match: ['SEMOLA', 'SCOPPETTUOLO'],
-    product_name: 'Semola rimacinata di grano duro Scoppettuolo',
-    product_id: 'semola_rimacinata',
-    quantity: 1,
-    unit: 'pack',
-    unit_price: 20.55,
-    line_total: 20.55,
-    confidence: 'medium'
-  },
-  {
-    match: ['DOPPIO', 'CONCENTRADO'],
-    product_name: 'Doppio concentrato La Reale 28%',
-    product_id: 'doppio_concentrato_pomodoro',
-    quantity: 2,
-    unit: 'unit',
-    unit_price: 15.1,
-    line_total: 30.2,
-    confidence: 'medium'
-  },
-  {
-    match: ['DATTERINO', 'FIAMMANTE'],
-    product_name: 'Datterino La Fiammante',
-    product_id: 'datterino_fiammante',
-    quantity: 1,
-    unit: 'case',
-    unit_price: null,
-    line_total: null,
-    confidence: 'low'
-  },
-  {
-    match: ['TALEGGIO', 'SORESINA'],
-    product_name: 'Taleggio DOP Latteria Soresina',
-    product_id: 'taleggio',
-    quantity: 2,
-    unit: 'kg',
-    unit_price: 12.8,
-    line_total: 25.6,
-    confidence: 'high'
-  },
-  {
-    match: ['STRACCHINO', 'RADICCI'],
-    product_name: 'Stracchino Casa Radicci Frozen',
-    product_id: 'stracchino',
-    quantity: 4,
-    unit: 'kg',
-    unit_price: 16.2,
-    line_total: 64.8,
-    confidence: 'medium'
-  },
-  {
-    match: ['PROVOLA', 'MONTI'],
-    product_name: 'Provola congelata Latteria Sorrentina',
-    product_id: 'provola_congelata',
-    quantity: 12,
-    unit: 'kg',
-    unit_price: 9.09,
-    line_total: 109.08,
-    confidence: 'medium'
-  },
-  {
-    match: ['CARNAROLI', 'RISERA'],
-    product_name: 'Riso Carnaroli La Risera',
-    product_id: 'riso_carnaroli',
-    quantity: 10,
-    unit: 'kg',
-    unit_price: 4.8,
-    line_total: 48,
-    confidence: 'high'
-  },
-  {
-    match: ['PASTA', 'SFOGLIA', 'LASAGNA'],
-    product_name: 'Pasta sfoglia lasagna uovo Zerbetto',
-    product_id: 'lasagne',
-    quantity: 5,
-    unit: 'kg',
-    unit_price: null,
-    line_total: null,
-    confidence: 'low'
-  },
-  {
-    match: ['PACCHERI', 'DIVELLA'],
-    product_name: 'Paccheri Divella',
-    product_id: 'paccheri',
-    quantity: 10,
-    unit: 'kg',
-    unit_price: 2.1,
-    line_total: 21,
-    confidence: 'high'
-  }
-]
-
-function parseOrthidalText(text) {
-  const normalizedText = text.toUpperCase()
-
-  return KNOWN_ORTHIDAL_PRODUCTS.filter((product) =>
-    product.match.every((word) => normalizedText.includes(word))
-  ).map((product) => ({
-    id: crypto.randomUUID(),
-    supplier: 'orthidal',
-    invoice_number: normalizedText.includes('MTNF062772') ? 'MTNF062772' : '',
-    invoice_date: normalizedText.includes('21052026') ? '2026-05-21' : '',
-    product_name_original: product.product_name,
-    product_id_matched: product.product_id,
-    quantity: product.quantity,
-    unit: product.unit,
-    unit_price: product.unit_price,
-    line_total: product.line_total,
-    confidence: product.confidence,
-    accepted: true
-  }))
-}
+import { parseOrthidalText, invoiceLineIssues } from '../../lib/invoiceParser.mjs'
 
 export default function Invoices({ setCurrentPage }) {
   const [selectedFile, setSelectedFile] = useState(null)
@@ -138,8 +26,9 @@ export default function Invoices({ setCurrentPage }) {
     setProgress(0)
     setCandidateLines([])
 
+    let worker
     try {
-      const worker = await createWorker('spa', 1, {
+      worker = await createWorker('spa', 1, {
         logger: (message) => {
           if (message.status === 'recognizing text') {
             setProgress(Math.round(message.progress * 100))
@@ -149,11 +38,12 @@ export default function Invoices({ setCurrentPage }) {
 
       const result = await worker.recognize(selectedFile)
       setOcrText(result.data.text || '')
-      await worker.terminate()
+
     } catch (error) {
       console.error(error)
       setOcrText('Errore OCR. Prova con una immagine più nitida o un PDF convertito in immagine.')
     } finally {
+      if (worker) await worker.terminate()
       setIsProcessing(false)
     }
   }
@@ -169,6 +59,7 @@ export default function Invoices({ setCurrentPage }) {
         line.id === id
           ? {
               ...line,
+              accepted: false,
               [field]:
                 field === 'quantity' || field === 'unit_price' || field === 'line_total'
                   ? value === ''
@@ -187,11 +78,11 @@ export default function Invoices({ setCurrentPage }) {
     )
   }
 
-  const acceptedLines = candidateLines.filter((line) => line.accepted)
+  const acceptedLines = candidateLines.filter((line) => line.accepted && !invoiceLineIssues(line).length)
 
   const exportAcceptedLinesJson = () => {
     const payload = {
-      supplier: 'orthidal',
+      supplier: acceptedLines[0]?.supplier || null,
       source: 'ocr_review',
       exported_at: new Date().toISOString(),
       lines: acceptedLines
@@ -217,15 +108,14 @@ export default function Invoices({ setCurrentPage }) {
       <p className="eyebrow">Invoices</p>
       <h2>Fatture e OCR</h2>
       <p className="page-intro">
-        Prima versione del modulo fatture: carichi una fattura immagine, il sistema prova a leggere il testo,
-        poi propone righe prodotto/prezzo da revisionare prima di salvare lo storico.
+        Leggi il testo da un’immagine oppure incollalo da un PDF. Sono supportate righe con quantità, prezzo e totale espliciti e colonne Orthidal integre. I numeri vanno sempre verificati: l’esportazione JSON non aggiorna lo storico, i costi o l’inventario.
       </p>
 
       <div className="dashboard-panel">
         <h3>Carica fattura</h3>
 
         <div className="invoice-upload-box">
-          <input type="file" accept="image/*,.pdf" onChange={handleFileChange} />
+          <input type="file" accept="image/*" onChange={handleFileChange} />
 
           {selectedFile && (
             <p>
@@ -272,7 +162,7 @@ export default function Invoices({ setCurrentPage }) {
             <p className="eyebrow">Revisione</p>
             <h3>Righe candidate</h3>
             <p className="page-intro">
-              Conferma solo le righe corrette. Quelle esportate diventeranno la base dello storico prezzi.
+              Conferma solo le righe corrette. Nessuna riga viene approvata automaticamente.
             </p>
           </div>
 
@@ -302,6 +192,8 @@ export default function Invoices({ setCurrentPage }) {
               <input
                 type="checkbox"
                 checked={line.accepted}
+                disabled={invoiceLineIssues(line).length > 0}
+                aria-label={`Conferma ${line.product_name_original}`}
                 onChange={() => toggleCandidateLine(line.id)}
               />
 
@@ -320,7 +212,7 @@ export default function Invoices({ setCurrentPage }) {
               />
 
               <input
-                value={line.unit}
+                value={line.unit ?? ''}
                 onChange={(event) => updateCandidateLine(line.id, 'unit', event.target.value)}
               />
 
@@ -338,12 +230,14 @@ export default function Invoices({ setCurrentPage }) {
                 onChange={(event) => updateCandidateLine(line.id, 'line_total', event.target.value)}
               />
 
-              <span className={`confidence-badge ${line.confidence}`}>{line.confidence}</span>
+              <div><span className="confidence-badge">{invoiceLineIssues(line).length ? 'Da correggere' : 'Da verificare'}</span>
+                <small>{invoiceLineIssues(line).join(' · ')}</small>
+                <details><summary>Testo originale</summary><pre style={{whiteSpace:'pre-wrap'}}>{line.source_text}</pre></details></div>
             </div>
           ))}
 
           {!candidateLines.length && (
-            <p className="empty-state">Nessuna riga candidata ancora. Incolla o leggi una fattura e premi “Analizza testo OCR”.</p>
+            <p className="empty-state">Nessuna riga riconosciuta. Il formato potrebbe non essere supportato: non verranno inventati valori. Incolla righe con quantità, unità, prezzo unitario e totale espliciti.</p>
           )}
         </div>
       </div>

@@ -5,10 +5,10 @@ No production changes or real customer/stock/financial writes. Status is code/te
 
 | ID | Priority | Evidence / cause | Implementation / verification | Status |
 |---|---|---|---|---|
-| BOOK-01 | P0 | Locale references undefined closure variables | Shared form/assistant slot calendar; strict dates and Canary today; translated closures; disabled unsafe submission; render regression in 4 languages and schedule tests | Corrected locally; not deployed |
-| ALERT-01 | P1 | reportMonths rejects 2 requested by Alertas | Pending integration fix | Confirmed |
+| BOOK-01 | P0 | Locale references undefined closure variables | Shared form/assistant slot calendar; strict dates and Canary today; translated closures; disabled unsafe submission; render regression in 4 languages and schedule tests | Corrected: PR #46; 245 tests pass / 6 TODO; not deployed |
+| ALERT-01 | P1 | reportMonths rejects 2 requested by Alertas | Accept two-month periods, catch network rejections; DOM test loads December/January, refreshes and displays network errors | Corrected locally |
 | BOOK-02 | P1 | Public assistant reads future reservations then filters phone | Requires scoped credential flow, legacy fallback and server validation | Confirmed |
-| OCR-01 | P1 | Hardcoded quantities/prices presented as OCR | Replace with evidence-preserving parser and explicit review | Confirmed |
+| OCR-01 | P1 | Hardcoded quantities/prices presented as OCR | Explicit labelled/Orthidal-column parser; evidence retained, unknowns null, arithmetic validation, approval resets on edit | Corrected locally |
 | MANUAL-01 | P1 | Audit live PDF authorization differed from repository | Verify deployed function/JWT against current role contract | To verify live |
 | BOOK-03 | P1 | Client capacity check and INSERT separate; configured 50 not verified | Server transaction/concurrency validation; capacity business decision outstanding | To verify database |
 | NOTIFY-01 | P1 | Arbitrary browser notification payload, no persistent retry | Server-backed outbox and trusted destination | Confirmed code |
@@ -36,3 +36,7 @@ Closed dates now show an explanation rather than a blank page. Requests still ne
 ## Verification limits
 
 Render tests execute the actual form and translations with synthetic initial dates and no Supabase calls; calendar tests include malformed dates, holidays and Canary timezone. They are not browser E2E or physical-device tests. Production backend checks, test Telegram destination and isolated restore still require the corresponding environment.
+
+## P1 Alertas / OCR validation
+
+249 tests pass, 6 pre-existing TODO. Alertas DOM integration uses mock Supabase (no network). Invoice tests reproduce 3 kg × 99 = 297, decimal ambiguity, missing/inconsistent fields and Orthidal units. No universal OCR claim: only preserved table columns or explicitly labelled rows; image recognition remains subject to manual checking. Frontend-only preview/release after #46; rollback frontend.

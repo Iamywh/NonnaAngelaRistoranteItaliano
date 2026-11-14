@@ -19,6 +19,7 @@
     "vite": "^6.0.0"
   },
   "devDependencies": {
-    "@electric-sql/pglite": "^0.5.15"
+    "@electric-sql/pglite": "^0.5.15",
+    "jsdom": "^31.0.1"
   }
 }

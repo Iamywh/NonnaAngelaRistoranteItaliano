@@ -10,7 +10,7 @@ const addMonth=(month,delta)=>{
   return new Date(Date.UTC(y,m-1+delta,1)).toISOString().slice(0,7)
 }
 export const reportMonths=(endMonth,count)=>{
-  if(!MONTH.test(endMonth)||![1,3,6,12].includes(count))throw Error('Período inválido')
+  if(!MONTH.test(endMonth)||![1,2,3,6,12].includes(count))throw Error('Período inválido')
   return Array.from({length:count},(_,i)=>addMonth(endMonth,i+1-count))
 }
 export const reportMonthEnd=(month)=>addMonth(month,1)+'-01'

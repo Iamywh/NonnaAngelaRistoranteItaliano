@@ -85,7 +85,7 @@ export default function ManagementAlerts({onNavigate}){
     targets:targets.data||[],closures:closures.data||[],closeChecks:checks})
    setLoading(false)
   }
-  load()
+  load().catch(() => { if(active){ setError('No se pudieron comprobar los indicadores. Inténtalo de nuevo.'); setLoading(false) } })
   return()=>{active=false}
  },[start,end,refresh])
 
