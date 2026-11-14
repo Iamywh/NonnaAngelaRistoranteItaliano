@@ -10,7 +10,7 @@ verify_jwt = false
 
 # The handler verifies the user token through Supabase Auth, then checks staff roles.
 [functions.manager-manual-docs]
-verify_jwt = false
+verify_jwt = true
 
 # Handler verifies Auth user + orders permission before service-role access.
 [functions.orders-telegram-notify]
