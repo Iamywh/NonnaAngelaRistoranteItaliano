@@ -4,6 +4,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
 export default function Navbar({ currentPage, setCurrentPage, isStaff, signedIn }) {
   const { language, setLanguage, supportedLanguages, t } = useLanguage()
 
+  const paths = {home:'/', locale:'/restaurante', menu:'/menu', bebidas:'/bebidas', famiglia:'/famiglia'}
   const publicLinks = [
     { id: 'home', label: t('nav.home') },
     { id: 'locale', label: t('nav.locale') },
@@ -24,14 +25,14 @@ export default function Navbar({ currentPage, setCurrentPage, isStaff, signedIn 
 
       <nav className="nav-links">
         {publicLinks.map((link) => (
-          <button
+          <a
+            href={paths[link.id]}
             key={link.id}
             className={currentPage === link.id ? 'nav-link active' : 'nav-link'}
-            onClick={() => setCurrentPage(link.id)}
-            type="button"
+            onClick={event => { if(event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey){ event.preventDefault(); setCurrentPage(link.id) } }}
           >
             {link.label}
-          </button>
+          </a>
         ))}
       </nav>
 

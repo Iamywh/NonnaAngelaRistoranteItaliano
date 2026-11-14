@@ -217,7 +217,7 @@ function DishCard({ item }) {
           ) : (
             <>
               <strong>{formatPrice(item.prezzo_consigliato || item.price || item.recommended_price, t)}</strong>
-              {item.prezzo_consigliato && <span>{t('menu.winePairing')}</span>}
+              {Array.isArray(item.pairing) && item.pairing.length > 0 && <span>{t('menu.winePairing')}</span>}
               {item.recommended_price && <span>{item.format ? t('menu.unit') : t('menu.perfectWith')}</span>}
             </>
           )}
