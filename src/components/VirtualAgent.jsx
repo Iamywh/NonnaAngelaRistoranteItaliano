@@ -4,7 +4,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
 import restaurantKnowledge from '../data/bot/restaurantKnowledge.json'
 import { buildAdvancedRestaurantAnswer } from '../data/bot/advancedMenuAssistant.js'
 import { getBookedGuestsForService } from '../lib/reservationAvailability.js'
-import { getSpecialReservationDate, getSpecialSchedule, isClosedReservationDate } from '../lib/scheduleExceptions.js'
+import { getReservationTimeSlots, getTodayDateValue, getSpecialReservationDate, getSpecialSchedule, isClosedReservationDate } from '../lib/scheduleExceptions.js'
 import '../styles/chatbot-reservations.css'
 
 const CHAT_STORAGE_KEY = 'nonna_angela_virtual_agent_messages'
@@ -125,70 +125,14 @@ function phonesMatch(storedPhone, requestedPhone) {
   return requestedTail.length >= 7 && requestedTail === storedTail
 }
 
-function formatTime(minutes) {
-  const hours = Math.floor(minutes / 60)
-  const remainingMinutes = minutes % 60
-  return `${String(hours).padStart(2, '0')}:${String(remainingMinutes).padStart(2, '0')}`
-}
-
-function buildTimeSlots(startTime, lastTime) {
-  const [startHours, startMinutes] = startTime.split(':').map(Number)
-  const [lastHours, lastMinutes] = lastTime.split(':').map(Number)
-  const start = startHours * 60 + startMinutes
-  const last = lastHours * 60 + lastMinutes
-  const slots = []
-
-  for (let minutes = start; minutes <= last; minutes += 15) {
-    slots.push(formatTime(minutes))
-  }
-
-  return slots
-}
-
 function parseDateValue(value) {
   if (!value) return null
   const [year, month, day] = value.split('-').map(Number)
-  if (!year || !month || !day) return null
-  return { year, month, day }
+  return year && month && day ? { year, month, day } : null
 }
 
 function createLocalDate(year, month, day) {
   return new Date(year, month - 1, day)
-}
-
-function getTodayDateValue() {
-  const today = new Date()
-  const year = today.getFullYear()
-  const month = String(today.getMonth() + 1).padStart(2, '0')
-  const day = String(today.getDate()).padStart(2, '0')
-  return `${year}-${month}-${day}`
-}
-
-function getDayFromDateValue(dateValue) {
-  const parsed = parseDateValue(dateValue)
-  if (!parsed) return null
-  return createLocalDate(parsed.year, parsed.month, parsed.day).getDay()
-}
-
-function isFridayOrSaturday(dateValue) {
-  const day = getDayFromDateValue(dateValue)
-  return day === 5 || day === 6
-}
-
-function getReservationTimeSlots(dateValue) {
-  if (!dateValue || isClosedReservationDate(dateValue)) return []
-
-  const specialDate = getSpecialReservationDate(dateValue)
-  if (specialDate && !specialDate.isClosed) {
-    return buildTimeSlots(specialDate.firstReservation, specialDate.lastReservation)
-  }
-
-  const lastDinnerSlot = isFridayOrSaturday(dateValue) ? '22:45' : '22:30'
-
-  return [
-    ...buildTimeSlots('12:30', '15:15'),
-    ...buildTimeSlots('19:30', lastDinnerSlot)
-  ]
 }
 
 function getReservationService(timeValue, dateValue = '') {

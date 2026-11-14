@@ -307,3 +307,15 @@ translations.it = {
   cookies: { ...translations.en.cookies, aria: 'Avviso cookie', eyebrow: 'Privacy', title: 'Un’esperienza più curata', text: 'Usiamo cookie essenziali per il corretto funzionamento del sito e cookie di esperienza per migliorare la navigazione.', essentials: 'Solo essenziali', accept: 'Accetta' },
   bot: { ...translations.en.bot, placeholder: 'Scrivi la tua domanda...', send: 'Invia', topics: { booking: 'Prenotazioni', modify: 'Modifica prenotazione', status: 'Stato prenotazione', wines: 'Vini', cocktails: 'Cocktail', hours: 'Orari', location: 'Indirizzo' }, help: 'Posso aiutarti con prenotazioni, modifica di una prenotazione esistente, stato della prenotazione, orari, indirizzo, vini e cocktail. Di cosa hai bisogno?', anythingElse: 'Vuoi che ti aiuti con altro?', bookingPrompt: 'Perfetto. Compila questi dati e salverò la richiesta affinché il team di Nonna Angela la confermi via WhatsApp o email.', modifyPrompt: 'Certo. Scrivi il numero di telefono usato per la prenotazione. Posso riconoscerlo anche senza prefisso.', statusPrompt: 'Certo. Scrivi il numero di telefono usato per la prenotazione e ti dirò lo stato attuale.', submitBooking: 'Invia richiesta', searchBooking: 'Cerca prenotazione', submitModification: 'Invia modifica', statusLabels: { pending: 'in attesa di conferma', confirmed: 'confermata', rejected: 'rifiutata', cancelled: 'annullata' } }
 }
+
+// Booking validation messages shared by the form and assistant.
+for (const [language, values] of Object.entries({
+  es: ['Cerrado', 'El restaurante está cerrado en esta fecha. Selecciona otra fecha.', 'Selecciona una fecha válida a partir de hoy.'],
+  en: ['Closed', 'The restaurant is closed on this date. Please choose another date.', 'Choose a valid date from today onwards.'],
+  it: ['Chiuso', 'Il ristorante è chiuso in questa data. Seleziona un’altra data.', 'Seleziona una data valida da oggi in poi.'],
+  fr: ['Fermé', 'Le restaurant est fermé à cette date. Choisissez une autre date.', 'Choisissez une date valide à partir d’aujourd’hui.']
+})) {
+  translations[language].common.closed = values[0]
+  translations[language].locale.closedSpecialDate = values[1]
+  translations[language].locale.invalidDate = values[2]
+}
