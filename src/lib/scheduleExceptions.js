@@ -28,12 +28,12 @@ export const SPECIAL_RESERVATION_DATES = {
 }
 
 export function getDayFromDateValue(dateValue) {
-  if (!dateValue) return null
-
-  const [year, month, day] = String(dateValue).split('-').map(Number)
-  if (!year || !month || !day) return null
-
-  return new Date(year, month - 1, day).getDay()
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateValue || '')) return null
+  const [year, month, day] = dateValue.split('-').map(Number)
+  const date = new Date(`${dateValue}T12:00:00Z`)
+  if (!Number.isFinite(date.getTime()) || date.getUTCFullYear() !== year ||
+      date.getUTCMonth() + 1 !== month || date.getUTCDate() !== day) return null
+  return date.getUTCDay()
 }
 
 export function getSpecialReservationDate(dateValue) {
@@ -59,4 +59,36 @@ export function isClosedReservationDate(dateValue) {
 
   const day = getDayFromDateValue(dateValue)
   return day !== null && NORMAL_CLOSED_RESERVATION_DAYS.includes(day)
+}
+
+export function getTodayDateValue(now = new Date()) {
+  const parts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Atlantic/Canary', year: 'numeric', month: '2-digit', day: '2-digit'
+  }).formatToParts(now).map(p => [p.type, p.value]))
+  return `${parts.year}-${parts.month}-${parts.day}`
+}
+
+export function isBookableDate(date, today = getTodayDateValue()) {
+  return getDayFromDateValue(date) !== null && date >= today && !isClosedReservationDate(date)
+}
+
+function buildTimeSlots(first, last) {
+  const minutes = time => time.split(':').reduce((h, m) => Number(h) * 60 + Number(m))
+  const slots = []
+  for (let t = minutes(first); t <= minutes(last); t += 15) {
+    slots.push(`${String(Math.floor(t / 60)).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`)
+  }
+  return slots
+}
+
+export function getReservationTimeSlots(dateValue, today = getTodayDateValue()) {
+  if (!isBookableDate(dateValue, today)) return []
+  const special = getSpecialSchedule(dateValue)
+  if (special) return buildTimeSlots(special.firstReservation, special.lastReservation)
+  const day = getDayFromDateValue(dateValue)
+  return [...buildTimeSlots('12:30', '15:15'), ...buildTimeSlots('19:30', [5, 6].includes(day) ? '22:45' : '22:30')]
+}
+
+export function getClosedDateMessage(dateValue, t) {
+  return t(getSpecialSchedule(dateValue)?.type === 'closed' ? 'locale.closedSpecialDate' : 'locale.closedDay')
 }

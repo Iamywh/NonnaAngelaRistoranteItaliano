@@ -4,7 +4,7 @@ import { useLanguage } from '../i18n/LanguageContext.jsx'
 import { useBlockedReservationSlots } from '../hooks/useBlockedReservationSlots.js'
 import { getBookedGuestsForService } from '../lib/reservationAvailability.js'
 import { filterBlockedSlots } from '../lib/reservationSlotBlocks.js'
-import { getDayFromDateValue, getSpecialSchedule, isClosedReservationDate } from '../lib/scheduleExceptions.js'
+import { getReservationTimeSlots, getTodayDateValue, isBookableDate, getClosedDateMessage, getSpecialSchedule, isClosedReservationDate } from '../lib/scheduleExceptions.js'
 import '../styles/reservation-form.css'
 
 const SERVICE_CAPACITY = 50
@@ -87,47 +87,6 @@ const initialReservation = {
   notes: '',
 }
 
-function formatTime(minutes) {
-  const hours = Math.floor(minutes / 60)
-  const remainingMinutes = minutes % 60
-  return `${String(hours).padStart(2, '0')}:${String(remainingMinutes).padStart(2, '0')}`
-}
-
-function buildTimeSlots(startTime, lastTime) {
-  const [startHours, startMinutes] = startTime.split(':').map(Number)
-  const [lastHours, lastMinutes] = lastTime.split(':').map(Number)
-  const start = startHours * 60 + startMinutes
-  const last = lastHours * 60 + lastMinutes
-  const slots = []
-
-  for (let minutes = start; minutes <= last; minutes += 15) {
-    slots.push(formatTime(minutes))
-  }
-
-  return slots
-}
-
-function isFridayOrSaturday(dateValue) {
-  const day = getDayFromDateValue(dateValue)
-  return day === 5 || day === 6
-}
-
-function getReservationTimeSlots(dateValue) {
-  if (!dateValue || isClosedReservationDate(dateValue)) return []
-
-  const specialSchedule = getSpecialSchedule(dateValue)
-  if (specialSchedule?.type === 'special_open') {
-    return buildTimeSlots(specialSchedule.opens, specialSchedule.lastReservation)
-  }
-
-  const lastDinnerSlot = isFridayOrSaturday(dateValue) ? '22:45' : '22:30'
-
-  return [
-    ...buildTimeSlots('12:30', '15:15'),
-    ...buildTimeSlots('19:30', lastDinnerSlot),
-  ]
-}
-
 function getReservationService(timeValue, dateValue) {
   if (!timeValue) return null
 
@@ -158,9 +117,12 @@ export default function Locale() {
   const [serviceAvailability, setServiceAvailability] = useState(null)
   const [isCheckingAvailability, setIsCheckingAvailability] = useState(false)
   const [availabilityError, setAvailabilityError] = useState(null)
-  const { blockedTimes: blockedReservationTimes, isLoading: isLoadingBlockedSlots } = useBlockedReservationSlots(reservation.reservation_date)
+  const { blockedTimes: blockedReservationTimes, isLoading: isLoadingBlockedSlots, error: blockedSlotsError } = useBlockedReservationSlots(reservation.reservation_date)
   const reservationTimeSlots = filterBlockedSlots(getReservationTimeSlots(reservation.reservation_date), blockedReservationTimes)
   const isReservationDateClosed = isClosedReservationDate(reservation.reservation_date)
+  const specialReservationSchedule = getSpecialSchedule(reservation.reservation_date)
+  const closedDateMessage = getClosedDateMessage(reservation.reservation_date, t)
+  const validDate = isBookableDate(reservation.reservation_date)
   const selectedService = getReservationService(reservation.reservation_time, reservation.reservation_date)
   const selectedGuests = Number(reservation.guests || 0)
   const selectedPhoneCountry = getPhoneCountry(reservation.phone_country_iso)
@@ -196,6 +158,7 @@ export default function Locale() {
 
       if (!reservation.reservation_date || !reservation.reservation_time || !selectedService) {
         setServiceAvailability(null)
+        setIsCheckingAvailability(false)
         return
       }
 
@@ -225,6 +188,12 @@ export default function Locale() {
     }
   }, [reservation.reservation_date, reservation.reservation_time, selectedService, t])
 
+  useEffect(() => {
+    if (!isLoadingBlockedSlots && reservation.reservation_time && !reservationTimeSlots.includes(reservation.reservation_time)) {
+      setReservation(current => ({ ...current, reservation_time: '' }))
+    }
+  }, [reservation.reservation_date, reservation.reservation_time, blockedReservationTimes, isLoadingBlockedSlots])
+
   const handleChange = (event) => {
     const { name, value } = event.target
 
@@ -253,9 +222,16 @@ export default function Locale() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    if (isSubmitting) return
     setIsSubmitting(true)
     setMessage(null)
     setError(null)
+
+    if (!validDate || blockedSlotsError || isLoadingBlockedSlots) {
+      setError(isReservationDateClosed ? closedDateMessage : t(blockedSlotsError ? 'locale.availabilityError' : 'locale.invalidDate'))
+      setIsSubmitting(false)
+      return
+    }
 
     if (isClosedReservationDate(reservation.reservation_date)) {
       setError(closedDateMessage)
@@ -318,18 +294,17 @@ export default function Locale() {
       source: 'website',
     }
 
-    const { error: insertError } = await publicSupabase.from('reservations').insert([payload])
-
-    if (insertError) {
-      setError(t('locale.submitError'))
-      console.error(insertError)
-    } else {
+    try {
+      const { error: insertError } = await publicSupabase.from('reservations').insert([payload])
+      if (insertError) throw insertError
       setMessage(t('locale.success'))
       setReservation(initialReservation)
       setServiceAvailability(null)
+    } catch {
+      setError(t('locale.submitError'))
+    } finally {
+      setIsSubmitting(false)
     }
-
-    setIsSubmitting(false)
   }
 
   return (
@@ -430,11 +405,11 @@ export default function Locale() {
           <div className="form-row">
             <label>
               {t('locale.date')}
-              <input type="date" name="reservation_date" value={reservation.reservation_date} onChange={handleChange} required />
+              <input type="date" min={getTodayDateValue()} name="reservation_date" value={reservation.reservation_date} onChange={handleChange} required />
             </label>
             <label>
               {t('locale.time')}
-              <select name="reservation_time" value={reservation.reservation_time} onChange={handleChange} disabled={!reservation.reservation_date || isReservationDateClosed || isLoadingBlockedSlots} required>
+              <select name="reservation_time" value={reservation.reservation_time} onChange={handleChange} disabled={!validDate || isLoadingBlockedSlots || Boolean(blockedSlotsError)} required>
                 <option value="">
                   {!reservation.reservation_date ? t('common.selectFirstDate') : isReservationDateClosed ? (specialReservationSchedule?.type === 'closed' ? t('common.closed') : t('common.closedSundayMonday')) : isLoadingBlockedSlots ? t('common.loading') : t('common.selectTime')}
                 </option>
@@ -443,6 +418,7 @@ export default function Locale() {
             </label>
           </div>
 
+          {blockedSlotsError && <p className="form-message error" role="alert">{t('locale.availabilityError')}</p>}
           {isReservationDateClosed && <p className="form-message error">{closedDateMessage}</p>}
 
           <div className="form-row">
@@ -482,7 +458,7 @@ export default function Locale() {
             <textarea name="notes" value={reservation.notes} onChange={handleChange} rows="4" placeholder={t('locale.notesPlaceholder')} />
           </label>
 
-          <button className="primary-button" type="submit" disabled={isSubmitting || isCheckingAvailability || isLoadingBlockedSlots || isReservationDateClosed || capacityStatus.isCapacityBlocking}>
+          <button className="primary-button" type="submit" disabled={!validDate || Boolean(blockedSlotsError) || isSubmitting || isCheckingAvailability || isLoadingBlockedSlots || isReservationDateClosed || capacityStatus.isCapacityBlocking}>
             {isSubmitting ? t('common.sending') : t('locale.submit')}
           </button>
 
