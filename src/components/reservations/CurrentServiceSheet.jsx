@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { supabase } from '../../lib/supabaseClient.js'
-import { getSpecialSchedule, isClosedReservationDate } from '../../lib/scheduleExceptions.js'
+import { getSpecialSchedule, isClosedReservationDate, isDinnerClosed } from '../../lib/scheduleExceptions.js'
 import '../../styles/current-service-sheet.css'
 
 const TABLE_NUMBERS = Array.from({ length: 16 }, (_, index) => String(index + 1))
@@ -61,7 +61,7 @@ function getServiceWindowsForDate(dateValue) {
   return [
     { key: 'lunch', ...SERVICE_WINDOWS.lunch },
     { key: 'dinner', ...SERVICE_WINDOWS.dinner, end: dinnerEnd },
-  ]
+  ].filter(window => window.key !== 'dinner' || !isDinnerClosed(dateValue))
 }
 
 function isOpenDate(dateValue) {

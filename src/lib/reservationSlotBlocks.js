@@ -1,5 +1,5 @@
 import { publicSupabase } from './supabaseClient.js'
-import { getDayFromDateValue, getSpecialSchedule, isClosedReservationDate } from './scheduleExceptions.js'
+import { getReservationTimeSlots, getSpecialSchedule, isClosedReservationDate, isDinnerClosed } from './scheduleExceptions.js'
 
 export const RESERVATION_SLOT_BLOCKS_TABLE = 'reservation_slot_blocks'
 
@@ -71,25 +71,12 @@ export function getManagementTimeSlotGroups(dateValue) {
         isReservableOnline: reservableSlots.has(time)
       }))
     }
-  ]
+  ].filter(group => group.id !== 'dinner' || !isDinnerClosed(dateValue))
 }
 
 export function getOnlineReservationSlots(dateValue) {
-  if (!dateValue) return []
-  if (isClosedReservationDate(dateValue)) return []
-
-  const specialSchedule = getSpecialSchedule(dateValue)
-  if (specialSchedule?.type === 'special_open') {
-    return buildTimeSlots(specialSchedule.opens, specialSchedule.lastReservation)
-  }
-
-  const day = getDayFromDateValue(dateValue)
-  const lastDinnerSlot = day === 5 || day === 6 ? '22:45' : '22:30'
-
-  return [
-    ...buildTimeSlots('12:30', '15:15'),
-    ...buildTimeSlots('19:30', lastDinnerSlot)
-  ]
+  // Managers can inspect historical dates; use the same calendar without a today cutoff.
+  return getReservationTimeSlots(dateValue, dateValue)
 }
 
 export function filterBlockedSlots(slots, blockedTimes = []) {
