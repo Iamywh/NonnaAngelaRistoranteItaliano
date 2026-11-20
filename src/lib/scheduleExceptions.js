@@ -1,4 +1,6 @@
-export const NORMAL_CLOSED_RESERVATION_DAYS = [2, 3]
+export const WEEKLY_SCHEDULE_EFFECTIVE_FROM = '2026-11-22'
+export const NORMAL_CLOSED_RESERVATION_DAYS = [1]
+const PREVIOUS_CLOSED_RESERVATION_DAYS = [2, 3]
 
 export const SPECIAL_RESERVATION_DATES = {
   '2026-12-24': {
@@ -58,7 +60,14 @@ export function isClosedReservationDate(dateValue) {
   if (specialDate) return specialDate.isClosed
 
   const day = getDayFromDateValue(dateValue)
-  return day !== null && NORMAL_CLOSED_RESERVATION_DAYS.includes(day)
+  return day !== null && (dateValue >= WEEKLY_SCHEDULE_EFFECTIVE_FROM
+    ? NORMAL_CLOSED_RESERVATION_DAYS : PREVIOUS_CLOSED_RESERVATION_DAYS).includes(day)
+}
+
+export function isDinnerClosed(dateValue) {
+  if (getSpecialSchedule(dateValue)) return isClosedReservationDate(dateValue)
+  return isClosedReservationDate(dateValue) ||
+    (dateValue >= WEEKLY_SCHEDULE_EFFECTIVE_FROM && getDayFromDateValue(dateValue) === 0)
 }
 
 export function getTodayDateValue(now = new Date()) {
@@ -86,7 +95,7 @@ export function getReservationTimeSlots(dateValue, today = getTodayDateValue()) 
   const special = getSpecialSchedule(dateValue)
   if (special) return buildTimeSlots(special.firstReservation, special.lastReservation)
   const day = getDayFromDateValue(dateValue)
-  return [...buildTimeSlots('12:30', '15:15'), ...buildTimeSlots('19:30', [5, 6].includes(day) ? '22:45' : '22:30')]
+  return [...buildTimeSlots('12:30', '15:15'), ...(isDinnerClosed(dateValue) ? [] : buildTimeSlots('19:30', [5, 6].includes(day) ? '22:45' : '22:30'))]
 }
 
 export function getClosedDateMessage(dateValue, t) {

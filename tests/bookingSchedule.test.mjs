@@ -21,3 +21,17 @@ test('normal and holiday slots follow the same calendar', () => {
   assert.equal(getTodayDateValue(new Date('2026-07-01T23:30:00Z')), '2026-07-02')
   assert.equal(getTodayDateValue(new Date('2026-12-01T23:30:00Z')), '2026-12-01')
 })
+
+test('new weekly closures start on November 22 without changing earlier dates', () => {
+  assert.ok(getReservationTimeSlots('2026-11-15', today).includes('19:30'))
+  assert.ok(getReservationTimeSlots('2026-11-16', today).includes('19:30'))
+  assert.deepEqual(getReservationTimeSlots('2026-11-22', today),
+    ['12:30','12:45','13:00','13:15','13:30','13:45','14:00','14:15','14:30','14:45','15:00','15:15'])
+  for (const date of ['2026-11-23','2026-11-30','2027-01-04'])
+    assert.deepEqual(getReservationTimeSlots(date, today), [])
+  for (const date of ['2026-11-24','2026-11-25']) {
+    assert.ok(getReservationTimeSlots(date, today).includes('12:30'))
+    assert.ok(getReservationTimeSlots(date, today).includes('19:30'))
+  }
+  assert.equal(getReservationTimeSlots('2027-02-14', today).at(-1), '15:15')
+})

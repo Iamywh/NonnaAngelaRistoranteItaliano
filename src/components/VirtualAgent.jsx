@@ -42,12 +42,10 @@ const LANGUAGE_LOCALES = {
 }
 
 const CURRENT_HOURS = {
-  es: 'Abrimos lunes, jueves, viernes, sábado y domingo de 12:30 a 15:30. Cenas: lunes, jueves y domingo de 19:30 a 22:45; viernes y sábado de 19:30 a 23:00. Cerramos martes y miércoles. Horario especial: 24 y 31 de diciembre, de 13:00 a 18:00. Cerrado el 25 de diciembre y el 1 de enero.',
-  en: 'We are open Monday, Thursday, Friday, Saturday and Sunday from 12:30 to 15:30. Dinner: Monday, Thursday and Sunday from 19:30 to 22:45; Friday and Saturday from 19:30 to 23:00. Closed Tuesday and Wednesday. Special hours: December 24 and 31, 13:00 to 18:00. Closed December 25 and January 1.',
-  fr: 'Nous sommes ouverts lundi, jeudi, vendredi, samedi et dimanche de 12:30 à 15:30. Dîner : lundi, jeudi et dimanche de 19:30 à 22:45 ; vendredi et samedi de 19:30 à 23:00. Fermé mardi et mercredi. Horaires spéciaux : 24 et 31 décembre, de 13:00 à 18:00. Fermé le 25 décembre et le 1er janvier.',
-  it: 'Siamo aperti lunedì, giovedì, venerdì, sabato e domenica dalle 12:30 alle 15:30. Cena: lunedì, giovedì e domenica dalle 19:30 alle 22:45; venerdì e sabato dalle 19:30 alle 23:00. Chiusi martedì e mercoledì. Orari speciali: 24 e 31 dicembre dalle 13:00 alle 18:00. Chiusi il 25 dicembre e il 1° gennaio.',
-  de: 'Wir sind montags, donnerstags, freitags, samstags und sonntags von 12:30 bis 15:30 geöffnet. Abendessen: Montag, Donnerstag und Sonntag von 19:30 bis 22:45; Freitag und Samstag von 19:30 bis 23:00. Dienstag und Mittwoch geschlossen. Sonderöffnungszeiten: 24. und 31. Dezember von 13:00 bis 18:00. Am 25. Dezember und 1. Januar geschlossen.',
-  pt: 'Estamos abertos segunda, quinta, sexta, sábado e domingo das 12:30 às 15:30. Jantar: segunda, quinta e domingo das 19:30 às 22:45; sexta e sábado das 19:30 às 23:00. Fechado terça e quarta. Horário especial: 24 e 31 de dezembro, das 13:00 às 18:00. Fechado em 25 de dezembro e 1 de janeiro.'
+  "es": "Desde el 22 de noviembre de 2026: almuerzo de martes a domingo, 12:30–15:30. Cenas: martes, miércoles y jueves, 19:30–22:45; viernes y sábado, 19:30–23:00. Cerrado domingo noche y lunes todo el día. Horario especial: 24 y 31 de diciembre, 13:00–18:00; cerrado 25 de diciembre y 1 de enero.",
+  "en": "From November 22, 2026: lunch Tuesday to Sunday, 12:30–15:30. Dinner Tuesday, Wednesday and Thursday, 19:30–22:45; Friday and Saturday, 19:30–23:00. Closed Sunday evening and all Monday. Special hours: December 24 and 31, 13:00–18:00; closed December 25 and January 1.",
+  "fr": "À partir du 22 novembre 2026 : déjeuner du mardi au dimanche, 12:30–15:30. Dîner mardi, mercredi et jeudi, 19:30–22:45 ; vendredi et samedi, 19:30–23:00. Fermé dimanche soir et toute la journée du lundi. Horaires spéciaux : 24 et 31 décembre, 13:00–18:00 ; fermé le 25 décembre et le 1er janvier.",
+  "it": "Dal 22 novembre 2026: pranzo da martedì a domenica, 12:30–15:30. Cena martedì, mercoledì e giovedì, 19:30–22:45; venerdì e sabato, 19:30–23:00. Chiusi domenica sera e tutto il lunedì. Orari speciali: 24 e 31 dicembre, 13:00–18:00; chiusi 25 dicembre e 1 gennaio."
 }
 
 const RESERVATION_WORDS = [
